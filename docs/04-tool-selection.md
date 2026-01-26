@@ -235,9 +235,7 @@ graph LR
     SKILL[Skill<br/>翻訳ワークフロー] -->|"参照"| AGENT[サブエージェント<br/>翻訳専門家]
     AGENT -->|"実行"| MCP[MCP<br/>deepl + xcomet]
 
-    style SKILL fill:#90EE90
-    style AGENT fill:#87CEEB
-    style MCP fill:#FFB6C1
+
 ```
 
 ## 判断マトリックス

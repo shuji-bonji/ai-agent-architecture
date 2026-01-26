@@ -126,7 +126,7 @@ graph TB
         D[ステークホルダー対話]
     end
 
-    subgraph AIの役割（MCP経由）
+    subgraph "AIの役割（MCP経由）"
         E[情報収集・分析]
         F[定型作業自動化]
         G[品質チェック]

@@ -364,11 +364,6 @@ graph LR
     L1[レベル1<br/>無管理] --> L2[レベル2<br/>リスト管理]
     L2 --> L3[レベル3<br/>監視・監査]
     L3 --> L4[レベル4<br/>自動化]
-
-    style L1 fill:#ff6b6b
-    style L2 fill:#ffd93d
-    style L3 fill:#6bcb77
-    style L4 fill:#4d96ff
 ```
 
 現在は**レベル2（リスト管理）** を目指すのが現実的。

@@ -218,7 +218,7 @@ graph TB
         LAW[hourei-mcp<br/>日本法令]
     end
 
-    subgraph 翻訳・品質
+    subgraph "翻訳・品質"
         DEEPL[deepl-mcp<br/>翻訳]
         XCOMET[xcomet-mcp<br/>品質評価]
     end
