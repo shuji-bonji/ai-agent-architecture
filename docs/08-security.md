@@ -198,6 +198,80 @@ execFile('ls', [sanitizedInput]);
 - 機密情報のマスキング
 - コンテキスト分離の検討
 
+### OWASP LLM Top 10 との関連
+
+MCPはLLMと密接に連携するため、**OWASP LLM Top 10**（2025）も重要な参照先となる。
+
+> **参照**: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+
+#### 重複・関連する脆弱性
+
+```mermaid
+graph LR
+    subgraph "OWASP MCP Top 10"
+        MCP01[MCP01: Token Mismanagement]
+        MCP03[MCP03: Tool Poisoning]
+        MCP04[MCP04: Supply Chain]
+        MCP06[MCP06: Prompt Injection]
+        MCP10[MCP10: Context Over-Sharing]
+    end
+
+    subgraph "OWASP LLM Top 10"
+        LLM01[LLM01: Prompt Injection]
+        LLM05[LLM05: Supply Chain]
+        LLM06[LLM06: Sensitive Info Disclosure]
+        LLM07[LLM07: Insecure Plugin Design]
+        LLM08[LLM08: Excessive Agency]
+    end
+
+    MCP06 <-->|"重複"| LLM01
+    MCP04 <-->|"重複"| LLM05
+    MCP10 <-->|"重複"| LLM06
+    MCP03 <-->|"重複"| LLM07
+    MCP01 -.->|"関連"| LLM08
+```
+
+| MCP Top 10                  | LLM Top 10                              | 関連性                                 |
+| --------------------------- | --------------------------------------- | -------------------------------------- |
+| MCP06: Prompt Injection     | LLM01: Prompt Injection                 | **完全重複** - 同一の脅威              |
+| MCP04: Supply Chain         | LLM05: Supply Chain Vulnerabilities     | **完全重複** - 依存関係の脆弱性        |
+| MCP10: Context Over-Sharing | LLM06: Sensitive Information Disclosure | **高関連** - 機密情報の漏洩経路        |
+| MCP03: Tool Poisoning       | LLM07: Insecure Plugin Design           | **高関連** - プラグイン/ツールの安全性 |
+| MCP02: Privilege Escalation | LLM08: Excessive Agency                 | **関連** - 過剰な権限・自律性          |
+
+#### LLM Top 10 の全体像
+
+| ID    | 脆弱性                           | 概要                               | MCP関連          |
+| ----- | -------------------------------- | ---------------------------------- | ---------------- |
+| LLM01 | Prompt Injection                 | 悪意ある入力によるモデル動作の操作 | MCP06            |
+| LLM02 | Insecure Output Handling         | 出力の不適切な処理                 | ツール出力処理   |
+| LLM03 | Training Data Poisoning          | 学習データの汚染                   | -                |
+| LLM04 | Model Denial of Service          | リソース枯渇攻撃                   | コンテキスト枯渇 |
+| LLM05 | Supply Chain Vulnerabilities     | サプライチェーン攻撃               | MCP04            |
+| LLM06 | Sensitive Information Disclosure | 機密情報の漏洩                     | MCP10            |
+| LLM07 | Insecure Plugin Design           | プラグインの脆弱な設計             | MCP03            |
+| LLM08 | Excessive Agency                 | 過剰な自律性・権限                 | MCP02            |
+| LLM09 | Overreliance                     | LLM出力への過度な依存              | -                |
+| LLM10 | Model Theft                      | モデルの窃取                       | -                |
+
+#### 両方を参照すべき理由
+
+```
+MCPサーバー開発では両方の視点が必要:
+
+OWASP MCP Top 10
+└── MCPサーバー「自体」のセキュリティ
+    ├── ツール定義の安全性
+    ├── 認証情報の管理
+    └── サプライチェーン
+
+OWASP LLM Top 10
+└── MCPを「使う」LLMアプリのセキュリティ
+    ├── プロンプトインジェクション対策
+    ├── 出力の検証
+    └── 権限の制限
+```
+
 ---
 
 ## MCPセキュリティの現状
@@ -571,6 +645,15 @@ graph LR
 
 ## 参考リンク
 
+### OWASP関連
+
 - [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/) - MCPサーバー開発セキュリティ
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Webアプリケーションセキュリティ（従来版）
+- [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) - LLMアプリケーションセキュリティ
+- [OWASP API Security Top 10](https://owasp.org/API-Security/) - APIセキュリティ
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Webアプリケーションセキュリティ
+
+### その他の参照先
+
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - AIリスク管理フレームワーク
+- [MITRE ATLAS](https://atlas.mitre.org/) - AI脅威マトリクス
 - [LINEヤフーのMCP活用事例](https://techblog.lycorp.co.jp/) - エンタープライズでのMCP運用
