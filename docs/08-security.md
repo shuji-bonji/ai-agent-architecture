@@ -6,7 +6,199 @@
 
 MCPサーバーは外部APIやデータベースに接続するため、適切なセキュリティ対策なしには重大なリスクを招く可能性がある。LINEヤフーの調査によれば、多くのMCPが静的APIキーに依存しており、セキュリティ面では発展途上にある。
 
-このドキュメントでは、MCPサーバーの開発・運用における主要なリスクカテゴリを整理し、それぞれの対策を具体的に示す。また、開発時に使えるチェックリストを提供し、セキュリティを意識した開発を支援する。
+このドキュメントでは、MCPサーバーの開発・運用における主要なリスクカテゴリを整理し、それぞれの対策を具体的に示す。また、**OWASP MCP Top 10（2025）** を「ブレない参照先」として活用し、開発時に使えるチェックリストを提供する。
+
+## 参照先：OWASP MCP Top 10
+
+### 概要
+
+MCPサーバー開発時のセキュリティガイドラインとして、**OWASP MCP Top 10 (2025)** を参照する。
+
+| 項目           | 内容                                      |
+| -------------- | ----------------------------------------- |
+| **URL**        | https://owasp.org/www-project-mcp-top-10/ |
+| **ステータス** | Phase 3 - Beta Release and Pilot Testing  |
+| **ライセンス** | CC BY-NC-SA 4.0                           |
+| **リーダー**   | Vandana Verma Sehgal, Liran Tal           |
+
+> **注意**: これは従来の「OWASP Top 10（Webアプリケーション脆弱性）」とは別のプロジェクトであり、**MCPサーバー開発に特化したセキュリティガイドライン**である。
+
+### OWASP Top 10 との違い
+
+| 項目         | OWASP Top 10（従来） | OWASP MCP Top 10（2025）            |
+| ------------ | -------------------- | ----------------------------------- |
+| **対象**     | Webアプリケーション  | MCPサーバー開発                     |
+| **脆弱性例** | SQLi, XSS, CSRF      | Token Mismanagement, Tool Poisoning |
+| **用途**     | Webセキュリティ監査  | MCP開発時の設計指針                 |
+
+### OWASP MCP Top 10 一覧
+
+```mermaid
+mindmap
+  root((OWASP MCP<br/>Top 10))
+    認証・認可
+      MCP01: Token Mismanagement
+      MCP02: Privilege Escalation
+      MCP07: Insufficient Auth
+    サプライチェーン
+      MCP03: Tool Poisoning
+      MCP04: Supply Chain Attacks
+      MCP09: Shadow MCP Servers
+    インジェクション
+      MCP05: Command Injection
+      MCP06: Prompt Injection
+    データ・監視
+      MCP08: Lack of Audit
+      MCP10: Context Over-Sharing
+```
+
+| ID        | 名称                                        | 概要                                                                                          |
+| --------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| **MCP01** | Token Mismanagement & Secret Exposure       | 認証情報のハードコード、長期間有効なトークン、ログへの漏洩                                    |
+| **MCP02** | Privilege Escalation via Scope Creep        | 緩い権限定義による権限昇格、スコープの拡大                                                    |
+| **MCP03** | Tool Poisoning                              | 悪意あるツール/プラグインによるコンテキスト注入（rug pull、schema poisoning、tool shadowing） |
+| **MCP04** | Supply Chain Attacks & Dependency Tampering | 依存パッケージの改ざん、エージェント動作の変更                                                |
+| **MCP05** | Command Injection & Execution               | 未検証の入力によるシステムコマンド実行                                                        |
+| **MCP06** | Prompt Injection via Contextual Payloads    | テキストベースのインジェクション攻撃、モデルを標的とした攻撃                                  |
+| **MCP07** | Insufficient Authentication & Authorization | マルチエージェント環境での弱いID検証                                                          |
+| **MCP08** | Lack of Audit and Telemetry                 | ログ・監視の不足によるインシデント対応の困難                                                  |
+| **MCP09** | Shadow MCP Servers                          | セキュリティガバナンス外の未承認MCPデプロイ（Shadow ITのMCP版）                               |
+| **MCP10** | Context Injection & Over-Sharing            | 共有コンテキストウィンドウでの機密情報漏洩                                                    |
+
+### 各脆弱性の詳細と対策
+
+#### MCP01: Token Mismanagement & Secret Exposure
+
+**リスク**: 認証情報がソースコード、ログ、モデルのメモリに残る
+
+```typescript
+// ❌ 悪い例：ハードコード
+const API_KEY = 'sk-1234567890abcdef';
+
+// ✅ 良い例：環境変数から取得
+const API_KEY = process.env.DEEPL_API_KEY;
+```
+
+**対策**:
+
+- 認証情報は環境変数またはシークレット管理サービスから取得
+- ログに認証情報を出力しない
+- 短命なトークン（Short-lived tokens）を使用
+- トークンのローテーションを実装
+
+#### MCP02: Privilege Escalation via Scope Creep
+
+**リスク**: 最初は限定的だった権限が時間とともに拡大
+
+**対策**:
+
+- 最小権限の原則を厳守
+- 権限の定期レビュー
+- ツールごとに必要な権限を明示的に定義
+
+#### MCP03: Tool Poisoning
+
+**リスク**: 悪意あるMCPサーバーがコンテキストに有害な情報を注入
+
+```
+攻撃パターン:
+├── Rug Pull: 信頼を得た後に悪意ある動作に変更
+├── Schema Poisoning: スキーマ定義に悪意あるコードを埋め込み
+└── Tool Shadowing: 正規ツールを偽装して置き換え
+```
+
+**対策**:
+
+- 信頼できるソースからのみMCPを導入
+- ソースコードレビューの実施
+- 利用許可リストでの管理
+
+#### MCP04: Supply Chain Attacks & Dependency Tampering
+
+**リスク**: 依存パッケージが改ざんされ、エージェントの動作が変更される
+
+**対策**:
+
+```bash
+# 定期的な脆弱性チェック
+npm audit
+pip-audit
+
+# ロックファイルの使用
+package-lock.json
+poetry.lock
+```
+
+#### MCP05: Command Injection & Execution
+
+**リスク**: 未検証の入力がシステムコマンドとして実行される
+
+```typescript
+// ❌ 悪い例：直接コマンド実行
+exec(`ls ${userInput}`);
+
+// ✅ 良い例：入力検証 + エスケープ
+const sanitizedInput = sanitize(userInput);
+execFile('ls', [sanitizedInput]);
+```
+
+**対策**:
+
+- すべての入力を検証
+- パラメータ化されたコマンド実行
+- サンドボックス環境での実行
+
+#### MCP06: Prompt Injection via Contextual Payloads
+
+**リスク**: テキストに埋め込まれた悪意ある指示がモデルの動作を変更
+
+**対策**:
+
+- 入力のサニタイズ
+- コンテキストの分離
+- 出力の検証
+
+#### MCP07: Insufficient Authentication & Authorization
+
+**リスク**: マルチエージェント環境での弱いID検証
+
+**対策**:
+
+- 強力な認証メカニズム（OAuth 2.0推奨）
+- エージェント間の相互認証
+- 最小権限の原則
+
+#### MCP08: Lack of Audit and Telemetry
+
+**リスク**: ログ・監視の不足によりインシデント検知・対応が困難
+
+**対策**:
+
+- 構造化ログの実装
+- 監視・アラートの設定
+- 監査証跡の保持
+
+#### MCP09: Shadow MCP Servers
+
+**リスク**: 未承認のMCPサーバーがセキュリティガバナンス外で運用される
+
+**対策**:
+
+- MCPサーバー利用許可リストの運用
+- 定期的な棚卸し
+- セキュリティポリシーの周知
+
+#### MCP10: Context Injection & Over-Sharing
+
+**リスク**: 共有コンテキストウィンドウで機密情報が意図せず公開される
+
+**対策**:
+
+- コンテキストへの情報投入を最小限に
+- 機密情報のマスキング
+- コンテキスト分離の検討
+
+---
 
 ## MCPセキュリティの現状
 
@@ -22,7 +214,7 @@ LINEヤフーがMCPエコシステムを調査した結果
 
 **結論**: MCPサーバーの認証は発展途上であり、慎重な管理が必要。
 
-## リスクカテゴリ
+## リスクカテゴリ（従来の整理）
 
 ```mermaid
 mindmap
@@ -296,15 +488,17 @@ graph LR
 - [ ] 最小権限の原則を適用しているか
 - [ ] 認証方式は適切か（OAuth推奨）
 - [ ] 機密データの扱いを定義しているか
+- [ ] OWASP MCP Top 10を確認したか
 ```
 
 ### 実装フェーズ
 
 ```markdown
-- [ ] 入力検証を実装しているか
-- [ ] 認証情報をハードコードしていないか
-- [ ] ログに機密情報を出力していないか
+- [ ] 入力検証を実装しているか（MCP05対策）
+- [ ] 認証情報をハードコードしていないか（MCP01対策）
+- [ ] ログに機密情報を出力していないか（MCP01対策）
 - [ ] エラーメッセージに内部情報を含めていないか
+- [ ] 依存パッケージを監査したか（MCP04対策）
 ```
 
 ### テストフェーズ
@@ -313,21 +507,27 @@ graph LR
 - [ ] セキュリティテストを実施したか
 - [ ] 依存パッケージの脆弱性をチェックしたか
 - [ ] 異常入力に対する動作を確認したか
+- [ ] プロンプトインジェクションの耐性を確認したか（MCP06対策）
 ```
 
 ### 運用フェーズ
 
 ```markdown
 - [ ] 認証情報のローテーション計画があるか
-- [ ] 監視・アラートを設定しているか
+- [ ] 監視・アラートを設定しているか（MCP08対策）
 - [ ] インシデント対応手順があるか
 - [ ] 定期的なセキュリティレビューを行っているか
+- [ ] MCPサーバー利用許可リストを管理しているか（MCP09対策）
 ```
 
 ## CLAUDE.md でのセキュリティポリシー記載例
 
 ```markdown
 # セキュリティポリシー
+
+## 参照先
+
+- OWASP MCP Top 10: https://owasp.org/www-project-mcp-top-10/
 
 ## 使用禁止MCP
 
@@ -350,12 +550,13 @@ graph LR
 
 ### 重要な原則
 
-1. **信頼できるMCPのみ使用** - 利用許可リストで管理
-2. **最小権限** - 必要な権限のみ付与
-3. **認証情報の安全な管理** - ハードコード禁止、ローテーション
-4. **入力検証** - すべての入力を検証
-5. **監視とログ** - 異常検知、ただし機密情報は除外
-6. **インシデント対応** - 手順を事前に準備
+1. **OWASP MCP Top 10を参照** - MCPサーバー開発の「ブレない参照先」
+2. **信頼できるMCPのみ使用** - 利用許可リストで管理
+3. **最小権限** - 必要な権限のみ付与
+4. **認証情報の安全な管理** - ハードコード禁止、ローテーション
+5. **入力検証** - すべての入力を検証
+6. **監視とログ** - 異常検知、ただし機密情報は除外
+7. **インシデント対応** - 手順を事前に準備
 
 ### MCPセキュリティの成熟度
 
@@ -367,3 +568,9 @@ graph LR
 ```
 
 現在は**レベル2（リスト管理）** を目指すのが現実的。
+
+## 参考リンク
+
+- [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/) - MCPサーバー開発セキュリティ
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Webアプリケーションセキュリティ（従来版）
+- [LINEヤフーのMCP活用事例](https://techblog.lycorp.co.jp/) - エンタープライズでのMCP運用
