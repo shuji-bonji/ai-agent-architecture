@@ -324,6 +324,107 @@ Even with outsourcing partners, internal specialized departments are needed
 | Expose your agent externally            | A2A             |
 | Agent collaboration across multiple organizations | A2A    |
 
+## Executor Selection
+
+Beyond choosing MCP / Skill / Sub-agent, the perspective of **"who makes the decision"** becomes crucial.
+
+### Evolution of Execution
+
+The way we integrate with external services has evolved with technology.
+
+```
+Past                  Present                 Future
+┌─────────┐        ┌─────────┐          ┌─────────┐
+│  Human  │        │   AI    │          │  Agent  │
+│  (CLI)  │        │(via MCP)│          │(Autonomy│
+└────┬────┘        └────┬────┘          └────┬────┘
+     │                  │                    │
+     ▼                  ▼                    ▼
+┌─────────┐        ┌─────────┐          ┌─────────┐
+│   API   │        │   API   │          │   API   │
+└─────────┘        └─────────┘          └─────────┘
+
+Human operates        AI calls API          Agent autonomously
+API via commands      as a tool             decides & executes
+```
+
+In this evolution, **not everything needs to be MCP-ified**.
+The appropriate layer is determined by "who makes the decision".
+
+### Layer Selection by Decision Maker
+
+| Decision Maker | Appropriate Layer | Characteristics | Examples |
+|----------------|-------------------|-----------------|----------|
+| **None** (Deterministic) | Direct program | No judgment needed, fast, reliable | Batch processing, CI/CD, cron |
+| **Human** | CLI | Human decides, AI doesn't execute | `gh pr list`, `aws s3 ls` |
+| **AI** (One-shot) | MCP + Skill | AI decides and executes per request | Translation, RFC lookup, quality evaluation |
+| **AI** (Continuous/Autonomous) | Sub-agent | Autonomous decisions with expertise | Review specialist, translation specialist |
+
+### Decision Flow
+
+```mermaid
+flowchart TD
+    START[Capability needed] --> Q0{Who decides?}
+
+    Q0 -->|No decision needed<br/>Deterministic| PG[Execute directly in program]
+    Q0 -->|Human decides| HUMAN{Official CLI exists?}
+    Q0 -->|AI decides| AI{Complexity & continuity?}
+
+    HUMAN -->|Yes| CLI[Use CLI]
+    HUMAN -->|No| SCRIPT[Script/Direct API]
+
+    AI -->|One-shot, simple| MCP_SKILL[MCP + Skill]
+    AI -->|Continuous, autonomous| SUBAGENT[Sub-agent]
+
+    MCP_SKILL --> Q2{CLI exists?}
+    Q2 -->|Yes| CLI_SKILL[CLI + Skill<br/>Token efficient ◎]
+    Q2 -->|No| MCP_BUILD[Build MCP]
+
+    style PG fill:#E8E8E8
+    style CLI fill:#FFE4B5
+    style CLI_SKILL fill:#90EE90
+    style MCP_BUILD fill:#FFB6C1
+    style SUBAGENT fill:#87CEEB
+```
+
+### CLI vs MCP: When AI Makes the Decision
+
+> **Key Insight**: When an official CLI exists, **CLI + Skill** is more efficient than building an MCP
+>
+> *— From r/ClaudeAI community discussion*
+
+| Aspect | CLI + Skill | MCP |
+|--------|-------------|-----|
+| **Token consumption** | Low (command only) | High (loads all tool definitions) |
+| **Startup cost** | None | Requires server process |
+| **Authentication** | Local | Managed by MCP |
+| **Purpose-built** | ◎ (Dedicated design) | △ (General purpose) |
+
+#### Examples
+
+| Service | CLI | Recommendation |
+|---------|-----|----------------|
+| GitHub | `gh` | CLI + Skill |
+| AWS | `aws` | CLI + Skill |
+| Google Cloud | `gcloud` | CLI + Skill |
+| PostgreSQL | `psql` | CLI + Skill |
+| Linear | ❌ | MCP |
+| Greptile | ❌ | MCP |
+| DeepL | ❌ | MCP |
+
+### Key Insight
+
+```
+Selection changes based on "who decides", not just "what to execute"
+
+No decision needed  → Direct program
+Human decides       → CLI
+AI decides          → MCP or CLI + Skill
+AI autonomous       → Sub-agent
+```
+
+With this perspective, you can avoid over-MCPization and implement at the appropriate layer.
+
 ## Combination Patterns
 
 ### The Most Powerful Combination
