@@ -42,6 +42,10 @@ cp templates/skill/SKILL.md.template .claude/skills/my-skill/SKILL.md
 | Project | `.claude/skills/xxx/SKILL.md` | High |
 | User | `~/.claude/skills/xxx/SKILL.md` | Low |
 
+## Related
+
+- [Command Templates](../command/) - Create commands that use Skills
+
 ## References
 
 - [Skills Overview](../../docs/skills/overview.md)

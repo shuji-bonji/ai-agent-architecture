@@ -1,0 +1,64 @@
+# /{{command-name}}
+
+{{One-line description of what this command does}}
+
+## Usage
+
+```
+/{{command-name}} <required-arg> [optional-arg] [options]
+```
+
+## Arguments
+
+| Argument | Description | Example |
+|----------|-------------|---------|
+| `<required-arg>` | {{Description}} | {{example}} |
+| `[optional-arg]` | {{Description}} | {{example}} |
+
+## Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--option1 <value>` | {{Description}} | {{default}} |
+| `--flag` | {{Description}} | false |
+
+## Workflow
+
+This command performs:
+
+1. **Step 1**: {{Description}}
+2. **Step 2**: {{Description}}
+3. **Step 3**: {{Description}}
+
+## Examples
+
+### Basic usage
+
+```
+/{{command-name}} path/to/file
+```
+
+### With options
+
+```
+/{{command-name}} path/to/dir --option1 value --flag
+```
+
+## Output Format
+
+```
+## {{Command Name}} Report
+
+### Summary
+- {{Key metric}}: {{value}}
+- Status: ✅ Success
+
+### Details
+{{Detailed output format}}
+```
+
+## Related
+
+- Skill: `.claude/skills/{{related-skill}}/SKILL.md`
+- MCP: `{{mcp-name}}:{{tool-name}}`
+- Docs: `{{path-to-docs}}`

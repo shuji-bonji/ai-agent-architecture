@@ -161,6 +161,13 @@ See [docs/](./docs/) for details.
 | [outputs.md](./docs/outputs.md) | Outputs list |
 | [glossary.md](./docs/glossary.md) | Glossary |
 
+## Templates
+
+| Template | Purpose |
+|----------|---------|
+| [templates/skill/](./templates/skill/) | Skill definition templates and examples |
+| [templates/command/](./templates/command/) | Command (slash command) templates |
+
 ## References
 
 - [Skills Links](./references/skills/links.md) - Vercel Skills & Agent Skills Specification

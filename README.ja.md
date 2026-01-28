@@ -159,6 +159,13 @@ flowchart TD
 | [outputs.md](./docs/outputs.ja.md) | 実績・アウトプット一覧 |
 | [glossary.md](./docs/glossary.ja.md) | 用語集 |
 
+## テンプレート
+
+| テンプレート | 用途 |
+|-------------|------|
+| [templates/skill/](./templates/skill/README.ja.md) | Skill 定義テンプレートと例 |
+| [templates/command/](./templates/command/README.ja.md) | Command（スラッシュコマンド）テンプレート |
+
 ## リファレンス
 
 - [Skills リンク集](./references/skills/links.ja.md) - Vercel Skills・Agent Skills Specification

@@ -2,7 +2,7 @@
 
 [日本語版 (Japanese)](./README.ja.md)
 
-This directory contains systematized deliverables from discussions held in the discussions section.
+This directory contains systematized documentation for AI agent configuration.
 
 ## New Structure (v2 Restructuring)
 
@@ -38,7 +38,7 @@ This documentation systematizes the **design philosophy, architecture, and pract
 
 This is not merely a tool usage manual, but includes answers to fundamental questions such as "Why build MCPs?", "How should AI and humans collaborate?", and "What should be prioritized in development?".
 
-Insights gained through dialogue with Claude (in `discussions/`) are compiled in a reusable format.
+Insights gained through dialogue with Claude are compiled in a reusable format.
 
 ## Document List
 
@@ -113,8 +113,8 @@ Insights gained through dialogue with Claude (in `discussions/`) are compiled in
 
 ## Related Directories
 
-- `../discussions/` - Discussion logs with Claude (chronological)
 - `../references/` - Reference links and materials
+- `../templates/` - Skill and Command templates
 
 ## Update History
 

@@ -40,8 +40,12 @@ cp templates/skill/SKILL.md.template .claude/skills/my-skill/SKILL.md
 | プロジェクト | `.claude/skills/xxx/SKILL.md` | 高 |
 | ユーザー | `~/.claude/skills/xxx/SKILL.md` | 低 |
 
+## 関連
+
+- [Command テンプレート](../command/README.ja.md) - Skill を使うコマンドの作成
+
 ## 参考
 
-- [Skills Overview](../../docs/skills/overview.md)
-- [MCP vs Skills](../../docs/skills/vs-mcp.md)
-- [Anti-Patterns](../../docs/skills/anti-patterns.md)
+- [Skills 概要](../../docs/skills/overview.ja.md)
+- [MCP vs Skills](../../docs/skills/vs-mcp.ja.md)
+- [アンチパターン](../../docs/skills/anti-patterns.ja.md)
