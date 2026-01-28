@@ -1,113 +1,183 @@
 # AI Agent Toolkit
 
+> MCP alone is not enough — this repo addresses how Agents discover and orchestrate Skills and Tools.
+
 AIエージェント構成（MCP・Skills・Agent統合）に関する設計思想・アーキテクチャ・実践ノウハウをまとめたリポジトリ。
 
-## スコープ
+## Why This Matters Now
 
-| レイヤー   | 役割                             | 例                               |
-| ---------- | -------------------------------- | -------------------------------- |
-| **MCP**    | 外部ツール・API連携              | rfcxml-mcp, deepl-mcp            |
-| **Skills** | ドメイン知識・ベストプラクティス | frontend-design, doc-coauthoring |
-| **Agent**  | 自律的タスク実行                 | Claude Code, Cursor              |
+The AI agent ecosystem is rapidly evolving:
 
-### 含まれるもの
+- **Vercel Skills v1.1.1** — Open-sourced with 27+ agent support
+- **Agent Skills Specification** — Standardization efforts underway
+- **MCP Adoption** — Growing but lacking discovery/orchestration guidance
 
-- **構成論**: MCP / Skills / Agent の役割と選択判断
-- **カタログ**: 構築済み・発見したツールへのポインタ
-- **アーキテクチャ原則**: 組み合わせ方、アンチパターン
-- **知見の蓄積**: 実プロジェクトから得た横断的学び
+This creates a gap: **How do agents find the right skills and tools?**
 
-### 含まれないもの
+## What Problem Does This Address?
 
-- 実行可能なMCPサーバー実装 → 個別リポジトリへ
-- 特定ドメインの詳細なSkill定義 → 個別リポジトリへ
-- プロジェクト固有の設定・ワークフロー → 各プロジェクトへ
+| Challenge | Description |
+|-----------|-------------|
+| **MCP alone is insufficient** | MCP exposes tools, but doesn't guide when/how to use them |
+| **Skills lack integration patterns** | Domain knowledge exists but isn't connected to tooling |
+| **Agent orchestration is ad-hoc** | No standard way to combine MCP + Skills |
 
-### 成長パターン
+## What This Repo Offers
 
 ```
-参照 → 実践 → 新知見 → 別リポジトリ化 → ポインタ追加
+┌─────────────────────────────────────────────────────────┐
+│                      User Request                        │
+└─────────────────────────┬───────────────────────────────┘
+                          ▼
+┌─────────────────────────────────────────────────────────┐
+│  Agent Layer          (Orchestration & Decision)         │
+├─────────────────────────────────────────────────────────┤
+│  Skills Layer         (Domain Knowledge & Guidelines)    │
+├─────────────────────────────────────────────────────────┤
+│  MCP Layer            (External Tools & APIs)            │
+└─────────────────────────────────────────────────────────┘
 ```
 
-新規プロジェクトで得た知見は、まず別リポジトリとして実装し、本リポジトリにはカタログエントリとして追加する。
+This repository provides:
 
-## 経緯
+- **Architecture principles** — How MCP, Skills, and Agents relate
+- **Selection guidelines** — When to use MCP vs Skills vs Agent delegation
+- **Anti-patterns** — Common mistakes and how to avoid them
+- **Catalog pointers** — Links to implementations (not implementations themselves)
+
+## MCP vs Skills vs Agent
+
+| Concern | MCP | Skills | Agent |
+|---------|-----|--------|-------|
+| **What it solves** | External tool/API access | Domain knowledge & best practices | Task orchestration |
+| **Who owns it** | Server developers | Domain experts | Agent orchestrator |
+| **Discovery** | Config-based | Index / marketplace | Dynamic selection |
+| **Runtime** | Server process | In-memory (context) | Session-based |
+| **Examples** | deepl-mcp, rfcxml-mcp | frontend-design, solid-principles | Claude Code, Cursor |
+
+## Quick Decision Flow
+
+```mermaid
+flowchart TD
+    START[New capability needed] --> Q1{External API<br/>required?}
+    Q1 -->|Yes| MCP[Implement as MCP]
+    Q1 -->|No| Q2{Domain knowledge<br/>or guidelines?}
+    Q2 -->|Yes| SKILL[Define as Skill]
+    Q2 -->|No| Q3{Complex orchestration<br/>needed?}
+    Q3 -->|Yes| AGENT[Agent delegation]
+    Q3 -->|No| BUILTIN[Use built-in capabilities]
+
+    MCP --> COMBINE{Need guidance<br/>for usage?}
+    COMBINE -->|Yes| SKILL_PLUS[Add complementary Skill]
+    COMBINE -->|No| DONE[Done]
+    SKILL_PLUS --> DONE
+```
+
+## Scope
+
+| Layer | Role | Examples |
+| ----- | ---- | -------- |
+| **MCP** | External tool/API integration | rfcxml-mcp, deepl-mcp |
+| **Skills** | Domain knowledge & best practices | frontend-design, doc-coauthoring |
+| **Agent** | Autonomous task execution | Claude Code, Cursor |
+
+### What's Included
+
+- **Architecture**: MCP / Skills / Agent roles and selection criteria
+- **Catalog**: Pointers to built-in and discovered tools
+- **Principles**: Composition patterns and anti-patterns
+- **Learnings**: Cross-project insights
+
+### What's NOT Included
+
+- Executable MCP server implementations → separate repositories
+- Detailed domain-specific Skill definitions → separate repositories
+- Project-specific configurations → individual projects
+
+### Growth Pattern
+
+```
+Reference → Practice → New Insight → Separate Repo → Add Catalog Entry
+```
+
+## Background
 
 当初は[MCP](https://modelcontextprotocol.io/)サーバー構築が対象でしたが、以下を踏まえスコープを拡大
 
 - [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) のオープンソース化
 - [Agent Skills Specification](https://agentskills.io) の標準化
-  > このリポジトリの内容は、AIとの壁打ちで得た、個人の意見にすぎない。
 
-## 核心的な問い
+> このリポジトリの内容は、AIとの壁打ちで得た、個人の意見にすぎない。
 
-> AIがいきなり（CI/CDを含め）バイナリを出力して実装できるようになる未来が来るまで、AI駆動開発には、これまでの人々が培ってきたエンジニアリングの導入が不可欠である。
+## Core Insight
+
+> Until AI can directly output binaries (including CI/CD), AI-driven development requires the integration of engineering practices that humans have cultivated.
 >
-> AIの判断には**ブレない参照先**が必要。
+> AI needs **stable reference sources** for its decisions.
 
-## ドキュメント
+## Documentation
 
-詳細は [docs/](./docs/) を参照。
+See [docs/](./docs/) for details.
 
-### Concepts（概念・思想）
+### Concepts
 
-| ファイル                                                                    | 内容                           |
-| --------------------------------------------------------------------------- | ------------------------------ |
-| [concepts/01-vision.md](./docs/concepts/01-vision.md)                       | AI駆動開発のビジョン・核心思想 |
-| [concepts/02-reference-sources.md](./docs/concepts/02-reference-sources.md) | 「ブレない参照先」の体系       |
-| [concepts/03-architecture.md](./docs/concepts/03-architecture.md)           | MCP/Skills/Agentの構成論       |
+| File | Content |
+| ---- | ------- |
+| [concepts/01-vision.md](./docs/concepts/01-vision.md) | AI-driven development vision |
+| [concepts/02-reference-sources.md](./docs/concepts/02-reference-sources.md) | "Stable reference sources" framework |
+| [concepts/03-architecture.md](./docs/concepts/03-architecture.md) | MCP/Skills/Agent architecture |
 
-### MCP（外部連携）
+### MCP (External Integration)
 
-| ファイル                                        | 内容                        |
-| ----------------------------------------------- | --------------------------- |
-| [mcp/catalog.md](./docs/mcp/catalog.md)         | 構築済みMCPカタログと成果   |
-| [mcp/security.md](./docs/mcp/security.md)       | MCP開発時のセキュリティ考慮 |
-| [mcp/development.md](./docs/mcp/development.md) | MCP開発ガイド（計画中）     |
+| File | Content |
+| ---- | ------- |
+| [mcp/catalog.md](./docs/mcp/catalog.md) | Built MCP catalog |
+| [mcp/security.md](./docs/mcp/security.md) | Security considerations |
+| [mcp/development.md](./docs/mcp/development.md) | Development guide (planned) |
 
-### Skills（ドメイン知識）
+### Skills (Domain Knowledge)
 
-| ファイル                                                      | 内容                                        |
-| ------------------------------------------------------------- | ------------------------------------------- |
-| [skills/overview.md](./docs/skills/overview.md)               | Vercel Skills と Agent Skills Specification |
-| [skills/vs-mcp.md](./docs/skills/vs-mcp.md)                   | MCP vs Skills の本質的な違い・選択判断      |
-| [skills/anti-patterns.md](./docs/skills/anti-patterns.md)     | MCP/Skills アンチパターン集                 |
-| [skills/creating-skills.md](./docs/skills/creating-skills.md) | Skills作成ガイド（計画中）                  |
+| File | Content |
+| ---- | ------- |
+| [skills/overview.md](./docs/skills/overview.md) | Vercel Skills & Agent Skills Specification |
+| [skills/vs-mcp.md](./docs/skills/vs-mcp.md) | MCP vs Skills selection guide |
+| [skills/anti-patterns.md](./docs/skills/anti-patterns.md) | Anti-patterns collection |
+| [skills/creating-skills.md](./docs/skills/creating-skills.md) | Skills creation guide (planned) |
 
-### Workflows（ワークフロー・運用）
+### Workflows
 
-| ファイル                                                                  | 内容                       |
-| ------------------------------------------------------------------------- | -------------------------- |
-| [workflows/patterns.md](./docs/workflows/patterns.md)                     | 連携パターン・ワークフロー |
-| [workflows/development-phases.md](./docs/workflows/development-phases.md) | 開発フェーズ × 対応        |
+| File | Content |
+| ---- | ------- |
+| [workflows/patterns.md](./docs/workflows/patterns.md) | Integration patterns |
+| [workflows/development-phases.md](./docs/workflows/development-phases.md) | Development phases |
 
-### 計画・参考
+### Planning & Reference
 
-| ファイル                          | 内容                   |
-| --------------------------------- | ---------------------- |
-| [roadmap.md](./docs/roadmap.md)   | 優先度・ロードマップ   |
-| [outputs.md](./docs/outputs.md)   | 実績・アウトプット一覧 |
-| [glossary.md](./docs/glossary.md) | 用語集                 |
+| File | Content |
+| ---- | ------- |
+| [roadmap.md](./docs/roadmap.md) | Roadmap |
+| [outputs.md](./docs/outputs.md) | Outputs list |
+| [glossary.md](./docs/glossary.md) | Glossary |
 
-## リファレンス
+## References
 
-- [Skills リンク集](./references/skills/links.md) - Vercel Skills・Agent Skills Specification
+- [Skills Links](./references/skills/links.md) - Vercel Skills & Agent Skills Specification
 
-## 関連プロジェクト
+## Related Projects
 
-- [RFC MCP Server](https://github.com/shuji-bonji/rfc-mcp-server) - IETF RFC検索・解析
-- [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server) - 翻訳品質評価
-- [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server) - RxJSストリーム実行・可視化
+- [RFC MCP Server](https://github.com/shuji-bonji/rfc-mcp-server) - IETF RFC search & analysis
+- [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server) - Translation quality evaluation
+- [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server) - RxJS stream execution & visualization
 
-## GitHub リポジトリ設定
+## GitHub Repository Settings
 
-### 説明文（About）
+### About
 
 ```
-AIエージェント構成（MCP・Skills・Agent統合）の設計思想・実践ノウハウ
+AI Agent architecture (MCP・Skills・Agent integration) - design principles & practical knowledge
 ```
 
-### Topics（タグ）
+### Topics
 
 ```
 mcp, skills, ai-agent, claude-code, cursor, agent-skills

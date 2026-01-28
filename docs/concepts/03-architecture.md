@@ -2,6 +2,47 @@
 
 > AI駆動開発のインフラを理解するための構成要素と、それぞれの役割・関係性を整理する。
 
+## レイヤー構造の概観
+
+```
+User Request
+     │
+     ▼
+┌─────────────────────────────────────────────────────────┐
+│  Agent Layer                                             │
+│  ┌─────────────────────────────────────────────────────┐ │
+│  │ • Task understanding                                │ │
+│  │ • Orchestration decisions                           │ │
+│  │ • Result synthesis                                  │ │
+│  └─────────────────────────────────────────────────────┘ │
+├─────────────────────────────────────────────────────────┤
+│  Skills Layer                                            │
+│  ┌─────────────────────────────────────────────────────┐ │
+│  │ • Domain knowledge                                  │ │
+│  │ • Best practices & guidelines                       │ │
+│  │ • Decision criteria                                 │ │
+│  └─────────────────────────────────────────────────────┘ │
+├─────────────────────────────────────────────────────────┤
+│  MCP Layer                                               │
+│  ┌─────────────────────────────────────────────────────┐ │
+│  │ • External API access                               │ │
+│  │ • Tool execution                                    │ │
+│  │ • Data retrieval                                    │ │
+│  └─────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────┘
+     │
+     ▼
+External Services (DeepL, RFC Editor, GitHub, etc.)
+```
+
+### 各レイヤーの責務
+
+| Layer | Responsibility | Owns | Examples |
+|-------|----------------|------|----------|
+| **Agent** | Orchestration, decision-making | Task flow | Claude Code, Cursor |
+| **Skills** | Domain knowledge, guidelines | Best practices | SOLID principles, translation guidelines |
+| **MCP** | External connectivity | Tool definitions | deepl-mcp, rfcxml-mcp |
+
 ## このドキュメントについて
 
 AI駆動開発には複数の構成要素が存在するが、それぞれの役割と関係性を正しく理解することが効率的な開発の鍵となる。このドキュメントでは、MCP（ツール接続）、A2A（エージェント間通信）、Skill（静的知識）、カスタムサブエージェント（役割特化）という4つの主要概念を整理する。

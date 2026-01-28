@@ -85,6 +85,72 @@ Vercel Skills CLI は以下のエージェントに対応しています：
    - エージェントの実行結果をフィードバック
    - Skillの内容を継続的に最適化
 
+## Vercel Skills CLIとの統合
+
+### find-skills によるSkills発見フロー
+
+```mermaid
+sequenceDiagram
+    participant U as User/Agent
+    participant CLI as npx skills
+    participant Registry as Skills Registry
+    participant Local as Local Skills
+
+    U->>CLI: npx skills find "translation"
+    CLI->>Registry: Search skills.sh
+    Registry-->>CLI: [translation-workflow, deepl-guidelines, ...]
+    CLI->>U: Interactive selection
+    U->>CLI: Select & Install
+    CLI->>Local: Install to .claude/skills/
+    Local-->>U: Ready to use
+```
+
+### 動的なSkills拡張パターン
+
+```mermaid
+flowchart LR
+    subgraph Discovery["Skills Discovery"]
+        FIND[npx skills find]
+        REGISTRY[(skills.sh)]
+    end
+
+    subgraph Installation["Installation"]
+        PROJECT[Project Skills<br/>.claude/skills/]
+        GLOBAL[Global Skills<br/>~/.claude/skills/]
+    end
+
+    subgraph Usage["Runtime"]
+        AGENT[Agent]
+        MCP[MCP Servers]
+    end
+
+    FIND --> REGISTRY
+    REGISTRY --> PROJECT
+    REGISTRY --> GLOBAL
+    PROJECT --> AGENT
+    GLOBAL --> AGENT
+    AGENT --> MCP
+```
+
+### インストールコマンド例
+
+```bash
+# Skillを検索
+npx skills find "code review"
+
+# 特定のSkillをインストール
+npx skills add vercel-labs/agent-skills --skill frontend-design
+
+# 複数エージェントに対応
+npx skills add vercel-labs/agent-skills -a claude-code -a cursor
+
+# プロジェクトスコープでインストール（デフォルト）
+npx skills add ./my-skills
+
+# グローバルスコープでインストール
+npx skills add ./my-skills -g
+```
+
 ## 参考リンク
 
 - [Agent Skills Specification](https://agentskills.io)

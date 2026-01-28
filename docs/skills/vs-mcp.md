@@ -50,6 +50,52 @@ Skillsは、**実行パターン・ベストプラクティスをエージェン
 
 ## 選択判断フロー
 
+### フローチャート（Decision Flow）
+
+```mermaid
+flowchart TD
+    START[新しい機能が必要] --> Q1{外部API/サービス<br/>が必要?}
+
+    Q1 -->|Yes| Q1A{公式MCPが<br/>存在する?}
+    Q1A -->|Yes| USE_OFFICIAL[公式MCPを使用<br/>例: @eslint/mcp]
+    Q1A -->|No| BUILD_MCP[MCPを構築]
+
+    Q1 -->|No| Q2{ドメイン知識/<br/>ガイドラインか?}
+
+    Q2 -->|Yes| Q2A{チーム固有の<br/>知識か?}
+    Q2A -->|Yes| PROJECT_SKILL[プロジェクトSkill<br/>.claude/skills/]
+    Q2A -->|No| GLOBAL_SKILL[グローバルSkill<br/>~/.claude/skills/]
+
+    Q2 -->|No| Q3{複雑な<br/>オーケストレーション?}
+    Q3 -->|Yes| SUBAGENT[サブエージェント定義]
+    Q3 -->|No| BUILTIN[組み込み機能で対応]
+
+    BUILD_MCP --> Q_GUIDE{使い方の<br/>ガイドが必要?}
+    Q_GUIDE -->|Yes| ADD_SKILL[補完Skillを追加]
+    Q_GUIDE -->|No| DONE[完了]
+
+    USE_OFFICIAL --> Q_GUIDE
+    ADD_SKILL --> DONE
+    PROJECT_SKILL --> DONE
+    GLOBAL_SKILL --> DONE
+    SUBAGENT --> DONE
+    BUILTIN --> DONE
+```
+
+### 具体的な判断例
+
+| ユースケース | 判断 | 理由 |
+|--------------|------|------|
+| DeepL APIで翻訳したい | MCP | 外部API呼び出しが必要 |
+| 翻訳の品質基準を定義したい | Skill | ドメイン知識・ガイドライン |
+| SOLID原則に従いたい | Skill | 静的な知識 |
+| ESLintでコードチェックしたい | MCP（公式） | @eslint/mcp が存在 |
+| チームのコーディング規約 | Skill（プロジェクト） | チーム固有の知識 |
+| RFC仕様を検索したい | MCP | 外部データ取得が必要 |
+| 翻訳→品質評価→修正の自動化 | サブエージェント | 複雑なオーケストレーション |
+
+### 簡易判断図
+
 ```
 ┌─────────────────────────────────┐
 │  必要な機能は何か？              │
