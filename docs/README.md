@@ -23,8 +23,8 @@ docs/
 ├── workflows/        # ワークフロー・運用
 │   ├── patterns.md
 │   └── development-phases.md
-├── 09-roadmap.md
-├── 10-outputs.md
+├── roadmap.md
+├── outputs.md
 └── glossary.md
 ```
 
@@ -76,8 +76,8 @@ Claudeとの対話（`discussions/`）を通じて得られた洞察を、再利
 
 | ファイル                         | 内容                   |
 | -------------------------------- | ---------------------- |
-| [09-roadmap.md](./09-roadmap.md) | 優先度・ロードマップ   |
-| [10-outputs.md](./10-outputs.md) | 実績・アウトプット一覧 |
+| [roadmap.md](./roadmap.md)   | 優先度・ロードマップ   |
+| [outputs.md](./outputs.md)   | 実績・アウトプット一覧 |
 
 ### リファレンス
 

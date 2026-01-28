@@ -192,7 +192,6 @@ Skillsは、**実行パターン・ベストプラクティスをエージェン
 
 ## 関連ドキュメント
 
-- [docs/skills/overview.md](./overview.md) - Skills 概要
-- [04-tool-selection.md](https://github.com/shuji-bonji/ai-agent-toolkit/blob/main/docs/skills/04-tool-selection.md) (旧版・背景参照)
-- [MCP Catalog](../mcp/catalog.md)
-- [Skills Overview](./overview.md)
+- [Skills Overview](./overview.md) - Skills 概要
+- [MCP Catalog](../mcp/catalog.md) - 構築済みMCPカタログ
+- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論

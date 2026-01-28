@@ -2,17 +2,19 @@
 
 ## 公式仕様・ドキュメント
 
-### Agent Skills Specification
-
-- **主官:** https://agentskills.io
-- **GitHub:** https://github.com/agentskills (推定)
-- **標準仕様:** Skills の相互運用性を定義
-
 ### Vercel Skills
 
 - **リリース情報:** [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support)
-- **公式ドキュメント:** https://vercel.com/docs/skills
-- **GitHub:** https://github.com/vercel/skills (推定)
+- **GitHub:** https://github.com/vercel-labs/skills
+- **Skills Directory:** https://skills.sh
+
+### Agent Skills Specification
+
+- **公式サイト:** https://agentskills.io （※2026年1月時点で未確認）
+- **標準仕様:** Skills の相互運用性を定義（策定中）
+
+> 注: Agent Skills Specification は Vercel Skills README で言及されていますが、
+> agentskills.io の実際の稼働状況は未確認です。最新情報は Vercel Skills リポジトリを参照してください。
 
 ## エージェント実装例
 
