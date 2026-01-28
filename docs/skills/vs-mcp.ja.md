@@ -268,6 +268,71 @@ flowchart TD
 - MCPはサーバー側で安定運用
 - Skillsはフィードバック駆動で進化
 
+## CLI vs MCP: CLIで十分なケース
+
+MCPを構築する前に、専用CLIが存在するかを確認しましょう。
+
+### なぜ重要か
+
+| 観点 | CLI + Skill | MCP |
+|------|-------------|-----|
+| **トークン消費** | 低い（コマンドのみ） | 高い（全ツール定義を読み込む） |
+| **用途特化** | ✅（CLIは専用設計） | △（汎用インターフェース） |
+| **起動コスト** | なし（既にインストール済み） | サーバープロセスが必要 |
+| **認証** | ローカルで完結 | MCP側で管理 |
+
+### 判断フロー
+
+```mermaid
+flowchart TD
+    START[外部サービス連携が必要] --> CLI{公式CLIある?}
+    CLI -->|Yes| OPEN{APIがオープン?<br/>認証が簡単?}
+    OPEN -->|Yes| USE_CLI[CLI + Skill を使用<br/>トークン効率◎]
+    OPEN -->|No| USE_MCP2[MCP を使用<br/>認証処理を委譲]
+    CLI -->|No| USE_MCP[MCP を使用<br/>必須]
+
+    style USE_CLI fill:#90EE90
+    style USE_MCP fill:#FFB6C1
+    style USE_MCP2 fill:#FFB6C1
+```
+
+### 判断基準
+
+| チェック項目 | CLI + Skill | MCP |
+|-------------|-------------|-----|
+| 公式CLIあり | ✅ | - |
+| APIがオープン/文書化 | ✅ | - |
+| 認証がシンプル（ローカル） | ✅ | - |
+| 複雑な認証（OAuth） | - | ✅ |
+| CLIなし | - | ✅ |
+
+### 具体例
+
+| サービス | CLI | 推奨 |
+|---------|-----|------|
+| GitHub | `gh` | CLI + Skill |
+| AWS | `aws` | CLI + Skill |
+| Google Cloud | `gcloud` | CLI + Skill |
+| PostgreSQL | `psql` | CLI + Skill |
+| Linear | ❌ | MCP |
+| Greptile | ❌ | MCP |
+| Slack | 部分的 | MCP（フル機能向け） |
+
+### パターン: CLI + Skill
+
+CLIをMCPの代わりに使う場合：
+
+1. **Skill が定義**: CLIの効果的な使い方
+2. **Tool呼び出し**: 直接CLIコマンド（例: `gh pr list`）
+3. **認証**: ローカルで処理（既に認証済み）
+
+### 重要な洞察
+
+> **CLI がある → CLI + Skill（トークン効率的）**
+> **CLI がない → MCP（必須）**
+
+このパターンは r/ClaudeAI でのコミュニティ議論から生まれ、すでに優れた CLI を持つサービスに対して MCP が「トークンを大量消費する」という実際の使用パターンを反映しています。
+
 ## 関連ドキュメント
 
 - [Skills Overview](./overview.md) - Skills 概要

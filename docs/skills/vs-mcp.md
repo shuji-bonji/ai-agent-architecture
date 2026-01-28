@@ -271,6 +271,86 @@ In actual operations, MCP and Skills are **used complementarily**.
 - Maintain stable MCP server operations
 - Evolve Skills through feedback-driven development
 
+## CLI vs MCP: When CLI is Enough
+
+Before building an MCP, check if a dedicated CLI already exists.
+
+### Why This Matters
+
+| Factor | CLI + Skill | MCP |
+|--------|-------------|-----|
+| **Token consumption** | Low (command only) | High (loads all tool definitions) |
+| **Purpose-built** | ✅ (CLI is specialized) | △ (generic interface) |
+| **Startup cost** | None (already installed) | Server process required |
+| **Auth handling** | Local (already configured) | MCP manages credentials |
+
+### Decision Flow
+
+```mermaid
+flowchart TD
+    START[Need external service integration] --> CLI{Official CLI exists?}
+    CLI -->|Yes| OPEN{API is open?<br/>Auth is simple?}
+    OPEN -->|Yes| USE_CLI[Use CLI + Skill<br/>Token efficient ✅]
+    OPEN -->|No| USE_MCP2[Use MCP<br/>Delegate auth handling]
+    CLI -->|No| USE_MCP[Use MCP<br/>Required]
+
+    style USE_CLI fill:#90EE90
+    style USE_MCP fill:#FFB6C1
+    style USE_MCP2 fill:#FFB6C1
+```
+
+### Decision Criteria
+
+| Check | CLI + Skill | MCP |
+|-------|-------------|-----|
+| Official CLI exists | ✅ | - |
+| API is open/documented | ✅ | - |
+| Simple auth (local) | ✅ | - |
+| Complex auth (OAuth) | - | ✅ |
+| No CLI available | - | ✅ |
+
+### Examples
+
+| Service | CLI | Recommendation |
+|---------|-----|----------------|
+| GitHub | `gh` | CLI + Skill |
+| AWS | `aws` | CLI + Skill |
+| Google Cloud | `gcloud` | CLI + Skill |
+| PostgreSQL | `psql` | CLI + Skill |
+| Linear | ❌ | MCP |
+| Greptile | ❌ | MCP |
+| Slack | Partial | MCP (for full features) |
+
+### Pattern: CLI + Skill
+
+When using CLI instead of MCP:
+
+1. **Skill defines**: How to use the CLI effectively
+2. **Tool calls**: Direct CLI commands (e.g., `gh pr list`)
+3. **Auth**: Handled locally (already authenticated)
+
+```markdown
+<!-- Example: GitHub Skill using gh CLI -->
+## Tools Available
+
+Use `gh` CLI for GitHub operations:
+- `gh pr list` - List pull requests
+- `gh pr create` - Create PR
+- `gh issue list` - List issues
+
+## When to Use
+
+- Checking PR status: `gh pr status`
+- Creating issues: `gh issue create --title "..." --body "..."`
+```
+
+### Key Insight
+
+> **CLI exists → CLI + Skill (token efficient)**
+> **No CLI → MCP (required)**
+
+This pattern emerged from community discussion on r/ClaudeAI and reflects real-world usage patterns where MCPs can be "token hungry" for services that already have well-designed CLIs.
+
 ## Related Documentation
 
 - [Skills Overview](./overview.md) - Skills overview
