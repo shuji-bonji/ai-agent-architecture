@@ -12,7 +12,7 @@ AIエージェント構成（MCP・Skills・Agent統合）に関する設計思�
 
 ## 経緯
 
-当初はMCPサーバー構築が対象でしたが、以下を踏まえスコープを拡大
+当初は[MCP](https://modelcontextprotocol.io/)サーバー構築が対象でしたが、以下を踏まえスコープを拡大
 
 - [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) のオープンソース化
 - [Agent Skills Specification](https://agentskills.io) の標準化
