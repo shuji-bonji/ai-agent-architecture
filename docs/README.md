@@ -19,6 +19,7 @@ docs/
 ├── skills/           # Skills（ドメイン知識）
 │   ├── overview.md
 │   ├── vs-mcp.md     # 選択判断ガイド
+│   ├── anti-patterns.md
 │   └── creating-skills.md (計画中)
 ├── workflows/        # ワークフロー・運用
 │   ├── patterns.md
@@ -60,10 +61,11 @@ Claudeとの対話（`discussions/`）を通じて得られた洞察を、再利
 
 ### Skills（ドメイン知識）
 
-| ファイル                                   | 内容                             |
-| ------------------------------------------ | -------------------------------- |
-| [skills/overview.md](./skills/overview.md) | Vercel Skills・Agent Skills Spec |
-| [skills/vs-mcp.md](./skills/vs-mcp.md)     | MCP vs Skills 選択判断ガイド     |
+| ファイル                                           | 内容                             |
+| -------------------------------------------------- | -------------------------------- |
+| [skills/overview.md](./skills/overview.md)         | Vercel Skills・Agent Skills Spec |
+| [skills/vs-mcp.md](./skills/vs-mcp.md)             | MCP vs Skills 選択判断ガイド     |
+| [skills/anti-patterns.md](./skills/anti-patterns.md) | MCP/Skills アンチパターン集      |
 
 ### Workflows（ワークフロー・運用）
 
@@ -90,19 +92,19 @@ Claudeとの対話（`discussions/`）を通じて得られた洞察を、再利
 ### 初めて読む場合
 
 1. **concepts/01-vision.md** - 全体の思想を理解
-2. **03-architecture.md** - 構成要素を理解
-3. **05-mcp-catalog.md** - 具体的なMCPを確認
+2. **concepts/03-architecture.md** - 構成要素を理解
+3. **mcp/catalog.md** - 具体的なMCPを確認
 
 ### 実践したい場合
 
-1. **04-tool-selection.md** - 何を使うべきか判断
-2. **06-workflow-patterns.md** - 具体的なワークフロー
-3. **05-mcp-catalog.md** - 各MCPの詳細
+1. **skills/vs-mcp.md** - 何を使うべきか判断
+2. **workflows/patterns.md** - 具体的なワークフロー
+3. **mcp/catalog.md** - 各MCPの詳細
 
 ### 開発に参加したい場合
 
-1. **09-roadmap.md** - 優先度・計画
-2. **08-security.md** - セキュリティ考慮
+1. **roadmap.md** - 優先度・計画
+2. **mcp/security.md** - セキュリティ考慮
 3. **glossary.md** - 用語確認
 
 ## 関連ディレクトリ
