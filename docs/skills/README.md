@@ -13,10 +13,15 @@ Vercel Skills と Agent Skills Specification に基づくドメイン知識・�
    - 概要比較表
    - 本質的な違い
    - **選択判断フロー** ← 迷ったらこれ
-   - アンチパターン（over-MCPization / over-Skillization）
    - 組み合わせ活用パターン
 
-3. **[creating-skills.md](./creating-skills.md)** (計画中) - Skillsの作成ガイド
+3. **[anti-patterns.md](./anti-patterns.md)** - MCP/Skills アンチパターン集
+   - over-MCPization（MCPの過剰使用）
+   - over-Skillization（Skillsの過剰使用）
+   - 曖昧なSkill定義
+   - MCPツール依存の過度な結合
+
+4. **[creating-skills.md](./creating-skills.md)** (計画中) - Skillsの作成ガイド
    - メタデータ設計
    - 実行可能ガイドラインの構造化
    - Vercel Skills との統合方法

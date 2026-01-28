@@ -328,6 +328,49 @@ model: sonnet
 translation-workflow スキルを参照してください。
 ```
 
+## シーケンス図：実行フローの可視化
+
+### コードレビュータスク
+
+```mermaid
+sequenceDiagram
+    participant U as ユーザー
+    participant M as メインエージェント
+    participant S as Skill<br/>(コードレビュー)
+    participant MCP as MCP Server<br/>(ESLint)
+
+    U->>M: "このPRをレビューして"
+    M->>S: ガイドライン参照
+    S-->>M: レビュー観点・チェック項目
+    M->>MCP: lint実行
+    MCP-->>M: 違反箇所リスト
+    M->>U: レビュー結果レポート
+```
+
+### 翻訳ワークフロー
+
+```mermaid
+sequenceDiagram
+    participant U as ユーザー
+    participant M as メインエージェント
+    participant S as Skill<br/>(翻訳ガイドライン)
+    participant D as MCP Server<br/>(DeepL)
+    participant X as MCP Server<br/>(xCOMET)
+
+    U->>M: "このドキュメントを翻訳して"
+    M->>S: 翻訳ルール参照
+    S-->>M: トーン・用語ルール
+    M->>D: translate-text
+    D-->>M: 翻訳結果
+    M->>X: xcomet_evaluate
+    X-->>M: 品質スコア
+    alt スコア < 0.85
+        M->>D: 再翻訳（パラメータ調整）
+        D-->>M: 改善された翻訳
+    end
+    M->>U: 最終翻訳結果
+```
+
 ## レイヤー構造まとめ
 
 ```

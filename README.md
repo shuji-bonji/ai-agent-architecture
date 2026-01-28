@@ -71,6 +71,7 @@ AIエージェント構成（MCP・Skills・Agent統合）に関する設計思�
 | ------------------------------------------------------------- | ------------------------------------------- |
 | [skills/overview.md](./docs/skills/overview.md)               | Vercel Skills と Agent Skills Specification |
 | [skills/vs-mcp.md](./docs/skills/vs-mcp.md)                   | MCP vs Skills の本質的な違い・選択判断      |
+| [skills/anti-patterns.md](./docs/skills/anti-patterns.md)     | MCP/Skills アンチパターン集                 |
 | [skills/creating-skills.md](./docs/skills/creating-skills.md) | Skills作成ガイド（計画中）                  |
 
 ### Workflows（ワークフロー・運用）

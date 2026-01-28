@@ -88,7 +88,5 @@ Agent Skills Specification に対応する、その他のプラットフォー�
 - Anthropic AI SDK における Skills サポート
 - OpenAI Plugin システムとの比較検討
 
----
-
 **更新日:** 2026年1月28日  
 **注:** リンク集は継続的に更新予定。変更・追加があれば Issue/PR で報告ください。
