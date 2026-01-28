@@ -28,7 +28,8 @@ docs/
 │   └── development-phases.md
 ├── roadmap.md
 ├── outputs.md
-└── glossary.md
+├── glossary.md
+└── translation-quality-report.md
 ```
 
 ## About This Documentation
@@ -88,6 +89,7 @@ Insights gained through dialogue with Claude (in `discussions/`) are compiled in
 | File                         | Content    |
 | ---------------------------- | ---------- |
 | [glossary.md](./glossary.md) | Glossary   |
+| [translation-quality-report.md](./translation-quality-report.md) | Translation Quality Report (xCOMET) |
 
 ## Reading Guide
 

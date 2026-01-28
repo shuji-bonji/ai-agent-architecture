@@ -26,7 +26,8 @@ docs/
 │   └── development-phases.md
 ├── roadmap.md
 ├── outputs.md
-└── glossary.md
+├── glossary.md
+└── translation-quality-report.md
 ```
 
 ## このドキュメント群について
@@ -86,6 +87,7 @@ Claudeとの対話（`discussions/`）を通じて得られた洞察を、再利
 | ファイル                     | 内容   |
 | ---------------------------- | ------ |
 | [glossary.md](./glossary.md) | 用語集 |
+| [translation-quality-report.md](./translation-quality-report.ja.md) | 翻訳品質レポート（xCOMET） |
 
 ## 読み方ガイド
 
