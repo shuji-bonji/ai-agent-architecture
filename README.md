@@ -1,8 +1,10 @@
 # AI Agent Toolkit
 
+[日本語版 (Japanese)](./README.ja.md)
+
 > MCP alone is not enough — this repo addresses how Agents discover and orchestrate Skills and Tools.
 
-AIエージェント構成（MCP・Skills・Agent統合）に関する設計思想・アーキテクチャ・実践ノウハウをまとめたリポジトリ。
+A repository documenting design principles, architecture, and practical knowledge for AI agent configuration (MCP, Skills, and Agent integration).
 
 ## Why This Matters Now
 
@@ -102,12 +104,12 @@ Reference → Practice → New Insight → Separate Repo → Add Catalog Entry
 
 ## Background
 
-当初は[MCP](https://modelcontextprotocol.io/)サーバー構築が対象でしたが、以下を踏まえスコープを拡大
+Originally focused on [MCP](https://modelcontextprotocol.io/) server development, the scope expanded based on:
 
-- [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) のオープンソース化
-- [Agent Skills Specification](https://agentskills.io) の標準化
+- [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) open-source release
+- [Agent Skills Specification](https://agentskills.io) standardization efforts
 
-> このリポジトリの内容は、AIとの壁打ちで得た、個人の意見にすぎない。
+> Note: The content of this repository represents personal opinions derived from discussions with AI.
 
 ## Core Insight
 

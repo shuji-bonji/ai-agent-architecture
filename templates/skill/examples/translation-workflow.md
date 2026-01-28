@@ -1,73 +1,75 @@
 ---
 name: translation-workflow
-description: 技術文書の翻訳ワークフローと品質基準
+description: Technical documentation translation workflow and quality standards
 ---
 
-# 技術文書翻訳ワークフロー Skill
+# Technical Documentation Translation Workflow Skill
 
-## 概要
+[日本語版 (Japanese)](./translation-workflow.ja.md)
 
-技術文書を正確かつ読みやすく翻訳するためのワークフロー。機械翻訳と品質評価を組み合わせ、一定の品質を担保する。
+## Overview
 
-## 対象
+A workflow for translating technical documentation accurately and readably. Combines machine translation with quality evaluation to ensure consistent quality.
 
-- READMEやドキュメントの翻訳
-- 技術記事の多言語化
-- APIドキュメントの翻訳
+## Target Use Cases
 
-## 使用MCP
+- Translation of READMEs and documentation
+- Multilingual support for technical articles
+- API documentation translation
 
-| MCP | ツール | 用途 |
+## MCPs Used
+
+| MCP | Tool | Purpose |
 | --- | ------ | ---- |
-| deepl | translate-text | テキスト翻訳 |
-| deepl | get-glossary-info | 用語集の参照 |
-| xcomet | xcomet_evaluate | 翻訳品質スコア算出 |
-| xcomet | xcomet_detect_errors | エラー箇所の検出 |
+| deepl | translate-text | Text translation |
+| deepl | get-glossary-info | Glossary reference |
+| xcomet | xcomet_evaluate | Translation quality score calculation |
+| xcomet | xcomet_detect_errors | Error location detection |
 
-## ワークフロー
+## Workflow
 
-### 1. 翻訳の実行
+### 1. Execute Translation
 
 ```
-deepl:translate-text で翻訳
-- formality: "more"（技術文書向け）
+deepl:translate-text for translation
+- formality: "more" (for technical documentation)
 - preserve_formatting: true
 ```
 
-用語集がある場合は事前に `get-glossary-info` で確認。
+If a glossary is available, check it beforehand with `get-glossary-info`.
 
-### 2. 品質評価
-
-```
-xcomet:xcomet_evaluate で品質スコアを取得
-```
-
-### 3. 結果に応じた対応
-
-スコアに基づいて次のアクションを決定。
-
-### 4. エラー検出（必要に応じて）
+### 2. Quality Evaluation
 
 ```
-xcomet:xcomet_detect_errors で問題箇所を特定
+xcomet:xcomet_evaluate to obtain quality score
 ```
 
-## 判断基準
+### 3. Action Based on Results
 
-| 条件 | アクション |
+Determine the next action based on the score.
+
+### 4. Error Detection (If Necessary)
+
+```
+xcomet:xcomet_detect_errors to identify problem areas
+```
+
+## Decision Criteria
+
+| Condition | Action |
 | ---- | ---------- |
-| スコア >= 0.90 | そのまま使用 |
-| 0.85 <= スコア < 0.90 | 軽微な修正を検討 |
-| 0.70 <= スコア < 0.85 | パラメータ調整して再翻訳 |
-| スコア < 0.70 | 手動での大幅修正が必要 |
+| Score >= 0.90 | Use as-is |
+| 0.85 <= Score < 0.90 | Consider minor revisions |
+| 0.70 <= Score < 0.85 | Adjust parameters and re-translate |
+| Score < 0.70 | Significant manual revision required |
 
-## 注意事項
+## Notes
 
-- 技術用語は用語集で統一する
-- コードブロック内は翻訳しない
-- 固有名詞（プロダクト名等）は原文維持
+- Standardize technical terminology using a glossary
+- Do not translate content within code blocks
+- Preserve proper nouns (product names, etc.) in original language
 
-## 参考資料
+## References
 
 - [DeepL API Documentation](https://developers.deepl.com/docs)
 - [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server)

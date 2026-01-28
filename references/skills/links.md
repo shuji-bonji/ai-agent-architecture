@@ -1,92 +1,94 @@
-# Skills 関連リンク集
+# Skills Reference Links
 
-## 公式仕様・ドキュメント
+[日本語版 (Japanese)](./links.ja.md)
+
+## Official Specifications and Documentation
 
 ### Vercel Skills
 
-- **リリース情報:** [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support)
+- **Release Information:** [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support)
 - **GitHub:** https://github.com/vercel-labs/skills
 - **Skills Directory:** https://skills.sh
 
 ### Agent Skills Specification
 
-- **公式サイト:** https://agentskills.io （※2026年1月時点で未確認）
-- **標準仕様:** Skills の相互運用性を定義（策定中）
+- **Official Website:** https://agentskills.io (Note: Unconfirmed as of January 2026)
+- **Standard Specification:** Defines interoperability for Skills (under development)
 
-> 注: Agent Skills Specification は Vercel Skills README で言及されていますが、
-> agentskills.io の実際の稼働状況は未確認です。最新情報は Vercel Skills リポジトリを参照してください。
+> Note: The Agent Skills Specification is mentioned in the Vercel Skills README,
+> but the actual operational status of agentskills.io is unconfirmed. Please refer to the Vercel Skills repository for the latest information.
 
-## エージェント実装例
+## Agent Implementation Examples
 
 ### Claude Code (Anthropic)
 
-- **概要:** Claude の code-execution インターフェース
-- **Skills対応:** Agent Skills Specification に準拠
-- **参考:** Claude 公式ドキュメント
+- **Overview:** Claude's code-execution interface
+- **Skills Support:** Compliant with Agent Skills Specification
+- **Reference:** Claude official documentation
 
 ### Cursor
 
-- **概要:** AI-first コードエディタ
-- **Skills対応:** v1.x 以降で統合開始
-- **参考:** https://www.cursor.com
+- **Overview:** AI-first code editor
+- **Skills Support:** Integration started from v1.x onwards
+- **Reference:** https://www.cursor.com
 
 ### GitHub Copilot
 
-- **概要:** GitHub 統合 AI アシスタント
-- **Skills対応:** Copilot Extensions で拡張
-- **参考:** https://docs.github.com/en/copilot
+- **Overview:** GitHub integrated AI assistant
+- **Skills Support:** Extended via Copilot Extensions
+- **Reference:** https://docs.github.com/en/copilot
 
-## 関連エージェントプラットフォーム
+## Related Agent Platforms
 
-Agent Skills Specification に対応する、その他のプラットフォーム（27 種類以上）
+Other platforms compatible with the Agent Skills Specification (27+ types)
 
 - JetBrains AI Assistant
 - Visual Studio IntelliCode
 - AWS CodeWhisperer
-- その他…
+- And more...
 
-> 詳細は [Agent Skills Specification](https://agentskills.io) を参照
+> For details, see [Agent Skills Specification](https://agentskills.io)
 
-## 実装リファレンス
+## Implementation References
 
-### チュートリアル・ガイド
+### Tutorials and Guides
 
-- Vercel Skills 作成ガイド（本リポジトリ予定）
-- Agent Skills Specification コンプライアンスチェックリスト
-- サンプル実装リポジトリ
+- Vercel Skills creation guide (planned for this repository)
+- Agent Skills Specification compliance checklist
+- Sample implementation repositories
 
-### テンプレート・スターター
+### Templates and Starters
 
-- `vercel/skills-template` (推定)
-- `agent-skills/starter-kit` (推定)
-- OpenSource 実装例
+- `vercel/skills-template` (estimated)
+- `agent-skills/starter-kit` (estimated)
+- Open source implementation examples
 
-## ベストプラクティス・事例
+## Best Practices and Case Studies
 
-### ドメイン別の Skill 設計
+### Domain-Specific Skill Design
 
-- **UI/UX デザイン:** Figma ガイドライン × Skill
-- **バックエンド開発:** API 設計パターン × Skill
-- **ドキュメント作成:** 文体ガイド × Skill
-- **テスト戦略:** Coverage 要件 × Skill
+- **UI/UX Design:** Figma guidelines x Skill
+- **Backend Development:** API design patterns x Skill
+- **Documentation:** Style guides x Skill
+- **Testing Strategy:** Coverage requirements x Skill
 
-### チーム運用パターン
+### Team Operation Patterns
 
-- 複数 Skill の管理・バージョニング
-- エージェント習得フェーズの設計
-- フィードバックループの構築
+- Managing and versioning multiple Skills
+- Designing agent learning phases
+- Building feedback loops
 
-## 関連ドキュメント（本リポジトリ）
+## Related Documentation (This Repository)
 
-- [docs/skills/overview.md](../../docs/skills/overview.md) - Skills 概要
-- [docs/skills/vs-mcp.md](../../docs/skills/vs-mcp.md) - MCP vs Skills 比較
-- [docs/skills/creating-skills.md](../../docs/skills/creating-skills.md) (計画中)
+- [docs/skills/overview.md](../../docs/skills/overview.md) - Skills Overview
+- [docs/skills/vs-mcp.md](../../docs/skills/vs-mcp.md) - MCP vs Skills Comparison
+- [docs/skills/creating-skills.md](../../docs/skills/creating-skills.md) (planned)
 
-## RFCs・標準化動向
+## RFCs and Standardization Trends
 
 - [Agent Skills Specification (draft/proposed)](https://agentskills.io)
-- Anthropic AI SDK における Skills サポート
-- OpenAI Plugin システムとの比較検討
+- Skills support in Anthropic AI SDK
+- Comparative analysis with OpenAI Plugin system
 
-**更新日:** 2026年1月28日  
-**注:** リンク集は継続的に更新予定。変更・追加があれば Issue/PR で報告ください。
+**Last Updated:** January 28, 2026
+**Note:** This link collection is updated continuously. Please report any changes or additions via Issues/PRs.

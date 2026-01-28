@@ -1,46 +1,48 @@
-# Skill テンプレート
+# Skill Template
 
-このディレクトリには、Skill作成のためのテンプレートとサンプルが含まれています。
+[日本語版 (Japanese)](./README.ja.md)
 
-## ファイル構成
+This directory contains templates and examples for creating Skills.
+
+## File Structure
 
 ```
 templates/skill/
-├── README.md                  # このファイル
-├── SKILL.md.template          # Skillの基本テンプレート
+├── README.md                  # This file
+├── SKILL.md.template          # Basic Skill template
 └── examples/
-    ├── code-review.md         # コードレビューSkillの例
-    └── translation-workflow.md # 翻訳ワークフローSkillの例
+    ├── code-review.md         # Code review Skill example
+    └── translation-workflow.md # Translation workflow Skill example
 ```
 
-## 使い方
+## Usage
 
-### 1. テンプレートをコピー
+### 1. Copy the Template
 
 ```bash
 cp templates/skill/SKILL.md.template .claude/skills/my-skill/SKILL.md
 ```
 
-### 2. 必須項目を記入
+### 2. Fill in Required Fields
 
-- `name`: Skill名（kebab-case推奨）
-- `description`: 目的と用途の説明
-- `# 概要`: Skillが解決する課題
+- `name`: Skill name (kebab-case recommended)
+- `description`: Description of purpose and use cases
+- `# Overview`: The problem this Skill solves
 
-### 3. 詳細を追加
+### 3. Add Details
 
-- 使用MCPツール（ある場合）
-- 具体的なワークフロー
-- 判断基準や閾値
+- MCP tools used (if any)
+- Specific workflow
+- Decision criteria and thresholds
 
-## Skill配置場所
+## Skill Placement
 
-| 場所 | パス | 優先度 |
-| ---- | ---- | ------ |
-| プロジェクト | `.claude/skills/xxx/SKILL.md` | 高 |
-| ユーザー | `~/.claude/skills/xxx/SKILL.md` | 低 |
+| Location | Path | Priority |
+| -------- | ---- | -------- |
+| Project | `.claude/skills/xxx/SKILL.md` | High |
+| User | `~/.claude/skills/xxx/SKILL.md` | Low |
 
-## 参考
+## References
 
 - [Skills Overview](../../docs/skills/overview.md)
 - [MCP vs Skills](../../docs/skills/vs-mcp.md)

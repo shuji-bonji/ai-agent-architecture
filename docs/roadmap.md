@@ -1,52 +1,54 @@
-# 優先度・ロードマップ
+# Priority and Roadmap
 
-> MCP開発の優先順位と時間軸を整理する。
+[日本語版 (Japanese)](./roadmap.ja.md)
 
-## このドキュメントについて
+> Organizing priorities and timelines for MCP development.
 
-限られたリソースの中で最大の価値を生むためには、何を優先的に開発するかの判断が重要である。このドキュメントでは、現在の強み、市場の需要、実装難易度を考慮した優先度マトリックスを示し、短期・中期・長期のロードマップを整理する。
+## About This Document
 
-また、Grokによるプロジェクト評価や、発信戦略（Note/Qiita/Zenn/GitHub）についても言及し、技術開発だけでなくエコシステム全体の成長戦略を描く。
+To generate maximum value with limited resources, it is crucial to determine what to develop first. This document presents a priority matrix that considers current strengths, market demand, and implementation difficulty, and organizes short-term, medium-term, and long-term roadmaps.
 
-## 現在の強み
+Additionally, we discuss project evaluation by Grok and publishing strategies (Note/Qiita/Zenn/GitHub), outlining a growth strategy for the entire ecosystem beyond just technical development.
+
+## Current Strengths
 
 ```mermaid
 graph TB
-    subgraph 構築済み資産
-        RFC[rfcxml-mcp<br/>RFC解析]
-        XCOMET[xcomet-mcp<br/>翻訳品質]
-        RXJS[rxjs-mcp<br/>RxJS支援]
-        W3C[w3c-mcp<br/>Web標準]
+    subgraph Built Assets
+        RFC[rfcxml-mcp<br/>RFC Analysis]
+        XCOMET[xcomet-mcp<br/>Translation Quality]
+        RXJS[rxjs-mcp<br/>RxJS Support]
+        W3C[w3c-mcp<br/>Web Standards]
     end
 
-    subgraph 専門知識
+    subgraph Expertise
         TS[TypeScript/Angular]
         WS[WebSocket/RFC]
-        SIGN[電子署名]
-        TRANS[翻訳ワークフロー]
+        SIGN[Digital Signatures]
+        TRANS[Translation Workflow]
     end
 
-    subgraph 独自価値
-        CREATE["「使う」ではなく「創る」"]
-        BRIDGE["日本語圏への橋渡し"]
-        OPEN["オープン標準の推進"]
+    subgraph Unique Value
+        CREATE["'Creating' not just 'Using'"]
+        BRIDGE["Bridge to Japanese-speaking Community"]
+        OPEN["Promoting Open Standards"]
     end
 
-    構築済み資産 --> 独自価値
-    専門知識 --> 独自価値
+    Built Assets --> Unique Value
+    Expertise --> Unique Value
 ```
 
-## MCP開発優先度マトリックス
+## MCP Development Priority Matrix
 
 ```mermaid
 quadrantChart
-    title MCP開発優先度
-    x-axis "実装難易度 低" --> "高"
-    y-axis "価値/需要 低" --> "高"
-    quadrant-1 "優先実装"
-    quadrant-2 "計画的実装"
-    quadrant-3 "様子見"
-    quadrant-4 "将来検討"
+    title MCP Development Priority
+    x-axis "Implementation Difficulty Low" --> "High"
+    y-axis "Value/Demand Low" --> "High"
+    quadrant-1 "Priority Implementation"
+    quadrant-2 "Planned Implementation"
+    quadrant-3 "Wait and See"
+    quadrant-4 "Future Consideration"
 
     "OpenAPI MCP": [0.35, 0.75]
     "OWASP MCP": [0.45, 0.70]
@@ -57,204 +59,204 @@ quadrantChart
     "HL7 FHIR MCP": [0.85, 0.35]
 ```
 
-## フェーズ別ロードマップ
+## Phased Roadmap
 
-### Phase 1: 基盤強化（短期 1-3ヶ月）
+### Phase 1: Foundation Strengthening (Short-term: 1-3 months)
 
-**目標**: 既存MCPの活用最大化、Skill/Agent整備
+**Goal**: Maximize utilization of existing MCPs, establish Skills/Agents
 
-| タスク                      | 状況      | 優先度     |
-| --------------------------- | --------- | ---------- |
-| 既存MCP活用ドキュメント整備 | 🔄 進行中 | ⭐⭐⭐⭐⭐ |
-| 翻訳ワークフローSkill作成   | 📋 TODO   | ⭐⭐⭐⭐   |
-| RFC専門サブエージェント定義 | 📋 TODO   | ⭐⭐⭐⭐   |
-| CLAUDE.mdテンプレート整備   | 📋 TODO   | ⭐⭐⭐     |
+| Task                                    | Status        | Priority |
+| --------------------------------------- | ------------- | -------- |
+| Documentation for existing MCP usage    | In Progress   | 5 stars  |
+| Create Translation Workflow Skill       | TODO          | 4 stars  |
+| Define RFC Specialist Sub-agent         | TODO          | 4 stars  |
+| Develop CLAUDE.md Templates             | TODO          | 3 stars  |
 
-### Phase 2: 拡張（中期 3-6ヶ月）
+### Phase 2: Expansion (Medium-term: 3-6 months)
 
-**目標**: 新規MCP構築、エコシステム拡大
+**Goal**: Build new MCPs, expand ecosystem
 
-| タスク              | 状況    | 優先度   |
-| ------------------- | ------- | -------- |
-| OpenAPI MCP 構築    | 📋 構想 | ⭐⭐⭐⭐ |
-| OWASP MCP 構築      | 📋 構想 | ⭐⭐⭐⭐ |
-| Angular MCP 構築    | 📋 構想 | ⭐⭐⭐   |
-| rfcxml-mcp 機能拡充 | 📋 TODO | ⭐⭐⭐   |
+| Task                        | Status    | Priority |
+| --------------------------- | --------- | -------- |
+| Build OpenAPI MCP           | Concept   | 4 stars  |
+| Build OWASP MCP             | Concept   | 4 stars  |
+| Build Angular MCP           | Concept   | 3 stars  |
+| Enhance rfcxml-mcp features | TODO      | 3 stars  |
 
-### Phase 3: 展開（長期 6ヶ月以上）
+### Phase 3: Deployment (Long-term: 6+ months)
 
-**目標**: コミュニティ貢献、専門領域拡大
+**Goal**: Community contribution, expand specialized domains
 
-| タスク                | 状況    | 優先度 |
-| --------------------- | ------- | ------ |
-| ISO規格MCP            | 📋 構想 | ⭐⭐   |
-| BIM/IFC MCP           | 📋 構想 | ⭐⭐   |
-| 医療系MCP（HL7 FHIR） | 📋 構想 | ⭐     |
-| Note記事シリーズ完成  | 📋 TODO | ⭐⭐⭐ |
+| Task                          | Status  | Priority |
+| ----------------------------- | ------- | -------- |
+| ISO Standards MCP             | Concept | 2 stars  |
+| BIM/IFC MCP                   | Concept | 2 stars  |
+| Healthcare MCP (HL7 FHIR)     | Concept | 1 star   |
+| Complete Note Article Series  | TODO    | 3 stars  |
 
-## 詳細ロードマップ
+## Detailed Roadmap
 
-### Phase 1 詳細
+### Phase 1 Details
 
 ```mermaid
 gantt
-    title Phase 1: 基盤強化
+    title Phase 1: Foundation Strengthening
     dateFormat YYYY-MM
-    section ドキュメント
-        MCP構築体系化           :done, 2025-01, 1M
-        ワークフロー文書化       :2025-02, 1M
+    section Documentation
+        MCP Architecture Systematization    :done, 2025-01, 1M
+        Workflow Documentation              :2025-02, 1M
     section Skill/Agent
-        翻訳ワークフローSkill    :2025-02, 2w
-        RFC専門Agent            :2025-02, 2w
-        コーディング規約Skill    :2025-03, 2w
-    section 活用
-        実プロジェクト適用       :2025-02, 2M
+        Translation Workflow Skill          :2025-02, 2w
+        RFC Specialist Agent                :2025-02, 2w
+        Coding Standards Skill              :2025-03, 2w
+    section Utilization
+        Apply to Real Projects              :2025-02, 2M
 ```
 
-### Phase 2 詳細
+### Phase 2 Details
 
 ```mermaid
 gantt
-    title Phase 2: 拡張
+    title Phase 2: Expansion
     dateFormat YYYY-MM
-    section 新規MCP
-        OpenAPI MCP 設計        :2025-03, 2w
-        OpenAPI MCP 実装        :2025-03, 1M
-        OWASP MCP 設計          :2025-04, 2w
-        OWASP MCP 実装          :2025-04, 1M
-    section 既存MCP
-        rfcxml-mcp 拡充         :2025-04, 1M
-        w3c-mcp 拡充            :2025-05, 1M
-    section 専門MCP
-        Angular MCP 検討        :2025-05, 2w
-        Angular MCP 実装        :2025-06, 1M
+    section New MCPs
+        OpenAPI MCP Design                  :2025-03, 2w
+        OpenAPI MCP Implementation          :2025-03, 1M
+        OWASP MCP Design                    :2025-04, 2w
+        OWASP MCP Implementation            :2025-04, 1M
+    section Existing MCPs
+        rfcxml-mcp Enhancement              :2025-04, 1M
+        w3c-mcp Enhancement                 :2025-05, 1M
+    section Specialized MCPs
+        Angular MCP Review                  :2025-05, 2w
+        Angular MCP Implementation          :2025-06, 1M
 ```
 
-## 優先度決定の基準
+## Priority Decision Criteria
 
-### 評価軸
+### Evaluation Axes
 
-| 軸               | 説明                       | 重み |
-| ---------------- | -------------------------- | ---- |
-| **強みとの適合** | 既存知識・経験を活かせるか | 30%  |
-| **即効性**       | すぐに価値を発揮できるか   | 25%  |
-| **需要**         | 利用者が見込めるか         | 20%  |
-| **実装難易度**   | 実現可能性                 | 15%  |
-| **独自性**       | 競合の有無                 | 10%  |
+| Axis                       | Description                                      | Weight |
+| -------------------------- | ------------------------------------------------ | ------ |
+| **Fit with Strengths**     | Can we leverage existing knowledge/experience?   | 30%    |
+| **Immediate Impact**       | Can it deliver value quickly?                    | 25%    |
+| **Demand**                 | Are there expected users?                        | 20%    |
+| **Implementation Difficulty** | Feasibility                                   | 15%    |
+| **Uniqueness**             | Presence of competitors                          | 10%    |
 
-### 評価例
+### Evaluation Examples
 
-| MCP         | 強み | 即効性 | 需要 | 難易度 | 独自性 |  総合  |
-| ----------- | :--: | :----: | :--: | :----: | :----: | :----: |
-| OpenAPI MCP |  ◎   |   ◎    |  ◎   |   ○    |   △    | **85** |
-| OWASP MCP   |  ○   |   ◎    |  ◎   |   ○    |   ○    | **80** |
-| Angular MCP |  ◎   |   ○    |  ○   |   ○    |   ◎    | **75** |
-| ISO MCP     |  △   |   △    |  ○   |   △    |   ○    | **50** |
-| BIM/IFC MCP |  △   |   △    |  △   |   △    |   ◎    | **45** |
+| MCP         | Strengths | Immediate Impact | Demand | Difficulty | Uniqueness | Total  |
+| ----------- | :-------: | :--------------: | :----: | :--------: | :--------: | :----: |
+| OpenAPI MCP |     A     |        A         |   A    |     B      |     C      | **85** |
+| OWASP MCP   |     B     |        A         |   A    |     B      |     B      | **80** |
+| Angular MCP |     A     |        B         |   B    |     B      |     A      | **75** |
+| ISO MCP     |     C     |        C         |   B    |     C      |     B      | **50** |
+| BIM/IFC MCP |     C     |        C         |   C    |     C      |     A      | **45** |
 
-## 構築済みMCPの活用計画
+## Utilization Plan for Existing MCPs
 
 ### rfcxml-mcp
 
-| 施策             | 内容                           | 時期    |
-| ---------------- | ------------------------------ | ------- |
-| ドキュメント強化 | READMEにより多くの使用例を追加 | Phase 1 |
-| 機能拡充         | 複数RFC横断検索                | Phase 2 |
-| 連携強化         | w3c-mcpとの統合ワークフロー    | Phase 2 |
+| Initiative              | Details                                    | Timing  |
+| ----------------------- | ------------------------------------------ | ------- |
+| Documentation Enhancement | Add more usage examples to README        | Phase 1 |
+| Feature Enhancement     | Cross-RFC search capability                | Phase 2 |
+| Integration Enhancement | Integration workflow with w3c-mcp          | Phase 2 |
 
 ### xcomet-mcp-server
 
-| 施策           | 内容                       | 時期    |
-| -------------- | -------------------------- | ------- |
-| 認知度向上     | 翻訳ワークフロー事例の発信 | Phase 1 |
-| パフォーマンス | GPU利用のドキュメント化    | Phase 1 |
-| 連携           | DeepL MCPとの統合Skill     | Phase 1 |
+| Initiative               | Details                                    | Timing  |
+| ------------------------ | ------------------------------------------ | ------- |
+| Increase Awareness       | Publish translation workflow case studies  | Phase 1 |
+| Performance              | Document GPU usage                         | Phase 1 |
+| Integration              | Integration Skill with DeepL MCP           | Phase 1 |
 
 ### rxjs-mcp-server
 
-| 施策         | 内容                           | 時期    |
-| ------------ | ------------------------------ | ------- |
-| パターン拡充 | より多くのユースケースパターン | Phase 2 |
-| Angular連携  | Angular MCPとの連携            | Phase 2 |
+| Initiative            | Details                                    | Timing  |
+| --------------------- | ------------------------------------------ | ------- |
+| Pattern Enhancement   | More use case patterns                     | Phase 2 |
+| Angular Integration   | Integration with Angular MCP               | Phase 2 |
 
-## Grokの評価を踏まえた戦略
+## Strategy Based on Grok's Evaluation
 
-### xcomet-mcp-server の可能性
+### Potential of xcomet-mcp-server
 
-> 「今後1年以内に化ける可能性が十分ある」（Grok評価）
+> "There is sufficient potential for this to take off within the next year" (Grok evaluation)
 
-**アクション**:
+**Actions**:
 
-- 翻訳ワークフロー事例の発信（Note）
-- DeepL + Claude + xCOMET のデモ
-- 日本語圏・欧州圏への訴求
+- Publish translation workflow case studies (Note)
+- Demo of DeepL + Claude + xCOMET
+- Outreach to Japanese-speaking and European communities
 
-### rfcxml-mcp の可能性
+### Potential of rfcxml-mcp
 
-> 「2027年以降にプロトコル理解エージェントブームが来たら急浮上」（Grok評価）
+> "Could surge if the protocol-understanding agent boom arrives after 2027" (Grok evaluation)
 
-**アクション**:
+**Actions**:
 
-- ホットなRFC（QUIC, HTTP/3, TLS 1.3）でのデモ
-- チェックリスト生成例の拡充
-- 実装支援ワークフローの確立
+- Demos with hot RFCs (QUIC, HTTP/3, TLS 1.3)
+- Expand checklist generation examples
+- Establish implementation support workflow
 
-## 発信戦略
+## Publishing Strategy
 
-### Note記事計画
+### Note Article Plan
 
-| テーマ               | 内容                      | 時期    |
-| -------------------- | ------------------------- | ------- |
-| **RFC × AI**         | MCPでRFCを読む/対話する   | Phase 1 |
-| **翻訳ワークフロー** | DeepL + xCOMET 実践       | Phase 1 |
-| **知識の民主化**     | MCPの本質的価値           | Phase 1 |
-| **エージェント設計** | Skill/Agent/MCPの使い分け | Phase 2 |
+| Theme                      | Content                                  | Timing  |
+| -------------------------- | ---------------------------------------- | ------- |
+| **RFC x AI**               | Reading/interacting with RFCs via MCP    | Phase 1 |
+| **Translation Workflow**   | DeepL + xCOMET in practice               | Phase 1 |
+| **Democratization of Knowledge** | The essential value of MCP         | Phase 1 |
+| **Agent Design**           | Distinguishing Skills/Agents/MCPs        | Phase 2 |
 
-### 技術発信の原則
+### Principles for Technical Publishing
 
-1. **概念→実装→成果** の流れで記事化
-2. **具体的な成果物**（コード、チェックリスト）を示す
-3. **日本語圏への価値**を明確に
+1. Structure articles as **Concept -> Implementation -> Results**
+2. Show **concrete deliverables** (code, checklists)
+3. Clearly articulate **value to the Japanese-speaking community**
 
-## リスクと対策
+## Risks and Countermeasures
 
-| リスク        | 影響               | 対策                               |
-| ------------- | ------------------ | ---------------------------------- |
-| MCP仕様変更   | 既存MCPの改修      | 公式仕様をウォッチ、早期対応       |
-| 競合MCPの登場 | 差別化困難         | 独自価値（日本語、専門性）で差別化 |
-| 時間不足      | 計画遅延           | Phase優先度で調整                  |
-| 需要読み違い  | 作っても使われない | 小さく作って検証                   |
+| Risk                    | Impact                        | Countermeasure                                           |
+| ----------------------- | ----------------------------- | -------------------------------------------------------- |
+| MCP Specification Changes | Modifications to existing MCPs | Monitor official specs, respond early                   |
+| Emergence of Competing MCPs | Difficulty differentiating | Differentiate with unique value (Japanese, expertise)  |
+| Time Constraints        | Schedule delays               | Adjust with Phase priorities                             |
+| Misjudging Demand       | Build without adoption        | Build small and validate                                 |
 
-## 成功指標
+## Success Metrics
 
-### 短期（Phase 1）
+### Short-term (Phase 1)
 
-- [ ] ドキュメント体系化完了
-- [ ] Skill/Agent定義 3個以上
-- [ ] 実プロジェクトでの活用実績
+- [ ] Complete documentation systematization
+- [ ] Define 3+ Skills/Agents
+- [ ] Achieve usage in real projects
 
-### 中期（Phase 2）
+### Medium-term (Phase 2)
 
-- [ ] 新規MCP 2個以上リリース
-- [ ] GitHub Star 合計 10以上
-- [ ] Note記事 5本以上
+- [ ] Release 2+ new MCPs
+- [ ] Reach 10+ total GitHub Stars
+- [ ] Publish 5+ Note articles
 
-### 長期（Phase 3）
+### Long-term (Phase 3)
 
-- [ ] MCPエコシステムの確立
-- [ ] コミュニティからの認知
-- [ ] 外部からの問い合わせ・貢献
+- [ ] Establish MCP ecosystem
+- [ ] Gain community recognition
+- [ ] Receive external inquiries/contributions
 
-## 次のアクション
+## Next Actions
 
-### 今すぐやること
+### Immediate Tasks
 
-1. **このドキュメントのGitHub反映**
-2. **翻訳ワークフローSkillの作成**
-3. **RFC専門サブエージェントの定義**
+1. **Reflect this document on GitHub**
+2. **Create Translation Workflow Skill**
+3. **Define RFC Specialist Sub-agent**
 
-### 今月中にやること
+### Tasks for This Month
 
-1. **xcomet活用事例のNote記事**
-2. **既存MCPのREADME改善**
-3. **CLAUDE.mdテンプレート作成**
+1. **Write Note article on xcomet use cases**
+2. **Improve README for existing MCPs**
+3. **Create CLAUDE.md template**

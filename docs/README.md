@@ -1,27 +1,29 @@
 # Docs
 
-このディレクトリには、discussionsで議論した内容を体系化した成果物を配置する。
+[日本語版 (Japanese)](./README.ja.md)
 
-## 📁 新構成（v2 リストラクチャリング）
+This directory contains systematized deliverables from discussions held in the discussions section.
 
-リポジトリのスコープ拡大に伴い、ドキュメント構成を以下のように再編成しました。
+## New Structure (v2 Restructuring)
+
+With the expansion of the repository scope, the documentation structure has been reorganized as follows.
 
 ```
 docs/
-├── concepts/          # ビジョン・思想・理論
+├── concepts/          # Vision, Philosophy, Theory
 │   ├── 01-vision.md
 │   ├── 02-reference-sources.md
 │   └── 03-architecture.md
-├── mcp/              # MCP（外部連携）
+├── mcp/              # MCP (External Integration)
 │   ├── catalog.md
 │   ├── security.md
-│   └── development.md (計画中)
-├── skills/           # Skills（ドメイン知識）
+│   └── development.md (planned)
+├── skills/           # Skills (Domain Knowledge)
 │   ├── overview.md
-│   ├── vs-mcp.md     # 選択判断ガイド
+│   ├── vs-mcp.md     # Selection Decision Guide
 │   ├── anti-patterns.md
-│   └── creating-skills.md (計画中)
-├── workflows/        # ワークフロー・運用
+│   └── creating-skills.md (planned)
+├── workflows/        # Workflows and Operations
 │   ├── patterns.md
 │   └── development-phases.md
 ├── roadmap.md
@@ -29,91 +31,91 @@ docs/
 └── glossary.md
 ```
 
-## このドキュメント群について
+## About This Documentation
 
-このドキュメント群は、AI駆動開発を支えるMCPエコシステムの**設計思想・アーキテクチャ・実践ノウハウ**を体系化したものである。
+This documentation systematizes the **design philosophy, architecture, and practical know-how** of the MCP ecosystem that supports AI-driven development.
 
-単なるツールの使い方マニュアルではなく、「なぜMCPを作るのか」「AIと人間はどう協働すべきか」「何を優先して構築すべきか」といった本質的な問いに対する回答を含む。
+This is not merely a tool usage manual, but includes answers to fundamental questions such as "Why build MCPs?", "How should AI and humans collaborate?", and "What should be prioritized in development?".
 
-Claudeとの対話（`discussions/`）を通じて得られた洞察を、再利用可能な形式でまとめている。
+Insights gained through dialogue with Claude (in `discussions/`) are compiled in a reusable format.
 
-## ドキュメント一覧
+## Document List
 
-### ビジョン・思想
+### Vision and Philosophy
 
-| ファイル                                                               | 内容                           |
-| ---------------------------------------------------------------------- | ------------------------------ |
-| [concepts/01-vision.md](./concepts/01-vision.md)                       | AI駆動開発のビジョン・核心思想 |
-| [concepts/02-reference-sources.md](./concepts/02-reference-sources.md) | 「ブレない参照先」の体系       |
+| File                                                                   | Content                                        |
+| ---------------------------------------------------------------------- | ---------------------------------------------- |
+| [concepts/01-vision.md](./concepts/01-vision.md)                       | Vision and Core Philosophy of AI-Driven Development |
+| [concepts/02-reference-sources.md](./concepts/02-reference-sources.md) | System of "Reliable Reference Sources"         |
 
-### アーキテクチャ・設計
+### Architecture and Design
 
-| ファイル                                                     | 内容                     |
-| ------------------------------------------------------------ | ------------------------ |
-| [concepts/03-architecture.md](./concepts/03-architecture.md) | MCP/Skills/Agentの構成論 |
+| File                                                         | Content                            |
+| ------------------------------------------------------------ | ---------------------------------- |
+| [concepts/03-architecture.md](./concepts/03-architecture.md) | MCP/Skills/Agent Configuration Theory |
 
-### MCP（外部連携）
+### MCP (External Integration)
 
-| ファイル                             | 内容                        |
-| ------------------------------------ | --------------------------- |
-| [mcp/catalog.md](./mcp/catalog.md)   | 構築済みMCPカタログと成果   |
-| [mcp/security.md](./mcp/security.md) | MCP開発時のセキュリティ考慮 |
+| File                                 | Content                                |
+| ------------------------------------ | -------------------------------------- |
+| [mcp/catalog.md](./mcp/catalog.md)   | Built MCP Catalog and Achievements     |
+| [mcp/security.md](./mcp/security.md) | Security Considerations for MCP Development |
 
-### Skills（ドメイン知識）
+### Skills (Domain Knowledge)
 
-| ファイル                                           | 内容                             |
-| -------------------------------------------------- | -------------------------------- |
-| [skills/overview.md](./skills/overview.md)         | Vercel Skills・Agent Skills Spec |
-| [skills/vs-mcp.md](./skills/vs-mcp.md)             | MCP vs Skills 選択判断ガイド     |
-| [skills/anti-patterns.md](./skills/anti-patterns.md) | MCP/Skills アンチパターン集      |
+| File                                               | Content                              |
+| -------------------------------------------------- | ------------------------------------ |
+| [skills/overview.md](./skills/overview.md)         | Vercel Skills and Agent Skills Spec  |
+| [skills/vs-mcp.md](./skills/vs-mcp.md)             | MCP vs Skills Selection Decision Guide |
+| [skills/anti-patterns.md](./skills/anti-patterns.md) | MCP/Skills Anti-patterns Collection  |
 
-### Workflows（ワークフロー・運用）
+### Workflows (Workflow and Operations)
 
-| ファイル                                                             | 内容                       |
-| -------------------------------------------------------------------- | -------------------------- |
-| [workflows/patterns.md](./workflows/patterns.md)                     | 連携パターン・ワークフロー |
-| [workflows/development-phases.md](./workflows/development-phases.md) | 開発フェーズ × 対応        |
+| File                                                                 | Content                              |
+| -------------------------------------------------------------------- | ------------------------------------ |
+| [workflows/patterns.md](./workflows/patterns.md)                     | Integration Patterns and Workflows   |
+| [workflows/development-phases.md](./workflows/development-phases.md) | Development Phases and Corresponding Actions |
 
-### 計画・実績
+### Planning and Achievements
 
-| ファイル                         | 内容                   |
-| -------------------------------- | ---------------------- |
-| [roadmap.md](./roadmap.md)   | 優先度・ロードマップ   |
-| [outputs.md](./outputs.md)   | 実績・アウトプット一覧 |
+| File                           | Content                        |
+| ------------------------------ | ------------------------------ |
+| [roadmap.md](./roadmap.md)     | Priority and Roadmap           |
+| [outputs.md](./outputs.md)     | Achievements and Output List   |
 
-### リファレンス
+### Reference
 
-| ファイル                     | 内容   |
-| ---------------------------- | ------ |
-| [glossary.md](./glossary.md) | 用語集 |
+| File                         | Content    |
+| ---------------------------- | ---------- |
+| [glossary.md](./glossary.md) | Glossary   |
 
-## 読み方ガイド
+## Reading Guide
 
-### 初めて読む場合
+### For First-Time Readers
 
-1. **concepts/01-vision.md** - 全体の思想を理解
-2. **concepts/03-architecture.md** - 構成要素を理解
-3. **mcp/catalog.md** - 具体的なMCPを確認
+1. **concepts/01-vision.md** - Understand the overall philosophy
+2. **concepts/03-architecture.md** - Understand the components
+3. **mcp/catalog.md** - Review specific MCPs
 
-### 実践したい場合
+### For Practitioners
 
-1. **skills/vs-mcp.md** - 何を使うべきか判断
-2. **workflows/patterns.md** - 具体的なワークフロー
-3. **mcp/catalog.md** - 各MCPの詳細
+1. **skills/vs-mcp.md** - Decide what to use
+2. **workflows/patterns.md** - Explore specific workflows
+3. **mcp/catalog.md** - Review details of each MCP
 
-### 開発に参加したい場合
+### For Contributors
 
-1. **roadmap.md** - 優先度・計画
-2. **mcp/security.md** - セキュリティ考慮
-3. **glossary.md** - 用語確認
+1. **roadmap.md** - Understand priorities and plans
+2. **mcp/security.md** - Review security considerations
+3. **glossary.md** - Confirm terminology
 
-## 関連ディレクトリ
+## Related Directories
 
-- `../discussions/` - Claudeとの議論ログ（時系列）
-- `../references/` - 参考リンク・資料
+- `../discussions/` - Discussion logs with Claude (chronological)
+- `../references/` - Reference links and materials
 
-## 更新履歴
+## Update History
 
-| 日付       | 内容                   |
-| ---------- | ---------------------- |
-| 2025-01-26 | 初版作成（11ファイル） |
+| Date       | Content                          |
+| ---------- | -------------------------------- |
+| 2025-01-26 | Initial version (11 files)       |

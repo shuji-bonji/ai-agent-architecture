@@ -1,69 +1,71 @@
 ---
 name: code-review
-description: コードレビューのガイドラインとチェック項目
+description: Code review guidelines and checklist
 ---
 
-# コードレビュー Skill
+# Code Review Skill
 
-## 概要
+[日本語版 (Japanese)](./code-review.ja.md)
 
-Pull Requestやコード変更に対するレビューを、一貫した基準で実施するためのガイドライン。SOLID原則やチーム規約に基づき、品質と保守性を担保する。
+## Overview
 
-## 対象
+Guidelines for conducting code reviews on Pull Requests and code changes with consistent standards. Ensures quality and maintainability based on SOLID principles and team conventions.
 
-- Pull Request レビュー
-- コード変更の自己レビュー
-- リファクタリング提案
+## Scope
 
-## 使用MCP
+- Pull Request reviews
+- Self-review of code changes
+- Refactoring proposals
 
-| MCP | ツール | 用途 |
-| --- | ------ | ---- |
-| @eslint/mcp | lint | 静的解析・ルール違反検出 |
-| @eslint/mcp | fix | 自動修正可能な問題の修正 |
+## MCP Tools Used
 
-## ワークフロー
+| MCP | Tool | Purpose |
+| --- | ---- | ------- |
+| @eslint/mcp | lint | Static analysis and rule violation detection |
+| @eslint/mcp | fix | Auto-fix correctable issues |
 
-### 1. 静的解析の実行
+## Workflow
+
+### 1. Run Static Analysis
 
 ```
-MCPで lint を実行し、機械的に検出可能な問題を洗い出す
+Execute lint via MCP to identify mechanically detectable issues
 ```
 
-### 2. 設計原則の確認
+### 2. Verify Design Principles
 
-以下の観点でコードを確認：
+Review code from the following perspectives:
 
-- **S**: 単一責任の原則 - 1クラス/関数は1つの責務のみ
-- **O**: 開放閉鎖の原則 - 拡張に開き、修正に閉じているか
-- **L**: リスコフの置換原則 - 派生クラスは基底クラスと置換可能か
-- **I**: インターフェース分離の原則 - 不要な依存を強制していないか
-- **D**: 依存性逆転の原則 - 抽象に依存しているか
+- **S**: Single Responsibility Principle - Each class/function has only one responsibility
+- **O**: Open/Closed Principle - Open for extension, closed for modification
+- **L**: Liskov Substitution Principle - Derived classes can substitute base classes
+- **I**: Interface Segregation Principle - No forced dependencies on unused interfaces
+- **D**: Dependency Inversion Principle - Depend on abstractions, not concretions
 
-### 3. レビューコメント作成
+### 3. Create Review Comments
 
-問題点と改善提案をまとめる：
+Summarize issues and improvement suggestions:
 
-- 重大度（Critical / Major / Minor / Suggestion）
-- 該当箇所
-- 改善案
+- Severity (Critical / Major / Minor / Suggestion)
+- Affected location
+- Suggested improvement
 
-## 判断基準
+## Decision Criteria
 
-| 条件 | アクション |
-| ---- | ---------- |
-| ESLint エラーあり | 修正必須としてコメント |
-| SOLID原則違反 | 設計改善を提案 |
-| パフォーマンス懸念 | 計測方法と共に指摘 |
-| 可読性の問題 | 具体的な改善例を提示 |
+| Condition | Action |
+| --------- | ------ |
+| ESLint errors present | Comment as mandatory fix |
+| SOLID principle violation | Propose design improvement |
+| Performance concerns | Flag with measurement methodology |
+| Readability issues | Provide concrete improvement examples |
 
-## 注意事項
+## Notes
 
-- 批判ではなく改善提案として伝える
-- 良い点も積極的にコメントする
-- 自動化できるものはMCPに任せる
+- Frame feedback as improvement suggestions, not criticism
+- Actively comment on positive aspects as well
+- Delegate automatable tasks to MCP
 
-## 参考資料
+## References
 
 - [ESLint MCP](https://github.com/anthropics/claude-code/blob/main/examples/mcp/eslint/README.md)
-- [SOLID原則](https://en.wikipedia.org/wiki/SOLID)
+- [SOLID Principles](https://en.wikipedia.org/wiki/SOLID)

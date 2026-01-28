@@ -1,210 +1,212 @@
-# 「ブレない参照先」の体系
+# The Framework of "Authoritative Reference Sources"
 
-> AIの判断にブレない参照先を与えることが、AI駆動開発の信頼性の基盤となる。
+[日本語版 (Japanese)](./02-reference-sources.ja.md)
 
-## このドキュメントについて
+> Providing authoritative reference sources for AI decisions is the foundation of reliability in AI-driven development.
 
-AI駆動開発において、AIの出力品質は「何を参照するか」で決まる。このドキュメントでは、AIが判断の根拠とすべき「ブレない参照先」を体系的に整理し、なぜそれが必要なのか、どのような特性を持つべきか、そしてどのように接続すべきかを明確にする。
+## About This Document
 
-RFC、W3C、法令といった権威ある情報源を[MCP](https://modelcontextprotocol.io/)化することで、AIの出力に**検証可能な根拠**を持たせることができる。これにより、「AIが言っていることは本当か？」という疑問に対して、常に原典を示せる開発体制が構築できる。
+In AI-driven development, the quality of AI output is determined by "what it references." This document systematically organizes the "authoritative reference sources" that AI should use as the basis for its decisions, clarifying why they are necessary, what characteristics they should have, and how they should be connected.
 
-> **注**: このドキュメントは主に「外部の権威ある情報源」について扱う。チーム内のドメイン知識・ベストプラクティスについては [Skills](../skills/overview.md) を参照。MCPとSkillsの使い分けは [vs-mcp.md](../skills/vs-mcp.md) を参照。
+By converting authoritative information sources such as RFCs, W3C specifications, and legislation into [MCP](https://modelcontextprotocol.io/) format, AI output can have **verifiable evidence**. This enables a development environment where the question "Is what the AI says really true?" can always be answered by pointing to the original source.
 
-## 第1章：なぜAIは「ブレる」のか
+> **Note**: This document primarily covers "external authoritative information sources." For team domain knowledge and best practices, see [Skills](../skills/overview.md). For the distinction between MCP and Skills, see [vs-mcp.md](../skills/vs-mcp.md).
 
-### 1.1 確率的生成の本質
+## Chapter 1: Why Does AI "Fluctuate"?
 
-大規模言語モデル（LLM）は、本質的に**確率的なテキスト生成システム**である。
+### 1.1 The Nature of Probabilistic Generation
+
+Large Language Models (LLMs) are fundamentally **probabilistic text generation systems**.
 
 ```mermaid
 flowchart LR
-    INPUT[入力テキスト] --> MODEL[LLM]
-    MODEL --> PROB[確率分布]
-    PROB --> SAMPLE[サンプリング]
-    SAMPLE --> OUTPUT[出力テキスト]
+    INPUT[Input Text] --> MODEL[LLM]
+    MODEL --> PROB[Probability Distribution]
+    PROB --> SAMPLE[Sampling]
+    SAMPLE --> OUTPUT[Output Text]
 
     style PROB fill:#ff9999
 ```
 
-| 特性                       | 説明                                                         | AIへの影響                                 |
-| -------------------------- | ------------------------------------------------------------ | ------------------------------------------ |
-| **統計的パターン学習**     | 学習データ中の共起パターンから「次に来やすいトークン」を予測 | 「正しい」ではなく「もっともらしい」を出力 |
-| **サンプリングの非決定性** | 同じ入力でも異なる出力が生成されうる                         | 一貫性の保証が困難                         |
-| **コンテキスト依存性**     | プロンプトの微細な違いで出力が変化                           | 再現性の問題                               |
+| Characteristic | Description | Impact on AI |
+| --- | --- | --- |
+| **Statistical Pattern Learning** | Predicts "likely next tokens" from co-occurrence patterns in training data | Outputs "plausible" rather than "correct" |
+| **Non-deterministic Sampling** | Same input can produce different outputs | Consistency guarantees are difficult |
+| **Context Dependency** | Subtle differences in prompts change output | Reproducibility issues |
 
-### 1.2 AIの4つの根本的限界
+### 1.2 The Four Fundamental Limitations of AI
 
 ```mermaid
 mindmap
-  root((AIの限界))
-    正確性の限界
-      ハルシネーション
-      事実誤認
-      論理的矛盾
-    最新性の限界
-      学習データのカットオフ
-      リアルタイム情報の欠如
-      変更された仕様への追従不可
-    権威性の限界
-      公式解釈の不在
-      出典の曖昧さ
-      専門家の合意との乖離
-    責任性の限界
-      法的根拠の欠如
-      説明責任の不在
-      監査証跡の欠如
+  root((AI Limitations))
+    Accuracy Limitations
+      Hallucination
+      Factual Errors
+      Logical Contradictions
+    Recency Limitations
+      Training Data Cutoff
+      Lack of Real-time Information
+      Cannot Track Changed Specifications
+    Authority Limitations
+      Absence of Official Interpretation
+      Ambiguous Sources
+      Divergence from Expert Consensus
+    Accountability Limitations
+      Lack of Legal Basis
+      No Accountability
+      Missing Audit Trail
 ```
 
-#### 1.2.1 正確性の限界（Hallucination問題）
+#### 1.2.1 Accuracy Limitations (Hallucination Problem)
 
-AIは「知っている」のではなく「生成している」。
+AI doesn't "know" — it "generates."
 
 ```
-ユーザー: RFC 6455のセクション5.5.1で定義されているClose frameの
-         ステータスコード1006の意味は？
+User: What is the meaning of status code 1006 for Close frames
+      as defined in Section 5.5.1 of RFC 6455?
 
-AIの可能性A: 「1006は予期しない切断を示します」（正しい）
-AIの可能性B: 「1006はプロトコルエラーを示します」（誤り - それは1002）
-AIの可能性C: 「セクション5.5.1には1006の定義があります」（誤り - 7.4.1が正しい）
+AI Possibility A: "1006 indicates unexpected disconnection" (correct)
+AI Possibility B: "1006 indicates a protocol error" (wrong - that's 1002)
+AI Possibility C: "Section 5.5.1 contains the definition of 1006" (wrong - 7.4.1 is correct)
 ```
 
-**ハルシネーションの発生メカニズム**
+**Hallucination Generation Mechanisms**
 
-| 原因                     | 説明                                 | 例                             |
-| ------------------------ | ------------------------------------ | ------------------------------ |
-| **学習データの希薄性**   | 稀な情報は学習不足                   | マイナーなRFCの詳細            |
-| **類似パターンとの混同** | 似た概念を混同                       | Close code 1002と1006          |
-| **自信過剰な補完**       | 不明な部分を「もっともらしく」埋める | 存在しないセクション番号の生成 |
-| **コンテキスト汚染**     | 会話中の誤情報を真実として扱う       | ユーザーの誤解を増幅           |
+| Cause | Description | Example |
+| --- | --- | --- |
+| **Sparse Training Data** | Rare information is undertrained | Details of minor RFCs |
+| **Confusion with Similar Patterns** | Confuses similar concepts | Close code 1002 vs 1006 |
+| **Overconfident Completion** | Fills in unknown parts "plausibly" | Generating non-existent section numbers |
+| **Context Contamination** | Treats misinformation in conversation as truth | Amplifies user misunderstandings |
 
-#### 1.2.2 最新性の限界
+#### 1.2.2 Recency Limitations
 
 ```mermaid
 timeline
-    title 知識の時点固定問題
+    title Knowledge Temporal Fixation Problem
 
-    section 学習データ
-      2023年12月 : 学習カットオフ
+    section Training Data
+      December 2023 : Training Cutoff
 
-    section 現実世界
-      2024年3月 : RFC 9562 発行
-      2024年6月 : HTTP/3の新拡張
-      2024年9月 : セキュリティ脆弱性発見
-      2025年1月 : 法改正施行
+    section Real World
+      March 2024 : RFC 9562 Published
+      June 2024 : New HTTP/3 Extensions
+      September 2024 : Security Vulnerability Discovered
+      January 2025 : Legal Amendment Enacted
 ```
 
-**具体的な影響**
+**Specific Impacts**
 
-| カテゴリ         | 問題                     | 例                                 |
-| ---------------- | ------------------------ | ---------------------------------- |
-| **新規RFC**      | 存在を知らない           | RFC 9562（UUIDv7）を知らない       |
-| **法改正**       | 旧法に基づく回答         | 改正前の個人情報保護法で回答       |
-| **廃止・更新**   | 古い仕様を現行として扱う | RFC 2616をHTTP/1.1の標準として参照 |
-| **セキュリティ** | 既知の脆弱性を知らない   | 発見後のCVEを知らない              |
+| Category | Problem | Example |
+| --- | --- | --- |
+| **New RFCs** | Unaware of existence | Does not know RFC 9562 (UUIDv7) |
+| **Legal Amendments** | Answers based on old law | Answers based on pre-amendment privacy law |
+| **Deprecation/Updates** | Treats old specifications as current | References RFC 2616 as the HTTP/1.1 standard |
+| **Security** | Unaware of known vulnerabilities | Does not know CVEs discovered after cutoff |
 
-#### 1.2.3 権威性の限界
+#### 1.2.3 Authority Limitations
 
-AIの出力は「一つの解釈」であり、**公式な見解ではない**。
+AI output is "one interpretation" and **not an official opinion**.
 
 ```
-問題の構造:
+Problem Structure:
 
-RFC 6455 原文
+RFC 6455 Original Text
     ↓
-    複数の解釈可能性
-    ├── 解釈A（厳格）
-    ├── 解釈B（寛容）
-    └── 解釈C（文脈依存）
+    Multiple Interpretation Possibilities
+    ├── Interpretation A (Strict)
+    ├── Interpretation B (Lenient)
+    └── Interpretation C (Context-dependent)
 
-AIの出力
+AI Output
     ↓
-    どれかの解釈を「もっともらしく」出力
+    Outputs one interpretation "plausibly"
     ↓
-    それが正しい解釈である保証はない
+    No guarantee that it is the correct interpretation
 ```
 
-**権威性の欠如が問題となる場面**
+**Situations Where Lack of Authority Is Problematic**
 
-| 場面             | リスク               | 必要な対応             |
-| ---------------- | -------------------- | ---------------------- |
-| **仕様の実装**   | 非準拠な実装         | RFC原文の確認          |
-| **法的判断**     | コンプライアンス違反 | 法令原文の確認         |
-| **セキュリティ** | 脆弱性の見落とし     | 公式アドバイザリの確認 |
-| **契約・SLA**    | 誤った解釈による紛争 | 契約原文の確認         |
+| Situation | Risk | Required Response |
+| --- | --- | --- |
+| **Specification Implementation** | Non-compliant implementation | Verify RFC original text |
+| **Legal Decisions** | Compliance violations | Verify legal text |
+| **Security** | Overlooking vulnerabilities | Check official advisories |
+| **Contracts/SLAs** | Disputes from misinterpretation | Verify contract text |
 
-#### 1.2.4 責任性の限界
+#### 1.2.4 Accountability Limitations
 
-AIの出力には**説明責任（Accountability）の主体がない**。
+AI output has **no subject of accountability**.
 
 ```mermaid
 graph TB
-    subgraph 従来の情報源
-        EXPERT[専門家] --> |"署名・監修"| DOC[ドキュメント]
-        DOC --> |"引用・参照"| USER[利用者]
-        EXPERT --> |"責任を負う"| USER
+    subgraph Traditional Information Sources
+        EXPERT[Expert] --> |"Signature/Review"| DOC[Document]
+        DOC --> |"Citation/Reference"| USER[User]
+        EXPERT --> |"Bears Responsibility"| USER
     end
 
-    subgraph AIの出力
-        AI[AI] --> |"生成"| OUTPUT[出力]
-        OUTPUT --> |"利用"| USER2[利用者]
-        AI -.- |"責任の所在が曖昧"| USER2
+    subgraph AI Output
+        AI[AI] --> |"Generation"| OUTPUT[Output]
+        OUTPUT --> |"Usage"| USER2[User]
+        AI -.- |"Responsibility is Ambiguous"| USER2
     end
 
     style AI fill:#ff9999
 ```
 
-| 問題               | 説明                     | 結果           |
-| ------------------ | ------------------------ | -------------- |
-| **出典の不透明性** | 何を根拠に生成したか不明 | 検証不能       |
-| **改訂の追跡不能** | いつの情報に基づくか不明 | 監査不能       |
-| **誤りの帰責**     | 誰が責任を負うか曖昧     | リスク管理困難 |
+| Problem | Description | Result |
+| --- | --- | --- |
+| **Source Opacity** | Unknown basis for generation | Cannot verify |
+| **Revision Untraceability** | Unknown when information is from | Cannot audit |
+| **Error Attribution** | Unclear who bears responsibility | Difficult risk management |
 
-## 第2章：「ブレない参照先」とは何か
+## Chapter 2: What Are "Authoritative Reference Sources"?
 
-### 2.1 定義
+### 2.1 Definition
 
-**ブレない参照先（Authoritative Reference Source）** とは、以下の特性を満たす情報源である。
+**Authoritative Reference Sources** are information sources that satisfy the following characteristics:
 
 ```mermaid
 graph TB
-    subgraph ブレない参照先の5特性
-        AUTH[権威性<br/>Authoritativeness]
-        IMMUT[不変性・版管理<br/>Immutability]
-        STRUCT[構造化<br/>Structuredness]
-        VERIFY[検証可能性<br/>Verifiability]
-        ACCESS[アクセス可能性<br/>Accessibility]
+    subgraph Five Characteristics of Authoritative Reference Sources
+        AUTH[Authoritativeness]
+        IMMUT[Immutability & Versioning]
+        STRUCT[Structuredness]
+        VERIFY[Verifiability]
+        ACCESS[Accessibility]
     end
 
-    AUTH --> |"誰が言ったか"| TRUST[信頼性]
-    IMMUT --> |"いつの情報か"| TRUST
-    STRUCT --> |"何が書いてあるか"| TRUST
-    VERIFY --> |"本当か確認できる"| TRUST
-    ACCESS --> |"参照できる"| TRUST
+    AUTH --> |"Who said it"| TRUST[Trustworthiness]
+    IMMUT --> |"When is the information from"| TRUST
+    STRUCT --> |"What is written"| TRUST
+    VERIFY --> |"Can be confirmed"| TRUST
+    ACCESS --> |"Can be referenced"| TRUST
 
     style TRUST fill:#90EE90
 ```
 
-### 2.2 5つの特性
+### 2.2 The Five Characteristics
 
-#### 2.2.1 権威性（Authoritativeness）
+#### 2.2.1 Authoritativeness
 
-情報の発信元が、その領域において**正式な決定権または専門性を持つ**こと。
+The information source has **official decision-making authority or expertise** in its domain.
 
-| 権威の種類         | 説明                                   | 例                          |
-| ------------------ | -------------------------------------- | --------------------------- |
-| **制度的権威**     | 法律や条約で定められた正式な機関       | IETF、W3C、ISO、各国政府    |
-| **デファクト権威** | 業界で事実上の標準として認められた主体 | OWASP、Ecma International   |
-| **学術的権威**     | 査読プロセスを経た学術コミュニティ     | IEEE、ACM                   |
-| **技術的権威**     | 技術の開発元・管理者                   | 各OSSプロジェクト、ベンダー |
+| Type of Authority | Description | Examples |
+| --- | --- | --- |
+| **Institutional Authority** | Official bodies established by law or treaty | IETF, W3C, ISO, National Governments |
+| **De facto Authority** | Entities recognized as de facto standards in the industry | OWASP, Ecma International |
+| **Academic Authority** | Academic communities with peer review processes | IEEE, ACM |
+| **Technical Authority** | Developers/maintainers of technology | OSS Projects, Vendors |
 
 ```mermaid
 graph TB
-    subgraph 権威性の階層
-        L1[法的拘束力を持つ<br/>法令・条約]
-        L2[国際標準化機関<br/>IETF・W3C・ISO]
-        L3[業界標準・デファクト<br/>OWASP・OpenAPI]
-        L4[技術ベンダー公式<br/>MDN・各種SDK]
-        L5[コミュニティ知見<br/>Stack Overflow等]
+    subgraph Authority Hierarchy
+        L1[Legally Binding<br/>Laws/Treaties]
+        L2[International Standards Bodies<br/>IETF/W3C/ISO]
+        L3[Industry Standards/De facto<br/>OWASP/OpenAPI]
+        L4[Official Tech Vendors<br/>MDN/Various SDKs]
+        L5[Community Knowledge<br/>Stack Overflow etc.]
     end
 
     L1 --> L2 --> L3 --> L4 --> L5
@@ -216,18 +218,18 @@ graph TB
     style L5 fill:#c8d6e5
 ```
 
-#### 2.2.2 不変性・版管理（Immutability & Versioning）
+#### 2.2.2 Immutability & Versioning
 
-一度公開された内容は**変更されない**か、変更される場合は**明確な版管理**が行われること。
+Once published, content either **does not change** or when it does, **clear version management** is applied.
 
-| パターン           | 説明                         | 例                    |
-| ------------------ | ---------------------------- | --------------------- |
-| **完全不変**       | 一度発行されたら変更されない | RFC（Errataを除く）   |
-| **版管理付き変更** | 新版発行で旧版を置き換え     | ISO規格、W3C勧告      |
-| **明示的廃止**     | 古い版を明示的に廃止         | RFC obsoletes/updates |
+| Pattern | Description | Example |
+| --- | --- | --- |
+| **Complete Immutability** | Never changed once published | RFC (except Errata) |
+| **Versioned Changes** | New version replaces old version | ISO Standards, W3C Recommendations |
+| **Explicit Deprecation** | Old versions explicitly deprecated | RFC obsoletes/updates |
 
 ```
-RFC の不変性モデル:
+RFC Immutability Model:
 
 RFC 2616 (HTTP/1.1, 1999)
     ↓ obsoleted by
@@ -235,18 +237,18 @@ RFC 7230-7235 (2014)
     ↓ obsoleted by
 RFC 9110-9114 (2022)
 
-→ 各RFCは発行後変更されない
-→ 新しいRFCが古いRFCを「置き換え」る
-→ どの時点の仕様かが明確
+→ Each RFC is unchanged after publication
+→ New RFCs "replace" old RFCs
+→ Clear which point in time the specification is from
 ```
 
-#### 2.2.3 構造化（Structuredness）
+#### 2.2.3 Structuredness
 
-情報が**体系的に組織化**され、特定の情報を正確に参照できること。
+Information is **systematically organized** so specific information can be precisely referenced.
 
 ```mermaid
 graph LR
-    subgraph 構造化された参照
+    subgraph Structured Reference
         RFC["RFC 6455"]
         SEC["Section 7.4.1"]
         PARA["Paragraph 3"]
@@ -255,71 +257,71 @@ graph LR
 
     RFC --> SEC --> PARA --> REQ
 
-    subgraph 曖昧な参照
-        VAGUE["WebSocketの仕様では..."]
+    subgraph Ambiguous Reference
+        VAGUE["The WebSocket specification says..."]
     end
 
     style RFC fill:#90EE90
     style VAGUE fill:#ff9999
 ```
 
-| 構造化の要素     | 説明                                 | AIへの恩恵           |
-| ---------------- | ------------------------------------ | -------------------- |
-| **階層構造**     | 章・節・項の明確な階層               | 特定箇所の正確な参照 |
-| **識別子**       | 一意なセクション番号・条項番号       | 曖昧さのない引用     |
-| **相互参照**     | 他の文書・セクションへの明示的リンク | 関連情報の追跡       |
-| **インデックス** | 用語索引、要件一覧                   | 効率的な検索         |
+| Structuring Element | Description | Benefit for AI |
+| --- | --- | --- |
+| **Hierarchical Structure** | Clear hierarchy of chapters/sections/paragraphs | Precise reference to specific locations |
+| **Identifiers** | Unique section/article numbers | Unambiguous citations |
+| **Cross-references** | Explicit links to other documents/sections | Tracking related information |
+| **Index** | Term index, requirement lists | Efficient searching |
 
-#### 2.2.4 検証可能性（Verifiability）
+#### 2.2.4 Verifiability
 
-AIの出力が**原典と照合して正しいか確認**できること。
+AI output can be **confirmed against the original source**.
 
 ```mermaid
 sequenceDiagram
-    participant User as ユーザー
+    participant User as User
     participant AI as AI (Claude)
     participant MCP as MCP Server
-    participant Source as 原典 (RFC)
+    participant Source as Original Source (RFC)
 
-    User->>AI: WebSocketのClose codeについて教えて
+    User->>AI: Tell me about WebSocket Close codes
     AI->>MCP: get_requirements(6455, section="7.4.1")
-    MCP->>Source: RFC原文取得
-    Source-->>MCP: 原文テキスト
-    MCP-->>AI: 構造化された要件
-    AI-->>User: 回答 + 出典明示
+    MCP->>Source: Fetch RFC original text
+    Source-->>MCP: Original text
+    MCP-->>AI: Structured requirements
+    AI-->>User: Answer + Source citation
 
-    Note over User: 検証可能！
-    User->>Source: 直接確認も可能
+    Note over User: Verifiable!
+    User->>Source: Can also verify directly
 ```
 
-**検証可能性を確保する要素**
+**Elements Ensuring Verifiability**
 
-| 要素               | 説明                     | 実装                     |
-| ------------------ | ------------------------ | ------------------------ |
-| **永続的URI**      | 参照先が消えない         | DOI、RFC番号、法令番号   |
-| **版指定**         | どの版を参照したか明示   | RFC 9110、ISO 27001:2022 |
-| **セクション指定** | どの箇所を参照したか明示 | Section 7.4.1            |
-| **原文引用**       | 参照元の文言を示す       | MUST/SHOULD/MAYの原文    |
+| Element | Description | Implementation |
+| --- | --- | --- |
+| **Persistent URI** | Reference won't disappear | DOI, RFC number, Legal article number |
+| **Version Specification** | Clarify which version was referenced | RFC 9110, ISO 27001:2022 |
+| **Section Specification** | Clarify which part was referenced | Section 7.4.1 |
+| **Original Text Citation** | Show the referenced wording | MUST/SHOULD/MAY original text |
 
-#### 2.2.5 アクセス可能性（Accessibility）
+#### 2.2.5 Accessibility
 
-AIが**プログラムで参照できる**形式で提供されていること。
+Provided in a format that **AI can access programmatically**.
 
-| レベル             | 説明                            | 例                 |
-| ------------------ | ------------------------------- | ------------------ |
-| **構造化API**      | 機械可読な形式でアクセス可能    | RFC XML、e-Gov API |
-| **HTML/PDF**       | Webで公開されているがパース必要 | W3C仕様、多くのISO |
-| **有料・制限付き** | アクセスに制約がある            | 一部のISO規格      |
+| Level | Description | Example |
+| --- | --- | --- |
+| **Structured API** | Accessible in machine-readable format | RFC XML, e-Gov API |
+| **HTML/PDF** | Published on web but requires parsing | W3C specs, most ISO |
+| **Paid/Restricted** | Access has constraints | Some ISO standards |
 
 ```mermaid
 graph TB
-    subgraph アクセス可能性の理想
-        API[構造化API] --> MCP[MCPサーバー] --> AI[AI]
+    subgraph Ideal Accessibility
+        API[Structured API] --> MCP[MCP Server] --> AI[AI]
     end
 
-    subgraph 現実の課題
-        PDF[PDF only] --> |"OCR/パース"| MANUAL[手動処理]
-        PAID[有料] --> |"ライセンス"| BARRIER[障壁]
+    subgraph Real-world Challenges
+        PDF[PDF only] --> |"OCR/Parse"| MANUAL[Manual Processing]
+        PAID[Paid] --> |"License"| BARRIER[Barrier]
     end
 
     style API fill:#90EE90
@@ -327,290 +329,290 @@ graph TB
     style PAID fill:#ff9999
 ```
 
-### 2.3 「ブレない参照先」の判定基準
+### 2.3 Criteria for Evaluating "Authoritative Reference Sources"
 
 ```mermaid
 flowchart TB
-    START[情報源] --> Q1{策定主体は<br/>公式機関？}
-    Q1 -->|Yes| Q2{版管理<br/>されている？}
-    Q1 -->|No| LOW[信頼性：低]
+    START[Information Source] --> Q1{Is the issuing body<br/>an official organization?}
+    Q1 -->|Yes| Q2{Is it version<br/>controlled?}
+    Q1 -->|No| LOW[Reliability: Low]
 
-    Q2 -->|Yes| Q3{構造化<br/>されている？}
-    Q2 -->|No| MED1[信頼性：中<br/>版追跡に注意]
+    Q2 -->|Yes| Q3{Is it<br/>structured?}
+    Q2 -->|No| MED1[Reliability: Medium<br/>Watch version tracking]
 
-    Q3 -->|Yes| Q4{検証可能な<br/>形式？}
-    Q3 -->|No| MED2[信頼性：中<br/>曖昧さに注意]
+    Q3 -->|Yes| Q4{Is it in a<br/>verifiable format?}
+    Q3 -->|No| MED2[Reliability: Medium<br/>Watch for ambiguity]
 
-    Q4 -->|Yes| Q5{プログラムで<br/>アクセス可能？}
-    Q4 -->|No| MED3[信頼性：中<br/>検証コスト高]
+    Q4 -->|Yes| Q5{Is it programmatically<br/>accessible?}
+    Q4 -->|No| MED3[Reliability: Medium<br/>High verification cost]
 
-    Q5 -->|Yes| HIGH[信頼性：高<br/>MCP化推奨]
-    Q5 -->|No| MED4[信頼性：中高<br/>MCP化で価値向上]
+    Q5 -->|Yes| HIGH[Reliability: High<br/>Recommended for MCP]
+    Q5 -->|No| MED4[Reliability: Medium-High<br/>Value increases with MCP]
 
     style HIGH fill:#90EE90
     style LOW fill:#ff9999
 ```
 
-## 第3章：参照先の階層構造
+## Chapter 3: Hierarchical Structure of Reference Sources
 
-### 3.1 4層モデル
+### 3.1 The Four-Layer Model
 
 ```mermaid
 graph TB
-    subgraph レベル1["レベル1: 国際標準・法規制（MUST）"]
+    subgraph Level1["Level 1: International Standards & Regulations (MUST)"]
         IETF[IETF RFC]
-        W3C[W3C標準]
-        ISO[ISO規格]
-        LAW[法令・規制]
+        W3C[W3C Standards]
+        ISO[ISO Standards]
+        LAW[Laws & Regulations]
     end
 
-    subgraph レベル2["レベル2: 業界標準・デファクト（SHOULD）"]
+    subgraph Level2["Level 2: Industry Standards & De facto (SHOULD)"]
         OPENAPI[OpenAPI]
         OWASP[OWASP]
         OAUTH[OAuth 2.0]
         SEMVER[Semantic Versioning]
     end
 
-    subgraph レベル3["レベル3: 組織・プロジェクト規約（ローカル）"]
-        CODING[コーディング規約]
+    subgraph Level3["Level 3: Organization/Project Rules (Local)"]
+        CODING[Coding Standards]
         ADR[ADR]
-        STYLE[スタイルガイド]
+        STYLE[Style Guide]
     end
 
-    subgraph レベル4["レベル4: ベストプラクティス（推奨）"]
-        PATTERN[デザインパターン]
+    subgraph Level4["Level 4: Best Practices (Recommended)"]
+        PATTERN[Design Patterns]
         CLEAN[Clean Code]
-        SOLID[SOLID原則]
+        SOLID[SOLID Principles]
     end
 
-    レベル1 --> レベル2 --> レベル3 --> レベル4
+    Level1 --> Level2 --> Level3 --> Level4
 ```
 
-### 3.2 レベル別詳細
+### 3.2 Level Details
 
-#### レベル1: 国際標準・法規制（MUST遵守）
+#### Level 1: International Standards & Regulations (MUST Comply)
 
-最高権威の参照先。違反すると**相互運用性の欠如や法的問題**を引き起こす。
+Highest authority reference sources. Violations cause **interoperability issues or legal problems**.
 
-| カテゴリ           | 参照先       | 5特性評価 | MCP化状況     |
-| ------------------ | ------------ | --------- | ------------- |
-| **通信プロトコル** | IETF RFC     | ◎◎◎◎◎     | ✅ rfcxml-mcp |
-| **Web標準**        | W3C / WHATWG | ◎◎◎◎○     | ✅ w3c-mcp    |
-| **国際規格**       | ISO          | ◎◎◎○△     | 🔜 検討中     |
-| **日本法令**       | e-Gov        | ◎◎◎◎◎     | ✅ hourei-mcp |
-| **EU規制**         | EUR-Lex      | ◎◎◎◎○     | 📋 構想       |
+| Category | Reference | 5 Characteristics Rating | MCP Status |
+| --- | --- | --- | --- |
+| **Communication Protocols** | IETF RFC | ◎◎◎◎◎ | ✅ rfcxml-mcp |
+| **Web Standards** | W3C / WHATWG | ◎◎◎◎○ | ✅ w3c-mcp |
+| **International Standards** | ISO | ◎◎◎○△ | 🔜 Under consideration |
+| **Japanese Laws** | e-Gov | ◎◎◎◎◎ | ✅ hourei-mcp |
+| **EU Regulations** | EUR-Lex | ◎◎◎◎○ | 📋 Planned |
 
-**IETF RFCの特性**
+**IETF RFC Characteristics**
 
 ```
-権威性:     ◎ IETFによる公式発行、WGでのコンセンサス
-不変性:     ◎ 発行後変更なし、obsoletes/updatesで管理
-構造化:     ◎ セクション番号、MUST/SHOULD/MAYの明確な定義
-検証可能性: ◎ RFC番号、セクション番号で一意特定
-アクセス性: ◎ RFC XML形式で公開、無料アクセス
+Authoritativeness: ◎ Official publication by IETF, WG consensus
+Immutability:      ◎ No changes after publication, managed via obsoletes/updates
+Structuredness:    ◎ Section numbers, clear MUST/SHOULD/MAY definitions
+Verifiability:     ◎ Uniquely identified by RFC number and section number
+Accessibility:     ◎ Published in RFC XML format, free access
 ```
 
-#### レベル2: 業界標準・デファクト（SHOULD遵守）
+#### Level 2: Industry Standards & De facto (SHOULD Comply)
 
-広く採用されている標準。準拠しないと**業界内での互換性に問題**。
+Widely adopted standards. Non-compliance causes **compatibility issues within the industry**.
 
-| カテゴリ           | 参照先           | 特徴                                | MCP化価値 |
-| ------------------ | ---------------- | ----------------------------------- | --------- |
-| **API設計**        | OpenAPI Spec     | REST APIの事実上の標準              | 高        |
-| **セキュリティ**   | OWASP            | Webセキュリティのベストプラクティス | 高        |
-| **認証**           | OAuth 2.0 / OIDC | 認可の事実上の標準                  | 高        |
-| **メッセージング** | AsyncAPI         | 非同期API仕様                       | 中        |
+| Category | Reference | Characteristics | MCP Value |
+| --- | --- | --- | --- |
+| **API Design** | OpenAPI Spec | De facto standard for REST APIs | High |
+| **Security** | OWASP | Web security best practices | High |
+| **Authentication** | OAuth 2.0 / OIDC | De facto standard for authorization | High |
+| **Messaging** | AsyncAPI | Async API specification | Medium |
 
-#### レベル3: 組織・プロジェクト規約（ローカル遵守）
+#### Level 3: Organization/Project Rules (Local Compliance)
 
-チーム・プロジェクト内で統一すべきルール。
+Rules that should be unified within teams/projects.
 
-| 種別                 | 特性                       | 管理方法               |
-| -------------------- | -------------------------- | ---------------------- |
-| **コーディング規約** | プロジェクト固有のスタイル | Markdown / Linter設定  |
-| **ADR**              | アーキテクチャ決定の記録   | Git管理されたMarkdown  |
-| **CLAUDE.md**        | Claude固有の指示           | プロジェクトルート配置 |
+| Type | Characteristics | Management Method |
+| --- | --- | --- |
+| **Coding Standards** | Project-specific styles | Markdown / Linter configs |
+| **ADR** | Architecture decision records | Git-managed Markdown |
+| **CLAUDE.md** | Claude-specific instructions | Project root placement |
 
-#### レベル4: ベストプラクティス（推奨）
+#### Level 4: Best Practices (Recommended)
 
-経験則に基づく推奨事項。**状況に応じて適用を判断**。
+Recommendations based on experience. **Apply as appropriate to the situation**.
 
-| 種別                 | 出典             | 適用判断             |
-| -------------------- | ---------------- | -------------------- |
-| **設計原則**         | SOLID, DRY, KISS | 状況に応じて         |
-| **デザインパターン** | GoF, POSA        | 問題に適合する場合   |
-| **クリーンコード**   | Robert C. Martin | チームで合意した範囲 |
+| Type | Source | Application Judgment |
+| --- | --- | --- |
+| **Design Principles** | SOLID, DRY, KISS | Situational |
+| **Design Patterns** | GoF, POSA | When matching the problem |
+| **Clean Code** | Robert C. Martin | Within team agreement |
 
-## 第4章：AIの判断フロー
+## Chapter 4: AI Decision Flow
 
-### 4.1 参照先に基づく判断アルゴリズム
+### 4.1 Decision Algorithm Based on Reference Sources
 
 ```mermaid
 flowchart TB
-    A[実装要求] --> B{国際標準で<br/>定義あり?}
-    B -->|Yes| C[標準に従う<br/>MUST遵守]
-    B -->|No| D{業界標準で<br/>定義あり?}
-    D -->|Yes| E[業界標準に従う<br/>SHOULD遵守]
-    D -->|No| F{組織規約で<br/>定義あり?}
-    F -->|Yes| G[規約に従う]
-    F -->|No| H{ベストプラクティス<br/>あり?}
-    H -->|Yes| I[推奨事項として提案]
-    H -->|No| J[人間に判断を委ねる]
+    A[Implementation Request] --> B{Defined in<br/>international standard?}
+    B -->|Yes| C[Follow standard<br/>MUST comply]
+    B -->|No| D{Defined in<br/>industry standard?}
+    D -->|Yes| E[Follow industry standard<br/>SHOULD comply]
+    D -->|No| F{Defined in<br/>org rules?}
+    F -->|Yes| G[Follow rules]
+    F -->|No| H{Best practices<br/>exist?}
+    H -->|Yes| I[Propose as recommendation]
+    H -->|No| J[Defer to human judgment]
 
-    C --> K[根拠を明示して実装]
+    C --> K[Implement with cited evidence]
     E --> K
     G --> K
-    I --> L[選択肢を提示]
+    I --> L[Present options]
     J --> L
 ```
 
-### 4.2 出力テンプレート
+### 4.2 Output Templates
 
-**参照先が見つかった場合:**
+**When a reference source is found:**
 
 ```markdown
-## 回答
+## Answer
 
-WebSocketのClose frameのステータスコード1006は「異常クロージャ」を示します。
+Status code 1006 for WebSocket Close frames indicates "Abnormal Closure."
 
-### 根拠
+### Evidence
 
-- **出典**: RFC 6455, Section 7.4.1
-- **原文**: "1006 is a reserved value and MUST NOT be set as a status code
+- **Source**: RFC 6455, Section 7.4.1
+- **Original Text**: "1006 is a reserved value and MUST NOT be set as a status code
   in a Close control frame by an endpoint. It is designated for use in
   applications expecting a status code to indicate that the connection
   was closed abnormally"
-- **要件レベル**: MUST NOT（実装で設定してはならない）
+- **Requirement Level**: MUST NOT (must not be set in implementation)
 
-### 補足
+### Notes
 
-このコードはアプリケーションが異常終了を検知するためのもので、
-実際のClose frameに含めて送信することはできません。
+This code is for applications to detect abnormal termination and
+cannot be sent in actual Close frames.
 ```
 
-**参照先が見つからなかった場合:**
+**When no reference source is found:**
 
 ```markdown
-## 回答
+## Answer
 
-この件について、権威ある参照先を特定できませんでした。
+I could not identify an authoritative reference source for this matter.
 
-### 確認した情報源
+### Information Sources Checked
 
-- RFC 6455: 該当する記述なし
-- W3C WebSocket API: 該当する記述なし
+- RFC 6455: No relevant description found
+- W3C WebSocket API: No relevant description found
 
-### 推測
+### Speculation
 
-一般的な実装慣行としては〜という傾向がありますが、
-これは標準で定められたものではありません。
+As a general implementation practice, there is a tendency to~, but
+this is not defined by any standard.
 
-### 推奨
+### Recommendation
 
-正確な仕様が必要な場合は、〜を確認することをお勧めします。
+If precise specifications are needed, I recommend checking~.
 ```
 
-## 第5章：参照先MCPの設計要件
+## Chapter 5: Design Requirements for Reference Source MCPs
 
-### 5.0 MCPとSkillsの棲み分け
+### 5.0 Separation of MCP and Skills
 
-「ブレない参照先」を実現する手段として、MCPとSkillsがある。
+MCP and Skills are both means to achieve "authoritative reference sources."
 
-| 観点 | MCP | Skills |
+| Aspect | MCP | Skills |
 |------|-----|--------|
-| **対象** | 外部の権威ある情報源 | ドメイン知識・ベストプラクティス |
-| **例** | RFC、法令、W3C標準 | 設計原則、コーディング規約 |
-| **特性** | 動的アクセス、API経由 | 静的参照、Markdown形式 |
-| **更新** | 外部システムに依存 | チーム主導で更新 |
+| **Target** | External authoritative information sources | Domain knowledge & best practices |
+| **Examples** | RFC, Laws, W3C standards | Design principles, Coding standards |
+| **Characteristics** | Dynamic access, via API | Static reference, Markdown format |
+| **Updates** | Dependent on external systems | Team-driven updates |
 
-> 詳細は [skills/vs-mcp.md](../skills/vs-mcp.md) を参照。
+> For details, see [skills/vs-mcp.md](../skills/vs-mcp.md).
 
-### 5.1 必須機能
+### 5.1 Required Functions
 
-| 機能                   | 説明                       | 例                        |
-| ---------------------- | -------------------------- | ------------------------- |
-| **検索**               | 仕様内のキーワード検索     | 「WebSocket close frame」 |
-| **構造取得**           | 章立て・セクション階層     | RFC 6455の目次            |
-| **要件抽出**           | MUST/SHOULD/MAY抽出        | 規範性要件の一覧          |
-| **用語定義**           | 専門用語の定義取得         | 「Origin」の定義          |
-| **参照関係**           | 依存する他の仕様           | RFC 6455 → RFC 2616       |
-| **チェックリスト生成** | 実装確認項目の生成         | クライアント実装チェック  |
-| **検証**               | 実装が仕様に準拠しているか | 主張の検証                |
+| Function | Description | Example |
+| --- | --- | --- |
+| **Search** | Keyword search within specifications | "WebSocket close frame" |
+| **Structure Retrieval** | Chapter/section hierarchy | Table of contents for RFC 6455 |
+| **Requirements Extraction** | Extract MUST/SHOULD/MAY | List of normative requirements |
+| **Term Definitions** | Get definitions of technical terms | Definition of "Origin" |
+| **Reference Relationships** | Dependencies on other specifications | RFC 6455 → RFC 2616 |
+| **Checklist Generation** | Generate implementation verification items | Client implementation checklist |
+| **Validation** | Check if implementation complies with spec | Statement validation |
 
-### 5.2 RFC MCP のツール設計
+### 5.2 RFC MCP Tool Design
 
 ```typescript
 interface RfcMcpTools {
-	// 検索・取得
+	// Search & Retrieval
 	searchRfc(keyword: string): RfcSummary[];
 	getRfcStructure(rfcNumber: number): Section[];
 	getRfcSection(rfcNumber: number, section: string): Content;
 
-	// 要件抽出
+	// Requirements Extraction
 	getRequirements(rfcNumber: number, level?: RequirementLevel): Requirement[];
 	getDefinitions(rfcNumber: number, term?: string): Definition[];
 
-	// 関係性
+	// Relationships
 	getDependencies(rfcNumber: number): Dependency[];
 	getRelatedSections(rfcNumber: number, section: string): RelatedSection[];
 
-	// 実装支援
+	// Implementation Support
 	generateChecklist(rfcNumber: number, role: 'client' | 'server'): Checklist;
 	validateStatement(rfcNumber: number, statement: string): ValidationResult;
 }
 ```
 
-## 第6章：具体例 — 電子署名法 × RFC 3161
+## Chapter 6: Concrete Example — Electronic Signature Act × RFC 3161
 
-### 6.1 法的要件と技術仕様の対応
+### 6.1 Mapping Legal Requirements to Technical Specifications
 
 ```mermaid
 graph TB
-    subgraph 電子署名法第2条
-        A1["要件1: 作成者の証明<br/>当該情報が当該措置を行った者の<br/>作成に係るものであることを示す"]
-        A2["要件2: 改変検知<br/>当該情報について改変が行われて<br/>いないかどうかを確認できる"]
+    subgraph Electronic Signature Act Article 2
+        A1["Requirement 1: Proof of Creator<br/>Demonstrates that the information<br/>was created by the person<br/>who performed the measure"]
+        A2["Requirement 2: Tampering Detection<br/>Enables confirmation of whether<br/>the information has been altered"]
     end
 
     subgraph RFC3161
-        B1["MessageImprint<br/>ハッシュ値による<br/>データ同一性証明"]
-        B2["TSA署名<br/>信頼できる時刻での<br/>存在証明"]
-        B3["TSTInfo<br/>genTime: 時刻<br/>serialNumber: 一意識別"]
+        B1["MessageImprint<br/>Data identity proof<br/>via hash value"]
+        B2["TSA Signature<br/>Existence proof at<br/>trusted time"]
+        B3["TSTInfo<br/>genTime: Time<br/>serialNumber: Unique ID"]
     end
 
-    A2 -->|技術的実装| B1
-    A1 -->|時刻の証明| B2
+    A2 -->|Technical Implementation| B1
+    A1 -->|Time Proof| B2
     B1 --> B3
     B2 --> B3
 ```
 
-### 6.2 MCP連携による検証ワークフロー
+### 6.2 Verification Workflow via MCP Integration
 
 ```mermaid
 sequenceDiagram
-    participant User as ユーザー
+    participant User as User
     participant AI as Claude + MCPs
     participant Hourei as hourei-mcp
     participant RFC as rfcxml-mcp
 
-    User->>AI: タイムスタンプ実装は<br/>電子署名法に準拠している？
-    AI->>Hourei: 電子署名法 第2条 取得
-    Hourei-->>AI: 法的要件
-    AI->>RFC: RFC 3161 要件取得
-    RFC-->>AI: 技術要件（75 MUST）
-    AI->>AI: 法的要件 ↔ 技術要件<br/>マッピング
-    AI-->>User: 準拠状況レポート<br/>+ チェックリスト
+    User->>AI: Is my timestamp implementation<br/>compliant with the Electronic Signature Act?
+    AI->>Hourei: Get Electronic Signature Act Article 2
+    Hourei-->>AI: Legal requirements
+    AI->>RFC: Get RFC 3161 requirements
+    RFC-->>AI: Technical requirements (75 MUSTs)
+    AI->>AI: Map legal requirements ↔<br/>technical requirements
+    AI-->>User: Compliance report<br/>+ Checklist
 ```
 
-## 第7章：参照先の競合解決
+## Chapter 7: Resolving Reference Source Conflicts
 
-### 7.1 競合時のルール
+### 7.1 Conflict Resolution Rules
 
-1. **上位レベルが優先** - 法令 > 業界標準 > 組織規約
-2. **新しい版が優先** - RFC 9110 > RFC 7230（obsolete）
-3. **より具体的な仕様が優先** - WebSocket RFC > 一般的なTCP仕様
-4. **矛盾がある場合は人間に判断を委ねる**
+1. **Higher levels take priority** - Laws > Industry standards > Organization rules
+2. **Newer versions take priority** - RFC 9110 > RFC 7230 (obsolete)
+3. **More specific specifications take priority** - WebSocket RFC > General TCP specifications
+4. **When contradictions exist, defer to human judgment**
 
-### 7.2 例：HTTP仕様の参照
+### 7.2 Example: HTTP Specification References
 
 ```
 ❌ RFC 2616 (HTTP/1.1 - obsolete)
@@ -618,62 +620,62 @@ sequenceDiagram
 ✅ RFC 9111 (HTTP Caching - current)
 ```
 
-## 第8章：構築済み参照先MCP一覧
+## Chapter 8: List of Built Reference Source MCPs
 
-| MCP            | 対象                    | 主要機能                               | リポジトリ                                          |
-| -------------- | ----------------------- | -------------------------------------- | --------------------------------------------------- |
-| **rfcxml-mcp** | IETF RFC                | 構造取得、要件抽出、チェックリスト生成 | [GitHub](https://github.com/shuji-bonji/rfcxml-mcp) |
-| **w3c-mcp**    | W3C/WHATWG/IETF Web標準 | WebIDL、CSS、HTML要素                  | [GitHub](https://github.com/shuji-bonji/w3c-mcp)    |
-| **hourei-mcp** | 日本法令（e-Gov）       | 法令検索、条文取得                     | [GitHub](https://github.com/ryoooo/e-gov-law-mcp)   |
+| MCP | Target | Main Functions | Repository |
+| --- | --- | --- | --- |
+| **rfcxml-mcp** | IETF RFC | Structure retrieval, requirements extraction, checklist generation | [GitHub](https://github.com/shuji-bonji/rfcxml-mcp) |
+| **w3c-mcp** | W3C/WHATWG/IETF Web Standards | WebIDL, CSS, HTML elements | [GitHub](https://github.com/shuji-bonji/w3c-mcp) |
+| **hourei-mcp** | Japanese Laws (e-Gov) | Law search, article retrieval | [GitHub](https://github.com/ryoooo/e-gov-law-mcp) |
 
-## 第9章：今後の拡張候補
+## Chapter 9: Future Expansion Candidates
 
-### 高優先度
+### High Priority
 
-| 候補            | 対象             | 価値                     |
-| --------------- | ---------------- | ------------------------ |
-| **OpenAPI MCP** | OpenAPI Spec     | API設計の標準準拠確認    |
-| **OWASP MCP**   | OWASP Top 10等   | セキュリティ要件チェック |
-| **OAuth MCP**   | OAuth 2.0 / OIDC | 認証フロー実装支援       |
+| Candidate | Target | Value |
+| --- | --- | --- |
+| **OpenAPI MCP** | OpenAPI Spec | API design standards compliance |
+| **OWASP MCP** | OWASP Top 10 etc. | Security requirements checking |
+| **OAuth MCP** | OAuth 2.0 / OIDC | Authentication flow implementation support |
 
-### 中優先度
+### Medium Priority
 
-| 候補             | 対象              | 価値           |
-| ---------------- | ----------------- | -------------- |
-| **ISO MCP**      | ISO規格           | 国際標準参照   |
-| **PDF Spec MCP** | ISO 32000         | PDF仕様参照    |
-| **BIM/IFC MCP**  | buildingSMART IFC | 建築情報モデル |
-| **HL7 FHIR MCP** | HL7 FHIR          | 医療情報交換   |
+| Candidate | Target | Value |
+| --- | --- | --- |
+| **ISO MCP** | ISO Standards | International standards reference |
+| **PDF Spec MCP** | ISO 32000 | PDF specification reference |
+| **BIM/IFC MCP** | buildingSMART IFC | Building information model |
+| **HL7 FHIR MCP** | HL7 FHIR | Healthcare information exchange |
 
-## まとめ
+## Summary
 
-### 核心メッセージ
+### Core Messages
 
-1. **AIは「ブレる」** - 確率的生成、学習データの制約、権威性の欠如
-2. **「ブレない参照先」が必要** - 権威性、不変性、構造化、検証可能性、アクセス可能性
-3. **階層的に整理する** - 国際標準 > 業界標準 > 組織規約 > ベストプラクティス
-4. **MCPで外部情報源に接続する** - RFC、法令、W3C標準をAIが参照できる形式で提供
-5. **Skillsでドメイン知識を体系化する** - チームのノウハウを再利用可能な形式で共有
-6. **常に根拠を明示する** - 出典、セクション、原文を示す
+1. **AI "fluctuates"** - Probabilistic generation, training data constraints, lack of authority
+2. **"Authoritative reference sources" are needed** - Authoritativeness, immutability, structuredness, verifiability, accessibility
+3. **Organize hierarchically** - International standards > Industry standards > Organization rules > Best practices
+4. **Connect to external information sources via MCP** - Provide RFC, laws, W3C standards in a format AI can reference
+5. **Systematize domain knowledge with Skills** - Share team know-how in reusable formats
+6. **Always cite evidence** - Show source, section, and original text
 
-### 「ブレない参照先」の価値
+### The Value of "Authoritative Reference Sources"
 
 ```mermaid
 graph LR
-    subgraph Before["MCPなし"]
-        Q1["AIが言うことは<br/>本当？"]
-        A1["わからない"]
+    subgraph Before["Without MCP"]
+        Q1["Is what the AI says<br/>true?"]
+        A1["Unknown"]
     end
 
-    subgraph After["MCPあり"]
-        Q2["AIが言うことは<br/>本当？"]
-        A2["RFC 6455 Section 7.4.1<br/>で確認できる"]
+    subgraph After["With MCP"]
+        Q2["Is what the AI says<br/>true?"]
+        A2["Can be verified in<br/>RFC 6455 Section 7.4.1"]
     end
 
-    Before -->|MCP導入| After
+    Before -->|MCP Introduction| After
 
     style A1 fill:#ff9999
     style A2 fill:#90EE90
 ```
 
-**AIの判断にブレない参照先を与えることで、出力の信頼性と検証可能性が確保される。**
+**By providing authoritative reference sources for AI decisions, output reliability and verifiability are ensured.**

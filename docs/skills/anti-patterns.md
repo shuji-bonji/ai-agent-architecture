@@ -1,187 +1,189 @@
-# MCP/Skills アンチパターン集
+# MCP/Skills Anti-Pattern Collection
 
-このドキュメントでは、MCP と Skills の設計・運用で陥りやすい失敗パターンと、その回避方法を整理する。
+[日本語版 (Japanese)](./anti-patterns.ja.md)
 
-## 1. over-MCPization（MCPの過剰使用）
+This document organizes common failure patterns in MCP and Skills design and operation, along with how to avoid them.
 
-### 症状
+## 1. over-MCPization (Excessive Use of MCP)
 
-チーム内部の知識やガイドラインまでMCPサーバーとして実装してしまう。
+### Symptoms
 
-### 問題のあるアプローチ
+Implementing internal team knowledge and guidelines as MCP servers.
 
-```
-❌ チームのコーディング規約を取得するMCPサーバーを構築
-❌ デザイン原則をAPIとして提供
-❌ 社内ワークフローをMCPツール化
-```
-
-### なぜ問題か
-
-- MCPサーバーの責務が肥大化
-- サーバー運用コストの増加
-- エージェント側でのカスタマイズが困難
-- 認証・デプロイの複雑化
-
-### 正しいアプローチ
+### Problematic Approach
 
 ```
-✅ チーム内部の知識 → Skill として定義
-✅ 外部APIへのアクセス → MCP として実装
+❌ Building an MCP server to retrieve team coding standards
+❌ Providing design principles as an API
+❌ Converting internal workflows into MCP tools
 ```
 
-**判断基準**: 「これは外部サービスか、チームの知識か？」
+### Why This Is a Problem
 
-## 2. over-Skillization（Skillsの過剰使用）
+- MCP server responsibilities become bloated
+- Increased server operation costs
+- Difficult to customize on the agent side
+- Authentication and deployment become complex
 
-### 症状
-
-外部APIの呼び出しやリアルタイムデータ取得をSkillで説明しようとする。
-
-### 問題のあるアプローチ
-
-```
-❌ Skill: "DeepLを使った翻訳の仕方"（API呼び出し手順を詳述）
-❌ Skill: "RFC検索の方法"（検索APIの使い方を説明）
-❌ Skill: "GitHubリポジトリ操作手順"
-```
-
-### なぜ問題か
-
-- Skillが肥大化・複雑化
-- 外部システムの更新に追従困難
-- 認証情報の管理が曖昧に
-- エージェントが実行できない（参照のみ）
-
-### 正しいアプローチ
+### Correct Approach
 
 ```
-✅ 外部API連携 → MCP として実装
-✅ MCPの使い方・ガイドライン → Skill で補完
+✅ Internal team knowledge → Define as a Skill
+✅ Access to external APIs → Implement as MCP
 ```
 
-**判断基準**: 「動的な実行が必要か、静的な知識か？」
+**Decision Criteria**: "Is this an external service, or team knowledge?"
 
-## 3. 曖昧なSkill定義
+## 2. over-Skillization (Excessive Use of Skills)
 
-### 症状
+### Symptoms
 
-Skillの内容が抽象的すぎて、エージェントが具体的なアクションを取れない。
+Attempting to explain external API calls and real-time data retrieval through Skills.
 
-### 問題のあるアプローチ
+### Problematic Approach
+
+```
+❌ Skill: "How to translate using DeepL" (detailing API call procedures)
+❌ Skill: "How to search RFCs" (explaining search API usage)
+❌ Skill: "GitHub repository operation procedures"
+```
+
+### Why This Is a Problem
+
+- Skills become bloated and complex
+- Difficult to keep up with external system updates
+- Authentication credential management becomes ambiguous
+- Agent cannot execute (reference only)
+
+### Correct Approach
+
+```
+✅ External API integration → Implement as MCP
+✅ MCP usage and guidelines → Supplement with Skills
+```
+
+**Decision Criteria**: "Is dynamic execution required, or is this static knowledge?"
+
+## 3. Ambiguous Skill Definitions
+
+### Symptoms
+
+Skill content is too abstract, preventing the agent from taking concrete actions.
+
+### Problematic Approach
 
 ```markdown
-❌ # コードレビュー Skill
+❌ # Code Review Skill
 
-コードレビューは大切です。
-良いコードを書きましょう。
-バグがないか確認してください。
+Code review is important.
+Write good code.
+Check for bugs.
 ```
 
-### なぜ問題か
+### Why This Is a Problem
 
-- エージェントが判断基準を持てない
-- 実行結果が毎回異なる
-- 品質の担保ができない
+- Agent cannot establish decision criteria
+- Execution results vary each time
+- Quality cannot be guaranteed
 
-### 正しいアプローチ
+### Correct Approach
 
 ```markdown
-✅ # コードレビュー Skill
+✅ # Code Review Skill
 
-## チェック項目
+## Checklist
 
-1. ESLintエラーがゼロであること
-2. SOLID原則に違反していないこと
-3. テストカバレッジが80%以上であること
+1. Zero ESLint errors
+2. No violations of SOLID principles
+3. Test coverage at 80% or higher
 
-## 判断基準
+## Decision Criteria
 
-| 条件              | アクション       |
-| ----------------- | ---------------- |
-| ESLintエラーあり  | 修正必須         |
-| カバレッジ80%未満 | テスト追加を要求 |
+| Condition             | Action                     |
+| --------------------- | -------------------------- |
+| ESLint errors present | Correction required        |
+| Coverage below 80%    | Request additional tests   |
 ```
 
-**対策**: 数値基準、具体的な条件、明確なアクションを定義
+**Countermeasure**: Define numerical standards, specific conditions, and clear actions
 
-## 4. MCPツール依存の過度な結合
+## 4. Excessive Coupling with MCP Tool Dependencies
 
-### 症状
+### Symptoms
 
-Skillが特定MCPの内部実装に強く依存している。
+Skills are strongly dependent on specific MCP internal implementations.
 
-### 問題のあるアプローチ
+### Problematic Approach
 
 ```markdown
-❌ # 翻訳 Skill
+❌ # Translation Skill
 
-deepl MCPのバージョン1.2.3の translate-text を使用。
-パラメータ split_sentences は "nonewlines" を指定。
-内部的にキャッシュが効くので2回目は速い。
+Use translate-text from deepl MCP version 1.2.3.
+Specify "nonewlines" for the split_sentences parameter.
+Cache takes effect internally, so the second call is faster.
 ```
 
-### なぜ問題か
+### Why This Is a Problem
 
-- MCPのバージョンアップで壊れる
-- 内部実装への依存は保守困難
-- 他のMCPに置き換えられない
+- Breaks when MCP version is upgraded
+- Dependency on internal implementation is difficult to maintain
+- Cannot be replaced with other MCPs
 
-### 正しいアプローチ
+### Correct Approach
 
 ```markdown
-✅ # 翻訳 Skill
+✅ # Translation Skill
 
-## 使用MCP
+## MCP Usage
 
-| MCP                          | 用途         |
-| ---------------------------- | ------------ |
-| deepl（または同等の翻訳MCP） | テキスト翻訳 |
+| MCP                                   | Purpose          |
+| ------------------------------------- | ---------------- |
+| deepl (or equivalent translation MCP) | Text translation |
 
-## ワークフロー
+## Workflow
 
-1. 翻訳を実行（フォーマリティ: フォーマル）
-2. 品質スコアを確認
-3. 基準未満なら再翻訳
+1. Execute translation (formality: formal)
+2. Check quality score
+3. Re-translate if below threshold
 ```
 
-**対策**: MCPのインターフェースレベルで記述、実装詳細に依存しない
+**Countermeasure**: Describe at the MCP interface level, do not depend on implementation details
 
-## 5. 単一責任の原則違反
+## 5. Violation of Single Responsibility Principle
 
-### 症状
+### Symptoms
 
-1つのSkillに複数の異なる責務を詰め込む。
+Packing multiple different responsibilities into a single Skill.
 
-### 問題のあるアプローチ
+### Problematic Approach
 
 ```markdown
-❌ # 開発 Skill
+❌ # Development Skill
 
-## コードレビュー
+## Code Review
 
 ...
 
-## デプロイ手順
+## Deployment Procedures
 
 ...
 
-## 障害対応
+## Incident Response
 
 ...
 
-## 新人オンボーディング
+## New Employee Onboarding
 
 ...
 ```
 
-### なぜ問題か
+### Why This Is a Problem
 
-- 更新時の影響範囲が大きい
-- 必要な部分だけ参照できない
-- コンテキスト消費が無駄に増える
+- Large impact scope when updating
+- Cannot reference only the needed parts
+- Wasteful context consumption increases
 
-### 正しいアプローチ
+### Correct Approach
 
 ```
 ✅ skills/
@@ -191,57 +193,57 @@ deepl MCPのバージョン1.2.3の translate-text を使用。
     └── onboarding/SKILL.md
 ```
 
-**対策**: 1 Skill = 1 責務
+**Countermeasure**: 1 Skill = 1 Responsibility
 
-## 6. 更新されないSkill
+## 6. Unmaintained Skills
 
-### 症状
+### Symptoms
 
-作成後に放置され、実際の運用と乖離したSkillが残り続ける。
+Skills that are left unchanged after creation, diverging from actual operations.
 
-### 問題のあるアプローチ
+### Problematic Approach
 
 ```
-❌ 半年前に作成したSkillをそのまま使用
-❌ チームの規約は変わったがSkillは更新していない
-❌ 誰がオーナーか不明
+❌ Using a Skill created six months ago without changes
+❌ Team standards have changed but Skill hasn't been updated
+❌ Unknown who the owner is
 ```
 
-### なぜ問題か
+### Why This Is a Problem
 
-- エージェントが古い情報で動作
-- 誤った判断につながる
-- 信頼性の低下
+- Agent operates with outdated information
+- Leads to incorrect decisions
+- Decreased reliability
 
-### 正しいアプローチ
+### Correct Approach
 
 ```markdown
 ✅ ---
 name: code-review
-description: コードレビューガイドライン
+description: Code review guidelines
 owner: @frontend-team
 last_reviewed: 2025-01-15
 ```
 
-**対策**:
+**Countermeasures**:
 
-- オーナーを明記
-- 定期的なレビューサイクルを設定
-- 最終確認日を記録
+- Specify an owner
+- Set up a regular review cycle
+- Record the last review date
 
-## アンチパターン早見表
+## Anti-Pattern Quick Reference
 
-| パターン          | 症状                 | 対策                           |
-| ----------------- | -------------------- | ------------------------------ |
-| over-MCPization   | 内部知識をMCP化      | Skillに移行                    |
-| over-Skillization | 外部APIをSkillで説明 | MCPに移行                      |
-| 曖昧なSkill       | 抽象的すぎる         | 数値・条件を明確化             |
-| 過度な結合        | MCP内部実装に依存    | インターフェースレベルで記述   |
-| 単一責任違反      | 複数責務を1 Skillに  | Skillを分割                    |
-| 更新されない      | 運用と乖離           | オーナー・レビューサイクル設定 |
+| Pattern                | Symptom                         | Countermeasure                        |
+| ---------------------- | ------------------------------- | ------------------------------------- |
+| over-MCPization        | Converting internal knowledge to MCP | Migrate to Skills              |
+| over-Skillization      | Explaining external APIs in Skills | Migrate to MCP                   |
+| Ambiguous Skills       | Too abstract                    | Clarify with numbers and conditions   |
+| Excessive Coupling     | Dependency on MCP internals     | Describe at interface level           |
+| Single Responsibility Violation | Multiple responsibilities in 1 Skill | Split Skills          |
+| Unmaintained           | Divergence from operations      | Set owner and review cycle            |
 
-## 関連ドキュメント
+## Related Documentation
 
-- [MCP vs Skills](./vs-mcp.md) - 本質的な違いと選択判断
-- [Skills Overview](./overview.md) - Skills 概要
-- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論
+- [MCP vs Skills](./vs-mcp.md) - Essential differences and selection criteria
+- [Skills Overview](./overview.md) - Skills overview
+- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture theory

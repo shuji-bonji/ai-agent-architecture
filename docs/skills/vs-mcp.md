@@ -1,36 +1,38 @@
-# MCP vs Skills：本質的な違いと選択判断
+# MCP vs Skills: Fundamental Differences and Selection Criteria
 
-## 概要比較表
+[日本語版 (Japanese)](./vs-mcp.ja.md)
 
-| 観点         | MCP                                                | Skills                                          |
-| ------------ | -------------------------------------------------- | ----------------------------------------------- |
-| **定義**     | Model Context Protocol - 外部ツール・API連携の標準 | Agent Skills - ドメイン知識・実行パターンの標準 |
-| **主要用途** | 外部システムへのアクセス提供                       | エージェントの知識・実行能力の拡張              |
-| **実装場所** | サーバープロセス（独立）                           | エージェント内（統合）                          |
-| **更新頻度** | 低（安定運用）                                     | 高（タスク・フィードバック駆動）                |
-| **運用責任** | プロバイダー（DevOps）                             | エージェント所有者（AI/ML チーム）              |
+## Overview Comparison Table
 
-## 本質的な違い
+| Aspect | MCP | Skills |
+| ------ | --- | ------ |
+| **Definition** | Model Context Protocol - Standard for external tool and API integration | Agent Skills - Standard for domain knowledge and execution patterns |
+| **Primary Use** | Providing access to external systems | Extending agent knowledge and execution capabilities |
+| **Implementation Location** | Server process (independent) | Within agent (integrated) |
+| **Update Frequency** | Low (stable operation) | High (task and feedback driven) |
+| **Operational Responsibility** | Provider (DevOps) | Agent owner (AI/ML team) |
 
-### MCP: 「何ができるか」を宣言
+## Fundamental Differences
+
+### MCP: Declares "What Can Be Done"
 
 ```
 [External System]
     ↓
 [MCP Server]
-    ↓ (Tool定義)
+    ↓ (Tool Definition)
 [Claude/Agent]
 ```
 
-MCPは、**外部システムの能力を道具化** する。
+MCP **transforms external system capabilities into tools**.
 
-**例**: RFC検索エンジンを Claude に提供
+**Example**: Providing RFC search engine to Claude
 
-- MCPサーバー: IETF RFC全文検索・解析
-- Tool: `search_rfc()`, `get_rfc_details()`
-- 利用:「RFC 3986 の URI仕様を調べて」
+- MCP Server: IETF RFC full-text search and analysis
+- Tools: `search_rfc()`, `get_rfc_details()`
+- Usage: "Look up the URI specification in RFC 3986"
 
-### Skills: 「どう実行するか」を教授
+### Skills: Teaches "How to Execute"
 
 ```
 [Domain Knowledge]
@@ -40,39 +42,39 @@ MCPは、**外部システムの能力を道具化** する。
 [Claude/Agent]
 ```
 
-Skillsは、**実行パターン・ベストプラクティスをエージェント内に組み込む**。
+Skills **embed execution patterns and best practices within the agent**.
 
-**例**: React フロントエンド設計Skill
+**Example**: React Frontend Design Skill
 
-- メタデータ: 設計原則・推奨パターン
-- 学習コンテンツ: ファイル構成・コンポーネント階層・テスト戦略
-- 実行: エージェントが新規プロジェクトで自動適用
+- Metadata: Design principles and recommended patterns
+- Learning Content: File structure, component hierarchy, testing strategy
+- Execution: Agent automatically applies these to new projects
 
-## 選択判断フロー
+## Selection Decision Flow
 
-### フローチャート（Decision Flow）
+### Decision Flowchart
 
 ```mermaid
 flowchart TD
-    START[新しい機能が必要] --> Q1{外部API/サービス<br/>が必要?}
+    START[New capability needed] --> Q1{External API/service<br/>required?}
 
-    Q1 -->|Yes| Q1A{公式MCPが<br/>存在する?}
-    Q1A -->|Yes| USE_OFFICIAL[公式MCPを使用<br/>例: @eslint/mcp]
-    Q1A -->|No| BUILD_MCP[MCPを構築]
+    Q1 -->|Yes| Q1A{Official MCP<br/>exists?}
+    Q1A -->|Yes| USE_OFFICIAL[Use official MCP<br/>e.g., @eslint/mcp]
+    Q1A -->|No| BUILD_MCP[Build MCP]
 
-    Q1 -->|No| Q2{ドメイン知識/<br/>ガイドラインか?}
+    Q1 -->|No| Q2{Domain knowledge/<br/>guidelines?}
 
-    Q2 -->|Yes| Q2A{チーム固有の<br/>知識か?}
-    Q2A -->|Yes| PROJECT_SKILL[プロジェクトSkill<br/>.claude/skills/]
-    Q2A -->|No| GLOBAL_SKILL[グローバルSkill<br/>~/.claude/skills/]
+    Q2 -->|Yes| Q2A{Team-specific<br/>knowledge?}
+    Q2A -->|Yes| PROJECT_SKILL[Project Skill<br/>.claude/skills/]
+    Q2A -->|No| GLOBAL_SKILL[Global Skill<br/>~/.claude/skills/]
 
-    Q2 -->|No| Q3{複雑な<br/>オーケストレーション?}
-    Q3 -->|Yes| SUBAGENT[サブエージェント定義]
-    Q3 -->|No| BUILTIN[組み込み機能で対応]
+    Q2 -->|No| Q3{Complex<br/>orchestration?}
+    Q3 -->|Yes| SUBAGENT[Define sub-agent]
+    Q3 -->|No| BUILTIN[Use built-in features]
 
-    BUILD_MCP --> Q_GUIDE{使い方の<br/>ガイドが必要?}
-    Q_GUIDE -->|Yes| ADD_SKILL[補完Skillを追加]
-    Q_GUIDE -->|No| DONE[完了]
+    BUILD_MCP --> Q_GUIDE{Usage guide<br/>needed?}
+    Q_GUIDE -->|Yes| ADD_SKILL[Add complementary Skill]
+    Q_GUIDE -->|No| DONE[Done]
 
     USE_OFFICIAL --> Q_GUIDE
     ADD_SKILL --> DONE
@@ -82,30 +84,31 @@ flowchart TD
     BUILTIN --> DONE
 ```
 
-### 具体的な判断例
+### Specific Decision Examples
 
-| ユースケース | 判断 | 理由 |
-|--------------|------|------|
-| DeepL APIで翻訳したい | MCP | 外部API呼び出しが必要 |
-| 翻訳の品質基準を定義したい | Skill | ドメイン知識・ガイドライン |
-| SOLID原則に従いたい | Skill | 静的な知識 |
-| ESLintでコードチェックしたい | MCP（公式） | @eslint/mcp が存在 |
-| チームのコーディング規約 | Skill（プロジェクト） | チーム固有の知識 |
-| RFC仕様を検索したい | MCP | 外部データ取得が必要 |
-| 翻訳→品質評価→修正の自動化 | サブエージェント | 複雑なオーケストレーション |
+| Use Case | Decision | Reason |
+|----------|----------|--------|
+| Want to translate using DeepL API | MCP | Requires external API call |
+| Want to define translation quality standards | Skill | Domain knowledge and guidelines |
+| Want to follow SOLID principles | Skill | Static knowledge |
+| Want to check code with ESLint | MCP (official) | @eslint/mcp exists |
+| Team coding conventions | Skill (project) | Team-specific knowledge |
+| Want to search RFC specifications | MCP | Requires external data retrieval |
+| Automate translation → quality evaluation → correction | Sub-agent | Complex orchestration |
 
-### 簡易判断図
+### Quick Decision Diagram
 
 ```
 ┌─────────────────────────────────┐
-│  必要な機能は何か？              │
+│  What capability is needed?     │
 └─────────────────────────────────┘
            ↓
     ┌──────────────┬──────────────┐
     ↓              ↓
 ┌─────────────┐ ┌──────────────────┐
-│ 外部サービス │ │ 内部知識・パターン │
-│ へのアクセス  │ │ (チーム内ノウハウ) │
+│ Access to   │ │ Internal knowledge │
+│ external    │ │ and patterns       │
+│ services    │ │ (team know-how)    │
 └─────────────┘ └──────────────────┘
     ↓                    ↓
   ┌──────┐           ┌──────────┐
@@ -113,163 +116,163 @@ flowchart TD
   └──────┘           └──────────┘
 ```
 
-### MCPを選ぶ場合
+### When to Choose MCP
 
-✅ **こんな時は MCP**
+✅ **Use MCP when:**
 
-- 外部 API・ツール連携が必要
-- リアルタイムデータ取得
-- 第三者システムとの統合
-- 認証・トークン管理が必要
+- External API or tool integration is needed
+- Real-time data retrieval is required
+- Integration with third-party systems
+- Authentication and token management is necessary
 
-**例**:
+**Examples**:
 
-- `rfcxml-mcp`: IETF RFC 検索
-- `deepl-mcp`: DeepL翻訳 API
-- `github-mcp`: GitHub リポジトリ操作
+- `rfcxml-mcp`: IETF RFC search
+- `deepl-mcp`: DeepL Translation API
+- `github-mcp`: GitHub repository operations
 
-### Skillsを選ぶ場合
+### When to Choose Skills
 
-✅ **こんな時は Skills**
+✅ **Use Skills when:**
 
-- チーム内のベストプラクティス共有
-- 実装パターン・設計原則の標準化
-- エージェントが「やり方」を習得して実行
-- 継続的な改善・フィードバック
+- Sharing best practices within the team
+- Standardizing implementation patterns and design principles
+- Agent needs to learn "how to do" something and execute it
+- Continuous improvement and feedback cycles
 
-**例**:
+**Examples**:
 
-- `frontend-design`: React/Next.js 最適設計
-- `doc-coauthoring`: ドキュメント共著ガイドライン
-- `testing-strategy`: テスト戦略とカバレッジ要件
+- `frontend-design`: React/Next.js optimal design
+- `doc-coauthoring`: Document co-authoring guidelines
+- `testing-strategy`: Testing strategy and coverage requirements
 
-## アンチパターン：過度な采配
+## Anti-Patterns: Over-Allocation
 
-### over-MCPization: MCPの過剰使用
+### Over-MCPization: Excessive Use of MCP
 
-❌ **反パターン例**:
-
-```
-// ❌ これはMCPではなくSkillsで実装すべき
-- MCP: 「全社コーディング規約取得」
-- 理由: 外部システムではなく、チーム知識
-- 正解: Skillsで「コーディング規約Skill」を提供
-```
-
-**問題点**:
-
-- MCPサーバーの責務が肥大化
-- 運用コスト増加
-- エージェント側のカスタマイズ困難
-
-### over-Skillization: Skillsの過剰使用
-
-❌ **反パターン例**:
+❌ **Anti-pattern example**:
 
 ```
-// ❌ これはMCPで実装すべき
-- Skill: 「このビジネスのプロセスはDeepL翻訳を活用」
-- 理由: 外部APIであり、チーム知識ではない
-- 正解: `deepl-mcp` を使用
+// ❌ This should be implemented as Skills, not MCP
+- MCP: "Fetch company-wide coding standards"
+- Reason: This is team knowledge, not an external system
+- Correct approach: Provide a "Coding Standards Skill"
 ```
 
-**問題点**:
+**Problems**:
 
-- Skillが肥大化・複雑化
-- 外部システムの更新に対応困難
-- 認証・トークン管理の混乱
+- MCP server responsibilities become bloated
+- Increased operational costs
+- Difficult to customize on the agent side
 
-## 組み合わせ活用パターン
+### Over-Skillization: Excessive Use of Skills
 
-実際の運用では、MCPと Skillsを **相補的に組み合わせ** る。
-
-### パターン 1: 翻訳機能の提供
+❌ **Anti-pattern example**:
 
 ```
-[翻訳ガイドラインSkill]
+// ❌ This should be implemented as MCP
+- Skill: "This business process uses DeepL translation"
+- Reason: This is an external API, not team knowledge
+- Correct approach: Use `deepl-mcp`
+```
+
+**Problems**:
+
+- Skills become bloated and complex
+- Difficult to respond to external system updates
+- Confusion in authentication and token management
+
+## Combined Usage Patterns
+
+In actual operations, MCP and Skills are **used complementarily**.
+
+### Pattern 1: Providing Translation Functionality
+
+```
+[Translation Guidelines Skill]
            ↓
 [DeepL API] ←─── deepl-mcp
            ↓
-[エージェント]
+[Agent]
     ↓
-「顧客対応メールを翻訳」→ Skillで「トーン・文体」を学習
-                        → MCPで「正確な翻訳」を実行
+"Translate customer service email" → Learn "tone and style" from Skill
+                                   → Execute "accurate translation" via MCP
 ```
 
-### パターン 2: フロントエンド開発
+### Pattern 2: Frontend Development
 
 ```
-[デザイン規約Skill] + [Component ライブラリMCP]
+[Design Standards Skill] + [Component Library MCP]
            ↓
-[エージェント]
+[Agent]
     ↓
-「新規UIコンポーネント作成」
-    → Skillで「デザイン原則」習得
-    → MCPで「既存コンポーネント参照」
+"Create new UI component"
+    → Learn "design principles" from Skill
+    → Reference "existing components" via MCP
 ```
 
-### パターン 3: コード品質チェック
+### Pattern 3: Code Quality Check
 
 ```
-[SOLID原則Skill]
-    ├─ 5原則の定義・目的
-    ├─ 違反パターンの識別
-    └─ リファクタリング指針
+[SOLID Principles Skill]
+    ├─ Definition and purpose of 5 principles
+    ├─ Identifying violation patterns
+    └─ Refactoring guidelines
 
-    → 「何を守るべきか」の知識
+    → Knowledge of "what to adhere to"
            ↓
-[ESLint公式MCP（@eslint/mcp）]
-    ├─ Lint実行
-    ├─ 自動修正
-    └─ ルール違反の検出
+[ESLint Official MCP (@eslint/mcp)]
+    ├─ Run lint
+    ├─ Auto-fix
+    └─ Detect rule violations
 
-    → 「実際に検出する」ツール
+    → Tool that "actually detects" issues
 ```
 
-**ポイント**: SOLID原則のMCPを自作する必要はない
+**Key Point**: No need to build a custom SOLID principles MCP
 
-- 知識・原則 → Skill で定義
-- 検出・修正 → 公式MCPを活用
+- Knowledge and principles → Define in Skill
+- Detection and correction → Leverage official MCP
 
-### 使い分けの整理
+### Usage Summary
 
-| 領域           | Skill（知識）        | MCP（ツール）          |
-| -------------- | -------------------- | ---------------------- |
-| **翻訳**       | 翻訳ガイドライン     | DeepL公式 + xCOMET     |
-| **コード品質** | SOLID原則            | ESLint公式             |
-| **RFC準拠**    | 実装チェックリスト   | rfcxml-mcp             |
+| Area | Skill (Knowledge) | MCP (Tool) |
+| ---- | ----------------- | ---------- |
+| **Translation** | Translation guidelines | DeepL official + xCOMET |
+| **Code Quality** | SOLID principles | ESLint official |
+| **RFC Compliance** | Implementation checklist | rfcxml-mcp |
 
-> **原則**: 公式MCPがあるものは使う。知識・原則はSkillで定義する。
+> **Principle**: Use official MCPs when available. Define knowledge and principles in Skills.
 
-## 運用上の考慮事項
+## Operational Considerations
 
-| 運用活動           | MCP                          | Skills                         |
-| ------------------ | ---------------------------- | ------------------------------ |
-| **デプロイ**       | サーバー側（DevOps）         | エージェント側（AI チーム）    |
-| **バージョン管理** | セマンティックバージョニング | Task/Feedback ドリブン         |
-| **テスト**         | 統合テスト（API互換性）      | ユースケーステスト（実行品質） |
-| **ドキュメント**   | APIリファレンス              | 実行ガイド・ナレッジベース     |
+| Operational Activity | MCP | Skills |
+| -------------------- | --- | ------ |
+| **Deployment** | Server-side (DevOps) | Agent-side (AI team) |
+| **Version Control** | Semantic versioning | Task/Feedback driven |
+| **Testing** | Integration tests (API compatibility) | Use case tests (execution quality) |
+| **Documentation** | API reference | Execution guides and knowledge base |
 
-## ベストプラクティス
+## Best Practices
 
-### 1. **責任分離の明確化**
+### 1. **Clear Separation of Responsibilities**
 
-- MCP: 「何ができるか」の宣言に専念
-- Skills: 「どう活用するか」の指針に専念
+- MCP: Focus on declaring "what can be done"
+- Skills: Focus on guidelines for "how to use it"
 
-### 2. **段階的な導入**
+### 2. **Gradual Adoption**
 
-- 第1段階: MCPで外部連携を実装
-- 第2段階: Skillsで内部知識を体系化
-- 第3段階: MCPとSkillsの相互補完
+- Phase 1: Implement external integrations with MCP
+- Phase 2: Systematize internal knowledge with Skills
+- Phase 3: Mutual complementation of MCP and Skills
 
-### 3. **継続的改善**
+### 3. **Continuous Improvement**
 
-- MCPはサーバー側で安定運用
-- Skillsはフィードバック駆動で進化
+- Maintain stable MCP server operations
+- Evolve Skills through feedback-driven development
 
-## 関連ドキュメント
+## Related Documentation
 
-- [Skills Overview](./overview.md) - Skills 概要
-- [MCP Catalog](../mcp/catalog.md) - 構築済みMCPカタログ
-- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論
+- [Skills Overview](./overview.md) - Skills overview
+- [MCP Catalog](../mcp/catalog.md) - Pre-built MCP catalog
+- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture

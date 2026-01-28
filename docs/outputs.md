@@ -1,281 +1,283 @@
-# 実績・アウトプット一覧
+# Outputs and Achievements
 
-> MCP構築・活用による具体的な成果物を整理する。
+[日本語版 (Japanese)](./outputs.ja.md)
 
-## このドキュメントについて
+> Documenting concrete deliverables from MCP development and utilization.
 
-このドキュメントは、MCPエコシステム構築を通じて生み出された具体的な成果物をカタログ化したものである。MCPサーバー、技術ドキュメント、翻訳成果、技術記事の4カテゴリで整理し、それぞれの概要、リポジトリURL、定量的な成果指標を記載している。
+## About This Document
 
-「何を作ったか」「どれくらいの価値を生んだか」を可視化することで、今後の活動計画の参考にするとともに、外部への発信時の根拠資料としても活用できる。
+This document catalogs the concrete deliverables produced through MCP ecosystem development. It is organized into four categories: MCP servers, technical documentation, translation outputs, and technical articles, with each entry including an overview, repository URL, and quantitative metrics.
 
-## 成果物カテゴリ
+By visualizing "what was built" and "how much value was generated," this serves as a reference for future planning and as supporting material for external communications.
+
+## Deliverable Categories
 
 ```mermaid
 mindmap
-  root((成果物))
-    MCPサーバー
+  root((Deliverables))
+    MCP Servers
       rfcxml-mcp
       w3c-mcp
       xcomet-mcp-server
       rxjs-mcp-server
       epsg-mcp
-    技術ドキュメント
+    Technical Documentation
       Notes-about-Digital-Signatures
       websocket-practical-guide
-    翻訳成果
-      RFC 6455 日本語訳
-      技術文書翻訳
-    記事・発信
+    Translation Outputs
+      RFC 6455 Japanese Translation
+      Technical Document Translation
+    Articles & Publications
       Note
       Qiita
       Zenn
 ```
 
-## 1. MCPサーバー
+## 1. MCP Servers
 
-### 公開リポジトリ
+### Public Repositories
 
-| リポジトリ                                                            | 説明                     | Stars | npm                              |
-| --------------------------------------------------------------------- | ------------------------ | :---: | -------------------------------- |
-| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC構造化参照       |   -   | `@shuji-bonji/rfcxml-mcp`        |
-| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web標準       |   -   | -                                |
-| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | 翻訳品質評価             |  ⭐1  | `@shuji-bonji/xcomet-mcp-server` |
-| [rxjs-mcp-server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJSストリーム実行・分析 |   -   | -                                |
-| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG座標参照系           |   -   | -                                |
+| Repository                                                            | Description                        | Stars | npm                              |
+| --------------------------------------------------------------------- | ---------------------------------- | :---: | -------------------------------- |
+| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC Structured Reference      |   -   | `@shuji-bonji/rfcxml-mcp`        |
+| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web Standards           |   -   | -                                |
+| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | Translation Quality Evaluation     |  ⭐1  | `@shuji-bonji/xcomet-mcp-server` |
+| [rxjs-mcp-server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJS Stream Execution & Analysis   |   -   | -                                |
+| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG Coordinate Reference Systems  |   -   | -                                |
 
-### MCPサーバーの特徴
+### MCP Server Features
 
 #### rfcxml-mcp
 
 ```
-提供機能:
-├── get_rfc_structure    - セクション階層取得
-├── get_requirements     - MUST/SHOULD/MAY抽出
-├── get_definitions      - 用語定義取得
-├── get_rfc_dependencies - 参照関係取得
-├── generate_checklist   - 実装チェックリスト生成
-└── validate_statement   - 仕様準拠検証
+Provided Functions:
+├── get_rfc_structure    - Retrieve section hierarchy
+├── get_requirements     - Extract MUST/SHOULD/MAY requirements
+├── get_definitions      - Retrieve term definitions
+├── get_rfc_dependencies - Retrieve reference relationships
+├── generate_checklist   - Generate implementation checklist
+└── validate_statement   - Verify specification compliance
 
-実績:
-- RFC 6455 の要件抽出（75 MUST, 23 SHOULD）
-- RFC 3161 の要件抽出
-- 電子署名法との対応マッピング
+Achievements:
+- Requirements extraction from RFC 6455 (75 MUST, 23 SHOULD)
+- Requirements extraction from RFC 3161
+- Mapping correspondence with Japan's Electronic Signature Act
 ```
 
 #### xcomet-mcp-server
 
 ```
-提供機能:
-├── xcomet_evaluate       - 品質スコア + エラー検出
-├── xcomet_detect_errors  - 詳細エラー分析
-└── xcomet_batch_evaluate - バッチ評価
+Provided Functions:
+├── xcomet_evaluate       - Quality score + error detection
+├── xcomet_detect_errors  - Detailed error analysis
+└── xcomet_batch_evaluate - Batch evaluation
 
-特徴:
-- モデル永続ロード（高速推論）
-- GPU対応
-- バッチ処理対応
+Features:
+- Persistent model loading (fast inference)
+- GPU support
+- Batch processing support
 
-実績:
-- 180ページ技術文書の品質評価
-- 約$12のコストで完了（従来比1/100以下）
+Achievements:
+- Quality evaluation of 180-page technical document
+- Completed at approximately $12 cost (less than 1/100 of conventional cost)
 ```
 
-## 2. 技術ドキュメント
+## 2. Technical Documentation
 
 ### Notes-about-Digital-Signatures-and-Timestamps
 
-電子署名・タイムスタンプに関する業務知識の体系化。
+Systematization of domain knowledge on digital signatures and timestamps.
 
-| リポジトリ | [shuji-bonji/Notes-about-Digital-Signatures-and-Timestamps](https://github.com/shuji-bonji/Notes-about-Digital-Signatures-and-Timestamps) |
+| Repository | [shuji-bonji/Notes-about-Digital-Signatures-and-Timestamps](https://github.com/shuji-bonji/Notes-about-Digital-Signatures-and-Timestamps) |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| 状態       | Public                                                                                                                                    |
-| ファイル数 | 20+個                                                                                                                                     |
+| Status     | Public                                                                                                                                    |
+| File Count | 20+ files                                                                                                                                 |
 
-#### 主要コンテンツ
+#### Main Content
 
-| ファイル                     | 内容                     |
-| ---------------------------- | ------------------------ |
-| `DigitalSignature.md`        | デジタル署名の基礎       |
-| `TimeStamps.md`              | タイムスタンプの仕組み   |
-| `PublicKeyCertificate.md`    | 公開鍵証明書             |
-| `CertificationAuthority.md`  | 認証局                   |
-| `LongTermSignature.md`       | 長期署名（PAdES-LTV等）  |
-| `EncryptionAndDecryption.md` | 暗号化・復号             |
-| `JWT.md` / `JWS.md`          | JSON Web Token/Signature |
-| `PKCS.md`                    | 公開鍵暗号標準           |
+| File                         | Content                            |
+| ---------------------------- | ---------------------------------- |
+| `DigitalSignature.md`        | Digital Signature Fundamentals     |
+| `TimeStamps.md`              | Timestamp Mechanisms               |
+| `PublicKeyCertificate.md`    | Public Key Certificates            |
+| `CertificationAuthority.md`  | Certificate Authorities            |
+| `LongTermSignature.md`       | Long-term Signatures (PAdES-LTV)   |
+| `EncryptionAndDecryption.md` | Encryption and Decryption          |
+| `JWT.md` / `JWS.md`          | JSON Web Token/Signature           |
+| `PKCS.md`                    | Public Key Cryptography Standards  |
 
-#### MCP活用
+#### MCP Utilization
 
-- `hourei-mcp` で電子署名法の条文取得
-- `rfcxml-mcp` で RFC 3161（タイムスタンプ）の要件抽出
-- 法令×技術仕様のマッピング
+- Retrieved legal text from Japan's Electronic Signature Act using `hourei-mcp`
+- Extracted requirements from RFC 3161 (Timestamps) using `rfcxml-mcp`
+- Mapped legal requirements to technical specifications
 
 ### websocket-practical-guide
 
-WebSocket APIの実践的ガイドとRFC 6455翻訳。
+A practical guide to WebSocket API and RFC 6455 translation.
 
-| リポジトリ         | [shuji-bonji/websocket-practical-guide](https://github.com/shuji-bonji/websocket-practical-guide) |
-| ------------------ | ------------------------------------------------------------------------------------------------- |
-| 状態               | Public                                                                                            |
-| ライセンス         | CC-BY-4.0                                                                                         |
-| 公開サイト         | [GitHub Pages](https://shuji-bonji.github.io/websocket-practical-guide/)                          |
-| コントリビューター | shuji-bonji, Claude                                                                               |
+| Repository    | [shuji-bonji/websocket-practical-guide](https://github.com/shuji-bonji/websocket-practical-guide) |
+| ------------- | ------------------------------------------------------------------------------------------------- |
+| Status        | Public                                                                                            |
+| License       | CC-BY-4.0                                                                                         |
+| Published at  | [GitHub Pages](https://shuji-bonji.github.io/websocket-practical-guide/)                          |
+| Contributors  | shuji-bonji, Claude                                                                               |
 
-#### 主要コンテンツ
+#### Main Content
 
-| ディレクトリ                | 内容                    |
-| --------------------------- | ----------------------- |
-| `docs/`                     | WebSocket実践ガイド     |
-| `rfc-translations/rfc6455/` | RFC 6455 日本語訳       |
-| `src/`                      | デモコード              |
-| `tests/e2e/`                | E2Eテスト（Playwright） |
+| Directory                   | Content                         |
+| --------------------------- | ------------------------------- |
+| `docs/`                     | WebSocket Practical Guide       |
+| `rfc-translations/rfc6455/` | RFC 6455 Japanese Translation   |
+| `src/`                      | Demo Code                       |
+| `tests/e2e/`                | E2E Tests (Playwright)          |
 
-#### 技術スタック
+#### Technology Stack
 
 ```
 Svelte 40.9% | MDsveX 34.4% | TypeScript 21.5% | JavaScript 2.2%
 ```
 
-## 3. 翻訳成果
+## 3. Translation Outputs
 
-### RFC 6455 日本語訳
+### RFC 6455 Japanese Translation
 
-WebSocketプロトコル（RFC 6455）の完全日本語訳。
+Complete Japanese translation of the WebSocket Protocol (RFC 6455).
 
-| 項目             | 内容                                                                                                                       |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| 原文             | [RFC 6455](https://www.rfc-editor.org/rfc/rfc6455)                                                                         |
-| 翻訳             | [rfc6455-ja.md](https://github.com/shuji-bonji/websocket-practical-guide/blob/main/rfc-translations/rfc6455/rfc6455-ja.md) |
-| 文字数           | 約15万文字                                                                                                                 |
-| 翻訳ワークフロー | DeepL + xCOMET + Claude                                                                                                    |
+| Item                 | Details                                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Original             | [RFC 6455](https://www.rfc-editor.org/rfc/rfc6455)                                                                         |
+| Translation          | [rfc6455-ja.md](https://github.com/shuji-bonji/websocket-practical-guide/blob/main/rfc-translations/rfc6455/rfc6455-ja.md) |
+| Character Count      | Approximately 150,000 characters                                                                                           |
+| Translation Workflow | DeepL + xCOMET + Claude                                                                                                    |
 
-#### MCP活用フロー
+#### MCP Utilization Workflow
 
 ```mermaid
 sequenceDiagram
-    participant RFC as RFC原文
+    participant RFC as RFC Original
     participant DeepL as deepl-mcp
     participant xCOMET as xcomet-mcp
     participant Claude as Claude
-    participant Output as 翻訳成果
+    participant Output as Translation Output
 
-    RFC->>DeepL: 翻訳
-    DeepL->>xCOMET: 品質評価
-    xCOMET->>Claude: スコア + エラー
-    Claude->>Claude: 修正・校正
+    RFC->>DeepL: Translation
+    DeepL->>xCOMET: Quality Evaluation
+    xCOMET->>Claude: Score + Errors
+    Claude->>Claude: Revision & Proofreading
     Claude->>Output: rfc6455-ja.md
 ```
 
-### 大規模技術文書翻訳
+### Large-scale Technical Document Translation
 
-| 項目   | 内容                     |
-| ------ | ------------------------ |
-| 規模   | 180ページ（約150万文字） |
-| 期間   | 1日                      |
-| コスト | 約$12                    |
-| 従来比 | 1/100以下のコスト        |
+| Item         | Details                              |
+| ------------ | ------------------------------------ |
+| Scale        | 180 pages (approx. 1.5M characters)  |
+| Duration     | 1 day                                |
+| Cost         | Approximately $12                    |
+| Comparison   | Less than 1/100 of conventional cost |
 
-#### 実現要因
+#### Key Success Factors
 
-1. **DeepL API** - 高品質な機械翻訳
-2. **xCOMET MCP** - 自動品質評価
-3. **バッチ処理** - 効率的な大量処理
-4. **品質フィードバックループ** - 低スコア箇所の再翻訳
+1. **DeepL API** - High-quality machine translation
+2. **xCOMET MCP** - Automated quality evaluation
+3. **Batch Processing** - Efficient large-volume processing
+4. **Quality Feedback Loop** - Re-translation of low-score sections
 
-## 4. 記事・発信
+## 4. Articles and Publications
 
-### プラットフォーム
+### Platforms
 
-| プラットフォーム | URL                                                      | 用途             |
-| ---------------- | -------------------------------------------------------- | ---------------- |
-| **Note**         | [note.com/shuji396](https://note.com/shuji396)           | 概念・考察・意見 |
-| **Qiita**        | [qiita.com/shuji-bonji](https://qiita.com/shuji-bonji)   | 技術Tips         |
-| **Zenn**         | [zenn.dev/shuji_bonji](https://zenn.dev/shuji_bonji)     | 技術記事         |
-| **GitHub**       | [github.com/shuji-bonji](https://github.com/shuji-bonji) | ソースコード     |
+| Platform   | URL                                                      | Purpose                      |
+| ---------- | -------------------------------------------------------- | ---------------------------- |
+| **Note**   | [note.com/shuji396](https://note.com/shuji396)           | Concepts, analysis, opinions |
+| **Qiita**  | [qiita.com/shuji-bonji](https://qiita.com/shuji-bonji)   | Technical tips               |
+| **Zenn**   | [zenn.dev/shuji_bonji](https://zenn.dev/shuji_bonji)     | Technical articles           |
+| **GitHub** | [github.com/shuji-bonji](https://github.com/shuji-bonji) | Source code                  |
 
-### 発信方針
+### Publication Strategy
 
 ```
-Note   = 概念的・意見的なコンテンツ
-       （MCPの思想、知識の民主化、AI駆動開発論）
+Note   = Conceptual and opinion-based content
+       (MCP philosophy, knowledge democratization, AI-driven development theory)
 
-Qiita  = 技術的なTips、ツール紹介
-       （ただしSEO文化に疑問あり）
+Qiita  = Technical tips and tool introductions
+       (though the SEO culture raises some concerns)
 
-Zenn   = 詳細な技術記事、チュートリアル
-       （ただし一方通行感あり）
+Zenn   = Detailed technical articles and tutorials
+       (though it can feel one-directional)
 
-GitHub = 実装、ソースコード
-       （成果物の実体）
+GitHub = Implementation and source code
+       (the substance of deliverables)
 ```
 
-## 5. その他の成果
+## 5. Other Achievements
 
-### MCPエコシステム調査・分析
+### MCP Ecosystem Research and Analysis
 
-- LINEヤフーのMCP活用事例分析
-- everything-claude-code の機能分析
-- A2A（Agent-to-Agent）プロトコル調査
+- Analysis of LINE Yahoo's MCP use cases
+- Feature analysis of everything-claude-code
+- Research on A2A (Agent-to-Agent) protocol
 
-### 知識体系化
+### Knowledge Systematization
 
-- AI駆動開発のビジョン整理
-- MCP/A2A/Skill/Agent の構成論
-- 「ブレない参照先」の体系化
+- Vision organization for AI-driven development
+- MCP/A2A/Skill/Agent composition theory
+- Systematization of "reliable reference sources"
 
-## 成果の時系列
+## Achievement Timeline
 
 ```mermaid
 timeline
-    title MCP関連成果の時系列
+    title MCP-Related Achievement Timeline
 
     section 2024
-        初期 : rfcxml-mcp 構築開始
-             : xcomet-mcp-server 構築
+        Early : Started rfcxml-mcp development
+             : Built xcomet-mcp-server
 
     section 2025 Q1
-        1月 : RFC 6455 日本語訳完成
-           : websocket-practical-guide 公開
-           : MCP構築体系化開始
+        January : Completed RFC 6455 Japanese translation
+               : Published websocket-practical-guide
+               : Started MCP development systematization
 
-    section 2025 Q2（予定）
+    section 2025 Q2 (Planned)
         : OpenAPI MCP
         : OWASP MCP
-        : Note記事シリーズ
+        : Note article series
 ```
 
-## 成果指標
+## Achievement Metrics
 
-### 定量指標
+### Quantitative Metrics
 
-| 指標              | 現在        | 目標（Phase 2） |
-| ----------------- | ----------- | --------------- |
-| 公開MCPサーバー数 | 5           | 7+              |
-| GitHub Stars合計  | 1           | 10+             |
-| npm パッケージ    | 2           | 4+              |
-| 翻訳文字数        | 150万+      | -               |
-| 技術ドキュメント  | 2リポジトリ | 3+              |
+| Metric                       | Current       | Target (Phase 2) |
+| ---------------------------- | ------------- | ---------------- |
+| Published MCP Servers        | 5             | 7+               |
+| Total GitHub Stars           | 1             | 10+              |
+| npm Packages                 | 2             | 4+               |
+| Translated Characters        | 1.5M+         | -                |
+| Technical Documentation      | 2 repositories| 3+               |
 
-### 定性指標
+### Qualitative Metrics
 
-- [x] MCPエコシステムの構築開始
-- [x] 翻訳ワークフローの確立
-- [x] 法令×技術仕様マッピングの実証
-- [ ] コミュニティからの認知
-- [ ] 外部からの問い合わせ・貢献
+- [x] Started MCP ecosystem development
+- [x] Established translation workflow
+- [x] Demonstrated legal requirements to technical specification mapping
+- [ ] Recognition from the community
+- [ ] External inquiries and contributions
 
-## 関連リンク
+## Related Links
 
 ### GitHub
 
-- [shuji-bonji](https://github.com/shuji-bonji) - メインプロフィール
-- [shuji-bonji/shuji-bonji](https://github.com/shuji-bonji/shuji-bonji) - 活動記録
+- [shuji-bonji](https://github.com/shuji-bonji) - Main Profile
+- [shuji-bonji/shuji-bonji](https://github.com/shuji-bonji/shuji-bonji) - Activity Log
 
 ### npm
 
-- [@shuji-bonji](https://www.npmjs.com/~shuji-bonji) - npmパッケージ
+- [@shuji-bonji](https://www.npmjs.com/~shuji-bonji) - npm Packages
 
-### 発信
+### Publications
 
 - [Note](https://note.com/shuji396)
 - [Qiita](https://qiita.com/shuji-bonji)

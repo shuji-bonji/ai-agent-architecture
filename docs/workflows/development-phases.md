@@ -1,110 +1,112 @@
-# 開発フェーズ × MCP対応
+# Development Phases × MCP Integration
 
-> システム・アプリケーション開発の各フェーズで活用できるMCPを整理する。
+[日本語版 (Japanese)](./development-phases.ja.md)
 
-## このドキュメントについて
+> Organizing MCPs that can be utilized in each phase of system and application development.
 
-ソフトウェア開発は「戦略・企画 → 要件定義 → 設計 → 実装 → テスト → 運用」というフェーズで進む。AI駆動開発では、各フェーズで適切なMCPを活用することで、品質と効率の両方を向上させることができる。
+## About This Document
 
-このドキュメントでは、各開発フェーズで利用可能なMCP、まだ構築されていない領域、今後の優先構築候補を整理する。「このフェーズでAIを活用したいが、何を使えばいいか」という問いに対する実践的な回答を提供する。
+Software development progresses through phases: "Strategy/Planning → Requirements Definition → Design → Implementation → Testing → Operations." In AI-driven development, leveraging appropriate MCPs at each phase can improve both quality and efficiency.
 
-## 開発フェーズ全体像
+This document organizes the MCPs available for each development phase, areas that have not yet been built, and candidates for future priority development. It provides practical answers to the question "I want to use AI in this phase, but what should I use?"
+
+## Development Phase Overview
 
 ```mermaid
 flowchart LR
-    P1[戦略・企画] --> P2[要件定義]
-    P2 --> P3[設計]
-    P3 --> P4[実装]
-    P4 --> P5[テスト]
-    P5 --> P6[運用]
+    P1[Strategy/Planning] --> P2[Requirements Definition]
+    P2 --> P3[Design]
+    P3 --> P4[Implementation]
+    P4 --> P5[Testing]
+    P5 --> P6[Operations]
 
-    P6 -.->|フィードバック| P1
+    P6 -.->|Feedback| P1
 ```
 
-## フェーズ1: 戦略・企画
+## Phase 1: Strategy/Planning
 
-### 概要
+### Overview
 
-ビジネス目標の設定、実現可能性調査、プロダクト戦略の策定。
+Setting business goals, conducting feasibility studies, and formulating product strategy.
 
-### MCP活用
+### MCP Utilization
 
-| タスク   | MCP                     | 機能               | 状況    |
-| -------- | ----------------------- | ------------------ | ------- |
-| 市場調査 | Market Research MCP     | 市場規模データ取得 | 📋 構想 |
-| 競合分析 | Competitor Analysis MCP | 競合製品比較       | 📋 構想 |
-| ROI計算  | Financial Modeling MCP  | TCO算出            | 📋 構想 |
+| Task              | MCP                     | Function              | Status    |
+| ----------------- | ----------------------- | --------------------- | --------- |
+| Market Research   | Market Research MCP     | Market size data      | 📋 Planned |
+| Competitor Analysis | Competitor Analysis MCP | Competitor comparison | 📋 Planned |
+| ROI Calculation   | Financial Modeling MCP  | TCO calculation       | 📋 Planned |
 
-### 現状
+### Current Status
 
-このフェーズのMCPは未構築。Web検索やClaude自体の分析能力で代替。
+MCPs for this phase have not been built. Web search and Claude's own analytical capabilities serve as alternatives.
 
-## フェーズ2: 要件定義
+## Phase 2: Requirements Definition
 
-### 概要
+### Overview
 
-機能要件・非機能要件の収集と整理。
+Gathering and organizing functional and non-functional requirements.
 
-### MCP活用
+### MCP Utilization
 
-| タスク       | MCP            | 機能                  | 状況      |
-| ------------ | -------------- | --------------------- | --------- |
-| RFC要件確認  | **rfcxml-mcp** | MUST/SHOULD/MAY抽出   | ✅ 構築済 |
-| Web標準確認  | **w3c-mcp**    | WebIDL、CSS、HTML仕様 | ✅ 構築済 |
-| 法令要件確認 | **hourei-mcp** | 法令条文取得          | ✅ 利用可 |
-| API仕様確認  | OpenAPI MCP    | 仕様検証              | 📋 構想   |
+| Task                   | MCP            | Function                    | Status     |
+| ---------------------- | -------------- | --------------------------- | ---------- |
+| RFC Requirements Check | **rfcxml-mcp** | MUST/SHOULD/MAY extraction  | ✅ Built    |
+| Web Standards Check    | **w3c-mcp**    | WebIDL, CSS, HTML specs     | ✅ Built    |
+| Legal Requirements     | **hourei-mcp** | Legal text retrieval        | ✅ Available |
+| API Spec Verification  | OpenAPI MCP    | Specification validation    | 📋 Planned  |
 
-### 具体例
+### Example
 
 ```mermaid
 sequenceDiagram
-    participant PM as プロダクトマネージャー
+    participant PM as Product Manager
     participant Claude as Claude + MCPs
     participant RFC as rfcxml-mcp
     participant Law as hourei-mcp
 
-    PM->>Claude: WebSocket機能の要件をまとめて
+    PM->>Claude: Summarize requirements for WebSocket functionality
     Claude->>RFC: get_requirements(6455)
     RFC-->>Claude: 75 MUST, 23 SHOULD
-    Claude->>Law: 通信に関する法的要件は？
-    Law-->>Claude: 電気通信事業法の関連条文
-    Claude-->>PM: 技術要件 + 法的考慮事項
+    Claude->>Law: What are the legal requirements for communications?
+    Law-->>Claude: Relevant provisions of telecommunications law
+    Claude-->>PM: Technical requirements + Legal considerations
 ```
 
-## フェーズ3: 設計
+## Phase 3: Design
 
-### 概要
+### Overview
 
-アーキテクチャ設計、詳細設計、API設計。
+Architecture design, detailed design, and API design.
 
-### MCP活用
+### MCP Utilization
 
-| タスク       | MCP                 | 機能                | 状況      |
-| ------------ | ------------------- | ------------------- | --------- |
-| 設計パターン | Design Pattern MCP  | パターン提案        | 📋 構想   |
-| ADR生成      | ADR Generator MCP   | 決定記録生成        | 📋 構想   |
-| DB設計       | Schema Designer MCP | ER図生成            | 📋 構想   |
-| 図表生成     | **mermaid-mcp**     | Mermaidダイアグラム | ✅ 利用可 |
-| API設計検証  | OpenAPI MCP         | 仕様検証            | 📋 構想   |
+| Task               | MCP                 | Function             | Status     |
+| ------------------ | ------------------- | -------------------- | ---------- |
+| Design Patterns    | Design Pattern MCP  | Pattern suggestions  | 📋 Planned  |
+| ADR Generation     | ADR Generator MCP   | Decision record gen  | 📋 Planned  |
+| DB Design          | Schema Designer MCP | ER diagram gen       | 📋 Planned  |
+| Diagram Generation | **mermaid-mcp**     | Mermaid diagrams     | ✅ Available |
+| API Design Validation | OpenAPI MCP      | Spec validation      | 📋 Planned  |
 
-### 現状
+### Current Status
 
-設計パターン系MCPは未構築。Skillとして「設計パターン集」を定義する方が適切かもしれない。
+Design pattern MCPs have not been built. It may be more appropriate to define a "Design Pattern Collection" as a Skill.
 
-### Skill代替例
+### Skill Alternative Example
 
 ```markdown
 <!-- .claude/skills/design-patterns/SKILL.md -->
 
-# 設計パターン集
+# Design Pattern Collection
 
-## アーキテクチャパターン
+## Architecture Patterns
 
 - Clean Architecture
 - Hexagonal Architecture
 - CQRS + Event Sourcing
 
-## GoFパターン（抜粋）
+## GoF Patterns (Excerpt)
 
 - Factory Method
 - Observer
@@ -112,170 +114,170 @@ sequenceDiagram
   ...
 ```
 
-## フェーズ4: 実装
+## Phase 4: Implementation
 
-### 概要
+### Overview
 
-コーディング、API実装、フロントエンド/バックエンド開発。
+Coding, API implementation, frontend/backend development.
 
-### MCP活用
+### MCP Utilization
 
-| タスク           | MCP                   | 機能                   | 状況      |
-| ---------------- | --------------------- | ---------------------- | --------- |
-| ドキュメント検索 | Context7              | ライブラリドキュメント | ✅ 利用可 |
-| Svelte開発       | **svelte-mcp**        | Svelte/SvelteKit支援   | ✅ 利用可 |
-| UIコンポーネント | **shadcn-svelte-mcp** | UIコンポーネント       | ✅ 利用可 |
-| RxJS開発         | **rxjs-mcp-server**   | ストリーム実行・分析   | ✅ 構築済 |
-| 座標系参照       | **epsg-mcp**          | EPSG座標系             | ✅ 構築済 |
-| Angular開発      | Angular MCP           | Angular支援            | 📋 構想   |
+| Task                | MCP                   | Function                | Status     |
+| ------------------- | --------------------- | ----------------------- | ---------- |
+| Documentation Search | Context7             | Library documentation   | ✅ Available |
+| Svelte Development  | **svelte-mcp**        | Svelte/SvelteKit support | ✅ Available |
+| UI Components       | **shadcn-svelte-mcp** | UI components           | ✅ Available |
+| RxJS Development    | **rxjs-mcp-server**   | Stream execution/analysis | ✅ Built   |
+| Coordinate Reference | **epsg-mcp**         | EPSG coordinate systems | ✅ Built    |
+| Angular Development | Angular MCP           | Angular support         | 📋 Planned  |
 
-### 具体例：RxJS実装フロー
+### Example: RxJS Implementation Flow
 
 ```mermaid
 sequenceDiagram
-    participant Dev as 開発者
+    participant Dev as Developer
     participant Claude as Claude
     participant RxJS as rxjs-mcp
 
-    Dev->>Claude: このRxJSコードの動作を確認して
+    Dev->>Claude: Please verify how this RxJS code works
     Claude->>RxJS: execute_stream(code)
-    RxJS-->>Claude: 実行結果 + タイムライン
+    RxJS-->>Claude: Execution result + Timeline
     Claude->>RxJS: analyze_operators(code)
-    RxJS-->>Claude: パフォーマンス分析
+    RxJS-->>Claude: Performance analysis
     Claude->>RxJS: detect_memory_leak(code)
-    RxJS-->>Claude: リーク検出結果
-    Claude-->>Dev: 動作確認 + 改善提案
+    RxJS-->>Claude: Leak detection result
+    Claude-->>Dev: Operation verification + Improvement suggestions
 ```
 
-## フェーズ5: テスト・品質保証
+## Phase 5: Testing & Quality Assurance
 
-### 概要
+### Overview
 
-単体テスト、統合テスト、品質評価。
+Unit testing, integration testing, and quality evaluation.
 
-### MCP活用
+### MCP Utilization
 
-| タスク       | MCP                   | 機能                   | 状況      |
-| ------------ | --------------------- | ---------------------- | --------- |
-| 翻訳品質評価 | **xcomet-mcp-server** | 品質スコア、エラー検出 | ✅ 構築済 |
-| テスト生成   | Test Generator MCP    | テストコード生成       | 📋 構想   |
-| セキュリティ | OWASP MCP             | 脆弱性チェック         | 📋 構想   |
-| RFC準拠確認  | **rfcxml-mcp**        | validate_statement     | ✅ 構築済 |
+| Task                  | MCP                   | Function                   | Status     |
+| --------------------- | --------------------- | -------------------------- | ---------- |
+| Translation QA        | **xcomet-mcp-server** | Quality scores, error detection | ✅ Built |
+| Test Generation       | Test Generator MCP    | Test code generation       | 📋 Planned  |
+| Security              | OWASP MCP             | Vulnerability checks       | 📋 Planned  |
+| RFC Compliance Check  | **rfcxml-mcp**        | validate_statement         | ✅ Built    |
 
-### 具体例：翻訳品質テスト
+### Example: Translation Quality Testing
 
 ```mermaid
 flowchart TB
-    SOURCE[原文] --> TRANSLATE[翻訳]
+    SOURCE[Source Text] --> TRANSLATE[Translation]
     TRANSLATE --> EVAL[xcomet:xcomet_evaluate]
-    EVAL --> CHECK{スコア >= 0.85?}
-    CHECK -->|Yes| PASS[✅ 合格]
-    CHECK -->|No| FAIL[❌ 要修正]
+    EVAL --> CHECK{Score >= 0.85?}
+    CHECK -->|Yes| PASS[✅ Pass]
+    CHECK -->|No| FAIL[❌ Needs Revision]
     FAIL --> ERRORS[xcomet:xcomet_detect_errors]
-    ERRORS --> FIX[修正箇所特定]
+    ERRORS --> FIX[Identify corrections]
 ```
 
-## フェーズ6: 運用・保守
+## Phase 6: Operations & Maintenance
 
-### 概要
+### Overview
 
-デプロイ、監視、インシデント対応、継続改善。
+Deployment, monitoring, incident response, and continuous improvement.
 
-### MCP活用
+### MCP Utilization
 
-| タスク       | MCP                    | 機能          | 状況    |
-| ------------ | ---------------------- | ------------- | ------- |
-| IaC生成      | IaC Generator MCP      | Terraform生成 | 📋 構想 |
-| パイプライン | Pipeline Generator MCP | CI/CD設定     | 📋 構想 |
-| 監視設定     | Monitoring Config MCP  | 監視設定生成  | 📋 構想 |
+| Task                | MCP                    | Function            | Status    |
+| ------------------- | ---------------------- | ------------------- | --------- |
+| IaC Generation      | IaC Generator MCP      | Terraform generation | 📋 Planned |
+| Pipeline            | Pipeline Generator MCP | CI/CD configuration | 📋 Planned |
+| Monitoring Config   | Monitoring Config MCP  | Monitoring setup    | 📋 Planned |
 
-### 現状
+### Current Status
 
-運用系MCPは未構築。クラウドプロバイダー固有のMCPが存在する場合はそちらを利用。
+Operations MCPs have not been built. If cloud provider-specific MCPs exist, use those instead.
 
-## 横断的活動
+## Cross-Cutting Activities
 
-### ドキュメンテーション
+### Documentation
 
-| タスク   | MCP             | 状況      |
-| -------- | --------------- | --------- |
-| 図表生成 | **mermaid-mcp** | ✅ 利用可 |
-| 翻訳     | **deepl-mcp**   | ✅ 利用可 |
-| 品質確認 | **xcomet-mcp**  | ✅ 構築済 |
+| Task              | MCP             | Status     |
+| ----------------- | --------------- | ---------- |
+| Diagram Generation | **mermaid-mcp** | ✅ Available |
+| Translation       | **deepl-mcp**   | ✅ Available |
+| Quality Check     | **xcomet-mcp**  | ✅ Built    |
 
-### セキュリティ
+### Security
 
-| タスク    | MCP         | 状況    |
-| --------- | ----------- | ------- |
-| OWASP確認 | OWASP MCP   | 📋 構想 |
-| CVE検索   | CVE/NVD MCP | 📋 構想 |
+| Task          | MCP         | Status    |
+| ------------- | ----------- | --------- |
+| OWASP Check   | OWASP MCP   | 📋 Planned |
+| CVE Search    | CVE/NVD MCP | 📋 Planned |
 
-### 法令遵守
+### Legal Compliance
 
-| タスク   | MCP            | 状況      |
-| -------- | -------------- | --------- |
-| 法令検索 | **hourei-mcp** | ✅ 利用可 |
-| GDPR確認 | GDPR MCP       | 📋 構想   |
+| Task           | MCP            | Status     |
+| -------------- | -------------- | ---------- |
+| Legal Search   | **hourei-mcp** | ✅ Available |
+| GDPR Check     | GDPR MCP       | 📋 Planned  |
 
-## フェーズ × MCP マトリックス
+## Phase × MCP Matrix
 
-| フェーズ   | 構築済MCP                  | 構想中MCP                           |
-| ---------- | -------------------------- | ----------------------------------- |
-| 戦略・企画 | -                          | Market Research, Financial Modeling |
-| 要件定義   | rfcxml, w3c, hourei        | OpenAPI                             |
-| 設計       | mermaid                    | Design Pattern, ADR Generator       |
-| 実装       | rxjs, svelte, shadcn, epsg | Angular, Context7連携強化           |
-| テスト     | xcomet, rfcxml             | Test Generator, OWASP               |
-| 運用       | -                          | IaC Generator, Pipeline Generator   |
+| Phase               | Built MCPs                 | Planned MCPs                        |
+| ------------------- | -------------------------- | ----------------------------------- |
+| Strategy/Planning   | -                          | Market Research, Financial Modeling |
+| Requirements        | rfcxml, w3c, hourei        | OpenAPI                             |
+| Design              | mermaid                    | Design Pattern, ADR Generator       |
+| Implementation      | rxjs, svelte, shadcn, epsg | Angular, Context7 integration       |
+| Testing             | xcomet, rfcxml             | Test Generator, OWASP               |
+| Operations          | -                          | IaC Generator, Pipeline Generator   |
 
-## 優先的に構築すべきMCP
+## MCPs to Build with Priority
 
-### 現在の強みを活かす
+### Leveraging Current Strengths
 
-1. **OpenAPI MCP** - API設計・検証（要件定義〜設計〜テスト横断）
-2. **OWASP MCP** - セキュリティ（設計〜テスト横断）
-3. **Angular MCP** - 専門領域の実装支援
+1. **OpenAPI MCP** - API design/validation (cross-cutting: Requirements → Design → Testing)
+2. **OWASP MCP** - Security (cross-cutting: Design → Testing)
+3. **Angular MCP** - Implementation support for specialized domains
 
-### ギャップを埋める
+### Filling Gaps
 
-1. 設計フェーズのパターン系 → **Skillで代替可能**
-2. 運用フェーズのIaC系 → 優先度低（既存ツールで代替）
+1. Design phase pattern tools → **Can be substituted with Skills**
+2. Operations phase IaC tools → Low priority (existing tools serve as alternatives)
 
-## 推奨アプローチ
+## Recommended Approach
 
 ```mermaid
 graph TB
-    subgraph 構築済み活用
+    subgraph Utilize Built MCPs
         RFC[rfcxml-mcp]
         W3C[w3c-mcp]
         XCOMET[xcomet-mcp]
         RXJS[rxjs-mcp]
     end
 
-    subgraph Skill補完
-        PATTERN[設計パターンSkill]
-        WORKFLOW[ワークフローSkill]
+    subgraph Skill Supplementation
+        PATTERN[Design Pattern Skill]
+        WORKFLOW[Workflow Skill]
     end
 
-    subgraph 次に構築
+    subgraph Build Next
         OPENAPI[OpenAPI MCP]
         OWASP[OWASP MCP]
     end
 
-    RFC --> 要件定義
-    W3C --> 要件定義
-    XCOMET --> テスト
-    RXJS --> 実装
+    RFC --> Requirements
+    W3C --> Requirements
+    XCOMET --> Testing
+    RXJS --> Implementation
 
-    PATTERN --> 設計
-    WORKFLOW --> 全フェーズ
+    PATTERN --> Design
+    WORKFLOW --> All Phases
 
-    OPENAPI --> 設計
-    OWASP --> テスト
+    OPENAPI --> Design
+    OWASP --> Testing
 ```
 
-### 原則
+### Principles
 
-1. **構築済みMCPを最大限活用**
-2. **静的知識はSkillで補完**
-3. **ギャップは優先度を見て順次構築**
+1. **Maximize utilization of built MCPs**
+2. **Supplement static knowledge with Skills**
+3. **Build gaps sequentially based on priority**

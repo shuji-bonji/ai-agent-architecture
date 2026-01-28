@@ -1,52 +1,54 @@
-# Skills ドキュメント
+# Skills Documentation
 
-Vercel Skills と Agent Skills Specification に基づくドメイン知識・実行パターンの標準化について。
+[日本語版 (Japanese)](./README.ja.md)
 
-## 📚 ドキュメント一覧
+Standardization of domain knowledge and execution patterns based on Vercel Skills and Agent Skills Specification.
 
-1. **[overview.md](./overview.md)** - Vercel Skills と Agent Skills Specification の概要
-   - Vercel Skills の特徴
-   - 27+ エージェント対応状況
-   - Skillの構成要素
+## 📚 Document List
 
-2. **[vs-mcp.md](./vs-mcp.md)** - MCP vs Skills：本質的な違いと選択判断
-   - 概要比較表
-   - 本質的な違い
-   - **選択判断フロー** ← 迷ったらこれ
-   - 組み合わせ活用パターン
+1. **[overview.md](./overview.md)** - Overview of Vercel Skills and Agent Skills Specification
+   - Features of Vercel Skills
+   - 27+ Agent Compatibility Status
+   - Skill Components
 
-3. **[anti-patterns.md](./anti-patterns.md)** - MCP/Skills アンチパターン集
-   - over-MCPization（MCPの過剰使用）
-   - over-Skillization（Skillsの過剰使用）
-   - 曖昧なSkill定義
-   - MCPツール依存の過度な結合
+2. **[vs-mcp.md](./vs-mcp.md)** - MCP vs Skills: Essential Differences and Selection Criteria
+   - Summary Comparison Table
+   - Essential Differences
+   - **Selection Decision Flow** ← Start here if unsure
+   - Combined Usage Patterns
 
-4. **[creating-skills.md](./creating-skills.md)** (計画中) - Skillsの作成ガイド
-   - メタデータ設計
-   - 実行可能ガイドラインの構造化
-   - Vercel Skills との統合方法
-   - チーム運用ノウハウ
+3. **[anti-patterns.md](./anti-patterns.md)** - MCP/Skills Anti-patterns Collection
+   - Over-MCPization (Excessive use of MCP)
+   - Over-Skillization (Excessive use of Skills)
+   - Ambiguous Skill Definitions
+   - Excessive Coupling with MCP Tool Dependencies
+
+4. **[creating-skills.md](./creating-skills.md)** (Planned) - Skills Creation Guide
+   - Metadata Design
+   - Structuring Executable Guidelines
+   - Integration Methods with Vercel Skills
+   - Team Operation Best Practices
 
 ## 🎯 Quick Start
 
-### MCP vs Skills、どちらを使うべき？
+### MCP vs Skills: Which should you use?
 
-👉 [vs-mcp.md#選択判断フロー](./vs-mcp.md#選択判断フロー) を参照
+👉 See [vs-mcp.md#selection-decision-flow](./vs-mcp.md#選択判断フロー)
 
-### Skillsについて学ぶ
+### Learning about Skills
 
-1. [overview.md](./overview.md) で概要を把握
-2. [vs-mcp.md](./vs-mcp.md) でMCPとの違いを理解
-3. [templates/skill/](../../templates/skill/) のテンプレートを使ってSkill作成に着手
+1. Understand the overview in [overview.md](./overview.md)
+2. Learn the differences from MCP in [vs-mcp.md](./vs-mcp.md)
+3. Start creating Skills using templates in [templates/skill/](../../templates/skill/)
 
-## 📌 関連ドキュメント
+## 📌 Related Documentation
 
-- **MCP について:** [../mcp/catalog.md](../mcp/catalog.md)
-- **選択判断の参考:** [../concepts/03-architecture.md](../concepts/03-architecture.md)
-- **Skillテンプレート:** [../../templates/skill/](../../templates/skill/)
-- **外部リンク集:** [../../references/skills/links.md](../../references/skills/links.md)
+- **About MCP:** [../mcp/catalog.md](../mcp/catalog.md)
+- **Selection Criteria Reference:** [../concepts/03-architecture.md](../concepts/03-architecture.md)
+- **Skill Templates:** [../../templates/skill/](../../templates/skill/)
+- **External Links Collection:** [../../references/skills/links.md](../../references/skills/links.md)
 
-## 🔗 外部資料
+## 🔗 External Resources
 
 - [Agent Skills Specification](https://agentskills.io)
 - [Vercel Skills Changelog](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support)

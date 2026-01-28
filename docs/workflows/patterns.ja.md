@@ -1,0 +1,387 @@
+# 連携パターン・ワークフロー
+
+> 複数のMCP・Skill・サブエージェントを組み合わせた実践的なワークフローパターンを整理する。
+
+## このドキュメントについて
+
+MCPは単独で使うよりも、複数を組み合わせることで真価を発揮する。このドキュメントでは、実際に効果を確認できた連携パターンを8種類に整理し、それぞれの手順、使用ツール、期待される成果を具体的に記述する。
+
+例えば「RFC日本語訳を高品質で作成する」という目標に対して、deepl-mcp（翻訳）→ xcomet-mcp-server（品質評価）→ 必要に応じて再翻訳、というワークフローを確立することで、従来の翻訳コストの1/100以下で同等以上の品質を実現できる。このような実践知をパターンとして蓄積する。
+
+## ワークフローパターン一覧
+
+```mermaid
+mindmap
+  root((ワークフロー<br/>パターン))
+    翻訳系
+      技術文書翻訳
+      大規模翻訳
+      用語集連携翻訳
+    仕様参照系
+      RFC仕様確認
+      Web標準確認
+      法令参照
+    複合系
+      法令×技術マッピング
+      チェックリスト生成
+      コンプライアンス検証
+    開発支援系
+      RxJSデバッグ
+      Svelte開発
+      ドキュメント生成
+```
+
+## パターン1: 技術文書翻訳ワークフロー
+
+### 概要
+
+DeepL + xCOMET を組み合わせた高品質翻訳フロー。
+
+### 使用MCP
+
+- `deepl-mcp` - 翻訳実行
+- `xcomet-mcp-server` - 品質評価
+
+### フロー図
+
+```mermaid
+flowchart TB
+    START[原文] --> TRANSLATE[deepl:translate-text<br/>formality: more]
+    TRANSLATE --> EVAL[xcomet:xcomet_evaluate]
+    EVAL --> CHECK{スコア >= 0.85?}
+    CHECK -->|Yes| DETECT[xcomet:xcomet_detect_errors]
+    CHECK -->|No| RETRY[再翻訳/修正]
+    RETRY --> TRANSLATE
+    DETECT --> REVIEW{criticalエラー?}
+    REVIEW -->|Yes| FIX[手動修正]
+    REVIEW -->|No| OUTPUT[翻訳完了]
+    FIX --> EVAL
+```
+
+### Skill定義例
+
+```markdown
+<!-- .claude/skills/translation-workflow/SKILL.md -->
+
+# 技術文書翻訳ワークフロー
+
+## 品質基準
+
+- スコア 0.85以上: 合格
+- スコア 0.70-0.85: 要確認
+- スコア 0.70未満: 再翻訳
+
+## エラー対応
+
+- critical: 必ず修正（意味の逆転、重大な誤訳）
+- major: 修正推奨（不自然な表現、用語不統一）
+- minor: 任意（スタイルの問題）
+
+## 翻訳設定
+
+- formality: "more"（技術文書は堅めに）
+- 用語集があれば glossaryId を指定
+```
+
+### 実績
+
+- 180ページ技術文書（150万文字）を1日で完了
+- コスト: 約$12（従来の1/100以下）
+
+## パターン2: 大規模翻訳ワークフロー（バッチ処理）
+
+### 概要
+
+大量の翻訳ペアを効率的に処理するバッチワークフロー。
+
+### フロー図
+
+```mermaid
+flowchart TB
+    START[大規模文書] --> SPLIT[セクション分割]
+    SPLIT --> BATCH[バッチ翻訳<br/>deepl:translate-text]
+    BATCH --> BATCH_EVAL[バッチ評価<br/>xcomet:xcomet_batch_evaluate]
+    BATCH_EVAL --> ANALYZE[結果分析]
+    ANALYZE --> LOW{低スコアあり?}
+    LOW -->|Yes| IDENTIFY[問題セクション特定]
+    LOW -->|No| MERGE[マージ]
+    IDENTIFY --> INDIVIDUAL[個別再翻訳]
+    INDIVIDUAL --> BATCH_EVAL
+    MERGE --> OUTPUT[完成文書]
+```
+
+### ポイント
+
+- `xcomet:xcomet_batch_evaluate` でまとめて評価
+- 問題のあるセクションのみ個別対応
+- GPU使用でさらに高速化
+
+## パターン3: RFC仕様確認ワークフロー
+
+### 概要
+
+RFC仕様を構造化して理解・実装確認するフロー。
+
+### 使用MCP
+
+- `rfcxml-mcp` - RFC解析
+- `w3c-mcp` - Web API確認（必要に応じて）
+
+### フロー図
+
+```mermaid
+flowchart TB
+    START[実装要件] --> SEARCH[関連RFC特定]
+    SEARCH --> STRUCTURE[rfcxml:get_rfc_structure<br/>セクション構造取得]
+    STRUCTURE --> REQUIREMENTS[rfcxml:get_requirements<br/>MUST/SHOULD抽出]
+    REQUIREMENTS --> CHECKLIST[rfcxml:generate_checklist<br/>チェックリスト生成]
+    CHECKLIST --> IMPL[実装]
+    IMPL --> VALIDATE[rfcxml:validate_statement<br/>準拠確認]
+    VALIDATE --> PASS{準拠?}
+    PASS -->|Yes| DONE[完了]
+    PASS -->|No| FIX[修正]
+    FIX --> IMPL
+```
+
+### サブエージェント定義例
+
+```markdown
+<!-- .claude/agents/rfc-specialist.md -->
+
+name: rfc-specialist
+description: RFC仕様の確認・検証専門。実装がRFCに準拠しているか確認する。
+tools: rfcxml:get_rfc_structure, rfcxml:get_requirements, rfcxml:get_definitions, rfcxml:generate_checklist, rfcxml:validate_statement
+model: sonnet
+
+あなたはRFC仕様の専門家です。
+以下の手順で作業してください。
+
+1. まず get_rfc_structure でRFCの全体像を把握
+2. get_requirements でMUST/SHOULD要件を抽出
+3. 必要に応じて get_definitions で用語確認
+4. generate_checklist で実装チェックリストを生成
+5. validate_statement で実装の準拠を確認
+```
+
+### 実績
+
+- RFC 6455（WebSocket）の完全日本語翻訳
+- 75個のMUST要件、23個のSHOULD要件を構造化
+
+## パターン4: 法令×技術仕様マッピングワークフロー
+
+### 概要
+
+法的要件と技術仕様の対応関係を明確化するフロー。
+
+### 使用MCP
+
+- `hourei-mcp` - 日本法令参照
+- `rfcxml-mcp` - 技術仕様参照
+
+### フロー図
+
+```mermaid
+flowchart TB
+    START[コンプライアンス要件] --> LEGAL[hourei:find_law_article<br/>法的要件取得]
+    LEGAL --> TECH[rfcxml:get_requirements<br/>技術要件取得]
+    TECH --> MAP[要件マッピング]
+    MAP --> GAP{ギャップあり?}
+    GAP -->|Yes| IDENTIFY[未対応要件特定]
+    GAP -->|No| REPORT[準拠レポート生成]
+    IDENTIFY --> PLAN[対応計画策定]
+    PLAN --> IMPL[実装]
+    IMPL --> VERIFY[検証]
+    VERIFY --> REPORT
+```
+
+### 具体例：電子署名法 × RFC 3161
+
+```mermaid
+graph TB
+    subgraph 法的要件["電子署名法 第2条"]
+        L1["作成者の証明"]
+        L2["改変検知"]
+    end
+
+    subgraph 技術要件["RFC 3161"]
+        T1["TSA署名"]
+        T2["MessageImprint"]
+        T3["genTime"]
+    end
+
+    L1 --> T1
+    L2 --> T2
+    T1 --> T3
+    T2 --> T3
+```
+
+### 実績
+
+- 電子署名法とRFC 3161の対応表作成
+- Notes-about-Digital-Signatures リポジトリに反映
+
+## パターン5: チェックリスト生成ワークフロー
+
+### 概要
+
+仕様から実装チェックリストを自動生成するフロー。
+
+### フロー図
+
+```mermaid
+flowchart TB
+    START[対象仕様] --> GET[rfcxml:get_requirements]
+    GET --> FILTER{役割フィルタ}
+    FILTER -->|Client| CLIENT[クライアント要件]
+    FILTER -->|Server| SERVER[サーバー要件]
+    FILTER -->|Both| BOTH[共通要件]
+    CLIENT --> GEN[rfcxml:generate_checklist<br/>role: client]
+    SERVER --> GEN2[rfcxml:generate_checklist<br/>role: server]
+    BOTH --> GEN3[rfcxml:generate_checklist<br/>role: both]
+    GEN --> MD[Markdownチェックリスト]
+    GEN2 --> MD
+    GEN3 --> MD
+```
+
+### 出力例
+
+```markdown
+# RFC 6455 WebSocket 実装チェックリスト（クライアント）
+
+## MUST要件
+
+- [ ] クライアントはサーバーからのHTTP 101以外の応答を拒否しなければならない
+- [ ] Sec-WebSocket-Keyヘッダを送信しなければならない
+- [ ] ...
+
+## SHOULD要件
+
+- [ ] 接続失敗時は指数バックオフで再試行すべきである
+- [ ] ...
+```
+
+## パターン6: RxJSデバッグワークフロー
+
+### 概要
+
+RxJSストリームの動作確認・デバッグフロー。
+
+### 使用MCP
+
+- `rxjs-mcp-server` - ストリーム実行・分析
+
+### フロー図
+
+```mermaid
+flowchart TB
+    START[RxJSコード] --> ANALYZE[rxjs:analyze_operators<br/>オペレーター分析]
+    ANALYZE --> LEAK[rxjs:detect_memory_leak<br/>メモリリーク検出]
+    LEAK --> EXECUTE[rxjs:execute_stream<br/>実行・結果取得]
+    EXECUTE --> MARBLE[rxjs:generate_marble<br/>マーブルダイアグラム]
+    MARBLE --> REVIEW[動作確認]
+    REVIEW --> OK{期待通り?}
+    OK -->|Yes| DONE[完了]
+    OK -->|No| SUGGEST[rxjs:suggest_pattern<br/>パターン提案]
+    SUGGEST --> REFACTOR[リファクタリング]
+    REFACTOR --> EXECUTE
+```
+
+## パターン7: ドキュメント生成ワークフロー
+
+### 概要
+
+複数MCPを組み合わせた技術ドキュメント生成フロー。
+
+### 使用MCP
+
+- `rfcxml-mcp` - 仕様情報
+- `mermaid-mcp` - 図表生成
+- `deepl-mcp` - 多言語化
+- `xcomet-mcp` - 翻訳品質確認
+
+### フロー図
+
+```mermaid
+flowchart TB
+    START[ドキュメント要件] --> SPEC[rfcxml:get_rfc_structure<br/>仕様情報取得]
+    SPEC --> CONTENT[コンテンツ作成]
+    CONTENT --> DIAGRAM[mermaid:validate_and_render<br/>図表生成]
+    DIAGRAM --> DRAFT[日本語ドラフト]
+    DRAFT --> TRANSLATE[deepl:translate-text<br/>英語版作成]
+    TRANSLATE --> EVAL[xcomet:xcomet_evaluate<br/>品質確認]
+    EVAL --> PUBLISH[公開]
+```
+
+## パターン8: マルチエージェント連携
+
+### 概要
+
+複数のサブエージェントが協調して作業するパターン。
+
+### 構成
+
+```mermaid
+graph TB
+    subgraph Orchestrator["メインClaude"]
+        MAIN[オーケストレーター]
+    end
+
+    subgraph Agents["サブエージェント"]
+        RFC["RFC Agent<br/>rfcxml専属"]
+        TRANS["Translation Agent<br/>deepl+xcomet専属"]
+        DOC["Documentation Agent<br/>mermaid専属"]
+    end
+
+    MAIN -->|"仕様確認"| RFC
+    MAIN -->|"翻訳"| TRANS
+    MAIN -->|"図表"| DOC
+
+    RFC -->|"結果"| MAIN
+    TRANS -->|"結果"| MAIN
+    DOC -->|"結果"| MAIN
+```
+
+### サブエージェント定義
+
+```markdown
+<!-- agents/rfc-specialist.md -->
+
+name: rfc-specialist
+tools: rfcxml:\*
+model: sonnet
+```
+
+```markdown
+<!-- agents/translation-specialist.md -->
+
+name: translation-specialist
+tools: deepl:translate-text, xcomet:xcomet_evaluate, xcomet:xcomet_detect_errors
+model: sonnet
+```
+
+```markdown
+<!-- agents/documentation-specialist.md -->
+
+name: documentation-specialist
+tools: mermaid:\*
+model: sonnet
+```
+
+### メリット
+
+- **コンテキスト分離** - 各エージェントは自分のMCPだけ認識
+- **専門性向上** - 役割に特化した指示
+- **並列処理** - Git worktreesで物理的に分離可能
+
+## ワークフロー選択ガイド
+
+| 目的                 | 推奨パターン | 主要MCP                 |
+| -------------------- | ------------ | ----------------------- |
+| 技術文書翻訳         | パターン1/2  | deepl + xcomet          |
+| 仕様理解             | パターン3    | rfcxml                  |
+| コンプライアンス確認 | パターン4    | hourei + rfcxml         |
+| 実装チェック         | パターン5    | rfcxml                  |
+| RxJSデバッグ         | パターン6    | rxjs                    |
+| ドキュメント作成     | パターン7    | 複合                    |
+| 大規模タスク         | パターン8    | 複合 + サブエージェント |

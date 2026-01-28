@@ -1,172 +1,176 @@
-# AI駆動開発のビジョン
+# Vision for AI-Driven Development
 
-このドキュメントでは、AIエージェント構成（MCP・Skills・Agent統合）の根底にある思想と、AI駆動開発に対する基本的な考え方を整理する。
+[日本語版 (Japanese)](./01-vision.ja.md)
 
-> AI駆動開発の本質は、コード生成だけでなく、**全工程でAIを「知的アシスタント」として活用**し、人間はより高次の判断・創造に集中できる環境を作ることである。
+This document outlines the philosophy underlying AI agent architecture (MCP, Skills, and Agent integration) and the fundamental approach to AI-driven development.
 
-## 核心的な認識
+> The essence of AI-driven development is not just code generation, but **leveraging AI as an "intelligent assistant" throughout the entire process**, enabling humans to focus on higher-level decision-making and creativity.
 
-### AIは「万能ではない」
+## Core Understanding
 
-AIの能力が急速に向上している一方で、その限界を正しく認識することが重要である。AIを過信せず、適切に活用するためには、以下の制約を理解する必要がある。
+### AI is "Not Omnipotent"
 
-AIは学習データから確率的に出力を生成するが、以下を保証できない。
+While AI capabilities are rapidly advancing, it is crucial to correctly recognize their limitations. To avoid over-reliance on AI and use it appropriately, we need to understand the following constraints.
 
-| AIの限界   | 説明                                                 |
-| ---------- | ---------------------------------------------------- |
-| **正確性** | Hallucination問題 - 事実と異なる情報を生成する可能性 |
-| **最新性** | 学習データのカットオフ以降の情報を持たない           |
-| **権威性** | 仕様の正式な解釈を保証できない                       |
-| **責任性** | 法的・倫理的判断の根拠を示せない                     |
+AI generates outputs probabilistically from training data, but cannot guarantee:
 
-**だから、信頼できるソースに接続する必要がある。**
+| AI Limitation       | Description                                                           |
+| ------------------- | --------------------------------------------------------------------- |
+| **Accuracy**        | Hallucination problem - may generate information that differs from facts |
+| **Currency**        | Does not have information beyond the training data cutoff             |
+| **Authority**       | Cannot guarantee official interpretation of specifications            |
+| **Accountability**  | Cannot provide grounds for legal or ethical judgments                 |
 
-## AI駆動開発の本質
+**Therefore, we need to connect to reliable sources.**
+
+## The Essence of AI-Driven Development
 
 ```
-AI駆動開発 ≠ AIにコードを書かせること
-AI駆動開発 = 全工程でAIを活用し、人間は判断・創造に集中
+AI-driven development ≠ Having AI write code
+AI-driven development = Utilizing AI throughout all processes while humans focus on judgment and creativity
 ```
 
-### 過渡期における現実
+### The Reality During This Transitional Period
 
-現在、AIがCI/CDを含め、いきなりバイナリを出力して実装できるような未来が来るまで、**これまでの人々が培ってきたエンジニアリングの導入は不可欠**である。
+Currently, until the future arrives where AI can directly output binaries including CI/CD, **integrating the engineering practices that people have cultivated over time is essential**.
 
-その必要なものとな何か？
+What are these necessary elements?
 
-つまり、「AIは最もらしい生成は行なってくれるが、**判断するための指針が必要**」ということです。
+In other words, "AI can generate plausible outputs, but **guidelines for decision-making are needed**."
 
-そのために**ブレない参照先**が必要になる。
+This is why **unwavering reference sources** are necessary.
 
 ```mermaid
 graph TB
-    subgraph 現在のソフトウェア開発
-        AI[AI] --> |"生成"| Code[コード]
-        Code --> |"依存"| Layer[抽象化レイヤー]
-        Layer --> |"人類の遺産"| Standards[標準規格・仕様]
+    subgraph Current Software Development
+        AI[AI] --> |"Generation"| Code[Code]
+        Code --> |"Depends on"| Layer[Abstraction Layer]
+        Layer --> |"Human Heritage"| Standards[Standards & Specifications]
     end
 
-    Standards --> |"参照"| AI
+    Standards --> |"Reference"| AI
 
     style Standards fill:#ffd700,color:#000,stroke:#b8860b,stroke-width:2px
 
 ```
 
-## 「ブレない参照先」の重要性
+## The Importance of "Unwavering Reference Sources"
 
-### なぜ参照先が必要か
+### Why Reference Sources Are Needed
 
-| AIの課題             | 参照先が解決すること           |
-| -------------------- | ------------------------------ |
-| 学習データの時点固定 | 権威ある最新情報源へのアクセス |
-| ハルシネーション     | 検証可能な根拠の提供           |
-| 文脈による解釈のブレ | 一貫した判断基準               |
-| 最新情報の欠如       | 最新仕様の取得                 |
+| AI Challenge                    | What Reference Sources Solve       |
+| ------------------------------- | ---------------------------------- |
+| Fixed point-in-time training data | Access to authoritative up-to-date sources |
+| Hallucination                   | Provision of verifiable evidence   |
+| Interpretation variance by context | Consistent decision criteria     |
+| Lack of latest information      | Retrieval of current specifications |
 
-### 「ブレない参照先」を実現する2つの手段
+### Two Means to Achieve "Unwavering Reference Sources"
 
-AIに「ブレない参照先」を与える手段として、**MCP**と**Skills**がある。
+**MCP** and **Skills** serve as means to provide AI with "unwavering reference sources."
 
-| 手段                                                | 役割                                     | 例                                       |
-| --------------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| **[MCP](https://modelcontextprotocol.io/)**         | 外部の権威ある情報源への動的アクセス     | RFC、法令、W3C標準                       |
-| **[Skills](https://github.com/vercel-labs/skills)** | ドメイン知識・ベストプラクティスの体系化 | 設計原則、ワークフロー、コーディング規約 |
+| Means                                               | Role                                          | Examples                                    |
+| --------------------------------------------------- | --------------------------------------------- | ------------------------------------------- |
+| **[MCP](https://modelcontextprotocol.io/)**         | Dynamic access to external authoritative sources | RFC, legislation, W3C standards            |
+| **[Skills](https://github.com/vercel-labs/skills)** | Systematization of domain knowledge and best practices | Design principles, workflows, coding standards |
 
-### 参照先MCP/Skillsの価値
+### Value of Reference MCP/Skills
 
-1. **AIの判断が検証可能になる** - 出力の根拠を示せる
-2. **一貫性のある品質が担保される** - 標準に準拠した出力
-3. **ベンダーロックインを回避できる** - オープン標準に基づく
-4. **知識へのアクセスが民主化される** - 専門家でなくても正確な情報に到達
-5. **ドメイン知識が再利用可能になる** - チームのノウハウをSkillsとして形式知化
+1. **AI decisions become verifiable** - Can demonstrate the basis for outputs
+2. **Consistent quality is ensured** - Standards-compliant outputs
+3. **Vendor lock-in is avoided** - Based on open standards
+4. **Access to knowledge is democratized** - Reach accurate information without being an expert
+5. **Domain knowledge becomes reusable** - Formalize team know-how as Skills
 
-## 知識の民主化
+## Democratization of Knowledge
 
-### 従来の問題点
+### Problems with the Traditional Approach
 
 ```
-専門家 → 書籍/講演 → 一般開発者
-         ↑
-    高コスト・一方通行・言語障壁
+Expert → Books/Lectures → General Developers
+              ↑
+    High cost・One-way・Language barriers
 ```
 
-### MCP/Skillsが実現する世界
+### The World MCP/Skills Enables
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  外部の権威ある情報源              ドメイン知識         │
-│  （RFC/法令/W3C）                 （設計原則/規約）     │
+│  External Authoritative Sources     Domain Knowledge    │
+│  (RFC/Legislation/W3C)              (Design Principles/ │
+│                                      Standards)         │
 │         ↓                              ↓               │
-│     MCP化（動的アクセス）         Skills化（体系化）    │
+│     MCP-ified (Dynamic Access)    Skills-ified         │
+│                                   (Systematization)     │
 │         └──────────┬───────────────┘                   │
 │                    ↓                                   │
 │                   AI                                   │
 │                    ↓                                   │
-│         ドキュメント/チェックリスト                     │
+│         Documentation/Checklists                       │
 │                    ↓                                   │
-│          誰でもアクセス可能な知識                       │
+│          Knowledge Accessible to Everyone              │
 └─────────────────────────────────────────────────────────┘
 ```
 
-高額なコンサルや専門家に頼らなくても、**正確な情報に基づいた開発ができるようになる**。
+**Development based on accurate information becomes possible** without relying on expensive consultants or specialists.
 
-> **MCPとSkillsの使い分け**については [skills/vs-mcp.md](../skills/vs-mcp.md) を参照。
+> For **how to distinguish between MCP and Skills**, see [skills/vs-mcp.md](../skills/vs-mcp.md).
 
-## 人間 → AI（構造化）の知識変換
+## Human → AI (Structuring) Knowledge Transformation
 
-AIが「揺らがない参照元」にアクセスできるようにする。
+Enable AI to access "unwavering reference sources."
 
-### MCPによる外部情報源の構造化
+### Structuring External Information Sources via MCP
 
-| 人間の知識 | 構造化形式 | AIが使える形   |
-| ---------- | ---------- | -------------- |
-| 法律の条文 | e-Gov API  | hourei-mcp     |
-| 技術仕様   | RFC XML    | rfcxml-mcp     |
-| Web標準    | W3C/WHATWG | w3c-mcp        |
-| 翻訳ルール | 用語集     | DeepL Glossary |
+| Human Knowledge        | Structured Format | AI-Usable Form |
+| ---------------------- | ----------------- | -------------- |
+| Legal text             | e-Gov API         | hourei-mcp     |
+| Technical specifications | RFC XML         | rfcxml-mcp     |
+| Web standards          | W3C/WHATWG        | w3c-mcp        |
+| Translation rules      | Glossary          | DeepL Glossary |
 
-### Skillsによるドメイン知識の体系化
+### Systematizing Domain Knowledge via Skills
 
-| チームの知識     | 形式     | AIが使える形           |
-| ---------------- | -------- | ---------------------- |
-| 設計原則         | Markdown | frontend-design skill  |
-| コーディング規約 | Markdown | coding-standards skill |
-| ワークフロー     | Markdown | doc-coauthoring skill  |
+| Team Knowledge      | Format   | AI-Usable Form         |
+| ------------------- | -------- | ---------------------- |
+| Design principles   | Markdown | frontend-design skill  |
+| Coding standards    | Markdown | coding-standards skill |
+| Workflows           | Markdown | doc-coauthoring skill  |
 
-## AI → 人間（理解支援）の知識変換
+## AI → Human (Comprehension Support) Knowledge Transformation
 
-人間が専門家でなくても正確な知識にアクセスできるようにする。
+Enable humans to access accurate knowledge even without being specialists.
 
-| 複雑な情報源        | AI処理     | 人間が理解できる形 |
-| ------------------- | ---------- | ------------------ |
-| RFC 3161（135要件） | 抽出・分類 | チェックリスト     |
-| 電子署名法 + RFC    | 対応付け   | マッピング表       |
-| 技術仕様            | 可視化     | Mermaid図          |
-| 英語RFC             | 翻訳       | 日本語解説         |
+| Complex Information Source | AI Processing        | Human-Understandable Form |
+| -------------------------- | -------------------- | ------------------------- |
+| RFC 3161 (135 requirements) | Extraction/Classification | Checklist            |
+| Digital Signature Law + RFC | Mapping             | Correspondence table      |
+| Technical specifications    | Visualization       | Mermaid diagrams          |
+| English RFCs               | Translation          | Explanations in local language |
 
-## 人間とAIの役割分担
+## Division of Roles Between Humans and AI
 
 ```mermaid
 graph TB
-    subgraph 人間の役割
-        A[意思決定]
-        B[創造性]
-        C[品質判断]
-        D[ステークホルダー対話]
+    subgraph Human Roles
+        A[Decision Making]
+        B[Creativity]
+        C[Quality Judgment]
+        D[Stakeholder Communication]
     end
 
-    subgraph "AIの役割（MCP経由）"
-        E[情報収集・分析]
-        F[定型作業自動化]
-        G[品質チェック]
-        H[ドキュメント生成]
+    subgraph "AI Roles (via MCP)"
+        E[Information Gathering & Analysis]
+        F[Routine Task Automation]
+        G[Quality Checking]
+        H[Document Generation]
     end
 
-    subgraph 成果
-        I[開発速度向上]
-        J[品質向上]
-        K[ナレッジ蓄積]
-        L[属人化解消]
+    subgraph Outcomes
+        I[Improved Development Speed]
+        J[Improved Quality]
+        K[Knowledge Accumulation]
+        L[Reduced Key-Person Dependency]
     end
 
     A --> E
@@ -182,33 +186,33 @@ graph TB
     K --> L
 ```
 
-## このリポジトリの位置づけ
+## Positioning of This Repository
 
 ```mermaid
 graph TB
-    subgraph 知識の民主化
-        RAW[生の情報源<br/>RFC・法令・標準]
-        DOMAIN[ドメイン知識<br/>設計原則・規約]
-        MCP[MCP層<br/>rfcxml / hourei / w3c]
-        SKILLS[Skills層<br/>frontend-design / doc-coauthoring]
-        DOC[ドキュメント層<br/>Notes-about-Digital-Signatures<br/>websocket-practical-guide]
-        USER[エンドユーザー<br/>開発者・学習者]
+    subgraph Democratization of Knowledge
+        RAW[Raw Information Sources<br/>RFC・Legislation・Standards]
+        DOMAIN[Domain Knowledge<br/>Design Principles・Standards]
+        MCP[MCP Layer<br/>rfcxml / hourei / w3c]
+        SKILLS[Skills Layer<br/>frontend-design / doc-coauthoring]
+        DOC[Documentation Layer<br/>Notes-about-Digital-Signatures<br/>websocket-practical-guide]
+        USER[End Users<br/>Developers・Learners]
 
-        RAW -->|"AIが構造化<br/>して取得"| MCP
-        DOMAIN -->|"AIが参照"| SKILLS
-        MCP -->|"AIが人間向けに<br/>変換"| DOC
-        SKILLS -->|"AIが適用"| DOC
-        DOC -->|"理解・実装"| USER
+        RAW -->|"AI structures<br/>and retrieves"| MCP
+        DOMAIN -->|"AI references"| SKILLS
+        MCP -->|"AI transforms<br/>for humans"| DOC
+        SKILLS -->|"AI applies"| DOC
+        DOC -->|"Understand・Implement"| USER
     end
 ```
 
-このリポジトリは、AIエージェント構成（MCP・Skills・Agent統合）の設計思想・アーキテクチャ・実践ノウハウを整理し、**AI駆動開発の基盤となる「ブレない参照先」の構築戦略**を記録する場所である。
+This repository is a place to organize the design philosophy, architecture, and practical know-how of AI agent architecture (MCP, Skills, and Agent integration), and to document **strategies for building "unwavering reference sources" as the foundation of AI-driven development**.
 
-## 核心メッセージ
+## Core Messages
 
-1. **AI駆動開発はコード生成だけではない** - 全工程でAIを活用
-2. **AIには判断の指針が必要** - ブレない参照先の重要性
-3. **人間のエンジニアリング知識を体系化** - MCP/Skillsとして形式知化
-4. **標準規格MCPが基盤** - RFC, W3C, 法令等へのアクセス民主化
-5. **ドメイン知識はSkillsで共有** - チームのノウハウを再利用可能に
-6. **双方向の知識変換** - 人間→AI（構造化）、AI→人間（理解支援）
+1. **AI-driven development is not just code generation** - Utilize AI throughout all processes
+2. **AI needs guidelines for decision-making** - The importance of unwavering reference sources
+3. **Systematize human engineering knowledge** - Formalize as MCP/Skills
+4. **Standards-based MCPs are the foundation** - Democratize access to RFC, W3C, legislation, etc.
+5. **Share domain knowledge via Skills** - Make team know-how reusable
+6. **Bidirectional knowledge transformation** - Human→AI (structuring), AI→Human (comprehension support)

@@ -1,26 +1,28 @@
-# Skills の概要
+# Skills Overview
 
-## Vercel Skills とは
+[日本語版 (Japanese)](./overview.ja.md)
 
-Vercel Skills は、AIエージェント向けの標準化されたドメイン知識表現フレームワークです。MCPと異なり、**特定のドメインやタスクに対する実行可能なノウハウ**をエージェントが習得・活用できるようにします。
+## What are Vercel Skills?
 
-### 特徴
+Vercel Skills is a standardized domain knowledge representation framework for AI agents. Unlike MCP, it enables agents to acquire and utilize **executable know-how for specific domains and tasks**.
 
-- **ドメイン知識の体系化**: 特定分野の専門知識・ベストプラクティスを構造化
-- **インタラクティブな発見**: エージェントが利用可能なSkillsを対話的に探索
-- **標準仕様への準拠**: Agent Skills Specification に基づく相互運用性
-- **オープンソース化**: [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) がリリース
+### Features
+
+- **Systematized Domain Knowledge**: Structures expertise and best practices for specific fields
+- **Interactive Discovery**: Agents can interactively explore available Skills
+- **Standards Compliance**: Interoperability based on the Agent Skills Specification
+- **Open Source**: [Vercel Skills v1.1.1](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) has been released
 
 ## Agent Skills Specification
 
-[https://agentskills.io](https://agentskills.io) で標準化されている仕様。
+A specification standardized at [https://agentskills.io](https://agentskills.io).
 
-## 対応エージェント一覧（27種類）
+## Supported Agents (27 types)
 
-Vercel Skills CLI は以下のエージェントに対応しています：
+Vercel Skills CLI supports the following agents:
 
-| Agent | CLI引数 | プロジェクトパス |
-|-------|---------|------------------|
+| Agent | CLI Argument | Project Path |
+|-------|--------------|--------------|
 | Claude Code | `claude-code` | `.claude/skills/` |
 | Cursor | `cursor` | `.cursor/skills/` |
 | Codex | `codex` | `.codex/skills/` |
@@ -30,64 +32,64 @@ Vercel Skills CLI は以下のエージェントに対応しています：
 | Cline | `cline` | `.cline/skills/` |
 | Roo Code | `roo` | `.roo/skills/` |
 | Gemini CLI | `gemini-cli` | `.gemini/skills/` |
-| その他 | ... | ... |
+| Others | ... | ... |
 
-> 完全な一覧は [Vercel Skills README](https://github.com/vercel-labs/skills#supported-agents) を参照
+> For the complete list, see [Vercel Skills README](https://github.com/vercel-labs/skills#supported-agents)
 
-## Skill の構成要素
+## Skill Components
 
-### 1. メタデータ
+### 1. Metadata
 
 ```json
 {
 	"name": "frontend-design",
 	"version": "1.0.0",
-	"description": "React/Next.js フロントエンド設計のベストプラクティス",
+	"description": "Best practices for React/Next.js frontend design",
 	"author": "example-org",
 	"tags": ["frontend", "react", "design"]
 }
 ```
 
-### 2. 実行可能なガイドライン
+### 2. Executable Guidelines
 
-- ディレクトリ構成の推奨パターン
-- コンポーネント設計の原則
-- テストカバレッジ要件
-- パフォーマンス最適化の指針
+- Recommended directory structure patterns
+- Component design principles
+- Test coverage requirements
+- Performance optimization guidelines
 
-### 3. リアルタイムの学習
+### 3. Real-time Learning
 
-- エージェントが対話を通じてSkillを習得
-- タスク実行中のコンテキスト内で実装
+- Agents acquire Skills through dialogue
+- Implementation within context during task execution
 
-## MCPとSkillsの使い分け
+## Choosing Between MCP and Skills
 
-| 側面             | MCP                   | Skills                           |
-| ---------------- | --------------------- | -------------------------------- |
-| **目的**         | 外部ツール・API連携   | ドメイン知識・実行ノウハウ       |
-| **対象**         | 外部システム          | 実装パターン・ベストプラクティス |
-| **ユースケース** | rfcxml-mcp, deepl-mcp | frontend-design, doc-coauthoring |
-| **運用形態**     | サーバープロセス      | メモリ内（Skillモデル）          |
+| Aspect | MCP | Skills |
+|--------|-----|--------|
+| **Purpose** | External tool/API integration | Domain knowledge/executable know-how |
+| **Target** | External systems | Implementation patterns/best practices |
+| **Use Cases** | rfcxml-mcp, deepl-mcp | frontend-design, doc-coauthoring |
+| **Operation Mode** | Server process | In-memory (Skill model) |
 
-> 詳細は [vs-mcp.md](./vs-mcp.md) を参照。
+> For details, see [vs-mcp.md](./vs-mcp.md).
 
-## Skillsの作成・活用パターン
+## Skills Creation and Utilization Patterns
 
-1. **既存ドキュメント化フェーズ**
-   - チーム内のベストプラクティスをSkillsに変換
-   - 例: Figma設計ガイド → `design-system-skill`
+1. **Documentation Phase**
+   - Convert team best practices into Skills
+   - Example: Figma design guide → `design-system-skill`
 
-2. **エージェント習得フェーズ**
-   - エージェントがSkillを通じてドメイン知識を習得
-   - 対話的なクエリで理解度を深める
+2. **Agent Acquisition Phase**
+   - Agents acquire domain knowledge through Skills
+   - Deepen understanding through interactive queries
 
-3. **運用・改善フェーズ**
-   - エージェントの実行結果をフィードバック
-   - Skillの内容を継続的に最適化
+3. **Operation and Improvement Phase**
+   - Feedback from agent execution results
+   - Continuously optimize Skill content
 
-## Vercel Skills CLIとの統合
+## Integration with Vercel Skills CLI
 
-### find-skills によるSkills発見フロー
+### Skills Discovery Flow with find-skills
 
 ```mermaid
 sequenceDiagram
@@ -105,7 +107,7 @@ sequenceDiagram
     Local-->>U: Ready to use
 ```
 
-### 動的なSkills拡張パターン
+### Dynamic Skills Extension Pattern
 
 ```mermaid
 flowchart LR
@@ -132,27 +134,27 @@ flowchart LR
     AGENT --> MCP
 ```
 
-### インストールコマンド例
+### Installation Command Examples
 
 ```bash
-# Skillを検索
+# Search for Skills
 npx skills find "code review"
 
-# 特定のSkillをインストール
+# Install a specific Skill
 npx skills add vercel-labs/agent-skills --skill frontend-design
 
-# 複数エージェントに対応
+# Support multiple agents
 npx skills add vercel-labs/agent-skills -a claude-code -a cursor
 
-# プロジェクトスコープでインストール（デフォルト）
+# Install at project scope (default)
 npx skills add ./my-skills
 
-# グローバルスコープでインストール
+# Install at global scope
 npx skills add ./my-skills -g
 ```
 
-## 参考リンク
+## Reference Links
 
 - [Agent Skills Specification](https://agentskills.io)
-- [Vercel Skills 公式ドキュメント](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support)
-- [関連リンク集](../../references/skills/links.md)
+- [Vercel Skills Official Documentation](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support)
+- [Related Links Collection](../../references/skills/links.md)

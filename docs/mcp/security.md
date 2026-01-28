@@ -1,210 +1,212 @@
-# MCP開発時のセキュリティ考慮
+# Security Considerations for MCP Development
 
-> MCPサーバーの開発・運用におけるセキュリティリスクと対策を整理する。
+[日本語版 (Japanese)](./security.ja.md)
 
-## このドキュメントについて
+> Organizing security risks and countermeasures for MCP server development and operation.
 
-MCPサーバーは外部APIやデータベースに接続するため、適切なセキュリティ対策なしには重大なリスクを招く可能性がある。LINEヤフーの調査によれば、多くのMCPが静的APIキーに依存しており、セキュリティ面では発展途上にある。
+## About This Document
 
-このドキュメントでは、MCPサーバーの開発・運用における主要なリスクカテゴリを整理し、それぞれの対策を具体的に示す。また、**OWASP MCP Top 10（2025）** を「ブレない参照先」として活用し、開発時に使えるチェックリストを提供する。
+MCP servers connect to external APIs and databases, which can lead to serious risks without proper security measures. According to LY Corporation's research, many MCPs rely on static API keys, indicating that security practices are still evolving.
 
-## 参照先：OWASP MCP Top 10
+This document organizes the main risk categories for MCP server development and operation, and provides specific countermeasures for each. It also leverages **OWASP MCP Top 10 (2025)** as a reliable reference and provides checklists that can be used during development.
 
-### 概要
+## Reference: OWASP MCP Top 10
 
-MCPサーバー開発時のセキュリティガイドラインとして、**OWASP MCP Top 10 (2025)** を参照する。
+### Overview
 
-| 項目           | 内容                                      |
+We reference **OWASP MCP Top 10 (2025)** as the security guideline for MCP server development.
+
+| Item           | Content                                   |
 | -------------- | ----------------------------------------- |
 | **URL**        | https://owasp.org/www-project-mcp-top-10/ |
-| **ステータス** | Phase 3 - Beta Release and Pilot Testing  |
-| **ライセンス** | CC BY-NC-SA 4.0                           |
-| **リーダー**   | Vandana Verma Sehgal, Liran Tal           |
+| **Status**     | Phase 3 - Beta Release and Pilot Testing  |
+| **License**    | CC BY-NC-SA 4.0                           |
+| **Leaders**    | Vandana Verma Sehgal, Liran Tal           |
 
-> **注意**: これは従来の「OWASP Top 10（Webアプリケーション脆弱性）」とは別のプロジェクトであり、**MCPサーバー開発に特化したセキュリティガイドライン**である。
+> **Note**: This is a separate project from the traditional "OWASP Top 10 (Web Application Vulnerabilities)" and is **a security guideline specifically for MCP server development**.
 
-### OWASP Top 10 との違い
+### Differences from OWASP Top 10
 
-| 項目         | OWASP Top 10（従来） | OWASP MCP Top 10（2025）            |
-| ------------ | -------------------- | ----------------------------------- |
-| **対象**     | Webアプリケーション  | MCPサーバー開発                     |
-| **脆弱性例** | SQLi, XSS, CSRF      | Token Mismanagement, Tool Poisoning |
-| **用途**     | Webセキュリティ監査  | MCP開発時の設計指針                 |
+| Item              | OWASP Top 10 (Traditional)  | OWASP MCP Top 10 (2025)             |
+| ----------------- | --------------------------- | ----------------------------------- |
+| **Target**        | Web Applications            | MCP Server Development              |
+| **Vulnerability Examples** | SQLi, XSS, CSRF    | Token Mismanagement, Tool Poisoning |
+| **Use Case**      | Web Security Audits         | Design Guidelines for MCP Development |
 
-### OWASP MCP Top 10 一覧
+### OWASP MCP Top 10 List
 
 ```mermaid
 mindmap
   root((OWASP MCP<br/>Top 10))
-    認証・認可
+    Authentication & Authorization
       MCP01: Token Mismanagement
       MCP02: Privilege Escalation
       MCP07: Insufficient Auth
-    サプライチェーン
+    Supply Chain
       MCP03: Tool Poisoning
       MCP04: Supply Chain Attacks
       MCP09: Shadow MCP Servers
-    インジェクション
+    Injection
       MCP05: Command Injection
       MCP06: Prompt Injection
-    データ・監視
+    Data & Monitoring
       MCP08: Lack of Audit
       MCP10: Context Over-Sharing
 ```
 
-| ID        | 名称                                        | 概要                                                                                          |
-| --------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| **MCP01** | Token Mismanagement & Secret Exposure       | 認証情報のハードコード、長期間有効なトークン、ログへの漏洩                                    |
-| **MCP02** | Privilege Escalation via Scope Creep        | 緩い権限定義による権限昇格、スコープの拡大                                                    |
-| **MCP03** | Tool Poisoning                              | 悪意あるツール/プラグインによるコンテキスト注入（rug pull、schema poisoning、tool shadowing） |
-| **MCP04** | Supply Chain Attacks & Dependency Tampering | 依存パッケージの改ざん、エージェント動作の変更                                                |
-| **MCP05** | Command Injection & Execution               | 未検証の入力によるシステムコマンド実行                                                        |
-| **MCP06** | Prompt Injection via Contextual Payloads    | テキストベースのインジェクション攻撃、モデルを標的とした攻撃                                  |
-| **MCP07** | Insufficient Authentication & Authorization | マルチエージェント環境での弱いID検証                                                          |
-| **MCP08** | Lack of Audit and Telemetry                 | ログ・監視の不足によるインシデント対応の困難                                                  |
-| **MCP09** | Shadow MCP Servers                          | セキュリティガバナンス外の未承認MCPデプロイ（Shadow ITのMCP版）                               |
-| **MCP10** | Context Injection & Over-Sharing            | 共有コンテキストウィンドウでの機密情報漏洩                                                    |
+| ID        | Name                                        | Overview                                                                                          |
+| --------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **MCP01** | Token Mismanagement & Secret Exposure       | Hardcoded credentials, long-lived tokens, credential leakage in logs                              |
+| **MCP02** | Privilege Escalation via Scope Creep        | Privilege escalation through loose permission definitions, scope expansion                        |
+| **MCP03** | Tool Poisoning                              | Context injection by malicious tools/plugins (rug pull, schema poisoning, tool shadowing)         |
+| **MCP04** | Supply Chain Attacks & Dependency Tampering | Tampering with dependencies, modification of agent behavior                                       |
+| **MCP05** | Command Injection & Execution               | System command execution through unvalidated input                                                |
+| **MCP06** | Prompt Injection via Contextual Payloads    | Text-based injection attacks, attacks targeting the model                                         |
+| **MCP07** | Insufficient Authentication & Authorization | Weak identity verification in multi-agent environments                                            |
+| **MCP08** | Lack of Audit and Telemetry                 | Difficulty in incident response due to insufficient logging and monitoring                        |
+| **MCP09** | Shadow MCP Servers                          | Unauthorized MCP deployment outside security governance (MCP version of Shadow IT)                |
+| **MCP10** | Context Injection & Over-Sharing            | Sensitive information disclosure in shared context windows                                        |
 
-### 各脆弱性の詳細と対策
+### Detailed Vulnerabilities and Countermeasures
 
 #### MCP01: Token Mismanagement & Secret Exposure
 
-**リスク**: 認証情報がソースコード、ログ、モデルのメモリに残る
+**Risk**: Credentials remain in source code, logs, and model memory
 
 ```typescript
-// ❌ 悪い例：ハードコード
+// ❌ Bad example: Hardcoded
 const API_KEY = 'sk-1234567890abcdef';
 
-// ✅ 良い例：環境変数から取得
+// ✅ Good example: Retrieved from environment variables
 const API_KEY = process.env.DEEPL_API_KEY;
 ```
 
-**対策**:
+**Countermeasures**:
 
-- 認証情報は環境変数またはシークレット管理サービスから取得
-- ログに認証情報を出力しない
-- 短命なトークン（Short-lived tokens）を使用
-- トークンのローテーションを実装
+- Retrieve credentials from environment variables or secret management services
+- Do not output credentials to logs
+- Use short-lived tokens
+- Implement token rotation
 
 #### MCP02: Privilege Escalation via Scope Creep
 
-**リスク**: 最初は限定的だった権限が時間とともに拡大
+**Risk**: Initially limited permissions expand over time
 
-**対策**:
+**Countermeasures**:
 
-- 最小権限の原則を厳守
-- 権限の定期レビュー
-- ツールごとに必要な権限を明示的に定義
+- Strictly follow the principle of least privilege
+- Conduct regular permission reviews
+- Explicitly define required permissions for each tool
 
 #### MCP03: Tool Poisoning
 
-**リスク**: 悪意あるMCPサーバーがコンテキストに有害な情報を注入
+**Risk**: Malicious MCP servers inject harmful information into the context
 
 ```
-攻撃パターン:
-├── Rug Pull: 信頼を得た後に悪意ある動作に変更
-├── Schema Poisoning: スキーマ定義に悪意あるコードを埋め込み
-└── Tool Shadowing: 正規ツールを偽装して置き換え
+Attack patterns:
+├── Rug Pull: Changes to malicious behavior after gaining trust
+├── Schema Poisoning: Embedding malicious code in schema definitions
+└── Tool Shadowing: Impersonating and replacing legitimate tools
 ```
 
-**対策**:
+**Countermeasures**:
 
-- 信頼できるソースからのみMCPを導入
-- ソースコードレビューの実施
-- 利用許可リストでの管理
+- Only adopt MCPs from trusted sources
+- Conduct source code reviews
+- Manage through allowlists
 
 #### MCP04: Supply Chain Attacks & Dependency Tampering
 
-**リスク**: 依存パッケージが改ざんされ、エージェントの動作が変更される
+**Risk**: Dependencies are tampered with, modifying agent behavior
 
-**対策**:
+**Countermeasures**:
 
 ```bash
-# 定期的な脆弱性チェック
+# Regular vulnerability checks
 npm audit
 pip-audit
 
-# ロックファイルの使用
+# Use lock files
 package-lock.json
 poetry.lock
 ```
 
 #### MCP05: Command Injection & Execution
 
-**リスク**: 未検証の入力がシステムコマンドとして実行される
+**Risk**: Unvalidated input is executed as system commands
 
 ```typescript
-// ❌ 悪い例：直接コマンド実行
+// ❌ Bad example: Direct command execution
 exec(`ls ${userInput}`);
 
-// ✅ 良い例：入力検証 + エスケープ
+// ✅ Good example: Input validation + escaping
 const sanitizedInput = sanitize(userInput);
 execFile('ls', [sanitizedInput]);
 ```
 
-**対策**:
+**Countermeasures**:
 
-- すべての入力を検証
-- パラメータ化されたコマンド実行
-- サンドボックス環境での実行
+- Validate all inputs
+- Use parameterized command execution
+- Execute in sandbox environments
 
 #### MCP06: Prompt Injection via Contextual Payloads
 
-**リスク**: テキストに埋め込まれた悪意ある指示がモデルの動作を変更
+**Risk**: Malicious instructions embedded in text alter model behavior
 
-**対策**:
+**Countermeasures**:
 
-- 入力のサニタイズ
-- コンテキストの分離
-- 出力の検証
+- Input sanitization
+- Context isolation
+- Output validation
 
 #### MCP07: Insufficient Authentication & Authorization
 
-**リスク**: マルチエージェント環境での弱いID検証
+**Risk**: Weak identity verification in multi-agent environments
 
-**対策**:
+**Countermeasures**:
 
-- 強力な認証メカニズム（OAuth 2.0推奨）
-- エージェント間の相互認証
-- 最小権限の原則
+- Strong authentication mechanisms (OAuth 2.0 recommended)
+- Mutual authentication between agents
+- Principle of least privilege
 
 #### MCP08: Lack of Audit and Telemetry
 
-**リスク**: ログ・監視の不足によりインシデント検知・対応が困難
+**Risk**: Insufficient logging and monitoring makes incident detection and response difficult
 
-**対策**:
+**Countermeasures**:
 
-- 構造化ログの実装
-- 監視・アラートの設定
-- 監査証跡の保持
+- Implement structured logging
+- Configure monitoring and alerts
+- Maintain audit trails
 
 #### MCP09: Shadow MCP Servers
 
-**リスク**: 未承認のMCPサーバーがセキュリティガバナンス外で運用される
+**Risk**: Unauthorized MCP servers operate outside security governance
 
-**対策**:
+**Countermeasures**:
 
-- MCPサーバー利用許可リストの運用
-- 定期的な棚卸し
-- セキュリティポリシーの周知
+- Maintain MCP server allowlists
+- Conduct regular inventory audits
+- Communicate security policies
 
 #### MCP10: Context Injection & Over-Sharing
 
-**リスク**: 共有コンテキストウィンドウで機密情報が意図せず公開される
+**Risk**: Sensitive information is unintentionally disclosed in shared context windows
 
-**対策**:
+**Countermeasures**:
 
-- コンテキストへの情報投入を最小限に
-- 機密情報のマスキング
-- コンテキスト分離の検討
+- Minimize information added to context
+- Mask sensitive information
+- Consider context isolation
 
-### OWASP LLM Top 10 との関連
+### Relationship with OWASP LLM Top 10
 
-MCPはLLMと密接に連携するため、**OWASP LLM Top 10**（2025）も重要な参照先となる。
+Since MCP works closely with LLMs, **OWASP LLM Top 10** (2025) is also an important reference.
 
-> **参照**: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+> **Reference**: https://owasp.org/www-project-top-10-for-large-language-model-applications/
 
-#### 重複・関連する脆弱性
+#### Overlapping and Related Vulnerabilities
 
 ```mermaid
 graph LR
@@ -224,165 +226,165 @@ graph LR
         LLM08[LLM08: Excessive Agency]
     end
 
-    MCP06 <-->|"重複"| LLM01
-    MCP04 <-->|"重複"| LLM05
-    MCP10 <-->|"重複"| LLM06
-    MCP03 <-->|"重複"| LLM07
-    MCP01 -.->|"関連"| LLM08
+    MCP06 <-->|"Overlap"| LLM01
+    MCP04 <-->|"Overlap"| LLM05
+    MCP10 <-->|"Overlap"| LLM06
+    MCP03 <-->|"Overlap"| LLM07
+    MCP01 -.->|"Related"| LLM08
 ```
 
-| MCP Top 10                  | LLM Top 10                              | 関連性                                 |
-| --------------------------- | --------------------------------------- | -------------------------------------- |
-| MCP06: Prompt Injection     | LLM01: Prompt Injection                 | **完全重複** - 同一の脅威              |
-| MCP04: Supply Chain         | LLM05: Supply Chain Vulnerabilities     | **完全重複** - 依存関係の脆弱性        |
-| MCP10: Context Over-Sharing | LLM06: Sensitive Information Disclosure | **高関連** - 機密情報の漏洩経路        |
-| MCP03: Tool Poisoning       | LLM07: Insecure Plugin Design           | **高関連** - プラグイン/ツールの安全性 |
-| MCP02: Privilege Escalation | LLM08: Excessive Agency                 | **関連** - 過剰な権限・自律性          |
+| MCP Top 10                  | LLM Top 10                              | Relationship                                |
+| --------------------------- | --------------------------------------- | ------------------------------------------- |
+| MCP06: Prompt Injection     | LLM01: Prompt Injection                 | **Complete overlap** - Same threat          |
+| MCP04: Supply Chain         | LLM05: Supply Chain Vulnerabilities     | **Complete overlap** - Dependency vulnerabilities |
+| MCP10: Context Over-Sharing | LLM06: Sensitive Information Disclosure | **Highly related** - Sensitive information leakage paths |
+| MCP03: Tool Poisoning       | LLM07: Insecure Plugin Design           | **Highly related** - Plugin/tool security   |
+| MCP02: Privilege Escalation | LLM08: Excessive Agency                 | **Related** - Excessive permissions/autonomy |
 
-#### LLM Top 10 の全体像
+#### LLM Top 10 Overview
 
-| ID    | 脆弱性                           | 概要                               | MCP関連          |
-| ----- | -------------------------------- | ---------------------------------- | ---------------- |
-| LLM01 | Prompt Injection                 | 悪意ある入力によるモデル動作の操作 | MCP06            |
-| LLM02 | Insecure Output Handling         | 出力の不適切な処理                 | ツール出力処理   |
-| LLM03 | Training Data Poisoning          | 学習データの汚染                   | -                |
-| LLM04 | Model Denial of Service          | リソース枯渇攻撃                   | コンテキスト枯渇 |
-| LLM05 | Supply Chain Vulnerabilities     | サプライチェーン攻撃               | MCP04            |
-| LLM06 | Sensitive Information Disclosure | 機密情報の漏洩                     | MCP10            |
-| LLM07 | Insecure Plugin Design           | プラグインの脆弱な設計             | MCP03            |
-| LLM08 | Excessive Agency                 | 過剰な自律性・権限                 | MCP02            |
-| LLM09 | Overreliance                     | LLM出力への過度な依存              | -                |
-| LLM10 | Model Theft                      | モデルの窃取                       | -                |
+| ID    | Vulnerability                    | Overview                                      | MCP Related       |
+| ----- | -------------------------------- | --------------------------------------------- | ----------------- |
+| LLM01 | Prompt Injection                 | Manipulating model behavior through malicious input | MCP06             |
+| LLM02 | Insecure Output Handling         | Improper handling of outputs                  | Tool output handling |
+| LLM03 | Training Data Poisoning          | Contamination of training data                | -                 |
+| LLM04 | Model Denial of Service          | Resource exhaustion attacks                   | Context exhaustion |
+| LLM05 | Supply Chain Vulnerabilities     | Supply chain attacks                          | MCP04             |
+| LLM06 | Sensitive Information Disclosure | Leakage of sensitive information              | MCP10             |
+| LLM07 | Insecure Plugin Design           | Vulnerable plugin design                      | MCP03             |
+| LLM08 | Excessive Agency                 | Excessive autonomy and permissions            | MCP02             |
+| LLM09 | Overreliance                     | Excessive dependence on LLM outputs           | -                 |
+| LLM10 | Model Theft                      | Theft of the model                            | -                 |
 
-#### 両方を参照すべき理由
+#### Why Both Should Be Referenced
 
 ```
-MCPサーバー開発では両方の視点が必要:
+MCP server development requires both perspectives:
 
 OWASP MCP Top 10
-└── MCPサーバー「自体」のセキュリティ
-    ├── ツール定義の安全性
-    ├── 認証情報の管理
-    └── サプライチェーン
+└── Security of the MCP server "itself"
+    ├── Tool definition safety
+    ├── Credential management
+    └── Supply chain
 
 OWASP LLM Top 10
-└── MCPを「使う」LLMアプリのセキュリティ
-    ├── プロンプトインジェクション対策
-    ├── 出力の検証
-    └── 権限の制限
+└── Security of LLM applications "using" MCP
+    ├── Prompt injection countermeasures
+    ├── Output validation
+    └── Permission restrictions
 ```
 
-## MCPセキュリティの現状
+## Current State of MCP Security
 
-### LINEヤフーの調査結果
+### LY Corporation Research Findings
 
-LINEヤフーがMCPエコシステムを調査した結果
+Results from LY Corporation's investigation of the MCP ecosystem:
 
-| 項目                  | 割合     | リスク                         |
-| --------------------- | -------- | ------------------------------ |
-| 何らかの認証が必要    | **88%**  | 認証情報の管理が必要           |
-| 静的APIキー/PATに依存 | **53%**  | 長期有効なトークンの漏洩リスク |
-| OAuth等の安全な方式   | **8.5%** | ほとんどが旧来の方式           |
+| Item                           | Percentage | Risk                                    |
+| ------------------------------ | ---------- | --------------------------------------- |
+| Requires some form of authentication | **88%**    | Credential management is necessary      |
+| Relies on static API keys/PATs | **53%**    | Risk of long-lived token leakage        |
+| Uses secure methods like OAuth | **8.5%**   | Most use legacy methods                 |
 
-**結論**: MCPサーバーの認証は発展途上であり、慎重な管理が必要。
+**Conclusion**: MCP server authentication is still evolving and requires careful management.
 
-## リスクカテゴリ（従来の整理）
+## Risk Categories (Traditional Organization)
 
 ```mermaid
 mindmap
-  root((MCPセキュリティ<br/>リスク))
-    認証・認可
-      APIキー漏洩
-      過剰な権限付与
-      トークン管理
-    データ
-      機密情報の露出
-      入力検証不足
-      ログへの漏洩
-    サプライチェーン
-      悪意あるMCP
-      依存パッケージ
-      更新の信頼性
-    運用
-      設定ミス
-      監視不足
-      インシデント対応
+  root((MCP Security<br/>Risks))
+    Authentication & Authorization
+      API Key Leakage
+      Excessive Permissions
+      Token Management
+    Data
+      Sensitive Information Exposure
+      Insufficient Input Validation
+      Leakage to Logs
+    Supply Chain
+      Malicious MCPs
+      Dependency Packages
+      Update Reliability
+    Operations
+      Configuration Errors
+      Insufficient Monitoring
+      Incident Response
 ```
 
-## リスク1: 認証・認可
+## Risk 1: Authentication & Authorization
 
-### 問題
+### Problems
 
-- **静的APIキーの長期使用** - 漏洩時の影響が大きい
-- **過剰な権限** - 必要以上のスコープを要求
-- **認証情報のハードコード** - ソースコードに直接記載
+- **Long-term use of static API keys** - High impact when leaked
+- **Excessive permissions** - Requesting more scopes than necessary
+- **Hardcoded credentials** - Written directly in source code
 
-### 対策
+### Countermeasures
 
-#### 1. 認証情報の安全な管理
+#### 1. Secure Credential Management
 
 ```bash
-# ❌ 悪い例：ハードコード
+# ❌ Bad example: Hardcoded
 export API_KEY="sk-1234567890abcdef"
 
-# ✅ 良い例：環境変数（.envファイルは.gitignoreに）
+# ✅ Good example: Environment variables (.env file in .gitignore)
 # .env
 DEEPL_API_KEY=${DEEPL_API_KEY}
 
-# さらに良い例：シークレット管理サービス
-# AWS Secrets Manager, HashiCorp Vault等
+# Even better: Secret management services
+# AWS Secrets Manager, HashiCorp Vault, etc.
 ```
 
-#### 2. 最小権限の原則
+#### 2. Principle of Least Privilege
 
 ```markdown
-## MCPツール設計時の権限確認
+## Permission Checklist for MCP Tool Design
 
-- [ ] 本当にその権限が必要か？
-- [ ] 読み取りのみで済む場合は書き込み権限を要求しない
-- [ ] スコープを最小限に絞る
+- [ ] Is that permission really necessary?
+- [ ] Don't request write permissions if read-only access is sufficient
+- [ ] Minimize scope
 ```
 
-#### 3. トークンのローテーション
+#### 3. Token Rotation
 
 ```mermaid
 flowchart LR
-    A[初期トークン発行] --> B[定期ローテーション]
-    B --> C[旧トークン失効]
-    C --> D[新トークン使用]
+    A[Initial Token Issuance] --> B[Regular Rotation]
+    B --> C[Old Token Revocation]
+    C --> D[New Token Usage]
     D --> B
 ```
 
-## リスク2: データセキュリティ
+## Risk 2: Data Security
 
-### 問題
+### Problems
 
-- **機密情報のMCP経由送信** - 意図しないデータ露出
-- **入力検証の不足** - インジェクション攻撃
-- **ログへの機密情報漏洩** - デバッグログに認証情報
+- **Sending sensitive information via MCP** - Unintended data exposure
+- **Insufficient input validation** - Injection attacks
+- **Sensitive information leakage to logs** - Credentials in debug logs
 
-### 対策
+### Countermeasures
 
-#### 1. 入力検証
+#### 1. Input Validation
 
 ```typescript
-// MCPツール実装時の入力検証例
+// Input validation example for MCP tool implementation
 export const getRfcRequirements = {
 	name: 'get_requirements',
-	description: 'RFC要件を取得',
+	description: 'Get RFC requirements',
 	inputSchema: {
 		type: 'object',
 		properties: {
 			rfc: {
 				type: 'number',
 				minimum: 1,
-				maximum: 99999, // 妥当な範囲を設定
-				description: 'RFC番号',
+				maximum: 99999, // Set reasonable range
+				description: 'RFC number',
 			},
 			level: {
 				type: 'string',
-				enum: ['MUST', 'SHOULD', 'MAY'], // 許可値を限定
-				description: '要件レベル',
+				enum: ['MUST', 'SHOULD', 'MAY'], // Limit allowed values
+				description: 'Requirement level',
 			},
 		},
 		required: ['rfc'],
@@ -390,268 +392,268 @@ export const getRfcRequirements = {
 };
 ```
 
-#### 2. ログのサニタイズ
+#### 2. Log Sanitization
 
 ```typescript
-// ❌ 悪い例
-console.log(`API呼び出し: key=${apiKey}, query=${query}`);
+// ❌ Bad example
+console.log(`API call: key=${apiKey}, query=${query}`);
 
-// ✅ 良い例
-console.log(`API呼び出し: key=*****, query=${query}`);
+// ✅ Good example
+console.log(`API call: key=*****, query=${query}`);
 ```
 
-#### 3. 機密データの分類
+#### 3. Sensitive Data Classification
 
 ```markdown
-## データ分類
+## Data Classification
 
-### 送信してはいけないデータ
+### Data That Must Not Be Sent
 
-- 認証情報（APIキー、パスワード）
-- 個人情報（PII）
-- 社内機密情報
+- Credentials (API keys, passwords)
+- Personal Identifiable Information (PII)
+- Internal confidential information
 
-### 送信可能なデータ
+### Data That May Be Sent
 
-- 公開仕様書の参照
-- 一般的な技術情報
-- 匿名化されたデータ
+- Public specification references
+- General technical information
+- Anonymized data
 ```
 
-## リスク3: サプライチェーン
+## Risk 3: Supply Chain
 
-### 問題
+### Problems
 
-- **悪意あるMCPサーバー** - マルウェア混入
-- **依存パッケージの脆弱性** - npm/pipの依存関係
-- **更新の信頼性** - 乗っ取られたパッケージ
+- **Malicious MCP servers** - Malware inclusion
+- **Dependency package vulnerabilities** - npm/pip dependencies
+- **Update reliability** - Compromised packages
 
-### 対策
+### Countermeasures
 
-#### 1. MCP利用許可リスト
+#### 1. MCP Allowlist
 
-LINEヤフーのアプローチを参考に
+Referencing LY Corporation's approach:
 
 ```markdown
-## 承認済みMCPサーバー一覧
+## Approved MCP Server List
 
-### 公式・信頼できるソース
+### Official / Trusted Sources
 
-- @modelcontextprotocol/\* （Anthropic公式）
-- DeepL公式MCP
+- @modelcontextprotocol/\* (Anthropic official)
+- DeepL official MCP
 
-### 自作（内部監査済み）
+### Self-developed (Internally audited)
 
 - @shuji-bonji/rfcxml-mcp
 - @shuji-bonji/xcomet-mcp-server
 
-### 承認待ち
+### Pending Approval
 
-- （セキュリティレビュー中）
+- (Under security review)
 
-### 禁止
+### Prohibited
 
-- 出所不明のMCP
-- 認証情報を外部送信するMCP
+- MCPs of unknown origin
+- MCPs that send credentials externally
 ```
 
-#### 2. 依存関係の監査
+#### 2. Dependency Auditing
 
 ```bash
-# npm audit で脆弱性チェック
+# Check vulnerabilities with npm audit
 npm audit
 
-# 定期的な更新
+# Regular updates
 npm update
 
-# 重大な脆弱性は即座に対応
+# Address critical vulnerabilities immediately
 npm audit fix
 ```
 
-#### 3. ソースコードレビュー
+#### 3. Source Code Review
 
 ```markdown
-## MCPサーバー導入前チェックリスト
+## Pre-deployment Checklist for MCP Servers
 
-- [ ] ソースコードが公開されているか
-- [ ] 認証情報の扱いは適切か
-- [ ] 外部への不審な通信はないか
-- [ ] 依存パッケージは信頼できるか
-- [ ] メンテナンスは継続されているか
+- [ ] Is the source code publicly available?
+- [ ] Are credentials handled appropriately?
+- [ ] Are there any suspicious external communications?
+- [ ] Are the dependencies trustworthy?
+- [ ] Is maintenance ongoing?
 ```
 
-## リスク4: 運用セキュリティ
+## Risk 4: Operational Security
 
-### 問題
+### Problems
 
-- **設定ミス** - 本番環境での誤設定
-- **監視不足** - 異常の検知遅れ
-- **インシデント対応** - 対応手順の不備
+- **Configuration errors** - Misconfigurations in production
+- **Insufficient monitoring** - Delayed anomaly detection
+- **Incident response** - Inadequate response procedures
 
-### 対策
+### Countermeasures
 
-#### 1. 環境分離
+#### 1. Environment Isolation
 
 ```mermaid
 graph LR
-    subgraph 開発環境
-        DEV_MCP[MCP Server<br/>テスト用API]
+    subgraph Development Environment
+        DEV_MCP[MCP Server<br/>Test API]
     end
 
-    subgraph 本番環境
-        PROD_MCP[MCP Server<br/>本番API]
+    subgraph Production Environment
+        PROD_MCP[MCP Server<br/>Production API]
     end
 
-    DEV_MCP -.->|"設定を流用しない"| PROD_MCP
+    DEV_MCP -.->|"Do not reuse configurations"| PROD_MCP
 ```
 
-#### 2. ログ・監視
+#### 2. Logging & Monitoring
 
 ```markdown
-## 監視すべき項目
+## Items to Monitor
 
-- [ ] API呼び出し回数の異常増加
-- [ ] エラー率の上昇
-- [ ] 認証失敗の頻発
-- [ ] 想定外のエンドポイントへのアクセス
+- [ ] Abnormal increase in API call volume
+- [ ] Rising error rates
+- [ ] Frequent authentication failures
+- [ ] Access to unexpected endpoints
 ```
 
-#### 3. インシデント対応手順
+#### 3. Incident Response Procedures
 
 ```markdown
-## MCPセキュリティインシデント対応
+## MCP Security Incident Response
 
-### 1. 検知
+### 1. Detection
 
-- 監視アラート
-- ユーザー報告
-- 外部通報
+- Monitoring alerts
+- User reports
+- External notifications
 
-### 2. 初動対応
+### 2. Initial Response
 
-- 該当MCPの即時無効化
-- APIキー/トークンの失効
-- 影響範囲の特定
+- Immediately disable the affected MCP
+- Revoke API keys/tokens
+- Identify scope of impact
 
-### 3. 調査
+### 3. Investigation
 
-- ログ分析
-- 侵入経路の特定
-- 漏洩データの特定
+- Log analysis
+- Identify intrusion path
+- Identify leaked data
 
-### 4. 復旧
+### 4. Recovery
 
-- 新しい認証情報の発行
-- 設定の修正
-- MCPの再有効化
+- Issue new credentials
+- Fix configurations
+- Re-enable the MCP
 
-### 5. 再発防止
+### 5. Prevention
 
-- 原因分析
-- 対策の実施
-- 手順の更新
+- Root cause analysis
+- Implement countermeasures
+- Update procedures
 ```
 
-## MCP開発時のセキュリティチェックリスト
+## Security Checklist for MCP Development
 
-### 設計フェーズ
+### Design Phase
 
 ```markdown
-- [ ] 最小権限の原則を適用しているか
-- [ ] 認証方式は適切か（OAuth推奨）
-- [ ] 機密データの扱いを定義しているか
-- [ ] OWASP MCP Top 10を確認したか
+- [ ] Is the principle of least privilege applied?
+- [ ] Is the authentication method appropriate? (OAuth recommended)
+- [ ] Is handling of sensitive data defined?
+- [ ] Has OWASP MCP Top 10 been reviewed?
 ```
 
-### 実装フェーズ
+### Implementation Phase
 
 ```markdown
-- [ ] 入力検証を実装しているか（MCP05対策）
-- [ ] 認証情報をハードコードしていないか（MCP01対策）
-- [ ] ログに機密情報を出力していないか（MCP01対策）
-- [ ] エラーメッセージに内部情報を含めていないか
-- [ ] 依存パッケージを監査したか（MCP04対策）
+- [ ] Is input validation implemented? (MCP05 countermeasure)
+- [ ] Are credentials not hardcoded? (MCP01 countermeasure)
+- [ ] Are sensitive information not output to logs? (MCP01 countermeasure)
+- [ ] Do error messages not contain internal information?
+- [ ] Have dependencies been audited? (MCP04 countermeasure)
 ```
 
-### テストフェーズ
+### Testing Phase
 
 ```markdown
-- [ ] セキュリティテストを実施したか
-- [ ] 依存パッケージの脆弱性をチェックしたか
-- [ ] 異常入力に対する動作を確認したか
-- [ ] プロンプトインジェクションの耐性を確認したか（MCP06対策）
+- [ ] Has security testing been performed?
+- [ ] Have dependency vulnerabilities been checked?
+- [ ] Has behavior against abnormal input been verified?
+- [ ] Has resistance to prompt injection been confirmed? (MCP06 countermeasure)
 ```
 
-### 運用フェーズ
+### Operations Phase
 
 ```markdown
-- [ ] 認証情報のローテーション計画があるか
-- [ ] 監視・アラートを設定しているか（MCP08対策）
-- [ ] インシデント対応手順があるか
-- [ ] 定期的なセキュリティレビューを行っているか
-- [ ] MCPサーバー利用許可リストを管理しているか（MCP09対策）
+- [ ] Is there a credential rotation plan?
+- [ ] Are monitoring and alerts configured? (MCP08 countermeasure)
+- [ ] Are incident response procedures in place?
+- [ ] Are regular security reviews conducted?
+- [ ] Is an MCP server allowlist maintained? (MCP09 countermeasure)
 ```
 
-## CLAUDE.md でのセキュリティポリシー記載例
+## Security Policy Example for CLAUDE.md
 
 ```markdown
-# セキュリティポリシー
+# Security Policy
 
-## 参照先
+## References
 
 - OWASP MCP Top 10: https://owasp.org/www-project-mcp-top-10/
 
-## 使用禁止MCP
+## Prohibited MCPs
 
-- 出所不明のMCPサーバー
-- 認証情報を外部送信するMCP
+- MCP servers of unknown origin
+- MCPs that send credentials externally
 
-## 認証情報の扱い
+## Credential Handling
 
-- APIキーは環境変数から取得
-- ログに認証情報を出力しない
-- コードに認証情報をハードコードしない
+- Retrieve API keys from environment variables
+- Do not output credentials to logs
+- Do not hardcode credentials in code
 
-## データの扱い
+## Data Handling
 
-- 個人情報をMCP経由で送信しない
-- 社内機密情報は匿名化してから処理
+- Do not send personal information via MCP
+- Anonymize internal confidential information before processing
 ```
 
-## まとめ
+## Summary
 
-### 重要な原則
+### Key Principles
 
-1. **OWASP MCP Top 10を参照** - MCPサーバー開発の「ブレない参照先」
-2. **信頼できるMCPのみ使用** - 利用許可リストで管理
-3. **最小権限** - 必要な権限のみ付与
-4. **認証情報の安全な管理** - ハードコード禁止、ローテーション
-5. **入力検証** - すべての入力を検証
-6. **監視とログ** - 異常検知、ただし機密情報は除外
-7. **インシデント対応** - 手順を事前に準備
+1. **Reference OWASP MCP Top 10** - The reliable reference for MCP server development
+2. **Use only trusted MCPs** - Manage through allowlists
+3. **Least privilege** - Grant only necessary permissions
+4. **Secure credential management** - No hardcoding, implement rotation
+5. **Input validation** - Validate all inputs
+6. **Monitoring and logging** - Anomaly detection, but exclude sensitive information
+7. **Incident response** - Prepare procedures in advance
 
-### MCPセキュリティの成熟度
+### MCP Security Maturity
 
 ```mermaid
 graph LR
-    L1[レベル1<br/>無管理] --> L2[レベル2<br/>リスト管理]
-    L2 --> L3[レベル3<br/>監視・監査]
-    L3 --> L4[レベル4<br/>自動化]
+    L1[Level 1<br/>Unmanaged] --> L2[Level 2<br/>List Management]
+    L2 --> L3[Level 3<br/>Monitoring & Auditing]
+    L3 --> L4[Level 4<br/>Automation]
 ```
 
-現在は**レベル2（リスト管理）** を目指すのが現実的。
+Currently, aiming for **Level 2 (List Management)** is realistic.
 
-## 参考リンク
+## Reference Links
 
-### OWASP関連
+### OWASP Related
 
-- [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/) - MCPサーバー開発セキュリティ
-- [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) - LLMアプリケーションセキュリティ
-- [OWASP API Security Top 10](https://owasp.org/API-Security/) - APIセキュリティ
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Webアプリケーションセキュリティ
+- [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/) - MCP Server Development Security
+- [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) - LLM Application Security
+- [OWASP API Security Top 10](https://owasp.org/API-Security/) - API Security
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Web Application Security
 
-### その他の参照先
+### Other References
 
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - AIリスク管理フレームワーク
-- [MITRE ATLAS](https://atlas.mitre.org/) - AI脅威マトリクス
-- [LINEヤフーのMCP活用事例](https://techblog.lycorp.co.jp/) - エンタープライズでのMCP運用
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - AI Risk Management Framework
+- [MITRE ATLAS](https://atlas.mitre.org/) - AI Threat Matrix
+- [LY Corporation's MCP Use Cases](https://techblog.lycorp.co.jp/) - Enterprise MCP Operations
