@@ -21,6 +21,8 @@ mindmap
       xcomet-mcp-server
       rxjs-mcp-server
       epsg-mcp
+      pdf-spec-mcp
+      pdf-reader-mcp
     Technical Documentation
       Notes-about-Digital-Signatures
       websocket-practical-guide
@@ -37,13 +39,15 @@ mindmap
 
 ### Public Repositories
 
-| Repository                                                            | Description                        | Stars | npm                              |
-| --------------------------------------------------------------------- | ---------------------------------- | :---: | -------------------------------- |
-| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC Structured Reference      |   -   | `@shuji-bonji/rfcxml-mcp`        |
-| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web Standards           |   -   | -                                |
-| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | Translation Quality Evaluation     |  ⭐1  | `@shuji-bonji/xcomet-mcp-server` |
-| [rxjs-mcp-server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJS Stream Execution & Analysis   |   -   | -                                |
-| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG Coordinate Reference Systems  |   -   | -                                |
+| Repository                                                            | Description                        | Stars | npm                              | Version |
+| --------------------------------------------------------------------- | ---------------------------------- | :---: | -------------------------------- | ------- |
+| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC Structured Reference      |   -   | `@shuji-bonji/rfcxml-mcp`        | v0.4.5  |
+| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web Standards           |   -   | `@shuji-bonji/w3c-mcp`           | v0.1.7  |
+| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | Translation Quality Evaluation     |  ⭐1  | `xcomet-mcp-server`              | v0.3.6  |
+| [rxjs-mcp-server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJS Stream Execution & Analysis   |   -   | -                                | -       |
+| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG Coordinate Reference Systems  |   -   | `@shuji-bonji/epsg-mcp`          | v0.9.8  |
+| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)           | PDF Specification (ISO 32000)      |   -   | `@shuji-bonji/pdf-spec-mcp`      | v0.2.2  |
+| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)       | PDF Internal Structure Analysis    |   -   | `@shuji-bonji/pdf-reader-mcp`    | v0.2.0  |
 
 ### MCP Server Features
 
@@ -80,6 +84,54 @@ Features:
 Achievements:
 - Quality evaluation of 180-page technical document
 - Completed at approximately $12 cost (less than 1/100 of conventional cost)
+```
+
+#### pdf-spec-mcp
+
+```
+Provided Functions:
+├── list_specs        - List spec documents
+├── get_structure     - Get section hierarchy
+├── get_section       - Get section content
+├── search_spec       - Full-text search
+├── get_requirements  - Extract normative requirements (shall/must/may)
+├── get_definitions   - Get term definitions
+├── get_tables        - Extract table structures
+└── compare_versions  - Compare PDF 1.7 vs 2.0
+
+Features:
+- Supports both ISO 32000-1 (PDF 1.7) and ISO 32000-2 (PDF 2.0)
+- Section-level structured access
+- Cross-version comparison
+```
+
+#### pdf-reader-mcp
+
+```
+Provided Functions:
+├── Basic Operations
+│   ├── read_text           - Text extraction
+│   ├── read_images         - Image extraction
+│   ├── search_text         - Text search
+│   ├── get_metadata        - Metadata extraction
+│   ├── get_page_count      - Page count
+│   └── summarize           - Overview report
+├── Structure Inspection
+│   ├── inspect_structure   - Object structure
+│   ├── inspect_tags        - Tag structure analysis
+│   ├── inspect_fonts       - Font information
+│   ├── inspect_annotations - Annotations
+│   └── inspect_signatures  - Digital signature fields
+└── Validation & Analysis
+    ├── validate_tagged     - PDF/UA validation
+    ├── validate_metadata   - Metadata validation
+    ├── compare_structure   - Compare two PDFs
+    └── read_url            - Fetch PDF from URL
+
+Features:
+- 15 tools across 3 tiers
+- PDF/UA accessibility validation
+- 185 tests (146 E2E tests)
 ```
 
 ## 2. Technical Documentation
@@ -240,23 +292,28 @@ timeline
                : Published websocket-practical-guide
                : Started MCP development systematization
 
-    section 2025 Q2 (Planned)
-        : OpenAPI MCP
-        : OWASP MCP
-        : Note article series
+    section 2025 Q2-Q4
+        : Published w3c-mcp on npm
+        : Published epsg-mcp on npm (v0.9.8)
+        : Published rxjs-mcp-server
+
+    section 2026 Q1
+        : Published pdf-spec-mcp on npm
+        : Published pdf-reader-mcp on npm
+        : Reached 6 npm packages
 ```
 
 ## Achievement Metrics
 
 ### Quantitative Metrics
 
-| Metric                       | Current       | Target (Phase 2) |
-| ---------------------------- | ------------- | ---------------- |
-| Published MCP Servers        | 5             | 7+               |
-| Total GitHub Stars           | 1             | 10+              |
-| npm Packages                 | 2             | 4+               |
-| Translated Characters        | 1.5M+         | -                |
-| Technical Documentation      | 2 repositories| 3+               |
+| Metric                       | Current        | Target (Phase 2) | Status      |
+| ---------------------------- | -------------- | ---------------- | ----------- |
+| Published MCP Servers        | 7              | 7+               | ✅ Achieved |
+| Total GitHub Stars           | 1              | 10+              | 🔄 Ongoing |
+| npm Packages                 | 6              | 4+               | ✅ Achieved |
+| Translated Characters        | 1.5M+          | -                | ✅ Achieved |
+| Technical Documentation      | 2 repositories | 3+               | 🔄 Ongoing |
 
 ### Qualitative Metrics
 

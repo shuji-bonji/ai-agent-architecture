@@ -19,6 +19,8 @@ mindmap
       xcomet-mcp-server
       rxjs-mcp-server
       epsg-mcp
+      pdf-spec-mcp
+      pdf-reader-mcp
       pwa-mcp
     連携MCP
       deepl-mcp
@@ -70,8 +72,9 @@ W3C/WHATWG/IETF Web標準仕様へのアクセスを提供。
 | 項目           | 内容                                                          |
 | -------------- | ------------------------------------------------------------- |
 | **リポジトリ** | [shuji-bonji/w3c-mcp](https://github.com/shuji-bonji/w3c-mcp) |
+| **npm**        | `@shuji-bonji/w3c-mcp`                                        |
 | **目的**       | Web標準仕様の検索・WebIDL・CSS・HTML要素                      |
-| **状態**       | ✅ 公開済み                                                   |
+| **状態**       | ✅ 公開済み（npm v0.1.7）                                     |
 
 #### 主要ツール
 
@@ -143,8 +146,90 @@ EPSG座標参照系データベースへのアクセスを提供。
 | 項目           | 内容                                                            |
 | -------------- | --------------------------------------------------------------- |
 | **リポジトリ** | [shuji-bonji/epsg-mcp](https://github.com/shuji-bonji/epsg-mcp) |
-| **目的**       | 座標系情報の検索・変換パラメータ取得                            |
-| **状態**       | ✅ 公開済み                                                     |
+| **npm**        | `@shuji-bonji/epsg-mcp`                                         |
+| **目的**       | 座標参照系（CRS）の知識ベースMCP（グローバル対応）              |
+| **状態**       | ✅ 公開済み（npm v0.9.8）                                       |
+
+#### 主要ツール
+
+| ツール                    | 機能                                   |
+| ------------------------- | -------------------------------------- |
+| `search_crs`              | EPSG CRSのキーワード検索              |
+| `get_crs_detail`          | 特定EPSGコードの詳細情報              |
+| `list_crs_by_region`      | 地域別CRS一覧と推奨                   |
+| `recommend_crs`           | 用途・場所に応じた最適CRS推奨         |
+| `validate_crs_usage`      | CRS使用の妥当性検証                   |
+| `suggest_transformation`  | CRS間の変換パス提案                   |
+| `compare_crs`             | 2つのCRSの比較                        |
+| `get_best_practices`      | CRSベストプラクティス                 |
+| `troubleshoot`            | CRS関連トラブルシューティング         |
+
+#### 特徴
+
+- 日本の平面直角座標系（I〜XIX系）に完全対応
+- グローバル対応（WGS84、UTMゾーン等）
+- オフライン動作（ローカルDB内蔵）
+- 地域パック（日本、米国、英国）
+
+### pdf-spec-mcp
+
+PDF仕様（ISO 32000）への構造化アクセスを提供。
+
+| 項目           | 内容                                                                    |
+| -------------- | ----------------------------------------------------------------------- |
+| **リポジトリ** | [shuji-bonji/pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp) |
+| **npm**        | `@shuji-bonji/pdf-spec-mcp`                                             |
+| **目的**       | PDF仕様（ISO 32000-1/2）の構造化参照・要件抽出                          |
+| **状態**       | ✅ 公開済み（npm v0.2.2）                                               |
+
+#### 主要ツール
+
+| ツール              | 機能                                    |
+| ------------------- | --------------------------------------- |
+| `list_specs`        | 利用可能なPDF仕様ドキュメント一覧      |
+| `get_structure`     | PDF仕様のセクション階層取得            |
+| `get_section`       | 特定セクションの内容取得               |
+| `search_spec`       | PDF仕様の全文検索                      |
+| `get_requirements`  | 規範的要件（shall/must/may）の抽出     |
+| `get_definitions`   | 用語定義の取得                         |
+| `get_tables`        | テーブル構造の抽出                     |
+| `compare_versions`  | PDF 1.7とPDF 2.0のセクション比較       |
+
+### pdf-reader-mcp
+
+PDF内部構造の解読と分析を提供。
+
+| 項目           | 内容                                                                        |
+| -------------- | --------------------------------------------------------------------------- |
+| **リポジトリ** | [shuji-bonji/pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp) |
+| **npm**        | `@shuji-bonji/pdf-reader-mcp`                                               |
+| **目的**       | PDFの読取・構造解析・アクセシビリティ検証                                   |
+| **状態**       | ✅ 公開済み（npm v0.2.0）                                                   |
+
+#### 主要ツール
+
+| ツール                 | 機能                                |
+| ---------------------- | ----------------------------------- |
+| `read_text`            | テキスト抽出（読み順保持）          |
+| `read_images`          | 画像抽出                            |
+| `search_text`          | PDF内テキスト検索                   |
+| `get_metadata`         | メタデータ抽出                      |
+| `inspect_structure`    | 内部オブジェクト構造の検査          |
+| `inspect_tags`         | Tagged PDF構造の分析                |
+| `inspect_fonts`        | フォント情報の一覧                  |
+| `inspect_annotations`  | アノテーション一覧                  |
+| `inspect_signatures`   | 電子署名フィールドの検査            |
+| `validate_tagged`      | PDF/UAタグ構造の検証                |
+| `validate_metadata`    | メタデータ適合性の検証              |
+| `compare_structure`    | 2つのPDFの構造比較                  |
+| `read_url`             | URLからPDFを取得して読取            |
+| `summarize`            | PDFの概要レポート生成               |
+
+#### 特徴
+
+- 3層構成（基本操作 / 構造検査 / 検証・分析）の15ツール
+- PDF/UAアクセシビリティ検証対応
+- E2Eテスト185件（うちE2E 146件）
 
 ### pwa-mcp
 
@@ -216,6 +301,7 @@ graph TB
         RFC[rfcxml-mcp<br/>IETF RFC]
         W3C[w3c-mcp<br/>Web標準]
         LAW[hourei-mcp<br/>日本法令]
+        PDFSPEC[pdf-spec-mcp<br/>PDF仕様]
     end
 
     subgraph "翻訳・品質"
@@ -236,6 +322,7 @@ graph TB
     subgraph 専門領域
         EPSG[epsg-mcp<br/>座標系]
         PWA[pwa-mcp<br/>PWA]
+        PDFREADER[pdf-reader-mcp<br/>PDF解析]
     end
 ```
 
@@ -307,17 +394,20 @@ sequenceDiagram
 | **Angular MCP**  | Angular       | 中     | 専門領域活用         |
 | **NgRx MCP**     | NgRx          | 中     | 状態管理パターン     |
 | **ISO MCP**      | ISO規格       | 中     | 国際標準参照         |
-| **PDF Spec MCP** | ISO 32000     | 低     | PDF仕様参照          |
+| ~~**PDF Spec MCP**~~ | ~~ISO 32000~~ | ~~低~~ | ✅ **公開済み** `@shuji-bonji/pdf-spec-mcp` |
 | **BIM/IFC MCP**  | buildingSMART | 低     | 建築情報モデル       |
 | **HL7 FHIR MCP** | HL7 FHIR      | 低     | 医療情報交換         |
 
 ## npm公開状況
 
-| パッケージ                       | バージョン | DL数 |
-| -------------------------------- | ---------- | ---- |
-| `@shuji-bonji/rfcxml-mcp`        | 公開済み   | -    |
-| `@shuji-bonji/xcomet-mcp-server` | 公開済み   | -    |
-| `@shuji-bonji/rxjs-mcp-server`   | 公開済み   | -    |
+| パッケージ                        | バージョン | 説明                          |
+| --------------------------------- | ---------- | ----------------------------- |
+| `@shuji-bonji/rfcxml-mcp`         | v0.4.5     | IETF RFC構造化参照            |
+| `xcomet-mcp-server`               | v0.3.6     | 翻訳品質評価                  |
+| `@shuji-bonji/w3c-mcp`            | v0.1.7     | W3C Web標準仕様               |
+| `@shuji-bonji/epsg-mcp`           | v0.9.8     | EPSG座標参照系                |
+| `@shuji-bonji/pdf-spec-mcp`       | v0.2.2     | PDF仕様（ISO 32000）          |
+| `@shuji-bonji/pdf-reader-mcp`     | v0.2.0     | PDF内部構造解読               |
 
 ## 参考リンク
 

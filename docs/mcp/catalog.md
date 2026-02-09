@@ -21,6 +21,8 @@ mindmap
       xcomet-mcp-server
       rxjs-mcp-server
       epsg-mcp
+      pdf-spec-mcp
+      pdf-reader-mcp
       pwa-mcp
     Integration MCPs
       deepl-mcp
@@ -72,8 +74,9 @@ Provides access to W3C/WHATWG/IETF Web standard specifications.
 | Item           | Description                                                   |
 | -------------- | ------------------------------------------------------------- |
 | **Repository** | [shuji-bonji/w3c-mcp](https://github.com/shuji-bonji/w3c-mcp) |
+| **npm**        | `@shuji-bonji/w3c-mcp`                                        |
 | **Purpose**    | Web standard specification search, WebIDL, CSS, HTML elements |
-| **Status**     | Published                                                     |
+| **Status**     | Published (npm v0.1.7)                                        |
 
 #### Main Tools
 
@@ -145,8 +148,90 @@ Provides access to the EPSG coordinate reference system database.
 | Item           | Description                                                     |
 | -------------- | --------------------------------------------------------------- |
 | **Repository** | [shuji-bonji/epsg-mcp](https://github.com/shuji-bonji/epsg-mcp) |
-| **Purpose**    | Coordinate system information search and transformation parameter retrieval |
-| **Status**     | Published                                                       |
+| **npm**        | `@shuji-bonji/epsg-mcp`                                         |
+| **Purpose**    | Coordinate Reference System (CRS) knowledge base with global coverage |
+| **Status**     | Published (npm v0.9.8)                                          |
+
+#### Main Tools
+
+| Tool                      | Function                                     |
+| ------------------------- | -------------------------------------------- |
+| `search_crs`              | Search EPSG CRS by keyword                   |
+| `get_crs_detail`          | Get detailed info for specific EPSG code     |
+| `list_crs_by_region`      | List CRS by region with recommendations      |
+| `recommend_crs`           | Recommend optimal CRS for purpose/location   |
+| `validate_crs_usage`      | Validate CRS appropriateness                 |
+| `suggest_transformation`  | Suggest transformation paths between CRS     |
+| `compare_crs`             | Compare two CRS from various perspectives    |
+| `get_best_practices`      | Get CRS best practices for specific topics   |
+| `troubleshoot`            | Troubleshoot CRS-related problems            |
+
+#### Features
+
+- Full support for Japan Plane Rectangular CS (Zones I-XIX)
+- Global coverage (WGS84, UTM zones, etc.)
+- Offline operation with local database
+- Regional packs (Japan, US, UK)
+
+### pdf-spec-mcp
+
+Provides structured access to PDF specifications (ISO 32000).
+
+| Item           | Description                                                                    |
+| -------------- | ------------------------------------------------------------------------------ |
+| **Repository** | [shuji-bonji/pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)        |
+| **npm**        | `@shuji-bonji/pdf-spec-mcp`                                                    |
+| **Purpose**    | PDF specification (ISO 32000-1/2) structured reference and requirements extraction |
+| **Status**     | Published (npm v0.2.2)                                                         |
+
+#### Main Tools
+
+| Tool               | Function                                         |
+| ------------------- | ------------------------------------------------ |
+| `list_specs`        | List available PDF specification documents       |
+| `get_structure`     | Get section hierarchy of PDF specification       |
+| `get_section`       | Get content of a specific section                |
+| `search_spec`       | Full-text search of PDF specification            |
+| `get_requirements`  | Extract normative requirements (shall/must/may)  |
+| `get_definitions`   | Get term definitions                             |
+| `get_tables`        | Extract table structures                         |
+| `compare_versions`  | Compare sections between PDF 1.7 and PDF 2.0    |
+
+### pdf-reader-mcp
+
+Provides PDF internal structure analysis and reading capabilities.
+
+| Item           | Description                                                                        |
+| -------------- | ---------------------------------------------------------------------------------- |
+| **Repository** | [shuji-bonji/pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)        |
+| **npm**        | `@shuji-bonji/pdf-reader-mcp`                                                      |
+| **Purpose**    | PDF reading, structure analysis, and accessibility validation                      |
+| **Status**     | Published (npm v0.2.0)                                                             |
+
+#### Main Tools
+
+| Tool                  | Function                                    |
+| --------------------- | ------------------------------------------- |
+| `read_text`           | Text extraction with reading order          |
+| `read_images`         | Image extraction                            |
+| `search_text`         | Text search within PDF                      |
+| `get_metadata`        | Metadata extraction                         |
+| `inspect_structure`   | Internal object structure inspection        |
+| `inspect_tags`        | Tagged PDF structure analysis               |
+| `inspect_fonts`       | Font information listing                    |
+| `inspect_annotations` | Annotation listing                          |
+| `inspect_signatures`  | Digital signature field inspection          |
+| `validate_tagged`     | PDF/UA tag structure validation             |
+| `validate_metadata`   | Metadata conformance validation             |
+| `compare_structure`   | Compare structures of two PDFs              |
+| `read_url`            | Fetch and read PDF from URL                 |
+| `summarize`           | Generate PDF overview report                |
+
+#### Features
+
+- 15 specialized tools across 3 tiers (basic / inspection / validation)
+- PDF/UA accessibility compliance checking
+- 185 tests (146 E2E tests)
 
 ### pwa-mcp
 
@@ -218,6 +303,7 @@ graph TB
         RFC[rfcxml-mcp<br/>IETF RFC]
         W3C[w3c-mcp<br/>Web Standards]
         LAW[hourei-mcp<br/>Japanese Law]
+        PDFSPEC[pdf-spec-mcp<br/>PDF Spec]
     end
 
     subgraph "Translation & Quality"
@@ -238,6 +324,7 @@ graph TB
     subgraph Specialized Domains
         EPSG[epsg-mcp<br/>Coordinate Systems]
         PWA[pwa-mcp<br/>PWA]
+        PDFREADER[pdf-reader-mcp<br/>PDF Analysis]
     end
 ```
 
@@ -309,17 +396,20 @@ sequenceDiagram
 | **Angular MCP**  | Angular       | Medium   | Specialized domain usage |
 | **NgRx MCP**     | NgRx          | Medium   | State management patterns |
 | **ISO MCP**      | ISO Standards | Medium   | International standard reference |
-| **PDF Spec MCP** | ISO 32000     | Low      | PDF specification reference |
+| ~~**PDF Spec MCP**~~ | ~~ISO 32000~~ | ~~Low~~ | ✅ **Published** `@shuji-bonji/pdf-spec-mcp` |
 | **BIM/IFC MCP**  | buildingSMART | Low      | Building information modeling |
 | **HL7 FHIR MCP** | HL7 FHIR      | Low      | Healthcare information exchange |
 
 ## npm Publication Status
 
-| Package                          | Version   | Downloads |
-| -------------------------------- | --------- | --------- |
-| `@shuji-bonji/rfcxml-mcp`        | Published | -         |
-| `@shuji-bonji/xcomet-mcp-server` | Published | -         |
-| `@shuji-bonji/rxjs-mcp-server`   | Published | -         |
+| Package                           | Version | Description                     |
+| --------------------------------- | ------- | ------------------------------- |
+| `@shuji-bonji/rfcxml-mcp`         | v0.4.5  | IETF RFC Structured Reference   |
+| `xcomet-mcp-server`               | v0.3.6  | Translation Quality Evaluation  |
+| `@shuji-bonji/w3c-mcp`            | v0.1.7  | W3C Web Standards               |
+| `@shuji-bonji/epsg-mcp`           | v0.9.8  | EPSG Coordinate Reference Systems |
+| `@shuji-bonji/pdf-spec-mcp`       | v0.2.2  | PDF Specification (ISO 32000)   |
+| `@shuji-bonji/pdf-reader-mcp`     | v0.2.0  | PDF Internal Structure Analysis |
 
 ## Reference Links
 

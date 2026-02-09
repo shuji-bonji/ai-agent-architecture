@@ -174,9 +174,15 @@ See [docs/](./docs/) for details.
 
 ## Related Projects
 
-- [RFC MCP Server](https://github.com/shuji-bonji/rfc-mcp-server) - IETF RFC search & analysis
-- [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server) - Translation quality evaluation
-- [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server) - RxJS stream execution & visualization
+| Repository | Description | npm |
+|------------|-------------|-----|
+| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp) | IETF RFC structured reference | `@shuji-bonji/rfcxml-mcp` |
+| [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server) | Translation quality evaluation | `xcomet-mcp-server` |
+| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp) | W3C/WHATWG Web standards | `@shuji-bonji/w3c-mcp` |
+| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp) | EPSG Coordinate Reference Systems | `@shuji-bonji/epsg-mcp` |
+| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp) | PDF specification (ISO 32000) | `@shuji-bonji/pdf-spec-mcp` |
+| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp) | PDF internal structure analysis | `@shuji-bonji/pdf-reader-mcp` |
+| [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server) | RxJS stream execution & visualization | - |
 
 ## GitHub Repository Settings
 

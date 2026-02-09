@@ -19,6 +19,8 @@ mindmap
       xcomet-mcp-server
       rxjs-mcp-server
       epsg-mcp
+      pdf-spec-mcp
+      pdf-reader-mcp
     技術ドキュメント
       Notes-about-Digital-Signatures
       websocket-practical-guide
@@ -35,13 +37,15 @@ mindmap
 
 ### 公開リポジトリ
 
-| リポジトリ                                                            | 説明                     | Stars | npm                              |
-| --------------------------------------------------------------------- | ------------------------ | :---: | -------------------------------- |
-| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC構造化参照       |   -   | `@shuji-bonji/rfcxml-mcp`        |
-| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web標準       |   -   | -                                |
-| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | 翻訳品質評価             |  ⭐1  | `@shuji-bonji/xcomet-mcp-server` |
-| [rxjs-mcp-server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJSストリーム実行・分析 |   -   | -                                |
-| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG座標参照系           |   -   | -                                |
+| リポジトリ                                                            | 説明                     | Stars | npm                              | バージョン |
+| --------------------------------------------------------------------- | ------------------------ | :---: | -------------------------------- | ---------- |
+| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC構造化参照       |   -   | `@shuji-bonji/rfcxml-mcp`        | v0.4.5     |
+| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web標準       |   -   | `@shuji-bonji/w3c-mcp`           | v0.1.7     |
+| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | 翻訳品質評価             |  ⭐1  | `xcomet-mcp-server`              | v0.3.6     |
+| [rxjs-mcp-server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJSストリーム実行・分析 |   -   | -                                | -          |
+| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG座標参照系           |   -   | `@shuji-bonji/epsg-mcp`          | v0.9.8     |
+| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)           | PDF仕様（ISO 32000）     |   -   | `@shuji-bonji/pdf-spec-mcp`      | v0.2.2     |
+| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)       | PDF内部構造解読          |   -   | `@shuji-bonji/pdf-reader-mcp`    | v0.2.0     |
 
 ### MCPサーバーの特徴
 
@@ -78,6 +82,54 @@ mindmap
 実績:
 - 180ページ技術文書の品質評価
 - 約$12のコストで完了（従来比1/100以下）
+```
+
+#### pdf-spec-mcp
+
+```
+提供機能:
+├── list_specs        - 仕様ドキュメント一覧
+├── get_structure     - セクション階層取得
+├── get_section       - セクション内容取得
+├── search_spec       - 全文検索
+├── get_requirements  - 規範的要件抽出（shall/must/may）
+├── get_definitions   - 用語定義取得
+├── get_tables        - テーブル構造抽出
+└── compare_versions  - PDF 1.7 vs 2.0 比較
+
+特徴:
+- ISO 32000-1（PDF 1.7）と ISO 32000-2（PDF 2.0）の両対応
+- セクション単位の構造化アクセス
+- バージョン間の差分比較
+```
+
+#### pdf-reader-mcp
+
+```
+提供機能:
+├── 基本操作
+│   ├── read_text           - テキスト抽出
+│   ├── read_images         - 画像抽出
+│   ├── search_text         - テキスト検索
+│   ├── get_metadata        - メタデータ取得
+│   ├── get_page_count      - ページ数取得
+│   └── summarize           - 概要レポート
+├── 構造検査
+│   ├── inspect_structure   - オブジェクト構造
+│   ├── inspect_tags        - タグ構造分析
+│   ├── inspect_fonts       - フォント情報
+│   ├── inspect_annotations - アノテーション
+│   └── inspect_signatures  - 電子署名フィールド
+└── 検証・分析
+    ├── validate_tagged     - PDF/UA検証
+    ├── validate_metadata   - メタデータ検証
+    ├── compare_structure   - 2PDF比較
+    └── read_url            - URL→PDF読取
+
+特徴:
+- 3層15ツール構成
+- PDF/UAアクセシビリティ検証
+- テスト185件（E2E 146件）
 ```
 
 ## 2. 技術ドキュメント
@@ -238,23 +290,28 @@ timeline
            : websocket-practical-guide 公開
            : MCP構築体系化開始
 
-    section 2025 Q2（予定）
-        : OpenAPI MCP
-        : OWASP MCP
-        : Note記事シリーズ
+    section 2025 Q2-Q4
+        : w3c-mcp npm公開
+        : epsg-mcp npm公開（v0.9.8）
+        : rxjs-mcp-server 公開
+
+    section 2026 Q1
+        : pdf-spec-mcp npm公開
+        : pdf-reader-mcp npm公開
+        : npm公開パッケージ 6個達成
 ```
 
 ## 成果指標
 
 ### 定量指標
 
-| 指標              | 現在        | 目標（Phase 2） |
-| ----------------- | ----------- | --------------- |
-| 公開MCPサーバー数 | 5           | 7+              |
-| GitHub Stars合計  | 1           | 10+             |
-| npm パッケージ    | 2           | 4+              |
-| 翻訳文字数        | 150万+      | -               |
-| 技術ドキュメント  | 2リポジトリ | 3+              |
+| 指標              | 現在          | 目標（Phase 2） | 状況     |
+| ----------------- | ------------- | --------------- | -------- |
+| 公開MCPサーバー数 | 7             | 7+              | ✅ 達成  |
+| GitHub Stars合計  | 1             | 10+             | 🔄 進行中 |
+| npm パッケージ    | 6             | 4+              | ✅ 達成  |
+| 翻訳文字数        | 150万+        | -               | ✅ 達成  |
+| 技術ドキュメント  | 2リポジトリ   | 3+              | 🔄 進行中 |
 
 ### 定性指標
 

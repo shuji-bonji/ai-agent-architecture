@@ -17,6 +17,9 @@ graph TB
         XCOMET[xcomet-mcp<br/>翻訳品質]
         RXJS[rxjs-mcp<br/>RxJS支援]
         W3C[w3c-mcp<br/>Web標準]
+        EPSG[epsg-mcp<br/>座標系]
+        PDFSPEC[pdf-spec-mcp<br/>PDF仕様]
+        PDFREADER[pdf-reader-mcp<br/>PDF解析]
     end
 
     subgraph 専門知識
@@ -24,6 +27,7 @@ graph TB
         WS[WebSocket/RFC]
         SIGN[電子署名]
         TRANS[翻訳ワークフロー]
+        PDF[PDF仕様・構造]
     end
 
     subgraph 独自価値
@@ -229,19 +233,20 @@ gantt
 
 ### 短期（Phase 1）
 
-- [ ] ドキュメント体系化完了
+- [x] ドキュメント体系化完了
 - [ ] Skill/Agent定義 3個以上
-- [ ] 実プロジェクトでの活用実績
+- [x] 実プロジェクトでの活用実績
 
 ### 中期（Phase 2）
 
-- [ ] 新規MCP 2個以上リリース
+- [x] 新規MCP 2個以上リリース → **4個リリース済み**（w3c-mcp, epsg-mcp, pdf-spec-mcp, pdf-reader-mcp）
 - [ ] GitHub Star 合計 10以上
 - [ ] Note記事 5本以上
+- [x] npm パッケージ 4個以上 → **6個公開済み**
 
 ### 長期（Phase 3）
 
-- [ ] MCPエコシステムの確立
+- [x] MCPエコシステムの確立 → npm 6パッケージ公開
 - [ ] コミュニティからの認知
 - [ ] 外部からの問い合わせ・貢献
 

@@ -172,9 +172,15 @@ flowchart TD
 
 ## 関連プロジェクト
 
-- [RFC MCP Server](https://github.com/shuji-bonji/rfc-mcp-server) - IETF RFC検索・解析
-- [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server) - 翻訳品質評価
-- [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server) - RxJSストリーム実行・可視化
+| リポジトリ | 説明 | npm |
+|------------|------|-----|
+| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp) | IETF RFC構造化参照 | `@shuji-bonji/rfcxml-mcp` |
+| [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server) | 翻訳品質評価 | `xcomet-mcp-server` |
+| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp) | W3C/WHATWG Web標準 | `@shuji-bonji/w3c-mcp` |
+| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp) | EPSG座標参照系 | `@shuji-bonji/epsg-mcp` |
+| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp) | PDF仕様（ISO 32000） | `@shuji-bonji/pdf-spec-mcp` |
+| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp) | PDF内部構造解読 | `@shuji-bonji/pdf-reader-mcp` |
+| [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server) | RxJSストリーム実行・可視化 | - |
 
 ## GitHub リポジトリ設定
 

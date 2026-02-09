@@ -19,6 +19,9 @@ graph TB
         XCOMET[xcomet-mcp<br/>Translation Quality]
         RXJS[rxjs-mcp<br/>RxJS Support]
         W3C[w3c-mcp<br/>Web Standards]
+        EPSG[epsg-mcp<br/>Coordinate Systems]
+        PDFSPEC[pdf-spec-mcp<br/>PDF Specification]
+        PDFREADER[pdf-reader-mcp<br/>PDF Analysis]
     end
 
     subgraph Expertise
@@ -26,6 +29,7 @@ graph TB
         WS[WebSocket/RFC]
         SIGN[Digital Signatures]
         TRANS[Translation Workflow]
+        PDF[PDF Specification & Structure]
     end
 
     subgraph Unique Value
@@ -231,19 +235,20 @@ gantt
 
 ### Short-term (Phase 1)
 
-- [ ] Complete documentation systematization
+- [x] Complete documentation systematization
 - [ ] Define 3+ Skills/Agents
-- [ ] Achieve usage in real projects
+- [x] Achieve usage in real projects
 
 ### Medium-term (Phase 2)
 
-- [ ] Release 2+ new MCPs
+- [x] Release 2+ new MCPs → **4 released** (w3c-mcp, epsg-mcp, pdf-spec-mcp, pdf-reader-mcp)
 - [ ] Reach 10+ total GitHub Stars
 - [ ] Publish 5+ Note articles
+- [x] Publish 4+ npm packages → **6 packages published**
 
 ### Long-term (Phase 3)
 
-- [ ] Establish MCP ecosystem
+- [x] Establish MCP ecosystem → 6 npm packages published
 - [ ] Gain community recognition
 - [ ] Receive external inquiries/contributions
 
