@@ -15,12 +15,12 @@ docs/
 ├── mcp/              # MCP（外部連携）
 │   ├── catalog.md
 │   ├── security.md
-│   └── development.md (計画中)
+│   └── development.md
 ├── skills/           # Skills（ドメイン知識）
 │   ├── overview.md
 │   ├── vs-mcp.md     # 選択判断ガイド
 │   ├── anti-patterns.md
-│   └── creating-skills.md (計画中)
+│   └── creating-skills.md
 ├── workflows/        # ワークフロー・運用
 │   ├── patterns.md
 │   └── development-phases.md
@@ -57,8 +57,9 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 | ファイル                             | 内容                        |
 | ------------------------------------ | --------------------------- |
-| [mcp/catalog.md](./mcp/catalog.md)   | 構築済みMCPカタログと成果   |
-| [mcp/security.md](./mcp/security.md) | MCP開発時のセキュリティ考慮 |
+| [mcp/catalog.md](./mcp/catalog.md)           | 構築済みMCPカタログと成果   |
+| [mcp/security.md](./mcp/security.md)         | MCP開発時のセキュリティ考慮 |
+| [mcp/development.md](./mcp/development.md)   | MCP開発ガイド               |
 
 ### Skills（ドメイン知識）
 
@@ -66,7 +67,8 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 | -------------------------------------------------- | -------------------------------- |
 | [skills/overview.md](./skills/overview.md)         | Vercel Skills・Agent Skills Spec |
 | [skills/vs-mcp.md](./skills/vs-mcp.md)             | MCP vs Skills 選択判断ガイド     |
-| [skills/anti-patterns.md](./skills/anti-patterns.md) | MCP/Skills アンチパターン集      |
+| [skills/anti-patterns.md](./skills/anti-patterns.md)       | MCP/Skills アンチパターン集      |
+| [skills/creating-skills.md](./skills/creating-skills.md)   | Skill作成ガイド                  |
 
 ### Workflows（ワークフロー・運用）
 
@@ -103,6 +105,19 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 2. **workflows/patterns.md** - 具体的なワークフロー
 3. **mcp/catalog.md** - 各MCPの詳細
 
+### MCPを作りたい場合
+
+1. **mcp/development.md** - MCP開発ガイド
+2. **skills/vs-mcp.md** - 本当にMCPにすべきか判断
+3. **mcp/security.md** - セキュリティ考慮
+4. **mcp/catalog.md** - 既存MCPの実例
+
+### Skillを作りたい場合
+
+1. **skills/creating-skills.md** - Skill作成ガイド
+2. **skills/anti-patterns.md** - 避けるべきパターン
+3. **skills/overview.md** - Skills全体像
+
 ### 開発に参加したい場合
 
 1. **roadmap.md** - 優先度・計画
@@ -119,3 +134,4 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 | 日付       | 内容                   |
 | ---------- | ---------------------- |
 | 2025-01-26 | 初版作成（11ファイル） |
+| 2026-02-11 | mcp/development.md、skills/creating-skills.md 追加 |

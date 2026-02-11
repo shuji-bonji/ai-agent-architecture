@@ -14,7 +14,7 @@ templates/command/
 
 ## Command とは？
 
-Command（スラッシュコマンド）は、Skills と MCP を連携させるユーザー起動可能なアクションです：
+Command（スラッシュコマンド）は、Skills と MCP を連携させるユーザー起動可能なアクションです。
 
 ```
 /command-name → Skill（基準・ワークフロー）→ MCP（実行）→ Report
@@ -22,11 +22,11 @@ Command（スラッシュコマンド）は、Skills と MCP を連携させる�
 
 ### Command vs Skill vs MCP
 
-| コンポーネント | 役割 | 配置場所 |
-|---------------|------|---------|
-| **Command** | エントリーポイント、引数パース | `.claude/commands/` |
-| **Skill** | 判定基準、ワークフロー、出力形式 | `.claude/skills/` |
-| **MCP** | 実際のツール実行 | MCP サーバー |
+| コンポーネント | 役割                             | 配置場所            |
+| -------------- | -------------------------------- | ------------------- |
+| **Command**    | エントリーポイント、引数パース   | `.claude/commands/` |
+| **Skill**      | 判定基準、ワークフロー、出力形式 | `.claude/skills/`   |
+| **MCP**        | 実際のツール実行                 | MCP サーバー        |
 
 ## 使い方
 
@@ -53,12 +53,12 @@ cp templates/skill/SKILL.md.template .claude/skills/my-skill/SKILL.md
 
 ## 例: 翻訳品質チェック
 
-このディレクトリには完全な例が含まれています：
+このディレクトリには完全な例が含まれています。
 
-| ファイル | 目的 |
-|---------|------|
-| [SKILL.md](./SKILL.md) | xCOMET 基準を含む翻訳品質 Skill |
-| （対応コマンド） | `.claude/commands/check-translation.md` |
+| ファイル               | 目的                                    |
+| ---------------------- | --------------------------------------- |
+| [SKILL.md](./SKILL.md) | xCOMET 基準を含む翻訳品質 Skill         |
+| （対応コマンド）       | `.claude/commands/check-translation.md` |
 
 ### 連携の仕組み
 
@@ -80,10 +80,10 @@ sequenceDiagram
 
 ## Command の配置場所
 
-| 場所 | パス | 用途 |
-|------|-----|------|
-| プロジェクト | `.claude/commands/*.md` | プロジェクト固有コマンド |
-| ユーザー | `~/.claude/commands/*.md` | 個人用コマンド |
+| 場所         | パス                      | 用途                     |
+| ------------ | ------------------------- | ------------------------ |
+| プロジェクト | `.claude/commands/*.md`   | プロジェクト固有コマンド |
+| ユーザー     | `~/.claude/commands/*.md` | 個人用コマンド           |
 
 ## 関連ドキュメント
 

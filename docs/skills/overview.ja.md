@@ -17,20 +17,20 @@ Vercel Skills は、AIエージェント向けの標準化されたドメイン�
 
 ## 対応エージェント一覧（27種類）
 
-Vercel Skills CLI は以下のエージェントに対応しています：
+Vercel Skills CLI は以下のエージェントに対応しています。
 
-| Agent | CLI引数 | プロジェクトパス |
-|-------|---------|------------------|
-| Claude Code | `claude-code` | `.claude/skills/` |
-| Cursor | `cursor` | `.cursor/skills/` |
-| Codex | `codex` | `.codex/skills/` |
-| OpenCode | `opencode` | `.opencode/skills/` |
-| GitHub Copilot | `github-copilot` | `.github/skills/` |
-| Windsurf | `windsurf` | `.windsurf/skills/` |
-| Cline | `cline` | `.cline/skills/` |
-| Roo Code | `roo` | `.roo/skills/` |
-| Gemini CLI | `gemini-cli` | `.gemini/skills/` |
-| その他 | ... | ... |
+| Agent          | CLI引数          | プロジェクトパス    |
+| -------------- | ---------------- | ------------------- |
+| Claude Code    | `claude-code`    | `.claude/skills/`   |
+| Cursor         | `cursor`         | `.cursor/skills/`   |
+| Codex          | `codex`          | `.codex/skills/`    |
+| OpenCode       | `opencode`       | `.opencode/skills/` |
+| GitHub Copilot | `github-copilot` | `.github/skills/`   |
+| Windsurf       | `windsurf`       | `.windsurf/skills/` |
+| Cline          | `cline`          | `.cline/skills/`    |
+| Roo Code       | `roo`            | `.roo/skills/`      |
+| Gemini CLI     | `gemini-cli`     | `.gemini/skills/`   |
+| その他         | ...              | ...                 |
 
 > 完全な一覧は [Vercel Skills README](https://github.com/vercel-labs/skills#supported-agents) を参照
 

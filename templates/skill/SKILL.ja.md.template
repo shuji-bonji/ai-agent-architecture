@@ -19,7 +19,7 @@ last_reviewed: {{YYYY-MM-DD}}
 
 ## Inputs（入力）
 
-このSkillが適用される対象：
+このSkillが適用される対象
 
 | Input | Type | Description |
 |-------|------|-------------|
@@ -28,7 +28,7 @@ last_reviewed: {{YYYY-MM-DD}}
 
 ## Outputs（出力）
 
-このSkillが生成する成果物：
+このSkillが生成する成果物
 
 | Output | Type | Description |
 |--------|------|-------------|

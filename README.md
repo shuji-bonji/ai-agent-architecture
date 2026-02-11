@@ -10,33 +10,33 @@ A repository documenting design principles, architecture, and practical knowledg
 
 The AI agent ecosystem is rapidly evolving:
 
-- **Vercel Skills v1.1.1** — Open-sourced with 27+ agent support
-- **Agent Skills Specification** — Standardization efforts underway
+- [**Vercel Skills v1.1.1**](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) — Open-sourced with 27+ agent support
+- [**Agent Skills Specification**](https://agentskills.io/home) — Standardization efforts underway
 - **MCP Adoption** — Growing but lacking discovery/orchestration guidance
 
 This creates a gap: **How do agents find the right skills and tools?**
 
 ## What Problem Does This Address?
 
-| Challenge | Description |
-|-----------|-------------|
-| **MCP alone is insufficient** | MCP exposes tools, but doesn't guide when/how to use them |
-| **Skills lack integration patterns** | Domain knowledge exists but isn't connected to tooling |
-| **Agent orchestration is ad-hoc** | No standard way to combine MCP + Skills |
+| Challenge                            | Description                                               |
+| ------------------------------------ | --------------------------------------------------------- |
+| **MCP alone is insufficient**        | MCP exposes tools, but doesn't guide when/how to use them |
+| **Skills lack integration patterns** | Domain knowledge exists but isn't connected to tooling    |
+| **Agent orchestration is ad-hoc**    | No standard way to combine MCP + Skills                   |
 
 ## What This Repo Offers
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                      User Request                        │
+│                      User Request                       │
 └─────────────────────────┬───────────────────────────────┘
                           ▼
 ┌─────────────────────────────────────────────────────────┐
-│  Agent Layer          (Orchestration & Decision)         │
+│  Agent Layer          (Orchestration & Decision)        │
 ├─────────────────────────────────────────────────────────┤
-│  Skills Layer         (Domain Knowledge & Guidelines)    │
+│  Skills Layer         (Domain Knowledge & Guidelines)   │
 ├─────────────────────────────────────────────────────────┤
-│  MCP Layer            (External Tools & APIs)            │
+│  MCP Layer            (External Tools & APIs)           │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -49,18 +49,18 @@ This repository provides:
 
 ## MCP vs Skills vs Agent
 
-| Concern | MCP | Skills | Agent |
-|---------|-----|--------|-------|
-| **What it solves** | External tool/API access | Domain knowledge & best practices | Task orchestration |
-| **Who owns it** | Server developers | Domain experts | Agent orchestrator |
-| **Discovery** | Config-based | Index / marketplace | Dynamic selection |
-| **Runtime** | Server process | In-memory (context) | Session-based |
-| **Examples** | deepl-mcp, rfcxml-mcp | frontend-design, solid-principles | Claude Code, Cursor |
+| Concern            | MCP                      | Skills                            | Agent               |
+| ------------------ | ------------------------ | --------------------------------- | ------------------- |
+| **What it solves** | External tool/API access | Domain knowledge & best practices | Task orchestration  |
+| **Who owns it**    | Server developers        | Domain experts                    | Agent orchestrator  |
+| **Discovery**      | Config-based             | Index / marketplace               | Dynamic selection   |
+| **Runtime**        | Server process           | In-memory (context)               | Session-based       |
+| **Examples**       | deepl-mcp, rfcxml-mcp    | frontend-design, solid-principles | Claude Code, Cursor |
 
 ## Quick Decision Flow
 
 ```mermaid
-flowchart TD
+flowchart LR
     START[New capability needed] --> Q1{External API<br/>required?}
     Q1 -->|Yes| MCP[Implement as MCP]
     Q1 -->|No| Q2{Domain knowledge<br/>or guidelines?}
@@ -77,11 +77,11 @@ flowchart TD
 
 ## Scope
 
-| Layer | Role | Examples |
-| ----- | ---- | -------- |
-| **MCP** | External tool/API integration | rfcxml-mcp, deepl-mcp |
+| Layer      | Role                              | Examples                         |
+| ---------- | --------------------------------- | -------------------------------- |
+| **MCP**    | External tool/API integration     | rfcxml-mcp, deepl-mcp            |
 | **Skills** | Domain knowledge & best practices | frontend-design, doc-coauthoring |
-| **Agent** | Autonomous task execution | Claude Code, Cursor |
+| **Agent**  | Autonomous task execution         | Claude Code, Cursor              |
 
 ### What's Included
 
@@ -113,7 +113,7 @@ Originally focused on [MCP](https://modelcontextprotocol.io/) server development
 
 ## Core Insight
 
-> Until AI can directly output binaries (including CI/CD), AI-driven development requires the integration of engineering practices that humans have cultivated.
+> Until the future comes when AI (including CI/CD) can immediately output binaries and be implemented, AI-driven development will require the introduction of the engineering skills that people have cultivated up to now.
 >
 > AI needs **stable reference sources** for its decisions.
 
@@ -123,50 +123,50 @@ See [docs/](./docs/) for details.
 
 ### Concepts
 
-| File | Content |
-| ---- | ------- |
-| [concepts/01-vision.md](./docs/concepts/01-vision.md) | AI-driven development vision |
+| File                                                                        | Content                              |
+| --------------------------------------------------------------------------- | ------------------------------------ |
+| [concepts/01-vision.md](./docs/concepts/01-vision.md)                       | AI-driven development vision         |
 | [concepts/02-reference-sources.md](./docs/concepts/02-reference-sources.md) | "Stable reference sources" framework |
-| [concepts/03-architecture.md](./docs/concepts/03-architecture.md) | MCP/Skills/Agent architecture |
+| [concepts/03-architecture.md](./docs/concepts/03-architecture.md)           | MCP/Skills/Agent architecture        |
 
 ### MCP (External Integration)
 
-| File | Content |
-| ---- | ------- |
-| [mcp/catalog.md](./docs/mcp/catalog.md) | Built MCP catalog |
-| [mcp/security.md](./docs/mcp/security.md) | Security considerations |
+| File                                            | Content                     |
+| ----------------------------------------------- | --------------------------- |
+| [mcp/catalog.md](./docs/mcp/catalog.md)         | Built MCP catalog           |
+| [mcp/security.md](./docs/mcp/security.md)       | Security considerations     |
 | [mcp/development.md](./docs/mcp/development.md) | Development guide (planned) |
 
 ### Skills (Domain Knowledge)
 
-| File | Content |
-| ---- | ------- |
-| [skills/overview.md](./docs/skills/overview.md) | Vercel Skills & Agent Skills Specification |
-| [skills/vs-mcp.md](./docs/skills/vs-mcp.md) | MCP vs Skills selection guide |
-| [skills/anti-patterns.md](./docs/skills/anti-patterns.md) | Anti-patterns collection |
-| [skills/creating-skills.md](./docs/skills/creating-skills.md) | Skills creation guide (planned) |
+| File                                                          | Content                                    |
+| ------------------------------------------------------------- | ------------------------------------------ |
+| [skills/overview.md](./docs/skills/overview.md)               | Vercel Skills & Agent Skills Specification |
+| [skills/vs-mcp.md](./docs/skills/vs-mcp.md)                   | MCP vs Skills selection guide              |
+| [skills/anti-patterns.md](./docs/skills/anti-patterns.md)     | Anti-patterns collection                   |
+| [skills/creating-skills.md](./docs/skills/creating-skills.md) | Skills creation guide (planned)            |
 
 ### Workflows
 
-| File | Content |
-| ---- | ------- |
-| [workflows/patterns.md](./docs/workflows/patterns.md) | Integration patterns |
-| [workflows/development-phases.md](./docs/workflows/development-phases.md) | Development phases |
+| File                                                                      | Content              |
+| ------------------------------------------------------------------------- | -------------------- |
+| [workflows/patterns.md](./docs/workflows/patterns.md)                     | Integration patterns |
+| [workflows/development-phases.md](./docs/workflows/development-phases.md) | Development phases   |
 
 ### Planning & Reference
 
-| File | Content |
-| ---- | ------- |
-| [roadmap.md](./docs/roadmap.md) | Roadmap |
-| [outputs.md](./docs/outputs.md) | Outputs list |
-| [glossary.md](./docs/glossary.md) | Glossary |
+| File                              | Content      |
+| --------------------------------- | ------------ |
+| [roadmap.md](./docs/roadmap.md)   | Roadmap      |
+| [outputs.md](./docs/outputs.md)   | Outputs list |
+| [glossary.md](./docs/glossary.md) | Glossary     |
 
 ## Templates
 
-| Template | Purpose |
-|----------|---------|
-| [templates/skill/](./templates/skill/) | Skill definition templates and examples |
-| [templates/command/](./templates/command/) | Command (slash command) templates |
+| Template                                   | Purpose                                 |
+| ------------------------------------------ | --------------------------------------- |
+| [templates/skill/](./templates/skill/)     | Skill definition templates and examples |
+| [templates/command/](./templates/command/) | Command (slash command) templates       |
 
 ## References
 
@@ -174,15 +174,15 @@ See [docs/](./docs/) for details.
 
 ## Related Projects
 
-| Repository | Description | npm |
-|------------|-------------|-----|
-| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp) | IETF RFC structured reference | `@shuji-bonji/rfcxml-mcp` |
-| [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server) | Translation quality evaluation | `xcomet-mcp-server` |
-| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp) | W3C/WHATWG Web standards | `@shuji-bonji/w3c-mcp` |
-| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp) | EPSG Coordinate Reference Systems | `@shuji-bonji/epsg-mcp` |
-| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp) | PDF specification (ISO 32000) | `@shuji-bonji/pdf-spec-mcp` |
-| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp) | PDF internal structure analysis | `@shuji-bonji/pdf-reader-mcp` |
-| [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server) | RxJS stream execution & visualization | - |
+| Repository                                                            | Description                           | npm                           |
+| --------------------------------------------------------------------- | ------------------------------------- | ----------------------------- |
+| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC structured reference         | `@shuji-bonji/rfcxml-mcp`     |
+| [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server) | Translation quality evaluation        | `xcomet-mcp-server`           |
+| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web standards              | `@shuji-bonji/w3c-mcp`        |
+| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG Coordinate Reference Systems     | `@shuji-bonji/epsg-mcp`       |
+| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)           | PDF specification (ISO 32000)         | `@shuji-bonji/pdf-spec-mcp`   |
+| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)       | PDF internal structure analysis       | `@shuji-bonji/pdf-reader-mcp` |
+| [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJS stream execution & visualization | -                             |
 
 ## GitHub Repository Settings
 
