@@ -36,10 +36,10 @@ flowchart TD
 
     Q3 -->|No| BUILD
 
-    style NOT_MCP fill:#90EE90
-    style CLI_SKILL fill:#90EE90
-    style BUILD fill:#FFB6C1
-    style USE_OFFICIAL fill:#87CEEB
+    style NOT_MCP fill:#90EE90,color:#333
+    style CLI_SKILL fill:#90EE90,color:#333
+    style BUILD fill:#FFB6C1,color:#333
+    style USE_OFFICIAL fill:#87CEEB,color:#333
 ```
 
 ### Decision Criteria Checklist
@@ -103,7 +103,7 @@ graph LR
     CLIENT[MCP Client] -->|JSON-RPC| SERVER[MCP Server]
     SERVER --> DATA[(Local Data<br/>JSON/SQLite)]
 
-    style DATA fill:#90EE90
+    style DATA fill:#90EE90,color:#333
 ```
 
 | Characteristic | Description |
@@ -122,7 +122,7 @@ graph LR
     CLIENT[MCP Client] -->|JSON-RPC| SERVER[MCP Server]
     SERVER -->|HTTP/HTTPS| API[External API]
 
-    style API fill:#FFB6C1
+    style API fill:#FFB6C1,color:#333
 ```
 
 | Characteristic | Description |
@@ -141,7 +141,7 @@ graph LR
     CLIENT[MCP Client] -->|JSON-RPC| SERVER[MCP Server]
     SERVER --> MODEL[ML Model<br/>Persistent Load]
 
-    style MODEL fill:#87CEEB
+    style MODEL fill:#87CEEB,color:#333
 ```
 
 | Characteristic | Description |
@@ -474,12 +474,12 @@ graph LR
 
     STRATEGY --> DESIGN --> IMPL --> TEST --> DOC --> OPS
 
-    style STRATEGY fill:#FFB6C1
-    style OPS fill:#FFB6C1
-    style DESIGN fill:#FFE4B5
-    style TEST fill:#FFE4B5
-    style IMPL fill:#90EE90
-    style DOC fill:#90EE90
+    style STRATEGY fill:#FFB6C1,color:#333
+    style OPS fill:#FFB6C1,color:#333
+    style DESIGN fill:#FFE4B5,color:#333
+    style TEST fill:#FFE4B5,color:#333
+    style IMPL fill:#90EE90,color:#333
+    style DOC fill:#90EE90,color:#333
 ```
 
 > See [Development Phases × MCP Support](../workflows/development-phases.md) for details

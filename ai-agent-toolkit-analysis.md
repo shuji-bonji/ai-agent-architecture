@@ -77,8 +77,8 @@ graph TB
 
     style M3 fill:#ff6b6b,color:#fff
     style S4 fill:#ff6b6b,color:#fff
-    style O2 fill:#feca57
-    style O4 fill:#feca57
+    style O2 fill:#feca57,color:#333
+    style O4 fill:#feca57,color:#333
 ```
 
 ## パターン1: 「ブレない参照先」— プロジェクトの思想的基盤
@@ -126,29 +126,30 @@ mindmap
 プロジェクトの構造的骨格。「何をどのレイヤーで実装するか」の判断基準が一貫して示されている。
 
 ```mermaid
-graph TB
-    subgraph Layer["三層モデル"]
-        direction TB
-        AGENT["🧠 Agent層<br/>オーケストレーション・判断<br/>（Claude Code, Cursor）"]
-        SKILLS["📚 Skills層<br/>ドメイン知識・ガイドライン<br/>（Markdown, 静的参照）"]
-        MCP_L["🔧 MCP層<br/>外部ツール・API連携<br/>（サーバープロセス, JSON-RPC）"]
+block-beta
+    columns 2
+
+    block:LAYER:1
+        columns 1
+        AGENT["🧠 Agent層\nオーケストレーション・判断\n（Claude Code, Cursor）"]
+        SKILLS["📚 Skills層\nドメイン知識・ガイドライン\n（Markdown, 静的参照）"]
+        MCP_L["🔧 MCP層\n外部ツール・API連携\n（サーバープロセス, JSON-RPC）"]
+    end
+
+    block:DECISIONS:1
+        columns 1
+        D1["外部APIが必要？ → MCP"]
+        D2["ドメイン知識？ → Skill"]
+        D3["複雑なオーケストレーション？\n→ Agent/サブエージェント"]
+        D4["公式CLIがある？\n→ CLI + Skill"]
     end
 
     AGENT --> SKILLS
     SKILLS --> MCP_L
 
-    subgraph Decisions["判断基準"]
-        D1["外部APIが必要？ → MCP"]
-        D2["ドメイン知識？ → Skill"]
-        D3["複雑なオーケストレーション？ → Agent/サブエージェント"]
-        D4["公式CLIがある？ → CLI + Skill"]
-    end
-
-    Layer --> Decisions
-
-    style AGENT fill:#87CEEB
-    style SKILLS fill:#90EE90
-    style MCP_L fill:#FFB6C1
+    style AGENT fill:#87CEEB,color:#333,stroke:#333
+    style SKILLS fill:#90EE90,color:#333,stroke:#333
+    style MCP_L fill:#FFB6C1,color:#333,stroke:#333
 ```
 
 ### 具体的な登場箇所
@@ -166,8 +167,9 @@ graph TB
 DeepL + xCOMET による翻訳品質保証は、最も具体的な成功事例として繰り返し語られている。
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph Workflow["翻訳ワークフロー（実証済み）"]
+        direction LR
         A["原文"] --> B["deepl:translate-text<br/>formality: more"]
         B --> C["xcomet:evaluate<br/>品質スコア算出"]
         C --> D{スコア ≧ 0.85?}
@@ -177,6 +179,7 @@ flowchart LR
     end
 
     subgraph Results["実績"]
+        direction TB
         R1["180ページ / 150万文字"]
         R2["1日で完了"]
         R3["コスト: $12"]
@@ -185,7 +188,7 @@ flowchart LR
 
     Workflow --> Results
 
-    style Results fill:#90EE90
+    style Results fill:#90EE90,color:#333
 ```
 
 ### 具体的な登場箇所
@@ -216,8 +219,8 @@ graph LR
 
     Before -->|"MCP/Skills導入"| After
 
-    style Before fill:#ff9999
-    style After fill:#90EE90
+    style Before fill:#ff9999,color:#333
+    style After fill:#90EE90,color:#333
 ```
 
 ### 具体的な登場箇所
@@ -252,8 +255,8 @@ graph TB
 
     E1 --> E2 --> E3 --> E4
 
-    style Cycle fill:#f0f0ff
-    style Evidence fill:#f0fff0
+    style Cycle fill:#f0f0ff,color:#333
+    style Evidence fill:#f0fff0,color:#333
 ```
 
 ## ギャップ分析
@@ -287,9 +290,9 @@ graph TB
     end
 
     style Critical fill:#ff6b6b,color:#fff
-    style Warning fill:#feca57
-    style Todo fill:#dfe6e9
-    style Structural fill:#74b9ff
+    style Warning fill:#feca57,color:#333
+    style Todo fill:#dfe6e9,color:#333
+    style Structural fill:#74b9ff,color:#333
 ```
 
 ### ギャップ詳細
@@ -350,9 +353,9 @@ graph TB
     style VISION fill:#ff6b6b,color:#fff
     style REF fill:#ff6b6b,color:#fff
     style ARCH fill:#ff6b6b,color:#fff
-    style CATALOG fill:#FFB6C1
-    style PATTERNS fill:#87CEEB
-    style ROADMAP fill:#feca57
+    style CATALOG fill:#FFB6C1,color:#333
+    style PATTERNS fill:#87CEEB,color:#333
+    style ROADMAP fill:#feca57,color:#333
 ```
 
 ## 日英バイリンガル構成の網羅性
@@ -383,9 +386,9 @@ graph LR
         N1["configuring_everything-claude-code.imd"]
     end
 
-    style 完備 fill:#90EE90
-    style EnOnly fill:#74b9ff
-    style Neither fill:#ff6b6b
+    style 完備 fill:#90EE90,color:#333
+    style EnOnly fill:#74b9ff,color:#333
+    style Neither fill:#ff6b6b,color:#333
 ```
 
 バイリンガル対応は非常に良好。ほぼ全ファイルが日英両方存在する。

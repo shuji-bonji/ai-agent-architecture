@@ -30,25 +30,25 @@ graph TB
     Agent -->|"Execute"| MCP
     Skills -.->|"Define how to use MCPs"| MCP
 
-    style Skills fill:#90EE90
+    style Skills fill:#90EE90,stroke:#333
 ```
 
 ### Cases Where Skills Are Appropriate
 
-| Case | Example | Reason |
-| --- | --- | --- |
-| Defining quality criteria | Translation quality score ≥ 0.85 | Criteria are knowledge, not tools |
-| Workflow definition | Translate → Evaluate → Fix sequence | Procedures are knowledge; MCPs handle execution |
-| Coding conventions | SOLID principles, naming rules | Team knowledge is static |
-| Review perspectives | Security check items | Check items are knowledge |
+| Case                      | Example                             | Reason                                          |
+| ------------------------- | ----------------------------------- | ----------------------------------------------- |
+| Defining quality criteria | Translation quality score ≥ 0.85    | Criteria are knowledge, not tools               |
+| Workflow definition       | Translate → Evaluate → Fix sequence | Procedures are knowledge; MCPs handle execution |
+| Coding conventions        | SOLID principles, naming rules      | Team knowledge is static                        |
+| Review perspectives       | Security check items                | Check items are knowledge                       |
 
 ### Cases Where Skills Are Not Appropriate
 
-| Case | Better Approach | Reason |
-| --- | --- | --- |
-| Calling external APIs | MCP | Dynamic execution is needed |
-| Real-time data retrieval | MCP | External communication is needed |
-| Complex orchestration | Sub-agents | Decision delegation is needed |
+| Case                     | Better Approach | Reason                           |
+| ------------------------ | --------------- | -------------------------------- |
+| Calling external APIs    | MCP             | Dynamic execution is needed      |
+| Real-time data retrieval | MCP             | External communication is needed |
+| Complex orchestration    | Sub-agents      | Decision delegation is needed    |
 
 > When unsure, refer to the [MCP vs Skills Decision Guide](./vs-mcp.md)
 
@@ -98,13 +98,13 @@ last_reviewed: 2026-02-11
 ---
 ```
 
-| Field | Required | Description |
-| --- | --- | --- |
-| `name` | ✅ | Skill identifier (kebab-case) |
-| `description` | ✅ | One-line description |
-| `version` | ✅ | Semantic versioning |
-| `owner` | ✅ | Owner (person responsible for updates) |
-| `last_reviewed` | ✅ | Last review date (prevents anti-pattern "unmaintained Skill") |
+| Field           | Required | Description                                                   |
+| --------------- | -------- | ------------------------------------------------------------- |
+| `name`          | ✅       | Skill identifier (kebab-case)                                 |
+| `description`   | ✅       | One-line description                                          |
+| `version`       | ✅       | Semantic versioning                                           |
+| `owner`         | ✅       | Owner (person responsible for updates)                        |
+| `last_reviewed` | ✅       | Last review date (prevents anti-pattern "unmaintained Skill") |
 
 ### Step 2: Write Purpose
 
@@ -129,19 +129,19 @@ Clearly specify what the Skill receives and what it produces.
 ```markdown
 ## Inputs
 
-| Input | Type | Description |
-|-------|------|-------------|
-| source_files | TypeScript files | Files to be reviewed |
-| pr_description | Markdown | PR description text |
-| changed_lines | diff | Diff of changed lines |
+| Input          | Type             | Description           |
+| -------------- | ---------------- | --------------------- |
+| source_files   | TypeScript files | Files to be reviewed  |
+| pr_description | Markdown         | PR description text   |
+| changed_lines  | diff             | Diff of changed lines |
 
 ## Outputs
 
-| Output | Type | Description |
-|--------|------|-------------|
-| review_report | Markdown | Review results report |
-| action_items | List | List of required fixes |
-| approval_status | enum | approve / request-changes / comment |
+| Output          | Type     | Description                         |
+| --------------- | -------- | ----------------------------------- |
+| review_report   | Markdown | Review results report               |
+| action_items    | List     | List of required fixes              |
+| approval_status | enum     | approve / request-changes / comment |
 ```
 
 ### Step 4: Define Constraints
@@ -191,6 +191,7 @@ If errors exist, immediately return `request-changes`.
 ### Step 3: Code Quality Check
 
 Verify code from the following perspectives:
+
 1. Compliance with SOLID principles
 2. Angular best practices
 3. RxJS patterns appropriateness
@@ -208,13 +209,13 @@ Clearly present quantitative decision criteria in a table.
 ```markdown
 ## Decision Criteria
 
-| Condition | Action | Rationale |
-|-----------|--------|-----------|
-| ESLint errors > 0 | ❌ request-changes | Basic quality not met |
-| `any` type usage found | ❌ request-changes | Type safety violation |
-| Coverage < 80% | ⚠️ request-changes | Insufficient tests |
-| Suspected SRP violation | 💬 comment | Improvement suggestion |
-| Minor style issues | ✅ approve with comment | Do not block |
+| Condition               | Action                  | Rationale              |
+| ----------------------- | ----------------------- | ---------------------- |
+| ESLint errors > 0       | ❌ request-changes      | Basic quality not met  |
+| `any` type usage found  | ❌ request-changes      | Type safety violation  |
+| Coverage < 80%          | ⚠️ request-changes      | Insufficient tests     |
+| Suspected SRP violation | 💬 comment              | Improvement suggestion |
+| Minor style issues      | ✅ approve with comment | Do not block           |
 ```
 
 ### Step 7: Write Examples
@@ -230,11 +231,13 @@ Provide concrete input/output examples. Agents will use these as reference.
 PR contains 3 instances of `any` type usage
 
 **Process:**
+
 1. Check ESLint results → 3 errors found
 2. Check type safety → violations found
 
 **Output:**
 ❌ request-changes
+
 - `src/service.ts:25` - `any` → change to appropriate type
 - `src/service.ts:42` - `any` → recommend interface definition
 - `src/component.ts:15` - `any` → recommend generic type usage
@@ -265,11 +268,11 @@ Templates are available in `templates/skill/`.
 cp templates/skill/SKILL.ja.md.template .claude/skills/my-skill/SKILL.md
 ```
 
-| Template | Path |
-| --- | --- |
-| Japanese template | `templates/skill/SKILL.ja.md.template` |
-| English template | `templates/skill/SKILL.md.template` |
-| Code review example | `templates/skill/examples/code-review.ja.md` |
+| Template                     | Path                                                  |
+| ---------------------------- | ----------------------------------------------------- |
+| Japanese template            | `templates/skill/SKILL.ja.md.template`                |
+| English template             | `templates/skill/SKILL.md.template`                   |
+| Code review example          | `templates/skill/examples/code-review.ja.md`          |
 | Translation workflow example | `templates/skill/examples/translation-workflow.ja.md` |
 
 ## Real-World Examples of Existing Skills
@@ -304,26 +307,31 @@ A checklist to verify whether your created Skill is of high quality.
 
 ```markdown
 ## Basic Checks
+
 - [ ] Metadata (name, version, owner, last_reviewed) is complete
 - [ ] Purpose is specific and background is explained
 - [ ] Inputs/Outputs are defined in table format
 
 ## Constraint Checks
+
 - [ ] MUST/SHOULD/MUST NOT classification is appropriate
 - [ ] Numeric criteria and specific conditions are included
 - [ ] Vague expressions ("good", "appropriate") are avoided
 
 ## Workflow Checks
+
 - [ ] Steps are numbered and clear
 - [ ] Each step specifies what to do concretely
 - [ ] Decision Criteria are defined in table format
 
 ## Example Checks
+
 - [ ] At least one concrete usage example is provided
 - [ ] Input → Process → Output flow is shown
 - [ ] Anti-Patterns are included
 
 ## Design Principle Checks
+
 - [ ] Single Responsibility (1 Skill = 1 responsibility) is maintained
 - [ ] Does not depend on internal implementation of specific MCPs
 - [ ] Related MCPs are explicitly listed
@@ -346,12 +354,12 @@ flowchart LR
 
 ### Addressing Anti-Pattern: Unmaintained Skills
 
-| Measure | Method |
-| --- | --- |
-| **Specify Owner** | List responsibility owner in `owner` field |
-| **Last Review Date** | Regularly update `last_reviewed` |
-| **Review Cycle** | Recommend quarterly review |
-| **Operational Alignment** | Verify consistency with actual workflows |
+| Measure                   | Method                                     |
+| ------------------------- | ------------------------------------------ |
+| **Specify Owner**         | List responsibility owner in `owner` field |
+| **Last Review Date**      | Regularly update `last_reviewed`           |
+| **Review Cycle**          | Recommend quarterly review                 |
+| **Operational Alignment** | Verify consistency with actual workflows   |
 
 > For details, see [Anti-Patterns Guide](./anti-patterns.md) "6. Unmaintained Skill"
 
@@ -375,19 +383,19 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 
 Current status and targets:
 
-| Metric | Current | Goal (Phase 1) |
-| --- | --- | --- |
-| Skill definitions | 1 (translation-quality) | 3+ |
-| Templates | ✅ Created | — |
-| Documentation | ✅ This document | — |
+| Metric            | Current                 | Goal (Phase 1) |
+| ----------------- | ----------------------- | -------------- |
+| Skill definitions | 1 (translation-quality) | 3+             |
+| Templates         | ✅ Created              | —              |
+| Documentation     | ✅ This document        | —              |
 
 ### Candidate Skills to Create Next
 
-| Skill Name | Overview | Priority | Related MCP |
-| --- | --- | --- | --- |
+| Skill Name           | Overview                             | Priority | Related MCP   |
+| -------------------- | ------------------------------------ | -------- | ------------- |
 | translation-workflow | Workflow: Translate → Evaluate → Fix | ⭐⭐⭐⭐ | deepl, xcomet |
-| rfc-compliance | RFC compliance check guidelines | ⭐⭐⭐⭐ | rfcxml |
-| code-review | TypeScript/Angular review guidelines | ⭐⭐⭐ | — |
+| rfc-compliance       | RFC compliance check guidelines      | ⭐⭐⭐⭐ | rfcxml        |
+| code-review          | TypeScript/Angular review guidelines | ⭐⭐⭐   | —             |
 
 ## Related Documents
 

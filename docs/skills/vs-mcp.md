@@ -294,9 +294,9 @@ flowchart TD
     OPEN -->|No| USE_MCP2[Use MCP<br/>Delegate auth handling]
     CLI -->|No| USE_MCP[Use MCP<br/>Required]
 
-    style USE_CLI fill:#90EE90
-    style USE_MCP fill:#FFB6C1
-    style USE_MCP2 fill:#FFB6C1
+    style USE_CLI fill:#90EE90,color:#333
+    style USE_MCP fill:#FFB6C1,color:#333
+    style USE_MCP2 fill:#FFB6C1,color:#333
 ```
 
 ### Decision Criteria

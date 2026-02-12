@@ -23,7 +23,7 @@ flowchart LR
     PROB --> SAMPLE[サンプリング]
     SAMPLE --> OUTPUT[出力テキスト]
 
-    style PROB fill:#ff9999
+    style PROB fill:#ff9999,color:#333
 ```
 
 | 特性                       | 説明                                                         | AIへの影響                                 |
@@ -139,18 +139,20 @@ AIの出力には**説明責任（Accountability）の主体がない**。
 ```mermaid
 graph TB
     subgraph 従来の情報源
+        direction TB
         EXPERT[専門家] --> |"署名・監修"| DOC[ドキュメント]
         DOC --> |"引用・参照"| USER[利用者]
         EXPERT --> |"責任を負う"| USER
     end
 
     subgraph AIの出力
+        direction TB
         AI[AI] --> |"生成"| OUTPUT[出力]
         OUTPUT --> |"利用"| USER2[利用者]
         AI -.- |"責任の所在が曖昧"| USER2
     end
 
-    style AI fill:#ff9999
+    style AI fill:#ff9999,color:#333
 ```
 
 | 問題               | 説明                     | 結果           |
@@ -181,7 +183,7 @@ graph TB
     VERIFY --> |"本当か確認できる"| TRUST
     ACCESS --> |"参照できる"| TRUST
 
-    style TRUST fill:#90EE90
+    style TRUST fill:#90EE90,color:#333
 ```
 
 ### 2.2 5つの特性
@@ -209,11 +211,11 @@ graph TB
 
     L1 --> L2 --> L3 --> L4 --> L5
 
-    style L1 fill:#ff6b6b
-    style L2 fill:#feca57
-    style L3 fill:#48dbfb
-    style L4 fill:#1dd1a1
-    style L5 fill:#c8d6e5
+    style L1 fill:#ff6b6b,color:#333
+    style L2 fill:#feca57,color:#333
+    style L3 fill:#48dbfb,color:#333
+    style L4 fill:#1dd1a1,color:#333
+    style L5 fill:#c8d6e5,color:#333
 ```
 
 #### 2.2.2 不変性・版管理（Immutability & Versioning）
@@ -245,8 +247,9 @@ RFC 9110-9114 (2022)
 情報が**体系的に組織化**され、特定の情報を正確に参照できること。
 
 ```mermaid
-graph LR
+graph TB
     subgraph 構造化された参照
+        direction TB
         RFC["RFC 6455"]
         SEC["Section 7.4.1"]
         PARA["Paragraph 3"]
@@ -256,11 +259,12 @@ graph LR
     RFC --> SEC --> PARA --> REQ
 
     subgraph 曖昧な参照
+        direction TB
         VAGUE["WebSocketの仕様では..."]
     end
 
-    style RFC fill:#90EE90
-    style VAGUE fill:#ff9999
+    style RFC fill:#90EE90,color:#333
+    style VAGUE fill:#ff9999,color:#333
 ```
 
 | 構造化の要素     | 説明                                 | AIへの恩恵           |
@@ -322,9 +326,9 @@ graph TB
         PAID[有料] --> |"ライセンス"| BARRIER[障壁]
     end
 
-    style API fill:#90EE90
-    style PDF fill:#feca57
-    style PAID fill:#ff9999
+    style API fill:#90EE90,color:#333
+    style PDF fill:#feca57,color:#333
+    style PAID fill:#ff9999,color:#333
 ```
 
 ### 2.3 「ブレない参照先」の判定基準
@@ -347,8 +351,8 @@ flowchart TB
     Q5 -->|Yes| HIGH[信頼性：高<br/>MCP化推奨]
     Q5 -->|No| MED4[信頼性：中高<br/>MCP化で価値向上]
 
-    style HIGH fill:#90EE90
-    style LOW fill:#ff9999
+    style HIGH fill:#90EE90,color:#333
+    style LOW fill:#ff9999,color:#333
 ```
 
 ## 第3章：参照先の階層構造
@@ -358,6 +362,7 @@ flowchart TB
 ```mermaid
 graph TB
     subgraph レベル1["レベル1: 国際標準・法規制（MUST）"]
+        direction TB
         IETF[IETF RFC]
         W3C[W3C標準]
         ISO[ISO規格]
@@ -365,6 +370,7 @@ graph TB
     end
 
     subgraph レベル2["レベル2: 業界標準・デファクト（SHOULD）"]
+        direction TB
         OPENAPI[OpenAPI]
         OWASP[OWASP]
         OAUTH[OAuth 2.0]
@@ -372,12 +378,14 @@ graph TB
     end
 
     subgraph レベル3["レベル3: 組織・プロジェクト規約（ローカル）"]
+        direction TB
         CODING[コーディング規約]
         ADR[ADR]
         STYLE[スタイルガイド]
     end
 
     subgraph レベル4["レベル4: ベストプラクティス（推奨）"]
+        direction TB
         PATTERN[デザインパターン]
         CLEAN[Clean Code]
         SOLID[SOLID原則]
@@ -516,12 +524,12 @@ WebSocketのClose frameのステータスコード1006は「異常クロージ�
 
 「ブレない参照先」を実現する手段として、MCPとSkillsがある。
 
-| 観点 | MCP | Skills |
-|------|-----|--------|
-| **対象** | 外部の権威ある情報源 | ドメイン知識・ベストプラクティス |
-| **例** | RFC、法令、W3C標準 | 設計原則、コーディング規約 |
-| **特性** | 動的アクセス、API経由 | 静的参照、Markdown形式 |
-| **更新** | 外部システムに依存 | チーム主導で更新 |
+| 観点     | MCP                   | Skills                           |
+| -------- | --------------------- | -------------------------------- |
+| **対象** | 外部の権威ある情報源  | ドメイン知識・ベストプラクティス |
+| **例**   | RFC、法令、W3C標準    | 設計原則、コーディング規約       |
+| **特性** | 動的アクセス、API経由 | 静的参照、Markdown形式           |
+| **更新** | 外部システムに依存    | チーム主導で更新                 |
 
 > 詳細は [skills/vs-mcp.md](../skills/vs-mcp.md) を参照。
 
@@ -672,8 +680,8 @@ graph LR
 
     Before -->|MCP導入| After
 
-    style A1 fill:#ff9999
-    style A2 fill:#90EE90
+    style A1 fill:#ff9999,color:#333
+    style A2 fill:#90EE90,color:#333
 ```
 
 **AIの判断にブレない参照先を与えることで、出力の信頼性と検証可能性が確保される。**

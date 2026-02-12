@@ -68,9 +68,9 @@ graph TD
     Q2 -->|Yes| VERSIONED[版管理付き<br/>ISO等]
     Q2 -->|No| UNSTABLE[不安定<br/>Living Document]
 
-    style STABLE fill:#90EE90
-    style VERSIONED fill:#feca57
-    style UNSTABLE fill:#ff9999
+    style STABLE fill:#90EE90,color:#333
+    style VERSIONED fill:#feca57,color:#333
+    style UNSTABLE fill:#ff9999,color:#333
 ```
 
 ## 3. 構造化チェック

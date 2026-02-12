@@ -14,12 +14,12 @@ While AI capabilities are rapidly advancing, it is crucial to correctly recogniz
 
 AI generates outputs probabilistically from training data, but cannot guarantee:
 
-| AI Limitation       | Description                                                           |
-| ------------------- | --------------------------------------------------------------------- |
-| **Accuracy**        | Hallucination problem - may generate information that differs from facts |
-| **Currency**        | Does not have information beyond the training data cutoff             |
-| **Authority**       | Cannot guarantee official interpretation of specifications            |
-| **Accountability**  | Cannot provide grounds for legal or ethical judgments                 |
+| AI Limitation      | Description                                                              |
+| ------------------ | ------------------------------------------------------------------------ |
+| **Accuracy**       | Hallucination problem - may generate information that differs from facts |
+| **Currency**       | Does not have information beyond the training data cutoff                |
+| **Authority**      | Cannot guarantee official interpretation of specifications               |
+| **Accountability** | Cannot provide grounds for legal or ethical judgments                    |
 
 **Therefore, we need to connect to reliable sources.**
 
@@ -32,7 +32,7 @@ AI-driven development = Utilizing AI throughout all processes while humans focus
 
 ### The Reality During This Transitional Period
 
-Currently, until the future arrives where AI can directly output binaries including CI/CD, **integrating the engineering practices that people have cultivated over time is essential**.
+Until the future comes when AI (including CI/CD) can immediately output binaries and be implemented, AI-driven development will require the introduction of the engineering skills that people have cultivated up to now.
 
 What are these necessary elements?
 
@@ -58,20 +58,20 @@ graph TB
 
 ### Why Reference Sources Are Needed
 
-| AI Challenge                    | What Reference Sources Solve       |
-| ------------------------------- | ---------------------------------- |
-| Fixed point-in-time training data | Access to authoritative up-to-date sources |
-| Hallucination                   | Provision of verifiable evidence   |
-| Interpretation variance by context | Consistent decision criteria     |
-| Lack of latest information      | Retrieval of current specifications |
+| AI Challenge                       | What Reference Sources Solve               |
+| ---------------------------------- | ------------------------------------------ |
+| Fixed point-in-time training data  | Access to authoritative up-to-date sources |
+| Hallucination                      | Provision of verifiable evidence           |
+| Interpretation variance by context | Consistent decision criteria               |
+| Lack of latest information         | Retrieval of current specifications        |
 
 ### Two Means to Achieve "Unwavering Reference Sources"
 
 **MCP** and **Skills** serve as means to provide AI with "unwavering reference sources."
 
-| Means                                               | Role                                          | Examples                                    |
-| --------------------------------------------------- | --------------------------------------------- | ------------------------------------------- |
-| **[MCP](https://modelcontextprotocol.io/)**         | Dynamic access to external authoritative sources | RFC, legislation, W3C standards            |
+| Means                                               | Role                                                   | Examples                                       |
+| --------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------- |
+| **[MCP](https://modelcontextprotocol.io/)**         | Dynamic access to external authoritative sources       | RFC, legislation, W3C standards                |
 | **[Skills](https://github.com/vercel-labs/skills)** | Systematization of domain knowledge and best practices | Design principles, workflows, coding standards |
 
 ### Value of Reference MCP/Skills
@@ -122,31 +122,31 @@ Enable AI to access "unwavering reference sources."
 
 ### Structuring External Information Sources via MCP
 
-| Human Knowledge        | Structured Format | AI-Usable Form |
-| ---------------------- | ----------------- | -------------- |
-| Legal text             | e-Gov API         | hourei-mcp     |
-| Technical specifications | RFC XML         | rfcxml-mcp     |
-| Web standards          | W3C/WHATWG        | w3c-mcp        |
-| Translation rules      | Glossary          | DeepL Glossary |
+| Human Knowledge          | Structured Format | AI-Usable Form |
+| ------------------------ | ----------------- | -------------- |
+| Legal text               | e-Gov API         | hourei-mcp     |
+| Technical specifications | RFC XML           | rfcxml-mcp     |
+| Web standards            | W3C/WHATWG        | w3c-mcp        |
+| Translation rules        | Glossary          | DeepL Glossary |
 
 ### Systematizing Domain Knowledge via Skills
 
-| Team Knowledge      | Format   | AI-Usable Form         |
-| ------------------- | -------- | ---------------------- |
-| Design principles   | Markdown | frontend-design skill  |
-| Coding standards    | Markdown | coding-standards skill |
-| Workflows           | Markdown | doc-coauthoring skill  |
+| Team Knowledge    | Format   | AI-Usable Form         |
+| ----------------- | -------- | ---------------------- |
+| Design principles | Markdown | frontend-design skill  |
+| Coding standards  | Markdown | coding-standards skill |
+| Workflows         | Markdown | doc-coauthoring skill  |
 
 ## AI → Human (Comprehension Support) Knowledge Transformation
 
 Enable humans to access accurate knowledge even without being specialists.
 
-| Complex Information Source | AI Processing        | Human-Understandable Form |
-| -------------------------- | -------------------- | ------------------------- |
-| RFC 3161 (135 requirements) | Extraction/Classification | Checklist            |
-| Digital Signature Law + RFC | Mapping             | Correspondence table      |
-| Technical specifications    | Visualization       | Mermaid diagrams          |
-| English RFCs               | Translation          | Explanations in local language |
+| Complex Information Source  | AI Processing             | Human-Understandable Form      |
+| --------------------------- | ------------------------- | ------------------------------ |
+| RFC 3161 (135 requirements) | Extraction/Classification | Checklist                      |
+| Digital Signature Law + RFC | Mapping                   | Correspondence table           |
+| Technical specifications    | Visualization             | Mermaid diagrams               |
+| English RFCs                | Translation               | Explanations in local language |
 
 ## Division of Roles Between Humans and AI
 
@@ -185,6 +185,22 @@ graph TB
     J --> L
     K --> L
 ```
+
+## Basic flow of MCP, Skills, and Agent
+
+```mermaid
+graph TB
+    A[User Input] --> B[Agent Core]
+    B --> C[Tool Integrations]
+    C --> D[Web Scraping]
+    C --> E[API Calls]
+    C --> F[Data Processing]
+    B --> G[Decision Engine]
+    G --> H[Output Generation]
+    H --> I[User Response]
+```
+
+This diagram illustrates a basic flow: inputs processed through an agent core, utilizing tools, and outputting results.
 
 ## Positioning of This Repository
 

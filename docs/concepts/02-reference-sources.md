@@ -25,14 +25,14 @@ flowchart LR
     PROB --> SAMPLE[Sampling]
     SAMPLE --> OUTPUT[Output Text]
 
-    style PROB fill:#ff9999
+    style PROB fill:#ff9999,color:#333
 ```
 
-| Characteristic | Description | Impact on AI |
-| --- | --- | --- |
+| Characteristic                   | Description                                                                | Impact on AI                              |
+| -------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------- |
 | **Statistical Pattern Learning** | Predicts "likely next tokens" from co-occurrence patterns in training data | Outputs "plausible" rather than "correct" |
-| **Non-deterministic Sampling** | Same input can produce different outputs | Consistency guarantees are difficult |
-| **Context Dependency** | Subtle differences in prompts change output | Reproducibility issues |
+| **Non-deterministic Sampling**   | Same input can produce different outputs                                   | Consistency guarantees are difficult      |
+| **Context Dependency**           | Subtle differences in prompts change output                                | Reproducibility issues                    |
 
 ### 1.2 The Four Fundamental Limitations of AI
 
@@ -72,12 +72,12 @@ AI Possibility C: "Section 5.5.1 contains the definition of 1006" (wrong - 7.4.1
 
 **Hallucination Generation Mechanisms**
 
-| Cause | Description | Example |
-| --- | --- | --- |
-| **Sparse Training Data** | Rare information is undertrained | Details of minor RFCs |
-| **Confusion with Similar Patterns** | Confuses similar concepts | Close code 1002 vs 1006 |
-| **Overconfident Completion** | Fills in unknown parts "plausibly" | Generating non-existent section numbers |
-| **Context Contamination** | Treats misinformation in conversation as truth | Amplifies user misunderstandings |
+| Cause                               | Description                                    | Example                                 |
+| ----------------------------------- | ---------------------------------------------- | --------------------------------------- |
+| **Sparse Training Data**            | Rare information is undertrained               | Details of minor RFCs                   |
+| **Confusion with Similar Patterns** | Confuses similar concepts                      | Close code 1002 vs 1006                 |
+| **Overconfident Completion**        | Fills in unknown parts "plausibly"             | Generating non-existent section numbers |
+| **Context Contamination**           | Treats misinformation in conversation as truth | Amplifies user misunderstandings        |
 
 #### 1.2.2 Recency Limitations
 
@@ -97,12 +97,12 @@ timeline
 
 **Specific Impacts**
 
-| Category | Problem | Example |
-| --- | --- | --- |
-| **New RFCs** | Unaware of existence | Does not know RFC 9562 (UUIDv7) |
-| **Legal Amendments** | Answers based on old law | Answers based on pre-amendment privacy law |
+| Category                | Problem                              | Example                                      |
+| ----------------------- | ------------------------------------ | -------------------------------------------- |
+| **New RFCs**            | Unaware of existence                 | Does not know RFC 9562 (UUIDv7)              |
+| **Legal Amendments**    | Answers based on old law             | Answers based on pre-amendment privacy law   |
 | **Deprecation/Updates** | Treats old specifications as current | References RFC 2616 as the HTTP/1.1 standard |
-| **Security** | Unaware of known vulnerabilities | Does not know CVEs discovered after cutoff |
+| **Security**            | Unaware of known vulnerabilities     | Does not know CVEs discovered after cutoff   |
 
 #### 1.2.3 Authority Limitations
 
@@ -127,12 +127,12 @@ AI Output
 
 **Situations Where Lack of Authority Is Problematic**
 
-| Situation | Risk | Required Response |
-| --- | --- | --- |
-| **Specification Implementation** | Non-compliant implementation | Verify RFC original text |
-| **Legal Decisions** | Compliance violations | Verify legal text |
-| **Security** | Overlooking vulnerabilities | Check official advisories |
-| **Contracts/SLAs** | Disputes from misinterpretation | Verify contract text |
+| Situation                        | Risk                            | Required Response         |
+| -------------------------------- | ------------------------------- | ------------------------- |
+| **Specification Implementation** | Non-compliant implementation    | Verify RFC original text  |
+| **Legal Decisions**              | Compliance violations           | Verify legal text         |
+| **Security**                     | Overlooking vulnerabilities     | Check official advisories |
+| **Contracts/SLAs**               | Disputes from misinterpretation | Verify contract text      |
 
 #### 1.2.4 Accountability Limitations
 
@@ -141,25 +141,27 @@ AI output has **no subject of accountability**.
 ```mermaid
 graph TB
     subgraph Traditional Information Sources
+        direction TB
         EXPERT[Expert] --> |"Signature/Review"| DOC[Document]
         DOC --> |"Citation/Reference"| USER[User]
         EXPERT --> |"Bears Responsibility"| USER
     end
 
     subgraph AI Output
+        direction TB
         AI[AI] --> |"Generation"| OUTPUT[Output]
         OUTPUT --> |"Usage"| USER2[User]
         AI -.- |"Responsibility is Ambiguous"| USER2
     end
 
-    style AI fill:#ff9999
+    style AI fill:#ff9999,color:#333
 ```
 
-| Problem | Description | Result |
-| --- | --- | --- |
-| **Source Opacity** | Unknown basis for generation | Cannot verify |
-| **Revision Untraceability** | Unknown when information is from | Cannot audit |
-| **Error Attribution** | Unclear who bears responsibility | Difficult risk management |
+| Problem                     | Description                      | Result                    |
+| --------------------------- | -------------------------------- | ------------------------- |
+| **Source Opacity**          | Unknown basis for generation     | Cannot verify             |
+| **Revision Untraceability** | Unknown when information is from | Cannot audit              |
+| **Error Attribution**       | Unclear who bears responsibility | Difficult risk management |
 
 ## Chapter 2: What Are "Authoritative Reference Sources"?
 
@@ -183,7 +185,7 @@ graph TB
     VERIFY --> |"Can be confirmed"| TRUST
     ACCESS --> |"Can be referenced"| TRUST
 
-    style TRUST fill:#90EE90
+    style TRUST fill:#90EE90,color:#333
 ```
 
 ### 2.2 The Five Characteristics
@@ -192,12 +194,12 @@ graph TB
 
 The information source has **official decision-making authority or expertise** in its domain.
 
-| Type of Authority | Description | Examples |
-| --- | --- | --- |
-| **Institutional Authority** | Official bodies established by law or treaty | IETF, W3C, ISO, National Governments |
-| **De facto Authority** | Entities recognized as de facto standards in the industry | OWASP, Ecma International |
-| **Academic Authority** | Academic communities with peer review processes | IEEE, ACM |
-| **Technical Authority** | Developers/maintainers of technology | OSS Projects, Vendors |
+| Type of Authority           | Description                                               | Examples                             |
+| --------------------------- | --------------------------------------------------------- | ------------------------------------ |
+| **Institutional Authority** | Official bodies established by law or treaty              | IETF, W3C, ISO, National Governments |
+| **De facto Authority**      | Entities recognized as de facto standards in the industry | OWASP, Ecma International            |
+| **Academic Authority**      | Academic communities with peer review processes           | IEEE, ACM                            |
+| **Technical Authority**     | Developers/maintainers of technology                      | OSS Projects, Vendors                |
 
 ```mermaid
 graph TB
@@ -211,22 +213,22 @@ graph TB
 
     L1 --> L2 --> L3 --> L4 --> L5
 
-    style L1 fill:#ff6b6b
-    style L2 fill:#feca57
-    style L3 fill:#48dbfb
-    style L4 fill:#1dd1a1
-    style L5 fill:#c8d6e5
+    style L1 fill:#ff6b6b,color:#333
+    style L2 fill:#feca57,color:#333
+    style L3 fill:#48dbfb,color:#333
+    style L4 fill:#1dd1a1,color:#333
+    style L5 fill:#c8d6e5,color:#333
 ```
 
 #### 2.2.2 Immutability & Versioning
 
 Once published, content either **does not change** or when it does, **clear version management** is applied.
 
-| Pattern | Description | Example |
-| --- | --- | --- |
-| **Complete Immutability** | Never changed once published | RFC (except Errata) |
-| **Versioned Changes** | New version replaces old version | ISO Standards, W3C Recommendations |
-| **Explicit Deprecation** | Old versions explicitly deprecated | RFC obsoletes/updates |
+| Pattern                   | Description                        | Example                            |
+| ------------------------- | ---------------------------------- | ---------------------------------- |
+| **Complete Immutability** | Never changed once published       | RFC (except Errata)                |
+| **Versioned Changes**     | New version replaces old version   | ISO Standards, W3C Recommendations |
+| **Explicit Deprecation**  | Old versions explicitly deprecated | RFC obsoletes/updates              |
 
 ```
 RFC Immutability Model:
@@ -247,8 +249,9 @@ RFC 9110-9114 (2022)
 Information is **systematically organized** so specific information can be precisely referenced.
 
 ```mermaid
-graph LR
+graph TB
     subgraph Structured Reference
+        direction TB
         RFC["RFC 6455"]
         SEC["Section 7.4.1"]
         PARA["Paragraph 3"]
@@ -258,19 +261,20 @@ graph LR
     RFC --> SEC --> PARA --> REQ
 
     subgraph Ambiguous Reference
+        direction TB
         VAGUE["The WebSocket specification says..."]
     end
 
-    style RFC fill:#90EE90
-    style VAGUE fill:#ff9999
+    style RFC fill:#90EE90,color:#333
+    style VAGUE fill:#ff9999,color:#333
 ```
 
-| Structuring Element | Description | Benefit for AI |
-| --- | --- | --- |
+| Structuring Element        | Description                                     | Benefit for AI                          |
+| -------------------------- | ----------------------------------------------- | --------------------------------------- |
 | **Hierarchical Structure** | Clear hierarchy of chapters/sections/paragraphs | Precise reference to specific locations |
-| **Identifiers** | Unique section/article numbers | Unambiguous citations |
-| **Cross-references** | Explicit links to other documents/sections | Tracking related information |
-| **Index** | Term index, requirement lists | Efficient searching |
+| **Identifiers**            | Unique section/article numbers                  | Unambiguous citations                   |
+| **Cross-references**       | Explicit links to other documents/sections      | Tracking related information            |
+| **Index**                  | Term index, requirement lists                   | Efficient searching                     |
 
 #### 2.2.4 Verifiability
 
@@ -296,22 +300,22 @@ sequenceDiagram
 
 **Elements Ensuring Verifiability**
 
-| Element | Description | Implementation |
-| --- | --- | --- |
-| **Persistent URI** | Reference won't disappear | DOI, RFC number, Legal article number |
-| **Version Specification** | Clarify which version was referenced | RFC 9110, ISO 27001:2022 |
-| **Section Specification** | Clarify which part was referenced | Section 7.4.1 |
-| **Original Text Citation** | Show the referenced wording | MUST/SHOULD/MAY original text |
+| Element                    | Description                          | Implementation                        |
+| -------------------------- | ------------------------------------ | ------------------------------------- |
+| **Persistent URI**         | Reference won't disappear            | DOI, RFC number, Legal article number |
+| **Version Specification**  | Clarify which version was referenced | RFC 9110, ISO 27001:2022              |
+| **Section Specification**  | Clarify which part was referenced    | Section 7.4.1                         |
+| **Original Text Citation** | Show the referenced wording          | MUST/SHOULD/MAY original text         |
 
 #### 2.2.5 Accessibility
 
 Provided in a format that **AI can access programmatically**.
 
-| Level | Description | Example |
-| --- | --- | --- |
-| **Structured API** | Accessible in machine-readable format | RFC XML, e-Gov API |
-| **HTML/PDF** | Published on web but requires parsing | W3C specs, most ISO |
-| **Paid/Restricted** | Access has constraints | Some ISO standards |
+| Level               | Description                           | Example             |
+| ------------------- | ------------------------------------- | ------------------- |
+| **Structured API**  | Accessible in machine-readable format | RFC XML, e-Gov API  |
+| **HTML/PDF**        | Published on web but requires parsing | W3C specs, most ISO |
+| **Paid/Restricted** | Access has constraints                | Some ISO standards  |
 
 ```mermaid
 graph TB
@@ -324,9 +328,9 @@ graph TB
         PAID[Paid] --> |"License"| BARRIER[Barrier]
     end
 
-    style API fill:#90EE90
-    style PDF fill:#feca57
-    style PAID fill:#ff9999
+    style API fill:#90EE90,color:#333
+    style PDF fill:#feca57,color:#333
+    style PAID fill:#ff9999,color:#333
 ```
 
 ### 2.3 Criteria for Evaluating "Authoritative Reference Sources"
@@ -349,8 +353,8 @@ flowchart TB
     Q5 -->|Yes| HIGH[Reliability: High<br/>Recommended for MCP]
     Q5 -->|No| MED4[Reliability: Medium-High<br/>Value increases with MCP]
 
-    style HIGH fill:#90EE90
-    style LOW fill:#ff9999
+    style HIGH fill:#90EE90,color:#333
+    style LOW fill:#ff9999,color:#333
 ```
 
 ## Chapter 3: Hierarchical Structure of Reference Sources
@@ -360,6 +364,7 @@ flowchart TB
 ```mermaid
 graph TB
     subgraph Level1["Level 1: International Standards & Regulations (MUST)"]
+        direction TB
         IETF[IETF RFC]
         W3C[W3C Standards]
         ISO[ISO Standards]
@@ -367,6 +372,7 @@ graph TB
     end
 
     subgraph Level2["Level 2: Industry Standards & De facto (SHOULD)"]
+        direction TB
         OPENAPI[OpenAPI]
         OWASP[OWASP]
         OAUTH[OAuth 2.0]
@@ -374,12 +380,14 @@ graph TB
     end
 
     subgraph Level3["Level 3: Organization/Project Rules (Local)"]
+        direction TB
         CODING[Coding Standards]
         ADR[ADR]
         STYLE[Style Guide]
     end
 
     subgraph Level4["Level 4: Best Practices (Recommended)"]
+        direction TB
         PATTERN[Design Patterns]
         CLEAN[Clean Code]
         SOLID[SOLID Principles]
@@ -394,13 +402,13 @@ graph TB
 
 Highest authority reference sources. Violations cause **interoperability issues or legal problems**.
 
-| Category | Reference | 5 Characteristics Rating | MCP Status |
-| --- | --- | --- | --- |
-| **Communication Protocols** | IETF RFC | ◎◎◎◎◎ | ✅ rfcxml-mcp |
-| **Web Standards** | W3C / WHATWG | ◎◎◎◎○ | ✅ w3c-mcp |
-| **International Standards** | ISO | ◎◎◎○△ | 🔜 Under consideration |
-| **Japanese Laws** | e-Gov | ◎◎◎◎◎ | ✅ hourei-mcp |
-| **EU Regulations** | EUR-Lex | ◎◎◎◎○ | 📋 Planned |
+| Category                    | Reference    | 5 Characteristics Rating | MCP Status             |
+| --------------------------- | ------------ | ------------------------ | ---------------------- |
+| **Communication Protocols** | IETF RFC     | ◎◎◎◎◎                    | ✅ rfcxml-mcp          |
+| **Web Standards**           | W3C / WHATWG | ◎◎◎◎○                    | ✅ w3c-mcp             |
+| **International Standards** | ISO          | ◎◎◎○△                    | 🔜 Under consideration |
+| **Japanese Laws**           | e-Gov        | ◎◎◎◎◎                    | ✅ hourei-mcp          |
+| **EU Regulations**          | EUR-Lex      | ◎◎◎◎○                    | 📋 Planned             |
 
 **IETF RFC Characteristics**
 
@@ -416,32 +424,32 @@ Accessibility:     ◎ Published in RFC XML format, free access
 
 Widely adopted standards. Non-compliance causes **compatibility issues within the industry**.
 
-| Category | Reference | Characteristics | MCP Value |
-| --- | --- | --- | --- |
-| **API Design** | OpenAPI Spec | De facto standard for REST APIs | High |
-| **Security** | OWASP | Web security best practices | High |
-| **Authentication** | OAuth 2.0 / OIDC | De facto standard for authorization | High |
-| **Messaging** | AsyncAPI | Async API specification | Medium |
+| Category           | Reference        | Characteristics                     | MCP Value |
+| ------------------ | ---------------- | ----------------------------------- | --------- |
+| **API Design**     | OpenAPI Spec     | De facto standard for REST APIs     | High      |
+| **Security**       | OWASP            | Web security best practices         | High      |
+| **Authentication** | OAuth 2.0 / OIDC | De facto standard for authorization | High      |
+| **Messaging**      | AsyncAPI         | Async API specification             | Medium    |
 
 #### Level 3: Organization/Project Rules (Local Compliance)
 
 Rules that should be unified within teams/projects.
 
-| Type | Characteristics | Management Method |
-| --- | --- | --- |
-| **Coding Standards** | Project-specific styles | Markdown / Linter configs |
-| **ADR** | Architecture decision records | Git-managed Markdown |
-| **CLAUDE.md** | Claude-specific instructions | Project root placement |
+| Type                 | Characteristics               | Management Method         |
+| -------------------- | ----------------------------- | ------------------------- |
+| **Coding Standards** | Project-specific styles       | Markdown / Linter configs |
+| **ADR**              | Architecture decision records | Git-managed Markdown      |
+| **CLAUDE.md**        | Claude-specific instructions  | Project root placement    |
 
 #### Level 4: Best Practices (Recommended)
 
 Recommendations based on experience. **Apply as appropriate to the situation**.
 
-| Type | Source | Application Judgment |
-| --- | --- | --- |
-| **Design Principles** | SOLID, DRY, KISS | Situational |
-| **Design Patterns** | GoF, POSA | When matching the problem |
-| **Clean Code** | Robert C. Martin | Within team agreement |
+| Type                  | Source           | Application Judgment      |
+| --------------------- | ---------------- | ------------------------- |
+| **Design Principles** | SOLID, DRY, KISS | Situational               |
+| **Design Patterns**   | GoF, POSA        | When matching the problem |
+| **Clean Code**        | Robert C. Martin | Within team agreement     |
 
 ## Chapter 4: AI Decision Flow
 
@@ -518,26 +526,26 @@ If precise specifications are needed, I recommend checking~.
 
 MCP and Skills are both means to achieve "authoritative reference sources."
 
-| Aspect | MCP | Skills |
-|------|-----|--------|
-| **Target** | External authoritative information sources | Domain knowledge & best practices |
-| **Examples** | RFC, Laws, W3C standards | Design principles, Coding standards |
-| **Characteristics** | Dynamic access, via API | Static reference, Markdown format |
-| **Updates** | Dependent on external systems | Team-driven updates |
+| Aspect              | MCP                                        | Skills                              |
+| ------------------- | ------------------------------------------ | ----------------------------------- |
+| **Target**          | External authoritative information sources | Domain knowledge & best practices   |
+| **Examples**        | RFC, Laws, W3C standards                   | Design principles, Coding standards |
+| **Characteristics** | Dynamic access, via API                    | Static reference, Markdown format   |
+| **Updates**         | Dependent on external systems              | Team-driven updates                 |
 
 > For details, see [skills/vs-mcp.md](../skills/vs-mcp.md).
 
 ### 5.1 Required Functions
 
-| Function | Description | Example |
-| --- | --- | --- |
-| **Search** | Keyword search within specifications | "WebSocket close frame" |
-| **Structure Retrieval** | Chapter/section hierarchy | Table of contents for RFC 6455 |
-| **Requirements Extraction** | Extract MUST/SHOULD/MAY | List of normative requirements |
-| **Term Definitions** | Get definitions of technical terms | Definition of "Origin" |
-| **Reference Relationships** | Dependencies on other specifications | RFC 6455 → RFC 2616 |
-| **Checklist Generation** | Generate implementation verification items | Client implementation checklist |
-| **Validation** | Check if implementation complies with spec | Statement validation |
+| Function                    | Description                                | Example                         |
+| --------------------------- | ------------------------------------------ | ------------------------------- |
+| **Search**                  | Keyword search within specifications       | "WebSocket close frame"         |
+| **Structure Retrieval**     | Chapter/section hierarchy                  | Table of contents for RFC 6455  |
+| **Requirements Extraction** | Extract MUST/SHOULD/MAY                    | List of normative requirements  |
+| **Term Definitions**        | Get definitions of technical terms         | Definition of "Origin"          |
+| **Reference Relationships** | Dependencies on other specifications       | RFC 6455 → RFC 2616             |
+| **Checklist Generation**    | Generate implementation verification items | Client implementation checklist |
+| **Validation**              | Check if implementation complies with spec | Statement validation            |
 
 ### 5.2 RFC MCP Tool Design
 
@@ -622,30 +630,30 @@ sequenceDiagram
 
 ## Chapter 8: List of Built Reference Source MCPs
 
-| MCP | Target | Main Functions | Repository |
-| --- | --- | --- | --- |
-| **rfcxml-mcp** | IETF RFC | Structure retrieval, requirements extraction, checklist generation | [GitHub](https://github.com/shuji-bonji/rfcxml-mcp) |
-| **w3c-mcp** | W3C/WHATWG/IETF Web Standards | WebIDL, CSS, HTML elements | [GitHub](https://github.com/shuji-bonji/w3c-mcp) |
-| **hourei-mcp** | Japanese Laws (e-Gov) | Law search, article retrieval | [GitHub](https://github.com/ryoooo/e-gov-law-mcp) |
+| MCP            | Target                        | Main Functions                                                     | Repository                                          |
+| -------------- | ----------------------------- | ------------------------------------------------------------------ | --------------------------------------------------- |
+| **rfcxml-mcp** | IETF RFC                      | Structure retrieval, requirements extraction, checklist generation | [GitHub](https://github.com/shuji-bonji/rfcxml-mcp) |
+| **w3c-mcp**    | W3C/WHATWG/IETF Web Standards | WebIDL, CSS, HTML elements                                         | [GitHub](https://github.com/shuji-bonji/w3c-mcp)    |
+| **hourei-mcp** | Japanese Laws (e-Gov)         | Law search, article retrieval                                      | [GitHub](https://github.com/ryoooo/e-gov-law-mcp)   |
 
 ## Chapter 9: Future Expansion Candidates
 
 ### High Priority
 
-| Candidate | Target | Value |
-| --- | --- | --- |
-| **OpenAPI MCP** | OpenAPI Spec | API design standards compliance |
-| **OWASP MCP** | OWASP Top 10 etc. | Security requirements checking |
-| **OAuth MCP** | OAuth 2.0 / OIDC | Authentication flow implementation support |
+| Candidate       | Target            | Value                                      |
+| --------------- | ----------------- | ------------------------------------------ |
+| **OpenAPI MCP** | OpenAPI Spec      | API design standards compliance            |
+| **OWASP MCP**   | OWASP Top 10 etc. | Security requirements checking             |
+| **OAuth MCP**   | OAuth 2.0 / OIDC  | Authentication flow implementation support |
 
 ### Medium Priority
 
-| Candidate | Target | Value |
-| --- | --- | --- |
-| **ISO MCP** | ISO Standards | International standards reference |
-| **PDF Spec MCP** | ISO 32000 | PDF specification reference |
-| **BIM/IFC MCP** | buildingSMART IFC | Building information model |
-| **HL7 FHIR MCP** | HL7 FHIR | Healthcare information exchange |
+| Candidate        | Target            | Value                             |
+| ---------------- | ----------------- | --------------------------------- |
+| **ISO MCP**      | ISO Standards     | International standards reference |
+| **PDF Spec MCP** | ISO 32000         | PDF specification reference       |
+| **BIM/IFC MCP**  | buildingSMART IFC | Building information model        |
+| **HL7 FHIR MCP** | HL7 FHIR          | Healthcare information exchange   |
 
 ## Summary
 
@@ -674,8 +682,8 @@ graph LR
 
     Before -->|MCP Introduction| After
 
-    style A1 fill:#ff9999
-    style A2 fill:#90EE90
+    style A1 fill:#ff9999,color:#333
+    style A2 fill:#90EE90,color:#333
 ```
 
 **By providing authoritative reference sources for AI decisions, output reliability and verifiability are ensured.**

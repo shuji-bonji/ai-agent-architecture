@@ -39,11 +39,11 @@ External Services (DeepL, RFC Editor, GitHub, etc.)
 
 ### Layer Responsibilities
 
-| Layer | Responsibility | Owns | Examples |
-|-------|----------------|------|----------|
-| **Agent** | Orchestration, decision-making | Task flow | Claude Code, Cursor |
-| **Skills** | Domain knowledge, guidelines | Best practices | SOLID principles, translation guidelines |
-| **MCP** | External connectivity | Tool definitions | deepl-mcp, rfcxml-mcp |
+| Layer      | Responsibility                 | Owns             | Examples                                 |
+| ---------- | ------------------------------ | ---------------- | ---------------------------------------- |
+| **Agent**  | Orchestration, decision-making | Task flow        | Claude Code, Cursor                      |
+| **Skills** | Domain knowledge, guidelines   | Best practices   | SOLID principles, translation guidelines |
+| **MCP**    | External connectivity          | Tool definitions | deepl-mcp, rfcxml-mcp                    |
 
 ## About This Document
 
@@ -54,29 +54,29 @@ When you are unsure about "What should be implemented as MCP?", "When is a Skill
 ## Overall Architecture
 
 ```mermaid
-graph TB
-    subgraph User Layer
-        USER[User]
+block-beta
+    columns 3
+
+    space:1 USER["User"]:1 space:1
+
+    block:HOST_LAYER:3
+        columns 3
+        HOST["Host\n(Claude Code / Claude.ai)"]:2 SKILL["Skills\n(Static Knowledge)"]:1
     end
 
-    subgraph Host Application Layer
-        HOST["Host<br/>(Claude Code / Claude.ai)"]
-        SKILL["Skills<br/>(Static Knowledge)"]
+    block:AGENT_LAYER:3
+        columns 3
+        MAIN["Main Agent"]:2 SUB["Sub Agent"]:1
     end
 
-    subgraph Agent Layer
-        MAIN["Main Agent"]
-        SUB["Sub-agent"]
+    block:PROTOCOL_LAYER:3
+        columns 3
+        MCP_CLIENT["MCP Client"]:2 A2A_CLIENT["A2A Client"]:1
     end
 
-    subgraph Protocol Layer
-        MCP_CLIENT["MCP Client"]
-        A2A_CLIENT["A2A Client"]
-    end
-
-    subgraph External Service Layer
-        MCP_SERVER["MCP Servers"]
-        A2A_AGENT["External A2A Agent"]
+    block:EXTERNAL_LAYER:3
+        columns 3
+        MCP_SERVER["MCP Servers"]:2 A2A_AGENT["External A2A Agents"]:1
     end
 
     USER --> HOST
@@ -89,9 +89,9 @@ graph TB
     MCP_CLIENT --> MCP_SERVER
     A2A_CLIENT --> A2A_AGENT
 
-    style SKILL fill:#90EE90
-    style MCP_SERVER fill:#FFB6C1
-    style A2A_AGENT fill:#87CEEB
+    style SKILL fill:#90EE90,color:#333,stroke:#333
+    style MCP_SERVER fill:#FFB6C1,color:#333,stroke:#333
+    style A2A_AGENT fill:#87CEEB,color:#333,stroke:#333
 ```
 
 ## MCP Three-Layer Structure
@@ -99,28 +99,34 @@ graph TB
 ### Host / Client / Server
 
 ```mermaid
-graph TB
-    subgraph Host["Host (Host Application)"]
-        H_DESC["Provides User Interface<br/>Session Management"]
+block-beta
+    columns 1
+
+    block:HOST_BLOCK:1
+        HOST["Host (Host Application)\nUser Interface / Session Management"]
     end
 
-    subgraph Client["Client (MCP Client)"]
-        C_DESC["Server Discovery & Connection Management<br/>Protocol Processing"]
+    block:CLIENT_BLOCK:1
+        CLIENT["Client (MCP Client)\nServer Discovery / Protocol Processing"]
     end
 
-    subgraph Server["Server (MCP Server)"]
-        S_DESC["Provides Tools/Resources<br/>Actual Processing Execution"]
+    block:SERVER_BLOCK:1
+        SERVER["Server (MCP Server)\nTool/Resource Provider / Processing"]
     end
 
-    Host --> Client
-    Client -->|JSON-RPC| Server
+    HOST --> CLIENT
+    CLIENT --"JSON-RPC"--> SERVER
+
+    style HOST fill:#87CEEB,color:#333,stroke:#333
+    style CLIENT fill:#FFE4B5,color:#333,stroke:#333
+    style SERVER fill:#FFB6C1,color:#333,stroke:#333
 ```
 
-| Layer      | Role                                  | Example                      | Developer Involvement   |
-| ---------- | ------------------------------------- | ---------------------------- | ----------------------- |
-| **Host**   | UI, session management                | Claude Code, Cursor, VS Code | Consumer                |
-| **Client** | Protocol processing, server management| Built into Host              | Usually not concerned   |
-| **Server** | Tool/resource provision               | rfcxml-mcp, deepl-mcp        | **Provider**            |
+| Layer      | Role                                   | Example                      | Developer Involvement |
+| ---------- | -------------------------------------- | ---------------------------- | --------------------- |
+| **Host**   | UI, session management                 | Claude Code, Cursor, VS Code | Consumer              |
+| **Client** | Protocol processing, server management | Built into Host              | Usually not concerned |
+| **Server** | Tool/resource provision                | rfcxml-mcp, deepl-mcp        | **Provider**          |
 
 ### Why You Don't Need to Worry About the Client
 
@@ -154,13 +160,13 @@ graph TB
     MCP -->|Complementary| A2A
 ```
 
-| Item           | MCP                        | A2A                              |
-| -------------- | -------------------------- | -------------------------------- |
-| **Led by**     | Anthropic                  | Google → Linux Foundation        |
-| **Purpose**    | Tool connectivity          | Agent-to-agent communication     |
-| **Connects to**| MCP Server (tools)         | Other agents (including third-party) |
-| **Context**    | Can share with parent agent| Completely isolated              |
-| **Owner**      | Self                       | Self or **others**               |
+| Item            | MCP                         | A2A                                  |
+| --------------- | --------------------------- | ------------------------------------ |
+| **Led by**      | Anthropic                   | Google → Linux Foundation            |
+| **Purpose**     | Tool connectivity           | Agent-to-agent communication         |
+| **Connects to** | MCP Server (tools)          | Other agents (including third-party) |
+| **Context**     | Can share with parent agent | Completely isolated                  |
+| **Owner**       | Self                        | Self or **others**                   |
 
 ### Official Recommendation
 
@@ -198,26 +204,27 @@ Use only the rfcxml tools.
 ### Sub-agent Positioning
 
 ```mermaid
-graph TB
-    subgraph Claude_Code["Inside Claude Code"]
-        USER[User]
-        MAIN["Main Claude<br/>(Orchestrator)"]
-        SUBAGENT["Custom Sub-agent<br/>(.claude/agents/)"]
-        MCP_CLIENT["MCP Client<br/>(Built into Claude Code)"]
+block-beta
+    columns 2
+
+    block:CLAUDE_CODE:2
+        columns 2
+        USER["User"]:2
+        MAIN["Main Claude\n(Orchestrator)"]:1 SUBAGENT["Custom Sub Agent\n(.claude/agents/)"]:1
+        MCP_CLIENT["MCP Client\n(Built into Claude Code)"]:2
     end
 
-    subgraph External["External"]
-        MCP_SERVERS["MCP Servers<br/>rfcxml, deepl, etc."]
-    end
+    MCP_SERVERS["MCP Servers\nrfcxml, deepl, etc."]:2
 
     USER --> MAIN
-    MAIN -->|"Delegate"| SUBAGENT
-    SUBAGENT -->|"Use"| MCP_CLIENT
-    MAIN -->|"Use directly"| MCP_CLIENT
-    MCP_CLIENT -->|"JSON-RPC"| MCP_SERVERS
+    MAIN --"Delegate"--> SUBAGENT
+    SUBAGENT --"Use"--> MCP_CLIENT
+    MAIN --"Direct Use"--> MCP_CLIENT
+    MCP_CLIENT --"JSON-RPC"--> MCP_SERVERS
 
-    style MCP_CLIENT fill:#FFB6C1
-    style SUBAGENT fill:#90EE90
+    style MCP_CLIENT fill:#FFB6C1,color:#333,stroke:#333
+    style SUBAGENT fill:#90EE90,color:#333,stroke:#333
+    style MCP_SERVERS fill:#E8E8E8,color:#333,stroke:#333
 ```
 
 **Important**: Sub-agents are not a "replacement" for the MCP Client, but rather a "higher layer"
@@ -239,12 +246,12 @@ Location:
 
 ### Skill Characteristics
 
-| Item                   | Description                                              |
-| ---------------------- | -------------------------------------------------------- |
-| **Format**             | Markdown file                                            |
-| **Content**            | Best practices, workflow definitions, guidelines         |
-| **Execution**          | None (reference only)                                    |
-| **Context consumption**| Low (only when referenced)                               |
+| Item                    | Description                                      |
+| ----------------------- | ------------------------------------------------ |
+| **Format**              | Markdown file                                    |
+| **Content**             | Best practices, workflow definitions, guidelines |
+| **Execution**           | None (reference only)                            |
+| **Context consumption** | Low (only when referenced)                       |
 
 ## MCP vs Skill vs Sub-agent
 
@@ -260,21 +267,21 @@ graph TB
     Q3 -->|Yes| AGENT[Use Sub-agent]
     Q3 -->|No| SKILL[Use Skill]
 
-    style MCP fill:#FFB6C1
-    style SKILL fill:#90EE90
-    style AGENT fill:#87CEEB
+    style MCP fill:#FFB6C1,color:#333
+    style SKILL fill:#90EE90,color:#333
+    style AGENT fill:#87CEEB,color:#333
 ```
 
 ### Comparison Table
 
-| Aspect                 | Skill              | MCP              | Sub-agent         |
-| ---------------------- | ------------------ | ---------------- | ----------------- |
-| **Context consumption**| Low                | High             | Medium            |
-| **Dynamic processing** | Not possible       | Possible         | Possible          |
-| **External API**       | Not possible       | Possible         | Via MCP           |
-| **Maintenance**        | Markdown editing   | npm publish, etc.| Markdown editing  |
-| **Reusability**        | Within project     | Global           | Within project    |
-| **Use case**           | Knowledge/guidelines| Tool/API integration | Role/expertise separation |
+| Aspect                  | Skill                | MCP                  | Sub-agent                 |
+| ----------------------- | -------------------- | -------------------- | ------------------------- |
+| **Context consumption** | Low                  | High                 | Medium                    |
+| **Dynamic processing**  | Not possible         | Possible             | Possible                  |
+| **External API**        | Not possible         | Possible             | Via MCP                   |
+| **Maintenance**         | Markdown editing     | npm publish, etc.    | Markdown editing          |
+| **Reusability**         | Within project       | Global               | Within project            |
+| **Use case**            | Knowledge/guidelines | Tool/API integration | Role/expertise separation |
 
 ### Principles for Choosing
 
@@ -292,14 +299,14 @@ Use Sub-agents to separate "who does it"
 
 ### Fundamental Differences
 
-| Aspect             | Custom Sub-agent         | A2A Agent                 |
-| ------------------ | ------------------------ | ------------------------- |
-| **Location**       | Within same process      | Over the network          |
-| **Owner**          | Self                     | Self or **others**        |
-| **Trust**          | Full trust               | Authentication/authorization required |
-| **Context**        | Partially shared with parent | Completely isolated    |
-| **Lifecycle**      | Session-limited          | Persistent service        |
-| **Internal implementation** | Visible (Markdown) | Not visible (API contract only) |
+| Aspect                      | Custom Sub-agent             | A2A Agent                             |
+| --------------------------- | ---------------------------- | ------------------------------------- |
+| **Location**                | Within same process          | Over the network                      |
+| **Owner**                   | Self                         | Self or **others**                    |
+| **Trust**                   | Full trust                   | Authentication/authorization required |
+| **Context**                 | Partially shared with parent | Completely isolated                   |
+| **Lifecycle**               | Session-limited              | Persistent service                    |
+| **Internal implementation** | Visible (Markdown)           | Not visible (API contract only)       |
 
 ### Analogy
 
@@ -315,14 +322,14 @@ Even with outsourcing partners, internal specialized departments are needed
 
 ### When to Use Which
 
-| Scenario                                | What to Use     |
-| --------------------------------------- | --------------- |
-| Want to use your own MCP expertly       | Sub-agent       |
-| Want to reuse the same processing repeatedly | Sub-agent  |
-| Want to define a workflow               | Sub-agent       |
-| Integrate with third-party agents       | A2A             |
-| Expose your agent externally            | A2A             |
-| Agent collaboration across multiple organizations | A2A    |
+| Scenario                                          | What to Use |
+| ------------------------------------------------- | ----------- |
+| Want to use your own MCP expertly                 | Sub-agent   |
+| Want to reuse the same processing repeatedly      | Sub-agent   |
+| Want to define a workflow                         | Sub-agent   |
+| Integrate with third-party agents                 | A2A         |
+| Expose your agent externally                      | A2A         |
+| Agent collaboration across multiple organizations | A2A         |
 
 ## Executor Selection
 
@@ -353,12 +360,12 @@ The appropriate layer is determined by "who makes the decision".
 
 ### Layer Selection by Decision Maker
 
-| Decision Maker | Appropriate Layer | Characteristics | Examples |
-|----------------|-------------------|-----------------|----------|
-| **None** (Deterministic) | Direct program | No judgment needed, fast, reliable | Batch processing, CI/CD, cron |
-| **Human** | CLI | Human decides, AI doesn't execute | `gh pr list`, `aws s3 ls` |
-| **AI** (One-shot) | MCP + Skill | AI decides and executes per request | Translation, RFC lookup, quality evaluation |
-| **AI** (Continuous/Autonomous) | Sub-agent | Autonomous decisions with expertise | Review specialist, translation specialist |
+| Decision Maker                 | Appropriate Layer | Characteristics                     | Examples                                    |
+| ------------------------------ | ----------------- | ----------------------------------- | ------------------------------------------- |
+| **None** (Deterministic)       | Direct program    | No judgment needed, fast, reliable  | Batch processing, CI/CD, cron               |
+| **Human**                      | CLI               | Human decides, AI doesn't execute   | `gh pr list`, `aws s3 ls`                   |
+| **AI** (One-shot)              | MCP + Skill       | AI decides and executes per request | Translation, RFC lookup, quality evaluation |
+| **AI** (Continuous/Autonomous) | Sub-agent         | Autonomous decisions with expertise | Review specialist, translation specialist   |
 
 ### Decision Flow
 
@@ -380,37 +387,37 @@ flowchart TD
     Q2 -->|Yes| CLI_SKILL[CLI + Skill<br/>Token efficient ◎]
     Q2 -->|No| MCP_BUILD[Build MCP]
 
-    style PG fill:#E8E8E8
-    style CLI fill:#FFE4B5
-    style CLI_SKILL fill:#90EE90
-    style MCP_BUILD fill:#FFB6C1
-    style SUBAGENT fill:#87CEEB
+    style PG fill:#E8E8E8,color:#333
+    style CLI fill:#FFE4B5,color:#333
+    style CLI_SKILL fill:#90EE90,color:#333
+    style MCP_BUILD fill:#FFB6C1,color:#333
+    style SUBAGENT fill:#87CEEB,color:#333
 ```
 
 ### CLI vs MCP: When AI Makes the Decision
 
 > **Key Insight**: When an official CLI exists, **CLI + Skill** is more efficient than building an MCP
 >
-> *— From r/ClaudeAI community discussion*
+> _— From r/ClaudeAI community discussion_
 
-| Aspect | CLI + Skill | MCP |
-|--------|-------------|-----|
-| **Token consumption** | Low (command only) | High (loads all tool definitions) |
-| **Startup cost** | None | Requires server process |
-| **Authentication** | Local | Managed by MCP |
-| **Purpose-built** | ◎ (Dedicated design) | △ (General purpose) |
+| Aspect                | CLI + Skill          | MCP                               |
+| --------------------- | -------------------- | --------------------------------- |
+| **Token consumption** | Low (command only)   | High (loads all tool definitions) |
+| **Startup cost**      | None                 | Requires server process           |
+| **Authentication**    | Local                | Managed by MCP                    |
+| **Purpose-built**     | ◎ (Dedicated design) | △ (General purpose)               |
 
 #### Examples
 
-| Service | CLI | Recommendation |
-|---------|-----|----------------|
-| GitHub | `gh` | CLI + Skill |
-| AWS | `aws` | CLI + Skill |
-| Google Cloud | `gcloud` | CLI + Skill |
-| PostgreSQL | `psql` | CLI + Skill |
-| Linear | ❌ | MCP |
-| Greptile | ❌ | MCP |
-| DeepL | ❌ | MCP |
+| Service      | CLI      | Recommendation |
+| ------------ | -------- | -------------- |
+| GitHub       | `gh`     | CLI + Skill    |
+| AWS          | `aws`    | CLI + Skill    |
+| Google Cloud | `gcloud` | CLI + Skill    |
+| PostgreSQL   | `psql`   | CLI + Skill    |
+| Linear       | ❌       | MCP            |
+| Greptile     | ❌       | MCP            |
+| DeepL        | ❌       | MCP            |
 
 ### Key Insight
 
@@ -434,9 +441,9 @@ graph LR
     SKILL[Skill<br/>Workflow Definition] -->|"Reference"| AGENT[Sub-agent]
     AGENT -->|"Execute"| MCP[MCP<br/>Tools]
 
-    style SKILL fill:#90EE90
-    style MCP fill:#FFB6C1
-    style AGENT fill:#87CEEB
+    style SKILL fill:#90EE90,color:#333
+    style MCP fill:#FFB6C1,color:#333
+    style AGENT fill:#87CEEB,color:#333
 ```
 
 ### Concrete Example: Translation Workflow

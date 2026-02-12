@@ -30,7 +30,8 @@ graph TB
     Agent -->|"実行"| MCP
     Skills -.->|"MCPの使い方を定義"| MCP
 
-    style Skills fill:#90EE90
+    style Skills fill:#90EE90,color:#333
+
 ```
 
 ### Skillが適しているケース

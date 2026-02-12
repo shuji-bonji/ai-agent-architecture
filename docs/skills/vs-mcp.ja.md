@@ -291,9 +291,9 @@ flowchart TD
     OPEN -->|No| USE_MCP2[MCP を使用<br/>認証処理を委譲]
     CLI -->|No| USE_MCP[MCP を使用<br/>必須]
 
-    style USE_CLI fill:#90EE90
-    style USE_MCP fill:#FFB6C1
-    style USE_MCP2 fill:#FFB6C1
+    style USE_CLI fill:#90EE90,color:#333
+    style USE_MCP fill:#FFB6C1,color:#333
+    style USE_MCP2 fill:#FFB6C1,color:#333
 ```
 
 ### 判断基準

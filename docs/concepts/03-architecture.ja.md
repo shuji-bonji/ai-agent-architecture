@@ -5,43 +5,43 @@
 ## レイヤー構造の概観
 
 ```
-User Request
-     │
-     ▼
-┌─────────────────────────────────────────────────────────┐
-│  Agent Layer                                             │
-│  ┌─────────────────────────────────────────────────────┐ │
-│  │ • Task understanding                                │ │
-│  │ • Orchestration decisions                           │ │
-│  │ • Result synthesis                                  │ │
-│  └─────────────────────────────────────────────────────┘ │
-├─────────────────────────────────────────────────────────┤
-│  Skills Layer                                            │
-│  ┌─────────────────────────────────────────────────────┐ │
-│  │ • Domain knowledge                                  │ │
-│  │ • Best practices & guidelines                       │ │
-│  │ • Decision criteria                                 │ │
-│  └─────────────────────────────────────────────────────┘ │
-├─────────────────────────────────────────────────────────┤
-│  MCP Layer                                               │
-│  ┌─────────────────────────────────────────────────────┐ │
-│  │ • External API access                               │ │
-│  │ • Tool execution                                    │ │
-│  │ • Data retrieval                                    │ │
-│  └─────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────┘
-     │
-     ▼
-External Services (DeepL, RFC Editor, GitHub, etc.)
+ユーザーリクエスト
+    │
+    ▼
+┌──────────────────────────────────────────────┐
+│ エージェント層                                 │
+│ ┌──────────────────────────────────────────┐ │
+│ │ • タスク理解                               │ │
+│ │ • オーケストレーションの決定                 │ │
+│ │ • 結果の統合                               │ │
+│ └──────────────────────────────────────────┘ │
+├──────────────────────────────────────────────┤
+│ スキル層                                      │
+│ ┌──────────────────────────────────────────┐ │
+│ │ • ドメイン知識                             │ │
+│ │ • ベストプラクティスとガイドライン            │ │
+│ │ • 意思決定基準                             │ │
+│ └──────────────────────────────────────────┘ │
+├──────────────────────────────────────────────┤
+│ MCP レイヤー                                  │
+│ ┌──────────────────────────────────────────┐ │
+│ │ • 外部 API アクセス                        │ │
+│ │ • ツール実行                               │ │
+│ │ • データ取得                               │ │
+│ └──────────────────────────────────────────┘ │
+└──────────────────────────────────────────────┘
+    │
+    ▼
+外部サービス（DeepL、RFC Editor、GitHub など）
 ```
 
 ### 各レイヤーの責務
 
-| Layer | Responsibility | Owns | Examples |
-|-------|----------------|------|----------|
-| **Agent** | Orchestration, decision-making | Task flow | Claude Code, Cursor |
-| **Skills** | Domain knowledge, guidelines | Best practices | SOLID principles, translation guidelines |
-| **MCP** | External connectivity | Tool definitions | deepl-mcp, rfcxml-mcp |
+| レイヤー   | 責任                           | 所有者             | 例                           |
+| ---------- | ------------------------------ | ------------------ | ---------------------------- |
+| **Agent**  | オーケストレーション、意思決定 | タスクフロー       | Claude Code, Cursor          |
+| **Skills** | ドメイン知識、ガイドライン     | ベストプラクティス | SOLID 原則、翻訳ガイドライン |
+| **MCP**    | E外部接続                      | ツール定義         | deepl-mcp, rfcxml-mcp        |
 
 ## このドキュメントについて
 
@@ -52,29 +52,29 @@ AI駆動開発には複数の構成要素が存在するが、それぞれの役
 ## 全体アーキテクチャ
 
 ```mermaid
-graph TB
-    subgraph ユーザー層
-        USER[ユーザー]
+block-beta
+    columns 3
+
+    space:1 USER["ユーザー"]:1 space:1
+
+    block:HOST_LAYER:3
+        columns 3
+        HOST["ホスト\n(Claude Code / Claude.ai)"]:2 SKILL["Skills\n(静的知識)"]:1
     end
 
-    subgraph ホストアプリケーション層
-        HOST["ホスト<br/>(Claude Code / Claude.ai)"]
-        SKILL["Skills<br/>(静的知識)"]
+    block:AGENT_LAYER:3
+        columns 3
+        MAIN["メインエージェント"]:2 SUB["サブエージェント"]:1
     end
 
-    subgraph エージェント層
-        MAIN["メインエージェント"]
-        SUB["サブエージェント"]
+    block:PROTOCOL_LAYER:3
+        columns 3
+        MCP_CLIENT["MCP Client"]:2 A2A_CLIENT["A2A Client"]:1
     end
 
-    subgraph プロトコル層
-        MCP_CLIENT["MCP Client"]
-        A2A_CLIENT["A2A Client"]
-    end
-
-    subgraph 外部サービス層
-        MCP_SERVER["MCP Servers"]
-        A2A_AGENT["外部A2Aエージェント"]
+    block:EXTERNAL_LAYER:3
+        columns 3
+        MCP_SERVER["MCP Servers"]:2 A2A_AGENT["外部A2Aエージェント"]:1
     end
 
     USER --> HOST
@@ -87,9 +87,9 @@ graph TB
     MCP_CLIENT --> MCP_SERVER
     A2A_CLIENT --> A2A_AGENT
 
-    style SKILL fill:#90EE90
-    style MCP_SERVER fill:#FFB6C1
-    style A2A_AGENT fill:#87CEEB
+    style SKILL fill:#90EE90,color:#333,stroke:#333
+    style MCP_SERVER fill:#FFB6C1,color:#333,stroke:#333
+    style A2A_AGENT fill:#87CEEB,color:#333,stroke:#333
 ```
 
 ## MCPの3層構造
@@ -97,21 +97,27 @@ graph TB
 ### Host / Client / Server
 
 ```mermaid
-graph TB
-    subgraph Host["Host（ホストアプリケーション）"]
-        H_DESC["ユーザーインターフェース提供<br/>セッション管理"]
+block-beta
+    columns 1
+
+    block:HOST_BLOCK:1
+        HOST["Host（ホストアプリケーション）\nユーザーインターフェース提供 / セッション管理"]
     end
 
-    subgraph Client["Client（MCPクライアント）"]
-        C_DESC["サーバー発見・接続管理<br/>プロトコル処理"]
+    block:CLIENT_BLOCK:1
+        CLIENT["Client（MCPクライアント）\nサーバー発見・接続管理 / プロトコル処理"]
     end
 
-    subgraph Server["Server（MCPサーバー）"]
-        S_DESC["ツール/リソース提供<br/>実際の処理実行"]
+    block:SERVER_BLOCK:1
+        SERVER["Server（MCPサーバー）\nツール/リソース提供 / 実際の処理実行"]
     end
 
-    Host --> Client
-    Client -->|JSON-RPC| Server
+    HOST --> CLIENT
+    CLIENT --"JSON-RPC"--> SERVER
+
+    style HOST fill:#87CEEB,color:#333,stroke:#333
+    style CLIENT fill:#FFE4B5,color:#333,stroke:#333
+    style SERVER fill:#FFB6C1,color:#333,stroke:#333
 ```
 
 | 層         | 役割                         | 例                           | 開発者の関わり   |
@@ -138,13 +144,15 @@ graph TB
 ### プロトコルの違い
 
 ```mermaid
-graph TB
+graph LR
     subgraph MCP["MCP（Model Context Protocol）"]
+    direction LR
         MCP_DESC["エージェント ↔ ツール"]
         MCP_EXAMPLE["例: Claude → rfcxml-mcp"]
     end
 
     subgraph A2A["A2A（Agent-to-Agent Protocol）"]
+    direction LR
         A2A_DESC["エージェント ↔ エージェント"]
         A2A_EXAMPLE["例: 自社Agent → Salesforce Agent"]
     end
@@ -196,26 +204,27 @@ rfcxmlツールのみ使用してください。
 ### サブエージェントの位置づけ
 
 ```mermaid
-graph TB
-    subgraph Claude_Code["Claude Code 内部"]
-        USER[ユーザー]
-        MAIN["メインClaude<br/>（オーケストレーター）"]
-        SUBAGENT["カスタムサブエージェント<br/>(.claude/agents/)"]
-        MCP_CLIENT["MCP Client<br/>（Claude Code内蔵）"]
+block-beta
+    columns 2
+
+    block:CLAUDE_CODE:2
+        columns 2
+        USER["ユーザー"]:2
+        MAIN["メインClaude\n（オーケストレーター）"]:1 SUBAGENT["カスタムサブエージェント\n(.claude/agents/)"]:1
+        MCP_CLIENT["MCP Client\n（Claude Code内蔵）"]:2
     end
 
-    subgraph External["外部"]
-        MCP_SERVERS["MCP Servers<br/>rfcxml, deepl等"]
-    end
+    MCP_SERVERS["MCP Servers\nrfcxml, deepl等"]:2
 
     USER --> MAIN
-    MAIN -->|"委譲"| SUBAGENT
-    SUBAGENT -->|"使う"| MCP_CLIENT
-    MAIN -->|"直接使う"| MCP_CLIENT
-    MCP_CLIENT -->|"JSON-RPC"| MCP_SERVERS
+    MAIN --"委譲"--> SUBAGENT
+    SUBAGENT --"使う"--> MCP_CLIENT
+    MAIN --"直接使う"--> MCP_CLIENT
+    MCP_CLIENT --"JSON-RPC"--> MCP_SERVERS
 
-    style MCP_CLIENT fill:#FFB6C1
-    style SUBAGENT fill:#90EE90
+    style MCP_CLIENT fill:#FFB6C1,color:#333,stroke:#333
+    style SUBAGENT fill:#90EE90,color:#333,stroke:#333
+    style MCP_SERVERS fill:#E8E8E8,color:#333,stroke:#333
 ```
 
 **重要**: サブエージェントはMCP Clientの「代わり」ではなく「上位レイヤー」
@@ -258,9 +267,9 @@ graph TB
     Q3 -->|Yes| AGENT[サブエージェント化]
     Q3 -->|No| SKILL[Skill化]
 
-    style MCP fill:#FFB6C1
-    style SKILL fill:#90EE90
-    style AGENT fill:#87CEEB
+    style MCP fill:#FFB6C1,color:#333
+    style SKILL fill:#90EE90,color:#333
+    style AGENT fill:#87CEEB,color:#333
 ```
 
 ### 比較表
@@ -351,12 +360,12 @@ APIを操作            APIを呼び出す          判断・実行
 
 ### 判断主体によるレイヤー選択
 
-| 判断主体 | 適切なレイヤー | 特徴 | 例 |
-|----------|---------------|------|-----|
-| **不要**（決定論的） | プログラム直接 | 判断不要、高速、確実 | バッチ処理、CI/CD、cron |
-| **人間** | CLI | 人間が判断、AIは実行しない | `gh pr list`, `aws s3 ls` |
-| **AI**（単発） | MCP + Skill | AIが都度判断して実行 | 翻訳、RFC参照、品質評価 |
-| **AI**（継続・自律） | サブエージェント | 専門性を持って自律的に判断 | レビュー担当、翻訳担当 |
+| 判断主体             | 適切なレイヤー   | 特徴                       | 例                        |
+| -------------------- | ---------------- | -------------------------- | ------------------------- |
+| **不要**（決定論的） | プログラム直接   | 判断不要、高速、確実       | バッチ処理、CI/CD、cron   |
+| **人間**             | CLI              | 人間が判断、AIは実行しない | `gh pr list`, `aws s3 ls` |
+| **AI**（単発）       | MCP + Skill      | AIが都度判断して実行       | 翻訳、RFC参照、品質評価   |
+| **AI**（継続・自律） | サブエージェント | 専門性を持って自律的に判断 | レビュー担当、翻訳担当    |
 
 ### 判断フロー
 
@@ -378,37 +387,37 @@ flowchart TD
     Q2 -->|Yes| CLI_SKILL[CLI + Skill<br/>トークン効率◎]
     Q2 -->|No| MCP_BUILD[MCP構築]
 
-    style PG fill:#E8E8E8
-    style CLI fill:#FFE4B5
-    style CLI_SKILL fill:#90EE90
-    style MCP_BUILD fill:#FFB6C1
-    style SUBAGENT fill:#87CEEB
+    style PG fill:#E8E8E8,color:#333
+    style CLI fill:#FFE4B5,color:#333
+    style CLI_SKILL fill:#90EE90,color:#333
+    style MCP_BUILD fill:#FFB6C1,color:#333
+    style SUBAGENT fill:#87CEEB,color:#333
 ```
 
 ### CLI vs MCP：AIが判断する場合の選択
 
 > **Key Insight**: 公式CLIがある場合、MCP化せず **CLI + Skill** が効率的
 >
-> *— r/ClaudeAI コミュニティでの議論より*
+> _— r/ClaudeAI コミュニティでの議論より_
 
-| 観点 | CLI + Skill | MCP |
-|------|-------------|-----|
+| 観点             | CLI + Skill          | MCP                          |
+| ---------------- | -------------------- | ---------------------------- |
 | **トークン消費** | 低い（コマンドのみ） | 高い（全ツール定義読み込み） |
-| **起動コスト** | なし | サーバープロセス必要 |
-| **認証** | ローカル完結 | MCP側で管理 |
-| **用途特化** | ◎（専用設計） | △（汎用的） |
+| **起動コスト**   | なし                 | サーバープロセス必要         |
+| **認証**         | ローカル完結         | MCP側で管理                  |
+| **用途特化**     | ◎（専用設計）        | △（汎用的）                  |
 
 #### 具体例
 
-| サービス | CLI | 推奨 |
-|---------|-----|------|
-| GitHub | `gh` | CLI + Skill |
-| AWS | `aws` | CLI + Skill |
+| サービス     | CLI      | 推奨        |
+| ------------ | -------- | ----------- |
+| GitHub       | `gh`     | CLI + Skill |
+| AWS          | `aws`    | CLI + Skill |
 | Google Cloud | `gcloud` | CLI + Skill |
-| PostgreSQL | `psql` | CLI + Skill |
-| Linear | ❌ | MCP |
-| Greptile | ❌ | MCP |
-| DeepL | ❌ | MCP |
+| PostgreSQL   | `psql`   | CLI + Skill |
+| Linear       | ❌       | MCP         |
+| Greptile     | ❌       | MCP         |
+| DeepL        | ❌       | MCP         |
 
 ### 重要な洞察
 
@@ -432,9 +441,9 @@ graph LR
     SKILL[Skill<br/>ワークフロー定義] -->|"参照"| AGENT[サブエージェント]
     AGENT -->|"実行"| MCP[MCP<br/>ツール群]
 
-    style SKILL fill:#90EE90
-    style MCP fill:#FFB6C1
-    style AGENT fill:#87CEEB
+    style SKILL fill:#90EE90,color:#333
+    style MCP fill:#FFB6C1,color:#333
+    style AGENT fill:#87CEEB,color:#333
 ```
 
 ### 具体例：翻訳ワークフロー
