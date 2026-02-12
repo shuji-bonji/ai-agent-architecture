@@ -12,6 +12,8 @@ Implementing internal team knowledge and guidelines as MCP servers.
 
 ### Problematic Approach
 
+This anti-pattern manifests in several common ways:
+
 ```
 ❌ Building an MCP server to retrieve team coding standards
 ❌ Providing design principles as an API
@@ -20,12 +22,16 @@ Implementing internal team knowledge and guidelines as MCP servers.
 
 ### Why This Is a Problem
 
+Over-MCPization creates several operational and maintenance issues:
+
 - MCP server responsibilities become bloated
 - Increased server operation costs
 - Difficult to customize on the agent side
 - Authentication and deployment become complex
 
 ### Correct Approach
+
+The proper solution separates team knowledge from external integration:
 
 ```
 ✅ Internal team knowledge → Define as a Skill
@@ -42,6 +48,8 @@ Attempting to explain external API calls and real-time data retrieval through Sk
 
 ### Problematic Approach
 
+This anti-pattern appears when external services are documented as Skills:
+
 ```
 ❌ Skill: "How to translate using DeepL" (detailing API call procedures)
 ❌ Skill: "How to search RFCs" (explaining search API usage)
@@ -50,12 +58,16 @@ Attempting to explain external API calls and real-time data retrieval through Sk
 
 ### Why This Is a Problem
 
+Over-Skillization creates several practical challenges:
+
 - Skills become bloated and complex
 - Difficult to keep up with external system updates
 - Authentication credential management becomes ambiguous
 - Agent cannot execute (reference only)
 
 ### Correct Approach
+
+Separate external APIs from usage guidelines:
 
 ```
 ✅ External API integration → Implement as MCP
@@ -72,6 +84,8 @@ Skill content is too abstract, preventing the agent from taking concrete actions
 
 ### Problematic Approach
 
+Vague Skills lack the specificity needed for reliable execution:
+
 ```markdown
 ❌ # Code Review Skill
 
@@ -82,11 +96,15 @@ Check for bugs.
 
 ### Why This Is a Problem
 
+Ambiguous Skills lead to inconsistent and unreliable execution:
+
 - Agent cannot establish decision criteria
 - Execution results vary each time
 - Quality cannot be guaranteed
 
 ### Correct Approach
+
+Define clear, measurable criteria that guide consistent execution:
 
 ```markdown
 ✅ # Code Review Skill
@@ -115,6 +133,8 @@ Skills are strongly dependent on specific MCP internal implementations.
 
 ### Problematic Approach
 
+Coupling Skills to internal MCP details creates fragility:
+
 ```markdown
 ❌ # Translation Skill
 
@@ -125,11 +145,15 @@ Cache takes effect internally, so the second call is faster.
 
 ### Why This Is a Problem
 
+Over-specifying MCP details reduces flexibility and portability:
+
 - Breaks when MCP version is upgraded
 - Dependency on internal implementation is difficult to maintain
 - Cannot be replaced with other MCPs
 
 ### Correct Approach
+
+Define Skills at the interface level, abstracting away implementation details:
 
 ```markdown
 ✅ # Translation Skill
@@ -157,6 +181,8 @@ Packing multiple different responsibilities into a single Skill.
 
 ### Problematic Approach
 
+Monolithic Skills combine unrelated tasks:
+
 ```markdown
 ❌ # Development Skill
 
@@ -179,11 +205,15 @@ Packing multiple different responsibilities into a single Skill.
 
 ### Why This Is a Problem
 
+Monolithic Skills create multiple maintenance and usage challenges:
+
 - Large impact scope when updating
 - Cannot reference only the needed parts
 - Wasteful context consumption increases
 
 ### Correct Approach
+
+Organize Skills by responsibility, keeping each one focused:
 
 ```
 ✅ skills/
@@ -203,6 +233,8 @@ Skills that are left unchanged after creation, diverging from actual operations.
 
 ### Problematic Approach
 
+Neglected Skills drift away from operational reality:
+
 ```
 ❌ Using a Skill created six months ago without changes
 ❌ Team standards have changed but Skill hasn't been updated
@@ -211,11 +243,15 @@ Skills that are left unchanged after creation, diverging from actual operations.
 
 ### Why This Is a Problem
 
+Unmaintained Skills undermine agent reliability and decision quality:
+
 - Agent operates with outdated information
 - Leads to incorrect decisions
 - Decreased reliability
 
 ### Correct Approach
+
+Establish clear ownership and regular review cycles:
 
 ```markdown
 ✅ ---
@@ -227,11 +263,15 @@ last_reviewed: 2025-01-15
 
 **Countermeasures**:
 
+Implement these practices to keep Skills current and reliable:
+
 - Specify an owner
 - Set up a regular review cycle
 - Record the last review date
 
 ## Anti-Pattern Quick Reference
+
+The following table provides a quick lookup for identifying and addressing each anti-pattern:
 
 | Pattern                | Symptom                         | Countermeasure                        |
 | ---------------------- | ------------------------------- | ------------------------------------- |

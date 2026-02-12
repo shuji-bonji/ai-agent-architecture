@@ -12,6 +12,8 @@ This document organizes the MCPs available for each development phase, areas tha
 
 ## Development Phase Overview
 
+The following diagram shows how development phases flow sequentially through the project lifecycle:
+
 ```mermaid
 flowchart LR
     P1[Strategy/Planning] --> P2[Requirements Definition]
@@ -31,6 +33,8 @@ Setting business goals, conducting feasibility studies, and formulating product 
 
 ### MCP Utilization
 
+This table shows which MCPs are available and planned for strategic planning tasks:
+
 | Task              | MCP                     | Function              | Status    |
 | ----------------- | ----------------------- | --------------------- | --------- |
 | Market Research   | Market Research MCP     | Market size data      | 📋 Planned |
@@ -49,6 +53,8 @@ Gathering and organizing functional and non-functional requirements.
 
 ### MCP Utilization
 
+The following table identifies MCPs that help extract and structure requirements:
+
 | Task                   | MCP            | Function                    | Status     |
 | ---------------------- | -------------- | --------------------------- | ---------- |
 | RFC Requirements Check | **rfcxml-mcp** | MUST/SHOULD/MAY extraction  | ✅ Built    |
@@ -57,6 +63,8 @@ Gathering and organizing functional and non-functional requirements.
 | API Spec Verification  | OpenAPI MCP    | Specification validation    | 📋 Planned  |
 
 ### Example
+
+The following sequence diagram illustrates how MCPs support the requirements gathering process:
 
 ```mermaid
 sequenceDiagram
@@ -81,6 +89,8 @@ Architecture design, detailed design, and API design.
 
 ### MCP Utilization
 
+The following MCPs support various design activities:
+
 | Task               | MCP                 | Function             | Status     |
 | ------------------ | ------------------- | -------------------- | ---------- |
 | Design Patterns    | Design Pattern MCP  | Pattern suggestions  | 📋 Planned  |
@@ -94,6 +104,8 @@ Architecture design, detailed design, and API design.
 Design pattern MCPs have not been built. It may be more appropriate to define a "Design Pattern Collection" as a Skill.
 
 ### Skill Alternative Example
+
+Here is how design patterns can be effectively provided through a Skill:
 
 ```markdown
 <!-- .claude/skills/design-patterns/SKILL.md -->
@@ -122,6 +134,8 @@ Coding, API implementation, frontend/backend development.
 
 ### MCP Utilization
 
+The following MCPs provide development support for implementation tasks:
+
 | Task                | MCP                   | Function                | Status     |
 | ------------------- | --------------------- | ----------------------- | ---------- |
 | Documentation Search | Context7             | Library documentation   | ✅ Available |
@@ -132,6 +146,8 @@ Coding, API implementation, frontend/backend development.
 | Angular Development | Angular MCP           | Angular support         | 📋 Planned  |
 
 ### Example: RxJS Implementation Flow
+
+The following sequence diagram shows how the RxJS MCP assists in verifying and debugging stream-based code:
 
 ```mermaid
 sequenceDiagram
@@ -157,6 +173,8 @@ Unit testing, integration testing, and quality evaluation.
 
 ### MCP Utilization
 
+The following MCPs support quality assessment and compliance verification:
+
 | Task                  | MCP                   | Function                   | Status     |
 | --------------------- | --------------------- | -------------------------- | ---------- |
 | Translation QA        | **xcomet-mcp-server** | Quality scores, error detection | ✅ Built |
@@ -165,6 +183,8 @@ Unit testing, integration testing, and quality evaluation.
 | RFC Compliance Check  | **rfcxml-mcp**        | validate_statement         | ✅ Built    |
 
 ### Example: Translation Quality Testing
+
+This workflow demonstrates quality verification for translated content:
 
 ```mermaid
 flowchart TB
@@ -185,6 +205,8 @@ Deployment, monitoring, incident response, and continuous improvement.
 
 ### MCP Utilization
 
+The following MCPs support operations and maintenance activities:
+
 | Task                | MCP                    | Function            | Status    |
 | ------------------- | ---------------------- | ------------------- | --------- |
 | IaC Generation      | IaC Generator MCP      | Terraform generation | 📋 Planned |
@@ -199,6 +221,8 @@ Operations MCPs have not been built. If cloud provider-specific MCPs exist, use 
 
 ### Documentation
 
+These MCPs provide support for documentation tasks across all phases:
+
 | Task              | MCP             | Status     |
 | ----------------- | --------------- | ---------- |
 | Diagram Generation | **mermaid-mcp** | ✅ Available |
@@ -207,6 +231,8 @@ Operations MCPs have not been built. If cloud provider-specific MCPs exist, use 
 
 ### Security
 
+Security-focused MCPs help identify and manage vulnerabilities:
+
 | Task          | MCP         | Status    |
 | ------------- | ----------- | --------- |
 | OWASP Check   | OWASP MCP   | 📋 Planned |
@@ -214,12 +240,16 @@ Operations MCPs have not been built. If cloud provider-specific MCPs exist, use 
 
 ### Legal Compliance
 
+MCPs supporting legal and regulatory compliance:
+
 | Task           | MCP            | Status     |
 | -------------- | -------------- | ---------- |
 | Legal Search   | **hourei-mcp** | ✅ Available |
 | GDPR Check     | GDPR MCP       | 📋 Planned  |
 
 ## Phase × MCP Matrix
+
+This matrix provides an overview of MCP availability across all development phases:
 
 | Phase               | Built MCPs                 | Planned MCPs                        |
 | ------------------- | -------------------------- | ----------------------------------- |
@@ -234,6 +264,8 @@ Operations MCPs have not been built. If cloud provider-specific MCPs exist, use 
 
 ### Leveraging Current Strengths
 
+The following MCPs represent the highest-priority development opportunities:
+
 1. **OpenAPI MCP** - API design/validation (cross-cutting: Requirements → Design → Testing)
 2. **OWASP MCP** - Security (cross-cutting: Design → Testing)
 3. **Angular MCP** - Implementation support for specialized domains
@@ -244,6 +276,8 @@ Operations MCPs have not been built. If cloud provider-specific MCPs exist, use 
 2. Operations phase IaC tools → Low priority (existing tools serve as alternatives)
 
 ## Recommended Approach
+
+The following diagram shows the recommended strategy for maximizing AI-driven development support:
 
 ```mermaid
 graph TB
@@ -277,6 +311,8 @@ graph TB
 ```
 
 ### Principles
+
+Follow these principles when integrating MCPs into your development process:
 
 1. **Maximize utilization of built MCPs**
 2. **Supplement static knowledge with Skills**

@@ -44,6 +44,8 @@ flowchart TD
 
 ### Decision Criteria Checklist
 
+Use the following checklist to systematically evaluate whether building an MCP is the right choice for your use case.
+
 ```markdown
 ## MCP Development Decision
 
@@ -230,6 +232,8 @@ params:
 
 ### Tool Count Guidelines
 
+The following guidelines provide recommended ranges for tool count based on MCP complexity and scope.
+
 ```
 Small MCP: 3-5 tools (single data source)
 Medium MCP: 5-10 tools (multiple views)
@@ -372,6 +376,8 @@ flowchart LR
 
 ### package.json Design
 
+A well-structured package.json is essential for npm publishing and defining your MCP's configuration and dependencies.
+
 ```json
 {
   "name": "@shuji-bonji/my-mcp",
@@ -453,7 +459,7 @@ xcomet-mcp-server uses persistent ML model loading. The first startup is slow, b
 
 ## MCP Coverage by Development Phase
 
-Current MCPs mainly cover the "implementation" phase. The direction of future coverage expansion is as follows:
+Current MCPs mainly cover the "implementation" phase. The direction of future coverage expansion is as follows, visualized in the diagram below.
 
 ```mermaid
 graph LR

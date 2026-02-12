@@ -6,7 +6,7 @@ This directory contains systematized documentation for AI agent configuration.
 
 ## New Structure (v2 Restructuring)
 
-With the expansion of the repository scope, the documentation structure has been reorganized as follows.
+With the expansion of the repository scope, the documentation structure has been reorganized as follows. Each directory systematizes knowledge from a different perspective.
 
 ```
 docs/

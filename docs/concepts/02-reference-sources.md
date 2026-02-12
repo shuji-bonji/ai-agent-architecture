@@ -16,7 +16,7 @@ By converting authoritative information sources such as RFCs, W3C specifications
 
 ### 1.1 The Nature of Probabilistic Generation
 
-Large Language Models (LLMs) are fundamentally **probabilistic text generation systems**.
+Large Language Models (LLMs) are fundamentally **probabilistic text generation systems**. The diagram below illustrates how this process works from input to output:
 
 ```mermaid
 flowchart LR
@@ -35,6 +35,8 @@ flowchart LR
 | **Context Dependency**           | Subtle differences in prompts change output                                | Reproducibility issues                    |
 
 ### 1.2 The Four Fundamental Limitations of AI
+
+Understanding these four core categories of limitations is essential for working with AI effectively:
 
 ```mermaid
 mindmap
@@ -72,6 +74,8 @@ AI Possibility C: "Section 5.5.1 contains the definition of 1006" (wrong - 7.4.1
 
 **Hallucination Generation Mechanisms**
 
+The following table explains the primary causes that lead to hallucinated outputs:
+
 | Cause                               | Description                                    | Example                                 |
 | ----------------------------------- | ---------------------------------------------- | --------------------------------------- |
 | **Sparse Training Data**            | Rare information is undertrained               | Details of minor RFCs                   |
@@ -80,6 +84,8 @@ AI Possibility C: "Section 5.5.1 contains the definition of 1006" (wrong - 7.4.1
 | **Context Contamination**           | Treats misinformation in conversation as truth | Amplifies user misunderstandings        |
 
 #### 1.2.2 Recency Limitations
+
+AI knowledge is fixed at a point in time, making it unable to reflect real-world changes that occur after training:
 
 ```mermaid
 timeline
@@ -97,6 +103,8 @@ timeline
 
 **Specific Impacts**
 
+The following examples demonstrate how recency limitations manifest in practical scenarios:
+
 | Category                | Problem                              | Example                                      |
 | ----------------------- | ------------------------------------ | -------------------------------------------- |
 | **New RFCs**            | Unaware of existence                 | Does not know RFC 9562 (UUIDv7)              |
@@ -106,7 +114,7 @@ timeline
 
 #### 1.2.3 Authority Limitations
 
-AI output is "one interpretation" and **not an official opinion**.
+AI output is "one interpretation" and **not an official opinion**. When multiple interpretations of a specification are possible, AI may select one without guarantee of correctness:
 
 ```
 Problem Structure:
@@ -127,6 +135,8 @@ AI Output
 
 **Situations Where Lack of Authority Is Problematic**
 
+These scenarios illustrate where the absence of official authority creates real risks:
+
 | Situation                        | Risk                            | Required Response         |
 | -------------------------------- | ------------------------------- | ------------------------- |
 | **Specification Implementation** | Non-compliant implementation    | Verify RFC original text  |
@@ -136,7 +146,7 @@ AI Output
 
 #### 1.2.4 Accountability Limitations
 
-AI output has **no subject of accountability**.
+AI output has **no subject of accountability**. This differs fundamentally from traditional information sources where responsibility can be traced:
 
 ```mermaid
 graph TB
@@ -163,11 +173,13 @@ graph TB
 | **Revision Untraceability** | Unknown when information is from | Cannot audit              |
 | **Error Attribution**       | Unclear who bears responsibility | Difficult risk management |
 
+These accountability issues create significant challenges for risk management and compliance.
+
 ## Chapter 2: What Are "Authoritative Reference Sources"?
 
 ### 2.1 Definition
 
-**Authoritative Reference Sources** are information sources that satisfy the following characteristics:
+**Authoritative Reference Sources** are information sources that satisfy the following characteristics, each contributing to overall trustworthiness:
 
 ```mermaid
 graph TB
@@ -192,7 +204,7 @@ graph TB
 
 #### 2.2.1 Authoritativeness
 
-The information source has **official decision-making authority or expertise** in its domain.
+The information source has **official decision-making authority or expertise** in its domain. Different types of authority carry different weights:
 
 | Type of Authority           | Description                                               | Examples                             |
 | --------------------------- | --------------------------------------------------------- | ------------------------------------ |
@@ -200,6 +212,8 @@ The information source has **official decision-making authority or expertise** i
 | **De facto Authority**      | Entities recognized as de facto standards in the industry | OWASP, Ecma International            |
 | **Academic Authority**      | Academic communities with peer review processes           | IEEE, ACM                            |
 | **Technical Authority**     | Developers/maintainers of technology                      | OSS Projects, Vendors                |
+
+The hierarchy of authority is shown in the following diagram:
 
 ```mermaid
 graph TB
@@ -222,13 +236,15 @@ graph TB
 
 #### 2.2.2 Immutability & Versioning
 
-Once published, content either **does not change** or when it does, **clear version management** is applied.
+Once published, content either **does not change** or when it does, **clear version management** is applied. These patterns ensure you know the precise source of information:
 
 | Pattern                   | Description                        | Example                            |
 | ------------------------- | ---------------------------------- | ---------------------------------- |
 | **Complete Immutability** | Never changed once published       | RFC (except Errata)                |
 | **Versioned Changes**     | New version replaces old version   | ISO Standards, W3C Recommendations |
 | **Explicit Deprecation**  | Old versions explicitly deprecated | RFC obsoletes/updates              |
+
+Here is how the RFC versioning model exemplifies this principle:
 
 ```
 RFC Immutability Model:
@@ -246,7 +262,7 @@ RFC 9110-9114 (2022)
 
 #### 2.2.3 Structuredness
 
-Information is **systematically organized** so specific information can be precisely referenced.
+Information is **systematically organized** so specific information can be precisely referenced. Structured sources allow for unambiguous citations:
 
 ```mermaid
 graph TB
@@ -278,7 +294,7 @@ graph TB
 
 #### 2.2.4 Verifiability
 
-AI output can be **confirmed against the original source**.
+AI output can be **confirmed against the original source**. The following sequence diagram shows how verification works in practice:
 
 ```mermaid
 sequenceDiagram
@@ -309,13 +325,15 @@ sequenceDiagram
 
 #### 2.2.5 Accessibility
 
-Provided in a format that **AI can access programmatically**.
+Provided in a format that **AI can access programmatically**. Different levels of accessibility present different opportunities and challenges:
 
 | Level               | Description                           | Example             |
 | ------------------- | ------------------------------------- | ------------------- |
 | **Structured API**  | Accessible in machine-readable format | RFC XML, e-Gov API  |
 | **HTML/PDF**        | Published on web but requires parsing | W3C specs, most ISO |
 | **Paid/Restricted** | Access has constraints                | Some ISO standards  |
+
+The diagram below illustrates the accessibility spectrum:
 
 ```mermaid
 graph TB
@@ -334,6 +352,8 @@ graph TB
 ```
 
 ### 2.3 Criteria for Evaluating "Authoritative Reference Sources"
+
+Use this decision flowchart to evaluate whether an information source qualifies as authoritative:
 
 ```mermaid
 flowchart TB
@@ -360,6 +380,8 @@ flowchart TB
 ## Chapter 3: Hierarchical Structure of Reference Sources
 
 ### 3.1 The Four-Layer Model
+
+Reference sources are organized into a four-level hierarchy, where each level has different compliance requirements:
 
 ```mermaid
 graph TB
@@ -400,7 +422,7 @@ graph TB
 
 #### Level 1: International Standards & Regulations (MUST Comply)
 
-Highest authority reference sources. Violations cause **interoperability issues or legal problems**.
+Highest authority reference sources. Violations cause **interoperability issues or legal problems**. The following table shows examples from different domains:
 
 | Category                    | Reference    | 5 Characteristics Rating | MCP Status             |
 | --------------------------- | ------------ | ------------------------ | ---------------------- |
@@ -410,7 +432,7 @@ Highest authority reference sources. Violations cause **interoperability issues 
 | **Japanese Laws**           | e-Gov        | ◎◎◎◎◎                    | ✅ hourei-mcp          |
 | **EU Regulations**          | EUR-Lex      | ◎◎◎◎○                    | 📋 Planned             |
 
-**IETF RFC Characteristics**
+IETF RFCs exemplify the highest standard for all five characteristics:
 
 ```
 Authoritativeness: ◎ Official publication by IETF, WG consensus
@@ -422,7 +444,7 @@ Accessibility:     ◎ Published in RFC XML format, free access
 
 #### Level 2: Industry Standards & De facto (SHOULD Comply)
 
-Widely adopted standards. Non-compliance causes **compatibility issues within the industry**.
+Widely adopted standards. Non-compliance causes **compatibility issues within the industry**. Key examples include:
 
 | Category           | Reference        | Characteristics                     | MCP Value |
 | ------------------ | ---------------- | ----------------------------------- | --------- |
@@ -433,7 +455,7 @@ Widely adopted standards. Non-compliance causes **compatibility issues within th
 
 #### Level 3: Organization/Project Rules (Local Compliance)
 
-Rules that should be unified within teams/projects.
+Rules that should be unified within teams/projects. These are managed at a local scope:
 
 | Type                 | Characteristics               | Management Method         |
 | -------------------- | ----------------------------- | ------------------------- |
@@ -443,7 +465,7 @@ Rules that should be unified within teams/projects.
 
 #### Level 4: Best Practices (Recommended)
 
-Recommendations based on experience. **Apply as appropriate to the situation**.
+Recommendations based on experience. **Apply as appropriate to the situation**. These guide implementation when no standard applies:
 
 | Type                  | Source           | Application Judgment      |
 | --------------------- | ---------------- | ------------------------- |
@@ -454,6 +476,8 @@ Recommendations based on experience. **Apply as appropriate to the situation**.
 ## Chapter 4: AI Decision Flow
 
 ### 4.1 Decision Algorithm Based on Reference Sources
+
+When implementing a feature or making a decision, AI should follow this hierarchical decision flow:
 
 ```mermaid
 flowchart TB
@@ -476,7 +500,7 @@ flowchart TB
 
 ### 4.2 Output Templates
 
-**When a reference source is found:**
+When providing answers, structure your response according to whether authoritative sources are available. Here is the template for cases where a reference source is found:
 
 ```markdown
 ## Answer
@@ -498,7 +522,7 @@ This code is for applications to detect abnormal termination and
 cannot be sent in actual Close frames.
 ```
 
-**When no reference source is found:**
+When no authoritative reference source is available, use this template to transparently acknowledge the limitation:
 
 ```markdown
 ## Answer
@@ -524,7 +548,7 @@ If precise specifications are needed, I recommend checking~.
 
 ### 5.0 Separation of MCP and Skills
 
-MCP and Skills are both means to achieve "authoritative reference sources."
+MCP and Skills are both means to achieve "authoritative reference sources", but they serve different purposes:
 
 | Aspect              | MCP                                        | Skills                              |
 | ------------------- | ------------------------------------------ | ----------------------------------- |
@@ -537,6 +561,8 @@ MCP and Skills are both means to achieve "authoritative reference sources."
 
 ### 5.1 Required Functions
 
+MCPs should provide these core functions to enable comprehensive access to reference sources:
+
 | Function                    | Description                                | Example                         |
 | --------------------------- | ------------------------------------------ | ------------------------------- |
 | **Search**                  | Keyword search within specifications       | "WebSocket close frame"         |
@@ -548,6 +574,8 @@ MCP and Skills are both means to achieve "authoritative reference sources."
 | **Validation**              | Check if implementation complies with spec | Statement validation            |
 
 ### 5.2 RFC MCP Tool Design
+
+The following TypeScript interface illustrates the structure of an RFC MCP implementation:
 
 ```typescript
 interface RfcMcpTools {

@@ -33,6 +33,8 @@ MCPサーバー開発時のセキュリティガイドラインとして、**OWA
 
 ### OWASP MCP Top 10 一覧
 
+OWASP MCP Top 10の10項目を以下のマインドマップで俯瞰し、続く表で詳細を示す。
+
 ```mermaid
 mindmap
   root((OWASP MCP<br/>Top 10))
@@ -206,6 +208,8 @@ MCPはLLMと密接に連携するため、**OWASP LLM Top 10**（2025）も重�
 
 #### 重複・関連する脆弱性
 
+OWASP MCP Top 10とOWASP LLM Top 10の間には、以下のような重複・関連がある。
+
 ```mermaid
 graph LR
     subgraph "OWASP MCP Top 10"
@@ -241,6 +245,8 @@ graph LR
 
 #### LLM Top 10 の全体像
 
+参考として、OWASP LLM Top 10の全項目を以下に示す。
+
 | ID    | 脆弱性                           | 概要                               | MCP関連          |
 | ----- | -------------------------------- | ---------------------------------- | ---------------- |
 | LLM01 | Prompt Injection                 | 悪意ある入力によるモデル動作の操作 | MCP06            |
@@ -255,6 +261,8 @@ graph LR
 | LLM10 | Model Theft                      | モデルの窃取                       | -                |
 
 #### 両方を参照すべき理由
+
+MCPサーバーを開発する際には、MCP Top 10とLLM Top 10の両方の視点が必要である。
 
 ```
 MCPサーバー開発では両方の視点が必要:
@@ -287,6 +295,8 @@ LINEヤフーがMCPエコシステムを調査した結果
 **結論**: MCPサーバーの認証は発展途上であり、慎重な管理が必要。
 
 ## リスクカテゴリ（従来の整理）
+
+OWASP MCP Top 10に加え、従来のリスク分類の視点でも整理しておく。
 
 ```mermaid
 mindmap
@@ -556,6 +566,8 @@ graph LR
 
 ### 設計フェーズ
 
+設計段階で確認すべきセキュリティ項目は以下の通りである。
+
 ```markdown
 - [ ] 最小権限の原則を適用しているか
 - [ ] 認証方式は適切か（OAuth推奨）
@@ -564,6 +576,8 @@ graph LR
 ```
 
 ### 実装フェーズ
+
+実装段階で確認すべきセキュリティ項目は以下の通りである。
 
 ```markdown
 - [ ] 入力検証を実装しているか（MCP05対策）
@@ -575,6 +589,8 @@ graph LR
 
 ### テストフェーズ
 
+テスト段階で確認すべきセキュリティ項目は以下の通りである。
+
 ```markdown
 - [ ] セキュリティテストを実施したか
 - [ ] 依存パッケージの脆弱性をチェックしたか
@@ -583,6 +599,8 @@ graph LR
 ```
 
 ### 運用フェーズ
+
+運用段階で確認すべきセキュリティ項目は以下の通りである。
 
 ```markdown
 - [ ] 認証情報のローテーション計画があるか
@@ -622,6 +640,8 @@ graph LR
 
 ### 重要な原則
 
+MCPセキュリティにおける重要な原則を以下にまとめる。
+
 1. **OWASP MCP Top 10を参照** - MCPサーバー開発の「ブレない参照先」
 2. **信頼できるMCPのみ使用** - 利用許可リストで管理
 3. **最小権限** - 必要な権限のみ付与
@@ -631,6 +651,8 @@ graph LR
 7. **インシデント対応** - 手順を事前に準備
 
 ### MCPセキュリティの成熟度
+
+MCPセキュリティの成熟度は段階的に進化する。以下に4段階のモデルを示す。
 
 ```mermaid
 graph LR
@@ -645,12 +667,16 @@ graph LR
 
 ### OWASP関連
 
+OWASPが提供する関連プロジェクトへのリンクを以下に示す。
+
 - [OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/) - MCPサーバー開発セキュリティ
 - [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) - LLMアプリケーションセキュリティ
 - [OWASP API Security Top 10](https://owasp.org/API-Security/) - APIセキュリティ
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/) - Webアプリケーションセキュリティ
 
 ### その他の参照先
+
+OWASP以外のセキュリティ関連参照先を以下に示す。
 
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) - AIリスク管理フレームワーク
 - [MITRE ATLAS](https://atlas.mitre.org/) - AI脅威マトリクス

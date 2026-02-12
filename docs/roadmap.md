@@ -12,6 +12,8 @@ Additionally, we discuss project evaluation by Grok and publishing strategies (N
 
 ## Current Strengths
 
+We analyze our strengths from three perspectives, drawing on the specialized knowledge and implementation assets accumulated through MCP development.
+
 ```mermaid
 graph TB
     subgraph Built Assets
@@ -43,6 +45,8 @@ graph TB
 ```
 
 ## MCP Development Priority Matrix
+
+To determine priorities for new MCP development, we conducted a matrix analysis using two axes: implementation difficulty and value/demand. The following chart shows the positioning of each MCP candidate.
 
 ```mermaid
 quadrantChart

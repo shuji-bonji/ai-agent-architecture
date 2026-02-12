@@ -12,7 +12,7 @@ This document outlines the philosophy underlying AI agent architecture (MCP, Ski
 
 While AI capabilities are rapidly advancing, it is crucial to correctly recognize their limitations. To avoid over-reliance on AI and use it appropriately, we need to understand the following constraints.
 
-AI generates outputs probabilistically from training data, but cannot guarantee:
+AI generates outputs probabilistically from training data, but cannot guarantee the following:
 
 | AI Limitation      | Description                                                              |
 | ------------------ | ------------------------------------------------------------------------ |
@@ -150,6 +150,8 @@ Enable humans to access accurate knowledge even without being specialists.
 
 ## Division of Roles Between Humans and AI
 
+The diagram below illustrates how human capabilities and AI capabilities complement each other to achieve better development outcomes.
+
 ```mermaid
 graph TB
     subgraph Human Roles
@@ -187,6 +189,8 @@ graph TB
 ```
 
 ## Basic flow of MCP, Skills, and Agent
+
+Here is the fundamental flow that shows how user input flows through the agent core and tool integrations to produce results:
 
 ```mermaid
 graph TB

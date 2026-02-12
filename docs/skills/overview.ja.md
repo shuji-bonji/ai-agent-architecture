@@ -1,3 +1,6 @@
+> ⚠️ **このドキュメントは [what-is-skills.ja.md](./what-is-skills.ja.md) に統合されました。**
+> 今後はそちらを参照してください。
+
 # Skills の概要
 
 ## Vercel Skills とは

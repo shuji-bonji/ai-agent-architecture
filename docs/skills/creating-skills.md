@@ -12,6 +12,8 @@ This document explains the full lifecycle of Skills from design through creation
 
 ### Role in Three-Layer Architecture
 
+Skills occupy the middle layer of the AI agent architecture, sitting between the orchestration layer above and the MCP tool layer below. The following diagram illustrates this positioning:
+
 ```mermaid
 graph TB
     subgraph Agent["Agent Layer"]
@@ -35,6 +37,8 @@ graph TB
 
 ### Cases Where Skills Are Appropriate
 
+The following table identifies scenarios where defining a Skill is the correct choice:
+
 | Case                      | Example                             | Reason                                          |
 | ------------------------- | ----------------------------------- | ----------------------------------------------- |
 | Defining quality criteria | Translation quality score ≥ 0.85    | Criteria are knowledge, not tools               |
@@ -43,6 +47,8 @@ graph TB
 | Review perspectives       | Security check items                | Check items are knowledge                       |
 
 ### Cases Where Skills Are Not Appropriate
+
+The following table identifies when Skills should not be used and what alternative approach is better:
 
 | Case                     | Better Approach | Reason                           |
 | ------------------------ | --------------- | -------------------------------- |
@@ -56,6 +62,8 @@ graph TB
 
 ### File Organization
 
+Skills are organized in a directory structure that groups related Skills by name:
+
 ```
 .claude/skills/
 ├── translation-quality/       # ← Skill name directory
@@ -68,7 +76,7 @@ graph TB
 
 ### Required Sections in SKILL.md
 
-The following section structure is recommended to ensure Skill quality.
+The following section structure is recommended to ensure Skill quality. This flow diagram shows the logical progression of content:
 
 ```mermaid
 graph TB
@@ -86,7 +94,7 @@ graph TB
 
 ### Step 1: Define Metadata
 
-Describe basic information using YAML Front Matter.
+Describe basic information using YAML Front Matter. This metadata identifies and tracks the Skill throughout its lifecycle:
 
 ```yaml
 ---
@@ -98,6 +106,8 @@ last_reviewed: 2026-02-11
 ---
 ```
 
+The following table describes each metadata field:
+
 | Field           | Required | Description                                                   |
 | --------------- | -------- | ------------------------------------------------------------- |
 | `name`          | ✅       | Skill identifier (kebab-case)                                 |
@@ -108,7 +118,7 @@ last_reviewed: 2026-02-11
 
 ### Step 2: Write Purpose
 
-Clearly explain why this Skill is needed. Vague descriptions are anti-patterns.
+Clearly explain why this Skill is needed. Vague descriptions are anti-patterns. Here is the recommended structure:
 
 ```markdown
 ## Purpose
@@ -124,7 +134,7 @@ Ensure quality and consistency of code reviews in TypeScript/Angular projects.
 
 ### Step 3: Define Inputs / Outputs
 
-Clearly specify what the Skill receives and what it produces.
+Clearly specify what the Skill receives and what it produces. Use table format for clarity:
 
 ```markdown
 ## Inputs
@@ -146,7 +156,7 @@ Clearly specify what the Skill receives and what it produces.
 
 ### Step 4: Define Constraints
 
-Define clear constraints using RFC 2119 keywords (MUST/SHOULD/MUST NOT).
+Define clear constraints using RFC 2119 keywords (MUST/SHOULD/MUST NOT). This establishes the guardrails for execution:
 
 ```markdown
 ## Constraints
@@ -174,7 +184,7 @@ Define clear constraints using RFC 2119 keywords (MUST/SHOULD/MUST NOT).
 
 ### Step 5: Write Workflow
 
-Describe the concrete steps the agent will execute.
+Describe the concrete steps the agent will execute. Each step should specify a clear action:
 
 ```markdown
 ## Workflow
@@ -204,7 +214,7 @@ Output verification results as a Markdown report.
 
 ### Step 6: Define Decision Criteria
 
-Clearly present quantitative decision criteria in a table.
+Clearly present quantitative decision criteria in a table. These thresholds guide the agent's decision-making:
 
 ```markdown
 ## Decision Criteria
@@ -220,7 +230,7 @@ Clearly present quantitative decision criteria in a table.
 
 ### Step 7: Write Examples
 
-Provide concrete input/output examples. Agents will use these as reference.
+Provide concrete input/output examples. Agents will use these as reference for understanding expected behavior:
 
 ```markdown
 ## Examples
@@ -245,6 +255,8 @@ PR contains 3 instances of `any` type usage
 
 ### Step 8: Write Anti-Patterns
 
+Document common mistakes and what to avoid by providing examples of incorrect approaches:
+
 ```markdown
 ## Anti-Patterns
 
@@ -261,12 +273,14 @@ Verify in order: Logic → Design → Type Safety → Style.
 
 ## Template Usage
 
-Templates are available in `templates/skill/`.
+Templates are available in `templates/skill/`. These provide starting points for common Skill types:
 
 ```bash
 # Copy template
 cp templates/skill/SKILL.ja.md.template .claude/skills/my-skill/SKILL.md
 ```
+
+Available templates include:
 
 | Template                     | Path                                                  |
 | ---------------------------- | ----------------------------------------------------- |
@@ -279,7 +293,7 @@ cp templates/skill/SKILL.ja.md.template .claude/skills/my-skill/SKILL.md
 
 ### translation-quality (Implemented)
 
-A Skill definition with 279 lines exists at `.claude/skills/translation-quality/SKILL.md`.
+A Skill definition with 279 lines exists at `.claude/skills/translation-quality/SKILL.md`. It demonstrates best practices for a well-structured Skill:
 
 ```
 Structure:
@@ -303,7 +317,7 @@ Structure:
 
 ## Skill Quality Checklist
 
-A checklist to verify whether your created Skill is of high quality.
+A checklist to verify whether your created Skill is of high quality. Use this to validate completeness and effectiveness:
 
 ```markdown
 ## Basic Checks
@@ -341,6 +355,8 @@ A checklist to verify whether your created Skill is of high quality.
 
 ### Update Cycle
 
+Skills should follow a continuous improvement cycle from creation through ongoing operation. The diagram below shows this process:
+
 ```mermaid
 flowchart LR
     CREATE[Create] --> USE[Operate]
@@ -353,6 +369,8 @@ flowchart LR
 ```
 
 ### Addressing Anti-Pattern: Unmaintained Skills
+
+Prevent Skills from becoming stale by implementing these measures:
 
 | Measure                   | Method                                     |
 | ------------------------- | ------------------------------------------ |
@@ -367,7 +385,7 @@ flowchart LR
 
 ### Agent Skills Specification Support
 
-By creating Skills in a format compatible with Vercel Skills CLI, they become usable with agents beyond Claude Code (Cursor, Windsurf, etc.).
+By creating Skills in a format compatible with Vercel Skills CLI, they become usable with agents beyond Claude Code (Cursor, Windsurf, etc.). The following commands show how to integrate Skills with different agents:
 
 ```bash
 # For Claude Code
@@ -383,6 +401,8 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 
 Current status and targets:
 
+This table shows the current state of Skill development and the targets for Phase 1:
+
 | Metric            | Current                 | Goal (Phase 1) |
 | ----------------- | ----------------------- | -------------- |
 | Skill definitions | 1 (translation-quality) | 3+             |
@@ -390,6 +410,8 @@ Current status and targets:
 | Documentation     | ✅ This document        | —              |
 
 ### Candidate Skills to Create Next
+
+The following Skills are identified as high-priority candidates for future development:
 
 | Skill Name           | Overview                             | Priority | Related MCP   |
 | -------------------- | ------------------------------------ | -------- | ------------- |

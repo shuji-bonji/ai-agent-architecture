@@ -36,6 +36,8 @@ graph TB
 
 ### Skillが適しているケース
 
+Skillの利用が適しているケースを以下に整理する。
+
 | ケース           | 例                       | 理由                                 |
 | ---------------- | ------------------------ | ------------------------------------ |
 | 品質基準の定義   | 翻訳品質スコア ≥ 0.85    | 判断基準は知識であり、ツールではない |
@@ -44,6 +46,8 @@ graph TB
 | レビュー観点     | セキュリティチェック項目 | チェック項目は知識                   |
 
 ### Skillが適していないケース
+
+逆に、Skill以外の手段が適しているケースは以下の通りである。
 
 | ケース                     | 適切な手段       | 理由             |
 | -------------------------- | ---------------- | ---------------- |
@@ -56,6 +60,8 @@ graph TB
 ## Skillの構造
 
 ### ファイル配置
+
+Skillファイルは以下のディレクトリ構成で配置する。
 
 ```
 .claude/skills/
@@ -269,6 +275,8 @@ PRに `any` 型の使用が3箇所
 cp templates/skill/SKILL.ja.md.template .claude/skills/my-skill/SKILL.md
 ```
 
+利用可能なテンプレートファイルは以下の通りである。
+
 | テンプレート       | パス                                                  |
 | ------------------ | ----------------------------------------------------- |
 | 日本語テンプレート | `templates/skill/SKILL.ja.md.template`                |
@@ -342,6 +350,8 @@ cp templates/skill/SKILL.ja.md.template .claude/skills/my-skill/SKILL.md
 
 ### 更新サイクル
 
+Skillの継続的な改善サイクルを以下のフローで示す。
+
 ```mermaid
 flowchart LR
     CREATE[作成] --> USE[運用]
@@ -354,6 +364,8 @@ flowchart LR
 ```
 
 ### アンチパターン「更新されないSkill」の対策
+
+Skillが放置されないための具体的な対策を以下に示す。
 
 | 対策                 | 方法                                     |
 | -------------------- | ---------------------------------------- |
@@ -382,7 +394,7 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 
 ## ロードマップ上の目標
 
-現在の状況と目標
+現在の状況と目標を以下に示す。
 
 | 指標         | 現状                     | 目標（Phase 1） |
 | ------------ | ------------------------ | --------------- |
@@ -392,6 +404,8 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 
 ### 次に作成すべきSkill候補
 
+今後の作成候補として以下のSkillを検討している。
+
 | Skill名              | 概要                             | 優先度   | 関連MCP       |
 | -------------------- | -------------------------------- | -------- | ------------- |
 | translation-workflow | 翻訳 → 評価 → 修正のワークフロー | ⭐⭐⭐⭐ | deepl, xcomet |
@@ -400,6 +414,8 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 
 ## 関連ドキュメント
 
+Skill作成に関連するドキュメントを以下に示す。
+
 - [Skills概要](./overview.ja.md) — Vercel Skills / Agent Skills Specification
 - [MCP vs Skills 選択判断ガイド](./vs-mcp.ja.md) — 何をSkillにすべきか
 - [アンチパターン集](./anti-patterns.ja.md) — 避けるべきパターン
@@ -407,6 +423,8 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 - [連携パターン・ワークフロー](../workflows/patterns.ja.md) — Skill+MCPの組み合わせ例
 
 ## 参考リンク
+
+参考になる外部リンクを以下に示す。
 
 - [Agent Skills Specification](https://agentskills.io) — 標準仕様
 - [Vercel Skills CLI](https://github.com/vercel-labs/skills) — CLI ツール

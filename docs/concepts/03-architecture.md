@@ -6,6 +6,8 @@
 
 ## Layer Structure Overview
 
+The architecture is organized into four distinct layers, each with specific responsibilities, as shown in the following diagram:
+
 ```
 User Request
      │
@@ -39,6 +41,8 @@ External Services (DeepL, RFC Editor, GitHub, etc.)
 
 ### Layer Responsibilities
 
+Each layer has distinct ownership and responsibility areas:
+
 | Layer      | Responsibility                 | Owns             | Examples                                 |
 | ---------- | ------------------------------ | ---------------- | ---------------------------------------- |
 | **Agent**  | Orchestration, decision-making | Task flow        | Claude Code, Cursor                      |
@@ -52,6 +56,8 @@ AI-driven development involves multiple components, and correctly understanding 
 When you are unsure about "What should be implemented as MCP?", "When is a Skill sufficient?", or "When should I use a sub-agent?", refer to this document to make the appropriate choice.
 
 ## Overall Architecture
+
+The following diagram shows how all components interact within the complete system architecture:
 
 ```mermaid
 block-beta
@@ -98,6 +104,8 @@ block-beta
 
 ### Host / Client / Server
 
+MCP is built on a three-layer architecture, where communication flows through the client layer:
+
 ```mermaid
 block-beta
     columns 1
@@ -130,6 +138,8 @@ block-beta
 
 ### Why You Don't Need to Worry About the Client
 
+For most developers, the client layer operates transparently as part of the host:
+
 ```
 Typical development flow:
 1. Create an MCP Server (e.g., rfcxml)
@@ -144,6 +154,8 @@ Typical development flow:
 ## MCP and A2A: Separation of Concerns
 
 ### Protocol Differences
+
+While MCP and A2A serve different purposes, they are complementary and address different communication needs:
 
 ```mermaid
 graph TB
@@ -191,6 +203,8 @@ Location:
 
 ### Definition Format
 
+Sub-agents are defined using a simple markdown format that specifies their role, capabilities, and instructions:
+
 ```markdown
 name: rfc-specialist
 description: Expert in RFC specification verification and validation
@@ -202,6 +216,8 @@ Use only the rfcxml tools.
 ```
 
 ### Sub-agent Positioning
+
+The following diagram illustrates where sub-agents sit within the Claude Code architecture:
 
 ```mermaid
 block-beta
@@ -236,7 +252,7 @@ block-beta
 
 ### What is a Skill?
 
-**Static knowledge and guidelines** that can be referenced in Claude Code.
+**Static knowledge and guidelines** that can be referenced in Claude Code. Skills are stored in the following locations:
 
 ```
 Location:
@@ -245,6 +261,8 @@ Location:
 ```
 
 ### Skill Characteristics
+
+Skills have these key characteristics that distinguish them from other approaches:
 
 | Item                    | Description                                      |
 | ----------------------- | ------------------------------------------------ |
@@ -256,6 +274,8 @@ Location:
 ## MCP vs Skill vs Sub-agent
 
 ### Decision Flow
+
+Use this flowchart to determine whether to implement something as a Skill, MCP, or Sub-agent:
 
 ```mermaid
 graph TB
@@ -360,6 +380,8 @@ The appropriate layer is determined by "who makes the decision".
 
 ### Layer Selection by Decision Maker
 
+Choose the implementation layer based on who makes the decision:
+
 | Decision Maker                 | Appropriate Layer | Characteristics                     | Examples                                    |
 | ------------------------------ | ----------------- | ----------------------------------- | ------------------------------------------- |
 | **None** (Deterministic)       | Direct program    | No judgment needed, fast, reliable  | Batch processing, CI/CD, cron               |
@@ -368,6 +390,8 @@ The appropriate layer is determined by "who makes the decision".
 | **AI** (Continuous/Autonomous) | Sub-agent         | Autonomous decisions with expertise | Review specialist, translation specialist   |
 
 ### Decision Flow
+
+This comprehensive flowchart guides the selection process from initial request through final implementation:
 
 ```mermaid
 flowchart TD
@@ -400,6 +424,8 @@ flowchart TD
 >
 > _— From r/ClaudeAI community discussion_
 
+When both a CLI and an MCP are possible options, use this comparison table to choose the more efficient approach:
+
 | Aspect                | CLI + Skill          | MCP                               |
 | --------------------- | -------------------- | --------------------------------- |
 | **Token consumption** | Low (command only)   | High (loads all tool definitions) |
@@ -408,6 +434,8 @@ flowchart TD
 | **Purpose-built**     | ◎ (Dedicated design) | △ (General purpose)               |
 
 #### Examples
+
+These examples illustrate the decision for popular services:
 
 | Service      | CLI      | Recommendation |
 | ------------ | -------- | -------------- |
@@ -420,6 +448,8 @@ flowchart TD
 | DeepL        | ❌       | MCP            |
 
 ### Key Insight
+
+The fundamental principle for layer selection is:
 
 ```
 Selection changes based on "who decides", not just "what to execute"
@@ -436,6 +466,8 @@ With this perspective, you can avoid over-MCPization and implement at the approp
 
 ### The Most Powerful Combination
 
+The most effective approach combines all three components working together:
+
 ```mermaid
 graph LR
     SKILL[Skill<br/>Workflow Definition] -->|"Reference"| AGENT[Sub-agent]
@@ -447,6 +479,8 @@ graph LR
 ```
 
 ### Concrete Example: Translation Workflow
+
+Here is a practical example showing how Skill, Sub-agent, and MCP work together:
 
 ```markdown
 <!-- skills/translation-workflow/SKILL.md -->
@@ -481,7 +515,11 @@ Please refer to the translation-workflow skill.
 
 ## Sequence Diagrams: Visualizing Execution Flow
 
+Sequence diagrams help visualize how components interact during task execution.
+
 ### Code Review Task
+
+Here is how a code review task flows through the system:
 
 ```mermaid
 sequenceDiagram
@@ -499,6 +537,8 @@ sequenceDiagram
 ```
 
 ### Translation Workflow
+
+Here is the sequence for a translation task with quality evaluation:
 
 ```mermaid
 sequenceDiagram
@@ -523,6 +563,8 @@ sequenceDiagram
 ```
 
 ## Layer Structure Summary
+
+The following layered structure shows how all components integrate:
 
 ```
 ┌─────────────────────────────────────────────────────────┐

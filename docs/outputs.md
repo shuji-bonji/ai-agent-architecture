@@ -12,6 +12,8 @@ By visualizing "what was built" and "how much value was generated," this serves 
 
 ## Deliverable Categories
 
+The deliverables produced through MCP development are organized into the following four primary categories. Below is a mind map visualizing the relationships and composition of each category.
+
 ```mermaid
 mindmap
   root((Deliverables))

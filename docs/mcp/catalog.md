@@ -12,6 +12,8 @@ Use this as a reference when considering the development of new MCPs, or as a gu
 
 ## Overview Map
 
+This map provides a visual overview of the MCP ecosystem, showing how different MCPs are organized into categories.
+
 ```mermaid
 mindmap
   root((MCP<br/>Ecosystem))
@@ -297,6 +299,8 @@ MCPs that are not custom-built but are integrated into workflows.
 
 ## MCP Categories
 
+The available MCPs can be organized by their primary function and use case, as shown in the following diagram.
+
 ```mermaid
 graph TB
     subgraph Standard Reference
@@ -389,6 +393,8 @@ sequenceDiagram
 
 ## Planned MCPs
 
+The following MCPs are currently in the planning phase or under development and represent the future direction of the ecosystem.
+
 | MCP              | Target        | Priority | Notes                    |
 | ---------------- | ------------- | -------- | ------------------------ |
 | **OpenAPI MCP**  | OpenAPI Spec  | High     | API design support       |
@@ -402,6 +408,8 @@ sequenceDiagram
 
 ## npm Publication Status
 
+The following table lists the MCPs that have been published to npm, including their current versions and descriptions.
+
 | Package                           | Version | Description                     |
 | --------------------------------- | ------- | ------------------------------- |
 | `@shuji-bonji/rfcxml-mcp`         | v0.4.5  | IETF RFC Structured Reference   |
@@ -412,6 +420,8 @@ sequenceDiagram
 | `@shuji-bonji/pdf-reader-mcp`     | v0.2.0  | PDF Internal Structure Analysis |
 
 ## Reference Links
+
+Here are the key references and resources for MCP catalog information and repositories.
 
 - [npm: @shuji-bonji](https://www.npmjs.com/~shuji-bonji)
 - [GitHub: shuji-bonji](https://github.com/shuji-bonji)

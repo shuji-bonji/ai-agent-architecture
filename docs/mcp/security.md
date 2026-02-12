@@ -27,6 +27,8 @@ We reference **OWASP MCP Top 10 (2025)** as the security guideline for MCP serve
 
 ### Differences from OWASP Top 10
 
+The following table highlights key differences between traditional OWASP Top 10 for web applications and the MCP-specific version.
+
 | Item              | OWASP Top 10 (Traditional)  | OWASP MCP Top 10 (2025)             |
 | ----------------- | --------------------------- | ----------------------------------- |
 | **Target**        | Web Applications            | MCP Server Development              |
@@ -34,6 +36,8 @@ We reference **OWASP MCP Top 10 (2025)** as the security guideline for MCP serve
 | **Use Case**      | Web Security Audits         | Design Guidelines for MCP Development |
 
 ### OWASP MCP Top 10 List
+
+The ten vulnerability categories are organized into thematic groups as illustrated below.
 
 ```mermaid
 mindmap
@@ -243,6 +247,8 @@ graph LR
 
 #### LLM Top 10 Overview
 
+The following table provides a summary of all ten LLM vulnerabilities and their relationship to MCP security concerns.
+
 | ID    | Vulnerability                    | Overview                                      | MCP Related       |
 | ----- | -------------------------------- | --------------------------------------------- | ----------------- |
 | LLM01 | Prompt Injection                 | Manipulating model behavior through malicious input | MCP06             |
@@ -257,6 +263,8 @@ graph LR
 | LLM10 | Model Theft                      | Theft of the model                            | -                 |
 
 #### Why Both Should Be Referenced
+
+Understanding both frameworks is essential for comprehensive security, as MCP development spans both MCP-specific concerns and broader LLM application security.
 
 ```
 MCP server development requires both perspectives:
@@ -278,7 +286,7 @@ OWASP LLM Top 10
 
 ### LY Corporation Research Findings
 
-Results from LY Corporation's investigation of the MCP ecosystem:
+Results from LY Corporation's investigation of the MCP ecosystem are presented below, revealing important trends in authentication practices.
 
 | Item                           | Percentage | Risk                                    |
 | ------------------------------ | ---------- | --------------------------------------- |
@@ -289,6 +297,8 @@ Results from LY Corporation's investigation of the MCP ecosystem:
 **Conclusion**: MCP server authentication is still evolving and requires careful management.
 
 ## Risk Categories (Traditional Organization)
+
+MCP security risks can be organized into four major categories, as visualized in the following mind map.
 
 ```mermaid
 mindmap
@@ -624,6 +634,8 @@ graph LR
 
 ### Key Principles
 
+These seven key principles form the foundation of MCP security best practices.
+
 1. **Reference OWASP MCP Top 10** - The reliable reference for MCP server development
 2. **Use only trusted MCPs** - Manage through allowlists
 3. **Least privilege** - Grant only necessary permissions
@@ -633,6 +645,8 @@ graph LR
 7. **Incident response** - Prepare procedures in advance
 
 ### MCP Security Maturity
+
+MCP security can be assessed through different maturity levels, with progression indicated in the following diagram.
 
 ```mermaid
 graph LR

@@ -1,3 +1,6 @@
+> ⚠️ **This document has been merged into [what-is-skills.md](./what-is-skills.md).**
+> Please refer to that document instead.
+
 # Skills Overview
 
 [日本語版 (Japanese)](./overview.ja.md)
