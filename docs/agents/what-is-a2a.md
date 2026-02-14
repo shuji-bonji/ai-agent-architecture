@@ -69,28 +69,18 @@ As AI agent technology evolves rapidly, companies and organizations develop and 
 The diagram below illustrates the basic flow of agents from different organizations communicating via the A2A protocol.
 
 ```mermaid
-block-beta
-    columns 3
-
-    block:ORG_A:1
-        columns 1
-        AGENT_A["Internal Agent<br/>Sales Analysis"]
-    end
-
-    PROTOCOL["A2A Protocol<br/>Standardized Communication"]:1
-
-    block:ORG_B:1
-        columns 1
-        AGENT_B["External Agent<br/>Salesforce AI"]
-    end
+flowchart LR
+    AGENT_A["Internal Agent<br/>Sales Analysis"]
+    PROTOCOL["A2A Protocol<br/>Standardized Communication"]
+    AGENT_B["External Agent<br/>Salesforce AI"]
 
     AGENT_A --"Task Request"--> PROTOCOL
     PROTOCOL --"Return Result"--> AGENT_A
     PROTOCOL --"Accept Task"--> AGENT_B
 
-    style AGENT_A fill:#87CEEB,color:#333,stroke:#333
+    style AGENT_A fill:#FFB6C1,color:#333,stroke:#333
+    style PROTOCOL fill:#666,color:#000,stroke:#333
     style AGENT_B fill:#90EE90,color:#333,stroke:#333
-    style PROTOCOL fill:#FFE4B5,color:#333,stroke:#333
 ```
 
 ## Fundamental Differences from MCP

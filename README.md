@@ -128,6 +128,7 @@ See [docs/](./docs/) for details.
 | [concepts/01-vision.md](./docs/concepts/01-vision.md)                       | AI-driven development vision         |
 | [concepts/02-reference-sources.md](./docs/concepts/02-reference-sources.md) | "Stable reference sources" framework |
 | [concepts/03-architecture.md](./docs/concepts/03-architecture.md)           | MCP/Skills/Agent architecture        |
+| [concepts/04-ai-design-patterns.md](./docs/concepts/04-ai-design-patterns.md) | AI design patterns and the role of MCP |
 
 ### MCP (External Integration)
 

@@ -13,7 +13,8 @@ docs/
 ├── concepts/          # Vision, Philosophy, Theory
 │   ├── 01-vision.md
 │   ├── 02-reference-sources.md
-│   └── 03-architecture.md
+│   ├── 03-architecture.md
+│   └── 04-ai-design-patterns.md
 ├── mcp/              # MCP (External Integration)
 │   ├── catalog.md
 │   ├── security.md
@@ -54,6 +55,7 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 | File                                                         | Content                            |
 | ------------------------------------------------------------ | ---------------------------------- |
 | [concepts/03-architecture.md](./concepts/03-architecture.md) | MCP/Skills/Agent Configuration Theory |
+| [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md) | AI Design Patterns and the Role of MCP |
 
 ### MCP (External Integration)
 

@@ -222,6 +222,61 @@ Levels:
 - minor: Minor (style issues)
 ```
 
+## AI Design Patterns
+
+### RAG (Retrieval-Augmented Generation)
+
+A technique that retrieves external documents via vector search and injects relevant information into the LLM's prompt.
+
+```
+How it works:
+1. Split documents into chunks → Vectorize → Store in DB
+2. Vectorize the user's question
+3. Retrieve related chunks via similarity search
+4. Inject chunks into prompt for LLM to generate answer
+
+Strengths: Can find relevant information from large volumes of unstructured text
+Weaknesses: Context lost through chunking, doesn't understand structure
+```
+
+**Related**: Embedding, Vector DB, Chunk
+
+> **Difference from MCP**: See [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md)
+
+### Embedding
+
+Converting text into numerical vectors (arrays of hundreds to thousands of dimensions). Semantically similar texts are placed close together in vector space. The foundational technology behind RAG's vector search.
+
+### Vector Database
+
+A specialized database for storing and searching embedded vector data. Provides fast similarity search using cosine similarity and other metrics.
+
+```
+Examples: Pinecone, Weaviate, Chroma, pgvector
+```
+
+### Chunk
+
+A small fragment created by splitting a document. In RAG, documents are split into chunks before vectorization. The chunk size and splitting method affect search accuracy.
+
+### Prompt Engineering
+
+A technique for controlling output quality solely through input prompt design, without changing model parameters. Includes techniques such as Zero-shot, Few-shot, and Chain-of-Thought.
+
+### GraphRAG
+
+A technique that combines standard RAG with knowledge graphs, leveraging entity relationships for search and generation. Particularly effective for relational questions like "How is A related to B?"
+
+### Fine-tuning
+
+A technique that further trains an LLM's parameters on domain-specific data. If RAG is "external memory," Fine-tuning is closer to "rewriting internal knowledge."
+
+### Agentic AI
+
+A pattern where an LLM autonomously plans, invokes tools, and solves problems through multiple steps. MCP is one of the foundational technologies that enables this pattern.
+
+**Related**: MCP, Subagent, A2A
+
 ## Other Terms
 
 ### Authoritative Reference Sources
@@ -290,6 +345,7 @@ Contents:
 
 | Abbreviation | Full Name                                          | Description                              |
 | ------------ | -------------------------------------------------- | ---------------------------------------- |
+| RAG          | Retrieval-Augmented Generation                     | Search-augmented generation technique    |
 | MCP          | Model Context Protocol                             | Protocol for connecting AI and tools     |
 | A2A          | Agent-to-Agent Protocol                            | Inter-agent communication protocol       |
 | RFC          | Request for Comments                               | IETF technical standard documents        |

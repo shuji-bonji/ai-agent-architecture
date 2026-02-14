@@ -11,7 +11,8 @@ docs/
 ├── concepts/          # ビジョン・思想・理論
 │   ├── 01-vision.md
 │   ├── 02-reference-sources.md
-│   └── 03-architecture.md
+│   ├── 03-architecture.md
+│   └── 04-ai-design-patterns.md
 ├── mcp/              # MCP（外部連携）
 │   ├── what-is-mcp.md    # MCPとは何か（入門）
 │   ├── catalog.md
@@ -57,6 +58,7 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 | ファイル                                                     | 内容                     |
 | ------------------------------------------------------------ | ------------------------ |
 | [concepts/03-architecture.md](./concepts/03-architecture.md) | MCP/Skills/Agentの構成論 |
+| [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md) | 生成AIの設計パターンとMCPの位置づけ |
 
 ### MCP（外部連携）
 
@@ -111,7 +113,8 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 1. **concepts/01-vision.md** - 全体の思想を理解
 2. **concepts/03-architecture.md** - 構成要素を理解
-3. **mcp/catalog.md** - 具体的なMCPを確認
+3. **concepts/04-ai-design-patterns.md** - RAG等の設計パターンとMCPの違い
+4. **mcp/catalog.md** - 具体的なMCPを確認
 
 ### 初めてMCPを学びたい場合
 
