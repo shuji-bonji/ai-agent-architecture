@@ -8,35 +8,35 @@
 
 The architecture is organized into four distinct layers, each with specific responsibilities, as shown in the following diagram:
 
-```
-User Request
-     │
-     ▼
-┌─────────────────────────────────────────────────────────┐
-│  Agent Layer                                             │
-│  ┌─────────────────────────────────────────────────────┐ │
-│  │ • Task understanding                                │ │
-│  │ • Orchestration decisions                           │ │
-│  │ • Result synthesis                                  │ │
-│  └─────────────────────────────────────────────────────┘ │
-├─────────────────────────────────────────────────────────┤
-│  Skills Layer                                            │
-│  ┌─────────────────────────────────────────────────────┐ │
-│  │ • Domain knowledge                                  │ │
-│  │ • Best practices & guidelines                       │ │
-│  │ • Decision criteria                                 │ │
-│  └─────────────────────────────────────────────────────┘ │
-├─────────────────────────────────────────────────────────┤
-│  MCP Layer                                               │
-│  ┌─────────────────────────────────────────────────────┐ │
-│  │ • External API access                               │ │
-│  │ • Tool execution                                    │ │
-│  │ • Data retrieval                                    │ │
-│  └─────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────┘
-     │
-     ▼
-External Services (DeepL, RFC Editor, GitHub, etc.)
+```mermaid
+block-beta
+    columns 1
+
+    USER["User Request"]:1
+
+    block:AGENT_LAYER:1
+        columns 1
+        AGENT["Agent Layer\nTask Understanding / Orchestration Decisions / Result Synthesis"]
+    end
+
+    block:SKILL_LAYER:1
+        columns 1
+        SKILL["Skills Layer\nDomain Knowledge / Best Practices & Guidelines / Decision Criteria"]
+    end
+
+    block:MCP_LAYER:1
+        columns 1
+        MCP["MCP Layer\nExternal API Access / Tool Execution / Data Retrieval"]
+    end
+
+    EXTERNAL["External Services (DeepL, RFC Editor, GitHub, etc.)"]:1
+
+    USER --> AGENT
+    MCP --> EXTERNAL
+
+    style AGENT fill:#87CEEB,color:#333,stroke:#333
+    style SKILL fill:#90EE90,color:#333,stroke:#333
+    style MCP fill:#FFB6C1,color:#333,stroke:#333
 ```
 
 ### Layer Responsibilities
@@ -60,29 +60,27 @@ When you are unsure about "What should be implemented as MCP?", "When is a Skill
 The following diagram shows how all components interact within the complete system architecture:
 
 ```mermaid
-block-beta
-    columns 3
+flowchart TB
+    USER["User"]
 
-    space:1 USER["User"]:1 space:1
-
-    block:HOST_LAYER:3
-        columns 3
-        HOST["Host\n(Claude Code / Claude.ai)"]:2 SKILL["Skills\n(Static Knowledge)"]:1
+    subgraph HOST_LAYER["Host Layer"]
+        HOST["Host<bn>(Claude Code / Claude.ai)"]
+        SKILL["Skills<bn>(Static Knowledge)"]
     end
 
-    block:AGENT_LAYER:3
-        columns 3
-        MAIN["Main Agent"]:2 SUB["Sub Agent"]:1
+    subgraph AGENT_LAYER["Agent Layer"]
+        MAIN["Main Agent"]
+        SUB["Sub Agent"]
     end
 
-    block:PROTOCOL_LAYER:3
-        columns 3
-        MCP_CLIENT["MCP Client"]:2 A2A_CLIENT["A2A Client"]:1
+    subgraph PROTOCOL_LAYER["Protocol Layer"]
+        MCP_CLIENT["MCP Client"]
+        A2A_CLIENT["A2A Client"]
     end
 
-    block:EXTERNAL_LAYER:3
-        columns 3
-        MCP_SERVER["MCP Servers"]:2 A2A_AGENT["External A2A Agents"]:1
+    subgraph EXTERNAL_LAYER["External Services Layer"]
+        MCP_SERVER["MCP Servers"]
+        A2A_AGENT["External A2A Agents"]
     end
 
     USER --> HOST
@@ -220,22 +218,21 @@ Use only the rfcxml tools.
 The following diagram illustrates where sub-agents sit within the Claude Code architecture:
 
 ```mermaid
-block-beta
-    columns 2
+flowchart TB
+    subgraph CLAUDE_CODE["Claude Code"]
+        USER["User"]
+        MAIN["Main Claude<bn>(Orchestrator)"]
+        SUBAGENT["Custom Sub Agent<bn>(.claude/agents/)"]
+        MCP_CLIENT["MCP Client<bn>(Built into Claude Code)"]
 
-    block:CLAUDE_CODE:2
-        columns 2
-        USER["User"]:2
-        MAIN["Main Claude\n(Orchestrator)"]:1 SUBAGENT["Custom Sub Agent\n(.claude/agents/)"]:1
-        MCP_CLIENT["MCP Client\n(Built into Claude Code)"]:2
+        USER --> MAIN
+        MAIN --"Delegate"--> SUBAGENT
+        SUBAGENT --"Use"--> MCP_CLIENT
+        MAIN --"Direct Use"--> MCP_CLIENT
     end
 
-    MCP_SERVERS["MCP Servers\nrfcxml, deepl, etc."]:2
+    MCP_SERVERS["MCP Servers<bn>rfcxml, deepl, etc."]
 
-    USER --> MAIN
-    MAIN --"Delegate"--> SUBAGENT
-    SUBAGENT --"Use"--> MCP_CLIENT
-    MAIN --"Direct Use"--> MCP_CLIENT
     MCP_CLIENT --"JSON-RPC"--> MCP_SERVERS
 
     style MCP_CLIENT fill:#FFB6C1,color:#333,stroke:#333
@@ -359,20 +356,34 @@ Beyond choosing MCP / Skill / Sub-agent, the perspective of **"who makes the dec
 
 The way we integrate with external services has evolved with technology.
 
-```
-Past                  Present                 Future
-┌─────────┐        ┌─────────┐          ┌─────────┐
-│  Human  │        │   AI    │          │  Agent  │
-│  (CLI)  │        │(via MCP)│          │(Autonomy│
-└────┬────┘        └────┬────┘          └────┬────┘
-     │                  │                    │
-     ▼                  ▼                    ▼
-┌─────────┐        ┌─────────┐          ┌─────────┐
-│   API   │        │   API   │          │   API   │
-└─────────┘        └─────────┘          └─────────┘
+```mermaid
+flowchart LR
+    subgraph PAST["Past"]
+        direction TB
+        HUMAN["Human\n(CLI)"]
+        API1["API"]
+        HUMAN --> API1
+    end
 
-Human operates        AI calls API          Agent autonomously
-API via commands      as a tool             decides & executes
+    subgraph PRESENT["Present"]
+        direction TB
+        AI["AI\n(via MCP)"]
+        API2["API"]
+        AI --> API2
+    end
+
+    subgraph FUTURE["Future"]
+        direction TB
+        AGENT["Agent\n(Autonomous)"]
+        API3["API"]
+        AGENT --> API3
+    end
+
+    PAST -.-> PRESENT -.-> FUTURE
+
+    style HUMAN fill:#E8E8E8,color:#333,stroke:#333
+    style AI fill:#FFE4B5,color:#333,stroke:#333
+    style AGENT fill:#87CEEB,color:#333,stroke:#333
 ```
 
 In this evolution, **not everything needs to be MCP-ified**.
@@ -566,20 +577,29 @@ sequenceDiagram
 
 The following layered structure shows how all components integrate:
 
-```
-┌─────────────────────────────────────────────────────────┐
-│  User                                                    │
-├─────────────────────────────────────────────────────────┤
-│  Host (Claude Code / Claude.ai)                          │
-├─────────────────────────────────────────────────────────┤
-│  Skills (Static Knowledge & Guidelines)                  │
-├─────────────────────────────────────────────────────────┤
-│  Main Agent                                              │  ← Orchestration
-├─────────────────────────────────────────────────────────┤
-│  Custom Sub-agents                                       │  ← Role & Expertise Definition
-├─────────────────────────────────────────────────────────┤
-│  MCP Client / A2A Client                                 │  ← Protocol Processing
-├─────────────────────────────────────────────────────────┤
-│  MCP Servers / External A2A Agents                       │  ← Tools & External Services
-└─────────────────────────────────────────────────────────┘
+```mermaid
+block-beta
+    columns 1
+
+    USER["User"]:1
+    HOST["Host (Claude Code / Claude.ai)"]:1
+    SKILLS["Skills (Static Knowledge & Guidelines)"]:1
+    MAIN["Main Agent ← Orchestration"]:1
+    SUBAGENT["Custom Sub-agents ← Role & Expertise Definition"]:1
+    PROTOCOL["MCP Client / A2A Client ← Protocol Processing"]:1
+    EXTERNAL["MCP Servers / External A2A Agents ← Tools & External Services"]:1
+
+    USER --> HOST
+    HOST --> SKILLS
+    SKILLS --> MAIN
+    MAIN --> SUBAGENT
+    SUBAGENT --> PROTOCOL
+    PROTOCOL --> EXTERNAL
+
+    style HOST fill:#87CEEB,color:#333,stroke:#333
+    style SKILLS fill:#90EE90,color:#333,stroke:#333
+    style MAIN fill:#FFE4B5,color:#333,stroke:#333
+    style SUBAGENT fill:#87CEEB,color:#333,stroke:#333
+    style PROTOCOL fill:#FFB6C1,color:#333,stroke:#333
+    style EXTERNAL fill:#E8E8E8,color:#333,stroke:#333
 ```

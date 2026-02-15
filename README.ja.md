@@ -128,6 +128,7 @@ flowchart LR
 | [concepts/02-reference-sources.md](./docs/concepts/02-reference-sources.ja.md) | 「ブレない参照先」の体系       |
 | [concepts/03-architecture.md](./docs/concepts/03-architecture.ja.md)           | MCP/Skills/Agentの構成論       |
 | [concepts/04-ai-design-patterns.md](./docs/concepts/04-ai-design-patterns.ja.md) | 生成AIの設計パターンとMCPの位置づけ |
+| [concepts/05-solving-ai-limitations.md](./docs/concepts/05-solving-ai-limitations.ja.md) | AI制約の解決アプローチ |
 
 ### MCP（外部連携）
 

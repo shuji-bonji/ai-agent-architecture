@@ -14,7 +14,8 @@ docs/
 │   ├── 01-vision.md
 │   ├── 02-reference-sources.md
 │   ├── 03-architecture.md
-│   └── 04-ai-design-patterns.md
+│   ├── 04-ai-design-patterns.md
+│   └── 05-solving-ai-limitations.md
 ├── mcp/              # MCP (External Integration)
 │   ├── catalog.md
 │   ├── security.md
@@ -56,6 +57,7 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 | ------------------------------------------------------------ | ---------------------------------- |
 | [concepts/03-architecture.md](./concepts/03-architecture.md) | MCP/Skills/Agent Configuration Theory |
 | [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md) | AI Design Patterns and the Role of MCP |
+| [concepts/05-solving-ai-limitations.md](./concepts/05-solving-ai-limitations.md) | Approaches to Solving AI Limitations |
 
 ### MCP (External Integration)
 

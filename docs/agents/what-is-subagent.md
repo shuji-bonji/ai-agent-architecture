@@ -205,8 +205,8 @@ The most powerful approach combines these three elements.
 
 ```mermaid
 flowchart LR
-    SKILL["Skill\nWorkflow Definition"] -->|"Reference"| AGENT["Sub-agent\nTranslation Expert"]
-    AGENT -->|"Execute"| MCP["MCP\ndeepL, xcomet"]
+    SKILL["Skill<bn>Workflow Definition"] -->|"Reference"| AGENT["Sub-agent<bn>Translation Expert"]
+    AGENT -->|"Execute"| MCP["MCP<bn>deepL, xcomet"]
 
     style SKILL fill:#90EE90,color:#333,stroke:#333
     style MCP fill:#FFB6C1,color:#333,stroke:#333

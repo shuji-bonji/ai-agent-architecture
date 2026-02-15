@@ -86,30 +86,31 @@ graph TB
 
 ### Problems with the Traditional Approach
 
+```Mermaid
+flowchart LR
+    G[General Developers]
+    Expert --> Books/Lectures --> G
 ```
-Expert → Books/Lectures → General Developers
-              ↑
-    High cost・One-way・Language barriers
-```
+
+- High cost
+- One-way
+- Language barriers
 
 ### The World MCP/Skills Enables
 
-```
-┌─────────────────────────────────────────────────────────┐
-│  External Authoritative Sources     Domain Knowledge    │
-│  (RFC/Legislation/W3C)              (Design Principles/ │
-│                                      Standards)         │
-│         ↓                              ↓               │
-│     MCP-ified (Dynamic Access)    Skills-ified         │
-│                                   (Systematization)     │
-│         └──────────┬───────────────┘                   │
-│                    ↓                                   │
-│                   AI                                   │
-│                    ↓                                   │
-│         Documentation/Checklists                       │
-│                    ↓                                   │
-│          Knowledge Accessible to Everyone              │
-└─────────────────────────────────────────────────────────┘
+```Mermaid
+flowchart TB
+  A["External Authoritative Sources<br>(RFC/Legislation/W3C)"]
+  B["Domain Knowledge <br>(Design Principles/Standards)" ]
+  M["MCP-ified<br>(Dynamic Access)"]
+  S["Skills-ified<br>(Systematization)"]
+  K[Knowledge Accessible to Everyone]
+
+  A --> M
+  B --> S
+  M --> AI
+  S --> AI
+  AI --> Documentation/Checklists --> K
 ```
 
 **Development based on accurate information becomes possible** without relying on expensive consultants or specialists.

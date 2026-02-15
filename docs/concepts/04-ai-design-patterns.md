@@ -71,7 +71,7 @@ A technique that searches external documents and injects relevant information in
 flowchart LR
     subgraph PrepPhase["Preparation Phase"]
         D[Documents] --> C[Chunk Splitting]
-        C --> E[Vectorization\nEmbedding]
+        C --> E[Vectorization<bn>Embedding]
         E --> V[(Vector DB)]
     end
 
@@ -80,7 +80,7 @@ flowchart LR
         QE --> S[Similarity Search]
         V --> S
         S --> R[Retrieve Relevant Chunks]
-        R --> P[Build Prompt\nQuestion + Search Results]
+        R --> P[Build Prompt<bn>Question + Search Results]
         P --> L[LLM]
         L --> A[Generate Answer]
     end
@@ -88,13 +88,13 @@ flowchart LR
 
 **Key Point**: The core of RAG is searching information using "vector similarity." Documents are split into small fragments (chunks), and fragments semantically closest to the question are retrieved and passed to the LLM.
 
-| Characteristic | Description |
-|---|---|
-| **Target** | Unstructured text (documents, FAQs, internal wikis, etc.) |
-| **Search Method** | Vector similarity search (semantic search) |
-| **Pre-processing** | Document chunking → Vectorization → DB storage |
-| **Strengths** | Can find relevant information from large document collections |
-| **Weaknesses** | Context is lost through chunking, doesn't understand structure |
+| Characteristic     | Description                                                    |
+| ------------------ | -------------------------------------------------------------- |
+| **Target**         | Unstructured text (documents, FAQs, internal wikis, etc.)      |
+| **Search Method**  | Vector similarity search (semantic search)                     |
+| **Pre-processing** | Document chunking → Vectorization → DB storage                 |
+| **Strengths**      | Can find relevant information from large document collections  |
+| **Weaknesses**     | Context is lost through chunking, doesn't understand structure |
 
 #### MCP (Model Context Protocol)
 
@@ -104,9 +104,9 @@ A standard protocol developed by Anthropic for connecting AI models with externa
 flowchart LR
     subgraph MCPSystem["MCP"]
         Q2[User Question] --> A2[AI Decides]
-        A2 --> T[Tool Call\nExample: get_requirements]
+        A2 --> T[Tool Call<bn>Example: get_requirements]
         T --> S2[MCP Server]
-        S2 --> E2[External Service\nRFC / DeepL etc.]
+        S2 --> E2[External Service<bn>RFC / DeepL etc.]
         E2 --> R2[Structured Result]
         R2 --> G2[Generate Answer]
     end
@@ -114,13 +114,13 @@ flowchart LR
 
 **Key Point**: The core of MCP is accessing information through "structured APIs." Data is retrieved with understanding of domain structure (sections, requirement levels, cross-references, etc.).
 
-| Characteristic | Description |
-|---|---|
-| **Target** | Structured data, APIs, external services |
-| **Access Method** | Structured API calls (JSON-RPC) |
-| **Pre-processing** | Not required (MCP server understands structure) |
-| **Strengths** | Accurate data retrieval, verifiable, distributable |
-| **Weaknesses** | Requires MCP server development |
+| Characteristic     | Description                                        |
+| ------------------ | -------------------------------------------------- |
+| **Target**         | Structured data, APIs, external services           |
+| **Access Method**  | Structured API calls (JSON-RPC)                    |
+| **Pre-processing** | Not required (MCP server understands structure)    |
+| **Strengths**      | Accurate data retrieval, verifiable, distributable |
+| **Weaknesses**     | Requires MCP server development                    |
 
 > **MCP Details**: See [mcp/what-is-mcp.md](../mcp/what-is-mcp.md).
 
@@ -136,13 +136,13 @@ Customized Model
 Can answer with domain-specific knowledge
 ```
 
-| Characteristic | Description |
-|---|---|
-| **Target** | Domain-specific knowledge and style |
-| **Modified Component** | Model parameters themselves |
-| **Cost** | High (data preparation + computational resources) |
-| **Strengths** | Deep knowledge embedding in the model |
-| **Weaknesses** | Difficult to update, complete elimination of hallucinations impossible |
+| Characteristic         | Description                                                            |
+| ---------------------- | ---------------------------------------------------------------------- |
+| **Target**             | Domain-specific knowledge and style                                    |
+| **Modified Component** | Model parameters themselves                                            |
+| **Cost**               | High (data preparation + computational resources)                      |
+| **Strengths**          | Deep knowledge embedding in the model                                  |
+| **Weaknesses**         | Difficult to update, complete elimination of hallucinations impossible |
 
 #### Prompt Engineering
 
@@ -156,13 +156,13 @@ Main techniques:
 - System Prompt:     Pre-define role and constraints
 ```
 
-| Characteristic | Description |
-|---|---|
-| **Target** | Any task |
-| **Modified Component** | Input prompt only |
-| **Cost** | Lowest |
-| **Strengths** | Can try immediately, no model modification needed |
-| **Weaknesses** | Cannot supplement knowledge the model doesn't have |
+| Characteristic         | Description                                        |
+| ---------------------- | -------------------------------------------------- |
+| **Target**             | Any task                                           |
+| **Modified Component** | Input prompt only                                  |
+| **Cost**               | Lowest                                             |
+| **Strengths**          | Can try immediately, no model modification needed  |
+| **Weaknesses**         | Cannot supplement knowledge the model doesn't have |
 
 #### Agentic AI
 
@@ -184,13 +184,13 @@ flowchart TB
     E3 -.->|MCP| T3[Execution Tools]
 ```
 
-| Characteristic | Description |
-|---|---|
-| **Target** | Complex, multi-step tasks |
-| **Operation** | Autonomous planning → execution → verification loop |
+| Characteristic   | Description                                         |
+| ---------------- | --------------------------------------------------- |
+| **Target**       | Complex, multi-step tasks                           |
+| **Operation**    | Autonomous planning → execution → verification loop |
 | **Dependencies** | MCP (tool connection), Skills (knowledge reference) |
-| **Strengths** | Can automate complex tasks |
-| **Weaknesses** | Hard to predict, difficult to control in some cases |
+| **Strengths**    | Can automate complex tasks                          |
+| **Weaknesses**   | Hard to predict, difficult to control in some cases |
 
 > **Agent Details**: See [03-architecture.md](./03-architecture.md).
 
@@ -203,22 +203,22 @@ Standard RAG:  Documents → Chunks → Vector Search
 GraphRAG:      Documents → Entity Extraction → Build Relationship Graph → Graph Search
 ```
 
-| Characteristic | Description |
-|---|---|
-| **Target** | Data where relationships between entities are important |
-| **Strengths** | Strong at "How does A relate to B?" |
-| **Weaknesses** | High cost of graph construction |
+| Characteristic | Description                                             |
+| -------------- | ------------------------------------------------------- |
+| **Target**     | Data where relationships between entities are important |
+| **Strengths**  | Strong at "How does A relate to B?"                     |
+| **Weaknesses** | High cost of graph construction                         |
 
 ### 2.3 Pattern Comparison Table
 
-| Pattern | Problem Solved | Modified Component | Cost | Real-time |
-|---|---|---|---|---|
-| **RAG** | Knowledge completion | Prompt | Medium | △ (depends on index update frequency) |
-| **MCP** | Tool connection, accurate data retrieval | Prompt | Medium-High | ◎ (Real-time) |
-| **Fine-tuning** | Domain specialization | Model parameters | High | ✗ (retraining needed) |
-| **Prompt Engineering** | Output quality control | Prompt | Low | - |
-| **Agentic AI** | Complex task automation | Architecture | High | ◎ |
-| **GraphRAG** | Relationship understanding | Prompt + Graph | High | △ |
+| Pattern                | Problem Solved                           | Modified Component | Cost        | Real-time                             |
+| ---------------------- | ---------------------------------------- | ------------------ | ----------- | ------------------------------------- |
+| **RAG**                | Knowledge completion                     | Prompt             | Medium      | △ (depends on index update frequency) |
+| **MCP**                | Tool connection, accurate data retrieval | Prompt             | Medium-High | ◎ (Real-time)                         |
+| **Fine-tuning**        | Domain specialization                    | Model parameters   | High        | ✗ (retraining needed)                 |
+| **Prompt Engineering** | Output quality control                   | Prompt             | Low         | -                                     |
+| **Agentic AI**         | Complex task automation                  | Architecture       | High        | ◎                                     |
+| **GraphRAG**           | Relationship understanding               | Prompt + Graph     | High        | △                                     |
 
 ### 2.4 Patterns Are Not Mutually Exclusive
 
@@ -227,10 +227,10 @@ These patterns **are not mutually exclusive; they can and should be combined**.
 ```mermaid
 graph TB
     subgraph ActualSystem["Real System"]
-        PE[Prompt Engineering\nBase Instructions]
-        RAG_COMP[RAG\nInternal Document Search]
-        MCP_COMP[MCP\nStandard Specification Reference]
-        AGENT[Agentic AI\nOrchestration]
+        PE[Prompt Engineering<bn>Base Instructions]
+        RAG_COMP[RAG<bn>Internal Document Search]
+        MCP_COMP[MCP<bn>Standard Specification Reference]
+        AGENT[Agentic AI<bn>Orchestration]
     end
 
     PE --> AGENT
@@ -306,12 +306,12 @@ Closest Chunk → Chunk 2:
 
 Here are the scenarios where RAG is particularly effective.
 
-| Use Case | Description | Example |
-|---|---|---|
+| Use Case                     | Description                                                       | Example                      |
+| ---------------------------- | ----------------------------------------------------------------- | ---------------------------- |
 | **Internal Document Search** | Retrieve information from large amounts of internal documentation | Internal Wiki, Manuals, FAQs |
-| **Customer Support** | Generate answers from product knowledge base | Help Center, Chatbots |
-| **Academic Research** | Extract relevant information from paper databases | Literature review support |
-| **Legal Support** | Similarity search of contracts and case law | Finding similar clauses |
+| **Customer Support**         | Generate answers from product knowledge base                      | Help Center, Chatbots        |
+| **Academic Research**        | Extract relevant information from paper databases                 | Literature review support    |
+| **Legal Support**            | Similarity search of contracts and case law                       | Finding similar clauses      |
 
 **What RAG Excels At**: Finding information that is "semantically similar" from large amounts of unstructured text.
 
@@ -368,42 +368,42 @@ Both RAG and MCP "provide external knowledge to LLMs," but their approaches diff
 ```mermaid
 flowchart TB
     subgraph RAG_APPROACH["RAG: Search by Text Similarity"]
-        direction LR
+        direction TB
         R1[Documents] --> R2[Chunk Splitting]
         R2 --> R3[Vectorization]
         R3 --> R4[Similarity Search]
-        R4 --> R5["Fragmented Results\n(Risk of Context Loss)"]
+        R4 --> R5["Fragmented Results<bn>(Risk of Context Loss)"]
     end
 
     subgraph MCP_APPROACH["MCP: Search by Domain Structure"]
-        direction LR
+        direction TB
         M1[Structured Data] --> M2[Domain Understanding]
-        M2 --> M3["Structured Query\nget_requirements()"]
-        M3 --> M4["Accurate Results\n+ Metadata"]
+        M2 --> M3["Structured Query<bn>get_requirements()"]
+        M3 --> M4["Accurate Results<bn>+ Metadata"]
     end
 
     style RAG_APPROACH fill:#fff3e0,color:#333
     style MCP_APPROACH fill:#e8f5e9,color:#333
 ```
 
-| Aspect | RAG | MCP |
-|---|---|---|
-| **Search Principle** | Semantic similarity of text | Precise query based on domain structure |
-| **Prerequisite** | Can chunk documents | Exists an API that understands domain structure |
-| **Result Nature** | "Probably relevant" text fragments | "Definitely applicable" structured data |
-| **Source Clarity** | Ambiguous (hard to trace which chunk) | Clear (RFC 6455 Section 7.4.1, etc.) |
+| Aspect               | RAG                                   | MCP                                             |
+| -------------------- | ------------------------------------- | ----------------------------------------------- |
+| **Search Principle** | Semantic similarity of text           | Precise query based on domain structure         |
+| **Prerequisite**     | Can chunk documents                   | Exists an API that understands domain structure |
+| **Result Nature**    | "Probably relevant" text fragments    | "Definitely applicable" structured data         |
+| **Source Clarity**   | Ambiguous (hard to trace which chunk) | Clear (RFC 6455 Section 7.4.1, etc.)            |
 
 ### 4.2 Comparison by the 5 Characteristics of "Unshakeable References"
 
 Comparing by the five characteristics of "unshakeable references" defined in [02-reference-sources.md](./02-reference-sources.md) makes the differences even clearer.
 
-| Characteristic | RAG | MCP (Reference MCP) | Description |
-|---|---|---|---|
-| **Authority** | △ | ◎ | RAG chunk origins are ambiguous. MCP accesses the original source directly |
-| **Immutability, Version Management** | △ | ◎ | RAG depends on index update timing. MCP reflects original version management |
-| **Structuring** | ✗ | ◎ | RAG loses structure through chunking. MCP preserves sections and requirement levels |
-| **Verifiability** | △ | ◎ | RAG makes it difficult to trace "which chunk generated this." MCP shows exact sources |
-| **Accessibility** | ○ | ◎ | Both are programmatically accessible, but MCP uses a standard protocol |
+| Characteristic                       | RAG | MCP (Reference MCP) | Description                                                                           |
+| ------------------------------------ | --- | ------------------- | ------------------------------------------------------------------------------------- |
+| **Authority**                        | △   | ◎                   | RAG chunk origins are ambiguous. MCP accesses the original source directly            |
+| **Immutability, Version Management** | △   | ◎                   | RAG depends on index update timing. MCP reflects original version management          |
+| **Structuring**                      | ✗   | ◎                   | RAG loses structure through chunking. MCP preserves sections and requirement levels   |
+| **Verifiability**                    | △   | ◎                   | RAG makes it difficult to trace "which chunk generated this." MCP shows exact sources |
+| **Accessibility**                    | ○   | ◎                   | Both are programmatically accessible, but MCP uses a standard protocol                |
 
 ### 4.3 Comparison with Concrete Examples
 
@@ -484,12 +484,12 @@ Sharing MCP Server:
   → Anyone can get structured RFC access with just this
 ```
 
-| Aspect | RAG | MCP |
-|---|---|---|
-| **Distribution Method** | Independent construction required | Can be distributed as npm package, etc. |
-| **Deployment Cost** | Vector DB construction + indexing | Single configuration file |
-| **Quality Consistency** | Depends on builder's skills | Developer ensures quality |
-| **Maintenance** | Each organization handles separately | Developer updates centrally |
+| Aspect                  | RAG                                  | MCP                                     |
+| ----------------------- | ------------------------------------ | --------------------------------------- |
+| **Distribution Method** | Independent construction required    | Can be distributed as npm package, etc. |
+| **Deployment Cost**     | Vector DB construction + indexing    | Single configuration file               |
+| **Quality Consistency** | Depends on builder's skills          | Developer ensures quality               |
+| **Maintenance**         | Each organization handles separately | Developer updates centrally             |
 
 ## Chapter 5: MCP Servers in This Project vs RAG
 
@@ -503,13 +503,13 @@ However, there is a fundamental difference.
 
 Each MCP server provides **an API that understands the target domain's structure and semantics**. This is not merely text search; it is **the codification of domain knowledge**.
 
-| MCP Server | Structure It Understands | What RAG Loses |
-|---|---|---|
-| **rfcxml-mcp** | Section hierarchy, MUST/SHOULD/MAY classification, RFC cross-references (obsoletes/updates) | Distinction of requirement levels, relationships between sections |
-| **w3c-mcp** | WebIDL definitions, CSS specification structure, HTML element attributes and content models | Type information of interfaces, inheritance relationships of properties |
-| **pdf-spec-mcp** | ISO 32000 chapter structure, requirement tables, term definitions | Table structure, differences between specification versions |
-| **epsg-mcp** | Recommended uses of coordinate reference systems, transformation paths, accuracy characteristics | Spatial scope of applicability, transformation accuracy information |
-| **pdf-reader-mcp** | Internal object structure of PDFs, tag hierarchy, font information | Binary structure interpretation, reference relationships between objects |
+| MCP Server         | Structure It Understands                                                                         | What RAG Loses                                                           |
+| ------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| **rfcxml-mcp**     | Section hierarchy, MUST/SHOULD/MAY classification, RFC cross-references (obsoletes/updates)      | Distinction of requirement levels, relationships between sections        |
+| **w3c-mcp**        | WebIDL definitions, CSS specification structure, HTML element attributes and content models      | Type information of interfaces, inheritance relationships of properties  |
+| **pdf-spec-mcp**   | ISO 32000 chapter structure, requirement tables, term definitions                                | Table structure, differences between specification versions              |
+| **epsg-mcp**       | Recommended uses of coordinate reference systems, transformation paths, accuracy characteristics | Spatial scope of applicability, transformation accuracy information      |
+| **pdf-reader-mcp** | Internal object structure of PDFs, tag hierarchy, font information                               | Binary structure interpretation, reference relationships between objects |
 
 ### 5.3 Practical Differences
 
@@ -545,7 +545,7 @@ flowchart TB
     Q2 -->|No| Q4{Worth Creating<br/>MCP?}
 
     Q3 -->|Yes| RAG[Use RAG]
-    Q3 -->|No| PE[Prompt Engineering\nfor Now]
+    Q3 -->|No| PE[Prompt Engineering<bn>for Now]
 
     Q4 -->|Yes| BUILD_MCP[Build MCP]
     Q4 -->|No| RAG
@@ -564,16 +564,16 @@ flowchart TB
 
 ### 6.2 Selection Guide
 
-| Scenario | Recommended | Reason |
-|---|---|---|
-| **Verify RFC/W3C compliance** | **MCP** | Need structured requirement extraction |
-| **Search internal documents** | **RAG** | Large-scale unstructured text search |
-| **Get law article text** | **MCP** | Need to preserve article, subsection, item structure |
-| **Customer support FAQs** | **RAG** | Flexible handling of diverse questions |
-| **Translation quality evaluation** | **MCP** | Structured scores and error detection |
-| **Summarize research papers** | **RAG** | Process large volumes of unstructured text |
-| **PDF spec requirement check** | **MCP** | Accurate retrieval of tables and requirement levels |
-| **Team knowledge sharing** | **RAG** or **Skill** | Choose based on context |
+| Scenario                           | Recommended          | Reason                                               |
+| ---------------------------------- | -------------------- | ---------------------------------------------------- |
+| **Verify RFC/W3C compliance**      | **MCP**              | Need structured requirement extraction               |
+| **Search internal documents**      | **RAG**              | Large-scale unstructured text search                 |
+| **Get law article text**           | **MCP**              | Need to preserve article, subsection, item structure |
+| **Customer support FAQs**          | **RAG**              | Flexible handling of diverse questions               |
+| **Translation quality evaluation** | **MCP**              | Structured scores and error detection                |
+| **Summarize research papers**      | **RAG**              | Process large volumes of unstructured text           |
+| **PDF spec requirement check**     | **MCP**              | Accurate retrieval of tables and requirement levels  |
+| **Team knowledge sharing**         | **RAG** or **Skill** | Choose based on context                              |
 
 ### 6.3 Combined Patterns
 
@@ -619,9 +619,9 @@ The value that MCP provides in this project's context can be summarized in three
 ```mermaid
 graph TB
     subgraph MCPValues["The 3 Values of MCP"]
-        V1["① Accuracy\nStructure-aware Access"]
-        V2["② Verifiability\nClear Sources"]
-        V3["③ Democratization\nDistribution via Standard Protocol"]
+        V1["① Accuracy<bn>Structure-aware Access"]
+        V2["② Verifiability<bn>Clear Sources"]
+        V3["③ Democratization<bn>Distribution via Standard Protocol"]
     end
 
     V1 --> RESULT[Trustworthiness of AI Output]

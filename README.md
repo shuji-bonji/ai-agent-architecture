@@ -129,6 +129,7 @@ See [docs/](./docs/) for details.
 | [concepts/02-reference-sources.md](./docs/concepts/02-reference-sources.md) | "Stable reference sources" framework |
 | [concepts/03-architecture.md](./docs/concepts/03-architecture.md)           | MCP/Skills/Agent architecture        |
 | [concepts/04-ai-design-patterns.md](./docs/concepts/04-ai-design-patterns.md) | AI design patterns and the role of MCP |
+| [concepts/05-solving-ai-limitations.md](./docs/concepts/05-solving-ai-limitations.md) | Approaches to solving AI limitations |
 
 ### MCP (External Integration)
 

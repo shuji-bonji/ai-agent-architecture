@@ -73,7 +73,7 @@ block-beta
         MCP_CLIENT["MCP Client\n（Claude Code内蔵）"]:2
     end
 
-    MCP_SERVERS["MCP Servers\nrfcxml, deepl等"]:2
+    MCP_SERVERS["MCP Servers<bn>rfcxml, deepl等"]:2
 
     USER --> MAIN
     MAIN --"委譲"--> SUBAGENT
@@ -205,8 +205,8 @@ model: sonnet
 
 ```mermaid
 flowchart LR
-    SKILL["Skill\nワークフロー定義"] -->|"参照"| AGENT["サブエージェント\n翻訳専門家"]
-    AGENT -->|"実行"| MCP["MCP\ndepl, xcomet"]
+    SKILL["Skill<bn>ワークフロー定義"] -->|"参照"| AGENT["サブエージェント<bn>翻訳専門家"]
+    AGENT -->|"実行"| MCP["MCP<bn>depl, xcomet"]
 
     style SKILL fill:#90EE90,color:#333,stroke:#333
     style MCP fill:#FFB6C1,color:#333,stroke:#333

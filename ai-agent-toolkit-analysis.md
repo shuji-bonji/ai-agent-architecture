@@ -63,7 +63,7 @@ graph TB
         O1["README.md / README.ja.md"]
         O2["discussion.md<br/>🟡 空ファイル（0バイト）"]
         O3["LICENSE"]
-        O4["configuring_everything-claude-code.imd<br/>🟡 非標準拡張子"]
+        O4["configuring_everything-claude-code.md<br/>🟡 非標準拡張子"]
     end
 
     ROOT --> Concepts
@@ -272,7 +272,7 @@ graph TB
 
     subgraph Warning["🟡 メンテナンス必要"]
         G3["discussion.md<br/>0バイト（空ファイル）"]
-        G4["configuring_everything-claude-code.imd<br/>非標準拡張子 .imd"]
+        G4["configuring_everything-claude-code.md<br/>非標準拡張子 .imd"]
         G5["roadmap.ja.md の日付<br/>2025年ベースのまま"]
     end
 
@@ -383,7 +383,7 @@ graph LR
     end
 
     subgraph Neither["🔴 未翻訳"]
-        N1["configuring_everything-claude-code.imd"]
+        N1["configuring_everything-claude-code.md"]
     end
 
     style 完備 fill:#90EE90,color:#333
