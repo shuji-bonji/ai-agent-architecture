@@ -25,6 +25,10 @@ docs/
 │   ├── vs-mcp.md     # Selection Decision Guide
 │   ├── anti-patterns.md
 │   └── creating-skills.md (planned)
+├── strategy/          # Construction Strategy
+│   ├── mcp-roadmap.md          # MCP Construction Roadmap
+│   ├── skill-roadmap.md        # Skill Construction Roadmap
+│   └── composition-patterns.md # Composition Patterns
 ├── workflows/        # Workflows and Operations
 │   ├── patterns.md
 │   └── development-phases.md
@@ -74,6 +78,14 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 | [skills/vs-mcp.md](./skills/vs-mcp.md)             | MCP vs Skills Selection Decision Guide |
 | [skills/anti-patterns.md](./skills/anti-patterns.md) | MCP/Skills Anti-patterns Collection  |
 
+### Strategy (Construction Strategy)
+
+| File                                                                   | Content                                |
+| ---------------------------------------------------------------------- | -------------------------------------- |
+| [strategy/mcp-roadmap.md](./strategy/mcp-roadmap.md)                   | MCP Construction Roadmap (Discussion #19) |
+| [strategy/skill-roadmap.md](./strategy/skill-roadmap.md)               | Skill Construction Roadmap (Discussion #20) |
+| [strategy/composition-patterns.md](./strategy/composition-patterns.md) | Composition Patterns (MCP × Skill × Agent) |
+
 ### Workflows (Workflow and Operations)
 
 | File                                                                 | Content                              |
@@ -109,6 +121,12 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 2. **workflows/patterns.md** - Explore specific workflows
 3. **mcp/catalog.md** - Review details of each MCP
 
+### For Understanding Build Plans
+
+1. **strategy/mcp-roadmap.md** - MCP build priorities and plans
+2. **strategy/skill-roadmap.md** - Skill build priorities and dependencies
+3. **strategy/composition-patterns.md** - MCP × Skill combination patterns
+
 ### For Contributors
 
 1. **roadmap.md** - Understand priorities and plans
@@ -125,3 +143,4 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 | Date       | Content                          |
 | ---------- | -------------------------------- |
 | 2025-01-26 | Initial version (11 files)       |
+| 2026-02-16 | Added strategy/ directory (mcp-roadmap, skill-roadmap, composition-patterns) |

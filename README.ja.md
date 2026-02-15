@@ -147,6 +147,14 @@ flowchart LR
 | [skills/anti-patterns.md](./docs/skills/anti-patterns.ja.md)     | MCP/Skills アンチパターン集                 |
 | [skills/creating-skills.md](./docs/skills/creating-skills.ja.md) | Skills作成ガイド（計画中）                  |
 
+### Strategy（構築戦略）
+
+| ファイル                                                                     | 内容                       |
+| ---------------------------------------------------------------------------- | -------------------------- |
+| [strategy/mcp-roadmap.md](./docs/strategy/mcp-roadmap.ja.md)                 | MCP構築ロードマップ        |
+| [strategy/skill-roadmap.md](./docs/strategy/skill-roadmap.ja.md)             | Skill構築ロードマップ      |
+| [strategy/composition-patterns.md](./docs/strategy/composition-patterns.ja.md) | 複合構成パターン（MCP×Skill×Agent） |
+
 ### Workflows（ワークフロー・運用）
 
 | ファイル                                                                     | 内容                       |

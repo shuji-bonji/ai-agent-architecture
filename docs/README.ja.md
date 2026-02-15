@@ -28,6 +28,10 @@ docs/
 ├── agents/           # エージェント間連携
 │   ├── what-is-a2a.md        # A2Aとは何か（入門）
 │   └── what-is-subagent.md   # サブエージェントとは何か（入門）
+├── strategy/          # 構築戦略
+│   ├── mcp-roadmap.md          # MCP構築ロードマップ
+│   ├── skill-roadmap.md        # Skill構築ロードマップ
+│   └── composition-patterns.md # 複合構成パターン
 ├── workflows/        # ワークフロー・運用
 │   ├── patterns.md
 │   └── development-phases.md
@@ -87,6 +91,14 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 | -------------------------------------------------- | -------------------------------- |
 | [agents/what-is-a2a.md](./agents/what-is-a2a.md)           | **A2Aとは何か（入門）** |
 | [agents/what-is-subagent.md](./agents/what-is-subagent.md) | **サブエージェントとは何か（入門）** |
+
+### Strategy（構築戦略）
+
+| ファイル                                                             | 内容                       |
+| -------------------------------------------------------------------- | -------------------------- |
+| [strategy/mcp-roadmap.md](./strategy/mcp-roadmap.ja.md)                 | MCP構築ロードマップ（Discussion #19ベース） |
+| [strategy/skill-roadmap.md](./strategy/skill-roadmap.ja.md)             | Skill構築ロードマップ（Discussion #20ベース） |
+| [strategy/composition-patterns.md](./strategy/composition-patterns.ja.md) | 複合構成パターン（MCP×Skill×Agent） |
 
 ### Workflows（ワークフロー・運用）
 
@@ -150,6 +162,12 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 2. **skills/anti-patterns.md** - 避けるべきパターン
 3. **skills/what-is-skills.md** - Skills全体像
 
+### 構築計画を知りたい場合
+
+1. **strategy/mcp-roadmap.md** - MCP構築の優先度と計画
+2. **strategy/skill-roadmap.md** - Skill構築の優先度と依存関係
+3. **strategy/composition-patterns.md** - MCP×Skillの組み合わせパターン
+
 ### 開発に参加したい場合
 
 1. **roadmap.md** - 優先度・計画
@@ -168,3 +186,4 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 | 2025-01-26 | 初版作成（11ファイル） |
 | 2026-02-11 | mcp/development.md、skills/creating-skills.md 追加 |
 | 2026-02-12 | block-beta図変換、4概念入門ページ追加（what-is-mcp/skills/a2a/subagent）、agents/ディレクトリ新設 |
+| 2026-02-16 | strategy/ディレクトリ新設（mcp-roadmap, skill-roadmap, composition-patterns） |

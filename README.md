@@ -148,6 +148,14 @@ See [docs/](./docs/) for details.
 | [skills/anti-patterns.md](./docs/skills/anti-patterns.md)     | Anti-patterns collection                   |
 | [skills/creating-skills.md](./docs/skills/creating-skills.md) | Skills creation guide (planned)            |
 
+### Strategy
+
+| File                                                                           | Content                                 |
+| ------------------------------------------------------------------------------ | --------------------------------------- |
+| [strategy/mcp-roadmap.md](./docs/strategy/mcp-roadmap.md)                      | MCP Construction Roadmap                |
+| [strategy/skill-roadmap.md](./docs/strategy/skill-roadmap.md)                  | Skill Construction Roadmap              |
+| [strategy/composition-patterns.md](./docs/strategy/composition-patterns.md)    | Composition Patterns (MCP × Skill × Agent) |
+
 ### Workflows
 
 | File                                                                      | Content              |
