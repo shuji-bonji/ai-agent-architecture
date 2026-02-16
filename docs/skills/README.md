@@ -1,7 +1,5 @@
 # Skills Documentation
 
-[日本語版 (Japanese)](/ja/skills/)
-
 Standardization of domain knowledge and execution patterns based on Vercel Skills and Agent Skills Specification.
 
 ## 📚 Document List

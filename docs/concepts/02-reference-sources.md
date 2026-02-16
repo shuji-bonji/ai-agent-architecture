@@ -1,7 +1,5 @@
 # The Framework of "Authoritative Reference Sources"
 
-[日本語版 (Japanese)](/ja/concepts/02-reference-sources)
-
 > Providing authoritative reference sources for AI decisions is the foundation of reliability in AI-driven development.
 
 ## About This Document

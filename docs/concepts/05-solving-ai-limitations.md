@@ -1,7 +1,5 @@
 # Solving AI Limitations — Practical Approaches Available Today
 
-[日本語版 (Japanese)](/ja/concepts/05-solving-ai-limitations)
-
 > Organizing what we can actually do now against AI's four fundamental limitations.
 
 ## About This Document

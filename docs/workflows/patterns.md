@@ -1,7 +1,5 @@
 # Integration Patterns and Workflows
 
-[日本語版 (Japanese)](/ja/workflows/patterns)
-
 > A compilation of practical workflow patterns that combine multiple MCPs, Skills, and sub-agents.
 
 ## About This Document

@@ -1,7 +1,5 @@
 # Vision for AI-Driven Development
 
-[日本語版 (Japanese)](/ja/concepts/01-vision)
-
 This document outlines the philosophy underlying AI agent architecture (MCP, Skills, and Agent integration) and the fundamental approach to AI-driven development.
 
 > The essence of AI-driven development is not just code generation, but **leveraging AI as an "intelligent assistant" throughout the entire process**, enabling humans to focus on higher-level decision-making and creativity.

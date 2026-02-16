@@ -1,7 +1,5 @@
 # Docs
 
-[日本語版 (Japanese)](/ja/)
-
 This directory contains systematized documentation for AI agent configuration.
 
 ## New Structure (v2 Restructuring)

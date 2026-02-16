@@ -1,7 +1,5 @@
 # MCP/Skills Anti-Pattern Collection
 
-[日本語版 (Japanese)](/ja/skills/anti-patterns)
-
 This document organizes common failure patterns in MCP and Skills design and operation, along with how to avoid them.
 
 ## 1. over-MCPization (Excessive Use of MCP)

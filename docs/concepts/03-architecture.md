@@ -1,7 +1,5 @@
 # MCP/A2A/Skill/Agent Architecture
 
-[日本語版 (Japanese)](/ja/concepts/03-architecture)
-
 > Understanding the components of AI-driven development infrastructure and organizing their roles and relationships.
 
 ## Layer Structure Overview

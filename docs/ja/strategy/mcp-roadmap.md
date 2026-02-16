@@ -2,8 +2,6 @@
 
 > 構築済み・構想中のMCPを評価し、優先度と構築計画を整理する。
 
-[English](./mcp-roadmap.md)
-
 ## このドキュメントについて
 
 本ドキュメントは、[Discussion #19](https://github.com/shuji-bonji/ai-agent-architecture/discussions/19)（MCP構築戦略マップ v2）をプロジェクト正式ドキュメントとして整理したものである。

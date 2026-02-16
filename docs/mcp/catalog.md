@@ -1,7 +1,5 @@
 # MCP Catalog
 
-[日本語版 (Japanese)](/ja/mcp/catalog)
-
 > A comprehensive list of MCP servers built and used, along with their features, use cases, and achievements.
 
 ## About This Document

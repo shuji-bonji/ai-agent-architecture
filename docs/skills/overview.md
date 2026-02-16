@@ -3,8 +3,6 @@
 
 # Skills Overview
 
-[日本語版 (Japanese)](/ja/skills/overview)
-
 ## What are Vercel Skills?
 
 Vercel Skills is a standardized domain knowledge representation framework for AI agents. Unlike MCP, it enables agents to acquire and utilize **executable know-how for specific domains and tasks**.

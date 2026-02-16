@@ -1,7 +1,5 @@
 # Glossary
 
-[日本語版 (Japanese)](/ja/glossary)
-
 > Definitions of MCP-related terms and concepts.
 
 ## About This Document

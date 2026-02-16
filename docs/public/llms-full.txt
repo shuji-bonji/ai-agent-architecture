@@ -12,8 +12,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/concepts/01-vision/
 
 # Vision for AI-Driven Development
 
-[日本語版 (Japanese)](/ja/concepts/01-vision)
-
 This document outlines the philosophy underlying AI agent architecture (MCP, Skills, and Agent integration) and the fundamental approach to AI-driven development.
 
 > The essence of AI-driven development is not just code generation, but **leveraging AI as an "intelligent assistant" throughout the entire process**, enabling humans to focus on higher-level decision-making and creativity.
@@ -257,8 +255,6 @@ This repository is a place to organize the design philosophy, architecture, and 
 Source: https://shuji-bonji.github.io/ai-agent-architecture/concepts/02-reference-sources/
 
 # The Framework of "Authoritative Reference Sources"
-
-[日本語版 (Japanese)](/ja/concepts/02-reference-sources)
 
 > Providing authoritative reference sources for AI decisions is the foundation of reliability in AI-driven development.
 
@@ -981,8 +977,6 @@ graph LR
 Source: https://shuji-bonji.github.io/ai-agent-architecture/concepts/03-architecture/
 
 # MCP/A2A/Skill/Agent Architecture
-
-[日本語版 (Japanese)](/ja/concepts/03-architecture)
 
 > Understanding the components of AI-driven development infrastructure and organizing their roles and relationships.
 
@@ -2272,8 +2266,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/concepts/05-solving-
 
 # Solving AI Limitations — Practical Approaches Available Today
 
-[日本語版 (Japanese)](/ja/concepts/05-solving-ai-limitations)
-
 > Organizing what we can actually do now against AI's four fundamental limitations.
 
 ## About This Document
@@ -3028,8 +3020,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/mcp/catalog/
 
 # MCP Catalog
 
-[日本語版 (Japanese)](/ja/mcp/catalog)
-
 > A comprehensive list of MCP servers built and used, along with their features, use cases, and achievements.
 
 ## About This Document
@@ -3461,8 +3451,6 @@ Here are the key references and resources for MCP catalog information and reposi
 Source: https://shuji-bonji.github.io/ai-agent-architecture/mcp/security/
 
 # Security Considerations for MCP Development
-
-[日本語版 (Japanese)](/ja/mcp/security)
 
 > Organizing security risks and countermeasures for MCP server development and operation.
 
@@ -5403,8 +5391,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/skills/vs-mcp/
 
 # MCP vs Skills: Fundamental Differences and Selection Criteria
 
-[日本語版 (Japanese)](/ja/skills/vs-mcp)
-
 ## Overview Comparison Table
 
 The following table provides a side-by-side comparison of the core attributes distinguishing MCPs from Skills across various operational and strategic dimensions.
@@ -5810,8 +5796,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/skills/anti-patterns
 
 # MCP/Skills Anti-Pattern Collection
 
-[日本語版 (Japanese)](/ja/skills/anti-patterns)
-
 This document organizes common failure patterns in MCP and Skills design and operation, along with how to avoid them.
 
 ## 1. over-MCPization (Excessive Use of MCP)
@@ -6108,8 +6092,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/skills/overview/
 > Please refer to that document instead.
 
 # Skills Overview
-
-[日本語版 (Japanese)](/ja/skills/overview)
 
 ## What are Vercel Skills?
 
@@ -7590,8 +7572,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/workflows/developmen
 
 # Development Phases × MCP Integration
 
-[日本語版 (Japanese)](/ja/workflows/development-phases)
-
 > Organizing MCPs that can be utilized in each phase of system and application development.
 
 ## About This Document
@@ -7915,8 +7895,6 @@ Follow these principles when integrating MCPs into your development process:
 Source: https://shuji-bonji.github.io/ai-agent-architecture/workflows/patterns/
 
 # Integration Patterns and Workflows
-
-[日本語版 (Japanese)](/ja/workflows/patterns)
 
 > A compilation of practical workflow patterns that combine multiple MCPs, Skills, and sub-agents.
 
@@ -8352,8 +8330,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/glossary/
 
 # Glossary
 
-[日本語版 (Japanese)](/ja/glossary)
-
 > Definitions of MCP-related terms and concepts.
 
 ## About This Document
@@ -8718,8 +8694,6 @@ Source: https://shuji-bonji.github.io/ai-agent-architecture/outputs/
 
 # Outputs and Achievements
 
-[日本語版 (Japanese)](/ja/outputs)
-
 > Documenting concrete deliverables from MCP development and utilization.
 
 ## About This Document
@@ -9067,8 +9041,6 @@ timeline
 Source: https://shuji-bonji.github.io/ai-agent-architecture/roadmap/
 
 # Priority and Roadmap
-
-[日本語版 (Japanese)](/ja/roadmap)
 
 > Organizing priorities and timelines for MCP development.
 

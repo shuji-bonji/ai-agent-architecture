@@ -2,8 +2,6 @@
 
 > Skillの分類体系・評価基準・依存関係・構築計画を整理する。
 
-[English](./skill-roadmap.md)
-
 ## このドキュメントについて
 
 本ドキュメントは、[Discussion #20](https://github.com/shuji-bonji/ai-agent-architecture/discussions/20)（Skill構築戦略マップ）をプロジェクト正式ドキュメントとして整理したものである。

@@ -1,7 +1,5 @@
 # Priority and Roadmap
 
-[日本語版 (Japanese)](/ja/roadmap)
-
 > Organizing priorities and timelines for MCP development.
 
 ## About This Document
