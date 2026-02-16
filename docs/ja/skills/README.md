@@ -37,14 +37,13 @@ Vercel Skills と Agent Skills Specification に基づくドメイン知識・�
 
 1. [overview.md](./overview.md) で概要を把握
 2. [vs-mcp.md](./vs-mcp.md) でMCPとの違いを理解
-3. [templates/skill/](../../templates/skill/) のテンプレートを使ってSkill作成に着手
+3. [templates/skill/](https://github.com/shuji-bonji/ai-agent-architecture/tree/main/templates/skill) のテンプレートを使ってSkill作成に着手
 
 ## 📌 関連ドキュメント
 
 - **MCP について:** [../mcp/catalog.md](../mcp/catalog.md)
 - **選択判断の参考:** [../concepts/03-architecture.md](../concepts/03-architecture.md)
-- **Skillテンプレート:** [../../templates/skill/](../../templates/skill/)
-- **外部リンク集:** [../../references/skills/links.md](../../references/skills/links.md)
+- **Skillテンプレート:** [../../templates/skill/](https://github.com/shuji-bonji/ai-agent-architecture/tree/main/templates/skill)
 
 ## 🔗 外部資料
 

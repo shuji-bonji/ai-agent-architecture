@@ -428,5 +428,5 @@ Skill作成に関連するドキュメントを以下に示す。
 
 - [Agent Skills Specification](https://agentskills.io) — 標準仕様
 - [Vercel Skills CLI](https://github.com/vercel-labs/skills) — CLI ツール
-- [templates/skill/](../../templates/skill/) — テンプレート集
-- [.claude/skills/translation-quality/SKILL.md](../../.claude/skills/translation-quality/SKILL.md) — 実装例
+- [templates/skill/](https://github.com/shuji-bonji/ai-agent-architecture/tree/main/templates/skill) — テンプレート集
+- [.claude/skills/translation-quality/SKILL.md](https://github.com/shuji-bonji/ai-agent-architecture/blob/main/.claude/skills/translation-quality/SKILL.md) — 実装例

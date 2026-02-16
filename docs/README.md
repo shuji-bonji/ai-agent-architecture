@@ -105,7 +105,6 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 | File                         | Content    |
 | ---------------------------- | ---------- |
 | [glossary.md](./glossary.md) | Glossary   |
-| [translation-quality-report.md](./translation-quality-report.md) | Translation Quality Report (xCOMET) |
 
 ## Reading Guide
 

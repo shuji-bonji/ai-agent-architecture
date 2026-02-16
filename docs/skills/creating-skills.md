@@ -431,5 +431,5 @@ The following Skills are identified as high-priority candidates for future devel
 
 - [Agent Skills Specification](https://agentskills.io) — Standard specification
 - [Vercel Skills CLI](https://github.com/vercel-labs/skills) — CLI tool
-- [templates/skill/](../../templates/skill/) — Template collection
-- [.claude/skills/translation-quality/SKILL.md](../../.claude/skills/translation-quality/SKILL.md) — Implementation example
+- [templates/skill/](https://github.com/shuji-bonji/ai-agent-architecture/tree/main/templates/skill) — Template collection
+- [.claude/skills/translation-quality/SKILL.md](https://github.com/shuji-bonji/ai-agent-architecture/blob/main/.claude/skills/translation-quality/SKILL.md) — Implementation example

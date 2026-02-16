@@ -158,4 +158,3 @@ npx skills add ./my-skills -g
 
 - [Agent Skills Specification](https://agentskills.io)
 - [Vercel Skills 公式ドキュメント](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support)
-- [関連リンク集](../../references/skills/links)

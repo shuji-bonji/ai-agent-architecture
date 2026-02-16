@@ -39,14 +39,13 @@ Standardization of domain knowledge and execution patterns based on Vercel Skill
 
 1. Understand the overview in [overview.md](./overview.md)
 2. Learn the differences from MCP in [vs-mcp.md](./vs-mcp.md)
-3. Start creating Skills using templates in [templates/skill/](../../templates/skill/)
+3. Start creating Skills using templates in [templates/skill/](https://github.com/shuji-bonji/ai-agent-architecture/tree/main/templates/skill)
 
 ## 📌 Related Documentation
 
 - **About MCP:** [../mcp/catalog.md](../mcp/catalog.md)
 - **Selection Criteria Reference:** [../concepts/03-architecture.md](../concepts/03-architecture.md)
-- **Skill Templates:** [../../templates/skill/](../../templates/skill/)
-- **External Links Collection:** [../../references/skills/links.md](../../references/skills/links.md)
+- **Skill Templates:** [../../templates/skill/](https://github.com/shuji-bonji/ai-agent-architecture/tree/main/templates/skill)
 
 ## 🔗 External Resources
 
