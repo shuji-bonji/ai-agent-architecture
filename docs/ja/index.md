@@ -1,189 +1,56 @@
-# Docs
+---
+layout: home
 
-このディレクトリには、AIエージェント構成に関する体系化されたドキュメントを配置する。
+hero:
+  name: AI Agent Toolkit
+  text: MCPの、その先へ
+  tagline: エージェントがSkills・Tools・Protocolをどのように発見・オーケストレーションするかを体系化
+  actions:
+    - theme: brand
+      text: はじめに読む
+      link: /ja/concepts/01-vision
+    - theme: alt
+      text: MCPとは？
+      link: /ja/mcp/what-is-mcp
+    - theme: alt
+      text: GitHub で見る
+      link: https://github.com/shuji-bonji/ai-agent-toolkit
 
-## 📁 新構成（v2 リストラクチャリング）
+features:
+  - icon: 🧠
+    title: コンセプト・ビジョン
+    details: なぜ「ブレない参照先」が必要なのか — AI駆動開発の核心思想と、AIの根本的な制約の克服方法。
+    link: /ja/concepts/01-vision
+    linkText: ビジョンを読む
+  - icon: 🔌
+    title: MCP（Model Context Protocol）
+    details: 外部連携レイヤー — リアルタイムデータソース・API・サービスへの標準化されたプロトコルによる接続。
+    link: /ja/mcp/what-is-mcp
+    linkText: MCPを学ぶ
+  - icon: 📋
+    title: Skills（ドメイン知識）
+    details: MCPのリアルタイム能力を補完する静的な知識・判断基準 — テンプレート、ルール、ドメイン専門知識。
+    link: /ja/skills/what-is-skills
+    linkText: Skillsを探る
+  - icon: 🤖
+    title: エージェント・A2A
+    details: サブエージェント、オーケストレーションパターン、Agent-to-Agentプロトコル — 自律エージェントの協調方法。
+    link: /ja/agents/what-is-a2a
+    linkText: エージェントを知る
+  - icon: 🏗️
+    title: アーキテクチャ
+    details: MCP・Skills・Agentの三層モデルと、本番運用可能なシステムへの構成方法。
+    link: /ja/concepts/03-architecture
+    linkText: アーキテクチャを見る
+  - icon: 🗺️
+    title: 戦略・ロードマップ
+    details: 構築の優先度、構成パターン、MCP・Skill構築の実践的ロードマップ。
+    link: /ja/strategy/composition-patterns
+    linkText: 戦略を見る
+---
 
-リポジトリのスコープ拡大に伴い、ドキュメント構成を以下のように再編成しました。各ディレクトリは異なる視点から知識を体系化しています。
+<div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
-```
-docs/
-├── concepts/          # ビジョン・思想・理論
-│   ├── 01-vision.md
-│   ├── 02-reference-sources.md
-│   ├── 03-architecture.md
-│   ├── 04-ai-design-patterns.md
-│   └── 05-solving-ai-limitations.md
-├── mcp/              # MCP（外部連携）
-│   ├── what-is-mcp.md    # MCPとは何か（入門）
-│   ├── catalog.md
-│   ├── security.md
-│   └── development.md
-├── skills/           # Skills（ドメイン知識）
-│   ├── what-is-skills.md  # Skillsとは何か（入門・overview統合）
-│   ├── overview.md        # → what-is-skills.md に統合済み
-│   ├── vs-mcp.md          # 選択判断ガイド
-│   ├── anti-patterns.md
-│   └── creating-skills.md
-├── agents/           # エージェント間連携
-│   ├── what-is-a2a.md        # A2Aとは何か（入門）
-│   └── what-is-subagent.md   # サブエージェントとは何か（入門）
-├── strategy/          # 構築戦略
-│   ├── mcp-roadmap.md          # MCP構築ロードマップ
-│   ├── skill-roadmap.md        # Skill構築ロードマップ
-│   └── composition-patterns.md # 複合構成パターン
-├── workflows/        # ワークフロー・運用
-│   ├── patterns.md
-│   └── development-phases.md
-├── roadmap.md
-├── outputs.md
-├── glossary.md
-└── translation-quality-report.md
-```
+**ご注意:** 本ドキュメントは、著者がClaudeを活用してAIエージェントシステムを構築・運用する中で得た実践的知見をまとめたものです。Anthropic社やその他の組織の公式ドキュメントではありません。ご意見・ご議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-toolkit/issues) にてお気軽にどうぞ。
 
-## このドキュメント群について
-
-このドキュメント群は、AI駆動開発を支えるMCPエコシステムの**設計思想・アーキテクチャ・実践ノウハウ**を体系化したものである。
-
-単なるツールの使い方マニュアルではなく、「なぜMCPを作るのか」「AIと人間はどう協働すべきか」「何を優先して構築すべきか」といった本質的な問いに対する回答を含む。
-
-Claudeとの対話を通じて得られた洞察を、再利用可能な形式でまとめている。
-
-## ドキュメント一覧
-
-### ビジョン・思想
-
-| ファイル                                                               | 内容                           |
-| ---------------------------------------------------------------------- | ------------------------------ |
-| [concepts/01-vision.md](./concepts/01-vision.md)                       | AI駆動開発のビジョン・核心思想 |
-| [concepts/02-reference-sources.md](./concepts/02-reference-sources.md) | 「ブレない参照先」の体系       |
-
-### アーキテクチャ・設計
-
-| ファイル                                                     | 内容                     |
-| ------------------------------------------------------------ | ------------------------ |
-| [concepts/03-architecture.md](./concepts/03-architecture.md) | MCP/Skills/Agentの構成論 |
-| [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md) | 生成AIの設計パターンとMCPの位置づけ |
-| [concepts/05-solving-ai-limitations.md](./concepts/05-solving-ai-limitations.md) | AI制約の解決アプローチ |
-
-### MCP（外部連携）
-
-| ファイル                             | 内容                        |
-| ------------------------------------ | --------------------------- |
-| [mcp/what-is-mcp.md](./mcp/what-is-mcp.md)  | **MCPとは何か（入門）** |
-| [mcp/catalog.md](./mcp/catalog.md)           | 構築済みMCPカタログと成果   |
-| [mcp/security.md](./mcp/security.md)         | MCP開発時のセキュリティ考慮 |
-| [mcp/development.md](./mcp/development.md)   | MCP開発ガイド               |
-
-### Skills（ドメイン知識）
-
-| ファイル                                           | 内容                             |
-| -------------------------------------------------- | -------------------------------- |
-| [skills/what-is-skills.md](./skills/what-is-skills.md) | **Skillsとは何か（入門・overview統合）** |
-| [skills/overview.md](./skills/overview.md)         | ~~Vercel Skills概要~~ → what-is-skills.md に統合 |
-| [skills/vs-mcp.md](./skills/vs-mcp.md)             | MCP vs Skills 選択判断ガイド     |
-| [skills/anti-patterns.md](./skills/anti-patterns.md)       | MCP/Skills アンチパターン集      |
-| [skills/creating-skills.md](./skills/creating-skills.md)   | Skill作成ガイド                  |
-
-### Agents（エージェント間連携）
-
-| ファイル                                           | 内容                             |
-| -------------------------------------------------- | -------------------------------- |
-| [agents/what-is-a2a.md](./agents/what-is-a2a.md)           | **A2Aとは何か（入門）** |
-| [agents/what-is-subagent.md](./agents/what-is-subagent.md) | **サブエージェントとは何か（入門）** |
-
-### Strategy（構築戦略）
-
-| ファイル                                                             | 内容                       |
-| -------------------------------------------------------------------- | -------------------------- |
-| [strategy/mcp-roadmap.md](./strategy/mcp-roadmap)                 | MCP構築ロードマップ（Discussion #19ベース） |
-| [strategy/skill-roadmap.md](./strategy/skill-roadmap)             | Skill構築ロードマップ（Discussion #20ベース） |
-| [strategy/composition-patterns.md](./strategy/composition-patterns) | 複合構成パターン（MCP×Skill×Agent） |
-
-### Workflows（ワークフロー・運用）
-
-| ファイル                                                             | 内容                       |
-| -------------------------------------------------------------------- | -------------------------- |
-| [workflows/patterns.md](./workflows/patterns.md)                     | 連携パターン・ワークフロー |
-| [workflows/development-phases.md](./workflows/development-phases.md) | 開発フェーズ × 対応        |
-
-### 計画・実績
-
-| ファイル                         | 内容                   |
-| -------------------------------- | ---------------------- |
-| [roadmap.md](./roadmap.md)   | 優先度・ロードマップ   |
-| [outputs.md](./outputs.md)   | 実績・アウトプット一覧 |
-
-### リファレンス
-
-| ファイル                     | 内容   |
-| ---------------------------- | ------ |
-| [glossary.md](./glossary.md) | 用語集 |
-| [translation-quality-report.md](./translation-quality-report) | 翻訳品質レポート（xCOMET） |
-
-## 読み方ガイド
-
-### 初めて読む場合
-
-1. **concepts/01-vision.md** - 全体の思想を理解
-2. **concepts/03-architecture.md** - 構成要素を理解
-3. **concepts/04-ai-design-patterns.md** - RAG等の設計パターンとMCPの違い
-4. **concepts/05-solving-ai-limitations.md** - AI制約の具体的な解決手法
-5. **mcp/catalog.md** - 具体的なMCPを確認
-
-### 初めてMCPを学びたい場合
-
-1. **mcp/what-is-mcp.md** - MCPの基本概念・メリット・デメリット
-2. **concepts/03-architecture.md** - 全体アーキテクチャでの位置づけ
-3. **mcp/catalog.md** - 構築済みMCPの実例
-
-### エージェント間連携を学びたい場合
-
-1. **agents/what-is-subagent.md** - カスタムサブエージェントの基本
-2. **agents/what-is-a2a.md** - A2Aプロトコルの基本
-3. **concepts/03-architecture.md** - 全体アーキテクチャでの位置づけ
-
-### 実践したい場合
-
-1. **skills/vs-mcp.md** - 何を使うべきか判断
-2. **workflows/patterns.md** - 具体的なワークフロー
-3. **mcp/catalog.md** - 各MCPの詳細
-
-### MCPを作りたい場合
-
-1. **mcp/development.md** - MCP開発ガイド
-2. **skills/vs-mcp.md** - 本当にMCPにすべきか判断
-3. **mcp/security.md** - セキュリティ考慮
-4. **mcp/catalog.md** - 既存MCPの実例
-
-### Skillを作りたい場合
-
-1. **skills/creating-skills.md** - Skill作成ガイド
-2. **skills/anti-patterns.md** - 避けるべきパターン
-3. **skills/what-is-skills.md** - Skills全体像
-
-### 構築計画を知りたい場合
-
-1. **strategy/mcp-roadmap.md** - MCP構築の優先度と計画
-2. **strategy/skill-roadmap.md** - Skill構築の優先度と依存関係
-3. **strategy/composition-patterns.md** - MCP×Skillの組み合わせパターン
-
-### 開発に参加したい場合
-
-1. **roadmap.md** - 優先度・計画
-2. **mcp/security.md** - セキュリティ考慮
-3. **glossary.md** - 用語確認
-
-## 関連ディレクトリ
-
-- `../references/` - 参考リンク・資料
-- `../templates/` - Skill・Command テンプレート
-
-## 更新履歴
-
-| 日付       | 内容                   |
-| ---------- | ---------------------- |
-| 2025-01-26 | 初版作成（11ファイル） |
-| 2026-02-11 | mcp/development.md、skills/creating-skills.md 追加 |
-| 2026-02-12 | block-beta図変換、4概念入門ページ追加（what-is-mcp/skills/a2a/subagent）、agents/ディレクトリ新設 |
-| 2026-02-16 | strategy/ディレクトリ新設（mcp-roadmap, skill-roadmap, composition-patterns） |
+</div>

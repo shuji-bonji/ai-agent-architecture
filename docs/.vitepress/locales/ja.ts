@@ -8,7 +8,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       { text: 'ホーム', link: '/ja/' },
       { text: 'コンセプト', link: '/ja/concepts/01-vision' },
       { text: 'MCP', link: '/ja/mcp/what-is-mcp' },
-      { text: 'Skills', link: '/ja/skills/' },
+      { text: 'Skills', link: '/ja/skills/what-is-skills' },
     ],
     sidebar: {
       '/ja/': [
@@ -37,10 +37,8 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Skills',
           collapsed: false,
           items: [
-            { text: '概要', link: '/ja/skills/' },
             { text: 'Skillsとは', link: '/ja/skills/what-is-skills' },
             { text: 'スキル作成', link: '/ja/skills/creating-skills' },
-            { text: '全体像', link: '/ja/skills/overview' },
             { text: 'アンチパターン', link: '/ja/skills/anti-patterns' },
             { text: 'MCP vs Skills', link: '/ja/skills/vs-mcp' },
           ],

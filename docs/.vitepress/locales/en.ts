@@ -8,7 +8,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       { text: 'Home', link: '/' },
       { text: 'Concepts', link: '/concepts/01-vision' },
       { text: 'MCP', link: '/mcp/what-is-mcp' },
-      { text: 'Skills', link: '/skills/' },
+      { text: 'Skills', link: '/skills/what-is-skills' },
     ],
     sidebar: {
       '/': [
@@ -37,10 +37,8 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Skills',
           collapsed: false,
           items: [
-            { text: 'Overview', link: '/skills/' },
             { text: 'What is Skills', link: '/skills/what-is-skills' },
             { text: 'Creating Skills', link: '/skills/creating-skills' },
-            { text: 'Skills Overview', link: '/skills/overview' },
             { text: 'Anti-patterns', link: '/skills/anti-patterns' },
             { text: 'MCP vs Skills', link: '/skills/vs-mcp' },
           ],

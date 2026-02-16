@@ -1,19 +1,151 @@
-/* Mermaid 表示スタイル */
+/* Mermaid SVG 通常表示スタイル */
 .mermaid {
-  text-align: center;
-  margin: 1.5rem 0;
-  border-radius: 8px;
-  padding: 1rem;
-  overflow-x: auto;
+  position: relative;
+  overflow: visible;
+  margin: 1em 0;
 }
 
 .mermaid svg {
+  cursor: pointer;
   max-width: 100%;
   height: auto;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background-color: var(--vp-c-bg-soft);
+  transition: all 0.3s ease;
 }
 
-/* ダークモード背景 */
-.dark .mermaid {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.mermaid svg:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ダークモード対応 */
+.dark .mermaid svg {
+  background-color: var(--vp-c-bg-alt);
+}
+
+/* ============================
+   フルスクリーン ダイアログ
+   ============================ */
+.mermaid-fullscreen-dialog {
+  max-width: 95vw;
+  max-height: 95vh;
+  width: 95vw;
+  height: 95vh;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.mermaid-fullscreen-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.mermaid-fullscreen-dialog .dialog-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--vp-c-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.mermaid-fullscreen-dialog .dialog-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mermaid-fullscreen-dialog .dialog-close:hover {
+  background-color: var(--vp-c-brand-1);
+  color: white;
+  transform: scale(1.1);
+}
+
+.mermaid-fullscreen-dialog .dialog-close:active {
+  transform: scale(0.95);
+}
+
+.mermaid-fullscreen-dialog .dialog-svg-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: var(--vp-c-bg-soft);
+}
+
+.mermaid-fullscreen-dialog .dialog-svg-container svg {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  border: none;
+  background-color: transparent;
+}
+
+.mermaid-fullscreen-dialog .dialog-svg-container svg:active {
+  cursor: grabbing;
+}
+
+/* ダイアログ開閉アニメーション */
+.mermaid-fullscreen-dialog[open] {
+  animation: dialog-fade-in 0.3s ease;
+}
+
+@keyframes dialog-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* svg-pan-zoom コントロールアイコン（ダイアログ内のみ） */
+.mermaid-fullscreen-dialog .svg-pan-zoom-control {
+  cursor: pointer;
+}
+
+.mermaid-fullscreen-dialog .svg-pan-zoom-control-background {
+  fill: var(--vp-c-bg);
+  fill-opacity: 0.8;
+}
+
+.mermaid-fullscreen-dialog .svg-pan-zoom-control-background:hover {
+  fill: var(--vp-c-bg-soft);
+}
+
+/* ダークモード対応 */
+.dark .mermaid-fullscreen-dialog .dialog-content {
+  background-color: var(--vp-c-bg);
+}
+
+.dark .mermaid-fullscreen-dialog .dialog-svg-container {
+  background-color: var(--vp-c-bg-alt);
 }
