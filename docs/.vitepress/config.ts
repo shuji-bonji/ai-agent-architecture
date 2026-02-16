@@ -58,6 +58,11 @@ export default withMermaid(
     // .ja.md ファイルを除外（VitePress用にリネーム済み）
     srcExclude: ['**/*.ja.md', '**/translation-quality-report*', 'en/**'],
 
+    // Sitemap（自動生成 + lastUpdated の日付を <lastmod> に反映）
+    sitemap: {
+      hostname: 'https://shuji-bonji.github.io/ai-agent-toolkit/',
+    },
+
     // テーマ共通設定
     lastUpdated: true,
     cleanUrls: true,
