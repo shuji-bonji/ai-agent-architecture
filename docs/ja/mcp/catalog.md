@@ -38,14 +38,14 @@ mindmap
 
 ## 自作MCPサーバー
 
-### rfcxml-mcp
+### [rfcxml-mcp](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp)
 
 IETF RFCドキュメントの構造化参照を提供。
 
 | 項目           | 内容                                                                |
 | -------------- | ------------------------------------------------------------------- |
 | **リポジトリ** | [shuji-bonji/rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp) |
-| **npm**        | `@shuji-bonji/rfcxml-mcp`                                           |
+| **npm**        | [`@shuji-bonji/rfcxml-mcp`](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp) |
 | **目的**       | RFC仕様の検索・解析・要件抽出                                       |
 | **状態**       | ✅ 公開済み                                                         |
 
@@ -71,14 +71,14 @@ rfcxml-mcpの主な活用実績は以下の通りである。
 - 電子署名法 × RFC 3161 のマッピングに活用
 - 75個のMUST要件、23個のSHOULD要件を自動抽出
 
-### w3c-mcp
+### [w3c-mcp](https://www.npmjs.com/package/@shuji-bonji/w3c-mcp)
 
 W3C/WHATWG/IETF Web標準仕様へのアクセスを提供。
 
 | 項目           | 内容                                                          |
 | -------------- | ------------------------------------------------------------- |
 | **リポジトリ** | [shuji-bonji/w3c-mcp](https://github.com/shuji-bonji/w3c-mcp) |
-| **npm**        | `@shuji-bonji/w3c-mcp`                                        |
+| **npm**        | [`@shuji-bonji/w3c-mcp`](https://www.npmjs.com/package/@shuji-bonji/w3c-mcp) |
 | **目的**       | Web標準仕様の検索・WebIDL・CSS・HTML要素                      |
 | **状態**       | ✅ 公開済み（npm v0.1.7）                                     |
 
@@ -97,14 +97,14 @@ w3c-mcpが提供する主要ツールは以下の通りである。
 | `get_pwa_specs`         | PWA関連仕様一覧                                |
 | `get_spec_dependencies` | 仕様の依存関係                                 |
 
-### xcomet-mcp-server
+### [xcomet-mcp-server](https://www.npmjs.com/package/xcomet-mcp-server)
 
 xCOMETモデルによる翻訳品質評価を提供。
 
 | 項目           | 内容                                                                              |
 | -------------- | --------------------------------------------------------------------------------- |
 | **リポジトリ** | [shuji-bonji/xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) |
-| **npm**        | `@shuji-bonji/xcomet-mcp-server`                                                  |
+| **npm**        | [`xcomet-mcp-server`](https://www.npmjs.com/package/xcomet-mcp-server) |
 | **目的**       | 翻訳品質の定量評価・エラー検出                                                    |
 | **状態**       | ✅ 公開済み（★1、Fork 1）                                                         |
 
@@ -133,7 +133,7 @@ xcomet-mcp-serverの主な実績は以下の通りである。
 - 180ページ技術文書（150万文字）を1日で翻訳・品質評価
 - 約$12のコスト（従来比1/100以下）
 
-### rxjs-mcp-server
+### [rxjs-mcp-server](https://www.npmjs.com/package/@shuji-bonji/rxjs-mcp)
 
 RxJSストリームの実行・可視化・分析を提供。
 
@@ -155,14 +155,14 @@ rxjs-mcp-serverが提供する主要ツールは以下の通りである。
 | `detect_memory_leak` | メモリリーク検出                         |
 | `suggest_pattern`    | ユースケースに応じたパターン提案         |
 
-### epsg-mcp
+### [epsg-mcp](https://www.npmjs.com/package/@shuji-bonji/epsg-mcp)
 
 EPSG座標参照系データベースへのアクセスを提供。
 
 | 項目           | 内容                                                            |
 | -------------- | --------------------------------------------------------------- |
 | **リポジトリ** | [shuji-bonji/epsg-mcp](https://github.com/shuji-bonji/epsg-mcp) |
-| **npm**        | `@shuji-bonji/epsg-mcp`                                         |
+| **npm**        | [`@shuji-bonji/epsg-mcp`](https://www.npmjs.com/package/@shuji-bonji/epsg-mcp) |
 | **目的**       | 座標参照系（CRS）の知識ベースMCP（グローバル対応）              |
 | **状態**       | ✅ 公開済み（npm v0.9.8）                                       |
 
@@ -191,14 +191,14 @@ epsg-mcpの主な特徴は以下の通りである。
 - オフライン動作（ローカルDB内蔵）
 - 地域パック（日本、米国、英国）
 
-### pdf-spec-mcp
+### [pdf-spec-mcp](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp)
 
 PDF仕様（ISO 32000）への構造化アクセスを提供。
 
 | 項目           | 内容                                                                    |
 | -------------- | ----------------------------------------------------------------------- |
 | **リポジトリ** | [shuji-bonji/pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp) |
-| **npm**        | `@shuji-bonji/pdf-spec-mcp`                                             |
+| **npm**        | [`@shuji-bonji/pdf-spec-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp) |
 | **目的**       | PDF仕様（ISO 32000-1/2）の構造化参照・要件抽出                          |
 | **状態**       | ✅ 公開済み（npm v0.2.2）                                               |
 
@@ -217,14 +217,14 @@ pdf-spec-mcpが提供する主要ツールは以下の通りである。
 | `get_tables`        | テーブル構造の抽出                     |
 | `compare_versions`  | PDF 1.7とPDF 2.0のセクション比較       |
 
-### pdf-reader-mcp
+### [pdf-reader-mcp](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp)
 
 PDF内部構造の解読と分析を提供。
 
 | 項目           | 内容                                                                        |
 | -------------- | --------------------------------------------------------------------------- |
 | **リポジトリ** | [shuji-bonji/pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp) |
-| **npm**        | `@shuji-bonji/pdf-reader-mcp`                                               |
+| **npm**        | [`@shuji-bonji/pdf-reader-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp) |
 | **目的**       | PDFの読取・構造解析・アクセシビリティ検証                                   |
 | **状態**       | ✅ 公開済み（npm v0.2.0）                                                   |
 
@@ -446,12 +446,12 @@ npmに公開済みのMCPパッケージの一覧は以下の通りである。
 
 | パッケージ                        | バージョン | 説明                          |
 | --------------------------------- | ---------- | ----------------------------- |
-| `@shuji-bonji/rfcxml-mcp`         | v0.4.5     | IETF RFC構造化参照            |
-| `xcomet-mcp-server`               | v0.3.6     | 翻訳品質評価                  |
-| `@shuji-bonji/w3c-mcp`            | v0.1.7     | W3C Web標準仕様               |
-| `@shuji-bonji/epsg-mcp`           | v0.9.8     | EPSG座標参照系                |
-| `@shuji-bonji/pdf-spec-mcp`       | v0.2.2     | PDF仕様（ISO 32000）          |
-| `@shuji-bonji/pdf-reader-mcp`     | v0.2.0     | PDF内部構造解読               |
+| [`@shuji-bonji/rfcxml-mcp`](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp) | v0.4.5     | IETF RFC構造化参照            |
+| [`xcomet-mcp-server`](https://www.npmjs.com/package/xcomet-mcp-server) | v0.3.6     | 翻訳品質評価                  |
+| [`@shuji-bonji/w3c-mcp`](https://www.npmjs.com/package/@shuji-bonji/w3c-mcp) | v0.1.7     | W3C Web標準仕様               |
+| [`@shuji-bonji/epsg-mcp`](https://www.npmjs.com/package/@shuji-bonji/epsg-mcp) | v0.9.8     | EPSG座標参照系                |
+| [`@shuji-bonji/pdf-spec-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp) | v0.2.2     | PDF仕様（ISO 32000）          |
+| [`@shuji-bonji/pdf-reader-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp) | v0.2.0     | PDF内部構造解読               |
 
 ## 参考リンク
 

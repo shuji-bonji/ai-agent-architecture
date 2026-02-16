@@ -41,17 +41,17 @@ mindmap
 
 | リポジトリ                                                            | 説明                     | Stars | npm                              | バージョン |
 | --------------------------------------------------------------------- | ------------------------ | :---: | -------------------------------- | ---------- |
-| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC構造化参照       |   -   | `@shuji-bonji/rfcxml-mcp`        | v0.4.5     |
-| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web標準       |   -   | `@shuji-bonji/w3c-mcp`           | v0.1.7     |
-| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | 翻訳品質評価             |  ⭐1  | `xcomet-mcp-server`              | v0.3.6     |
+| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC構造化参照       |   -   | [`@shuji-bonji/rfcxml-mcp`](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp) | v0.4.5     |
+| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web標準       |   -   | [`@shuji-bonji/w3c-mcp`](https://www.npmjs.com/package/@shuji-bonji/w3c-mcp) | v0.1.7     |
+| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | 翻訳品質評価             |  ⭐1  | [`xcomet-mcp-server`](https://www.npmjs.com/package/xcomet-mcp-server) | v0.3.6     |
 | [rxjs-mcp-server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJSストリーム実行・分析 |   -   | -                                | -          |
-| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG座標参照系           |   -   | `@shuji-bonji/epsg-mcp`          | v0.9.8     |
-| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)           | PDF仕様（ISO 32000）     |   -   | `@shuji-bonji/pdf-spec-mcp`      | v0.2.2     |
-| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)       | PDF内部構造解読          |   -   | `@shuji-bonji/pdf-reader-mcp`    | v0.2.0     |
+| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG座標参照系           |   -   | [`@shuji-bonji/epsg-mcp`](https://www.npmjs.com/package/@shuji-bonji/epsg-mcp) | v0.9.8     |
+| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)           | PDF仕様（ISO 32000）     |   -   | [`@shuji-bonji/pdf-spec-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp) | v0.2.2     |
+| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)       | PDF内部構造解読          |   -   | [`@shuji-bonji/pdf-reader-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp) | v0.2.0     |
 
 ### MCPサーバーの特徴
 
-#### rfcxml-mcp
+#### [rfcxml-mcp](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp)
 
 ```
 提供機能:
@@ -68,7 +68,7 @@ mindmap
 - 電子署名法との対応マッピング
 ```
 
-#### xcomet-mcp-server
+#### [xcomet-mcp-server](https://www.npmjs.com/package/xcomet-mcp-server)
 
 ```
 提供機能:
@@ -86,7 +86,7 @@ mindmap
 - 約$12のコストで完了（従来比1/100以下）
 ```
 
-#### pdf-spec-mcp
+#### [pdf-spec-mcp](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp)
 
 ```
 提供機能:
@@ -105,7 +105,7 @@ mindmap
 - バージョン間の差分比較
 ```
 
-#### pdf-reader-mcp
+#### [pdf-reader-mcp](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp)
 
 ```
 提供機能:

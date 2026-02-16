@@ -41,17 +41,17 @@ mindmap
 
 | Repository                                                            | Description                        | Stars | npm                              | Version |
 | --------------------------------------------------------------------- | ---------------------------------- | :---: | -------------------------------- | ------- |
-| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC Structured Reference      |   -   | `@shuji-bonji/rfcxml-mcp`        | v0.4.5  |
-| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web Standards           |   -   | `@shuji-bonji/w3c-mcp`           | v0.1.7  |
-| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | Translation Quality Evaluation     |  ⭐1  | `xcomet-mcp-server`              | v0.3.6  |
+| [rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp)               | IETF RFC Structured Reference      |   -   | [`@shuji-bonji/rfcxml-mcp`](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp) | v0.4.5  |
+| [w3c-mcp](https://github.com/shuji-bonji/w3c-mcp)                     | W3C/WHATWG Web Standards           |   -   | [`@shuji-bonji/w3c-mcp`](https://www.npmjs.com/package/@shuji-bonji/w3c-mcp) | v0.1.7  |
+| [xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) | Translation Quality Evaluation     |  ⭐1  | [`xcomet-mcp-server`](https://www.npmjs.com/package/xcomet-mcp-server) | v0.3.6  |
 | [rxjs-mcp-server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJS Stream Execution & Analysis   |   -   | -                                | -       |
-| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG Coordinate Reference Systems  |   -   | `@shuji-bonji/epsg-mcp`          | v0.9.8  |
-| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)           | PDF Specification (ISO 32000)      |   -   | `@shuji-bonji/pdf-spec-mcp`      | v0.2.2  |
-| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)       | PDF Internal Structure Analysis    |   -   | `@shuji-bonji/pdf-reader-mcp`    | v0.2.0  |
+| [epsg-mcp](https://github.com/shuji-bonji/epsg-mcp)                   | EPSG Coordinate Reference Systems  |   -   | [`@shuji-bonji/epsg-mcp`](https://www.npmjs.com/package/@shuji-bonji/epsg-mcp) | v0.9.8  |
+| [pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)           | PDF Specification (ISO 32000)      |   -   | [`@shuji-bonji/pdf-spec-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp) | v0.2.2  |
+| [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)       | PDF Internal Structure Analysis    |   -   | [`@shuji-bonji/pdf-reader-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp) | v0.2.0  |
 
 ### MCP Server Features
 
-#### rfcxml-mcp
+#### [rfcxml-mcp](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp)
 
 ```
 Provided Functions:
@@ -68,7 +68,7 @@ Achievements:
 - Mapping correspondence with Japan's Electronic Signature Act
 ```
 
-#### xcomet-mcp-server
+#### [xcomet-mcp-server](https://www.npmjs.com/package/xcomet-mcp-server)
 
 ```
 Provided Functions:
@@ -86,7 +86,7 @@ Achievements:
 - Completed at approximately $12 cost (less than 1/100 of conventional cost)
 ```
 
-#### pdf-spec-mcp
+#### [pdf-spec-mcp](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp)
 
 ```
 Provided Functions:
@@ -105,7 +105,7 @@ Features:
 - Cross-version comparison
 ```
 
-#### pdf-reader-mcp
+#### [pdf-reader-mcp](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp)
 
 ```
 Provided Functions:

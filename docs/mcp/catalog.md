@@ -38,14 +38,14 @@ mindmap
 
 ## Custom MCP Servers
 
-### rfcxml-mcp
+### [rfcxml-mcp](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp)
 
 Provides structured access to IETF RFC documents.
 
 | Item           | Description                                                         |
 | -------------- | ------------------------------------------------------------------- |
 | **Repository** | [shuji-bonji/rfcxml-mcp](https://github.com/shuji-bonji/rfcxml-mcp) |
-| **npm**        | `@shuji-bonji/rfcxml-mcp`                                           |
+| **npm**        | [`@shuji-bonji/rfcxml-mcp`](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp) |
 | **Purpose**    | RFC specification search, analysis, and requirements extraction     |
 | **Status**     | Published                                                           |
 
@@ -67,14 +67,14 @@ Provides structured access to IETF RFC documents.
 - Used for mapping between Electronic Signature Act and RFC 3161
 - Automatically extracted 75 MUST requirements and 23 SHOULD requirements
 
-### w3c-mcp
+### [w3c-mcp](https://www.npmjs.com/package/@shuji-bonji/w3c-mcp)
 
 Provides access to W3C/WHATWG/IETF Web standard specifications.
 
 | Item           | Description                                                   |
 | -------------- | ------------------------------------------------------------- |
 | **Repository** | [shuji-bonji/w3c-mcp](https://github.com/shuji-bonji/w3c-mcp) |
-| **npm**        | `@shuji-bonji/w3c-mcp`                                        |
+| **npm**        | [`@shuji-bonji/w3c-mcp`](https://www.npmjs.com/package/@shuji-bonji/w3c-mcp) |
 | **Purpose**    | Web standard specification search, WebIDL, CSS, HTML elements |
 | **Status**     | Published (npm v0.1.7)                                        |
 
@@ -91,14 +91,14 @@ Provides access to W3C/WHATWG/IETF Web standard specifications.
 | `get_pwa_specs`         | List PWA-related specifications                         |
 | `get_spec_dependencies` | Get specification dependencies                          |
 
-### xcomet-mcp-server
+### [xcomet-mcp-server](https://www.npmjs.com/package/xcomet-mcp-server)
 
 Provides translation quality evaluation using the xCOMET model.
 
 | Item           | Description                                                                       |
 | -------------- | --------------------------------------------------------------------------------- |
 | **Repository** | [shuji-bonji/xcomet-mcp-server](https://github.com/shuji-bonji/xcomet-mcp-server) |
-| **npm**        | `@shuji-bonji/xcomet-mcp-server`                                                  |
+| **npm**        | [`xcomet-mcp-server`](https://www.npmjs.com/package/xcomet-mcp-server) |
 | **Purpose**    | Quantitative translation quality evaluation and error detection                   |
 | **Status**     | Published (1 star, 1 fork)                                                        |
 
@@ -121,7 +121,7 @@ Provides translation quality evaluation using the xCOMET model.
 - Translated and quality-evaluated 180-page technical document (1.5 million characters) in one day
 - Cost of approximately $12 (less than 1/100 of conventional methods)
 
-### rxjs-mcp-server
+### [rxjs-mcp-server](https://www.npmjs.com/package/@shuji-bonji/rxjs-mcp)
 
 Provides RxJS stream execution, visualization, and analysis.
 
@@ -141,14 +141,14 @@ Provides RxJS stream execution, visualization, and analysis.
 | `detect_memory_leak` | Memory leak detection                        |
 | `suggest_pattern`    | Pattern suggestions based on use cases       |
 
-### epsg-mcp
+### [epsg-mcp](https://www.npmjs.com/package/@shuji-bonji/epsg-mcp)
 
 Provides access to the EPSG coordinate reference system database.
 
 | Item           | Description                                                     |
 | -------------- | --------------------------------------------------------------- |
 | **Repository** | [shuji-bonji/epsg-mcp](https://github.com/shuji-bonji/epsg-mcp) |
-| **npm**        | `@shuji-bonji/epsg-mcp`                                         |
+| **npm**        | [`@shuji-bonji/epsg-mcp`](https://www.npmjs.com/package/@shuji-bonji/epsg-mcp) |
 | **Purpose**    | Coordinate Reference System (CRS) knowledge base with global coverage |
 | **Status**     | Published (npm v0.9.8)                                          |
 
@@ -173,14 +173,14 @@ Provides access to the EPSG coordinate reference system database.
 - Offline operation with local database
 - Regional packs (Japan, US, UK)
 
-### pdf-spec-mcp
+### [pdf-spec-mcp](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp)
 
 Provides structured access to PDF specifications (ISO 32000).
 
 | Item           | Description                                                                    |
 | -------------- | ------------------------------------------------------------------------------ |
 | **Repository** | [shuji-bonji/pdf-spec-mcp](https://github.com/shuji-bonji/pdf-spec-mcp)        |
-| **npm**        | `@shuji-bonji/pdf-spec-mcp`                                                    |
+| **npm**        | [`@shuji-bonji/pdf-spec-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp) |
 | **Purpose**    | PDF specification (ISO 32000-1/2) structured reference and requirements extraction |
 | **Status**     | Published (npm v0.2.2)                                                         |
 
@@ -197,14 +197,14 @@ Provides structured access to PDF specifications (ISO 32000).
 | `get_tables`        | Extract table structures                         |
 | `compare_versions`  | Compare sections between PDF 1.7 and PDF 2.0    |
 
-### pdf-reader-mcp
+### [pdf-reader-mcp](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp)
 
 Provides PDF internal structure analysis and reading capabilities.
 
 | Item           | Description                                                                        |
 | -------------- | ---------------------------------------------------------------------------------- |
 | **Repository** | [shuji-bonji/pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)        |
-| **npm**        | `@shuji-bonji/pdf-reader-mcp`                                                      |
+| **npm**        | [`@shuji-bonji/pdf-reader-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp) |
 | **Purpose**    | PDF reading, structure analysis, and accessibility validation                      |
 | **Status**     | Published (npm v0.2.0)                                                             |
 
@@ -410,12 +410,12 @@ The following table lists the MCPs that have been published to npm, including th
 
 | Package                           | Version | Description                     |
 | --------------------------------- | ------- | ------------------------------- |
-| `@shuji-bonji/rfcxml-mcp`         | v0.4.5  | IETF RFC Structured Reference   |
-| `xcomet-mcp-server`               | v0.3.6  | Translation Quality Evaluation  |
-| `@shuji-bonji/w3c-mcp`            | v0.1.7  | W3C Web Standards               |
-| `@shuji-bonji/epsg-mcp`           | v0.9.8  | EPSG Coordinate Reference Systems |
-| `@shuji-bonji/pdf-spec-mcp`       | v0.2.2  | PDF Specification (ISO 32000)   |
-| `@shuji-bonji/pdf-reader-mcp`     | v0.2.0  | PDF Internal Structure Analysis |
+| [`@shuji-bonji/rfcxml-mcp`](https://www.npmjs.com/package/@shuji-bonji/rfcxml-mcp) | v0.4.5  | IETF RFC Structured Reference   |
+| [`xcomet-mcp-server`](https://www.npmjs.com/package/xcomet-mcp-server) | v0.3.6  | Translation Quality Evaluation  |
+| [`@shuji-bonji/w3c-mcp`](https://www.npmjs.com/package/@shuji-bonji/w3c-mcp) | v0.1.7  | W3C Web Standards               |
+| [`@shuji-bonji/epsg-mcp`](https://www.npmjs.com/package/@shuji-bonji/epsg-mcp) | v0.9.8  | EPSG Coordinate Reference Systems |
+| [`@shuji-bonji/pdf-spec-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-spec-mcp) | v0.2.2  | PDF Specification (ISO 32000)   |
+| [`@shuji-bonji/pdf-reader-mcp`](https://www.npmjs.com/package/@shuji-bonji/pdf-reader-mcp) | v0.2.0  | PDF Internal Structure Analysis |
 
 ## Reference Links
 
