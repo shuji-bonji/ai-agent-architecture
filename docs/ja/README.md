@@ -96,9 +96,9 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 | ファイル                                                             | 内容                       |
 | -------------------------------------------------------------------- | -------------------------- |
-| [strategy/mcp-roadmap.md](./strategy/mcp-roadmap.ja.md)                 | MCP構築ロードマップ（Discussion #19ベース） |
-| [strategy/skill-roadmap.md](./strategy/skill-roadmap.ja.md)             | Skill構築ロードマップ（Discussion #20ベース） |
-| [strategy/composition-patterns.md](./strategy/composition-patterns.ja.md) | 複合構成パターン（MCP×Skill×Agent） |
+| [strategy/mcp-roadmap.md](./strategy/mcp-roadmap)                 | MCP構築ロードマップ（Discussion #19ベース） |
+| [strategy/skill-roadmap.md](./strategy/skill-roadmap)             | Skill構築ロードマップ（Discussion #20ベース） |
+| [strategy/composition-patterns.md](./strategy/composition-patterns) | 複合構成パターン（MCP×Skill×Agent） |
 
 ### Workflows（ワークフロー・運用）
 
@@ -119,7 +119,7 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 | ファイル                     | 内容   |
 | ---------------------------- | ------ |
 | [glossary.md](./glossary.md) | 用語集 |
-| [translation-quality-report.md](./translation-quality-report.ja.md) | 翻訳品質レポート（xCOMET） |
+| [translation-quality-report.md](./translation-quality-report) | 翻訳品質レポート（xCOMET） |
 
 ## 読み方ガイド
 

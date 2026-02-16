@@ -1,4 +1,4 @@
-> ⚠️ **このドキュメントは [what-is-skills.ja.md](./what-is-skills.ja.md) に統合されました。**
+> ⚠️ **このドキュメントは [what-is-skills](./what-is-skills) に統合されました。**
 > 今後はそちらを参照してください。
 
 # Skills の概要
@@ -72,7 +72,7 @@ Vercel Skills CLI は以下のエージェントに対応しています。
 | **ユースケース** | rfcxml-mcp, deepl-mcp | frontend-design, doc-coauthoring |
 | **運用形態**     | サーバープロセス      | メモリ内（Skillモデル）          |
 
-> 詳細は [vs-mcp.md](./vs-mcp.md) を参照。
+> 詳細は [vs-mcp.md](./vs-mcp) を参照。
 
 ## Skillsの作成・活用パターン
 
@@ -158,4 +158,4 @@ npx skills add ./my-skills -g
 
 - [Agent Skills Specification](https://agentskills.io)
 - [Vercel Skills 公式ドキュメント](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support)
-- [関連リンク集](../../references/skills/links.md)
+- [関連リンク集](../../references/skills/links)

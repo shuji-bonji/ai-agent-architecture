@@ -1,0 +1,19 @@
+/* Mermaid 表示スタイル */
+.mermaid {
+  text-align: center;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ダークモード背景 */
+.dark .mermaid {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}

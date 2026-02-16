@@ -3,7 +3,7 @@
 
 # Skills Overview
 
-[日本語版 (Japanese)](./overview.ja.md)
+[日本語版 (Japanese)](/ja/skills/overview)
 
 ## What are Vercel Skills?
 

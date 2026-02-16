@@ -8,7 +8,7 @@
 
 MCP単体、Skill単体でも価値はあるが、**組み合わせることで初めて発揮される価値**がある。本ドキュメントでは、4つの複合構成パターンを定義し、それぞれの設計指針・発動コンテキスト・活用事例を整理する。
 
-MCP構築戦略は [mcp-roadmap.md](./mcp-roadmap.ja.md)、Skill構築戦略は [skill-roadmap.md](./skill-roadmap.ja.md) を参照。
+MCP構築戦略は [mcp-roadmap.md](./mcp-roadmap)、Skill構築戦略は [skill-roadmap.md](./skill-roadmap) を参照。
 
 ## 4つの複合構成パターン
 
@@ -117,7 +117,7 @@ sequenceDiagram
 
 ## パターン2: MCPs（複数MCP連携）
 
-複数のMCPから取得したデータを統合・比較・検証する構成。すでに [workflows/patterns.md](../workflows/patterns.ja.md) に実績がある。
+複数のMCPから取得したデータを統合・比較・検証する構成。すでに [workflows/patterns.md](../workflows/patterns) に実績がある。
 
 ### 設計原則
 
@@ -361,8 +361,8 @@ flowchart TD
 
 ## 関連ドキュメント
 
-- [mcp-roadmap.md](./mcp-roadmap.ja.md) — MCP構築ロードマップ
-- [skill-roadmap.md](./skill-roadmap.ja.md) — Skill構築ロードマップ
-- [workflows/patterns.md](../workflows/patterns.ja.md) — 既存のワークフローパターン（パターン2の実績）
-- [concepts/03-architecture.md](../concepts/03-architecture.ja.md) — MCP / Skill / Agent のレイヤー構造
-- [mcp/catalog.md](../mcp/catalog.ja.md) — 構築済みMCPカタログ
+- [mcp-roadmap.md](./mcp-roadmap) — MCP構築ロードマップ
+- [skill-roadmap.md](./skill-roadmap) — Skill構築ロードマップ
+- [workflows/patterns.md](../workflows/patterns) — 既存のワークフローパターン（パターン2の実績）
+- [concepts/03-architecture.md](../concepts/03-architecture) — MCP / Skill / Agent のレイヤー構造
+- [mcp/catalog.md](../mcp/catalog) — 構築済みMCPカタログ

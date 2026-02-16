@@ -1,6 +1,6 @@
 # Outputs and Achievements
 
-[日本語版 (Japanese)](./outputs.ja.md)
+[日本語版 (Japanese)](/ja/outputs)
 
 > Documenting concrete deliverables from MCP development and utilization.
 

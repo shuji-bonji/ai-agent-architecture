@@ -2,7 +2,7 @@
 
 > Organize the classification system, evaluation criteria, dependency relationships, and construction plans for Skills.
 
-[日本語](./skill-roadmap.ja.md)
+[日本語](/ja/strategy/skill-roadmap)
 
 ## About This Document
 

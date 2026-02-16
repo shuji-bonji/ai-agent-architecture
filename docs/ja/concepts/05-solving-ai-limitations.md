@@ -4,7 +4,7 @@
 
 ## このドキュメントについて
 
-[01-vision.md](./01-vision.ja.md) と [02-reference-sources.md](./02-reference-sources.ja.md) では、AIの4つの根本的制約（正確性・最新性・権威性・責任性）を**問題として定義**した。[04-ai-design-patterns.md](./04-ai-design-patterns.ja.md) では、RAGやMCPなどの**設計パターン**を整理した。
+[01-vision.md](./01-vision) と [02-reference-sources.md](./02-reference-sources) では、AIの4つの根本的制約（正確性・最新性・権威性・責任性）を**問題として定義**した。[04-ai-design-patterns.md](./04-ai-design-patterns) では、RAGやMCPなどの**設計パターン**を整理した。
 
 本ドキュメントでは、それらの制約に対して**現時点で実際に使える解決アプローチ**を整理する。完璧な解決策は存在しないが、各制約の性質を理解し、適切なアプローチを組み合わせることで、実用的なレベルまでリスクを低減できる。
 
@@ -64,7 +64,7 @@ flowchart TB
 
 ### 1.1 問題の本質
 
-LLMの知識は学習データの時点で固定される（詳細: [02-reference-sources.md 1.2.2](./02-reference-sources.ja.md)）。しかし、この制約に対しては**外部情報源への接続**という明確な解決手段がある。
+LLMの知識は学習データの時点で固定される（詳細: [02-reference-sources.md 1.2.2](./02-reference-sources)）。しかし、この制約に対しては**外部情報源への接続**という明確な解決手段がある。
 
 ### 1.2 解決アプローチ
 
@@ -121,7 +121,7 @@ w3c-mcp      → W3C/WHATWGの最新仕様を取得
 
 ### 2.1 問題の本質
 
-ハルシネーション（事実と異なる情報の生成）は、LLMが「正しい」のではなく「もっともらしい」出力を確率的に生成するという**本質的な性質**に起因する（詳細: [02-reference-sources.md 1.2.1](./02-reference-sources.ja.md)）。
+ハルシネーション（事実と異なる情報の生成）は、LLMが「正しい」のではなく「もっともらしい」出力を確率的に生成するという**本質的な性質**に起因する（詳細: [02-reference-sources.md 1.2.1](./02-reference-sources)）。
 
 これは「バグ」ではなく「仕様」であり、**完全に排除することは原理的に不可能**である。
 
@@ -204,7 +204,7 @@ AIが自身の回答に確信を持てない場合、それを明示する仕組
 
 ### 3.1 問題の本質
 
-AIの出力は「一つの解釈」であり、**公式な見解ではない**（詳細: [02-reference-sources.md 1.2.3](./02-reference-sources.ja.md)）。RFC、法令、標準仕様の「正式な解釈」を提供できるのは、その策定主体（IETF、立法機関等）のみである。
+AIの出力は「一つの解釈」であり、**公式な見解ではない**（詳細: [02-reference-sources.md 1.2.3](./02-reference-sources)）。RFC、法令、標準仕様の「正式な解釈」を提供できるのは、その策定主体（IETF、立法機関等）のみである。
 
 この制約は、AIの性質というよりも**情報の権威性の本質**に起因するため、技術だけでは完全に解決できない。
 
@@ -246,7 +246,7 @@ AIの出力を権威づけるのではなく、
 
 すべてのAI出力に、参照した情報源のセクション番号まで明示する。これにより人間が**独立して検証**できる。
 
-> 出力テンプレートの詳細は [02-reference-sources.md 第4章](./02-reference-sources.ja.md) を参照。
+> 出力テンプレートの詳細は [02-reference-sources.md 第4章](./02-reference-sources) を参照。
 
 #### 人間レビューのワークフロー
 
@@ -287,7 +287,7 @@ sequenceDiagram
 
 ### 4.1 問題の本質
 
-AIの出力には**説明責任（Accountability）の主体がない**（詳細: [02-reference-sources.md 1.2.4](./02-reference-sources.ja.md)）。これは技術的な問題というよりも、法的・倫理的な問題である。
+AIの出力には**説明責任（Accountability）の主体がない**（詳細: [02-reference-sources.md 1.2.4](./02-reference-sources)）。これは技術的な問題というよりも、法的・倫理的な問題である。
 
 ### 4.2 技術が提供できる基盤
 
@@ -462,8 +462,8 @@ AIの制約を「すべて技術で解決する」ことはできない。
 
 ## 関連ドキュメント
 
-- [01-vision.md](./01-vision.ja.md) — AIの限界の定義と「ブレない参照先」の必要性
-- [02-reference-sources.md](./02-reference-sources.ja.md) — 5つの特性による参照先の体系
-- [03-architecture.md](./03-architecture.ja.md) — MCP/Skills/Agentの構成論
-- [04-ai-design-patterns.md](./04-ai-design-patterns.ja.md) — RAG/MCP等の設計パターン比較
-- [mcp/what-is-mcp.md](../mcp/what-is-mcp.ja.md) — MCPの詳細
+- [01-vision.md](./01-vision) — AIの限界の定義と「ブレない参照先」の必要性
+- [02-reference-sources.md](./02-reference-sources) — 5つの特性による参照先の体系
+- [03-architecture.md](./03-architecture) — MCP/Skills/Agentの構成論
+- [04-ai-design-patterns.md](./04-ai-design-patterns) — RAG/MCP等の設計パターン比較
+- [mcp/what-is-mcp.md](../mcp/what-is-mcp) — MCPの詳細

@@ -8,7 +8,7 @@
 
 本ドキュメントは、[Discussion #20](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/20)（Skill構築戦略マップ）をプロジェクト正式ドキュメントとして整理したものである。
 
-MCPが「外部データへのリアルタイムアクセス」を担うのに対し、Skillは「静的な知識・判断基準」を担う（[03-architecture.md](../concepts/03-architecture.ja.md) 参照）。MCPの構築戦略は [mcp-roadmap.md](./mcp-roadmap.ja.md)、複合構成は [composition-patterns.md](./composition-patterns.ja.md) を参照。
+MCPが「外部データへのリアルタイムアクセス」を担うのに対し、Skillは「静的な知識・判断基準」を担う（[03-architecture.md](../concepts/03-architecture) 参照）。MCPの構築戦略は [mcp-roadmap.md](./mcp-roadmap)、複合構成は [composition-patterns.md](./composition-patterns) を参照。
 
 ## Skillの5類型
 
@@ -164,7 +164,7 @@ Skillは「どの局面で発動すべきか」が曖昧になりがち。コン
 | **リファクタリング**   | Refactoring + Design Patterns + SOLID | 臭い検出 → パターン適用 → 原則準拠確認           |
 | **インフラ設計**       | 12 Factor + Microservices + IaC + EIP | クラウドネイティブ → 分割 → 自動化 → 統合        |
 
-> 複数Skillの同時発動パターンの詳細は [composition-patterns.md](./composition-patterns.ja.md) を参照。
+> 複数Skillの同時発動パターンの詳細は [composition-patterns.md](./composition-patterns) を参照。
 
 ## 「曖昧さ」の課題と対策
 
@@ -240,7 +240,7 @@ flowchart TB
 ## 関連ドキュメント
 
 - [Discussion #20: Skill構築戦略マップ](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/20) — 本ドキュメントの元となったDiscussion
-- [mcp-roadmap.md](./mcp-roadmap.ja.md) — MCP構築ロードマップ
-- [composition-patterns.md](./composition-patterns.ja.md) — 複合構成パターン
-- [concepts/03-architecture.md](../concepts/03-architecture.ja.md) — Skillの定義とレイヤー構造
+- [mcp-roadmap.md](./mcp-roadmap) — MCP構築ロードマップ
+- [composition-patterns.md](./composition-patterns) — 複合構成パターン
+- [concepts/03-architecture.md](../concepts/03-architecture) — Skillの定義とレイヤー構造
 - [skills/creating-skills.md](../skills/creating-skills.md) — Skill作成ガイド

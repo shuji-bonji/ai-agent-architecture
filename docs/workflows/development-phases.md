@@ -1,6 +1,6 @@
 # Development Phases × MCP Integration
 
-[日本語版 (Japanese)](./development-phases.ja.md)
+[日本語版 (Japanese)](/ja/workflows/development-phases)
 
 > Organizing MCPs that can be utilized in each phase of system and application development.
 

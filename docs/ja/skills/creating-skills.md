@@ -55,7 +55,7 @@ Skillの利用が適しているケースを以下に整理する。
 | リアルタイムデータ取得     | MCP              | 外部通信が必要   |
 | 複雑なオーケストレーション | サブエージェント | 判断の委譲が必要 |
 
-> 判断に迷ったら [MCP vs Skills 選択判断ガイド](./vs-mcp.ja.md) を参照
+> 判断に迷ったら [MCP vs Skills 選択判断ガイド](./vs-mcp) を参照
 
 ## Skillの構造
 
@@ -374,7 +374,7 @@ Skillが放置されないための具体的な対策を以下に示す。
 | **レビューサイクル** | 3ヶ月に1回の見直しを推奨                 |
 | **運用との整合**     | 実際のワークフローと乖離していないか確認 |
 
-> 詳細は [アンチパターン集](./anti-patterns.ja.md) の「6. 更新されないSkill」を参照
+> 詳細は [アンチパターン集](./anti-patterns) の「6. 更新されないSkill」を参照
 
 ## Vercel Skills CLIとの互換性
 
@@ -390,7 +390,7 @@ npx skills add ./my-skills -a claude-code
 npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 ```
 
-> 詳細は [Skills概要](./overview.ja.md) の「Vercel Skills CLIとの統合」を参照
+> 詳細は [Skills概要](./overview) の「Vercel Skills CLIとの統合」を参照
 
 ## ロードマップ上の目標
 
@@ -416,11 +416,11 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 
 Skill作成に関連するドキュメントを以下に示す。
 
-- [Skills概要](./overview.ja.md) — Vercel Skills / Agent Skills Specification
-- [MCP vs Skills 選択判断ガイド](./vs-mcp.ja.md) — 何をSkillにすべきか
-- [アンチパターン集](./anti-patterns.ja.md) — 避けるべきパターン
-- [MCP/Skills/Agentの構成論](../concepts/03-architecture.ja.md) — 三層アーキテクチャ
-- [連携パターン・ワークフロー](../workflows/patterns.ja.md) — Skill+MCPの組み合わせ例
+- [Skills概要](./overview) — Vercel Skills / Agent Skills Specification
+- [MCP vs Skills 選択判断ガイド](./vs-mcp) — 何をSkillにすべきか
+- [アンチパターン集](./anti-patterns) — 避けるべきパターン
+- [MCP/Skills/Agentの構成論](../concepts/03-architecture) — 三層アーキテクチャ
+- [連携パターン・ワークフロー](../workflows/patterns) — Skill+MCPの組み合わせ例
 
 ## 参考リンク
 

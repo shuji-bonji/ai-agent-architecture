@@ -2,7 +2,7 @@
 
 > Organize combination patterns and design guidelines for MCP × Skill × Agent.
 
-[日本語](./composition-patterns.ja.md)
+[日本語](/ja/strategy/composition-patterns)
 
 ## About This Document
 

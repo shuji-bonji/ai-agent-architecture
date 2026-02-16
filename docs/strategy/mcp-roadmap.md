@@ -2,7 +2,7 @@
 
 > Evaluate built and planned MCPs, and organize priorities and construction plans.
 
-[日本語](./mcp-roadmap.ja.md)
+[日本語](/ja/strategy/mcp-roadmap)
 
 ## About This Document
 

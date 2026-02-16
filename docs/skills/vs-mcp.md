@@ -1,6 +1,6 @@
 # MCP vs Skills: Fundamental Differences and Selection Criteria
 
-[日本語版 (Japanese)](./vs-mcp.ja.md)
+[日本語版 (Japanese)](/ja/skills/vs-mcp)
 
 ## Overview Comparison Table
 

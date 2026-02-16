@@ -12,9 +12,9 @@ MCPサーバーを「使う」だけでなく「創る」ための実践ガイ�
 
 このドキュメントを読む前に、以下を理解していることが望ましい。
 
-- [MCP/Skills/Agentの構成論](../concepts/03-architecture.ja.md) — 三層アーキテクチャの全体像
-- [MCP vs Skills 選択判断ガイド](../skills/vs-mcp.ja.md) — 何をMCPにすべきか
-- [MCPセキュリティ](./security.ja.md) — OWASP MCP Top 10
+- [MCP/Skills/Agentの構成論](../concepts/03-architecture) — 三層アーキテクチャの全体像
+- [MCP vs Skills 選択判断ガイド](../skills/vs-mcp) — 何をMCPにすべきか
+- [MCPセキュリティ](./security) — OWASP MCP Top 10
 
 ## MCPにすべきかの判断
 
@@ -64,7 +64,7 @@ flowchart TD
 - [ ] 単純な1回限りの処理 → スクリプト
 ```
 
-> 詳細は [MCP vs Skills 選択判断ガイド](../skills/vs-mcp.ja.md) を参照
+> 詳細は [MCP vs Skills 選択判断ガイド](../skills/vs-mcp) を参照
 
 ## 「ブレない参照先」に基づくMCP設計
 
@@ -92,7 +92,7 @@ AIが「ブレない参照先」を参照 → 正確・検証可能な情報
 
 **重要**: 層1・2はMCPに適しており、層3・4はSkillに適している。
 
-> 詳細は [「ブレない参照先」の体系](../concepts/02-reference-sources.ja.md) を参照
+> 詳細は [「ブレない参照先」の体系](../concepts/02-reference-sources) を参照
 
 ## 設計フェーズ
 
@@ -218,7 +218,7 @@ const schema = {
 };
 ```
 
-> セキュリティ面の詳細は [MCPセキュリティ](./security.ja.md) のMCP05（Command Injection）を参照
+> セキュリティ面の詳細は [MCPセキュリティ](./security) のMCP05（Command Injection）を参照
 
 #### 4. レスポンス設計
 
@@ -506,18 +506,18 @@ graph LR
     style DOC fill:#90EE90,color:#333
 ```
 
-> 詳細は [開発フェーズ × MCP対応](../workflows/development-phases.ja.md) を参照
+> 詳細は [開発フェーズ × MCP対応](../workflows/development-phases) を参照
 
 ## 関連ドキュメント
 
 MCP開発に関連するドキュメントを以下に示す。
 
-- [構築済みMCPカタログ](./catalog.ja.md) — 構築済みMCPの一覧と詳細
-- [MCPセキュリティ](./security.ja.md) — OWASP MCP Top 10
-- [MCP/Skills/Agentの構成論](../concepts/03-architecture.ja.md) — 三層アーキテクチャ
-- [MCP vs Skills 選択判断ガイド](../skills/vs-mcp.ja.md) — 何をMCPにすべきか
-- [連携パターン・ワークフロー](../workflows/patterns.ja.md) — MCPを活用したワークフロー
-- [アンチパターン集](../skills/anti-patterns.ja.md) — 避けるべきパターン
+- [構築済みMCPカタログ](./catalog) — 構築済みMCPの一覧と詳細
+- [MCPセキュリティ](./security) — OWASP MCP Top 10
+- [MCP/Skills/Agentの構成論](../concepts/03-architecture) — 三層アーキテクチャ
+- [MCP vs Skills 選択判断ガイド](../skills/vs-mcp) — 何をMCPにすべきか
+- [連携パターン・ワークフロー](../workflows/patterns) — MCPを活用したワークフロー
+- [アンチパターン集](../skills/anti-patterns) — 避けるべきパターン
 
 ## 参考リンク
 

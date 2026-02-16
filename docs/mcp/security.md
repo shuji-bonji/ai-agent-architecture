@@ -1,6 +1,6 @@
 # Security Considerations for MCP Development
 
-[日本語版 (Japanese)](./security.ja.md)
+[日本語版 (Japanese)](/ja/mcp/security)
 
 > Organizing security risks and countermeasures for MCP server development and operation.
 

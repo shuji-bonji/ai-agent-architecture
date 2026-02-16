@@ -239,7 +239,7 @@ xCOMETが検出するエラーの深刻度。
 
 **関連**: Embedding、ベクトルDB、チャンク
 
-> **MCPとの違い**: [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.ja.md) を参照
+> **MCPとの違い**: [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns) を参照
 
 ### Embedding（エンベディング）
 

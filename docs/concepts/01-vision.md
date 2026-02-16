@@ -1,6 +1,6 @@
 # Vision for AI-Driven Development
 
-[日本語版 (Japanese)](./01-vision.ja.md)
+[日本語版 (Japanese)](/ja/concepts/01-vision)
 
 This document outlines the philosophy underlying AI agent architecture (MCP, Skills, and Agent integration) and the fundamental approach to AI-driven development.
 

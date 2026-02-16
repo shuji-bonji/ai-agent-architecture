@@ -1,54 +1,52 @@
-# Translation Quality Report
+# 翻訳品質レポート
 
-[日本語版 (Japanese)](./translation-quality-report.ja.md)
+> xCOMET MCP を用いた自動翻訳品質評価
 
-> Automated translation quality evaluation using xCOMET MCP
+## 評価結果サマリー
 
-## Evaluation Summary
+| ファイルカテゴリ | 評価ペア数 | 平均スコア | 品質判定 |
+|-----------------|-----------|-----------|---------|
+| README.md | 10 | **0.975** | ✅ 優良 |
+| concepts/ (01-vision.md, vs-mcp.md) | 10 | **0.978** | ✅ 優良 |
+| mcp/ & skills/ (security.md, anti-patterns.md) | 10 | **0.957** | ✅ 優良 |
+| workflows/ (patterns.md) | 10 | **0.977** | ✅ 優良 |
+| **全体** | **40** | **0.972** | ✅ **優良** |
 
-| File Category | Pairs Evaluated | Average Score | Quality Rating |
-|---------------|-----------------|---------------|----------------|
-| README.md | 10 | **0.975** | ✅ Excellent |
-| concepts/ (01-vision.md, vs-mcp.md) | 10 | **0.978** | ✅ Excellent |
-| mcp/ & skills/ (security.md, anti-patterns.md) | 10 | **0.957** | ✅ Excellent |
-| workflows/ (patterns.md) | 10 | **0.977** | ✅ Excellent |
-| **Overall** | **40** | **0.972** | ✅ **Excellent** |
+## 品質判定基準
 
-## Quality Criteria
+xCOMET 評価スコアに基づく判定:
 
-Based on xCOMET evaluation scores:
+| スコア範囲 | 判定 | 推奨アクション |
+|-----------|------|---------------|
+| ≥ 0.90 | 優良 | そのまま使用可能 |
+| 0.85 - 0.90 | 良好 | 軽微な修正を検討 |
+| 0.70 - 0.85 | 要改善 | パラメータ調整して再翻訳 |
+| < 0.70 | 要注意 | 大幅な手動修正が必要 |
 
-| Score Range | Rating | Recommended Action |
-|-------------|--------|-------------------|
-| ≥ 0.90 | Excellent | Use as-is |
-| 0.85 - 0.90 | Good | Consider minor revisions |
-| 0.70 - 0.85 | Needs Improvement | Re-translate with adjusted parameters |
-| < 0.70 | Poor | Significant manual revision required |
+## 主な発見事項
 
-## Key Findings
+- **クリティカルエラー検出: 0件**
+- **全40セグメントが「優良」評価（0.90以上）**
+- 最高スコア: 1.000（完璧な翻訳が複数）
+- 最低スコア: 0.894（それでも「良好」範囲内）
 
-- **Critical errors detected: 0**
-- **All 40 segments rated "Excellent" (≥ 0.90)**
-- Highest score: 1.000 (multiple perfect translations)
-- Lowest score: 0.894 (still within "Good" range)
+## スコアが相対的に低かったセグメント（0.90-0.95）
 
-## Segments with Relatively Lower Scores (0.90-0.95)
-
-| Source (Japanese) | Translation (English) | Score |
-|-------------------|----------------------|-------|
+| 原文（日本語） | 翻訳（英語） | スコア |
+|---------------|-------------|-------|
 | MCPサーバーの開発・運用におけるセキュリティリスクと対策を整理する。 | Organizing security risks and countermeasures for MCP server development and operation. | 0.898 |
 | チーム内部の知識やガイドラインまでMCPサーバーとして実装してしまう。 | Implementing internal team knowledge and guidelines as MCP servers. | 0.894 |
 | このような実践知をパターンとして蓄積する。 | This document accumulates such practical knowledge as patterns. | 0.903 |
 
-## Evaluation Methodology
+## 評価方法
 
-### Tools Used
+### 使用ツール
 
-| MCP | Tool | Purpose |
-|-----|------|---------|
-| xcomet-mcp-server | xcomet_batch_evaluate | Batch quality scoring |
+| MCP | ツール | 用途 |
+|-----|-------|------|
+| xcomet-mcp-server | xcomet_batch_evaluate | バッチ品質スコアリング |
 
-### Evaluation Parameters
+### 評価パラメータ
 
 ```
 source_lang: ja
@@ -56,29 +54,29 @@ target_lang: en
 response_format: markdown
 ```
 
-### Sample Selection
+### サンプル選定
 
-Representative segments were selected from:
-- Document titles and headings
-- Key concept explanations
-- Technical descriptions
-- Decision criteria and guidelines
+以下から代表的なセグメントを選定:
+- ドキュメントタイトル・見出し
+- 主要な概念説明
+- 技術的な説明文
+- 判断基準・ガイドライン
 
-## Conclusion
+## 結論
 
-The Japanese to English translations demonstrate **high quality** suitable for publication:
+日本語→英語翻訳は**公開に適した高品質**を達成:
 
-- Overall average score of **0.972** exceeds the "Excellent" threshold
-- No critical errors or significant meaning distortions detected
-- Technical terminology consistently translated
-- Natural English phrasing maintained
+- 全体平均スコア **0.972** は「優良」閾値を超過
+- クリティカルエラーや重大な意味の誤りは検出されず
+- 技術用語は一貫して翻訳
+- 自然な英語表現を維持
 
-## Related Documentation
+## 関連ドキュメント
 
-- [Translation Workflow Skill](../templates/skill/examples/translation-workflow.md)
-- [Integration Patterns](./workflows/patterns.md#pattern-1-technical-document-translation-workflow)
+- [翻訳ワークフロー Skill](../templates/skill/examples/translation-workflow.ja.md)
+- [連携パターン](./workflows/patterns.ja.md#パターン1-技術文書翻訳ワークフロー)
 
 ---
 
-*Report generated: 2025-01-28*
-*Evaluation tool: [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server)*
+*レポート生成日: 2025-01-28*
+*評価ツール: [xCOMET MCP Server](https://github.com/shuji-bonji/xcomet-mcp-server)*

@@ -8,11 +8,11 @@
 
 本ドキュメントは、[Discussion #19](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/19)（MCP構築戦略マップ v2）をプロジェクト正式ドキュメントとして整理したものである。
 
-MCPの構築候補を5軸で評価し、構築状況と優先度ロードマップを示す。Skillの構築戦略は [skill-roadmap.md](./skill-roadmap.ja.md)、MCP×Skillの複合構成は [composition-patterns.md](./composition-patterns.ja.md) を参照。
+MCPの構築候補を5軸で評価し、構築状況と優先度ロードマップを示す。Skillの構築戦略は [skill-roadmap.md](./skill-roadmap)、MCP×Skillの複合構成は [composition-patterns.md](./composition-patterns) を参照。
 
 ## MCP評価の5軸
 
-新規MCP候補は、以下の5軸で実現可能性を評価する。この評価は [02-reference-sources.md](../concepts/02-reference-sources.ja.md) の「ブレない参照先」5つの性質と対応している。
+新規MCP候補は、以下の5軸で実現可能性を評価する。この評価は [02-reference-sources.md](../concepts/02-reference-sources) の「ブレない参照先」5つの性質と対応している。
 
 | 軸           | 意味                                                |
 | ------------ | --------------------------------------------------- |
@@ -103,12 +103,12 @@ flowchart TB
     style P3 fill:#FFEBEE,stroke:#F44336,color:#333
 ```
 
-> Skill側のロードマップは [skill-roadmap.md](./skill-roadmap.ja.md) を参照。ハイブリッド構成（MCP + Skill）の設計指針は [composition-patterns.md](./composition-patterns.ja.md) を参照。
+> Skill側のロードマップは [skill-roadmap.md](./skill-roadmap) を参照。ハイブリッド構成（MCP + Skill）の設計指針は [composition-patterns.md](./composition-patterns) を参照。
 
 ## 関連ドキュメント
 
 - [Discussion #19: MCP構築戦略マップ v2](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/19) — 本ドキュメントの元となったDiscussion
-- [skill-roadmap.md](./skill-roadmap.ja.md) — Skill構築ロードマップ
-- [composition-patterns.md](./composition-patterns.ja.md) — 複合構成パターン
-- [concepts/03-architecture.md](../concepts/03-architecture.ja.md) — MCP / Skill / Agent のレイヤー構造
-- [mcp/catalog.md](../mcp/catalog.ja.md) — 構築済みMCPカタログ
+- [skill-roadmap.md](./skill-roadmap) — Skill構築ロードマップ
+- [composition-patterns.md](./composition-patterns) — 複合構成パターン
+- [concepts/03-architecture.md](../concepts/03-architecture) — MCP / Skill / Agent のレイヤー構造
+- [mcp/catalog.md](../mcp/catalog) — 構築済みMCPカタログ
