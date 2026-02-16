@@ -1,0 +1,49 @@
+# AI Agent Architecture
+
+> A documentation site explaining how AI agents discover and orchestrate Skills, Tools, and Protocols — with a focus on MCP (Model Context Protocol), Skills, A2A, and custom sub-agents. Built from hands-on experience developing multiple MCP servers and integrating them into real workflows.
+
+This project systematizes knowledge about AI agent architecture from the perspective of a practicing developer. It covers the philosophy of AI-driven development, authoritative reference sources for AI decision-making, and practical patterns for combining MCP servers, Skills, and agents.
+
+## Core Concepts
+
+- [Vision for AI-Driven Development](https://shuji-bonji.github.io/ai-agent-architecture/concepts/01-vision): Philosophy of AI-driven development — AI handles all processes while humans focus on judgment and creativity
+- [The Framework of Authoritative Reference Sources](https://shuji-bonji.github.io/ai-agent-architecture/concepts/02-reference-sources): Systematic organization of reference sources AI should use as decision-making basis, with hierarchical structures
+- [MCP/A2A/Skill/Agent Architecture](https://shuji-bonji.github.io/ai-agent-architecture/concepts/03-architecture): Four-layer architecture (Agent, Skills, MCP, External Services) and component interactions
+- [AI Design Patterns and the Role of MCP](https://shuji-bonji.github.io/ai-agent-architecture/concepts/04-ai-design-patterns): Comparison of RAG, MCP, fine-tuning, prompt engineering, and agentic AI patterns
+- [Solving AI Limitations](https://shuji-bonji.github.io/ai-agent-architecture/concepts/05-solving-ai-limitations): Practical approaches for AI's four limitations — accuracy, currency, authority, accountability
+
+## MCP (Model Context Protocol)
+
+- [What is MCP?](https://shuji-bonji.github.io/ai-agent-architecture/mcp/what-is-mcp): Standard protocol for AI agents to safely access external tools and data, with three-layer architecture
+- [MCP Catalog](https://shuji-bonji.github.io/ai-agent-architecture/mcp/catalog): Comprehensive list of custom and integration MCP servers with features, tools, and usage examples
+- [MCP Security](https://shuji-bonji.github.io/ai-agent-architecture/mcp/security): Security risks and countermeasures referencing OWASP MCP Top 10 (2025)
+- [MCP Development Guide](https://shuji-bonji.github.io/ai-agent-architecture/mcp/development): Practical guide from planning through implementation to publishing MCP servers
+
+## Skills
+
+- [What are Skills?](https://shuji-bonji.github.io/ai-agent-architecture/skills/what-is-skills): Standardized framework for expressing domain knowledge designed for AI agents
+- [Skill Creation Guide](https://shuji-bonji.github.io/ai-agent-architecture/skills/creating-skills): Full lifecycle from design through creation, testing, and maintenance
+- [MCP vs Skills](https://shuji-bonji.github.io/ai-agent-architecture/skills/vs-mcp): Fundamental differences and selection criteria between MCP and Skills
+- [Anti-Patterns](https://shuji-bonji.github.io/ai-agent-architecture/skills/anti-patterns): Common failure patterns in MCP and Skills design — over-MCPization, over-Skillization, and more
+
+## Agents
+
+- [A2A Protocol](https://shuji-bonji.github.io/ai-agent-architecture/agents/what-is-a2a): Agent-to-Agent open standard protocol for peer-to-peer agent communication
+- [Custom Sub-agents](https://shuji-bonji.github.io/ai-agent-architecture/agents/what-is-subagent): Specialized AI assistants within Claude Code for specific tasks
+
+## Strategy
+
+- [Composition Patterns](https://shuji-bonji.github.io/ai-agent-architecture/strategy/composition-patterns): 4 patterns showing how MCP × Skill × Agent combinations create value
+- [MCP Roadmap](https://shuji-bonji.github.io/ai-agent-architecture/strategy/mcp-roadmap): MCP construction strategy with 5-axis evaluation of candidates
+- [Skill Roadmap](https://shuji-bonji.github.io/ai-agent-architecture/strategy/skill-roadmap): Skill classification, evaluation criteria, and dependency relationships
+
+## Workflows
+
+- [Development Phases × MCP](https://shuji-bonji.github.io/ai-agent-architecture/workflows/development-phases): MCPs utilized in each development phase from strategy to operations
+- [Integration Patterns](https://shuji-bonji.github.io/ai-agent-architecture/workflows/patterns): Practical workflow patterns combining MCPs, Skills, and sub-agents
+
+## Optional
+
+- [Glossary](https://shuji-bonji.github.io/ai-agent-architecture/glossary): Definitions of MCP-related terms and concepts
+- [Outputs and Achievements](https://shuji-bonji.github.io/ai-agent-architecture/outputs): Concrete deliverables from MCP development with quantitative metrics
+- [Priority and Roadmap](https://shuji-bonji.github.io/ai-agent-architecture/roadmap): Priorities and timelines for MCP development
