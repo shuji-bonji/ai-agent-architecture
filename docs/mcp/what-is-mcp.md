@@ -229,7 +229,7 @@ MCP also comes with trade-offs and risks to be aware of.
 
 ## MCP Implementations in This Repository
 
-The ai-agent-toolkit repository accumulates practical knowledge from developing and operating MCPs.
+The ai-agent-architecture repository accumulates practical knowledge from developing and operating MCPs.
 
 ### Custom MCPs (Published on npm)
 
@@ -270,4 +270,4 @@ To dive deeper into MCP, explore the following documents.
 | **Learn about Skills**        | [what-is-skills.md](../skills/what-is-skills.md)     |
 
 **Last Updated:** 2026-02-12
-**Repository:** [ai-agent-toolkit](https://github.com/shuji-bonji/ai-agent-toolkit)
+**Repository:** [ai-agent-architecture](https://github.com/shuji-bonji/ai-agent-architecture)

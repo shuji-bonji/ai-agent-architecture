@@ -5,13 +5,13 @@ import { enConfig } from './locales/en'
 
 export default withMermaid(
   defineConfig({
-    title: 'AI Agent Toolkit',
-    description: 'MCP alone is not enough — How agents discover and orchestrate Skills and Tools',
+    title: 'AI Agent Architecture',
+    description: 'How agents discover and orchestrate Skills, Tools, and Protocols',
 
-    base: '/ai-agent-toolkit/',
+    base: '/ai-agent-architecture/',
 
     head: [
-      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/ai-agent-toolkit/favicon.svg' }],
+      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/ai-agent-architecture/favicon.svg' }],
     ],
 
     // i18n: English = root, Japanese = /ja/
@@ -60,7 +60,7 @@ export default withMermaid(
 
     // Sitemap（自動生成 + lastUpdated の日付を <lastmod> に反映）
     sitemap: {
-      hostname: 'https://shuji-bonji.github.io/ai-agent-toolkit/',
+      hostname: 'https://shuji-bonji.github.io/ai-agent-architecture/',
     },
 
     // テーマ共通設定
@@ -70,7 +70,7 @@ export default withMermaid(
 
     themeConfig: {
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/shuji-bonji/ai-agent-toolkit' },
+        { icon: 'github', link: 'https://github.com/shuji-bonji/ai-agent-architecture' },
       ],
       search: {
         provider: 'local',

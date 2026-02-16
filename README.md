@@ -1,4 +1,4 @@
-# AI Agent Toolkit
+# AI Agent Architecture
 
 [日本語版 (Japanese)](./README.ja.md)
 
@@ -10,7 +10,7 @@ A repository documenting design principles, architecture, and practical knowledg
 
 **Full documentation is available at:**
 
-### **👉 [https://shuji-bonji.github.io/ai-agent-toolkit/](https://shuji-bonji.github.io/ai-agent-toolkit/)**
+### **👉 [https://shuji-bonji.github.io/ai-agent-architecture/](https://shuji-bonji.github.io/ai-agent-architecture/)**
 
 The documentation site provides:
 
@@ -96,7 +96,7 @@ flowchart LR
 
 ## Note
 
-This documentation reflects the author's practical insights gained through building and operating AI agent systems with Claude. It is not official documentation from Anthropic or any other organization. Contributions and discussions via [GitHub Issues](https://github.com/shuji-bonji/ai-agent-toolkit/issues) are welcome.
+This documentation reflects the author's practical insights gained through building and operating AI agent systems with Claude. It is not official documentation from Anthropic or any other organization. Contributions and discussions via [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) are welcome.
 
 ## License
 

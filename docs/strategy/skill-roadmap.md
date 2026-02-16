@@ -6,7 +6,7 @@
 
 ## About This Document
 
-This document formalizes [Discussion #20](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/20) (Skill Construction Strategy Map) as an official project document.
+This document formalizes [Discussion #20](https://github.com/shuji-bonji/ai-agent-architecture/discussions/20) (Skill Construction Strategy Map) as an official project document.
 
 While MCPs handle "real-time access to external data," Skills handle "static knowledge and judgment criteria" (see [03-architecture.md](../concepts/03-architecture.md)). For the MCP construction strategy, see [mcp-roadmap.md](./mcp-roadmap.md). For composition patterns, see [composition-patterns.md](./composition-patterns.md).
 
@@ -239,7 +239,7 @@ flowchart TB
 
 ## Related Documents
 
-- [Discussion #20: Skill Construction Strategy Map](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/20) — The Discussion that this document is based on
+- [Discussion #20: Skill Construction Strategy Map](https://github.com/shuji-bonji/ai-agent-architecture/discussions/20) — The Discussion that this document is based on
 - [mcp-roadmap.md](./mcp-roadmap.md) — MCP Construction Roadmap
 - [composition-patterns.md](./composition-patterns.md) — Composition Patterns
 - [concepts/03-architecture.md](../concepts/03-architecture.md) — Skill Definitions and Layer Structure

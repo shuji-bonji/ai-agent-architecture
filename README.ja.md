@@ -1,4 +1,4 @@
-# AI Agent Toolkit
+# AI Agent Architecture
 
 [English](./README.md)
 
@@ -10,7 +10,7 @@ AIエージェント構成（MCP・Skills・Agent統合）に関する設計思�
 
 **完全なドキュメントはこちら:**
 
-### **👉 [https://shuji-bonji.github.io/ai-agent-toolkit/ja/](https://shuji-bonji.github.io/ai-agent-toolkit/ja/)**
+### **👉 [https://shuji-bonji.github.io/ai-agent-architecture/ja/](https://shuji-bonji.github.io/ai-agent-architecture/ja/)**
 
 ドキュメントサイトの内容:
 
@@ -97,7 +97,7 @@ flowchart LR
 
 ## ご注意
 
-本ドキュメントは、著者がClaudeを活用してAIエージェントシステムを構築・運用する中で得た実践的知見をまとめたものです。Anthropic社やその他の組織の公式ドキュメントではありません。ご意見・ご議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-toolkit/issues) にてお気軽にどうぞ。
+本ドキュメントは、著者がClaudeを活用してAIエージェントシステムを構築・運用する中で得た実践的知見をまとめたものです。Anthropic社やその他の組織の公式ドキュメントではありません。ご意見・ご議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) にてお気軽にどうぞ。
 
 ## ライセンス
 

@@ -6,7 +6,7 @@
 
 ## About This Document
 
-This document formalizes [Discussion #19](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/19) (MCP Construction Strategy Map v2) as an official project document.
+This document formalizes [Discussion #19](https://github.com/shuji-bonji/ai-agent-architecture/discussions/19) (MCP Construction Strategy Map v2) as an official project document.
 
 It evaluates MCP candidates across 5 axes and presents the build status and priority roadmap. For the Skill construction strategy, see [skill-roadmap.md](./skill-roadmap.md). For MCP × Skill composition patterns, see [composition-patterns.md](./composition-patterns.md).
 
@@ -107,7 +107,7 @@ flowchart TB
 
 ## Related Documents
 
-- [Discussion #19: MCP Construction Strategy Map v2](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/19) — The Discussion that this document is based on
+- [Discussion #19: MCP Construction Strategy Map v2](https://github.com/shuji-bonji/ai-agent-architecture/discussions/19) — The Discussion that this document is based on
 - [skill-roadmap.md](./skill-roadmap.md) — Skill Construction Roadmap
 - [composition-patterns.md](./composition-patterns.md) — Composition Patterns
 - [concepts/03-architecture.md](../concepts/03-architecture.md) — MCP / Skill / Agent Layer Structure

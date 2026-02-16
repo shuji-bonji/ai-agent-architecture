@@ -6,7 +6,7 @@
 
 ## このドキュメントについて
 
-本ドキュメントは、[Discussion #19](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/19)（MCP構築戦略マップ v2）をプロジェクト正式ドキュメントとして整理したものである。
+本ドキュメントは、[Discussion #19](https://github.com/shuji-bonji/ai-agent-architecture/discussions/19)（MCP構築戦略マップ v2）をプロジェクト正式ドキュメントとして整理したものである。
 
 MCPの構築候補を5軸で評価し、構築状況と優先度ロードマップを示す。Skillの構築戦略は [skill-roadmap.md](./skill-roadmap)、MCP×Skillの複合構成は [composition-patterns.md](./composition-patterns) を参照。
 
@@ -107,7 +107,7 @@ flowchart TB
 
 ## 関連ドキュメント
 
-- [Discussion #19: MCP構築戦略マップ v2](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/19) — 本ドキュメントの元となったDiscussion
+- [Discussion #19: MCP構築戦略マップ v2](https://github.com/shuji-bonji/ai-agent-architecture/discussions/19) — 本ドキュメントの元となったDiscussion
 - [skill-roadmap.md](./skill-roadmap) — Skill構築ロードマップ
 - [composition-patterns.md](./composition-patterns) — 複合構成パターン
 - [concepts/03-architecture.md](../concepts/03-architecture) — MCP / Skill / Agent のレイヤー構造

@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: AI Agent Toolkit
+  name: AI Agent Architecture
   text: Beyond MCP
   tagline: How agents discover and orchestrate Skills, Tools, and Protocols
   actions:
@@ -14,7 +14,7 @@ hero:
       link: /mcp/what-is-mcp
     - theme: alt
       text: View on GitHub
-      link: https://github.com/shuji-bonji/ai-agent-toolkit
+      link: https://github.com/shuji-bonji/ai-agent-architecture
 
 features:
   - icon: 🧠
@@ -51,6 +51,6 @@ features:
 
 <div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
-**Note:** This documentation reflects the author's practical insights gained through building and operating AI agent systems with Claude. It is not official documentation from Anthropic or any other organization. Contributions and discussions via [GitHub Issues](https://github.com/shuji-bonji/ai-agent-toolkit/issues) are welcome.
+**Note:** This documentation reflects the author's practical insights gained through building and operating AI agent systems with Claude. It is not official documentation from Anthropic or any other organization. Contributions and discussions via [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) are welcome.
 
 </div>

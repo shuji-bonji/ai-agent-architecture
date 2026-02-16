@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: AI Agent Toolkit
+  name: AI Agent Architecture
   text: MCPの、その先へ
   tagline: エージェントがSkills・Tools・Protocolをどのように発見・オーケストレーションするかを体系化
   actions:
@@ -14,7 +14,7 @@ hero:
       link: /ja/mcp/what-is-mcp
     - theme: alt
       text: GitHub で見る
-      link: https://github.com/shuji-bonji/ai-agent-toolkit
+      link: https://github.com/shuji-bonji/ai-agent-architecture
 
 features:
   - icon: 🧠
@@ -51,6 +51,6 @@ features:
 
 <div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
-**ご注意:** 本ドキュメントは、著者がClaudeを活用してAIエージェントシステムを構築・運用する中で得た実践的知見をまとめたものです。Anthropic社やその他の組織の公式ドキュメントではありません。ご意見・ご議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-toolkit/issues) にてお気軽にどうぞ。
+**ご注意:** 本ドキュメントは、著者がClaudeを活用してAIエージェントシステムを構築・運用する中で得た実践的知見をまとめたものです。Anthropic社やその他の組織の公式ドキュメントではありません。ご意見・ご議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) にてお気軽にどうぞ。
 
 </div>

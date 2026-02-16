@@ -1,9 +1,9 @@
 {
-  "name": "ai-agent-toolkit",
+  "name": "ai-agent-architecture",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "AI Agent Toolkit - MCP・Skills・Agent統合ドキュメント",
+  "description": "AI Agent Architecture - How agents discover and orchestrate Skills, Tools, and Protocols",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuji-bonji/ai-agent-toolkit.git"
+    "url": "git+https://github.com/shuji-bonji/ai-agent-architecture.git"
   },
   "author": "shuji-bonji",
   "license": "MIT",

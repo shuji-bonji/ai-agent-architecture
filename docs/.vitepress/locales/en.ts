@@ -1,8 +1,8 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
 export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
-  title: 'AI Agent Toolkit',
-  description: 'MCP alone is not enough — How agents discover and orchestrate Skills and Tools',
+  title: 'AI Agent Architecture',
+  description: 'How agents discover and orchestrate Skills, Tools, and Protocols',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -80,7 +80,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       ],
     },
     editLink: {
-      pattern: 'https://github.com/shuji-bonji/ai-agent-toolkit/edit/main/docs/:path',
+      pattern: 'https://github.com/shuji-bonji/ai-agent-architecture/edit/main/docs/:path',
       text: 'Edit this page',
     },
   },

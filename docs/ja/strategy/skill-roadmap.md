@@ -6,7 +6,7 @@
 
 ## このドキュメントについて
 
-本ドキュメントは、[Discussion #20](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/20)（Skill構築戦略マップ）をプロジェクト正式ドキュメントとして整理したものである。
+本ドキュメントは、[Discussion #20](https://github.com/shuji-bonji/ai-agent-architecture/discussions/20)（Skill構築戦略マップ）をプロジェクト正式ドキュメントとして整理したものである。
 
 MCPが「外部データへのリアルタイムアクセス」を担うのに対し、Skillは「静的な知識・判断基準」を担う（[03-architecture.md](../concepts/03-architecture) 参照）。MCPの構築戦略は [mcp-roadmap.md](./mcp-roadmap)、複合構成は [composition-patterns.md](./composition-patterns) を参照。
 
@@ -239,7 +239,7 @@ flowchart TB
 
 ## 関連ドキュメント
 
-- [Discussion #20: Skill構築戦略マップ](https://github.com/shuji-bonji/ai-agent-toolkit/discussions/20) — 本ドキュメントの元となったDiscussion
+- [Discussion #20: Skill構築戦略マップ](https://github.com/shuji-bonji/ai-agent-architecture/discussions/20) — 本ドキュメントの元となったDiscussion
 - [mcp-roadmap.md](./mcp-roadmap) — MCP構築ロードマップ
 - [composition-patterns.md](./composition-patterns) — 複合構成パターン
 - [concepts/03-architecture.md](../concepts/03-architecture) — Skillの定義とレイヤー構造
