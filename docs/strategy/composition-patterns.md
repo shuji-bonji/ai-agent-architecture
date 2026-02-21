@@ -319,6 +319,41 @@ flowchart TB
     style SKILL_LAYER fill:#90EE90,color:#333
 ```
 
+#### Glossary-Integrated Translation Workflow (Production Example)
+
+[deepl-glossary-translation](https://github.com/shuji-bonji/deepl-glossary-translation) is a production example of Pattern 4. Three MCPs and a Skill collaborate to translate the PDF specification (ISO 32000-2) into Japanese with consistent terminology.
+
+```mermaid
+graph TB
+    subgraph MCPs["MCPs: Data Retrieval & Processing"]
+        PDF["pdf-spec-mcp<br/>Term extraction, section retrieval"]
+        DEEPL["deepl-mcp<br/>Glossary registration, translation"]
+        XCOMET["xcomet-mcp<br/>Quality evaluation"]
+    end
+
+    subgraph Skills["Skill: Orchestration"]
+        GLOSSARY["deepl-glossary-translation<br/>5-step workflow definition"]
+    end
+
+    GLOSSARY -->|"Steps 1-2"| PDF
+    GLOSSARY -->|"Steps 3-4"| DEEPL
+    GLOSSARY -->|"Step 5"| XCOMET
+    PDF -->|"71 terms"| DEEPL
+    DEEPL -->|"Translation"| XCOMET
+
+    style MCPs fill:#FFB6C1,color:#333
+    style Skills fill:#90EE90,color:#333
+```
+
+| Layer     | Component                     | Role                                     |
+| --------- | ----------------------------- | ---------------------------------------- |
+| **MCP**   | pdf-spec-mcp                  | Extract 71 terms structurally from spec  |
+| **MCP**   | deepl-mcp                     | Glossary management & translation        |
+| **MCP**   | xcomet-mcp                    | Quality score & error detection          |
+| **Skill** | deepl-glossary-translation    | 5-step workflow procedure definition     |
+
+What this Skill defines is the knowledge of "which MCP to call, in what order, with what parameters" — not the tools themselves. See [Skill Showcase](../skills/showcase#deepl-glossary-translation) and [Workflow Pattern 9](../workflows/patterns#pattern-9-glossary-integrated-translation-workflow) for details.
+
 ### Design Guidelines
 
 - **Agent orchestration is key**: The Agent layer determines which MCPs to call first and when to reference which Skills

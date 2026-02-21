@@ -41,6 +41,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'スキル作成', link: '/ja/skills/creating-skills' },
             { text: 'アンチパターン', link: '/ja/skills/anti-patterns' },
             { text: 'MCP vs Skills', link: '/ja/skills/vs-mcp' },
+            { text: '実例ショーケース', link: '/ja/skills/showcase' },
           ],
         },
         {

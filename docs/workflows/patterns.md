@@ -412,16 +412,83 @@ Multi-agent collaboration provides several advantages:
 - **Enhanced Specialization** - Role-specific instructions
 - **Parallel Processing** - Physical separation possible with Git worktrees
 
+## Pattern 9: Glossary-Integrated Translation Workflow
+
+### Overview
+
+A workflow that automatically extracts terminology from specifications, builds a glossary, and produces translations with consistent terminology. An evolution of Pattern 1 (Technical Document Translation), this represents a **full integration pattern where a Skill orchestrates multiple MCPs**.
+
+### MCPs / Skills Used
+
+- `pdf-spec-mcp` - Structured extraction of specification terminology
+- `deepl-mcp` - Glossary management and translation execution
+- `xcomet-mcp-server` - Translation quality evaluation (optional)
+- `deepl-glossary-translation` Skill - Defines the orchestration workflow for the above MCPs
+
+### Flow Diagram
+
+```mermaid
+flowchart TB
+    START[Target Specification] --> EXTRACT[pdf-spec-mcp:get_definitions<br/>Term Extraction]
+    EXTRACT --> CLASSIFY{Term Classification}
+    CLASSIFY -->|Acronyms| KEEP["Keep List<br/>(ASCII, JPEG, etc. 15 terms)"]
+    CLASSIFY -->|Translatable| TRANSLATE_TERM["Translation List<br/>(56 terms)"]
+    KEEP --> TSV[Generate TSV File]
+    TRANSLATE_TERM --> TSV
+    TSV --> REGISTER[DeepL API<br/>Glossary Registration]
+    REGISTER --> SECTION[pdf-spec-mcp:get_section<br/>Content Retrieval]
+    SECTION --> TRANSLATE[deepl:translate-text<br/>with glossaryId]
+    TRANSLATE --> EVAL{Quality Check?}
+    EVAL -->|Yes| XCOMET[xcomet:xcomet_evaluate]
+    EVAL -->|No| OUTPUT[Translation Complete]
+    XCOMET --> CHECK{Score >= 0.85?}
+    CHECK -->|Yes| OUTPUT
+    CHECK -->|No| RETRY[Fix Terms / Re-translate]
+    RETRY --> TRANSLATE
+
+    style REGISTER fill:#FFD700,color:#333
+    style TSV fill:#E3F2FD,color:#333
+```
+
+### Differences from Pattern 1
+
+| Aspect | Pattern 1 (Basic Translation) | Pattern 9 (Glossary-Integrated) |
+|---|---|---|
+| Terminology consistency | May vary between translations | Enforced via glossary |
+| Preparation | None required | Term extraction, classification, registration |
+| Use case | General technical documents | **Specifications and standards** requiring strict terminology |
+| MCP count | 2 (deepl + xcomet) | 3 (pdf-spec + deepl + xcomet) |
+| Skill | Optional (manual flow possible) | **Required** (orchestrating complex steps) |
+
+### Concrete Example: ISO 32000-2 Glossary
+
+```
+Keep (acronyms): ASCII, CFF, JPEG, PDF, TLS, URI, XML ... (15 terms)
+Translate:
+  cross-reference table → 相互参照テーブル
+  content stream → コンテンツストリーム
+  null object → nullオブジェクト  ← PDF spec uses lowercase null
+  indirect object → 間接オブジェクト
+  ... (56 terms)
+```
+
+The greatest value is enforcing domain-specific terminology rules via glossary — for example, ensuring "null object" becomes "nullオブジェクト" (lowercase, matching PDF's keyword) rather than inconsistent "NULLオブジェクト" or "Nullオブジェクト".
+
+### Repository
+
+See [shuji-bonji/deepl-glossary-translation](https://github.com/shuji-bonji/deepl-glossary-translation) for the full implementation. Also covered in the [Skill Showcase](../skills/showcase#deepl-glossary-translation).
+
 ## Workflow Selection Guide
 
 Use this table to select the most appropriate workflow pattern for your use case:
 
-| Purpose                  | Recommended Pattern | Primary MCPs            |
-| ------------------------ | ------------------- | ----------------------- |
-| Technical Document Translation | Pattern 1/2        | deepl + xcomet          |
-| Specification Understanding | Pattern 3          | rfcxml                  |
-| Compliance Verification  | Pattern 4          | hourei + rfcxml         |
-| Implementation Check     | Pattern 5          | rfcxml                  |
-| RxJS Debugging           | Pattern 6          | rxjs                    |
-| Documentation Creation   | Pattern 7          | Composite               |
-| Large-Scale Tasks        | Pattern 8          | Composite + Sub-agents  |
+| Purpose                        | Recommended Pattern | Primary MCPs                  |
+| ------------------------------ | ------------------- | ----------------------------- |
+| Technical Document Translation | Pattern 1/2         | deepl + xcomet                |
+| Terminology-Consistent Translation | Pattern 9       | pdf-spec + deepl + xcomet     |
+| Specification Understanding    | Pattern 3           | rfcxml                        |
+| Compliance Verification        | Pattern 4           | hourei + rfcxml               |
+| Implementation Check           | Pattern 5           | rfcxml                        |
+| RxJS Debugging                 | Pattern 6           | rxjs                          |
+| Documentation Creation         | Pattern 7           | Composite                     |
+| Large-Scale Tasks              | Pattern 8           | Composite + Sub-agents        |

@@ -41,6 +41,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Creating Skills', link: '/skills/creating-skills' },
             { text: 'Anti-patterns', link: '/skills/anti-patterns' },
             { text: 'MCP vs Skills', link: '/skills/vs-mcp' },
+            { text: 'Showcase', link: '/skills/showcase' },
           ],
         },
         {

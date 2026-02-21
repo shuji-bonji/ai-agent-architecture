@@ -422,16 +422,89 @@ model: sonnet
 - **専門性向上** - 役割に特化した指示
 - **並列処理** - Git worktreesで物理的に分離可能
 
+## パターン9: 用語集連携翻訳ワークフロー
+
+### 概要
+
+仕様書の用語を自動抽出してグロッサリーを構築し、用語統一された翻訳を実現するフロー。パターン1（技術文書翻訳）の発展形であり、**Skillが複数MCPをオーケストレーションする**完全統合パターン。
+
+### 使用MCP / Skill
+
+このワークフローで使用するMCPとSkillは以下の通りである。
+
+- `pdf-spec-mcp` - 仕様書の用語定義を構造的に抽出
+- `deepl-mcp` - グロッサリー管理・翻訳実行
+- `xcomet-mcp-server` - 翻訳品質評価（オプション）
+- `deepl-glossary-translation` Skill - 上記MCPの連携手順を定義
+
+### フロー図
+
+用語抽出からグロッサリー適用翻訳までの一連のフローを以下に示す。
+
+```mermaid
+flowchart TB
+    START[対象仕様書] --> EXTRACT[pdf-spec-mcp:get_definitions<br/>用語定義の抽出]
+    EXTRACT --> CLASSIFY{用語分類}
+    CLASSIFY -->|略語| KEEP["保持リスト<br/>(ASCII, JPEG 等 15語)"]
+    CLASSIFY -->|翻訳対象| TRANSLATE_TERM["対訳リスト<br/>(56語)"]
+    KEEP --> TSV[TSVファイル生成]
+    TRANSLATE_TERM --> TSV
+    TSV --> REGISTER[DeepL API<br/>グロッサリー登録]
+    REGISTER --> SECTION[pdf-spec-mcp:get_section<br/>セクション取得]
+    SECTION --> TRANSLATE[deepl:translate-text<br/>glossaryId指定]
+    TRANSLATE --> EVAL{品質評価?}
+    EVAL -->|Yes| XCOMET[xcomet:xcomet_evaluate]
+    EVAL -->|No| OUTPUT[翻訳完了]
+    XCOMET --> CHECK{スコア >= 0.85?}
+    CHECK -->|Yes| OUTPUT
+    CHECK -->|No| RETRY[用語修正・再翻訳]
+    RETRY --> TRANSLATE
+
+    style REGISTER fill:#FFD700,color:#333
+    style TSV fill:#E3F2FD,color:#333
+```
+
+### パターン1との違い
+
+| 観点 | パターン1（基本翻訳） | パターン9（用語集連携） |
+|---|---|---|
+| 用語の一貫性 | 翻訳ごとにばらつく可能性 | グロッサリーで強制的に統一 |
+| 前準備 | 不要 | 用語抽出・分類・登録が必要 |
+| 適用場面 | 一般的な技術文書 | **仕様書・規格文書**など用語厳密性が要求される文書 |
+| MCP数 | 2（deepl + xcomet） | 3（pdf-spec + deepl + xcomet） |
+| Skill | 不要（手動フロー可） | **必須**（複雑な手順のオーケストレーション） |
+
+### 具体例：ISO 32000-2のグロッサリー
+
+用語分類の具体例を以下に示す。
+
+```
+保持（略語）: ASCII, CFF, JPEG, PDF, TLS, URI, XML ... (15語)
+翻訳対象:
+  cross-reference table → 相互参照テーブル
+  content stream → コンテンツストリーム
+  null object → nullオブジェクト  ← PDF仕様のnullは小文字
+  indirect object → 間接オブジェクト
+  ... (56語)
+```
+
+「null object」が「NULLオブジェクト」や「Nullオブジェクト」ではなく「nullオブジェクト」（PDF仕様のキーワードに準拠した小文字）に統一されるなど、ドメイン固有の用語規則をグロッサリーで強制できる点が最大の価値である。
+
+### リポジトリ
+
+詳細な実装は [shuji-bonji/deepl-glossary-translation](https://github.com/shuji-bonji/deepl-glossary-translation) を参照。Skill実装の具体例として [Skill実例ショーケース](../skills/showcase#deepl-glossary-translation) でも解説している。
+
 ## ワークフロー選択ガイド
 
 目的に応じた推奨ワークフローパターンを以下に整理する。
 
-| 目的                 | 推奨パターン | 主要MCP                 |
-| -------------------- | ------------ | ----------------------- |
-| 技術文書翻訳         | パターン1/2  | deepl + xcomet          |
-| 仕様理解             | パターン3    | rfcxml                  |
-| コンプライアンス確認 | パターン4    | hourei + rfcxml         |
-| 実装チェック         | パターン5    | rfcxml                  |
-| RxJSデバッグ         | パターン6    | rxjs                    |
-| ドキュメント作成     | パターン7    | 複合                    |
-| 大規模タスク         | パターン8    | 複合 + サブエージェント |
+| 目的                 | 推奨パターン | 主要MCP                      |
+| -------------------- | ------------ | ---------------------------- |
+| 技術文書翻訳         | パターン1/2  | deepl + xcomet               |
+| 用語統一翻訳         | パターン9    | pdf-spec + deepl + xcomet    |
+| 仕様理解             | パターン3    | rfcxml                       |
+| コンプライアンス確認 | パターン4    | hourei + rfcxml              |
+| 実装チェック         | パターン5    | rfcxml                       |
+| RxJSデバッグ         | パターン6    | rxjs                         |
+| ドキュメント作成     | パターン7    | 複合                         |
+| 大規模タスク         | パターン8    | 複合 + サブエージェント      |

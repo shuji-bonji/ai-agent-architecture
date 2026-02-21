@@ -317,6 +317,41 @@ flowchart TB
     style SKILL_LAYER fill:#90EE90,color:#333
 ```
 
+#### 用語統一翻訳ワークフロー（実稼働例）
+
+[deepl-glossary-translation](https://github.com/shuji-bonji/deepl-glossary-translation) は、パターン4の実稼働例である。3つのMCPとSkillが協調して、PDF仕様書（ISO 32000-2）を用語統一された日本語に翻訳する。
+
+```mermaid
+graph TB
+    subgraph MCPs["MCPs: データ取得・処理"]
+        PDF["pdf-spec-mcp<br/>用語抽出・セクション取得"]
+        DEEPL["deepl-mcp<br/>グロッサリー登録・翻訳"]
+        XCOMET["xcomet-mcp<br/>品質評価"]
+    end
+
+    subgraph Skills["Skill: オーケストレーション"]
+        GLOSSARY["deepl-glossary-translation<br/>5ステップの手順定義"]
+    end
+
+    GLOSSARY -->|"Step 1-2"| PDF
+    GLOSSARY -->|"Step 3-4"| DEEPL
+    GLOSSARY -->|"Step 5"| XCOMET
+    PDF -->|"71用語"| DEEPL
+    DEEPL -->|"翻訳結果"| XCOMET
+
+    style MCPs fill:#FFB6C1,color:#333
+    style Skills fill:#90EE90,color:#333
+```
+
+| 層        | 要素                          | 役割                              |
+| --------- | ----------------------------- | --------------------------------- |
+| **MCP**   | pdf-spec-mcp                  | 仕様書から71用語を構造的に抽出    |
+| **MCP**   | deepl-mcp                     | グロッサリー管理・翻訳実行        |
+| **MCP**   | xcomet-mcp                    | 翻訳品質スコア・エラー検出        |
+| **Skill** | deepl-glossary-translation    | 5ステップのワークフロー手順定義   |
+
+このSkillが定義するのは「どのMCPを、どの順序で、どのパラメータで呼び出すか」という知識であり、ツールそのものではない。詳細は [Skill実例ショーケース](../skills/showcase#deepl-glossary-translation) および [ワークフローパターン9](../workflows/patterns#パターン9-用語集連携翻訳ワークフロー) を参照。
+
 ### 設計上のポイント
 
 - **Agent のオーケストレーションが鍵**: どのMCPを先に呼び、どのSkillをいつ参照するかの判断はAgent層が行う

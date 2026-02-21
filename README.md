@@ -83,6 +83,14 @@ flowchart LR
 | [pdf-reader-mcp](https://github.com/shuji-bonji/pdf-reader-mcp)       | PDF internal structure analysis       | `@shuji-bonji/pdf-reader-mcp` |
 | [RxJS MCP Server](https://github.com/shuji-bonji/rxjs-mcp-server)     | RxJS stream execution & visualization | -                             |
 
+### Skills / Plugins
+
+| Repository                                                                                  | Description                                            | Type           |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------ | -------------- |
+| [deepl-glossary-translation](https://github.com/shuji-bonji/deepl-glossary-translation)     | PDF spec glossary translation (pdf-spec-mcp + DeepL)   | Skill          |
+| [code-review-skill](https://github.com/shuji-bonji/code-review-skill)                       | Code review for TypeScript/MCP Server projects         | Skill          |
+| [spec-compliance-skills](https://github.com/shuji-bonji/spec-compliance-skills)             | W3C/IETF spec compliance checking (EPUB 3.3 supported) | Cowork Plugin  |
+
 ## Templates
 
 | Template                                   | Purpose                                 |
