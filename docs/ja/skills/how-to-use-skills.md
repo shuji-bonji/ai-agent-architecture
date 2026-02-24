@@ -98,13 +98,13 @@ flowchart LR
     LIST --> REMOVE["skills remove<br/>アンインストール"]
 ```
 
-| コマンド | 説明 | 例 |
-|---------|------|-----|
-| `npx skills find <クエリ>` | Skillレジストリを検索 | `npx skills find "code review"` |
-| `npx skills search <クエリ>` | `find` のエイリアス | `npx skills search "translation"` |
-| `npx skills add <ソース>` | Skillをインストール | `npx skills add vercel-labs/agent-skills` |
-| `npx skills add <ソース> --skill <名前>` | 特定のSkillをインストール | `npx skills add vercel-labs/agent-skills --skill frontend-design` |
-| `npx skills add <ソース> -a <エージェント>` | 特定エージェント向けにインストール | `npx skills add ./my-skill -a cursor` |
+| コマンド                                    | 説明                               | 例                                                                |
+| ------------------------------------------- | ---------------------------------- | ----------------------------------------------------------------- |
+| `npx skills find <クエリ>`                  | Skillレジストリを検索              | `npx skills find "code review"`                                   |
+| `npx skills search <クエリ>`                | `find` のエイリアス                | `npx skills search "translation"`                                 |
+| `npx skills add <ソース>`                   | Skillをインストール                | `npx skills add vercel-labs/agent-skills`                         |
+| `npx skills add <ソース> --skill <名前>`    | 特定のSkillをインストール          | `npx skills add vercel-labs/agent-skills --skill frontend-design` |
+| `npx skills add <ソース> -a <エージェント>` | 特定エージェント向けにインストール | `npx skills add ./my-skill -a cursor`                             |
 
 ### エージェント指定
 
@@ -121,15 +121,15 @@ npx skills add ./my-skill -a claude-code -a cursor -a windsurf
 npx skills add ./my-skill -a claude-code -a cursor -a codex -a opencode
 ```
 
-各エージェントのSkill配置先：
+各エージェントのSkill配置先
 
-| エージェント | インストールパス |
-|-------------|---------------|
-| Claude Code | `.claude/skills/` |
-| Cursor | `.cursor/skills/` |
-| Windsurf | `.windsurf/skills/` |
-| Codex | `.codex/skills/` |
-| GitHub Copilot | `.github/skills/` |
+| エージェント   | インストールパス    |
+| -------------- | ------------------- |
+| Claude Code    | `.claude/skills/`   |
+| Cursor         | `.cursor/skills/`   |
+| Windsurf       | `.windsurf/skills/` |
+| Codex          | `.codex/skills/`    |
+| GitHub Copilot | `.github/skills/`   |
 
 ## Claude Code での読み込まれ方
 
@@ -157,15 +157,15 @@ Claude Codeはセッション開始時に `.claude/skills/` を自動スキャ�
 
 ### Skills vs CLAUDE.md: 役割の分担
 
-「これはCLAUDE.mdに書くべきか、Skillにすべきか？」は よくある質問。以下が使い分けの基準：
+「これはCLAUDE.mdに書くべきか、Skillにすべきか？」は よくある質問。以下が使い分けの基準
 
-| 観点 | CLAUDE.md | Skills |
-|------|-----------|--------|
-| **スコープ** | プロジェクト全体のルール | タスク固有のドメイン知識 |
-| **内容** | コーディングスタイル、プロジェクト構成、技術スタック | ワークフロー、品質基準、判断閾値 |
-| **読み込み** | 常に（毎セッション） | 関連タスク発生時 |
-| **例** | "TypeScript strictモードを使用"、"Angular スタイルガイドに従う" | "翻訳品質は 0.85以上必須"、"レビュー順序: ロジック → 設計 → スタイル" |
-| **サイズ** | 短く簡潔 | 詳細可能（100-300行） |
+| 観点         | CLAUDE.md                                                       | Skills                                                                |
+| ------------ | --------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **スコープ** | プロジェクト全体のルール                                        | タスク固有のドメイン知識                                              |
+| **内容**     | コーディングスタイル、プロジェクト構成、技術スタック            | ワークフロー、品質基準、判断閾値                                      |
+| **読み込み** | 常に（毎セッション）                                            | 関連タスク発生時                                                      |
+| **例**       | "TypeScript strictモードを使用"、"Angular スタイルガイドに従う" | "翻訳品質は 0.85以上必須"、"レビュー順序: ロジック → 設計 → スタイル" |
+| **サイズ**   | 短く簡潔                                                        | 詳細可能（100-300行）                                                 |
 
 ```mermaid
 graph TB
@@ -194,23 +194,23 @@ Agent Skills Specificationに準拠したSkillは16以上のエージェント�
 
 ### 対応エージェント一覧
 
-| エージェント | CLI引数 | プロジェクトパス |
-|-------------|--------|---------------|
-| Claude Code | `claude-code` | `.claude/skills/` |
-| Cursor | `cursor` | `.cursor/skills/` |
-| Codex | `codex` | `.codex/skills/` |
-| OpenCode | `opencode` | `.opencode/skills/` |
-| GitHub Copilot | `github-copilot` | `.github/skills/` |
-| Windsurf | `windsurf` | `.windsurf/skills/` |
-| Cline | `cline` | `.cline/skills/` |
-| Roo Code | `roo-code` | `.roo/skills/` |
-| Gemini CLI | `gemini-cli` | `.gemini/skills/` |
+| エージェント   | CLI引数          | プロジェクトパス    |
+| -------------- | ---------------- | ------------------- |
+| Claude Code    | `claude-code`    | `.claude/skills/`   |
+| Cursor         | `cursor`         | `.cursor/skills/`   |
+| Codex          | `codex`          | `.codex/skills/`    |
+| OpenCode       | `opencode`       | `.opencode/skills/` |
+| GitHub Copilot | `github-copilot` | `.github/skills/`   |
+| Windsurf       | `windsurf`       | `.windsurf/skills/` |
+| Cline          | `cline`          | `.cline/skills/`    |
+| Roo Code       | `roo-code`       | `.roo/skills/`      |
+| Gemini CLI     | `gemini-cli`     | `.gemini/skills/`   |
 
 全リスト: https://github.com/vercel-labs/skills#supported-agents
 
 ### クロスエージェント対応
 
-チームが使用する複数のエージェントでSkillを共有するには：
+チームが使用する複数のエージェントでSkillを共有するには
 
 ```bash
 # チームが使うすべてのエージェントにインストール
@@ -263,7 +263,8 @@ git diff HEAD~1 .claude/skills/code-review/SKILL.md
 git checkout HEAD~1 -- .claude/skills/code-review/SKILL.md
 ```
 
-メタデータの**セマンティックバージョニング**（`version: 1.0.0`）で変更の性質を伝える：
+メタデータの**セマンティックバージョニング**（`version: 1.0.0`）で変更の性質を伝える。
+
 - **Major**（2.0.0）: ワークフローや基準の破壊的変更
 - **Minor**（1.1.0）: 新セクションや例の追加
 - **Patch**（1.0.1）: タイポ修正、表現の明確化
@@ -272,19 +273,19 @@ git checkout HEAD~1 -- .claude/skills/code-review/SKILL.md
 
 ### Skillsが読み込まれない
 
-| 症状 | 原因 | 対処法 |
-|------|------|--------|
-| エージェントがSkillを無視する | ファイルが正しいディレクトリにない | パスが `.claude/skills/<名前>/SKILL.md` であることを確認 |
-| Skillが部分的にしか適用されない | ファイル名が間違っている | `SKILL.md`（大文字）でなければならない |
-| インストール後にSkillが見つからない | エージェント指定が間違っている | 使用中のエージェントとそのディレクトリを確認 |
+| 症状                                | 原因                               | 対処法                                                   |
+| ----------------------------------- | ---------------------------------- | -------------------------------------------------------- |
+| エージェントがSkillを無視する       | ファイルが正しいディレクトリにない | パスが `.claude/skills/<名前>/SKILL.md` であることを確認 |
+| Skillが部分的にしか適用されない     | ファイル名が間違っている           | `SKILL.md`（大文字）でなければならない                   |
+| インストール後にSkillが見つからない | エージェント指定が間違っている     | 使用中のエージェントとそのディレクトリを確認             |
 
 ### 期待通りに動作しない
 
-| 症状 | 原因 | 対処法 |
-|------|------|--------|
-| エージェントがワークフローに従わない | 手順が曖昧 | 各ワークフローステップに具体的なアクションを追加 |
-| 判断を間違える | 判断基準が曖昧 | 数値閾値と明確な条件を追加 |
-| 挙動が一貫しない | 例が不足 | Skillに入出力例を追加 |
+| 症状                                 | 原因           | 対処法                                           |
+| ------------------------------------ | -------------- | ------------------------------------------------ |
+| エージェントがワークフローに従わない | 手順が曖昧     | 各ワークフローステップに具体的なアクションを追加 |
+| 判断を間違える                       | 判断基準が曖昧 | 数値閾値と明確な条件を追加                       |
+| 挙動が一貫しない                     | 例が不足       | Skillに入出力例を追加                            |
 
 ### よくある間違い
 
@@ -295,11 +296,11 @@ git checkout HEAD~1 -- .claude/skills/code-review/SKILL.md
 
 ## 次に読むべきドキュメント
 
-| 目的 | ドキュメント |
-|------|------------|
-| 新しいSkillを作成 | [スキル作成ガイド](./how-to-create-skills) |
-| ユースケースを知りたい | [活用パターンガイド](./skill-use-cases) |
-| 設計判断 | [Skill設計ガイド](./creating-skills) |
-| 避けるべきパターン | [アンチパターン集](./anti-patterns) |
-| 実例を見たい | [実例ショーケース](./showcase) |
-| MCP vs Skillsの比較 | [MCP vs Skills](./vs-mcp) |
+| 目的                   | ドキュメント                               |
+| ---------------------- | ------------------------------------------ |
+| 新しいSkillを作成      | [スキル作成ガイド](./how-to-create-skills) |
+| ユースケースを知りたい | [活用パターンガイド](./skill-use-cases)    |
+| 設計判断               | [Skill設計ガイド](./creating-skills)       |
+| 避けるべきパターン     | [アンチパターン集](./anti-patterns)        |
+| 実例を見たい           | [実例ショーケース](./showcase)             |
+| MCP vs Skillsの比較    | [MCP vs Skills](./vs-mcp)                  |

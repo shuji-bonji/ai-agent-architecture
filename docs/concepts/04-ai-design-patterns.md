@@ -359,6 +359,93 @@ Chunks that Might Be Returned:
   ❌ "1000 indicates normal closure" (same category but different code)
 ```
 
+## Chapter 3.5: Where RAG Fits in the Architecture — What Should Users Do?
+
+After understanding how RAG works, a common question arises:
+
+> "I get that RAG is important. But **what should I actually do?**"
+
+To answer this, let's position RAG within this project's architecture.
+
+### 3.5.1 RAG Is a "Design Pattern," Not a "Standard"
+
+First, an important premise: **RAG is not a standardized protocol**.
+
+| Aspect | RAG | MCP | Skills |
+| --- | --- | --- | --- |
+| **Type** | Design pattern | Standard protocol (with spec) | Specification (Agent Skills Spec) |
+| **Standardization** | None (no RFC or W3C spec exists) | [modelcontextprotocol.io](https://modelcontextprotocol.io) | [agentskills.io](https://agentskills.io) |
+| **Implementation uniformity** | Vendor-specific (LangChain, LlamaIndex, Bedrock, etc.) | Standard SDKs (TypeScript/Python) | Standard format (SKILL.md) |
+| **Interoperability** | None | Yes (any agent can connect) | Yes (16+ agents supported) |
+
+In other words, RAG only has **conceptual consensus** — "retrieve, inject into context, generate" — while the concrete implementation is left to each vendor.
+
+### 3.5.2 RAG Is an Internal Processing Pipeline of the Agent
+
+RAG processing is executed as an **internal operation** of the agent, invisible to the user.
+
+```mermaid
+flowchart TB
+    subgraph USER_LAYER["What Users Control"]
+        SKILL["Skills\nDefine knowledge & criteria via SKILL.md"]
+        MCP_CONFIG["MCP\nDefine connections to external data sources"]
+        CLAUDE_MD["CLAUDE.md\nDefine project-wide rules"]
+    end
+
+    subgraph AGENT_LAYER["Agent Internals (Users Don't Touch)"]
+        RAG["RAG Pipeline\nRetrieval → Ranking → Injection"]
+        CTX["Context Window Management"]
+        TOOL["Tool Selection & Execution"]
+    end
+
+    SKILL -->|Loaded| AGENT_LAYER
+    MCP_CONFIG -->|Connected| AGENT_LAYER
+    CLAUDE_MD -->|Rules Applied| AGENT_LAYER
+
+    style USER_LAYER fill:#e8f5e9,color:#333,stroke:#4CAF50
+    style AGENT_LAYER fill:#fff3e0,color:#333,stroke:#FF9800
+    style RAG fill:#FFE0B2,color:#333
+```
+
+The key point here:
+
+- **Users define "what to search" and "what knowledge to use"** → via Skills and MCP
+- **The agent decides "how to search and how to inject"** → via the RAG pipeline
+
+Users don't operate RAG directly — they **benefit from RAG indirectly through Skills and MCP**.
+
+### 3.5.3 What Should Users Do?
+
+To maximize the benefits of RAG, here's what users can do:
+
+```mermaid
+flowchart LR
+    subgraph DO["What Users Should Do"]
+        S1["Write Skills\nDefine criteria & best practices\nin SKILL.md"]
+        S2["Configure MCP\nSet up connections to\nexternal data sources"]
+        S3["Write CLAUDE.md\nDocument project-specific\nrules & context"]
+    end
+
+    subgraph RESULT["Result"]
+        R["The agent leverages\nthis knowledge RAG-style\nto produce high-quality output"]
+    end
+
+    S1 --> R
+    S2 --> R
+    S3 --> R
+
+    style DO fill:#e3f2fd,color:#333,stroke:#1976D2
+    style RESULT fill:#e8f5e9,color:#333,stroke:#4CAF50
+```
+
+| Action | Concrete Steps | Relationship to RAG |
+| --- | --- | --- |
+| **Define Skills** | Write translation quality criteria, code review guidelines, spec compliance checklists as SKILL.md | Becomes the "static knowledge base" the agent references |
+| **Connect MCP** | Configure MCP servers for vector DBs, RFCs, legislation, DeepL, etc. | Becomes the "external data source" the agent searches |
+| **Write CLAUDE.md** | Document project policies, terminology, constraints | Constantly injected as the agent's "context" |
+
+> **Takeaway**: You don't need to build or control RAG yourself. Your role as a user is to tell the agent "what it should know" through **standardized interfaces** — Skills, MCP, and CLAUDE.md.
+
 ## Chapter 4: Essential Differences Between RAG and MCP
 
 ### 4.1 Fundamental Difference in Approach
