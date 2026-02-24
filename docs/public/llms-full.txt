@@ -96,7 +96,7 @@ graph TB
 
 ### Problems with the Traditional Approach
 
-```Mermaid
+```mermaid
 flowchart LR
     G[General Developers]
     Expert --> Books/Lectures --> G
@@ -108,7 +108,7 @@ flowchart LR
 
 ### The World MCP/Skills Enables
 
-```Mermaid
+```mermaid
 flowchart TB
   A["External Authoritative Sources<br>(RFC/Legislation/W3C)"]
   B["Domain Knowledge <br>(Design Principles/Standards)" ]
