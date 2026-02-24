@@ -393,6 +393,6 @@ This pattern emerged from community discussion on r/ClaudeAI and reflects real-w
 
 ## Related Documentation
 
-- [Skills Overview](./overview.md) - Skills overview
+- [What is Skills](./what-is-skills) - Skills overview
 - [MCP Catalog](../mcp/catalog.md) - Pre-built MCP catalog
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture

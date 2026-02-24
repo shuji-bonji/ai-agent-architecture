@@ -283,5 +283,5 @@ The following table provides a quick lookup for identifying and addressing each 
 ## Related Documentation
 
 - [MCP vs Skills](./vs-mcp.md) - Essential differences and selection criteria
-- [Skills Overview](./overview.md) - Skills overview
+- [What is Skills](./what-is-skills) - Skills overview
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture theory

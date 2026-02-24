@@ -1,12 +1,10 @@
-# Skill作成ガイド
+# Skill設計ガイド
 
-> 高品質なSkill定義の作成方法と、実践的なベストプラクティス。
+> いつ・どのようにSkillを設計するか — 判断基準と品質標準。
 
 ## このドキュメントについて
 
-Skillは、AIエージェントにドメイン知識・ガイドライン・判断基準を提供する静的なMarkdownファイルである。MCPが「何ができるか（ツール）」を提供するのに対し、Skillは「どう実行するか（知識）」を提供する。
-
-このドキュメントでは、Skillの設計から作成、テスト、メンテナンスまでのライフサイクルを実践的に解説する。既存のSkill（`translation-quality`）とテンプレートを基にしたガイドとなっている。
+このドキュメントでは、Skillの**設計と判断**に焦点を当てる。いつSkillを作るべきか、品質の高い構造設計、そして長期的なメンテナンス方法を解説する。実際の作成手順については [スキル作成ガイド](./how-to-create-skills) を参照。
 
 ## Skillの位置づけ
 
@@ -89,226 +87,7 @@ graph TB
     ANTI --> RELATED[Related MCPs<br/>関連MCP]
 ```
 
-## 作成手順
-
-### Step 1: メタデータ定義
-
-YAML Front Matterで基本情報を記述する。
-
-```yaml
----
-name: code-review
-description: TypeScript/Angularプロジェクトのコードレビューガイドライン
-version: 1.0.0
-owner: @shuji-bonji
-last_reviewed: 2026-02-11
----
-```
-
-| フィールド      | 必須 | 説明                                                    |
-| --------------- | ---- | ------------------------------------------------------- |
-| `name`          | ✅   | Skill識別子（kebab-case）                               |
-| `description`   | ✅   | 一行の説明                                              |
-| `version`       | ✅   | セマンティックバージョン                                |
-| `owner`         | ✅   | 責任者（更新担当）                                      |
-| `last_reviewed` | ✅   | 最終確認日（アンチパターン「更新されないSkill」の対策） |
-
-### Step 2: Purpose（目的）の記述
-
-「なぜこのSkillが必要か」を明確に書く。曖昧な記述はアンチパターン。
-
-```markdown
-## Purpose
-
-TypeScript/Angularプロジェクトにおけるコードレビューの品質と一貫性を確保する。
-
-### Why This Skill?
-
-- レビュアーによって観点がバラバラになりがち
-- SOLID原則やAngularのベストプラクティスへの準拠を自動チェックしたい
-- 新メンバーでも一定品質のレビューが可能になる
-```
-
-### Step 3: Inputs / Outputs の定義
-
-Skillが何を受け取り、何を生成するかを明示する。
-
-```markdown
-## Inputs
-
-| Input          | Type             | Description              |
-| -------------- | ---------------- | ------------------------ |
-| source_files   | TypeScript files | レビュー対象のファイル群 |
-| pr_description | Markdown         | PRの説明文               |
-| changed_lines  | diff             | 変更行の差分             |
-
-## Outputs
-
-| Output          | Type     | Description                         |
-| --------------- | -------- | ----------------------------------- |
-| review_report   | Markdown | レビュー結果レポート                |
-| action_items    | List     | 修正必須事項のリスト                |
-| approval_status | enum     | approve / request-changes / comment |
-```
-
-### Step 4: Constraints（制約）の定義
-
-RFC 2119のキーワード（MUST/SHOULD/MUST NOT）を用いて、明確な制約を定義する。
-
-```markdown
-## Constraints
-
-### MUST（必須）
-
-- ESLintエラーがゼロであることを確認する
-- 型安全性（any型の使用禁止）を検証する
-- テストカバレッジ80%以上を要求する
-
-### SHOULD（推奨）
-
-- 単一責任の原則（SRP）への準拠を確認する
-- RxJSのサブスクリプション管理を確認する
-- Angular のChangeDetectionStrategy.OnPushの使用を推奨する
-
-### MUST NOT（禁止）
-
-- セキュリティに関するレビューをスキップしない
-- テストなしのコードをapproveしない
-- console.log を本番コードに残さない
-```
-
-**ポイント**: 数値基準・具体的な条件を含めること。「良いコードを書きましょう」のような曖昧な記述はアンチパターン。
-
-### Step 5: Workflow（ワークフロー）の記述
-
-エージェントが実行する具体的な手順を記述する。
-
-```markdown
-## Workflow
-
-### Step 1: 変更内容の把握
-
-PRの説明文と変更ファイル一覧を確認し、変更の目的と範囲を理解する。
-
-### Step 2: 静的解析
-
-ESLint、TypeScriptコンパイラの結果を確認する。
-エラーがある場合は即座に `request-changes` とする。
-
-### Step 3: コード品質チェック
-
-以下の観点でコードを確認する
-
-1. SOLID原則への準拠
-2. Angular ベストプラクティス
-3. RxJS パターンの適切さ
-4. テストの網羅性
-
-### Step 4: レポート生成
-
-確認結果をMarkdownレポートとして出力する。
-```
-
-### Step 6: Decision Criteria（判断基準）の定義
-
-定量的な判断基準を表で明示する。
-
-```markdown
-## Decision Criteria
-
-| Condition          | Action                  | Rationale      |
-| ------------------ | ----------------------- | -------------- |
-| ESLintエラー > 0   | ❌ request-changes      | 基本品質未達   |
-| any型使用あり      | ❌ request-changes      | 型安全性違反   |
-| カバレッジ < 80%   | ⚠️ request-changes      | テスト不足     |
-| SRP違反の疑い      | 💬 comment              | 改善提案として |
-| 軽微なスタイル問題 | ✅ approve with comment | ブロックしない |
-```
-
-### Step 7: Examples（使用例）の記述
-
-具体的な入出力例を示す。エージェントはこの例を参考に動作する。
-
-```markdown
-## Examples
-
-### Example 1: ESLintエラーのあるPR
-
-**Input:**
-PRに `any` 型の使用が3箇所
-
-**Process:**
-
-1. ESLint結果確認 → エラー3件
-2. 型安全性チェック → 違反あり
-
-**Output:**
-❌ request-changes
-
-- `src/service.ts:25` - `any` → 適切な型に変更
-- `src/service.ts:42` - `any` → interface定義を推奨
-- `src/component.ts:15` - `any` → generic型の使用を推奨
-```
-
-### Step 8: Anti-Patterns（やってはいけない例）の記述
-
-```markdown
-## Anti-Patterns
-
-### パターン: スタイルだけのレビュー
-
-**問題のあるアプローチ:**
-インデントや命名のみ指摘し、ロジックの正しさを確認しない
-
-**なぜ問題か:** 本質的な問題を見逃す
-
-**正しいアプローチ:**
-ロジック → 設計 → 型安全性 → スタイル の順で確認
-```
-
-## テンプレートの活用
-
-テンプレートが `templates/skill/` に用意されている。
-
-```bash
-# テンプレートのコピー
-cp templates/skill/SKILL.ja.md.template .claude/skills/my-skill/SKILL.md
-```
-
-利用可能なテンプレートファイルは以下の通りである。
-
-| テンプレート       | パス                                                  |
-| ------------------ | ----------------------------------------------------- |
-| 日本語テンプレート | `templates/skill/SKILL.ja.md.template`                |
-| 英語テンプレート   | `templates/skill/SKILL.md.template`                   |
-| コードレビュー例   | `templates/skill/examples/code-review.ja.md`          |
-| 翻訳ワークフロー例 | `templates/skill/examples/translation-workflow.ja.md` |
-
-## 既存Skillの実例
-
-### translation-quality（実装済み）
-
-`.claude/skills/translation-quality/SKILL.md` に279行のSkill定義が存在する。
-
-```
-構成:
-├── メタデータ（name, version, owner, last_reviewed）
-├── Purpose + Why This Skill?
-├── Inputs / Outputs（テーブル形式）
-├── Constraints（MUST / SHOULD / MUST NOT）
-├── Workflow（5ステップ）
-├── Decision Criteria（平均スコア + セグメント別）
-├── Examples（2パターン：単一ファイル / ディレクトリ一括）
-├── Anti-Patterns（2パターン）
-└── Related MCPs（xcomet, deepl）
-```
-
-**学べるポイント**:
-
-- 閾値が明確（0.85, 0.90, 0.95）
-- ワークフローが具体的（5ステップ）
-- 出力例がそのまま埋め込み可能なMarkdown形式
-- 関連MCPとの連携が明示的
+> **実際に作り始める準備ができたら？** 各セクションの書き方を [スキル作成ガイド](./how-to-create-skills) で解説しています。
 
 ## Skill品質チェックリスト
 
@@ -390,7 +169,7 @@ npx skills add ./my-skills -a claude-code
 npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 ```
 
-> 詳細は [Skills概要](./overview) の「Vercel Skills CLIとの統合」を参照
+> 詳細は [スキル導入・利用ガイド](./how-to-use-skills) でCLIの完全ガイドとプロジェクト導入手順を解説しています。
 
 ## ロードマップ上の目標
 
@@ -412,19 +191,20 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 | rfc-compliance       | RFC準拠チェックのガイドライン    | ⭐⭐⭐⭐ | rfcxml        |
 | code-review          | TypeScript/Angularレビュー規約   | ⭐⭐⭐   | —             |
 
-## 関連ドキュメント
+## 次に読むべきドキュメント
 
-Skill作成に関連するドキュメントを以下に示す。
-
-- [Skills概要](./overview) — Vercel Skills / Agent Skills Specification
-- [MCP vs Skills 選択判断ガイド](./vs-mcp) — 何をSkillにすべきか
-- [アンチパターン集](./anti-patterns) — 避けるべきパターン
-- [MCP/Skills/Agentの構成論](../concepts/03-architecture) — 三層アーキテクチャ
-- [連携パターン・ワークフロー](../workflows/patterns) — Skill+MCPの組み合わせ例
+| 目的                              | ドキュメント                                                  |
+| --------------------------------- | ------------------------------------------------------------- |
+| 実際にSkillを作成する             | [スキル作成ガイド](./how-to-create-skills)                    |
+| プロジェクトにSkillsを導入する    | [スキル導入・利用ガイド](./how-to-use-skills)                 |
+| ユースケースを知りたい            | [活用パターンガイド](./skill-use-cases)                       |
+| MCP vs Skillsの判断               | [MCP vs Skills 選択判断ガイド](./vs-mcp)                      |
+| 避けるべきパターン                | [アンチパターン集](./anti-patterns)                           |
+| 実例を見たい                      | [実例ショーケース](./showcase)                                |
+| 全体アーキテクチャ                | [アーキテクチャ](../concepts/03-architecture)                 |
+| Skill+MCPの組み合わせ例           | [連携パターン](../workflows/patterns)                         |
 
 ## 参考リンク
-
-参考になる外部リンクを以下に示す。
 
 - [Agent Skills Specification](https://agentskills.io) — 標準仕様
 - [Vercel Skills CLI](https://github.com/vercel-labs/skills) — CLI ツール

@@ -361,6 +361,6 @@ CLIをMCPの代わりに使う場合、
 
 MCPとSkillsの選択判断に関連するドキュメントを以下に示す。
 
-- [Skills Overview](./overview.md) - Skills 概要
+- [Skillsとは](./what-is-skills) - Skills 概要
 - [MCP Catalog](../mcp/catalog.md) - 構築済みMCPカタログ
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論

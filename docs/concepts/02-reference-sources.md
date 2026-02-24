@@ -8,7 +8,7 @@ In AI-driven development, the quality of AI output is determined by "what it ref
 
 By converting authoritative information sources such as RFCs, W3C specifications, and legislation into [MCP](https://modelcontextprotocol.io/) format, AI output can have **verifiable evidence**. This enables a development environment where the question "Is what the AI says really true?" can always be answered by pointing to the original source.
 
-> **Note**: This document primarily covers "external authoritative information sources." For team domain knowledge and best practices, see [Skills](../skills/overview.md). For the distinction between MCP and Skills, see [vs-mcp.md](../skills/vs-mcp.md).
+> **Note**: This document primarily covers "external authoritative information sources." For team domain knowledge and best practices, see [Skills](../skills/what-is-skills). For the distinction between MCP and Skills, see [vs-mcp.md](../skills/vs-mcp.md).
 
 ## Chapter 1: Why Does AI "Fluctuate"?
 

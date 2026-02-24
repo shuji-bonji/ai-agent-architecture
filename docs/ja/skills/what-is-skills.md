@@ -280,19 +280,22 @@ flowchart TD
 
 Skillsについてさらに深く学ぶために、以下のドキュメントを参照してほしい。
 
-| 目的                | ドキュメント                                         |
-| ------------------- | ---------------------------------------------------- |
-| Skillを作りたい     | [creating-skills.md](./creating-skills.md)           |
-| MCP vs Skillsの判断 | [vs-mcp.md](./vs-mcp.md)                             |
-| アンチパターン      | [anti-patterns.md](./anti-patterns.md)               |
-| MCPについて知りたい | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
-| 全体アーキテクチャ  | [03-architecture.md](../concepts/03-architecture.md) |
-| overview（英語版）  | [overview.md](./overview.md)                         |
+| 目的                           | ドキュメント                                         |
+| ------------------------------ | ---------------------------------------------------- |
+| 設計判断・計画                 | [Skill設計ガイド](./creating-skills)                 |
+| 実際にSkillを作成する          | [スキル作成ガイド](./how-to-create-skills)           |
+| プロジェクトにSkillsを導入する | [スキル導入・利用ガイド](./how-to-use-skills)        |
+| ユースケースを知りたい         | [活用パターンガイド](./skill-use-cases)              |
+| MCP vs Skillsの判断            | [MCP vs Skills](./vs-mcp)                            |
+| 避けるべきパターン             | [アンチパターン集](./anti-patterns)                  |
+| 実例を見たい                   | [実例ショーケース](./showcase)                       |
+| MCPについて知りたい            | [MCPとは](../mcp/what-is-mcp)                        |
+| 全体アーキテクチャ             | [アーキテクチャ](../concepts/03-architecture)        |
 
-**最終更新**: 2025年2月
+**最終更新**: 2026年2月
 
 **関連リソース**:
 
 - [Agent Skills Specification](https://agentskills.io)
 - [Vercel Labs Skills GitHub](https://github.com/vercel-labs/skills)
-- [Skill作成ガイド](./creating-skills.md)
+- [Skill設計ガイド](./creating-skills)

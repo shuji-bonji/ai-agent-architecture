@@ -264,7 +264,7 @@ In AI-driven development, the quality of AI output is determined by "what it ref
 
 By converting authoritative information sources such as RFCs, W3C specifications, and legislation into [MCP](https://modelcontextprotocol.io/) format, AI output can have **verifiable evidence**. This enables a development environment where the question "Is what the AI says really true?" can always be answered by pointing to the original source.
 
-> **Note**: This document primarily covers "external authoritative information sources." For team domain knowledge and best practices, see [Skills](../skills/overview.md). For the distinction between MCP and Skills, see [vs-mcp.md](../skills/vs-mcp.md).
+> **Note**: This document primarily covers "external authoritative information sources." For team domain knowledge and best practices, see [Skills](../skills/what-is-skills). For the distinction between MCP and Skills, see [vs-mcp.md](../skills/vs-mcp.md).
 
 ## Chapter 1: Why Does AI "Fluctuate"?
 
@@ -4931,7 +4931,7 @@ To learn more about Skills, explore the following documents.
 | Anti-patterns                  | [anti-patterns.md](./anti-patterns.md)               |
 | Learn about MCPs               | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
 | Overall architecture           | [03-architecture.md](../concepts/03-architecture.md) |
-| English overview               | [overview.md](./overview.md)                         |
+| What is Skills (intro)         | [what-is-skills.md](./what-is-skills.md)             |
 
 **Last Updated**: February 2025
 
@@ -5344,7 +5344,7 @@ npx skills add ./my-skills -a claude-code
 npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 ```
 
-> For details, see [Skills Overview](./overview.md) "Vercel Skills CLI Integration"
+> For details, see [What is Skills](./what-is-skills) "Vercel Skills CLI Integration"
 
 ## Roadmap Goals
 
@@ -5370,7 +5370,7 @@ The following Skills are identified as high-priority candidates for future devel
 
 ## Related Documents
 
-- [Skills Overview](./overview.md) — Vercel Skills / Agent Skills Specification
+- [What is Skills](./what-is-skills) — Vercel Skills / Agent Skills Specification
 - [MCP vs Skills Decision Guide](./vs-mcp.md) — What should be a Skill?
 - [Anti-Patterns Guide](./anti-patterns.md) — Patterns to avoid
 - [MCP/Skills/Agent Architecture](../concepts/03-architecture.md) — Three-layer architecture
@@ -5784,7 +5784,7 @@ This pattern emerged from community discussion on r/ClaudeAI and reflects real-w
 
 ## Related Documentation
 
-- [Skills Overview](./overview.md) - Skills overview
+- [What is Skills](./what-is-skills) - Skills overview
 - [MCP Catalog](../mcp/catalog.md) - Pre-built MCP catalog
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture
 
@@ -6079,7 +6079,7 @@ The following table provides a quick lookup for identifying and addressing each 
 ## Related Documentation
 
 - [MCP vs Skills](./vs-mcp.md) - Essential differences and selection criteria
-- [Skills Overview](./overview.md) - Skills overview
+- [What is Skills](./what-is-skills) - Skills overview
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture theory
 
 ---

@@ -38,7 +38,10 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'Skillsとは', link: '/ja/skills/what-is-skills' },
-            { text: 'スキル作成', link: '/ja/skills/creating-skills' },
+            { text: 'Skill設計ガイド', link: '/ja/skills/creating-skills' },
+            { text: 'スキル作成ガイド', link: '/ja/skills/how-to-create-skills' },
+            { text: 'スキル導入・利用', link: '/ja/skills/how-to-use-skills' },
+            { text: '活用パターン', link: '/ja/skills/skill-use-cases' },
             { text: 'アンチパターン', link: '/ja/skills/anti-patterns' },
             { text: 'MCP vs Skills', link: '/ja/skills/vs-mcp' },
             { text: '実例ショーケース', link: '/ja/skills/showcase' },

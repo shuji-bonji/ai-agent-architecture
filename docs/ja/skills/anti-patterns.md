@@ -247,5 +247,5 @@ last_reviewed: 2025-01-15
 アンチパターンの理解を深めるための関連ドキュメントを以下に示す。
 
 - [MCP vs Skills](./vs-mcp.md) - 本質的な違いと選択判断
-- [Skills Overview](./overview.md) - Skills 概要
+- [Skillsとは](./what-is-skills) - Skills 概要
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論

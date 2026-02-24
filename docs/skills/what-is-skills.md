@@ -280,19 +280,22 @@ We provide templates to help you create new Skills quickly.
 
 To learn more about Skills, explore the following documents.
 
-| Purpose                        | Document                                             |
-| ------------------------------ | ---------------------------------------------------- |
-| Want to create a Skill         | [creating-skills.md](./creating-skills.md)           |
-| Deciding between MCP vs Skills | [vs-mcp.md](./vs-mcp.md)                             |
-| Anti-patterns                  | [anti-patterns.md](./anti-patterns.md)               |
-| Learn about MCPs               | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
-| Overall architecture           | [03-architecture.md](../concepts/03-architecture.md) |
-| English overview               | [overview.md](./overview.md)                         |
+| Purpose                          | Document                                             |
+| -------------------------------- | ---------------------------------------------------- |
+| Design decisions and planning    | [Skill Design Guide](./creating-skills)              |
+| Create a Skill step-by-step     | [How to Create Skills](./how-to-create-skills)       |
+| Integrate Skills into a project  | [How to Use Skills](./how-to-use-skills)             |
+| Explore real use cases           | [Skill Use Cases](./skill-use-cases)                 |
+| Deciding between MCP vs Skills   | [MCP vs Skills](./vs-mcp)                            |
+| Anti-patterns to avoid           | [Anti-Patterns Guide](./anti-patterns)               |
+| See production examples          | [Showcase](./showcase)                               |
+| Learn about MCPs                 | [What is MCP](../mcp/what-is-mcp)                    |
+| Overall architecture             | [Architecture](../concepts/03-architecture)          |
 
-**Last Updated**: February 2025
+**Last Updated**: February 2026
 
 **Related Resources**:
 
 - [Agent Skills Specification](https://agentskills.io)
 - [Vercel Labs Skills GitHub](https://github.com/vercel-labs/skills)
-- [Skill Creation Guide](./creating-skills.md)
+- [Skill Design Guide](./creating-skills)

@@ -13,6 +13,9 @@ hero:
       text: What is MCP?
       link: /mcp/what-is-mcp
     - theme: alt
+      text: What is Skills?
+      link: /skills/what-is-skills
+    - theme: alt
       text: View on GitHub
       link: https://github.com/shuji-bonji/ai-agent-architecture
 

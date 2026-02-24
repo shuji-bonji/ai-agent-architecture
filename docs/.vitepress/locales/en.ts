@@ -38,7 +38,10 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'What is Skills', link: '/skills/what-is-skills' },
-            { text: 'Creating Skills', link: '/skills/creating-skills' },
+            { text: 'Skill Design Guide', link: '/skills/creating-skills' },
+            { text: 'How to Create Skills', link: '/skills/how-to-create-skills' },
+            { text: 'How to Use Skills', link: '/skills/how-to-use-skills' },
+            { text: 'Skill Use Cases', link: '/skills/skill-use-cases' },
             { text: 'Anti-patterns', link: '/skills/anti-patterns' },
             { text: 'MCP vs Skills', link: '/skills/vs-mcp' },
             { text: 'Showcase', link: '/skills/showcase' },

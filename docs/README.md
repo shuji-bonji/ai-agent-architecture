@@ -19,10 +19,13 @@ docs/
 │   ├── security.md
 │   └── development.md (planned)
 ├── skills/           # Skills (Domain Knowledge)
-│   ├── overview.md
+│   ├── what-is-skills.md  # What is Skills (intro)
+│   ├── creating-skills.md # Skill Design Guide
+│   ├── how-to-create-skills.md # Creation Tutorial
+│   ├── how-to-use-skills.md    # Usage Guide
+│   ├── skill-use-cases.md      # Use Case Patterns
 │   ├── vs-mcp.md     # Selection Decision Guide
-│   ├── anti-patterns.md
-│   └── creating-skills.md (planned)
+│   └── anti-patterns.md
 ├── strategy/          # Construction Strategy
 │   ├── mcp-roadmap.md          # MCP Construction Roadmap
 │   ├── skill-roadmap.md        # Skill Construction Roadmap
@@ -72,7 +75,11 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 
 | File                                               | Content                              |
 | -------------------------------------------------- | ------------------------------------ |
-| [skills/overview.md](./skills/overview.md)         | Vercel Skills and Agent Skills Spec  |
+| [skills/what-is-skills.md](./skills/what-is-skills.md) | What is Skills — Introduction |
+| [skills/creating-skills.md](./skills/creating-skills.md) | Skill Design Guide |
+| [skills/how-to-create-skills.md](./skills/how-to-create-skills.md) | Step-by-step Creation Tutorial |
+| [skills/how-to-use-skills.md](./skills/how-to-use-skills.md) | Project Integration Guide |
+| [skills/skill-use-cases.md](./skills/skill-use-cases.md) | Use Case Patterns |
 | [skills/vs-mcp.md](./skills/vs-mcp.md)             | MCP vs Skills Selection Decision Guide |
 | [skills/anti-patterns.md](./skills/anti-patterns.md) | MCP/Skills Anti-patterns Collection  |
 

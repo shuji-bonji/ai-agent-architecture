@@ -20,11 +20,13 @@ docs/
 │   ├── security.md
 │   └── development.md
 ├── skills/           # Skills（ドメイン知識）
-│   ├── what-is-skills.md  # Skillsとは何か（入門・overview統合）
-│   ├── overview.md        # → what-is-skills.md に統合済み
-│   ├── vs-mcp.md          # 選択判断ガイド
-│   ├── anti-patterns.md
-│   └── creating-skills.md
+│   ├── what-is-skills.md       # Skillsとは何か（入門）
+│   ├── creating-skills.md      # Skill設計ガイド
+│   ├── how-to-create-skills.md # スキル作成チュートリアル
+│   ├── how-to-use-skills.md    # スキル導入・利用ガイド
+│   ├── skill-use-cases.md      # 活用パターン
+│   ├── vs-mcp.md               # 選択判断ガイド
+│   └── anti-patterns.md
 ├── agents/           # エージェント間連携
 │   ├── what-is-a2a.md        # A2Aとは何か（入門）
 │   └── what-is-subagent.md   # サブエージェントとは何か（入門）
@@ -79,11 +81,13 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 | ファイル                                           | 内容                             |
 | -------------------------------------------------- | -------------------------------- |
-| [skills/what-is-skills.md](./skills/what-is-skills.md) | **Skillsとは何か（入門・overview統合）** |
-| [skills/overview.md](./skills/overview.md)         | ~~Vercel Skills概要~~ → what-is-skills.md に統合 |
+| [skills/what-is-skills.md](./skills/what-is-skills.md) | Skillsとは何か（入門） |
+| [skills/creating-skills.md](./skills/creating-skills.md) | Skill設計ガイド |
+| [skills/how-to-create-skills.md](./skills/how-to-create-skills.md) | スキル作成チュートリアル |
+| [skills/how-to-use-skills.md](./skills/how-to-use-skills.md) | スキル導入・利用ガイド |
+| [skills/skill-use-cases.md](./skills/skill-use-cases.md) | 活用パターン |
 | [skills/vs-mcp.md](./skills/vs-mcp.md)             | MCP vs Skills 選択判断ガイド     |
 | [skills/anti-patterns.md](./skills/anti-patterns.md)       | MCP/Skills アンチパターン集      |
-| [skills/creating-skills.md](./skills/creating-skills.md)   | Skill作成ガイド                  |
 
 ### Agents（エージェント間連携）
 
