@@ -8,7 +8,7 @@ Implementing generative AI (LLM) in practical systems requires more than the cap
 
 This document provides an overview of major design patterns and carefully explains the differences between RAG (Retrieval-Augmented Generation) and MCP. The goal is to answer questions like "What's the difference between RAG and MCP?" and "Why does this project choose MCP?"
 
-## Chapter 1: LLM's "Knowledge Limitations" — Why External Knowledge is Needed
+## LLM's "Knowledge Limitations" — Why External Knowledge is Needed
 
 LLMs are probabilistic generative models trained on massive amounts of text data. They possess remarkably broad knowledge, but have clear limitations (see Chapter 1 of [02-reference-sources.md](./02-reference-sources.md) for details).
 
@@ -29,7 +29,7 @@ LLM Knowledge
 
 Various design patterns have been devised to address this "missing knowledge."
 
-## Chapter 2: Major AI Design Patterns
+## Major AI Design Patterns
 
 ### 2.1 Overview of Patterns
 
@@ -242,7 +242,7 @@ graph TB
 
 For example, a system where Agentic AI receives appropriate instructions through Prompt Engineering, searches internal documents through RAG as needed, and confirms standard specifications through MCP is entirely plausible.
 
-## Chapter 3: Deep Dive into RAG
+## Deep Dive into RAG
 
 ### 3.1 How RAG Works
 
@@ -359,7 +359,7 @@ Chunks that Might Be Returned:
   ❌ "1000 indicates normal closure" (same category but different code)
 ```
 
-## Chapter 3.5: Where RAG Fits in the Architecture — What Should Users Do?
+## Where RAG Fits in the Architecture — What Should Users Do?
 
 After understanding how RAG works, a common question arises:
 
@@ -446,7 +446,7 @@ flowchart LR
 
 > **Takeaway**: You don't need to build or control RAG yourself. Your role as a user is to tell the agent "what it should know" through **standardized interfaces** — Skills, MCP, and CLAUDE.md.
 
-## Chapter 4: Essential Differences Between RAG and MCP
+## Essential Differences Between RAG and MCP
 
 ### 4.1 Fundamental Difference in Approach
 
@@ -578,7 +578,7 @@ Sharing MCP Server:
 | **Quality Consistency** | Depends on builder's skills          | Developer ensures quality               |
 | **Maintenance**         | Each organization handles separately | Developer updates centrally             |
 
-## Chapter 5: MCP Servers in This Project vs RAG
+## MCP Servers in This Project vs RAG
 
 ### 5.1 "Isn't This Just RAG in Disguise?" Question
 
@@ -617,7 +617,7 @@ sequenceDiagram
     AI-->>U: ✅ MUST requirements: 47<br/>✅ SHOULD requirements: 23<br/>✅ Implementation checklist included<br/>✅ Source section specified
 ```
 
-## Chapter 6: When to Use RAG vs MCP
+## When to Use RAG vs MCP
 
 ### 6.1 Decision Flow
 
@@ -686,7 +686,7 @@ sequenceDiagram
     AI-->>U: Internal policy: 〇〇 (Source: Internal Wiki)<br/>Standard requirements: △△ (Source: RFC 6455 §5.2)<br/>⚠️ Differences between policy and RFC requirements: ...
 ```
 
-## Chapter 7: Why This Project Chooses MCP
+## Why This Project Chooses MCP
 
 ### 7.1 Alignment with Project Philosophy
 

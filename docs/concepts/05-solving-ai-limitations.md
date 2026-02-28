@@ -60,7 +60,7 @@ flowchart TB
 | **Authority**      | △ Mitigable, Not Completely Solvable    | AI output is ultimately "one interpretation" and cannot become official authority                              |
 | **Accountability** | ✗ Not Solvable by Technology Alone      | This is a matter of legal and ethical institutional design; technology only provides the foundation            |
 
-## Chapter 1: Solving Currency — The Constraint with the Clearest Solutions
+## Solving Currency — The Constraint with the Clearest Solutions
 
 ### 1.1 The Nature of the Problem
 
@@ -117,7 +117,7 @@ For organizational documents, ensuring currency is possible by regularly updatin
 
 Currency is **the constraint with the clearest solution among the four**, and can be practically solved by combining appropriate tools. The remaining challenge is "the practical difficulty of covering all information sources in real-time," which is manageable as an operational issue.
 
-## Chapter 2: Mitigating Accuracy — Complete Elimination is Impossible in Principle
+## Mitigating Accuracy — Complete Elimination is Impossible in Principle
 
 ### 2.1 The Nature of the Problem
 
@@ -200,7 +200,7 @@ Establish a human review process as final quality assurance. Especially critical
 
 Complete accuracy assurance is **impossible in principle**, but by combining the above approaches, we can significantly reduce practical risks. The key is building a culture that "doesn't simply trust AI output" and creating verifiable workflows.
 
-## Chapter 3: Ensuring Authority — Risk Management Rather Than Complete Solution
+## Ensuring Authority — Risk Management Rather Than Complete Solution
 
 ### 3.1 The Nature of the Problem
 
@@ -283,7 +283,7 @@ sequenceDiagram
 
 Rather than "completely solving" authority, the mindset of **managing it as a risk** is important. AI **improves efficiency** of access to authoritative information sources but cannot **replace** the authority itself.
 
-## Chapter 4: Ensuring Accountability — The Intersection of Technology and Institutional Design
+## Ensuring Accountability — The Intersection of Technology and Institutional Design
 
 ### 4.1 The Nature of the Problem
 
@@ -388,7 +388,7 @@ Accountability is **an area of institutional design beyond technology**. Technol
 
 What individuals and small teams can do now is **establish technological foundations as much as possible and prepare for future institutional design**. This project's MCP approach (open-source, explicit sourcing, structured access) is precisely building this foundation.
 
-## Chapter 5: Overall Picture of Four Approaches
+## Overall Picture of Four Approaches
 
 ### 5.1 Summary Table
 

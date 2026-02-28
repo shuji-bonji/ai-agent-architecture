@@ -10,7 +10,7 @@ By converting authoritative information sources such as RFCs, W3C specifications
 
 > **Note**: This document primarily covers "external authoritative information sources." For team domain knowledge and best practices, see [Skills](../skills/what-is-skills). For the distinction between MCP and Skills, see [vs-mcp.md](../skills/vs-mcp.md).
 
-## Chapter 1: Why Does AI "Fluctuate"?
+## Why Does AI "Fluctuate"?
 
 ### 1.1 The Nature of Probabilistic Generation
 
@@ -173,7 +173,7 @@ graph TB
 
 These accountability issues create significant challenges for risk management and compliance.
 
-## Chapter 2: What Are "Authoritative Reference Sources"?
+## What Are "Authoritative Reference Sources"?
 
 ### 2.1 Definition
 
@@ -375,7 +375,7 @@ flowchart TB
     style LOW fill:#ff9999,color:#333
 ```
 
-## Chapter 3: Hierarchical Structure of Reference Sources
+## Hierarchical Structure of Reference Sources
 
 ### 3.1 The Four-Layer Model
 
@@ -471,7 +471,7 @@ Recommendations based on experience. **Apply as appropriate to the situation**. 
 | **Design Patterns**   | GoF, POSA        | When matching the problem |
 | **Clean Code**        | Robert C. Martin | Within team agreement     |
 
-## Chapter 4: AI Decision Flow
+## AI Decision Flow
 
 ### 4.1 Decision Algorithm Based on Reference Sources
 
@@ -542,7 +542,7 @@ this is not defined by any standard.
 If precise specifications are needed, I recommend checking~.
 ```
 
-## Chapter 5: Design Requirements for Reference Source MCPs
+## Design Requirements for Reference Source MCPs
 
 ### 5.0 Separation of MCP and Skills
 
@@ -596,7 +596,7 @@ interface RfcMcpTools {
 }
 ```
 
-## Chapter 6: Concrete Example — Electronic Signature Act × RFC 3161
+## Concrete Example — Electronic Signature Act × RFC 3161
 
 ### 6.1 Mapping Legal Requirements to Technical Specifications
 
@@ -637,7 +637,7 @@ sequenceDiagram
     AI-->>User: Compliance report<br/>+ Checklist
 ```
 
-## Chapter 7: Resolving Reference Source Conflicts
+## Resolving Reference Source Conflicts
 
 ### 7.1 Conflict Resolution Rules
 
@@ -654,7 +654,7 @@ sequenceDiagram
 ✅ RFC 9111 (HTTP Caching - current)
 ```
 
-## Chapter 8: List of Built Reference Source MCPs
+## List of Built Reference Source MCPs
 
 | MCP            | Target                        | Main Functions                                                     | Repository                                          |
 | -------------- | ----------------------------- | ------------------------------------------------------------------ | --------------------------------------------------- |
@@ -662,7 +662,7 @@ sequenceDiagram
 | **w3c-mcp**    | W3C/WHATWG/IETF Web Standards | WebIDL, CSS, HTML elements                                         | [GitHub](https://github.com/shuji-bonji/w3c-mcp)    |
 | **hourei-mcp** | Japanese Laws (e-Gov)         | Law search, article retrieval                                      | [GitHub](https://github.com/ryoooo/e-gov-law-mcp)   |
 
-## Chapter 9: Future Expansion Candidates
+## Future Expansion Candidates
 
 ### High Priority
 
