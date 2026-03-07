@@ -204,7 +204,7 @@ graph TB
 
 ## Basic flow of MCP, Skills, and Agent
 
-Here is the fundamental flow that shows how user input flows through the agent core and tool integrations to produce results:
+Here is the fundamental flow that shows how user input flows through the agent core and tool integrations to produce results. For the governance layer (judgment criteria, constraints, and objectives) that governs all these layers, see the [Doctrine Layer](./07-doctrine-and-intent).
 
 ```mermaid
 graph TB
@@ -250,3 +250,4 @@ This repository is a place to organize the design philosophy, architecture, and 
 4. **Standards-based MCPs are the foundation** - Democratize access to RFC, W3C, legislation, etc.
 5. **Share domain knowledge via Skills** - Make team know-how reusable
 6. **Bidirectional knowledge transformation** - Human→AI (structuring), AI→Human (comprehension support)
+7. **Explicit judgment criteria** - Define constraints, objectives, and judgment criteria via the [Doctrine Layer](./07-doctrine-and-intent) to enable autonomous AI decision-making

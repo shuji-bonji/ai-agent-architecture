@@ -467,3 +467,4 @@ AIの制約を「すべて技術で解決する」ことはできない。
 - [03-architecture.md](./03-architecture) — MCP/Skills/Agentの構成論
 - [04-ai-design-patterns.md](./04-ai-design-patterns) — RAG/MCP等の設計パターン比較
 - [mcp/what-is-mcp.md](../mcp/what-is-mcp) — MCPの詳細
+- [07-doctrine-and-intent.md](./07-doctrine-and-intent) — ドクトリン層：制約・目的・判断基準

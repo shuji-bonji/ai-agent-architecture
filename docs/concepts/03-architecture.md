@@ -37,6 +37,10 @@ block-beta
     style MCP fill:#FFB6C1,color:#333,stroke:#333
 ```
 
+::: tip Doctrine Layer
+These three layers define **what AI knows** and **what AI can do**. The question of **on what basis AI judges and decides** is addressed by the [Doctrine Layer](./07-doctrine-and-intent), which governs all three layers through shared objectives, constraints, and judgment criteria.
+:::
+
 ### Layer Responsibilities
 
 Each layer has distinct ownership and responsibility areas:
@@ -573,7 +577,7 @@ sequenceDiagram
 
 ## Layer Structure Summary
 
-The following layered structure shows how all components integrate:
+The following layered structure shows how all components integrate. Note that the [Doctrine Layer](./07-doctrine-and-intent) (constraints, objectives, judgment criteria) implicitly governs all layers shown below:
 
 ```mermaid
 block-beta

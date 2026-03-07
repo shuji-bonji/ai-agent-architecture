@@ -362,5 +362,11 @@ CLIをMCPの代わりに使う場合、
 MCPとSkillsの選択判断に関連するドキュメントを以下に示す。
 
 - [Skillsとは](./what-is-skills) - Skills 概要
+- [Skill設計ガイド](./creating-skills) - いつ・どのようにSkillを設計するか
+- [スキル作成ガイド](./how-to-create-skills) - ステップバイステップ作成チュートリアル
+- [スキル導入・利用ガイド](./how-to-use-skills) - インストールとプロジェクト導入
+- [活用パターンガイド](./skill-use-cases) - ユースケースと役割分担
+- [アンチパターン集](./anti-patterns) - 共通の失敗パターン
+- [実例ショーケース](./showcase) - プロダクション実例
 - [MCP Catalog](../mcp/catalog.md) - 構築済みMCPカタログ
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論

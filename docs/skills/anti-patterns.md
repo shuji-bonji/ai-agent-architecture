@@ -284,4 +284,9 @@ The following table provides a quick lookup for identifying and addressing each 
 
 - [MCP vs Skills](./vs-mcp.md) - Essential differences and selection criteria
 - [What is Skills](./what-is-skills) - Skills overview
+- [Skill Design Guide](./creating-skills) - When and how to design Skills
+- [How to Create Skills](./how-to-create-skills) - Step-by-step creation guide
+- [How to Use Skills](./how-to-use-skills) - Installation and project integration
+- [Skill Use Cases](./skill-use-cases) - Use case patterns and role separation
+- [Showcase](./showcase) - Production examples
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture theory

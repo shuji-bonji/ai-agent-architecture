@@ -204,3 +204,13 @@ quadrantChart
 ```
 
 Skills start with the simple definition of "knowledge written in Markdown," but in practice they encompass diverse design patterns: bundled data files, companion scripts, MCP integration definitions, and Plugin distribution. The key insight is that **the essence of a Skill (providing knowledge to agents) remains constant across all patterns**.
+
+## Related Documentation
+
+- [What is Skills](./what-is-skills) - Skills overview
+- [Skill Design Guide](./creating-skills) - When and how to design Skills
+- [How to Create Skills](./how-to-create-skills) - Step-by-step creation guide
+- [How to Use Skills](./how-to-use-skills) - Installation and project integration
+- [Skill Use Cases](./skill-use-cases) - Use case patterns and role separation
+- [Anti-Patterns Guide](./anti-patterns) - Common failure patterns to avoid
+- [MCP vs Skills](./vs-mcp) - Essential differences and selection criteria

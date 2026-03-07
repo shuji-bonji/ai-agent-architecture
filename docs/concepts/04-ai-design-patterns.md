@@ -756,3 +756,4 @@ MCP's appropriate use:  "Want to get accurate information from specific standard
 - [03-architecture.md](./03-architecture.md) — Composition theory of MCP/Skills/Agents
 - [mcp/what-is-mcp.md](../mcp/what-is-mcp.md) — MCP details
 - [skills/vs-mcp.md](../skills/vs-mcp.md) — Choosing between MCP and Skills
+- [07-doctrine-and-intent.md](./07-doctrine-and-intent) — Doctrine Layer: constraints, objectives, and judgment criteria

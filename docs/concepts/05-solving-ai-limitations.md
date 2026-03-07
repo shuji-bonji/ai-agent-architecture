@@ -465,3 +465,4 @@ This project's MCP approach contributes partially to all four constraints. Parti
 - [03-architecture.md](./03-architecture.md) — Composition of MCP/Skills/Agent
 - [04-ai-design-patterns.md](./04-ai-design-patterns.md) — Comparison of design patterns like RAG/MCP
 - [mcp/what-is-mcp.md](../mcp/what-is-mcp.md) — Details about MCP
+- [07-doctrine-and-intent.md](./07-doctrine-and-intent) — Doctrine Layer: constraints, objectives, and judgment criteria

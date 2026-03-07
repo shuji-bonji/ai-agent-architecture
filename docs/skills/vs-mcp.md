@@ -394,5 +394,11 @@ This pattern emerged from community discussion on r/ClaudeAI and reflects real-w
 ## Related Documentation
 
 - [What is Skills](./what-is-skills) - Skills overview
+- [Skill Design Guide](./creating-skills) - When and how to design Skills
+- [How to Create Skills](./how-to-create-skills) - Step-by-step creation guide
+- [How to Use Skills](./how-to-use-skills) - Installation and project integration
+- [Skill Use Cases](./skill-use-cases) - Use case patterns and role separation
+- [Anti-Patterns Guide](./anti-patterns) - Common failure patterns to avoid
+- [Showcase](./showcase) - Production examples
 - [MCP Catalog](../mcp/catalog.md) - Pre-built MCP catalog
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture

@@ -248,4 +248,9 @@ last_reviewed: 2025-01-15
 
 - [MCP vs Skills](./vs-mcp.md) - 本質的な違いと選択判断
 - [Skillsとは](./what-is-skills) - Skills 概要
+- [Skill設計ガイド](./creating-skills) - いつ・どのようにSkillを設計するか
+- [スキル作成ガイド](./how-to-create-skills) - ステップバイステップ作成チュートリアル
+- [スキル導入・利用ガイド](./how-to-use-skills) - インストールとプロジェクト導入
+- [活用パターンガイド](./skill-use-cases) - ユースケースと役割分担
+- [実例ショーケース](./showcase) - プロダクション実例
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論
