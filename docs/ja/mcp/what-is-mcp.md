@@ -1,3 +1,18 @@
+---
+title: "MCPとは？Model Context Protocolの仕組みとAIエージェントでの活用"
+description: "MCP（Model Context Protocol）はAnthropicが策定したAIエージェント連携の標準規格です。MCPサーバーの仕組み、Claude CodeやCursorでの使い方、Skillsとの違いをわかりやすく解説します。"
+head:
+  - - meta
+    - property: "og:title"
+      content: "MCPとは？Model Context Protocolの仕組みとAIエージェントでの活用"
+  - - meta
+    - property: "og:description"
+      content: "MCP（Model Context Protocol）はAnthropicが策定したAIエージェント連携の標準規格です。MCPサーバーの仕組み、Claude CodeやCursorでの使い方、Skillsとの違いをわかりやすく解説します。"
+  - - meta
+    - name: "twitter:card"
+      content: "summary_large_image"
+---
+
 # MCPとは何か
 
 > AIエージェントが外部ツールやデータに安全にアクセスするための標準プロトコル

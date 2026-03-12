@@ -1,10 +1,12 @@
 ---
 layout: home
+title: "AI Agent Architecture — MCP, Skills, and Agent Design Patterns"
+description: "A comprehensive guide to AI Agent Architecture: Model Context Protocol (MCP), AI Skills, and the three-layer model for building production-ready AI agent systems with Claude Code, Cursor, and Cline."
 
 hero:
   name: AI Agent Architecture
-  text: Beyond MCP
-  tagline: How agents discover and orchestrate Skills, Tools, and Protocols
+  text: "MCP, AI Skills & Agent Design Patterns"
+  tagline: "The complete guide to how AI agents discover and orchestrate Skills, Tools, and Protocols — with practical patterns for Claude Code, Cursor, and Cline."
   actions:
     - theme: brand
       text: Get Started
@@ -13,7 +15,7 @@ hero:
       text: What is MCP?
       link: /mcp/what-is-mcp
     - theme: alt
-      text: What is Skills?
+      text: What are AI Skills?
       link: /skills/what-is-skills
     - theme: alt
       text: View on GitHub
@@ -27,22 +29,22 @@ features:
     linkText: Read the Vision
   - icon: 🔌
     title: MCP (Model Context Protocol)
-    details: External integration layer — connect AI to real-time data sources, APIs, and services through standardized protocols.
+    details: The standard protocol by Anthropic for connecting AI agents to external tools, APIs, and data sources. Learn MCP servers, clients, and hosts.
     link: /mcp/what-is-mcp
     linkText: Learn about MCP
   - icon: 📋
-    title: Skills (Domain Knowledge)
-    details: Static knowledge and decision criteria that complement MCP's real-time capabilities — templates, rules, and domain expertise.
+    title: AI Skills (Domain Knowledge)
+    details: Reusable Markdown-based knowledge files (skill.md) that give AI agents specialized capabilities. Works with npx skills, Claude Code, Cursor, and Cline.
     link: /skills/what-is-skills
-    linkText: Explore Skills
+    linkText: Explore AI Skills
   - icon: 🤖
     title: Agents & A2A
     details: Sub-agents, orchestration patterns, and the Agent-to-Agent protocol — how autonomous agents collaborate.
     link: /agents/what-is-a2a
     linkText: Discover Agents
   - icon: 🏗️
-    title: Architecture
-    details: The three-layer model — MCP, Skills, and Agent — and how they compose into production-ready systems.
+    title: Three-Layer Architecture
+    details: The Agent / Skills / MCP three-layer model and how they compose into production-ready AI agent systems.
     link: /concepts/03-architecture
     linkText: See Architecture
   - icon: 🗺️

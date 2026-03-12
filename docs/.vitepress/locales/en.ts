@@ -21,6 +21,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Architecture', link: '/concepts/03-architecture' },
             { text: 'AI Design Patterns', link: '/concepts/04-ai-design-patterns' },
             { text: 'Solving AI Limitations', link: '/concepts/05-solving-ai-limitations' },
+            { text: 'Physical AI', link: '/concepts/06-physical-ai' },
             { text: 'Doctrine & Intent', link: '/concepts/07-doctrine-and-intent' },
           ],
         },

@@ -12,6 +12,16 @@ export default withMermaid(
 
 		head: [
 			['link', { rel: 'icon', type: 'image/svg+xml', href: '/ai-agent-architecture/favicon.svg' }],
+			// hreflang: English ↔ Japanese
+			['link', { rel: 'alternate', hreflang: 'en', href: 'https://shuji-bonji.github.io/ai-agent-architecture/' }],
+			['link', { rel: 'alternate', hreflang: 'ja', href: 'https://shuji-bonji.github.io/ai-agent-architecture/ja/' }],
+			['link', { rel: 'alternate', hreflang: 'x-default', href: 'https://shuji-bonji.github.io/ai-agent-architecture/' }],
+			// OGP defaults
+			['meta', { property: 'og:type', content: 'website' }],
+			['meta', { property: 'og:site_name', content: 'AI Agent Architecture' }],
+			['meta', { property: 'og:locale', content: 'en' }],
+			['meta', { property: 'og:locale:alternate', content: 'ja_JP' }],
+			['meta', { name: 'twitter:card', content: 'summary_large_image' }],
 		],
 
 		// i18n: English = root, Japanese = /ja/

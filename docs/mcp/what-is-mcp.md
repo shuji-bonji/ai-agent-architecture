@@ -1,3 +1,18 @@
+---
+title: "What is MCP? Model Context Protocol Explained for AI Agents"
+description: "MCP (Model Context Protocol) is an open standard by Anthropic that connects AI agents to external tools and data. Learn about MCP servers, clients, hosts, and how to use MCP with Claude Code, Cursor, and Cline."
+head:
+  - - meta
+    - property: "og:title"
+      content: "What is MCP? Model Context Protocol Explained for AI Agents"
+  - - meta
+    - property: "og:description"
+      content: "MCP (Model Context Protocol) is an open standard by Anthropic that connects AI agents to external tools and data. Learn about MCP servers, clients, hosts, and how to use MCP with Claude Code, Cursor, and Cline."
+  - - meta
+    - name: "twitter:card"
+      content: "summary_large_image"
+---
+
 # What is MCP?
 
 > A standard protocol for AI agents to safely access external tools and data

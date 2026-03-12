@@ -21,6 +21,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'アーキテクチャ', link: '/ja/concepts/03-architecture' },
             { text: 'AI設計パターン', link: '/ja/concepts/04-ai-design-patterns' },
             { text: 'AI制限の克服', link: '/ja/concepts/05-solving-ai-limitations' },
+            { text: 'フィジカルAI', link: '/ja/concepts/06-physical-ai' },
             { text: 'ドクトリンと意図', link: '/ja/concepts/07-doctrine-and-intent' },
           ],
         },

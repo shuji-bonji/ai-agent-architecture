@@ -1,3 +1,8 @@
+---
+title: "AI Agent Architecture — The MCP, Skills, and Agent Three-Layer Model"
+description: "A comprehensive guide to the three-layer AI agent architecture: MCP for tool connectivity, Skills for domain knowledge, and Agent for orchestration."
+---
+
 # MCP/A2A/Skill/Agent Architecture
 
 > Understanding the components of AI-driven development infrastructure and organizing their roles and relationships.

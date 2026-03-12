@@ -1,3 +1,24 @@
+---
+title: "AI Skills for LLM Agents — What They Are and How to Use Them"
+description: "AI Skills are reusable Markdown files that give LLM agents specialized capabilities. Learn what skill.md is, how npx skills works, and how to build your own skills for Claude Code, Cursor, and Cline."
+head:
+  - - meta
+    - property: "og:title"
+      content: "AI Skills for LLM Agents — What They Are and How to Use Them"
+  - - meta
+    - property: "og:description"
+      content: "AI Skills are reusable Markdown files that give LLM agents specialized capabilities. Learn what skill.md is, how npx skills works, and how to build your own skills for Claude Code, Cursor, and Cline."
+  - - meta
+    - name: "twitter:card"
+      content: "summary_large_image"
+  - - meta
+    - name: "twitter:title"
+      content: "AI Skills for LLM Agents — What They Are and How to Use Them"
+  - - meta
+    - name: "twitter:description"
+      content: "AI Skills are reusable Markdown files that give LLM agents specialized capabilities. Learn what skill.md is, how npx skills works, and how to build skills for Claude Code, Cursor, and Cline."
+---
+
 # What are Skills?
 
 > A static knowledge layer that provides AI agents with domain expertise, guidelines, and decision criteria.
@@ -275,6 +296,96 @@ We provide templates to help you create new Skills quickly.
   - `translation-workflow` - Translation process definition
   - `rfc-compliance` - RFC specification compliance checks
   - `code-review` - Code review guidelines
+
+## npx skills Command Reference
+
+[`npx skills`](https://github.com/vercel-labs/skills) is a CLI tool for installing and managing Skills.
+
+### Basic Commands
+
+```bash
+# Add a Skill to your project
+npx skills add <skill-url>
+
+# Example: Add a translation quality skill
+npx skills add https://github.com/example/translation-quality-skill
+
+# List installed Skills
+npx skills list
+
+# Search for available Skills
+npx skills find <keyword>
+```
+
+### Notable Skill Packages
+
+| Package | Description | Use Case |
+| --- | --- | --- |
+| `@anthropic/skill-docs` | Documentation generation Skill | Improving technical writing quality |
+| `@vercel/skill-nextjs` | Next.js development guidelines | Next.js projects |
+| `@vercel/skill-react` | React best practices | React component design |
+
+::: tip Vercel Skills and Agent Skills Specification
+The [`skills`](https://github.com/vercel-labs/skills) CLI published by Vercel Labs manages Skills compliant with the Agent Skills Specification (https://agentskills.io). The `npx skills` command runs the CLI provided by this repository.
+:::
+
+## Using Skills with Different AI Tools
+
+### Claude Code
+
+In Claude Code, place Skills at the following paths:
+
+```
+project/.claude/skills/xxx/SKILL.md    # Per-project
+~/.claude/skills/xxx/SKILL.md          # Per-user
+```
+
+Claude Code auto-detects these paths on startup and loads them into the agent's context.
+
+### Cursor
+
+In Cursor, place Markdown files in `.cursor/rules/` at the project root:
+
+```
+project/.cursor/rules/skill-name.md
+```
+
+### Cline
+
+In Cline, place Skills in the `.pi/skills/` directory:
+
+```
+project/.pi/skills/xxx/SKILL.md
+```
+
+Skills can also be referenced from Cline's custom instructions.
+
+### Tool Comparison
+
+| Feature | Claude Code | Cursor | Cline |
+| --- | --- | --- | --- |
+| Skill location | `.claude/skills/` | `.cursor/rules/` | `.pi/skills/` |
+| Auto-loading | Yes | Yes | Yes |
+| User-level | `~/.claude/skills/` | Global settings | Global settings |
+| `npx skills` | Supported | Supported | Supported |
+
+## Frequently Asked Questions (FAQ) {#faq}
+
+### Q: What is the difference between Skills and MCP?
+
+**A**: Skills define **what an AI agent should know** — they are a static knowledge layer. MCP defines **what an AI agent can access** — it is a dynamic connectivity layer. Skills convey project rules and decision criteria, while MCP provides connections to external APIs and databases. For more details, see [MCP vs Skills](./vs-mcp).
+
+### Q: Where should I place skill.md files?
+
+**A**: It depends on the AI tool you use. For Claude Code, place them in `.claude/skills/`; for Cursor, in `.cursor/rules/`; for Cline, in `.pi/skills/`. Project-specific Skills go in relative paths from the project root, while shared Skills go under the user's home directory.
+
+### Q: Are Vercel's Skills and Anthropic's Skills the same thing?
+
+**A**: Vercel's Skills is a CLI tool and ecosystem based on the [Agent Skills Specification](https://agentskills.io), and Claude Code's Skills shares the same specification foundation. Both use `SKILL.md` Markdown files to structure domain knowledge, but the placement paths and loading mechanisms differ by tool.
+
+### Q: Can I use multiple Skills at the same time?
+
+**A**: Yes. Place multiple Skill directories within your project, and the AI agent will reference them as needed. However, if Skills contain contradictory instructions, the agent's decisions may become unstable, so maintaining consistency across Skills is important.
 
 ## What to Read Next
 

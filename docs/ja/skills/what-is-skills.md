@@ -1,3 +1,18 @@
+---
+title: "Skillsとは？AIエージェント向けドメイン知識フレームワーク完全ガイド"
+description: "AI SkillsはLLMエージェントに専門知識を与えるMarkdownベースの仕組みです。skill.mdの書き方、npx skillsの使い方、Claude Code・Cursor・Clineでの活用方法を解説します。"
+head:
+  - - meta
+    - property: "og:title"
+      content: "Skillsとは？AIエージェント向けドメイン知識フレームワーク完全ガイド"
+  - - meta
+    - property: "og:description"
+      content: "AI SkillsはLLMエージェントに専門知識を与えるMarkdownベースの仕組みです。skill.mdの書き方、npx skillsの使い方、Claude Code・Cursor・Clineでの活用方法を解説します。"
+  - - meta
+    - name: "twitter:card"
+      content: "summary_large_image"
+---
+
 # Skillsとは何か
 
 > AIエージェントにドメイン知識・ガイドライン・判断基準を提供する静的な知識レイヤー
@@ -275,6 +290,96 @@ flowchart TD
   - `translation-workflow` - 翻訳プロセスの定義
   - `rfc-compliance` - RFC仕様準拠チェック
   - `code-review` - コードレビューガイドライン
+
+## npx skills コマンドリファレンス
+
+[`npx skills`](https://github.com/vercel-labs/skills) はSkillのインストールと管理を行うCLIツールである。
+
+### 基本コマンド
+
+```bash
+# Skillをプロジェクトに追加
+npx skills add <skill-url>
+
+# 例: 翻訳品質評価Skillを追加
+npx skills add https://github.com/example/translation-quality-skill
+
+# インストール済みSkillの一覧表示
+npx skills list
+
+# 利用可能なSkillを検索
+npx skills find <keyword>
+```
+
+### 代表的なSkillパッケージ
+
+| パッケージ | 説明 | 用途 |
+| --- | --- | --- |
+| `@anthropic/skill-docs` | ドキュメント生成Skill | 技術文書の品質向上 |
+| `@vercel/skill-nextjs` | Next.js開発ガイドライン | Next.jsプロジェクト |
+| `@vercel/skill-react` | Reactベストプラクティス | Reactコンポーネント設計 |
+
+::: tip Vercel Skills と Agent Skills Specification
+Vercel Labsが公開している [`skills`](https://github.com/vercel-labs/skills) CLIは、Agent Skills Specification（https://agentskills.io）に準拠したSkillを管理するためのツールである。`npx skills` コマンドは、このリポジトリが提供するCLIを実行している。
+:::
+
+## 各AIツールでのSkill利用方法
+
+### Claude Code
+
+Claude Codeでは以下のパスにSkillを配置する。
+
+```
+プロジェクト/.claude/skills/xxx/SKILL.md    # プロジェクト単位
+~/.claude/skills/xxx/SKILL.md               # ユーザー単位
+```
+
+Claude Codeは起動時にこれらのパスを自動検出し、エージェントのコンテキストに読み込む。
+
+### Cursor
+
+Cursorではプロジェクトルートの `.cursor/rules/` にMarkdownファイルを配置する。
+
+```
+プロジェクト/.cursor/rules/skill-name.md
+```
+
+### Cline
+
+Clineでは `.pi/skills/` ディレクトリにSkillを配置する。
+
+```
+プロジェクト/.pi/skills/xxx/SKILL.md
+```
+
+Clineのカスタムインストラクションからもスキルを参照できる。
+
+### ツール比較
+
+| 項目 | Claude Code | Cursor | Cline |
+| --- | --- | --- | --- |
+| Skill配置場所 | `.claude/skills/` | `.cursor/rules/` | `.pi/skills/` |
+| 自動読み込み | あり | あり | あり |
+| ユーザー単位 | `~/.claude/skills/` | グローバル設定 | グローバル設定 |
+| `npx skills` | 対応 | 対応 | 対応 |
+
+## よくある質問（FAQ） {#faq}
+
+### Q: SkillsとMCPの違いは？
+
+**A**: Skillsは「AIが何を知っているべきか」を定義する**静的な知識レイヤー**であり、MCPは「AIが何にアクセスできるか」を定義する**動的な接続レイヤー**である。Skillsはプロジェクトのルールや判断基準を伝え、MCPは外部APIやデータベースへの接続を提供する。詳しくは [MCP vs Skills](./vs-mcp) を参照。
+
+### Q: skill.md はどこに置けばいい？
+
+**A**: 利用するAIツールによって異なる。Claude Codeなら `.claude/skills/`、Cursorなら `.cursor/rules/`、Clineなら `.pi/skills/` に配置する。プロジェクト固有のSkillはプロジェクトルートからの相対パス、全プロジェクト共通のSkillはユーザーホームディレクトリ以下に配置する。
+
+### Q: VercelのSkillsとAnthropicのSkillsは同じもの？
+
+**A**: VercelのSkillsは [Agent Skills Specification](https://agentskills.io) に基づいたCLIツールとエコシステムであり、Anthropicが提供するClaude CodeのSkillsとは仕様の基盤を共有している。どちらも`SKILL.md`というMarkdownファイルでドメイン知識を構造化するアプローチを採用しているが、配置場所や読み込み方法はツールごとに異なる。
+
+### Q: Skillsは複数同時に使える？
+
+**A**: 使える。プロジェクト内に複数のSkillディレクトリを配置すれば、AIエージェントは必要に応じてそれらを参照する。ただし、矛盾する指示を含むSkillが存在する場合はエージェントの判断が不安定になる可能性があるため、Skill間の一貫性を保つことが重要である。
 
 ## 次に読むべきドキュメント
 

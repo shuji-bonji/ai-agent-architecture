@@ -21,6 +21,7 @@
     "vitepress-plugin-mermaid": "^2.0.17"
   },
   "dependencies": {
+    "@rollup/rollup-linux-arm64-gnu": "^4.59.0",
     "svg-pan-zoom": "^3.6.2"
   }
 }
