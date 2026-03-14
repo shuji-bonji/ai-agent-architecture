@@ -2,6 +2,10 @@
 
 > Providing authoritative reference sources for AI decisions is the foundation of reliability in AI-driven development.
 
+::: warning Positioning of This Document
+This document provides **the sole physical foundation** that makes the worldview presented in the [Vision (01-vision)](./01-vision) viable. Where the Vision explains "why authoritative reference sources are necessary for AI-driven development," this document answers that question with a logical and technical framework. This architecture is not invented from scratch — it restructures the standards humanity has accumulated (RFCs, W3C, legislation) as design infrastructure for the AI era.
+:::
+
 ## About This Document
 
 In AI-driven development, the quality of AI output is determined by "what it references." This document systematically organizes the "authoritative reference sources" that AI should use as the basis for its decisions, clarifying why they are necessary, what characteristics they should have, and how they should be connected.
@@ -10,7 +14,7 @@ By converting authoritative information sources such as RFCs, W3C specifications
 
 > **Note**: This document primarily covers "external authoritative information sources." For team domain knowledge and best practices, see [Skills](../skills/what-is-skills). For the distinction between MCP and Skills, see [vs-mcp.md](../skills/vs-mcp.md).
 
-## Why Does AI "Fluctuate"?
+## Why Does AI Output Vary?
 
 ### 1.1 The Nature of Probabilistic Generation
 
@@ -177,7 +181,7 @@ These accountability issues create significant challenges for risk management an
 
 ### 2.1 Definition
 
-**Authoritative Reference Sources** are information sources that satisfy the following characteristics, each contributing to overall trustworthiness:
+**Authoritative Reference Sources** are information sources that satisfy the following characteristics, each contributing to overall reliability:
 
 ```mermaid
 graph TB
@@ -189,13 +193,13 @@ graph TB
         ACCESS[Accessibility]
     end
 
-    AUTH --> |"Who said it"| TRUST[Trustworthiness]
-    IMMUT --> |"When is the information from"| TRUST
-    STRUCT --> |"What is written"| TRUST
-    VERIFY --> |"Can be confirmed"| TRUST
-    ACCESS --> |"Can be referenced"| TRUST
+    AUTH --> |"Who said it"| REL[Reliability]
+    IMMUT --> |"When is the information from"| REL
+    STRUCT --> |"What is written"| REL
+    VERIFY --> |"Can be confirmed"| REL
+    ACCESS --> |"Can be referenced"| REL
 
-    style TRUST fill:#90EE90,color:#333
+    style REL fill:#90EE90,color:#333
 ```
 
 ### 2.2 The Five Characteristics
@@ -292,7 +296,11 @@ graph TB
 
 #### 2.2.4 Verifiability
 
-AI output can be **confirmed against the original source**. The following sequence diagram shows how verification works in practice:
+AI output can be **confirmed against the original source**.
+
+Verifiability directly connects to the "Third Axis of Knowledge Transformation: Verification (Spec-to-Test)" defined in the [Vision](./01-vision). Beyond merely referencing specifications, converting them into verifiable tests forms a quality closed loop for AI outputs.
+
+The following sequence diagram shows how verification works in practice:
 
 ```mermaid
 sequenceDiagram
@@ -379,7 +387,14 @@ flowchart TB
 
 ### 3.1 The Four-Layer Model
 
-Reference sources are organized into a four-level hierarchy, where each level has different compliance requirements:
+Reference sources are organized into a four-level hierarchy, where each level has different compliance requirements. The compliance obligations follow [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119) terminology.
+
+| Level | Compliance Obligation | Risk of Deviation |
+| --- | --- | --- |
+| **Level 1** International Standards & Regulations | **MUST** (mandatory) | Interoperability issues, legal problems |
+| **Level 2** Industry Standards & De facto | **SHOULD** (recommended) | Compatibility issues within industry |
+| **Level 3** Organization/Project Rules | **LOCAL** (org-mandatory) | Team-level inconsistency |
+| **Level 4** Best Practices | **MAY** (optional) | Missed quality improvement opportunities |
 
 ```mermaid
 graph TB
@@ -656,36 +671,36 @@ sequenceDiagram
 
 ## List of Built Reference Source MCPs
 
-| MCP            | Target                        | Main Functions                                                     | Repository                                          |
-| -------------- | ----------------------------- | ------------------------------------------------------------------ | --------------------------------------------------- |
-| **rfcxml-mcp** | IETF RFC                      | Structure retrieval, requirements extraction, checklist generation | [GitHub](https://github.com/shuji-bonji/rfcxml-mcp) |
-| **w3c-mcp**    | W3C/WHATWG/IETF Web Standards | WebIDL, CSS, HTML elements                                         | [GitHub](https://github.com/shuji-bonji/w3c-mcp)    |
-| **hourei-mcp** | Japanese Laws (e-Gov)         | Law search, article retrieval                                      | [GitHub](https://github.com/ryoooo/e-gov-law-mcp)   |
+| MCP            | Target                        | Main Functions                                                     | Status        | Repository                                          |
+| -------------- | ----------------------------- | ------------------------------------------------------------------ | ------------- | --------------------------------------------------- |
+| **rfcxml-mcp** | IETF RFC                      | Structure retrieval, requirements extraction, checklist generation | ✅ Production  | [GitHub](https://github.com/shuji-bonji/rfcxml-mcp) |
+| **w3c-mcp**    | W3C/WHATWG/IETF Web Standards | WebIDL, CSS, HTML elements                                         | ✅ Production  | [GitHub](https://github.com/shuji-bonji/w3c-mcp)    |
+| **hourei-mcp** | Japanese Laws (e-Gov)         | Law search, article retrieval                                      | ✅ Production  | [GitHub](https://github.com/ryoooo/e-gov-law-mcp)   |
 
 ## Future Expansion Candidates
 
 ### High Priority
 
-| Candidate       | Target            | Value                                      |
-| --------------- | ----------------- | ------------------------------------------ |
-| **OpenAPI MCP** | OpenAPI Spec      | API design standards compliance            |
-| **OWASP MCP**   | OWASP Top 10 etc. | Security requirements checking             |
-| **OAuth MCP**   | OAuth 2.0 / OIDC  | Authentication flow implementation support |
+| Candidate       | Target            | Value                                      | Status     |
+| --------------- | ----------------- | ------------------------------------------ | ---------- |
+| **OpenAPI MCP** | OpenAPI Spec      | API design standards compliance            | 📋 Planned |
+| **OWASP MCP**   | OWASP Top 10 etc. | Security requirements checking             | 📋 Planned |
+| **OAuth MCP**   | OAuth 2.0 / OIDC  | Authentication flow implementation support | 📋 Planned |
 
 ### Medium Priority
 
-| Candidate        | Target            | Value                             |
-| ---------------- | ----------------- | --------------------------------- |
-| **ISO MCP**      | ISO Standards     | International standards reference |
-| **PDF Spec MCP** | ISO 32000         | PDF specification reference       |
-| **BIM/IFC MCP**  | buildingSMART IFC | Building information model        |
-| **HL7 FHIR MCP** | HL7 FHIR          | Healthcare information exchange   |
+| Candidate        | Target            | Value                             | Status                |
+| ---------------- | ----------------- | --------------------------------- | --------------------- |
+| **ISO MCP**      | ISO Standards     | International standards reference | 📋 Planned            |
+| **PDF Spec MCP** | ISO 32000         | PDF specification reference       | 🔜 Under consideration |
+| **BIM/IFC MCP**  | buildingSMART IFC | Building information model        | 📋 Planned            |
+| **HL7 FHIR MCP** | HL7 FHIR          | Healthcare information exchange   | 📋 Planned            |
 
 ## Summary
 
 ### Core Messages
 
-1. **AI "fluctuates"** - Probabilistic generation, training data constraints, lack of authority
+1. **AI output is inherently variable** - Probabilistic generation, training data constraints, lack of authority
 2. **"Authoritative reference sources" are needed** - Authoritativeness, immutability, structuredness, verifiability, accessibility
 3. **Organize hierarchically** - International standards > Industry standards > Organization rules > Best practices
 4. **Connect to external information sources via MCP** - Provide RFC, laws, W3C standards in a format AI can reference
@@ -712,4 +727,6 @@ graph LR
     style A2 fill:#90EE90,color:#333
 ```
 
-**By providing authoritative reference sources for AI decisions, output reliability and verifiability are ensured.**
+**By providing authoritative reference sources for AI decisions, output reliability and verifiability are supported.**
+
+> The "authoritative reference sources" presented in this document form the physical foundation of the "verifiable design philosophy" articulated in the [Vision](./01-vision). The responsibility shift model (design-time, execution-time, structural constraints) and the two-layer verification structure (guardrails and evaluation pipelines) defined in the Vision are built upon the characteristics and hierarchical structure systematized here.
