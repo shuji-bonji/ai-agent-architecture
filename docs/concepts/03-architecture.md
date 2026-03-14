@@ -1,11 +1,15 @@
 ---
-title: "AI Agent Architecture — The MCP, Skills, and Agent Three-Layer Model"
-description: "A comprehensive guide to the three-layer AI agent architecture: MCP for tool connectivity, Skills for domain knowledge, and Agent for orchestration."
+title: 'AI Agent Architecture — The MCP, Skills, and Agent Three-Layer Model'
+description: 'A comprehensive guide to the three-layer AI agent architecture: MCP for tool connectivity, Skills for domain knowledge, and Agent for orchestration.'
 ---
 
 # MCP/A2A/Skill/Agent Architecture
 
 > Understanding the components of AI-driven development infrastructure and organizing their roles and relationships.
+
+::: warning Positioning of This Document
+Where the [Vision (01-vision)](./01-vision) defines "why" and [Authoritative Reference Sources (02-reference-sources)](./02-reference-sources) defines "what," this document defines **"how to structure it."** It bridges the gap from philosophical foundations to actionable system design — structuring without destroying the underlying philosophy.
+:::
 
 ## Layer Structure Overview
 
@@ -42,8 +46,10 @@ block-beta
     style MCP fill:#FFB6C1,color:#333,stroke:#333
 ```
 
-::: tip Doctrine Layer
-These three layers define **what AI knows** and **what AI can do**. The question of **on what basis AI judges and decides** is addressed by the [Doctrine Layer](./07-doctrine-and-intent), which governs all three layers through shared objectives, constraints, and judgment criteria.
+::: tip Doctrine Layer — "Constitutional Judgment Criteria"
+These three layers define **what AI knows** and **what AI can do**. The question of **on what basis AI judges and decides** is addressed by the [Doctrine Layer](./07-doctrine-and-intent). The Doctrine Layer is not merely a system prompt — it is **constitutional judgment criteria** that governs all three layers through shared objectives, constraints, and judgment criteria.
+
+The [Responsibility Shift Model](./01-vision#the-responsibility-shift-model) defined in the Vision (design-time: human / execution-time: agent / structural constraints: system) and the [two-layer verification structure](./01-vision#the-responsibility-shift-model) (guardrails + evaluation pipelines) are applied to each layer through this Doctrine Layer.
 :::
 
 ### Layer Responsibilities
@@ -220,6 +226,25 @@ You are an expert in RFC specifications.
 Use only the rfcxml tools.
 ```
 
+### Additional Definition Example
+
+Here is a more practical sub-agent that combines multiple MCPs and Skills:
+
+```markdown
+name: compliance-checker
+description: Expert agent for legal and technical compliance checking
+tools: hourei:find_law_article, rfcxml:get_requirements, rfcxml:validate_statement
+model: sonnet
+
+You are an expert in legal and technical specification compliance checking.
+
+1. Retrieve legal requirements via hourei-mcp
+2. Retrieve technical requirements via rfcxml-mcp
+3. Map both and report compliance status
+
+Always cite sources (legal article numbers, RFC section numbers).
+```
+
 ### Sub-agent Positioning
 
 The following diagram illustrates where sub-agents sit within the Claude Code architecture:
@@ -266,7 +291,7 @@ Location:
 
 ### Skill Characteristics
 
-Skills have these key characteristics that distinguish them from other approaches:
+In the [Four-Layer Reference Model](./02-reference-sources#_3-1-the-four-layer-model), Level 3 (organization rules) and Level 4 (best practices) use Skills as their primary delivery method. Skills have these key characteristics that distinguish them from other approaches:
 
 | Item                    | Description                                      |
 | ----------------------- | ------------------------------------------------ |
@@ -367,21 +392,21 @@ The way we integrate with external services has evolved with technology.
 flowchart LR
     subgraph PAST["Past"]
         direction TB
-        HUMAN["Human\n(CLI)"]
+        HUMAN["Human<br>(CLI)"]
         API1["API"]
         HUMAN --> API1
     end
 
     subgraph PRESENT["Present"]
         direction TB
-        AI["AI\n(via MCP)"]
+        AI["AI<br>(via MCP)"]
         API2["API"]
         AI --> API2
     end
 
     subgraph FUTURE["Future"]
         direction TB
-        AGENT["Agent\n(Autonomous)"]
+        AGENT["Agent<br>(Autonomous)"]
         API3["API"]
         AGENT --> API3
     end
@@ -510,14 +535,21 @@ Here is a practical example showing how Skill, Sub-agent, and MCP work together:
 - `deepl` - Translation execution
 - `xcomet` - Quality evaluation
 
+## Guardrails (Inviolable Constraints)
+
+- Registered glossary terms must always be used
+- Do not add content not present in the source text
+
 ## Workflow
 
 1. Translate with deepl:translate-text (formality: "more")
-2. Evaluate with xcomet:xcomet_evaluate
+2. Evaluate with xcomet:xcomet_evaluate (evaluation pipeline)
    - Score 0.85 or higher: OK
    - Score below 0.85: Re-translate or manual correction
 3. Detect errors with xcomet:xcomet_detect_errors
 ```
+
+> This example is a concrete implementation pattern of the [two-layer verification structure](./01-vision#the-responsibility-shift-model) defined in the Vision. Glossary adherence corresponds to **guardrails** (inviolable constraints), while the xCOMET score corresponds to the **evaluation pipeline** (probabilistic quality gate).
 
 ```markdown
 <!-- agents/translation-specialist.md -->
@@ -582,7 +614,7 @@ sequenceDiagram
 
 ## Layer Structure Summary
 
-The following layered structure shows how all components integrate. Note that the [Doctrine Layer](./07-doctrine-and-intent) (constraints, objectives, judgment criteria) implicitly governs all layers shown below:
+The following layered structure shows how all components integrate. The [Doctrine Layer](./07-doctrine-and-intent) (constraints, objectives, judgment criteria) governs all layers. In terms of information flow: doctrine constraints descend from above, resource facts ascend from below, and agent decision-making occurs at the center.
 
 ```mermaid
 block-beta
