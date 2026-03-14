@@ -6,7 +6,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
   themeConfig: {
     nav: [
       { text: 'ホーム', link: '/ja/' },
-      { text: 'コンセプト', link: '/ja/concepts/01-vision' },
+      { text: 'コンセプト', link: '/ja/concepts/' },
       { text: 'MCP', link: '/ja/mcp/what-is-mcp' },
       { text: 'Skills', link: '/ja/skills/what-is-skills' },
     ],
@@ -16,6 +16,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'コンセプト',
           collapsed: false,
           items: [
+            { text: '全体像', link: '/ja/concepts/' },
             { text: 'ビジョン', link: '/ja/concepts/01-vision' },
             { text: 'リファレンスソース', link: '/ja/concepts/02-reference-sources' },
             { text: 'アーキテクチャ', link: '/ja/concepts/03-architecture' },

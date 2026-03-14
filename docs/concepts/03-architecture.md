@@ -11,6 +11,16 @@ description: 'A comprehensive guide to the three-layer AI agent architecture: MC
 Where the [Vision (01-vision)](./01-vision) defines "why" and [Authoritative Reference Sources (02-reference-sources)](./02-reference-sources) defines "what," this document defines **"how to structure it."** It bridges the gap from philosophical foundations to actionable system design — structuring without destroying the underlying philosophy.
 :::
 
+::: details Meta Information
+
+| | |
+| --- | --- |
+| **What this chapter establishes** | The three-layer separation of Agent / Skills / MCP and the responsibility boundaries of each layer |
+| **What this chapter does NOT cover** | Pattern selection criteria (→04), constraint mitigation (→05), Doctrine Layer details (→07) |
+| **Dependencies** | [01-vision](./01-vision) (design philosophy), [02-reference-sources](./02-reference-sources) (reference source framework) |
+| **Common misuse** | Confusing the three layers with physical deployment topology. The three layers represent **separation of responsibilities**, not deployment configuration |
+:::
+
 ## Layer Structure Overview
 
 The architecture is organized into four distinct layers, each with specific responsibilities, as shown in the following diagram:

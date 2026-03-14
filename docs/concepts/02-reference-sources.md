@@ -6,6 +6,16 @@
 This document provides **the sole physical foundation** that makes the worldview presented in the [Vision (01-vision)](./01-vision) viable. Where the Vision explains "why authoritative reference sources are necessary for AI-driven development," this document answers that question with a logical and technical framework. This architecture is not invented from scratch — it restructures the standards humanity has accumulated (RFCs, W3C, legislation) as design infrastructure for the AI era.
 :::
 
+::: details Meta Information
+
+| | |
+| --- | --- |
+| **What this chapter establishes** | Four characteristics of reference sources (authority, structure, versioning, machine-readability) and MCP design principles |
+| **What this chapter does NOT cover** | MCP server implementation details (→implementation guides), team domain knowledge (→Skills) |
+| **Dependencies** | [01-vision](./01-vision) (definition of AI constraints) |
+| **Common misuse** | Applying MCP where RAG would suffice. Identifying when structured access is truly needed is critical |
+:::
+
 ## About This Document
 
 In AI-driven development, the quality of AI output is determined by "what it references." This document systematically organizes the "authoritative reference sources" that AI should use as the basis for its decisions, clarifying why they are necessary, what characteristics they should have, and how they should be connected.

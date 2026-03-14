@@ -6,7 +6,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Concepts', link: '/concepts/01-vision' },
+      { text: 'Concepts', link: '/concepts/' },
       { text: 'MCP', link: '/mcp/what-is-mcp' },
       { text: 'Skills', link: '/skills/what-is-skills' },
     ],
@@ -16,6 +16,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Concepts',
           collapsed: false,
           items: [
+            { text: 'Overview', link: '/concepts/' },
             { text: 'Vision', link: '/concepts/01-vision' },
             { text: 'Reference Sources', link: '/concepts/02-reference-sources' },
             { text: 'Architecture', link: '/concepts/03-architecture' },

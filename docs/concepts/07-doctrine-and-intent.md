@@ -30,6 +30,16 @@ This shifts AI input from **imperative instructions** to **declarative intent** 
 → **This page (DOCTRINE — On what basis should AI judge and act?)**
 :::
 
+::: details Meta Information
+
+| | |
+| --- | --- |
+| **What this chapter establishes** | Doctrine's three components (Objectives, Constraints, Judgment Criteria), autonomy levels, Agent execution loop |
+| **What this chapter does NOT cover** | Detailed Evaluation/Evals design (future extension candidate), specific agent implementation |
+| **Dependencies** | [03-architecture](./03-architecture) (the three layers that doctrine governs), [06-physical-ai](./06-physical-ai) (doctrine application in the physical world) |
+| **Common misuse** | Viewing doctrine as a "strict rulebook." Doctrine is both a constraint and a "definition of posture" that enables autonomous judgment |
+:::
+
 ## Position in Document Series
 
 ```mermaid

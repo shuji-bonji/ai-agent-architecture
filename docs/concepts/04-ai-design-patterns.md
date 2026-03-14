@@ -11,6 +11,16 @@
 This page translates the abstract architecture from preceding chapters into **concrete design decisions**. Each pattern is described not as "something to adopt" but as **a structure that works when preconditions are met — and breaks when they are not**.
 :::
 
+::: details Meta Information
+
+| | |
+| --- | --- |
+| **What this chapter establishes** | Positioning and selection criteria for RAG / MCP / Fine-tuning / Prompt Engineering, plus anti-patterns |
+| **What this chapter does NOT cover** | Implementation procedures for each pattern, model training methods, specific framework usage |
+| **Dependencies** | [03-architecture](./03-architecture) (three-layer model structure definition) |
+| **Common misuse** | Treating any pattern as a "silver bullet." Each pattern has Failure Risk (collapse conditions) |
+:::
+
 ## About This Document
 
 Implementing generative AI (LLM) in practical systems requires more than the capabilities of the model alone. AI knowledge has inherent limitations (see [01-vision](./01-vision)), and various design patterns have emerged to overcome them.

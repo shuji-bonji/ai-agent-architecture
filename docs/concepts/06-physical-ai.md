@@ -26,6 +26,16 @@ also hold up in edge devices operating in the physical world?
 → **This page (EXTENSION — Extending the three-layer model to the physical world)**
 :::
 
+::: details Meta Information
+
+| | |
+| --- | --- |
+| **What this chapter establishes** | Structural consistency of the three-layer model's edge extension, cloud↔edge symmetry |
+| **What this chapter does NOT cover** | Robotics control details (Motion Planner and below), specific hardware implementation guides |
+| **Dependencies** | [03-architecture](./03-architecture) (three-layer model), [07-doctrine-and-intent](./07-doctrine-and-intent) (Doctrine Layer) |
+| **Common misuse** | Treating BitNet as the only edge inference technology. This chapter's claim is "the structure doesn't change" — not dependence on a specific technology |
+:::
+
 ## Position Within the Document Series
 
 ```mermaid

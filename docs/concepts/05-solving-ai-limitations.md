@@ -12,6 +12,16 @@
 This page treats AI constraints not as "defects" but as **"properties"**, and **draws the boundary** between what is solvable and what is not.
 :::
 
+::: details Meta Information
+
+| | |
+| --- | --- |
+| **What this chapter establishes** | Distinction between knowledge constraints and institutional constraints, verification loop structure, bounded autonomy principle |
+| **What this chapter does NOT cover** | "Complete solutions" to constraints. This chapter draws boundaries — it does not promise universal fixes |
+| **Dependencies** | [01-vision](./01-vision) (definition of the 4 constraints), [04-ai-design-patterns](./04-ai-design-patterns) (pattern inventory) |
+| **Common misuse** | Expecting "MCP adoption resolves all constraints." Institutional constraints (authority, accountability) cannot be solved by technology alone |
+:::
+
 ## About This Document
 
 In [01-vision](./01-vision) and [02-reference-sources](./02-reference-sources), we **defined the problem** of AI's four fundamental limitations (accuracy, currency, authority, and accountability). In [04-ai-design-patterns](./04-ai-design-patterns), we organized **design patterns** such as RAG and MCP.
