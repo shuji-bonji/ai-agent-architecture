@@ -17,6 +17,15 @@ also hold up in edge devices operating in the physical world?
 
 **Target audience**: Engineers who want to understand AI agent architecture beyond the boundaries of software. Also useful for teams designing interfaces with edge AI, IoT, and robotics.
 
+::: warning Position of This Page
+[01-vision](./01-vision) (**WHY** — Why we need authoritative references)  \
+→ [02-reference-sources](./02-reference-sources) (**WHAT** — What to use as references)  \
+→ [03-architecture](./03-architecture) (**HOW** — How to structure the system)  \
+→ [04-ai-design-patterns](./04-ai-design-patterns) (**WHICH** — Which pattern to choose and when)  \
+→ [05-solving-ai-limitations](./05-solving-ai-limitations) (**REALITY** — How to face real-world constraints)  \
+→ **This page (EXTENSION — Extending the three-layer model to the physical world)**
+:::
+
 ## Position Within the Document Series
 
 ```mermaid
@@ -37,6 +46,21 @@ flowchart LR
 ## What Is Physical AI?
 
 Physical AI refers to the technology domain where AI perceives the physical world, makes decisions, and directly acts upon it. Autonomous driving, industrial robots, drones, and humanoids are typical application areas.
+
+::: tip Relationship with Embodied AI
+In academic contexts, the term **Embodied AI** is widely used. Embodied AI focuses on "learning through physical embodiment and interaction with the environment," and Physical AI can be positioned as one of its implementation forms. This document uses the term "Physical AI" to align with the context of extending the three-layer architecture to the edge.
+:::
+
+### The Importance of World Models
+
+What fundamentally distinguishes Physical AI from information-space AI is the need for a **World Model** — an internal representation of physical world laws. Without understanding gravity, friction, collision, and inertia, a robot cannot operate safely.
+
+```
+Information-space AI: Text/data processing → Physical laws are irrelevant
+Physical AI:          Real-world action → Understanding gravity, friction, collision is essential
+```
+
+The World Model functions as part of the domain knowledge embedded in the Skills layer, providing physical plausibility to Agent layer decisions.
 
 Traditionally, Physical AI has been discussed as a separate world from software AI. However, the following technological advances are dissolving this boundary:
 
@@ -100,6 +124,17 @@ The latest parallel kernel optimizations (January 2026) introduced configurable 
 
 ::: tip GPU's Role Changes but Doesn't Disappear
 BitNet b1.58 drastically reduces GPU dependency for inference, but GPU is still required for model training. The accurate understanding is not "GPU becomes unnecessary" but rather **"inference becomes practical on CPU"**. Additionally, being built on llama.cpp makes integration with existing inference pipelines straightforward.
+:::
+
+::: warning Current Limitations of BitNet b1.58
+BitNet is a promising technology, but the following constraints should be recognized:
+
+- **Limited pre-trained model selection** — Unlike FP16 models, there is no abundant ecosystem of pre-trained BitNet models
+- **Text generation quality** — FP16 models remain superior for high-precision natural language generation tasks
+- **Ecosystem maturity** — Toolchains and community support are still developing
+- **Fine-tuning methods not established** — Domain adaptation techniques for 1.58-bit models are still in the research stage
+
+While BitNet has sufficient precision for Physical AI control tasks (discrete decisions, binary classification), it is **not a universal solution**. Identifying the right application domain is critical.
 :::
 
 ### Affinity with Physical AI
@@ -200,8 +235,14 @@ Physical AI doctrine includes elements absent from software:
 - **Ethical Constraints** — Inviolable rules that prioritize human safety above all
 - **Real-time Constraints** — Acceptable limits for decision latency
 
-::: warning Autonomous Decisions in the Physical World
-In the software world, decision errors can be "undone," but in the physical world, they can produce irreversible consequences. Doctrine layer constraints function as **safety mechanisms** in Physical AI.
+::: warning Irreversibility — Autonomous Decisions in the Physical World
+In the software world, decision errors can be "undone," but in the physical world, they can produce **irreversible consequences**. The most important principle in Physical AI design is recognizing this irreversibility.
+
+- **Latency constraints**: Emergency stop decisions for robots must complete within **100ms**. Round-trips to the cloud are unacceptable — immediate edge-based decisions are mandatory
+- **Safety margins**: Because the cost of decision errors is orders of magnitude higher, Doctrine layer constraints function as **safeguards**
+- **Mandatory fail-safe**: Retreat behavior during communication loss or sensor anomalies is not optional — it is a **design requirement**
+
+The nature of decisions doesn't change — what changes is the **severity of consequences** and **latency constraints**. This is the essential design challenge of Physical AI.
 :::
 
 ## Correspondence with the OODA Cycle
@@ -230,6 +271,27 @@ flowchart LR
 | **Orient**  | Skills Layer + Doctrine    | Referencing safety standards, classifying situations, determining priorities |
 | **Decide**  | Agent Layer                | Selecting actions such as "stop," "evade," or "continue"                     |
 | **Act**     | MCP Layer (output)         | Motor control, alert notification, communication transmission                |
+
+## From Agent to Robot — The Control Flow
+
+Between the Agent layer's decision and the robot's physical action, the signal passes through a control system and motion planner.
+
+```mermaid
+flowchart LR
+    A["Agent Layer<br/>Action Decision<br/>\"Move to Shelf A\""]
+    MP["Motion Planner<br/>Path Planning & Collision Check"]
+    CS["Control System<br/>PID Control & Torque Control"]
+    ACT["Actuator<br/>Motor Drive"]
+
+    A --> MP --> CS --> ACT
+
+    style A fill:#87CEEB,color:#333,stroke:#333
+    style MP fill:#DDA0DD,color:#333,stroke:#333
+    style CS fill:#F0E68C,color:#333,stroke:#333
+    style ACT fill:#FFB6C1,color:#333,stroke:#333
+```
+
+The Agent layer outputs **high-level intent**, while the intervening control loops are handled by conventional robotics technology. The three-layer model does not replace the control system — it provides **decision and knowledge layers** above it.
 
 ## Cloud × Edge Collaboration Patterns
 
@@ -269,6 +331,14 @@ flowchart TB
 | **Decision Distribution** | Real-time decisions at edge, advanced analysis in cloud | Emergency stop is local, route optimization is cloud           |
 | **Status Reporting**      | Aggregate edge sensor data to the cloud                 | Anomaly detection log transmission, remote monitoring          |
 
+### Multi-Agent Systems and A2A
+
+In Physical AI deployments, **multi-agent** configurations where multiple robots or drones coordinate on tasks are becoming commonplace. Agent-to-Agent (A2A) protocols for inter-agent communication are being put into practice in warehouse robot swarm control, drone formation flight, and similar applications.
+
+### Digital Twins and MCP
+
+By exposing a physical device's **digital twin** (virtual replica) as an MCP server, cloud-side Agents can reference and control the physical device's state. This is a natural extension of MCP's concept of "standardized external tool connectivity" and further blurs the boundary between the physical world and software.
+
 ## What This Means for Software Engineers
 
 Physical AI is not "a different world." With an understanding of the three-layer model, software engineers can participate in architecture design:
@@ -290,10 +360,13 @@ The three-layer **structure** is the same. Only the **implementation details** c
 
 Physical AI is not a "special case" of the three-layer architecture — it is its **most direct extension**.
 
-- The separation of responsibilities across Agent / Skills / MCP holds in the physical world as-is
-- BitNet b1.58 has made local inference on edge devices practical (71.4x energy efficiency vs LLaMA)
-- The importance of the Doctrine layer is most pronounced in the physical world, where consequences can be irreversible
-- The OODA cycle functions naturally as a design framework for Physical AI
+| Aspect | Core Message |
+| --- | --- |
+| **Structural consistency** | The separation of responsibilities across Agent / Skills / MCP holds in the physical world as-is |
+| **Edge inference realized** | BitNet b1.58 has made local inference on edge devices practical (71.4x energy efficiency vs LLaMA) |
+| **Addressing irreversibility** | The importance of the Doctrine layer is most pronounced in the physical world, where consequences can be irreversible |
+| **Design framework** | The OODA cycle functions naturally as a design framework for Physical AI |
+| **Essential difference** | The nature of decisions doesn't change — what changes is the **severity of consequences** and **latency constraints** |
 
 ```
 Architecture learned in the cloud becomes a bridge to the physical world.
@@ -306,3 +379,10 @@ Those who understand the structure can adapt regardless of the deployment target
 - [BitNet CPU Inference Optimization](https://github.com/microsoft/BitNet/blob/main/src/README.md) — Technical details on parallel kernel implementations, supported architectures, and benchmark results
 - [BitNet: A 1-bit Model Solving LLM Challenges](https://note.com/shimmyo_lab/n/n78197cb4936f) — Background on BitNet and comparison with existing quantization methods
 - [The Mechanism and Significance of BitNet b1.58](https://qiita.com/tech-Mira/items/67dec9c5a5f025d2727a) — Naming rationale for b1.58, performance data, and edge device applicability
+
+## Related Documents
+
+- [03-architecture](./03-architecture) — **HOW**: Three-layer model structure definition (the foundation for this page's edge extension)
+- [04-ai-design-patterns](./04-ai-design-patterns) — **WHICH**: Pattern selection guidelines (relevant to pattern application in edge environments)
+- [05-solving-ai-limitations](./05-solving-ai-limitations) — **REALITY**: AI constraints and countermeasures (latency and safety constraints are even stricter in the physical world)
+- [07-doctrine-and-intent](./07-doctrine-and-intent) — **DOCTRINE**: Doctrine and intent design (essential for autonomous decisions in the physical world)
