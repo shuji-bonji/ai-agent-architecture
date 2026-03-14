@@ -2,11 +2,31 @@
 
 > Organizing what we can actually do now against AI's four fundamental limitations.
 
+::: warning Positioning of This Page
+[01-vision](./01-vision) (**WHY** — Why unshakeable references are needed)  
+→ [02-reference-sources](./02-reference-sources) (**WHAT** — What qualifies as a reference source)  
+→ [03-architecture](./03-architecture) (**HOW** — How to structure the system)  
+→ [04-ai-design-patterns](./04-ai-design-patterns) (**WHICH** — Which pattern to choose and when)  
+→ **This page (REALITY — How far can we address each constraint?)**
+
+This page treats AI constraints not as "defects" but as **"properties"**, and **draws the boundary** between what is solvable and what is not.
+:::
+
 ## About This Document
 
-In [01-vision.md](./01-vision.md) and [02-reference-sources.md](./02-reference-sources.md), we **defined the problem** of AI's four fundamental limitations (accuracy, currency, authority, and accountability). In [04-ai-design-patterns.md](./04-ai-design-patterns.md), we organized **design patterns** such as RAG and MCP.
+In [01-vision](./01-vision) and [02-reference-sources](./02-reference-sources), we **defined the problem** of AI's four fundamental limitations (accuracy, currency, authority, and accountability). In [04-ai-design-patterns](./04-ai-design-patterns), we organized **design patterns** such as RAG and MCP.
 
 This document organizes **practical solution approaches available today** to address these limitations. While perfect solutions don't exist, by understanding the nature of each constraint and combining appropriate approaches, we can reduce risks to a practical level.
+
+### What This Document Does Not Solve
+
+This document does **not promise** the following. Stated explicitly to avoid misunderstanding.
+
+| What this document shows                    | What this document does NOT guarantee                 | What it provides instead                            |
+| ------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------- |
+| Boundary of solvability for each constraint | That all AI constraints can be resolved by technology | Realistic coping strategies per constraint          |
+| Mitigation approaches via MCP/RAG etc.      | Complete elimination of hallucinations                | Verification workflows + explicit uncertainty       |
+| Technical foundation for accountability     | Resolution of legal/ethical responsibility issues     | Design guidelines for audit trails and traceability |
 
 ```mermaid
 flowchart LR
@@ -60,11 +80,87 @@ flowchart TB
 | **Authority**      | △ Mitigable, Not Completely Solvable    | AI output is ultimately "one interpretation" and cannot become official authority                              |
 | **Accountability** | ✗ Not Solvable by Technology Alone      | This is a matter of legal and ethical institutional design; technology only provides the foundation            |
 
+### Constraint Categories and Coping Strategies
+
+The four constraints fall into two broad categories.
+
+| Category                      | Constraints               | Nature                                             | Coping Strategy                                       |
+| ----------------------------- | ------------------------- | -------------------------------------------------- | ----------------------------------------------------- |
+| **Knowledge Constraints**     | Currency, Accuracy        | Arising from LLM's training and generation process | External knowledge injection + verification workflows |
+| **Institutional Constraints** | Authority, Accountability | Arising from the social positioning of information | Technical foundation + human judgment                 |
+
+> Knowledge constraints can be mitigated by technology, but institutional constraints cannot be solved by technology alone. This distinction is the starting point for design decisions.
+
+### Architecture Three-Layer Model and Four Constraints Mapping
+
+How the three-layer model (Agent / Skills / MCP) from [03-architecture](./03-architecture) contributes to each constraint.
+
+```mermaid
+flowchart LR
+    subgraph Architecture["Architecture 3 Layers"]
+        Agent["Agent Layer<br/>Reasoning & Verification Loop"]
+        Skills["Skills Layer<br/>Judgment Criteria & Best Practices"]
+        MCP_L["MCP Layer<br/>Access to External Authoritative Sources"]
+    end
+
+    subgraph Constraints["Four Constraints"]
+        C1["Currency ◎"]
+        C2["Accuracy △"]
+        C3["Authority △"]
+        C4["Accountability ✗"]
+    end
+
+    MCP_L -->|"Real-time access"| C1
+    MCP_L -->|"Original data injection"| C2
+    MCP_L -->|"Connection to primary sources"| C3
+    MCP_L -->|"Source citation & audit trail"| C4
+    Skills -->|"Define verification criteria"| C2
+    Skills -->|"Provide judgment guidelines"| C3
+    Agent -->|"Execute verification loop"| C2
+    Agent -->|"Declare uncertainty"| C2
+
+    style C1 fill:#90EE90,color:#333
+    style C2 fill:#FFE4B5,color:#333
+    style C3 fill:#FFE4B5,color:#333
+    style C4 fill:#FFB6C1,color:#333
+```
+
+> The MCP Layer contributes partially to all constraints. For currency, accuracy, and authority in particular, it provides a direct solution through structured external access.
+
+### Verification Loop — Separating Probabilistic Reasoning from Deterministic Verification
+
+The core design for mitigating AI constraints is **separating probabilistic reasoning** (LLM generation) from **deterministic verification** (tool-based validation).
+
+```mermaid
+flowchart TB
+    subgraph Probabilistic["Probabilistic Reasoning (LLM)"]
+        G["Answer Generation<br/>Plausible output"]
+    end
+
+    subgraph Deterministic["Deterministic Verification (MCP/Tools)"]
+        V1["validate_statement()<br/>Check against original source"]
+        V2["Source Identification<br/>Down to section number"]
+        V3["Confidence Assessment<br/>Confirmed / Estimated / Uncertain"]
+    end
+
+    G --> V1
+    V1 --> V2
+    V2 --> V3
+    V3 -->|"Uncertain → Re-search"| G
+
+    style Probabilistic fill:#fff3e0,color:#333
+    style Deterministic fill:#e8f5e9,color:#333
+```
+
+::: tip Bounded Autonomy
+The agents in this project do not aim to "make autonomous judgments on everything." Agent autonomy is **bounded to what can be verified**. For decisions that cannot be verified, the design escalates to human judgment (see [Responsibility Shift Model](./01-vision#the-responsibility-shift-model)).
+:::
+
 ## Solving Currency — The Constraint with the Clearest Solutions
 
 ### 1.1 The Nature of the Problem
 
-LLM knowledge is fixed at the point of training data (details: [02-reference-sources.md 1.2.2](./02-reference-sources.md)). However, for this constraint, there is a **clear solution: connecting to external information sources**.
+LLM knowledge is fixed at the point of training data (details: [02-reference-sources 1.2.2](./02-reference-sources)). However, for this constraint, there is a **clear solution: connecting to external information sources**.
 
 ### 1.2 Solution Approaches
 
@@ -121,7 +217,7 @@ Currency is **the constraint with the clearest solution among the four**, and ca
 
 ### 2.1 The Nature of the Problem
 
-Hallucination (generating information that contradicts facts) stems from the **fundamental nature** that LLMs generate probabilistically "plausible" rather than "correct" output (details: [02-reference-sources.md 1.2.1](./02-reference-sources.md)).
+Hallucination (generating information that contradicts facts) stems from the **fundamental nature** that LLMs generate probabilistically "plausible" rather than "correct" output (details: [02-reference-sources 1.2.1](./02-reference-sources)).
 
 This is not a "bug" but a "feature," and **it is impossible to eliminate it completely in principle**.
 
@@ -186,7 +282,7 @@ The `validate_statement()` of rfcxml-mcp in this project is precisely designed f
 A mechanism for AI to make explicit when it cannot be confident in its answer.
 
 ```
-Confidence Levels:
+Verification Status Levels:
   ✅ Verified: Information verified through MCP/original source
   ⚠️ Estimated: Based on training data but not verified from source
   ❓ Uncertain: Information not found or contradictory
@@ -204,7 +300,7 @@ Complete accuracy assurance is **impossible in principle**, but by combining the
 
 ### 3.1 The Nature of the Problem
 
-AI output is "one interpretation" and **not an official view** (details: [02-reference-sources.md 1.2.3](./02-reference-sources.md)). Only the creators (IETF, legislative bodies, etc.) can provide the "official interpretation" of RFCs, laws, and standard specifications.
+AI output is "one interpretation" and **not an official view** (details: [02-reference-sources 1.2.3](./02-reference-sources)). Only the creators (IETF, legislative bodies, etc.) can provide the "official interpretation" of RFCs, laws, and standard specifications.
 
 This constraint arises from **the nature of information authority itself** rather than AI characteristics, making it impossible to completely solve with technology alone.
 
@@ -246,7 +342,7 @@ Example:
 
 Explicitly indicate section numbers of information sources in all AI output. This allows humans to **independently verify**.
 
-> For details on output templates, see [02-reference-sources.md Chapter 4](./02-reference-sources.md).
+> For details on output templates, see [02-reference-sources Chapter 4](./02-reference-sources).
 
 #### Human Review Workflow
 
@@ -287,7 +383,7 @@ Rather than "completely solving" authority, the mindset of **managing it as a ri
 
 ### 4.1 The Nature of the Problem
 
-AI output has **no clear subject of accountability** (details: [02-reference-sources.md 1.2.4](./02-reference-sources.md)). This is more a legal and ethical issue than a technical one.
+AI output has **no clear subject of accountability** (details: [02-reference-sources 1.2.4](./02-reference-sources)). This is more a legal and ethical issue than a technical one.
 
 ### 4.2 Foundation Technology Can Provide
 
@@ -356,7 +452,7 @@ flowchart LR
         C3 --> C4["Provide to AI"]
     end
 
-    subgraph FUTURE["Future MCP (Enhanced Trustworthiness)"]
+    subgraph FUTURE["Future MCP (Enhanced Reliability)"]
         F1["MCP Server"] --> F2["External API"]
         F2 --> F3["Data Retrieval"]
         F3 --> F4["Signature Verification ✓"]
@@ -444,25 +540,24 @@ flowchart LR
 
 ### 5.3 Key Understanding
 
-```
-We cannot solve all AI constraints with technology alone.
+We cannot solve all AI constraints with technology alone. These approaches **do not completely eliminate** the constraints. The premise is selecting strategies appropriate to each constraint's nature.
 
-Accuracy → Mitigate with technology, accept residual risk
-Currency → Largely solvable with technology
-Authority → Manage risk with technology, humans make final decisions
-Accountability → Technology provides foundation, defer to institutional design
+| Constraint         | Strategy                                                      | Stance              |
+| ------------------ | ------------------------------------------------------------- | ------------------- |
+| **Currency**       | Largely solvable with technology                              | Solve               |
+| **Accuracy**       | Mitigate with technology, accept residual risk                | Mitigate + Accept   |
+| **Authority**      | Manage risk with technology, humans make final decisions      | Risk Management     |
+| **Accountability** | Technology provides foundation, defer to institutional design | Foundation Building |
 
-→ The important thing is not aiming for "complete solution"
-  but understanding each constraint's nature and selecting appropriate approaches
-```
+> The important thing is not aiming for "complete solution" but understanding each constraint's nature and selecting appropriate approaches.
 
 This project's MCP approach contributes partially to all four constraints. Particularly, improving accuracy, currency, and authority through "unshakeable reference sources," and building the foundation for accountability through open-source transparency, is the best approach practically achievable today.
 
 ## Related Documents
 
-- [01-vision.md](./01-vision.md) — Definition of AI limitations and the need for "unshakeable reference sources"
-- [02-reference-sources.md](./02-reference-sources.md) — System of reference sources by five characteristics
-- [03-architecture.md](./03-architecture.md) — Composition of MCP/Skills/Agent
-- [04-ai-design-patterns.md](./04-ai-design-patterns.md) — Comparison of design patterns like RAG/MCP
-- [mcp/what-is-mcp.md](../mcp/what-is-mcp.md) — Details about MCP
-- [07-doctrine-and-intent.md](./07-doctrine-and-intent) — Doctrine Layer: constraints, objectives, and judgment criteria
+- [01-vision](./01-vision) — Definition of AI limitations and the need for "unshakeable reference sources" (WHY)
+- [02-reference-sources](./02-reference-sources) — System of reference sources by five characteristics (WHAT)
+- [03-architecture](./03-architecture) — Composition of MCP/Skills/Agent (HOW)
+- [04-ai-design-patterns](./04-ai-design-patterns) — Comparison of design patterns like RAG/MCP (WHICH)
+- [mcp/what-is-mcp](../mcp/what-is-mcp) — Details about MCP
+- [07-doctrine-and-intent](./07-doctrine-and-intent) — Doctrine Layer: constraints, objectives, and judgment criteria
