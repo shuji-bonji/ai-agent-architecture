@@ -441,7 +441,7 @@ Highest authority reference sources. Violations cause **interoperability issues 
 | --------------------------- | ------------ | ------------------------ | ---------------------- |
 | **Communication Protocols** | IETF RFC     | ◎◎◎◎◎                    | ✅ rfcxml-mcp          |
 | **Web Standards**           | W3C / WHATWG | ◎◎◎◎○                    | ✅ w3c-mcp             |
-| **International Standards** | ISO          | ◎◎◎○△                    | 🔜 Under consideration |
+| **International Standards** | ISO          | ◎◎◎○△                    | ⚡ Partial (pdf-spec-mcp) |
 | **Japanese Laws**           | e-Gov        | ◎◎◎◎◎                    | ✅ hourei-mcp          |
 | **EU Regulations**          | EUR-Lex      | ◎◎◎◎○                    | 📋 Planned             |
 
@@ -459,32 +459,36 @@ Accessibility:     ◎ Published in RFC XML format, free access
 
 Widely adopted standards. Non-compliance causes **compatibility issues within the industry**. Key examples include:
 
-| Category           | Reference        | Characteristics                     | MCP Value |
-| ------------------ | ---------------- | ----------------------------------- | --------- |
-| **API Design**     | OpenAPI Spec     | De facto standard for REST APIs     | High      |
-| **Security**       | OWASP            | Web security best practices         | High      |
-| **Authentication** | OAuth 2.0 / OIDC | De facto standard for authorization | High      |
-| **Messaging**      | AsyncAPI         | Async API specification             | Medium    |
+| Category           | Reference        | Characteristics                     | Delivery  | MCP Value |
+| ------------------ | ---------------- | ----------------------------------- | --------- | --------- |
+| **API Design**     | OpenAPI Spec     | De facto standard for REST APIs     | MCP       | High      |
+| **Security**       | OWASP            | Web security best practices         | MCP       | High      |
+| **Authentication** | OAuth 2.0 / OIDC | De facto standard for authorization | MCP       | High      |
+| **Messaging**      | AsyncAPI         | Async API specification             | MCP       | Medium    |
 
 #### Level 3: Organization/Project Rules (Local Compliance)
 
-Rules that should be unified within teams/projects. These are managed at a local scope:
+Rules that should be unified within teams/projects. Since external API access is not required, **Skills-based systematization is the primary delivery method**.
 
-| Type                 | Characteristics               | Management Method         |
-| -------------------- | ----------------------------- | ------------------------- |
-| **Coding Standards** | Project-specific styles       | Markdown / Linter configs |
-| **ADR**              | Architecture decision records | Git-managed Markdown      |
-| **CLAUDE.md**        | Claude-specific instructions  | Project root placement    |
+| Type                 | Characteristics               | Management Method         | Delivery | MCP Value |
+| -------------------- | ----------------------------- | ------------------------- | -------- | --------- |
+| **Coding Standards** | Project-specific styles       | Markdown / Linter configs | Skills   | Low       |
+| **ADR**              | Architecture decision records | Git-managed Markdown      | Skills   | Low       |
+| **CLAUDE.md**        | Claude-specific instructions  | Project root placement    | Direct   | —         |
+
+> Level 3 knowledge is self-contained within the organization, making Skills (Markdown-based domain knowledge systematization) more appropriate than MCP (dynamic access to external APIs). Tool enforcement such as linter configs functions as guardrails (inviolable constraints).
 
 #### Level 4: Best Practices (Recommended)
 
-Recommendations based on experience. **Apply as appropriate to the situation**. These guide implementation when no standard applies:
+Recommendations based on experience. **Apply as appropriate to the situation**. By formalizing team-agreed practices as Skills, AI can reference them consistently.
 
-| Type                  | Source           | Application Judgment      |
-| --------------------- | ---------------- | ------------------------- |
-| **Design Principles** | SOLID, DRY, KISS | Situational               |
-| **Design Patterns**   | GoF, POSA        | When matching the problem |
-| **Clean Code**        | Robert C. Martin | Within team agreement     |
+| Type                  | Source           | Application Judgment      | Delivery | MCP Value |
+| --------------------- | ---------------- | ------------------------- | -------- | --------- |
+| **Design Principles** | SOLID, DRY, KISS | Situational               | Skills   | Low       |
+| **Design Patterns**   | GoF, POSA        | When matching the problem | Skills   | Low       |
+| **Clean Code**        | Robert C. Martin | Within team agreement     | Skills   | Low       |
+
+> Level 4 has the nature of "no single correct answer," making it unsuitable for MCP. Formalizing adopted principles as Skills and providing them as AI judgment criteria is the effective approach.
 
 ## AI Decision Flow
 
@@ -671,11 +675,12 @@ sequenceDiagram
 
 ## List of Built Reference Source MCPs
 
-| MCP            | Target                        | Main Functions                                                     | Status        | Repository                                          |
-| -------------- | ----------------------------- | ------------------------------------------------------------------ | ------------- | --------------------------------------------------- |
-| **rfcxml-mcp** | IETF RFC                      | Structure retrieval, requirements extraction, checklist generation | ✅ Production  | [GitHub](https://github.com/shuji-bonji/rfcxml-mcp) |
-| **w3c-mcp**    | W3C/WHATWG/IETF Web Standards | WebIDL, CSS, HTML elements                                         | ✅ Production  | [GitHub](https://github.com/shuji-bonji/w3c-mcp)    |
-| **hourei-mcp** | Japanese Laws (e-Gov)         | Law search, article retrieval                                      | ✅ Production  | [GitHub](https://github.com/ryoooo/e-gov-law-mcp)   |
+| MCP              | Target                        | Main Functions                                                     | Status        | Repository                                            |
+| ---------------- | ----------------------------- | ------------------------------------------------------------------ | ------------- | ----------------------------------------------------- |
+| **rfcxml-mcp**   | IETF RFC                      | Structure retrieval, requirements extraction, checklist generation | ✅ Production  | [GitHub](https://github.com/shuji-bonji/rfcxml-mcp)   |
+| **w3c-mcp**      | W3C/WHATWG/IETF Web Standards | WebIDL, CSS, HTML elements                                         | ✅ Production  | [GitHub](https://github.com/shuji-bonji/w3c-mcp)      |
+| **hourei-mcp**   | Japanese Laws (e-Gov)         | Law search, article retrieval                                      | ✅ Production  | [GitHub](https://github.com/ryoooo/e-gov-law-mcp)     |
+| **pdf-spec-mcp** | PDF Spec (ISO 32000)          | Structure retrieval, requirements extraction, version comparison   | ✅ Production  | [GitHub](https://github.com/shuji-bonji/pdf-spec-mcp) |
 
 ## Future Expansion Candidates
 
@@ -692,7 +697,6 @@ sequenceDiagram
 | Candidate        | Target            | Value                             | Status                |
 | ---------------- | ----------------- | --------------------------------- | --------------------- |
 | **ISO MCP**      | ISO Standards     | International standards reference | 📋 Planned            |
-| **PDF Spec MCP** | ISO 32000         | PDF specification reference       | 🔜 Under consideration |
 | **BIM/IFC MCP**  | buildingSMART IFC | Building information model        | 📋 Planned            |
 | **HL7 FHIR MCP** | HL7 FHIR          | Healthcare information exchange   | 📋 Planned            |
 
