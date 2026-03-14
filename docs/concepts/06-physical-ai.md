@@ -137,6 +137,19 @@ BitNet is a promising technology, but the following constraints should be recogn
 While BitNet has sufficient precision for Physical AI control tasks (discrete decisions, binary classification), it is **not a universal solution**. Identifying the right application domain is critical.
 :::
 
+::: details Other Edge Inference Approaches Beyond BitNet
+This document highlights BitNet b1.58 as a representative example, but other technologies also enable edge inference.
+
+| Approach | Characteristics | Maturity |
+| --- | --- | --- |
+| **GGUF Quantization (llama.cpp)** | Post-training quantization (Q4_K_M / Q5_K_M etc.). Largest model selection | High |
+| **Apple MLX** | Inference framework optimized for Apple Silicon | Medium–High |
+| **TinyLlama / Phi-3-mini** | Small-by-design models. Can run on edge without quantization | Medium |
+| **MediaPipe LLM Inference** | Google's mobile / edge inference API | Medium |
+
+The three-layer model's structural claim (separation of responsibilities holds at the edge) remains valid regardless of what powers the Agent layer's inference engine. BitNet stands out among these for being "structurally optimized from scratch rather than post-compressed," aligning well with this document's design philosophy.
+:::
+
 ### Affinity with Physical AI
 
 This efficiency holds particular significance in the context of Physical AI. Robots and drones are fundamentally **battery-powered**, and 71.4x energy efficiency means not just "it can run on the edge" but "**it can operate autonomously on battery for extended periods**."
