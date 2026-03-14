@@ -28,29 +28,36 @@ AI-driven development ≠ Having AI write code
 AI-driven development = Utilizing AI throughout all processes while humans focus on judgment and creativity
 ```
 
+::: info What "All Processes" Means
+This is not limited to coding. It refers to the broad range of management domains involved in software development — including project management, product management, SRE, security, and data management — as outlined in [Management of Software Systems and Services](https://github.com/shuji-bonji/Management-of-software-systems-and-services).
+:::
+
+However, realizing this ideal requires a prerequisite. For AI to be truly useful "across all processes," it must be placed in an environment where it can make correct judgments.
+
 ### The Reality During This Transitional Period
 
-Until the future comes when AI (including CI/CD) can immediately output binaries and be implemented, AI-driven development will require the introduction of the engineering skills that people have cultivated up to now.
+The era where AI autonomously completes every process has not yet arrived. AI excels at "generating plausible output," but **it cannot judge on its own whether that output is correct**.
 
-What are these necessary elements?
-
-In other words, "AI can generate plausible outputs, but **guidelines for decision-making are needed**."
-
-This is why **unwavering reference sources** are necessary.
+At the same time, the code AI generates today depends on abstraction layers — frameworks and libraries — whose foundations are the **standards and specifications** that humanity has accumulated over time.
 
 ```mermaid
-graph TB
-    subgraph Current Software Development
-        AI[AI] --> |"Generation"| Code[Code]
-        Code --> |"Depends on"| Layer[Abstraction Layer]
-        Layer --> |"Human Heritage"| Standards[Standards & Specifications]
-    end
+graph LR
+    Standards["Standards & Specifications<br>RFC / W3C / Laws"]
+    Layer["Abstraction Layer<br>Frameworks / Libraries"]
+    Code["Generated Code"]
+    AI["AI"]
 
-    Standards --> |"Reference"| AI
+    Standards -->|"Foundation"| Layer
+    Layer -->|"Depends on"| Code
+    AI -->|"Generates"| Code
+    Standards -.->|"Not yet referenced"| AI
 
     style Standards fill:#ffd700,color:#000,stroke:#b8860b,stroke-width:2px
-
 ```
+
+Although the code AI generates is built on top of these standards, AI cannot directly reference them (dashed line). This is the core problem.
+
+**For AI to function correctly, it must be able to reference the same standards and specifications that its generated code ultimately depends on.** This is why "unwavering reference sources" are necessary.
 
 ## The Importance of "Unwavering Reference Sources"
 
