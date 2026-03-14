@@ -622,6 +622,26 @@ sequenceDiagram
     M->>U: Final translation result
 ```
 
+## What the Three-Layer Model Does Not Explicitly Cover — Memory
+
+The three-layer model (Agent / Skills / MCP) defines **what an agent knows, what it can do, and on what basis it judges**. However, **how an agent remembers past interactions and outcomes and how it leverages that history** — namely Memory — is outside the scope of this model.
+
+::: tip Why Memory Is Not Included in the Three Layers
+Memory is inherently **dynamic**, changing as conversations progress. In contrast, Skills are static domain knowledge and MCP is an explicit protocol interface — both are **declaratively definable** elements. Memory differs fundamentally in nature, and placing it alongside these layers would compromise the model's clarity.
+
+Furthermore, Memory implementation varies significantly across LLMs and platforms:
+
+- **Context window** (short-term memory): Present in all LLMs, but size and lifecycle are model-dependent
+- **Persistent memory**: Platform-specific features (e.g., ChatGPT Memory) or application-layer implementations (e.g., LangChain `ConversationBufferMemory`)
+- **`CLAUDE.md`**: A concept close to "project-level memory" in Claude Code, but strictly an instruction file rather than Memory
+
+Until unified protocols or standards are established, it is more appropriate to design Memory individually during the implementation phase rather than incorporating it into the three-layer model.
+:::
+
+::: warning This Does Not Mean Memory Can Be Ignored
+In actual agent design, Memory is an essential concern. Within the three-layer model, the Skills layer implicitly covers "long-term memory" of domain knowledge, and the MCP layer covers "reference memory" of external context. For conversation history and learning outcome retention, consider implementation strategies during the [Development Phases](../workflows/development-phases).
+:::
+
 ## Layer Structure Summary
 
 The following layered structure shows how all components integrate. The [Doctrine Layer](./07-doctrine-and-intent) (constraints, objectives, judgment criteria) governs all layers. In terms of information flow: doctrine constraints descend from above, resource facts ascend from below, and agent decision-making occurs at the center.

@@ -277,6 +277,21 @@ A pattern where an LLM autonomously plans, invokes tools, and solves problems th
 
 ## Other Terms
 
+### World Model
+
+An agent's internal representation of environmental structure and physical laws. The foundational concept that enables agents to predict "what will happen next" and simulate the consequences of their actions.
+
+```
+Contexts:
+- Robotics / autonomous driving: Internal models of physics (gravity, inertia, collision)
+- LLMs: Implicit understanding of causal relationships and commonsense world behavior
+- Reinforcement learning: Environment dynamics models (model-based RL)
+```
+
+In this site, World Models are primarily discussed in the context of [Physical AI](./concepts/06-physical-ai#the-importance-of-world-models). While implicitly present in information-space agents, they are an essential element for agents that operate in the physical world.
+
+**Reference**: [Yann LeCun — A Path Towards Autonomous Machine Intelligence (2022)](https://openreview.net/pdf?id=BZ5a1r-kVsf)
+
 ### Authoritative Reference Sources
 
 Authoritative information sources for maintaining consistency in AI decisions.
