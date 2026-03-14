@@ -232,6 +232,20 @@ This separation of responsibilities doesn't change whether the connection target
 | **Connectivity**         | Always-connected assumed                         | Offline operation is essential                       |
 | **Energy constraints**   | Data center power                                | Battery-powered (efficiency is a survival condition) |
 
+::: details Edge AI-Specific Latency Design Considerations
+Edge environments require consideration of latency characteristics that differ fundamentally from the cloud.
+
+| Type | Target Range | Design Impact |
+| --- | --- | --- |
+| **Inference latency** | 10–100ms | Depends on model size and hardware. Reducible with quantized models |
+| **Sensor fusion** | 1–10ms | Synchronization timing across multiple sensors directly affects decision accuracy |
+| **Control loop** | 1–10ms | Real-time requirements for PID control etc. May require an RTOS (Real-Time OS) |
+| **Network round-trip** | 50–500ms | Round-trip to cloud. Unusable for emergency decisions, necessitating decision distribution design |
+| **Degraded mode transition** | Immediate | Switching to fallback behavior upon communication loss or sensor failure |
+
+These latency constraints are the rationale behind the "decision distribution" collaboration pattern (real-time decisions at edge, advanced analysis in cloud).
+:::
+
 ## The Indispensability of the Doctrine Layer
 
 For AI operating autonomously in the physical world, the importance of the [Doctrine Layer](./07-doctrine-and-intent) is even higher than in the cloud.
@@ -287,24 +301,37 @@ flowchart LR
 
 ## From Agent to Robot — The Control Flow
 
-Between the Agent layer's decision and the robot's physical action, the signal passes through a control system and motion planner.
+Between the Agent layer's decision and the robot's physical action, the signal passes through multiple control layers. The three-layer model does not replace the control system — it provides **decision and knowledge layers** above it.
+
+::: details Control Layer — Full Hierarchy from Agent to Robot
 
 ```mermaid
 flowchart LR
-    A["Agent Layer<br/>Action Decision<br/>\"Move to Shelf A\""]
+    A["Agent<br/>High-level Intent<br/>\"Move to Shelf A\""]
+    TP["Task Planner<br/>Task Decomposition<br/>\"Split path into 3 stages\""]
     MP["Motion Planner<br/>Path Planning & Collision Check"]
-    CS["Control System<br/>PID Control & Torque Control"]
-    ACT["Actuator<br/>Motor Drive"]
+    CT["Controller<br/>PID Control & Torque Control"]
+    R["Robot<br/>Motor Drive & Physical Action"]
 
-    A --> MP --> CS --> ACT
+    A --> TP --> MP --> CT --> R
 
     style A fill:#87CEEB,color:#333,stroke:#333
+    style TP fill:#B0C4DE,color:#333,stroke:#333
     style MP fill:#DDA0DD,color:#333,stroke:#333
-    style CS fill:#F0E68C,color:#333,stroke:#333
-    style ACT fill:#FFB6C1,color:#333,stroke:#333
+    style CT fill:#F0E68C,color:#333,stroke:#333
+    style R fill:#FFB6C1,color:#333,stroke:#333
 ```
 
-The Agent layer outputs **high-level intent**, while the intervening control loops are handled by conventional robotics technology. The three-layer model does not replace the control system — it provides **decision and knowledge layers** above it.
+| Layer | Responsibility | This Document's Scope |
+| --- | --- | --- |
+| **Agent** | High-level intent determination ("Move to Shelf A") | ✅ Three-layer model's Agent layer |
+| **Task Planner** | Decompose intent into subtasks ("Split path into 3 stages") | ⚠️ Boundary area (uses Skills layer knowledge) |
+| **Motion Planner** | Path planning and collision avoidance in physical space | ❌ Conventional robotics domain |
+| **Controller** | Real-time control such as PID and torque control | ❌ Conventional robotics domain |
+| **Robot** | Actuator drive and physical action | ❌ Hardware domain |
+
+This document's scope primarily covers the **Agent layer** (and its boundary with the Task Planner). Motion Planner and below are handled by conventional robotics engineering — the three-layer model provides decision-making and knowledge above them, not as a replacement.
+:::
 
 ## Cloud × Edge Collaboration Patterns
 
@@ -347,6 +374,17 @@ flowchart TB
 ### Multi-Agent Systems and A2A
 
 In Physical AI deployments, **multi-agent** configurations where multiple robots or drones coordinate on tasks are becoming commonplace. Agent-to-Agent (A2A) protocols for inter-agent communication are being put into practice in warehouse robot swarm control, drone formation flight, and similar applications.
+
+However, in the physical world, inter-agent communication is not always guaranteed. Radio interference, distance limitations, and jamming can cause **communication blackouts**. Whether each agent can act safely and independently during these periods becomes the most critical design challenge.
+
+```
+Communication available: Agent A → Agent B "Avoid Shelf 3" → Direct coordination
+Communication lost:      Each Agent decides independently based on shared doctrine
+                         → "Collision avoidance is top priority" "Stop for unknown obstacles"
+                           "Retry connection after 30 seconds"
+```
+
+Here, the role of doctrine elevates from "constraints on individual agents" to **"the foundation for distributed consensus."** Even without communication, if all agents share the same doctrine, each agent's behavior becomes mutually predictable. This is the very archetype of military doctrine — the same structure as a unit that has lost contact with its commander acting autonomously according to pre-shared principles of action (see [07-doctrine-and-intent](./07-doctrine-and-intent)).
 
 ### Digital Twins and MCP
 
