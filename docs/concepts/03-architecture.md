@@ -77,8 +77,8 @@ flowchart TB
     USER["User"]
 
     subgraph HOST_LAYER["Host Layer"]
-        HOST["Host<bn>(Claude Code / Claude.ai)"]
-        SKILL["Skills<bn>(Static Knowledge)"]
+        HOST["Host<br>(Claude Code / Claude.ai)"]
+        SKILL["Skills<br>(Static Knowledge)"]
     end
 
     subgraph AGENT_LAYER["Agent Layer"]
@@ -253,9 +253,9 @@ The following diagram illustrates where sub-agents sit within the Claude Code ar
 flowchart TB
     subgraph CLAUDE_CODE["Claude Code"]
         USER["User"]
-        MAIN["Main Claude<bn>(Orchestrator)"]
-        SUBAGENT["Custom Sub Agent<bn>(.claude/agents/)"]
-        MCP_CLIENT["MCP Client<bn>(Built into Claude Code)"]
+        MAIN["Main Claude<br>(Orchestrator)"]
+        SUBAGENT["Custom Sub Agent<br>(.claude/agents/)"]
+        MCP_CLIENT["MCP Client<br>(Built into Claude Code)"]
 
         USER --> MAIN
         MAIN --"Delegate"--> SUBAGENT
@@ -263,7 +263,7 @@ flowchart TB
         MAIN --"Direct Use"--> MCP_CLIENT
     end
 
-    MCP_SERVERS["MCP Servers<bn>rfcxml, deepl, etc."]
+    MCP_SERVERS["MCP Servers<br>rfcxml, deepl, etc."]
 
     MCP_CLIENT --"JSON-RPC"--> MCP_SERVERS
 

@@ -1040,8 +1040,8 @@ flowchart TB
     USER["User"]
 
     subgraph HOST_LAYER["Host Layer"]
-        HOST["Host<bn>(Claude Code / Claude.ai)"]
-        SKILL["Skills<bn>(Static Knowledge)"]
+        HOST["Host<br>(Claude Code / Claude.ai)"]
+        SKILL["Skills<br>(Static Knowledge)"]
     end
 
     subgraph AGENT_LAYER["Agent Layer"]
@@ -1197,9 +1197,9 @@ The following diagram illustrates where sub-agents sit within the Claude Code ar
 flowchart TB
     subgraph CLAUDE_CODE["Claude Code"]
         USER["User"]
-        MAIN["Main Claude<bn>(Orchestrator)"]
-        SUBAGENT["Custom Sub Agent<bn>(.claude/agents/)"]
-        MCP_CLIENT["MCP Client<bn>(Built into Claude Code)"]
+        MAIN["Main Claude<br>(Orchestrator)"]
+        SUBAGENT["Custom Sub Agent<br>(.claude/agents/)"]
+        MCP_CLIENT["MCP Client<br>(Built into Claude Code)"]
 
         USER --> MAIN
         MAIN --"Delegate"--> SUBAGENT
@@ -1207,7 +1207,7 @@ flowchart TB
         MAIN --"Direct Use"--> MCP_CLIENT
     end
 
-    MCP_SERVERS["MCP Servers<bn>rfcxml, deepl, etc."]
+    MCP_SERVERS["MCP Servers<br>rfcxml, deepl, etc."]
 
     MCP_CLIENT --"JSON-RPC"--> MCP_SERVERS
 
@@ -1659,7 +1659,7 @@ A technique that searches external documents and injects relevant information in
 flowchart LR
     subgraph PrepPhase["Preparation Phase"]
         D[Documents] --> C[Chunk Splitting]
-        C --> E[Vectorization<bn>Embedding]
+        C --> E[Vectorization<br>Embedding]
         E --> V[(Vector DB)]
     end
 
@@ -1668,7 +1668,7 @@ flowchart LR
         QE --> S[Similarity Search]
         V --> S
         S --> R[Retrieve Relevant Chunks]
-        R --> P[Build Prompt<bn>Question + Search Results]
+        R --> P[Build Prompt<br>Question + Search Results]
         P --> L[LLM]
         L --> A[Generate Answer]
     end
@@ -1692,9 +1692,9 @@ A standard protocol developed by Anthropic for connecting AI models with externa
 flowchart LR
     subgraph MCPSystem["MCP"]
         Q2[User Question] --> A2[AI Decides]
-        A2 --> T[Tool Call<bn>Example: get_requirements]
+        A2 --> T[Tool Call<br>Example: get_requirements]
         T --> S2[MCP Server]
-        S2 --> E2[External Service<bn>RFC / DeepL etc.]
+        S2 --> E2[External Service<br>RFC / DeepL etc.]
         E2 --> R2[Structured Result]
         R2 --> G2[Generate Answer]
     end
@@ -1815,10 +1815,10 @@ These patterns **are not mutually exclusive; they can and should be combined**.
 ```mermaid
 graph TB
     subgraph ActualSystem["Real System"]
-        PE[Prompt Engineering<bn>Base Instructions]
-        RAG_COMP[RAG<bn>Internal Document Search]
-        MCP_COMP[MCP<bn>Standard Specification Reference]
-        AGENT[Agentic AI<bn>Orchestration]
+        PE[Prompt Engineering<br>Base Instructions]
+        RAG_COMP[RAG<br>Internal Document Search]
+        MCP_COMP[MCP<br>Standard Specification Reference]
+        AGENT[Agentic AI<br>Orchestration]
     end
 
     PE --> AGENT
@@ -1960,14 +1960,14 @@ flowchart TB
         R1[Documents] --> R2[Chunk Splitting]
         R2 --> R3[Vectorization]
         R3 --> R4[Similarity Search]
-        R4 --> R5["Fragmented Results<bn>(Risk of Context Loss)"]
+        R4 --> R5["Fragmented Results<br>(Risk of Context Loss)"]
     end
 
     subgraph MCP_APPROACH["MCP: Search by Domain Structure"]
         direction TB
         M1[Structured Data] --> M2[Domain Understanding]
-        M2 --> M3["Structured Query<bn>get_requirements()"]
-        M3 --> M4["Accurate Results<bn>+ Metadata"]
+        M2 --> M3["Structured Query<br>get_requirements()"]
+        M3 --> M4["Accurate Results<br>+ Metadata"]
     end
 
     style RAG_APPROACH fill:#fff3e0,color:#333
@@ -2133,7 +2133,7 @@ flowchart TB
     Q2 -->|No| Q4{Worth Creating<br/>MCP?}
 
     Q3 -->|Yes| RAG[Use RAG]
-    Q3 -->|No| PE[Prompt Engineering<bn>for Now]
+    Q3 -->|No| PE[Prompt Engineering<br>for Now]
 
     Q4 -->|Yes| BUILD_MCP[Build MCP]
     Q4 -->|No| RAG
@@ -2207,9 +2207,9 @@ The value that MCP provides in this project's context can be summarized in three
 ```mermaid
 graph TB
     subgraph MCPValues["The 3 Values of MCP"]
-        V1["① Accuracy<bn>Structure-aware Access"]
-        V2["② Verifiability<bn>Clear Sources"]
-        V3["③ Democratization<bn>Distribution via Standard Protocol"]
+        V1["① Accuracy<br>Structure-aware Access"]
+        V2["② Verifiability<br>Clear Sources"]
+        V3["③ Democratization<br>Distribution via Standard Protocol"]
     end
 
     V1 --> RESULT[Trustworthiness of AI Output]
@@ -2301,16 +2301,16 @@ First, let's understand the full picture. The four constraints have **very diffe
 ```mermaid
 flowchart TB
     subgraph SOLVABLE["Solvable by Technology"]
-        CURRENCY["Currency<bn>Knowledge Cutoff"]
+        CURRENCY["Currency<br>Knowledge Cutoff"]
     end
 
     subgraph MITIGABLE["Mitigable by Technology"]
-        ACCURACY["Accuracy<bn>Hallucination"]
-        AUTHORITY["Authority<bn>Interpretation Authority"]
+        ACCURACY["Accuracy<br>Hallucination"]
+        AUTHORITY["Authority<br>Interpretation Authority"]
     end
 
     subgraph SYSTEMIC["Institutional Design Required"]
-        ACCOUNTABILITY["Accountability<bn>Legal & Ethical Basis"]
+        ACCOUNTABILITY["Accountability<br>Legal & Ethical Basis"]
     end
 
     style CURRENCY fill:#90EE90,color:#333,stroke:#333
@@ -2336,11 +2336,11 @@ LLM knowledge is fixed at the point of training data (details: [02-reference-sou
 
 ```mermaid
 flowchart TB
-    PROBLEM["Currency Constraint<bn>Knowledge Cutoff"]
+    PROBLEM["Currency Constraint<br>Knowledge Cutoff"]
 
-    PROBLEM --> WEB["Web Search<bn>(Real-time Information Retrieval)"]
-    PROBLEM --> MCP_RT["Real-time Access via MCP<bn>(Direct Connection to Authoritative Sources)"]
-    PROBLEM --> RAG_UP["Regular RAG Index Updates<bn>(Keeping Organizational Knowledge Current)"]
+    PROBLEM --> WEB["Web Search<br>(Real-time Information Retrieval)"]
+    PROBLEM --> MCP_RT["Real-time Access via MCP<br>(Direct Connection to Authoritative Sources)"]
+    PROBLEM --> RAG_UP["Regular RAG Index Updates<br>(Keeping Organizational Knowledge Current)"]
 
     WEB --> EVAL["✅ Largely Solvable"]
     MCP_RT --> EVAL
@@ -2395,14 +2395,14 @@ This is not a "bug" but a "feature," and **it is impossible to eliminate it comp
 
 ```mermaid
 flowchart TB
-    PROBLEM["Accuracy Constraint<bn>Hallucination"]
+    PROBLEM["Accuracy Constraint<br>Hallucination"]
 
-    PROBLEM --> INJECT["External Knowledge Injection<bn>(MCP / RAG)"]
-    PROBLEM --> VERIFY["Output Verification<bn>(Multi-stage Checks)"]
-    PROBLEM --> DECLARE["Explicit Uncertainty<bn>(AI Communicates Its Limits)"]
-    PROBLEM --> HUMAN["Human Review<bn>(Final Confirmation Process)"]
+    PROBLEM --> INJECT["External Knowledge Injection<br>(MCP / RAG)"]
+    PROBLEM --> VERIFY["Output Verification<br>(Multi-stage Checks)"]
+    PROBLEM --> DECLARE["Explicit Uncertainty<br>(AI Communicates Its Limits)"]
+    PROBLEM --> HUMAN["Human Review<br>(Final Confirmation Process)"]
 
-    INJECT --> EVAL["△ Mitigable<bn>Complete Elimination Not Possible"]
+    INJECT --> EVAL["△ Mitigable<br>Complete Elimination Not Possible"]
     VERIFY --> EVAL
     DECLARE --> EVAL
     HUMAN --> EVAL
@@ -2478,14 +2478,14 @@ This constraint arises from **the nature of information authority itself** rathe
 
 ```mermaid
 flowchart TB
-    PROBLEM["Authority Constraint<bn>Interpretation Authority"]
+    PROBLEM["Authority Constraint<br>Interpretation Authority"]
 
-    PROBLEM --> DIRECT["Direct Access to Original Sources<bn>(Retrieve Primary Sources via MCP)"]
-    PROBLEM --> CITE["Explicit Citation<bn>(Identify Down to Section Number)"]
-    PROBLEM --> WORKFLOW["Human Review Workflow<bn>(Humans Make the Decision)"]
-    PROBLEM --> MULTI["Multi-angle Verification<bn>(Cross-check with Multiple MCPs)"]
+    PROBLEM --> DIRECT["Direct Access to Original Sources<br>(Retrieve Primary Sources via MCP)"]
+    PROBLEM --> CITE["Explicit Citation<br>(Identify Down to Section Number)"]
+    PROBLEM --> WORKFLOW["Human Review Workflow<br>(Humans Make the Decision)"]
+    PROBLEM --> MULTI["Multi-angle Verification<br>(Cross-check with Multiple MCPs)"]
 
-    DIRECT --> EVAL["△ Manage as Risk<bn>Complete Solution Not Possible"]
+    DIRECT --> EVAL["△ Manage as Risk<br>Complete Solution Not Possible"]
     CITE --> EVAL
     WORKFLOW --> EVAL
     MULTI --> EVAL
@@ -2542,7 +2542,7 @@ sequenceDiagram
     AI->>LAW: find_law_article("Digital Signature Law", "2")
     LAW-->>AI: Legal Requirements
     AI->>AI: Map Technical Requirements ↔ Legal Requirements
-    AI-->>U: Analysis from Both Technical & Legal Perspectives<bn>⚠️ Expert confirmation recommended for final judgment
+    AI-->>U: Analysis from Both Technical & Legal Perspectives<br>⚠️ Expert confirmation recommended for final judgment
 ```
 
 ### 3.3 Implementation Evaluation
@@ -2561,14 +2561,14 @@ While technology alone cannot completely solve accountability, it can provide th
 
 ```mermaid
 flowchart TB
-    PROBLEM["Accountability Constraint<bn>Lack of Legal & Ethical Basis"]
+    PROBLEM["Accountability Constraint<br>Lack of Legal & Ethical Basis"]
 
     PROBLEM --> AUDIT["Ensuring Audit Trail"]
-    PROBLEM --> TRACE["Traceability<bn>(Record Decision Process)"]
-    PROBLEM --> INTEGRITY["Data Integrity Assurance<bn>(Digital Signature, Timestamp)"]
-    PROBLEM --> GOVERNANCE["Building Governance Framework<bn>(Clarify Human Responsibility)"]
+    PROBLEM --> TRACE["Traceability<br>(Record Decision Process)"]
+    PROBLEM --> INTEGRITY["Data Integrity Assurance<br>(Digital Signature, Timestamp)"]
+    PROBLEM --> GOVERNANCE["Building Governance Framework<br>(Clarify Human Responsibility)"]
 
-    AUDIT --> EVAL["✗ Technology Provides Foundation<bn>Institutional Design Essential"]
+    AUDIT --> EVAL["✗ Technology Provides Foundation<br>Institutional Design Essential"]
     TRACE --> EVAL
     INTEGRITY --> EVAL
     GOVERNANCE --> EVAL
@@ -2627,7 +2627,7 @@ flowchart LR
         F2 --> F3["Data Retrieval"]
         F3 --> F4["Signature Verification ✓"]
         F4 --> F5["Attach Timestamp 🕐"]
-        F5 --> F6["Provide to AI<bn>+ Completeness Proof"]
+        F5 --> F6["Provide to AI<br>+ Completeness Proof"]
     end
 
     CURRENT -.->|"Evolution"| FUTURE
@@ -2671,22 +2671,22 @@ What individuals and small teams can do now is **establish technological foundat
 flowchart LR
     subgraph TECH["Technical Approaches"]
         direction LR
-        MCP_APPROACH["MCP<bn>Structured Access"]
-        RAG_APPROACH["RAG<bn>Similarity Search"]
-        WEBSEARCH["Web Search<bn>Real-time Information"]
-        VALIDATION["Verification Workflow<bn>Multi-stage Checks"]
+        MCP_APPROACH["MCP<br>Structured Access"]
+        RAG_APPROACH["RAG<br>Similarity Search"]
+        WEBSEARCH["Web Search<br>Real-time Information"]
+        VALIDATION["Verification Workflow<br>Multi-stage Checks"]
     end
 
     subgraph ORG["Organizational Approaches"]
         direction LR
-        REVIEW["Human Review<bn>Final Approval"]
-        GOVERNANCE["Governance<bn>Responsibility Framework"]
+        REVIEW["Human Review<br>Final Approval"]
+        GOVERNANCE["Governance<br>Responsibility Framework"]
     end
 
     subgraph FUTURE_TECH["Future Technology"]
         direction LR
-        SIGNATURE["Digital Signature<bn>Data Integrity"]
-        TIMESTAMP["Timestamp<bn>Existence Proof"]
+        SIGNATURE["Digital Signature<br>Data Integrity"]
+        TIMESTAMP["Timestamp<br>Existence Proof"]
     end
 
     MCP_APPROACH --> ACCURACY["Accuracy △"]
@@ -6772,8 +6772,8 @@ The most powerful approach combines these three elements.
 
 ```mermaid
 flowchart LR
-    SKILL["Skill<bn>Workflow Definition"] -->|"Reference"| AGENT["Sub-agent<bn>Translation Expert"]
-    AGENT -->|"Execute"| MCP["MCP<bn>deepL, xcomet"]
+    SKILL["Skill<br>Workflow Definition"] -->|"Reference"| AGENT["Sub-agent<br>Translation Expert"]
+    AGENT -->|"Execute"| MCP["MCP<br>deepL, xcomet"]
 
     style SKILL fill:#90EE90,color:#333,stroke:#333
     style MCP fill:#FFB6C1,color:#333,stroke:#333

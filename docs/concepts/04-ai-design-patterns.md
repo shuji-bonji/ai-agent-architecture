@@ -2,29 +2,68 @@
 
 > As AI systems have advanced, how has the industry addressed the LLM's "knowledge limitations"? Where does MCP fit in, and what makes it different?
 
+::: warning Positioning of This Page
+[01-vision](./01-vision) (**WHY** — Why unshakeable references are needed)  
+→ [02-reference-sources](./02-reference-sources) (**WHAT** — What qualifies as a reference source)  
+→ [03-architecture](./03-architecture) (**HOW** — How to structure the system)  
+→ **This page (WHICH — Which pattern to choose and when)**
+
+This page translates the abstract architecture from preceding chapters into **concrete design decisions**. Each pattern is described not as "something to adopt" but as **a structure that works when preconditions are met — and breaks when they are not**.
+:::
+
 ## About This Document
 
-Implementing generative AI (LLM) in practical systems requires more than the capabilities of the model alone. AI knowledge has inherent limitations (see [01-vision.md](./01-vision.md)), and various design patterns have emerged to overcome them.
+Implementing generative AI (LLM) in practical systems requires more than the capabilities of the model alone. AI knowledge has inherent limitations (see [01-vision](./01-vision)), and various design patterns have emerged to overcome them.
 
 This document provides an overview of major design patterns and carefully explains the differences between RAG (Retrieval-Augmented Generation) and MCP. The goal is to answer questions like "What's the difference between RAG and MCP?" and "Why does this project choose MCP?"
 
+### Architecture → Design Patterns Relationship
+
+In software development, Architecture (structure) sits above Design Patterns (implementation techniques). The same relationship holds in this project.
+
+```mermaid
+flowchart TB
+    subgraph Architecture["Architecture (03-architecture)"]
+        direction LR
+        A1["Agent Layer"]
+        A2["Skills Layer"]
+        A3["MCP Layer"]
+    end
+
+    subgraph Patterns["Design Patterns (This Page)"]
+        direction LR
+        P1["Knowledge Injection<br/>RAG / MCP / GraphRAG"]
+        P2["Reasoning Enhancement<br/>Prompt Engineering / CoT"]
+        P3["Autonomous Behavior<br/>Agentic AI"]
+        P4["Model Enhancement<br/>Fine-tuning"]
+    end
+
+    Architecture -->|"Structure constrains"| Patterns
+    Patterns -->|"Patterns realize structure"| Architecture
+
+    style Architecture fill:#e8f5e9,color:#333,stroke:#4CAF50
+    style Patterns fill:#e3f2fd,color:#333,stroke:#1976D2
+```
+
+> Architecture defines "what goes where," while Design Patterns show "how to implement it concretely." The two reference each other in a mutually reinforcing relationship.
+
 ## LLM's "Knowledge Limitations" — Why External Knowledge is Needed
 
-LLMs are probabilistic generative models trained on massive amounts of text data. They possess remarkably broad knowledge, but have clear limitations (see Chapter 1 of [02-reference-sources.md](./02-reference-sources.md) for details).
+LLMs are probabilistic generative models trained on massive amounts of text data. They possess remarkably broad knowledge, but have clear limitations (see Chapter 1 of [02-reference-sources](./02-reference-sources) for details).
 
 ```
 LLM Knowledge
-┌─────────────────────────────────────────┐
-│  ✅ Pre-trained knowledge (vast but fixed) │
-│     - General knowledge, programming, languages │
-│     - Information up to training cutoff       │
-├─────────────────────────────────────────┤
-│  ❌ Knowledge it lacks                  │
-│     - Information after training cutoff     │
-│     - Internal documents and proprietary data │
+┌────────────────────────────────────────────────────────┐
+│  ✅ Pre-trained knowledge (vast but fixed)             │
+│     - General knowledge, programming, languages.       │
+│     - Information up to training cutoff                │
+├────────────────────────────────────────────────────────┤
+│  ❌ Knowledge it lacks                                 │
+│     - Information after training cutoff                │
+│     - Internal documents and proprietary data          │
 │     - Rare specialized knowledge (obscure RFC details) │
-│     - Real-time information                │
-└─────────────────────────────────────────┘
+│     - Real-time information                            │
+└────────────────────────────────────────────────────────┘
 ```
 
 Various design patterns have been devised to address this "missing knowledge."
@@ -68,10 +107,10 @@ mindmap
 A technique that searches external documents and injects relevant information into the LLM's prompt. Rather than modifying the LLM itself, it combines "retrieval + generation."
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph PrepPhase["Preparation Phase"]
         D[Documents] --> C[Chunk Splitting]
-        C --> E[Vectorization<bn>Embedding]
+        C --> E[Vectorization<br>Embedding]
         E --> V[(Vector DB)]
     end
 
@@ -80,7 +119,7 @@ flowchart LR
         QE --> S[Similarity Search]
         V --> S
         S --> R[Retrieve Relevant Chunks]
-        R --> P[Build Prompt<bn>Question + Search Results]
+        R --> P[Build Prompt<br>Question + Search Results]
         P --> L[LLM]
         L --> A[Generate Answer]
     end
@@ -104,9 +143,9 @@ A standard protocol developed by Anthropic for connecting AI models with externa
 flowchart LR
     subgraph MCPSystem["MCP"]
         Q2[User Question] --> A2[AI Decides]
-        A2 --> T[Tool Call<bn>Example: get_requirements]
+        A2 --> T[Tool Call<br>Example: get_requirements]
         T --> S2[MCP Server]
-        S2 --> E2[External Service<bn>RFC / DeepL etc.]
+        S2 --> E2[External Service<br>RFC / DeepL etc.]
         E2 --> R2[Structured Result]
         R2 --> G2[Generate Answer]
     end
@@ -122,7 +161,7 @@ flowchart LR
 | **Strengths**      | Accurate data retrieval, verifiable, distributable |
 | **Weaknesses**     | Requires MCP server development                    |
 
-> **MCP Details**: See [mcp/what-is-mcp.md](../mcp/what-is-mcp.md).
+> **MCP Details**: See [mcp/what-is-mcp](../mcp/what-is-mcp).
 
 #### Fine-tuning
 
@@ -192,7 +231,7 @@ flowchart TB
 | **Strengths**    | Can automate complex tasks                          |
 | **Weaknesses**   | Hard to predict, difficult to control in some cases |
 
-> **Agent Details**: See [03-architecture.md](./03-architecture.md).
+> **Agent Details**: See [03-architecture](./03-architecture).
 
 #### GraphRAG
 
@@ -209,28 +248,45 @@ GraphRAG:      Documents → Entity Extraction → Build Relationship Graph → 
 | **Strengths**  | Strong at "How does A relate to B?"                     |
 | **Weaknesses** | High cost of graph construction                         |
 
-### 2.3 Pattern Comparison Table
+### 2.3 Pattern Categories
 
-| Pattern                | Problem Solved                           | Modified Component | Cost        | Real-time                             |
-| ---------------------- | ---------------------------------------- | ------------------ | ----------- | ------------------------------------- |
-| **RAG**                | Knowledge completion                     | Prompt             | Medium      | △ (depends on index update frequency) |
-| **MCP**                | Tool connection, accurate data retrieval | Prompt             | Medium-High | ◎ (Real-time)                         |
-| **Fine-tuning**        | Domain specialization                    | Model parameters   | High        | ✗ (retraining needed)                 |
-| **Prompt Engineering** | Output quality control                   | Prompt             | Low         | -                                     |
-| **Agentic AI**         | Complex task automation                  | Architecture       | High        | ◎                                     |
-| **GraphRAG**           | Relationship understanding               | Prompt + Graph     | High        | △                                     |
+Each pattern can be classified into four categories based on its primary concern.
 
-### 2.4 Patterns Are Not Mutually Exclusive
+| Category                  | Patterns                             | Primary Concern                                           |
+| ------------------------- | ------------------------------------ | --------------------------------------------------------- |
+| **Knowledge Injection**   | RAG, MCP, GraphRAG                   | Supplement external knowledge that LLMs lack              |
+| **Reasoning Enhancement** | Prompt Engineering, Chain-of-Thought | Control and improve the LLM's reasoning process           |
+| **Autonomous Behavior**   | Agentic AI                           | Automate multi-step planning, execution, and verification |
+| **Model Enhancement**     | Fine-tuning                          | Modify the model's own parameters                         |
+
+> These categories are not exclusive. Agentic AI internally combines knowledge injection (MCP/RAG) and reasoning enhancement (Prompt Engineering).
+
+### 2.4 Pattern Comparison Table
+
+| Pattern                | Category              | Problem Solved                           | Modified Component | Cost        | Real-time                             | Complexity | Failure Risk             |
+| ---------------------- | --------------------- | ---------------------------------------- | ------------------ | ----------- | ------------------------------------- | ---------- | ------------------------ |
+| **RAG**                | Knowledge Injection   | Knowledge completion                     | Prompt             | Medium      | △ (depends on index update frequency) | ★★☆        | Depends on chunk quality |
+| **MCP**                | Knowledge Injection   | Tool connection, accurate data retrieval | Prompt             | Medium-High | ◎ (Real-time)                         | ★★☆        | Server downtime          |
+| **Fine-tuning**        | Model Enhancement     | Domain specialization                    | Model parameters   | High        | ✗ (retraining needed)                 | ★★★        | Data contamination       |
+| **Prompt Engineering** | Reasoning Enhancement | Output quality control                   | Prompt             | Low         | -                                     | ★☆☆        | Low (safest)             |
+| **Agentic AI**         | Autonomous Behavior   | Complex task automation                  | Architecture       | High        | ◎                                     | ★★★        | Loss of control          |
+| **GraphRAG**           | Knowledge Injection   | Relationship understanding               | Prompt + Graph     | High        | △                                     | ★★★        | Depends on graph quality |
+
+::: tip Reading the "Failure Risk" Column
+No pattern is a silver bullet. The Failure Risk column indicates **the primary condition under which the pattern stops working**. During design, consider fallback strategies for these risks.
+:::
+
+### 2.5 Patterns Are Not Mutually Exclusive
 
 These patterns **are not mutually exclusive; they can and should be combined**.
 
 ```mermaid
 graph TB
     subgraph ActualSystem["Real System"]
-        PE[Prompt Engineering<bn>Base Instructions]
-        RAG_COMP[RAG<bn>Internal Document Search]
-        MCP_COMP[MCP<bn>Standard Specification Reference]
-        AGENT[Agentic AI<bn>Orchestration]
+        PE[Prompt Engineering<br>Base Instructions]
+        RAG_COMP[RAG<br>Internal Document Search]
+        MCP_COMP[MCP<br>Standard Specification Reference]
+        AGENT[Agentic AI<br>Orchestration]
     end
 
     PE --> AGENT
@@ -241,6 +297,19 @@ graph TB
 ```
 
 For example, a system where Agentic AI receives appropriate instructions through Prompt Engineering, searches internal documents through RAG as needed, and confirms standard specifications through MCP is entirely plausible.
+
+### 2.6 Common Anti-patterns
+
+Misapplying design patterns can produce results opposite to expectations.
+
+| Anti-pattern               | Description                                                 | When It Occurs                                                                               |
+| -------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **RAG-for-Everything**     | Trying to solve all knowledge needs with RAG                | Applying chunk search to structured data, degrading precision                                |
+| **Over-Agentification**    | Applying Agentic AI to simple tasks                         | Adding overhead and unpredictability where autonomous judgment is unnecessary                |
+| **Fine-tuning Dependency** | Embedding frequently changing knowledge in model parameters | Requiring retraining after every regulation or spec update, causing operational cost blowout |
+| **Prompt Bloat**           | Trying to control everything through Prompt Engineering     | Consuming the context window, leaving no room for actual knowledge injection                 |
+
+> Avoiding anti-patterns requires understanding each pattern's **preconditions** and **failure risks** (see the comparison table in Section 2.4) before making design choices.
 
 ## Deep Dive into RAG
 
@@ -359,6 +428,19 @@ Chunks that Might Be Returned:
   ❌ "1000 indicates normal closure" (same category but different code)
 ```
 
+### 3.4 Advanced RAG — Mitigating the Limitations
+
+Several techniques (collectively called Advanced RAG) have been researched and implemented to address the limitations above.
+
+| Technique                 | Limitation Addressed | Overview                                                                   |
+| ------------------------- | -------------------- | -------------------------------------------------------------------------- |
+| **Hybrid Search**         | Search precision     | Combines vector search + keyword search (BM25, etc.) for improved accuracy |
+| **Re-ranking**            | Search precision     | Re-ranks initial results using a cross-encoder                             |
+| **Parent-Child Chunking** | Context loss         | Searches with small chunks, returns parent chunks (broader context)        |
+| **HyDE**                  | Search precision     | LLM generates a hypothetical answer, which is used as the search query     |
+
+> These techniques mitigate RAG's weaknesses but **do not surpass MCP's precision for structured data**. The principle of choosing based on data characteristics remains unchanged.
+
 ## Where RAG Fits in the Architecture — What Should Users Do?
 
 After understanding how RAG works, a common question arises:
@@ -371,12 +453,12 @@ To answer this, let's position RAG within this project's architecture.
 
 First, an important premise: **RAG is not a standardized protocol**.
 
-| Aspect | RAG | MCP | Skills |
-| --- | --- | --- | --- |
-| **Type** | Design pattern | Standard protocol (with spec) | Specification (Agent Skills Spec) |
-| **Standardization** | None (no RFC or W3C spec exists) | [modelcontextprotocol.io](https://modelcontextprotocol.io) | [agentskills.io](https://agentskills.io) |
-| **Implementation uniformity** | Vendor-specific (LangChain, LlamaIndex, Bedrock, etc.) | Standard SDKs (TypeScript/Python) | Standard format (SKILL.md) |
-| **Interoperability** | None | Yes (any agent can connect) | Yes (16+ agents supported) |
+| Aspect                        | RAG                                                    | MCP                                                        | Skills                                   |
+| ----------------------------- | ------------------------------------------------------ | ---------------------------------------------------------- | ---------------------------------------- |
+| **Type**                      | Design pattern                                         | Standard protocol (with spec)                              | Specification (Agent Skills Spec)        |
+| **Standardization**           | None (no RFC or W3C spec exists)                       | [modelcontextprotocol.io](https://modelcontextprotocol.io) | [agentskills.io](https://agentskills.io) |
+| **Implementation uniformity** | Vendor-specific (LangChain, LlamaIndex, Bedrock, etc.) | Standard SDKs (TypeScript/Python)                          | Standard format (SKILL.md)               |
+| **Interoperability**          | None                                                   | Yes (any agent can connect)                                | Yes (16+ agents supported)               |
 
 In other words, RAG only has **conceptual consensus** — "retrieve, inject into context, generate" — while the concrete implementation is left to each vendor.
 
@@ -387,13 +469,13 @@ RAG processing is executed as an **internal operation** of the agent, invisible 
 ```mermaid
 flowchart TB
     subgraph USER_LAYER["What Users Control"]
-        SKILL["Skills\nDefine knowledge & criteria via SKILL.md"]
-        MCP_CONFIG["MCP\nDefine connections to external data sources"]
-        CLAUDE_MD["CLAUDE.md\nDefine project-wide rules"]
+        SKILL["Skills<br>Define knowledge & criteria via SKILL.md"]
+        MCP_CONFIG["MCP<br>Define connections to external data sources"]
+        CLAUDE_MD["CLAUDE.md<br>Define project-wide rules"]
     end
 
     subgraph AGENT_LAYER["Agent Internals (Users Don't Touch)"]
-        RAG["RAG Pipeline\nRetrieval → Ranking → Injection"]
+        RAG["RAG Pipeline<br>Retrieval → Ranking → Injection"]
         CTX["Context Window Management"]
         TOOL["Tool Selection & Execution"]
     end
@@ -421,13 +503,13 @@ To maximize the benefits of RAG, here's what users can do:
 ```mermaid
 flowchart LR
     subgraph DO["What Users Should Do"]
-        S1["Write Skills\nDefine criteria & best practices\nin SKILL.md"]
-        S2["Configure MCP\nSet up connections to\nexternal data sources"]
-        S3["Write CLAUDE.md\nDocument project-specific\nrules & context"]
+        S1["Write Skills<br>Define criteria & best practices<br>in SKILL.md"]
+        S2["Configure MCP<br>Set up connections to<br>external data sources"]
+        S3["Write CLAUDE.md<br>Document project-specific<br>rules & context"]
     end
 
     subgraph RESULT["Result"]
-        R["The agent leverages\nthis knowledge RAG-style\nto produce high-quality output"]
+        R["The agent leverages<br>this knowledge RAG-style<br>to produce high-quality output"]
     end
 
     S1 --> R
@@ -438,11 +520,11 @@ flowchart LR
     style RESULT fill:#e8f5e9,color:#333,stroke:#4CAF50
 ```
 
-| Action | Concrete Steps | Relationship to RAG |
-| --- | --- | --- |
-| **Define Skills** | Write translation quality criteria, code review guidelines, spec compliance checklists as SKILL.md | Becomes the "static knowledge base" the agent references |
-| **Connect MCP** | Configure MCP servers for vector DBs, RFCs, legislation, DeepL, etc. | Becomes the "external data source" the agent searches |
-| **Write CLAUDE.md** | Document project policies, terminology, constraints | Constantly injected as the agent's "context" |
+| Action              | Concrete Steps                                                                                     | Relationship to RAG                                      |
+| ------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **Define Skills**   | Write translation quality criteria, code review guidelines, spec compliance checklists as SKILL.md | Becomes the "static knowledge base" the agent references |
+| **Connect MCP**     | Configure MCP servers for vector DBs, RFCs, legislation, DeepL, etc.                               | Becomes the "external data source" the agent searches    |
+| **Write CLAUDE.md** | Document project policies, terminology, constraints                                                | Constantly injected as the agent's "context"             |
 
 > **Takeaway**: You don't need to build or control RAG yourself. Your role as a user is to tell the agent "what it should know" through **standardized interfaces** — Skills, MCP, and CLAUDE.md.
 
@@ -459,14 +541,14 @@ flowchart TB
         R1[Documents] --> R2[Chunk Splitting]
         R2 --> R3[Vectorization]
         R3 --> R4[Similarity Search]
-        R4 --> R5["Fragmented Results<bn>(Risk of Context Loss)"]
+        R4 --> R5["Fragmented Results<br>(Risk of Context Loss)"]
     end
 
     subgraph MCP_APPROACH["MCP: Search by Domain Structure"]
         direction TB
         M1[Structured Data] --> M2[Domain Understanding]
-        M2 --> M3["Structured Query<bn>get_requirements()"]
-        M3 --> M4["Accurate Results<bn>+ Metadata"]
+        M2 --> M3["Structured Query<br>get_requirements()"]
+        M3 --> M4["Accurate Results<br>+ Metadata"]
     end
 
     style RAG_APPROACH fill:#fff3e0,color:#333
@@ -482,7 +564,7 @@ flowchart TB
 
 ### 4.2 Comparison by the 5 Characteristics of "Unshakeable References"
 
-Comparing by the five characteristics of "unshakeable references" defined in [02-reference-sources.md](./02-reference-sources.md) makes the differences even clearer.
+Comparing by the five characteristics of "unshakeable references" defined in [02-reference-sources](./02-reference-sources) makes the differences even clearer.
 
 | Characteristic                       | RAG | MCP (Reference MCP) | Description                                                                           |
 | ------------------------------------ | --- | ------------------- | ------------------------------------------------------------------------------------- |
@@ -632,7 +714,7 @@ flowchart TB
     Q2 -->|No| Q4{Worth Creating<br/>MCP?}
 
     Q3 -->|Yes| RAG[Use RAG]
-    Q3 -->|No| PE[Prompt Engineering<bn>for Now]
+    Q3 -->|No| PE[Prompt Engineering<br>for Now]
 
     Q4 -->|Yes| BUILD_MCP[Build MCP]
     Q4 -->|No| RAG
@@ -690,7 +772,7 @@ sequenceDiagram
 
 ### 7.1 Alignment with Project Philosophy
 
-The core philosophy of this project is "unshakeable references" (see [01-vision.md](./01-vision.md)).
+The core philosophy of this project is "unshakeable references" (see [01-vision](./01-vision)).
 
 ```
 RAG returns "probably relevant information"    → Can be unreliable
@@ -706,12 +788,12 @@ The value that MCP provides in this project's context can be summarized in three
 ```mermaid
 graph TB
     subgraph MCPValues["The 3 Values of MCP"]
-        V1["① Accuracy<bn>Structure-aware Access"]
-        V2["② Verifiability<bn>Clear Sources"]
-        V3["③ Democratization<bn>Distribution via Standard Protocol"]
+        V1["① Accuracy<br>Structure-aware Access"]
+        V2["② Verifiability<br>Clear Sources"]
+        V3["③ Democratization<br>Distribution via Standard Protocol"]
     end
 
-    V1 --> RESULT[Trustworthiness of AI Output]
+    V1 --> RESULT[Reliability of AI Output]
     V2 --> RESULT
     V3 --> RESULT
 
@@ -740,6 +822,21 @@ MCP's appropriate use:  "Want to get accurate information from specific standard
 
 ## Summary
 
+### Pattern Selection Decision Summary
+
+Here are the key questions to ask during design, and the recommended patterns based on your answers.
+
+| Key Question                                     | Answer                                  | Recommended Pattern                                  |
+| ------------------------------------------------ | --------------------------------------- | ---------------------------------------------------- |
+| Does the target data have clear structure?       | Yes → Structured API exists             | **MCP**                                              |
+|                                                  | Yes → No API, but worth building        | **Build MCP**                                        |
+|                                                  | No → Large-scale text search needed     | **RAG** (+ consider Advanced RAG)                    |
+|                                                  | No → Small amount of knowledge suffices | **Prompt Engineering** / **Skills**                  |
+| Do you need to modify the model's own knowledge? | Yes                                     | **Fine-tuning** (accept cost and operational burden) |
+| Do you need autonomous multi-step judgment?      | Yes                                     | **Agentic AI** (+ MCP/Skills for knowledge supply)   |
+
+> When in doubt, **start with Prompt Engineering**, then progressively adopt MCP → RAG → Agentic AI as needed. The principle is to begin with the lowest-risk pattern.
+
 ### Core Messages
 
 1. **Generative AI has various design patterns** — RAG, MCP, Fine-tuning, Agentic AI, etc., each solves different problems
@@ -749,11 +846,23 @@ MCP's appropriate use:  "Want to get accurate information from specific standard
 5. **RAG and MCP are not mutually exclusive** — Each has appropriate use cases, and combined use is possible
 6. **Each MCP server codifies domain knowledge** — Not merely text search, but provides understanding of structure
 
+### Emerging Patterns to Watch
+
+In addition to the patterns covered in this page, the following techniques may become influential.
+
+| Pattern              | Overview                                                | Status                      |
+| -------------------- | ------------------------------------------------------- | --------------------------- |
+| **Toolformer**       | LLM autonomously learns to invoke external tools        | Research stage (Meta, 2023) |
+| **RETRO**            | Embeds retrieval mechanisms into the model architecture | Research stage (DeepMind)   |
+| **Agentic Workflow** | Multiple agents collaborate in coordinated workflows    | Advancing toward production |
+
+> When these mature, they will be integrated into this page's pattern taxonomy.
+
 ### Related Documents
 
-- [01-vision.md](./01-vision.md) — AI limitations and the need for "unshakeable references"
-- [02-reference-sources.md](./02-reference-sources.md) — System of reference sources by five characteristics
-- [03-architecture.md](./03-architecture.md) — Composition theory of MCP/Skills/Agents
-- [mcp/what-is-mcp.md](../mcp/what-is-mcp.md) — MCP details
-- [skills/vs-mcp.md](../skills/vs-mcp.md) — Choosing between MCP and Skills
-- [07-doctrine-and-intent.md](./07-doctrine-and-intent) — Doctrine Layer: constraints, objectives, and judgment criteria
+- [01-vision](./01-vision) — AI limitations and the need for "unshakeable references" (WHY)
+- [02-reference-sources](./02-reference-sources) — System of reference sources by five characteristics (WHAT)
+- [03-architecture](./03-architecture) — Composition theory of MCP/Skills/Agents (HOW)
+- [mcp/what-is-mcp](../mcp/what-is-mcp) — MCP details
+- [skills/vs-mcp](../skills/vs-mcp) — Choosing between MCP and Skills
+- [07-doctrine-and-intent](./07-doctrine-and-intent) — Doctrine Layer: constraints, objectives, and judgment criteria

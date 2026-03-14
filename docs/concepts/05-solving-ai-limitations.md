@@ -35,16 +35,16 @@ First, let's understand the full picture. The four constraints have **very diffe
 ```mermaid
 flowchart TB
     subgraph SOLVABLE["Solvable by Technology"]
-        CURRENCY["Currency<bn>Knowledge Cutoff"]
+        CURRENCY["Currency<br>Knowledge Cutoff"]
     end
 
     subgraph MITIGABLE["Mitigable by Technology"]
-        ACCURACY["Accuracy<bn>Hallucination"]
-        AUTHORITY["Authority<bn>Interpretation Authority"]
+        ACCURACY["Accuracy<br>Hallucination"]
+        AUTHORITY["Authority<br>Interpretation Authority"]
     end
 
     subgraph SYSTEMIC["Institutional Design Required"]
-        ACCOUNTABILITY["Accountability<bn>Legal & Ethical Basis"]
+        ACCOUNTABILITY["Accountability<br>Legal & Ethical Basis"]
     end
 
     style CURRENCY fill:#90EE90,color:#333,stroke:#333
@@ -70,11 +70,11 @@ LLM knowledge is fixed at the point of training data (details: [02-reference-sou
 
 ```mermaid
 flowchart TB
-    PROBLEM["Currency Constraint<bn>Knowledge Cutoff"]
+    PROBLEM["Currency Constraint<br>Knowledge Cutoff"]
 
-    PROBLEM --> WEB["Web Search<bn>(Real-time Information Retrieval)"]
-    PROBLEM --> MCP_RT["Real-time Access via MCP<bn>(Direct Connection to Authoritative Sources)"]
-    PROBLEM --> RAG_UP["Regular RAG Index Updates<bn>(Keeping Organizational Knowledge Current)"]
+    PROBLEM --> WEB["Web Search<br>(Real-time Information Retrieval)"]
+    PROBLEM --> MCP_RT["Real-time Access via MCP<br>(Direct Connection to Authoritative Sources)"]
+    PROBLEM --> RAG_UP["Regular RAG Index Updates<br>(Keeping Organizational Knowledge Current)"]
 
     WEB --> EVAL["✅ Largely Solvable"]
     MCP_RT --> EVAL
@@ -129,14 +129,14 @@ This is not a "bug" but a "feature," and **it is impossible to eliminate it comp
 
 ```mermaid
 flowchart TB
-    PROBLEM["Accuracy Constraint<bn>Hallucination"]
+    PROBLEM["Accuracy Constraint<br>Hallucination"]
 
-    PROBLEM --> INJECT["External Knowledge Injection<bn>(MCP / RAG)"]
-    PROBLEM --> VERIFY["Output Verification<bn>(Multi-stage Checks)"]
-    PROBLEM --> DECLARE["Explicit Uncertainty<bn>(AI Communicates Its Limits)"]
-    PROBLEM --> HUMAN["Human Review<bn>(Final Confirmation Process)"]
+    PROBLEM --> INJECT["External Knowledge Injection<br>(MCP / RAG)"]
+    PROBLEM --> VERIFY["Output Verification<br>(Multi-stage Checks)"]
+    PROBLEM --> DECLARE["Explicit Uncertainty<br>(AI Communicates Its Limits)"]
+    PROBLEM --> HUMAN["Human Review<br>(Final Confirmation Process)"]
 
-    INJECT --> EVAL["△ Mitigable<bn>Complete Elimination Not Possible"]
+    INJECT --> EVAL["△ Mitigable<br>Complete Elimination Not Possible"]
     VERIFY --> EVAL
     DECLARE --> EVAL
     HUMAN --> EVAL
@@ -212,14 +212,14 @@ This constraint arises from **the nature of information authority itself** rathe
 
 ```mermaid
 flowchart TB
-    PROBLEM["Authority Constraint<bn>Interpretation Authority"]
+    PROBLEM["Authority Constraint<br>Interpretation Authority"]
 
-    PROBLEM --> DIRECT["Direct Access to Original Sources<bn>(Retrieve Primary Sources via MCP)"]
-    PROBLEM --> CITE["Explicit Citation<bn>(Identify Down to Section Number)"]
-    PROBLEM --> WORKFLOW["Human Review Workflow<bn>(Humans Make the Decision)"]
-    PROBLEM --> MULTI["Multi-angle Verification<bn>(Cross-check with Multiple MCPs)"]
+    PROBLEM --> DIRECT["Direct Access to Original Sources<br>(Retrieve Primary Sources via MCP)"]
+    PROBLEM --> CITE["Explicit Citation<br>(Identify Down to Section Number)"]
+    PROBLEM --> WORKFLOW["Human Review Workflow<br>(Humans Make the Decision)"]
+    PROBLEM --> MULTI["Multi-angle Verification<br>(Cross-check with Multiple MCPs)"]
 
-    DIRECT --> EVAL["△ Manage as Risk<bn>Complete Solution Not Possible"]
+    DIRECT --> EVAL["△ Manage as Risk<br>Complete Solution Not Possible"]
     CITE --> EVAL
     WORKFLOW --> EVAL
     MULTI --> EVAL
@@ -276,7 +276,7 @@ sequenceDiagram
     AI->>LAW: find_law_article("Digital Signature Law", "2")
     LAW-->>AI: Legal Requirements
     AI->>AI: Map Technical Requirements ↔ Legal Requirements
-    AI-->>U: Analysis from Both Technical & Legal Perspectives<bn>⚠️ Expert confirmation recommended for final judgment
+    AI-->>U: Analysis from Both Technical & Legal Perspectives<br>⚠️ Expert confirmation recommended for final judgment
 ```
 
 ### 3.3 Implementation Evaluation
@@ -295,14 +295,14 @@ While technology alone cannot completely solve accountability, it can provide th
 
 ```mermaid
 flowchart TB
-    PROBLEM["Accountability Constraint<bn>Lack of Legal & Ethical Basis"]
+    PROBLEM["Accountability Constraint<br>Lack of Legal & Ethical Basis"]
 
     PROBLEM --> AUDIT["Ensuring Audit Trail"]
-    PROBLEM --> TRACE["Traceability<bn>(Record Decision Process)"]
-    PROBLEM --> INTEGRITY["Data Integrity Assurance<bn>(Digital Signature, Timestamp)"]
-    PROBLEM --> GOVERNANCE["Building Governance Framework<bn>(Clarify Human Responsibility)"]
+    PROBLEM --> TRACE["Traceability<br>(Record Decision Process)"]
+    PROBLEM --> INTEGRITY["Data Integrity Assurance<br>(Digital Signature, Timestamp)"]
+    PROBLEM --> GOVERNANCE["Building Governance Framework<br>(Clarify Human Responsibility)"]
 
-    AUDIT --> EVAL["✗ Technology Provides Foundation<bn>Institutional Design Essential"]
+    AUDIT --> EVAL["✗ Technology Provides Foundation<br>Institutional Design Essential"]
     TRACE --> EVAL
     INTEGRITY --> EVAL
     GOVERNANCE --> EVAL
@@ -361,7 +361,7 @@ flowchart LR
         F2 --> F3["Data Retrieval"]
         F3 --> F4["Signature Verification ✓"]
         F4 --> F5["Attach Timestamp 🕐"]
-        F5 --> F6["Provide to AI<bn>+ Completeness Proof"]
+        F5 --> F6["Provide to AI<br>+ Completeness Proof"]
     end
 
     CURRENT -.->|"Evolution"| FUTURE
@@ -405,22 +405,22 @@ What individuals and small teams can do now is **establish technological foundat
 flowchart LR
     subgraph TECH["Technical Approaches"]
         direction LR
-        MCP_APPROACH["MCP<bn>Structured Access"]
-        RAG_APPROACH["RAG<bn>Similarity Search"]
-        WEBSEARCH["Web Search<bn>Real-time Information"]
-        VALIDATION["Verification Workflow<bn>Multi-stage Checks"]
+        MCP_APPROACH["MCP<br>Structured Access"]
+        RAG_APPROACH["RAG<br>Similarity Search"]
+        WEBSEARCH["Web Search<br>Real-time Information"]
+        VALIDATION["Verification Workflow<br>Multi-stage Checks"]
     end
 
     subgraph ORG["Organizational Approaches"]
         direction LR
-        REVIEW["Human Review<bn>Final Approval"]
-        GOVERNANCE["Governance<bn>Responsibility Framework"]
+        REVIEW["Human Review<br>Final Approval"]
+        GOVERNANCE["Governance<br>Responsibility Framework"]
     end
 
     subgraph FUTURE_TECH["Future Technology"]
         direction LR
-        SIGNATURE["Digital Signature<bn>Data Integrity"]
-        TIMESTAMP["Timestamp<bn>Existence Proof"]
+        SIGNATURE["Digital Signature<br>Data Integrity"]
+        TIMESTAMP["Timestamp<br>Existence Proof"]
     end
 
     MCP_APPROACH --> ACCURACY["Accuracy △"]

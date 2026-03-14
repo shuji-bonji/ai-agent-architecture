@@ -68,8 +68,8 @@ flowchart TB
     USER["ユーザー"]
 
     subgraph HOST_LAYER["ホスト層"]
-        HOST["ホスト<bn>(Claude Code / Claude.ai)"]
-        SKILL["Skills<bn>(静的知識)"]
+        HOST["ホスト<br>(Claude Code / Claude.ai)"]
+        SKILL["Skills<br>(静的知識)"]
     end
 
     subgraph AGENT_LAYER["エージェント層"]
@@ -244,9 +244,9 @@ Claude Code内部でのサブエージェントの位置づけを以下の図で
 flowchart TB
     subgraph CLAUDE_CODE["Claude Code"]
         USER["ユーザー"]
-        MAIN["メインClaude<bn>（オーケストレーター）"]
-        SUBAGENT["カスタムサブエージェント<bn>(.claude/agents/)"]
-        MCP_CLIENT["MCP Client<bn>（Claude Code内蔵）"]
+        MAIN["メインClaude<br>（オーケストレーター）"]
+        SUBAGENT["カスタムサブエージェント<br>(.claude/agents/)"]
+        MCP_CLIENT["MCP Client<br>（Claude Code内蔵）"]
 
         USER --> MAIN
         MAIN --"委譲"--> SUBAGENT
@@ -254,7 +254,7 @@ flowchart TB
         MAIN --"直接使う"--> MCP_CLIENT
     end
 
-    MCP_SERVERS["MCP Servers<bn>rfcxml, deepl等"]
+    MCP_SERVERS["MCP Servers<br>rfcxml, deepl等"]
 
     MCP_CLIENT --"JSON-RPC"--> MCP_SERVERS
 
