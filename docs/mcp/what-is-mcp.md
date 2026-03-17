@@ -105,7 +105,48 @@ The following table summarizes each layer's responsibilities and how developers 
 
 ## MCP Categories
 
-MCP servers are classified into four categories based on data sourcing and processing patterns.
+MCP servers can be classified along **two axes**: "what they do" (purpose-based) and "how they're implemented" (implementation-based).
+
+### Purpose-based Classification
+
+MCP's utility goes far beyond "unwavering reference sources." In practice, MCP servers serve six distinct purpose categories.
+
+| Category | Role | Examples |
+| --- | --- | --- |
+| **Reference** | Structured access to authoritative specs, standards, and regulations | rfcxml-mcp, w3c-mcp, hourei-mcp, pdf-spec-mcp |
+| **Transform** | Data format or language conversion | deepl-mcp, mermaid-mcp |
+| **Evaluate** | Quality or score measurement | xcomet-mcp |
+| **Verify** | Specification compliance confirmation | rfcxml-mcp (validate_statement, etc.) |
+| **Execute** | Domain-specific processing | rxjs-mcp, pdf-reader-mcp |
+| **Retrieve** | General external data retrieval | epsg-mcp |
+
+> **Important:** A single MCP can span multiple categories. For example, `rfcxml-mcp` serves both **Reference** (specification lookup) and **Verify** (compliance validation).
+
+```mermaid
+mindmap
+  root((MCP<br/>Purpose Categories))
+    Reference
+      rfcxml-mcp
+      w3c-mcp
+      hourei-mcp
+      pdf-spec-mcp
+    Transform
+      deepl-mcp
+      mermaid-mcp
+    Evaluate
+      xcomet-mcp
+    Verify
+      rfcxml-mcp
+    Execute
+      rxjs-mcp
+      pdf-reader-mcp
+    Retrieve
+      epsg-mcp
+```
+
+### Implementation-based Classification
+
+From a technical implementation perspective, MCP servers fall into four patterns.
 
 | Pattern           | Characteristics                                    | Examples                           |
 | ----------------- | -------------------------------------------------- | ---------------------------------- |
@@ -114,9 +155,13 @@ MCP servers are classified into four categories based on data sourcing and proce
 | **Model Loading** | Loads ML models for local inference                | xcomet-mcp-server                  |
 | **Hybrid**        | Combination of multiple patterns                   | pdf-reader-mcp (local + URL fetch) |
 
-### Selection Flowchart
+### Relationship Between the Two Axes
 
-When building a new MCP server, use the following flowchart to determine which category applies.
+Purpose-based and implementation-based classifications are **independent axes**. For instance, "Reference" MCPs can be either Local Data (pdf-spec-mcp) or External API (rfcxml-mcp). When designing an MCP, first clarify "what you want to achieve" (purpose), then select "how to implement it" (pattern).
+
+### Implementation Pattern Selection Flowchart
+
+When building a new MCP server, use the following flowchart to determine which implementation pattern applies.
 
 ```mermaid
 flowchart TD
@@ -213,8 +258,8 @@ Adopting MCP provides the following advantages.
 - ✅ **Dynamic Processing**  
   Enable real-time data fetching and processing. Complement AI's knowledge cutoff.
 
-- ✅ **Authority**  
-  Direct access to authoritative sources (RFC originals, legal databases). Reduces AI hallucinations.
+- ✅ **Authority**
+  Direct access to authoritative sources (RFC originals, legal databases). Reduces AI hallucinations. This is one of MCP's purposes (Reference), alongside other diverse roles such as Transform, Evaluate, Verify, Execute, and Retrieve.
 
 - ✅ **Separation of Concerns**  
   Tool logic and AI logic are cleanly separated. Changes have limited scope.
