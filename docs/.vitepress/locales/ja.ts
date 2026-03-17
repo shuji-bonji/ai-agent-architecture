@@ -72,7 +72,13 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: '開発フェーズ', link: '/ja/workflows/development-phases' },
-            { text: 'パターン', link: '/ja/workflows/patterns' },
+            { text: 'パターン概要', link: '/ja/workflows/patterns' },
+            { text: '翻訳', link: '/ja/workflows/patterns/translation' },
+            { text: '仕様参照・検証', link: '/ja/workflows/patterns/specification-verification' },
+            { text: 'コンプライアンス', link: '/ja/workflows/patterns/compliance' },
+            { text: '開発支援', link: '/ja/workflows/patterns/development-support' },
+            { text: 'ドキュメント生成', link: '/ja/workflows/patterns/documentation-generation' },
+            { text: 'マルチエージェント', link: '/ja/workflows/patterns/multi-agent' },
           ],
         },
         {

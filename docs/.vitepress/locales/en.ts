@@ -72,7 +72,13 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'Development Phases', link: '/workflows/development-phases' },
-            { text: 'Patterns', link: '/workflows/patterns' },
+            { text: 'Patterns Overview', link: '/workflows/patterns' },
+            { text: 'Translation', link: '/workflows/patterns/translation' },
+            { text: 'Spec Verification', link: '/workflows/patterns/specification-verification' },
+            { text: 'Compliance', link: '/workflows/patterns/compliance' },
+            { text: 'Dev Support', link: '/workflows/patterns/development-support' },
+            { text: 'Doc Generation', link: '/workflows/patterns/documentation-generation' },
+            { text: 'Multi-Agent', link: '/workflows/patterns/multi-agent' },
           ],
         },
         {
