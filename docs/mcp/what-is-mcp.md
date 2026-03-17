@@ -29,7 +29,7 @@ In short: **a common protocol that enables AI agents to safely access external t
 
 ### The USB-C Analogy
 
-Just as USB-C connects various devices (mice, keyboards, external drives) to a PC with one standard, MCP connects various tools and services (RFC specifications, translation APIs, legal databases) to AI with one protocol.
+Just as USB-C connects various devices (mice, keyboards, external drives) to a PC with one standard, MCP connects not only various tools and services (RFC specifications, translation APIs, legal databases) but also **physical devices and sensors (IoT devices, scanners, OCR, etc.)** to AI with one protocol.
 
 ### The Essence: Giving AI a "Hand"
 
