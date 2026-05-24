@@ -6,8 +6,6 @@
 
 MCP単体、Skill単体でも価値はあるが、**組み合わせることで初めて発揮される価値**がある。本ドキュメントでは、4つの複合構成パターンを定義し、それぞれの設計指針・発動コンテキスト・活用事例を整理する。
 
-MCP構築戦略は [mcp-roadmap.md](./mcp-roadmap)、Skill構築戦略は [skill-roadmap.md](./skill-roadmap) を参照。
-
 ## 4つの複合構成パターン
 
 ```mermaid
@@ -394,8 +392,6 @@ flowchart TD
 
 ## 関連ドキュメント
 
-- [mcp-roadmap.md](./mcp-roadmap) — MCP構築ロードマップ
-- [skill-roadmap.md](./skill-roadmap) — Skill構築ロードマップ
 - [workflows/patterns.md](../workflows/patterns) — 既存のワークフローパターン（パターン2の実績）
 - [concepts/03-architecture.md](../concepts/03-architecture) — MCP / Skill / Agent のレイヤー構造
 - [mcp/catalog.md](../mcp/catalog) — 構築済みMCPカタログ

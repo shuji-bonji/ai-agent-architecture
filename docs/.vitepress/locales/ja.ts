@@ -57,6 +57,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'エージェントの分類', link: '/ja/agents/agent-taxonomy' },
             { text: 'A2Aとは', link: '/ja/agents/what-is-a2a' },
             { text: 'サブエージェント', link: '/ja/agents/what-is-subagent' },
+            { text: 'エージェントID', link: '/ja/agents/agent-identity' },
           ],
         },
         {
@@ -64,8 +65,6 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: '構成パターン', link: '/ja/strategy/composition-patterns' },
-            { text: 'MCPロードマップ', link: '/ja/strategy/mcp-roadmap' },
-            { text: 'Skillロードマップ', link: '/ja/strategy/skill-roadmap' },
           ],
         },
         {
@@ -86,7 +85,6 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'その他',
           collapsed: true,
           items: [
-            { text: 'ロードマップ', link: '/ja/roadmap' },
             { text: '用語集', link: '/ja/glossary' },
             { text: '成果物', link: '/ja/outputs' },
           ],

@@ -5,3 +5,6 @@ docs/.vitepress/.temp/
 docs/.vitepress/config.ts.timestamp-*
 *.log
 .DS_Store
+
+# 内部用の計画書・下書き（公開しない）
+output/

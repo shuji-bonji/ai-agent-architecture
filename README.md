@@ -19,7 +19,7 @@ The documentation site provides:
 - **Skills (Domain Knowledge)** — Static knowledge that complements MCP's real-time capabilities
 - **Agents & A2A** — Sub-agents, orchestration patterns, and Agent-to-Agent protocol
 - **Architecture** — Three-layer model (MCP / Skills / Agent) and system composition
-- **Strategy & Roadmap** — Build priorities and composition patterns
+- **Strategy & Composition Patterns** — MCP × Skill × Agent composition design
 
 ## Why This Matters Now
 

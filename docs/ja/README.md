@@ -31,13 +31,10 @@ docs/
 │   ├── what-is-a2a.md        # A2Aとは何か（入門）
 │   └── what-is-subagent.md   # サブエージェントとは何か（入門）
 ├── strategy/          # 構築戦略
-│   ├── mcp-roadmap.md          # MCP構築ロードマップ
-│   ├── skill-roadmap.md        # Skill構築ロードマップ
 │   └── composition-patterns.md # 複合構成パターン
 ├── workflows/        # ワークフロー・運用
 │   ├── patterns.md
 │   └── development-phases.md
-├── roadmap.md
 ├── outputs.md
 ├── glossary.md
 └── translation-quality-report.md
@@ -100,8 +97,6 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 | ファイル                                                             | 内容                       |
 | -------------------------------------------------------------------- | -------------------------- |
-| [strategy/mcp-roadmap.md](./strategy/mcp-roadmap)                 | MCP構築ロードマップ（Discussion #19ベース） |
-| [strategy/skill-roadmap.md](./strategy/skill-roadmap)             | Skill構築ロードマップ（Discussion #20ベース） |
 | [strategy/composition-patterns.md](./strategy/composition-patterns) | 複合構成パターン（MCP×Skill×Agent） |
 
 ### Workflows（ワークフロー・運用）
@@ -115,7 +110,6 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 | ファイル                         | 内容                   |
 | -------------------------------- | ---------------------- |
-| [roadmap.md](./roadmap.md)   | 優先度・ロードマップ   |
 | [outputs.md](./outputs.md)   | 実績・アウトプット一覧 |
 
 ### リファレンス
@@ -167,15 +161,12 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 ### 構築計画を知りたい場合
 
-1. **strategy/mcp-roadmap.md** - MCP構築の優先度と計画
-2. **strategy/skill-roadmap.md** - Skill構築の優先度と依存関係
-3. **strategy/composition-patterns.md** - MCP×Skillの組み合わせパターン
+1. **strategy/composition-patterns.md** - MCP×Skillの組み合わせパターン
 
 ### 開発に参加したい場合
 
-1. **roadmap.md** - 優先度・計画
-2. **mcp/security.md** - セキュリティ考慮
-3. **glossary.md** - 用語確認
+1. **mcp/security.md** - セキュリティ考慮
+2. **glossary.md** - 用語確認
 
 ## 関連ディレクトリ
 

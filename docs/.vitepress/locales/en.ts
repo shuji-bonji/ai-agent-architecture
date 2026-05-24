@@ -57,6 +57,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Agent Taxonomy', link: '/agents/agent-taxonomy' },
             { text: 'What is A2A', link: '/agents/what-is-a2a' },
             { text: 'Sub-agents', link: '/agents/what-is-subagent' },
+            { text: 'Agent Identity', link: '/agents/agent-identity' },
           ],
         },
         {
@@ -64,8 +65,6 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'Composition Patterns', link: '/strategy/composition-patterns' },
-            { text: 'MCP Roadmap', link: '/strategy/mcp-roadmap' },
-            { text: 'Skill Roadmap', link: '/strategy/skill-roadmap' },
           ],
         },
         {
@@ -86,7 +85,6 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Other',
           collapsed: true,
           items: [
-            { text: 'Roadmap', link: '/roadmap' },
             { text: 'Glossary', link: '/glossary' },
             { text: 'Outputs', link: '/outputs' },
           ],

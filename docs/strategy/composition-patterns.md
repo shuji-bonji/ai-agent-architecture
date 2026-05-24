@@ -8,8 +8,6 @@
 
 While MCPs and Skills have value individually, there is **value that emerges only through combination**. This document defines 4 composition patterns and organizes the design guidelines, trigger contexts, and use cases for each.
 
-For the MCP construction strategy, see [mcp-roadmap.md](./mcp-roadmap.md). For the Skill construction strategy, see [skill-roadmap.md](./skill-roadmap.md).
-
 ## 4 Composition Patterns
 
 ```mermaid
@@ -396,8 +394,6 @@ Practical results from each pattern are recorded in [outputs.md](../outputs.md).
 
 ## Related Documents
 
-- [mcp-roadmap.md](./mcp-roadmap.md) — MCP Construction Roadmap
-- [skill-roadmap.md](./skill-roadmap.md) — Skill Construction Roadmap
 - [workflows/patterns.md](../workflows/patterns.md) — Existing Workflow Patterns (Pattern 2 track record)
 - [concepts/03-architecture.md](../concepts/03-architecture.md) — MCP / Skill / Agent Layer Structure
 - [mcp/catalog.md](../mcp/catalog.md) — Built MCP Catalog

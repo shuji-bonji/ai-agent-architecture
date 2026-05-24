@@ -34,8 +34,6 @@ This project systematizes knowledge about AI agent architecture from the perspec
 ## Strategy
 
 - [Composition Patterns](https://shuji-bonji.github.io/ai-agent-architecture/strategy/composition-patterns): 4 patterns showing how MCP × Skill × Agent combinations create value
-- [MCP Roadmap](https://shuji-bonji.github.io/ai-agent-architecture/strategy/mcp-roadmap): MCP construction strategy with 5-axis evaluation of candidates
-- [Skill Roadmap](https://shuji-bonji.github.io/ai-agent-architecture/strategy/skill-roadmap): Skill classification, evaluation criteria, and dependency relationships
 
 ## Workflows
 
@@ -46,4 +44,3 @@ This project systematizes knowledge about AI agent architecture from the perspec
 
 - [Glossary](https://shuji-bonji.github.io/ai-agent-architecture/glossary): Definitions of MCP-related terms and concepts
 - [Outputs and Achievements](https://shuji-bonji.github.io/ai-agent-architecture/outputs): Concrete deliverables from MCP development with quantitative metrics
-- [Priority and Roadmap](https://shuji-bonji.github.io/ai-agent-architecture/roadmap): Priorities and timelines for MCP development
