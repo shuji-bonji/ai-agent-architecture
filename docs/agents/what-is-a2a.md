@@ -6,6 +6,8 @@
 
 This document explains A2A's core concepts, key differences from MCP, benefits and challenges, and future outlook. For detailed comparison with sub-agents, also refer to [what-is-subagent.md](./what-is-subagent.md).
 
+For the overall taxonomy of agent terminology (architecture patterns, execution roles, implementation units), see [agent-taxonomy.md](./agent-taxonomy.md).
+
 ## What is A2A?
 
 **A2A (Agent-to-Agent Protocol)** is an open standard protocol that enables different AI agents to communicate and collaborate in peer-to-peer relationships over networks.

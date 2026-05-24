@@ -6,6 +6,8 @@
 
 A2Aの基本概念、MCPとの違い、メリット・デメリット、将来展望を解説する。サブエージェントとの違いは [what-is-subagent.md](./what-is-subagent.md) も参照してください。
 
+エージェント用語の全体像（設計パターン／実行ロール／実装単位）の整理は [agent-taxonomy.md](./agent-taxonomy.md) を参照。
+
 ## A2Aとは何か
 
 **A2A（Agent-to-Agent Protocol）** は、異なるAIエージェント同士がネットワーク越しに対等な関係で通信・協調するためのオープン標準プロトコルです。

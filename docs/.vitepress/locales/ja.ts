@@ -54,6 +54,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'エージェント',
           collapsed: false,
           items: [
+            { text: 'エージェントの分類', link: '/ja/agents/agent-taxonomy' },
             { text: 'A2Aとは', link: '/ja/agents/what-is-a2a' },
             { text: 'サブエージェント', link: '/ja/agents/what-is-subagent' },
           ],

@@ -54,6 +54,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Agents',
           collapsed: false,
           items: [
+            { text: 'Agent Taxonomy', link: '/agents/agent-taxonomy' },
             { text: 'What is A2A', link: '/agents/what-is-a2a' },
             { text: 'Sub-agents', link: '/agents/what-is-subagent' },
           ],

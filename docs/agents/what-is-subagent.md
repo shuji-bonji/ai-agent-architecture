@@ -6,6 +6,8 @@
 
 This document explains the fundamental concepts, definition methods, use patterns, benefits, and limitations of custom sub-agents. For differences with A2A agents, see [what-is-a2a.md](./what-is-a2a.md).
 
+For the overall taxonomy of agent terminology (custom agents, meta-agents, Orchestrator-Worker, etc.), see [agent-taxonomy.md](./agent-taxonomy.md).
+
 ## What are Sub-agents?
 
 **Custom sub-agents** are specialized AI assistants defined within Claude Code that focus on specific tasks.
@@ -63,27 +65,29 @@ By pre-defining specialization in sub-agents, instructions from the main Claude 
 To understand the structure within Claude Code, let's examine the relationship between MCP Client, MCP Servers, and main Claude.
 
 ```mermaid
-block-beta
-    columns 2
+flowchart TB
+    USER["User"]
 
-    block:CLAUDE_CODE:2
-        columns 2
-        USER["User"]:2
-        MAIN["Main Claude\n(Orchestrator)"]:1 SUBAGENT["Custom Sub-agents\n(.claude/agents/)"]:1
-        MCP_CLIENT["MCP Client\n(Built into Claude Code)"]:2
+    subgraph CLAUDE_CODE["Claude Code (Host)"]
+        direction TB
+        MAIN["Main Claude<br/>(Orchestrator)"]
+        SUBAGENT["Custom Sub-agents<br/>.claude/agents/"]
+        MCP_CLIENT["MCP Client<br/>(Built into Claude Code)"]
+
+        MAIN -->|Delegate| SUBAGENT
+        MAIN -->|Direct use| MCP_CLIENT
+        SUBAGENT -->|Use| MCP_CLIENT
     end
 
-    MCP_SERVERS["MCP Servers\n(rfcxml, deepl, etc.)"]:2
+    MCP_SERVERS["MCP Servers<br/>rfcxml, deepl, etc."]
 
     USER --> MAIN
-    MAIN --"Delegate"--> SUBAGENT
-    SUBAGENT --"Use"--> MCP_CLIENT
-    MAIN --"Direct use"--> MCP_CLIENT
-    MCP_CLIENT --"JSON-RPC"--> MCP_SERVERS
+    MCP_CLIENT -->|JSON-RPC| MCP_SERVERS
 
-    style MCP_CLIENT fill:#FFB6C1,color:#333,stroke:#333
     style SUBAGENT fill:#90EE90,color:#333,stroke:#333
+    style MCP_CLIENT fill:#FFB6C1,color:#333,stroke:#333
     style MCP_SERVERS fill:#E8E8E8,color:#333,stroke:#333
+    style CLAUDE_CODE fill:#fafafa,stroke:#1976d2,stroke-dasharray: 5 5
 ```
 
 ### Key Relationships

@@ -6,6 +6,8 @@
 
 カスタムサブエージェントの基本概念、定義方法、活用パターン、メリット・デメリットを解説する。A2Aエージェントとの違いは [what-is-a2a.md](./what-is-a2a.md) を参照。
 
+エージェント用語の全体像（カスタムエージェント／メタエージェント／Orchestrator-Worker など）の整理は [agent-taxonomy.md](./agent-taxonomy.md) を参照。
+
 ## サブエージェントとは何か
 
 **カスタムサブエージェント**は、Claude Code内で定義できる、特定タスクに特化したAIアシスタントです。
@@ -63,27 +65,29 @@ MCPがツール（手）なら、サブエージェントは専門家（頭脳�
 Claude Code内部での構造を理解するために、MCPクライアント、MCP Servers、メインClaudeとの関係を見てみましょう。
 
 ```mermaid
-block-beta
-    columns 2
+flowchart TB
+    USER["ユーザー"]
 
-    block:CLAUDE_CODE:2
-        columns 2
-        USER["ユーザー"]:2
-        MAIN["メインClaude\n（オーケストレーター）"]:1 SUBAGENT["カスタムサブエージェント\n(.claude/agents/)"]:1
-        MCP_CLIENT["MCP Client\n（Claude Code内蔵）"]:2
+    subgraph CLAUDE_CODE["Claude Code（ホスト）"]
+        direction TB
+        MAIN["メインClaude<br/>（オーケストレーター）"]
+        SUBAGENT["カスタムサブエージェント<br/>.claude/agents/"]
+        MCP_CLIENT["MCP Client<br/>（Claude Code 内蔵）"]
+
+        MAIN -->|委譲| SUBAGENT
+        MAIN -->|直接使う| MCP_CLIENT
+        SUBAGENT -->|使う| MCP_CLIENT
     end
 
-    MCP_SERVERS["MCP Servers<br>rfcxml, deepl等"]:2
+    MCP_SERVERS["MCP Servers<br/>rfcxml, deepl 等"]
 
     USER --> MAIN
-    MAIN --"委譲"--> SUBAGENT
-    SUBAGENT --"使う"--> MCP_CLIENT
-    MAIN --"直接使う"--> MCP_CLIENT
-    MCP_CLIENT --"JSON-RPC"--> MCP_SERVERS
+    MCP_CLIENT -->|JSON-RPC| MCP_SERVERS
 
-    style MCP_CLIENT fill:#FFB6C1,color:#333,stroke:#333
     style SUBAGENT fill:#90EE90,color:#333,stroke:#333
+    style MCP_CLIENT fill:#FFB6C1,color:#333,stroke:#333
     style MCP_SERVERS fill:#E8E8E8,color:#333,stroke:#333
+    style CLAUDE_CODE fill:#fafafa,stroke:#1976d2,stroke-dasharray: 5 5
 ```
 
 ### 重要な関係性

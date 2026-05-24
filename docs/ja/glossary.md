@@ -170,6 +170,98 @@ Claude Codeで参照できる静的な知識・ガイドライン。
 - ワークフロー指示
 ```
 
+## エージェント分類
+
+エージェント用語を抽象レベルで整理した分類。詳細は [agent-taxonomy.md](./agents/agent-taxonomy.md) を参照。
+
+### 設計パターン（Architecture Pattern）
+
+エージェントの組み合わせ方を示すアーキテクチャ・パターン。
+
+| パターン | 説明 |
+| --- | --- |
+| **Orchestrator-Worker** | 統括役が複数の Worker にタスクを委任する階層型 |
+| **Hierarchical Team** | 階層を明示した複数エージェントのチーム |
+| **Swarm** | 階層を最小化し、ハンドオフで協調する自律分散型 |
+
+### メタエージェント（Meta Agent）
+
+エージェントを動的に生成・管理するエージェント、という設計コンセプト。
+
+```
+注意:
+- 特定の製品機能名ではない
+- Orchestrator が動的にサブエージェントを spawn する形態の総称
+- 「Meta-Agent Builder」のような確立した製品名は存在しない
+```
+
+**関連**: Orchestrator、Spawned Agent
+
+### 実行ロール（Execution Role）
+
+設計パターンの内側で、各エージェントが担う責務。
+
+| ロール | 責務 |
+| --- | --- |
+| **Orchestrator / Supervisor / Lead Agent** | タスク分解、委任判断、結果集約 |
+| **Planner** | 計画立案、ステップ分解 |
+| **Worker / Specialist** | 個別の専門タスクを実行 |
+| **Critic / Reviewer / Evaluator** | 出力の検証、採点、再実行判断 |
+
+Anthropic の Multi-Agent Research System では Orchestrator にあたるエージェントを **"lead agent"** と呼ぶ。
+
+### バックグラウンドエージェント（Background Agent）
+
+非同期・長時間実行されるエージェント。セッションを跨いで状態を保持できる。
+
+```
+特徴:
+- 長時間実行に耐える
+- Persistent な状態を持つ
+- ユーザー操作を妨げない
+
+例:
+- GitHub Copilot Cloud Agents
+```
+
+### Ephemeral / Persistent
+
+エージェントのライフサイクル属性。
+
+| 属性 | 意味 |
+| --- | --- |
+| **Persistent** | セッションを跨いで状態を保持 |
+| **Ephemeral** | タスク完了時に破棄。コンテキスト汚染防止に寄与 |
+| **Spawned / Forked** | 親から動的に生成される（多くは Ephemeral と組み合わさる） |
+
+### AGENTS.md
+
+リポジトリルートに置く、コーディングエージェント向けの README。
+
+```
+特徴:
+- Markdown 形式の標準
+- 2025年12月に OpenAI と Anthropic が Linux Foundation
+  （Agentic AI Foundation）へ寄贈し、業界標準化
+- 60,000+ プロジェクトで採用（2025年末時点）
+```
+
+**注意**: 個別エージェント定義の `.agent.md` とは別物。
+
+### .agent.md
+
+GitHub Copilot / VS Code Custom Agents の**個別カスタムエージェント定義**ファイル。
+
+```
+配置場所:
+- .github/agents/*.agent.md（ワークスペース）
+- ~/.copilot/agents/*.agent.md（ユーザー）
+
+旧称: Custom Chat Modes
+```
+
+**注意**: リポジトリ全体への指示ファイル `AGENTS.md` とは別物。
+
 ## 要件レベル
 
 ### MUST / MUST NOT
@@ -367,6 +459,7 @@ A2Aプロトコルにおける、エージェントの自己紹介情報。
 | WHATWG   | Web Hypertext Application Technology Working Group | HTML等の標準化団体                 |
 | API      | Application Programming Interface                  | アプリケーション間インターフェース |
 | JSON-RPC | JSON Remote Procedure Call                         | JSONベースのRPCプロトコル          |
+| ADK      | Agent Development Kit                              | エージェント構築用 SDK             |
 | ADR      | Architecture Decision Record                       | アーキテクチャ決定記録             |
 | TLS      | Transport Layer Security                           | 通信暗号化プロトコル               |
 | TSA      | Time Stamp Authority                               | タイムスタンプ局                   |
