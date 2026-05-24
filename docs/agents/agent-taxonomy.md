@@ -132,13 +132,25 @@ Independent contexts deliver:
 
 ## Cross-Framework Mapping
 
-| Concept | Claude Code | GitHub Copilot / VS Code | OpenAI Agents SDK | CrewAI | LangGraph |
-| --- | --- | --- | --- | --- | --- |
-| Implementation unit definition | `.claude/agents/*.md` | `.github/agents/*.agent.md` | Python (`Agent` class) | Python (`Agent`) | Graph nodes |
-| Sub-execution with independent context | ✅ Subagents | ✅ Custom Agents | ✅ Handoff | ✅ Task delegation | ✅ Sub-graphs |
-| Hierarchical pattern | Orchestrator + Subagents | Coordinator + Worker | Triage + Specialist | Crew (Manager + Workers) | State Machine |
-| Inter-agent communication protocol | A2A support under consideration | — | — | — | — |
-| Background execution | △ (as tasks) | ✅ Cloud Agents | △ | — | △ |
+### Implementation and Independent Context
+
+| Framework                    | Implementation Unit Definition | Sub-execution with Independent Context |
+| ---------------------------- | ------------------------------ | -------------------------------------- |
+| **Claude Code**              | `.claude/agents/*.md`          | ✅ Subagents                           |
+| **GitHub Copilot / VS Code** | `.github/agents/*.agent.md`    | ✅ Custom Agents                       |
+| **OpenAI Agents SDK**        | Python (`Agent` class)         | ✅ Handoff                             |
+| **CrewAI**                   | Python (`Agent`)               | ✅ Task delegation                     |
+| **LangGraph**                | Graph nodes                    | ✅ Sub-graphs                          |
+
+### Architecture Pattern and Extensions
+
+| Framework                    | Hierarchical Pattern     | Inter-agent Communication       | Background Execution |
+| ---------------------------- | ------------------------ | ------------------------------- | -------------------- |
+| **Claude Code**              | Orchestrator + Subagents | A2A support under consideration | △ (as tasks)         |
+| **GitHub Copilot / VS Code** | Coordinator + Worker     | —                               | ✅ Cloud Agents      |
+| **OpenAI Agents SDK**        | Triage + Specialist      | —                               | △                    |
+| **CrewAI**                   | Crew (Manager + Workers) | —                               | —                    |
+| **LangGraph**                | State Machine            | —                               | △                    |
 
 Note that `.agent.md` and `AGENTS.md` are different:
 

@@ -132,13 +132,25 @@ flowchart TD
 
 ## フレームワーク横断対応表
 
-| 概念                         | Claude Code              | GitHub Copilot / VS Code    | OpenAI Agents SDK               | CrewAI                   | LangGraph     |
-| ---------------------------- | ------------------------ | --------------------------- | ------------------------------- | ------------------------ | ------------- |
-| 実装単位の定義場所           | `.claude/agents/*.md`    | `.github/agents/*.agent.md` | Python コード（`Agent` クラス） | Python コード（`Agent`） | グラフノード  |
-| 独立コンテキストでのサブ実行 | ✅ Subagents             | ✅ Custom Agents            | ✅ Handoff                      | ✅ Task delegation       | ✅ Sub-graphs |
-| 階層パターン                 | Orchestrator + Subagents | Coordinator + Worker        | Triage + Specialist             | Crew (Manager + Workers) | State Machine |
-| エージェント間通信プロトコル | A2A 対応検討中           | —                           | —                               | —                        | —             |
-| バックグラウンド実行         | △（タスク扱い）          | ✅ Cloud Agents             | △                               | —                        | △             |
+### 実装と独立コンテキスト
+
+| フレームワーク               | 実装単位の定義場所              | 独立コンテキストでのサブ実行 |
+| ---------------------------- | ------------------------------- | ---------------------------- |
+| **Claude Code**              | `.claude/agents/*.md`           | ✅ Subagents                 |
+| **GitHub Copilot / VS Code** | `.github/agents/*.agent.md`     | ✅ Custom Agents             |
+| **OpenAI Agents SDK**        | Python コード（`Agent` クラス） | ✅ Handoff                   |
+| **CrewAI**                   | Python コード（`Agent`）        | ✅ Task delegation           |
+| **LangGraph**                | グラフノード                    | ✅ Sub-graphs                |
+
+### 設計パターンと拡張機能
+
+| フレームワーク               | 階層パターン             | エージェント間通信 | バックグラウンド実行 |
+| ---------------------------- | ------------------------ | ------------------ | -------------------- |
+| **Claude Code**              | Orchestrator + Subagents | A2A 対応検討中     | △（タスク扱い）      |
+| **GitHub Copilot / VS Code** | Coordinator + Worker     | —                  | ✅ Cloud Agents      |
+| **OpenAI Agents SDK**        | Triage + Specialist      | —                  | △                    |
+| **CrewAI**                   | Crew (Manager + Workers) | —                  | —                    |
+| **LangGraph**                | State Machine            | —                  | △                    |
 
 `.agent.md` と `AGENTS.md` は別物である点に注意：
 
