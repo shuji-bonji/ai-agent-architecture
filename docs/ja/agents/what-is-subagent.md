@@ -246,6 +246,10 @@ flowchart LR
 
 | 目的                          | ドキュメント                                         |
 | ----------------------------- | ---------------------------------------------------- |
+| Skill とどちらで実装するか    | [サブエージェント vs Skills](./subagent-vs-skill)    |
+| 品質ゲートとして使う実践      | [サブエージェントを品質ゲートとして使う](./subagent-quality-gate) |
+| Agent/Sub-agent/Skill/MCP 比較 | [FAQ: 4者の違い](../faq/agent-vs-subagent-vs-skill) |
+| カスタム/メタエージェント等の用語整理 | [エージェント概念の分類](./agent-taxonomy)   |
 | A2Aとの違いを理解したい       | [what-is-a2a.md](./what-is-a2a.md)                   |
 | MCPについて詳しく知りたい     | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
 | Skillsについて詳しく知りたい  | [what-is-skills.md](../skills/what-is-skills.md)     |

@@ -18,6 +18,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'MCP vs Skills', link: '/faq/mcp-vs-skills' },
+            { text: 'Agent/Sub-agent/Skill/MCP comparison', link: '/faq/agent-vs-subagent-vs-skill' },
           ],
         },
         {
@@ -66,6 +67,8 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Agent Taxonomy', link: '/agents/agent-taxonomy' },
             { text: 'What is A2A', link: '/agents/what-is-a2a' },
             { text: 'Sub-agents', link: '/agents/what-is-subagent' },
+            { text: 'Sub-agent vs Skills', link: '/agents/subagent-vs-skill' },
+            { text: 'Quality Gate Pattern', link: '/agents/subagent-quality-gate' },
             { text: 'Agent Identity', link: '/agents/agent-identity' },
           ],
         },

@@ -246,6 +246,10 @@ To learn more about sub-agents and related concepts, explore the following docum
 
 | Purpose                          | Document                                             |
 | -------------------------------- | ---------------------------------------------------- |
+| Choose between Skill and Sub-agent | [Sub-agent vs Skills](./subagent-vs-skill)         |
+| Using sub-agents as quality gates | [Using sub-agents as quality gates](./subagent-quality-gate) |
+| Agent/Sub-agent/Skill/MCP comparison | [FAQ: 4 roles compared](../faq/agent-vs-subagent-vs-skill) |
+| Custom/meta-agent terminology    | [Agent Taxonomy](./agent-taxonomy)                   |
 | Understand differences from A2A  | [what-is-a2a.md](./what-is-a2a.md)                   |
 | Learn more about MCP             | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
 | Learn more about Skills          | [what-is-skills.md](../skills/what-is-skills.md)     |

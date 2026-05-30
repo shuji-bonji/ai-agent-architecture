@@ -207,6 +207,9 @@ flowchart TD
 | 目的                                       | ドキュメント                                         |
 | ------------------------------------------ | ---------------------------------------------------- |
 | Claude Code の具体的なサブエージェント実装 | [what-is-subagent.md](./what-is-subagent.md)         |
+| Skill とサブエージェントの選択判断          | [サブエージェント vs Skills](./subagent-vs-skill)    |
+| 品質ゲート (Validator型) の実践            | [サブエージェントを品質ゲートとして使う](./subagent-quality-gate) |
+| Agent/Sub-agent/Skill/MCP の 4者比較       | [FAQ: 4者の違い](../faq/agent-vs-subagent-vs-skill) |
 | エージェント間通信プロトコル               | [what-is-a2a.md](./what-is-a2a.md)                   |
 | MCP の詳細                                 | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
 | 三層アーキテクチャ（Agent / Skills / MCP） | [03-architecture.md](../concepts/03-architecture.md) |

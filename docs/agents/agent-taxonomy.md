@@ -207,6 +207,9 @@ Several protocols exist around agents and are easy to confuse. Here's a quick di
 | Purpose | Document |
 | --- | --- |
 | Claude Code-specific sub-agent implementation | [what-is-subagent.md](./what-is-subagent.md) |
+| Choose between Skill and Sub-agent | [Sub-agent vs Skills](./subagent-vs-skill) |
+| Validator pattern in practice | [Using sub-agents as quality gates](./subagent-quality-gate) |
+| Agent/Sub-agent/Skill/MCP 4-way comparison | [FAQ: 4 roles compared](../faq/agent-vs-subagent-vs-skill) |
 | Inter-agent communication protocol | [what-is-a2a.md](./what-is-a2a.md) |
 | MCP details | [what-is-mcp.md](../mcp/what-is-mcp.md) |
 | Three-layer architecture (Agent / Skills / MCP) | [03-architecture.md](../concepts/03-architecture.md) |

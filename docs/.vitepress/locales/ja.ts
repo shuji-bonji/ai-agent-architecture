@@ -18,6 +18,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'MCP vs Skills', link: '/ja/faq/mcp-vs-skills' },
+            { text: 'Agent/Sub-agent/Skill/MCP 4者比較', link: '/ja/faq/agent-vs-subagent-vs-skill' },
           ],
         },
         {
@@ -66,6 +67,8 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'エージェントの分類', link: '/ja/agents/agent-taxonomy' },
             { text: 'A2Aとは', link: '/ja/agents/what-is-a2a' },
             { text: 'サブエージェント', link: '/ja/agents/what-is-subagent' },
+            { text: 'サブエージェント vs Skills', link: '/ja/agents/subagent-vs-skill' },
+            { text: '品質ゲートとしての活用', link: '/ja/agents/subagent-quality-gate' },
             { text: 'エージェントID', link: '/ja/agents/agent-identity' },
           ],
         },
