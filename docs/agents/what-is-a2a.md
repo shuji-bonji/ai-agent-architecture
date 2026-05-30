@@ -17,8 +17,13 @@ For the overall taxonomy of agent terminology (architecture patterns, execution 
 Here is a brief history of A2A's origins and standardization.
 
 - **Google led** the effort, announcing A2A in April 2025
-- Subsequently, **Linux Foundation** will take over stewardship for open standardization
+- In June 2025, A2A moved under the **Linux Foundation's Agentic AI Foundation** for vendor-neutral standardization
+- As of April 2026, **over 150 organizations participate** in the A2A protocol project (AWS, Cisco, Google, IBM, Microsoft, Salesforce, SAP, ServiceNow, and others)
+- **A2A v1.0 has reached GA** and entered production operation across multiple cloud platforms
 - Like MCP, it is positioned as foundational infrastructure for the agent economy
+
+> [!IMPORTANT]
+> A2A is no longer in "specification consideration" but in "**production operation phase**." For agent authentication and delegation, design alongside [Agent Identity](./agent-identity).
 
 ### The Essence of A2A
 
@@ -263,32 +268,42 @@ Sub-agents and A2A agents don't compete—they complement each other. Most syste
 
 ## Current Maturity and Future Outlook
 
-### Timeline
+### Timeline (as of May 2026)
 
 Key milestones from the emergence of MCP and A2A to the present.
 
-- **November 2024**: Anthropic releases MCP
-- **April 2025**: Google announces A2A
-- **2025**: Migration to Linux Foundation planned
-- **2025–2026**: Ecosystem development phase
+- **November 2024**: Anthropic releases **MCP**
+- **April 2025**: Google announces **A2A**
+- **June 2025**: A2A project migrates **under Linux Foundation's Agentic AI Foundation**
+- **October 2025**: OpenID Foundation publishes **"Identity Management for Agentic AI" v1.1** (Agent ID systematization)
+- **December 2025**: **AGENTS.md** donated to Linux Foundation by OpenAI and Anthropic — industry standardization
+- **April 2026**: **Microsoft Entra Agent ID GA**, **Okta for AI Agents GA**, **A2A v1.0 GA** — A2A participation surpasses 150 organizations, production deployment across multiple cloud platforms
+- **2026+**: MCP + A2A + Agent ID three-layer composition becomes the production-operation standard
 
 ### Current Status
 
-The [03-architecture.md](../concepts/03-architecture.md) document in this repository describes A2A's architectural positioning.
+A2A is no longer in "specification consideration" but in **production operation phase**. This site covers the supporting elements on these pages:
 
-### Future Projections
-
-While A2A implementations remain limited, these scenarios are anticipated:
-
-1. **Early Stage (2025)**: Major players begin A2A support
-2. **Growth Stage (2025–2026)**: Mid-market companies start adopting
-3. **Maturity Stage (2026+)**: MCP + A2A combined use becomes standard
+- [Agent Identity](./agent-identity) — Identification and delegation underpinning A2A communication
+- [Multi-Agent / Agent Teams](./agent-teams) — Evolution from intra-org Agent Teams to cross-org Agent Mesh
+- [03-architecture](../concepts/03-architecture) — A2A's position in the three-layer model
 
 ### Recommended Architecture
 
-**Build with ADK, equip with MCP, communicate with A2A**
+**Build with ADK, equip with MCP, communicate with A2A, identify with Agent ID**
 
-This model is expected to become the standard for future agent development.
+The original three-layer model (Build / Equip / Communicate) has gained **Identify** — this is the 2026 state of the art. **A2A alone cannot handle trust boundaries**, so combination with Agent ID is now the production prerequisite.
+
+### Remaining Open Issues
+
+A2A has reached GA, but the ecosystem still has unresolved areas:
+
+- **Cross-vendor interoperability** — Inter-vendor Agent ID interop is not yet established (OIDC-A, IPSIE, AuthZEN standardization is in progress)
+- **Scope attenuation in recursive delegation** — Design needed so authority does not balloon across A2A-mediated sub-agent chains (OAuth Token Exchange, Macaroons, etc.)
+- **Revocation propagation** — Mechanism for revocation in one place to reach all endpoints (Shared Signals Framework, etc.)
+- **Authentication for browser-controlling agents** — Web Bot Auth draft in progress
+
+Details in [Agent Identity / Remaining Issues](./agent-identity).
 
 ## What to Read Next
 
@@ -296,10 +311,19 @@ Explore these documents to deepen your A2A understanding:
 
 | Purpose              | Document                                             |
 | -------------------- | ---------------------------------------------------- |
+| Identification and delegation in A2A | [Agent Identity](./agent-identity)     |
+| Relation to intra-org Agent Teams | [Multi-Agent / Agent Teams](./agent-teams) |
 | Sub-agent details    | [what-is-subagent.md](./what-is-subagent.md)         |
+| Agent terminology organization | [Agent Taxonomy](./agent-taxonomy)         |
 | MCP details          | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
 | Overall architecture | [03-architecture.md](../concepts/03-architecture.md) |
 | About Skills         | [what-is-skills.md](../skills/what-is-skills.md)     |
 
-**Last Updated**: April 2025
-**Status**: Initial Release (Post A2A Announcement)
+## Sources
+
+- [A2A Protocol Surpasses 150 Organizations (Linux Foundation, April 2026)](https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year) — 150 organizations, production deployment
+- [OpenID Foundation — Identity Management for Agentic AI v1.1](https://openid.net/) — Agent ID systematization
+- [AGENTS.md official site](https://agents.md/) — Linux Foundation standard
+
+**Last Updated**: May 2026
+**Status**: Reflects A2A v1.0 GA and Agent ID production-operation phase

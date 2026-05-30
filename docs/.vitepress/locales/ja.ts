@@ -9,6 +9,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       { text: 'コンセプト', link: '/ja/concepts/' },
       { text: 'MCP', link: '/ja/mcp/what-is-mcp' },
       { text: 'Skills', link: '/ja/skills/what-is-skills' },
+      { text: 'エージェント', link: '/ja/agents/' },
       { text: 'FAQ', link: '/ja/faq/mcp-vs-skills' },
     ],
     sidebar: {
@@ -64,11 +65,13 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'エージェント',
           collapsed: false,
           items: [
+            { text: '全体像 (ランディング)', link: '/ja/agents/' },
             { text: 'エージェントの分類', link: '/ja/agents/agent-taxonomy' },
-            { text: 'A2Aとは', link: '/ja/agents/what-is-a2a' },
             { text: 'サブエージェント', link: '/ja/agents/what-is-subagent' },
             { text: 'サブエージェント vs Skills', link: '/ja/agents/subagent-vs-skill' },
             { text: '品質ゲートとしての活用', link: '/ja/agents/subagent-quality-gate' },
+            { text: 'マルチエージェント / Agent Teams', link: '/ja/agents/agent-teams' },
+            { text: 'A2Aとは', link: '/ja/agents/what-is-a2a' },
             { text: 'エージェントID', link: '/ja/agents/agent-identity' },
           ],
         },

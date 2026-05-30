@@ -9,6 +9,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       { text: 'Concepts', link: '/concepts/' },
       { text: 'MCP', link: '/mcp/what-is-mcp' },
       { text: 'Skills', link: '/skills/what-is-skills' },
+      { text: 'Agents', link: '/agents/' },
       { text: 'FAQ', link: '/faq/mcp-vs-skills' },
     ],
     sidebar: {
@@ -64,11 +65,13 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Agents',
           collapsed: false,
           items: [
+            { text: 'Overview (landing)', link: '/agents/' },
             { text: 'Agent Taxonomy', link: '/agents/agent-taxonomy' },
-            { text: 'What is A2A', link: '/agents/what-is-a2a' },
             { text: 'Sub-agents', link: '/agents/what-is-subagent' },
             { text: 'Sub-agent vs Skills', link: '/agents/subagent-vs-skill' },
             { text: 'Quality Gate Pattern', link: '/agents/subagent-quality-gate' },
+            { text: 'Multi-Agent / Agent Teams', link: '/agents/agent-teams' },
+            { text: 'What is A2A', link: '/agents/what-is-a2a' },
             { text: 'Agent Identity', link: '/agents/agent-identity' },
           ],
         },

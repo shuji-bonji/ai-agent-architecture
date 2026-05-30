@@ -17,8 +17,13 @@ A2Aの基本概念、MCPとの違い、メリット・デメリット、将来�
 A2Aの誕生と標準化の経緯を以下にまとめる。
 
 - **Google が主導** して 2025年4月に発表
-- その後、**Linux Foundation** に移管され、オープン標準化される予定
+- 2025年6月に **Linux Foundation の Agentic AI Foundation 配下** へ移管され、ベンダーニュートラルな標準として運営
+- 2026年4月時点で **A2A プロトコルプロジェクトへの参加組織は 150 を超える** (AWS、Cisco、Google、IBM、Microsoft、Salesforce、SAP、ServiceNow ほか)
+- **A2A v1.0** が GA となり、複数クラウドプラットフォームと本番運用フェーズに突入
 - MCPと同じく、エージェント経済圏の基盤となるプロトコルとして位置づけられている
+
+> [!IMPORTANT]
+> A2A はもはや「**仕様検討段階**」ではなく「**本番運用フェーズ**」にある。エージェントの認証・委任については [エージェント ID](./agent-identity) と組み合わせて設計する必要がある。
 
 ### A2A の本質
 
@@ -243,32 +248,42 @@ A2Aを採用することで、以下のメリットが得られる。
 
 ## 現状の成熟度と将来展望
 
-### タイムライン
+### タイムライン (2026年5月時点)
 
 MCPとA2Aの登場から現在に至るまでの主要な出来事を時系列で整理する。
 
-- **2024年11月**: Anthropic が MCP をリリース
-- **2025年4月**: Google が A2A を発表
-- **2025年**: Linux Foundation へ移管予定
-- **2025年〜2026年**: エコシステム発展期
+- **2024年11月**: Anthropic が **MCP** をリリース
+- **2025年4月**: Google が **A2A** を発表
+- **2025年6月**: A2A プロジェクトが **Linux Foundation Agentic AI Foundation 配下** へ移管
+- **2025年10月**: OpenID Foundation が **「Agentic AI のためのアイデンティティ管理」v1.1** を公表 (Agent ID の体系化)
+- **2025年12月**: **AGENTS.md** が OpenAI と Anthropic から Linux Foundation へ寄贈、業界標準化
+- **2026年4月**: **Microsoft Entra Agent ID GA**、**Okta for AI Agents GA**、**A2A v1.0 GA** — A2A 参加組織が 150 を超え、複数クラウドプラットフォームで本番運用入り
+- **2026年〜**: MCP + A2A + Agent ID の三層構成が本番運用の標準形に
 
 ### 現時点での位置づけ
 
-このリポジトリの [03-architecture.md](../concepts/03-architecture.md) に、A2Aのアーキテクチャ上の位置づけを記載しています。
+A2A はもはや「仕様検討」ではなく「**本番運用フェーズ**」にある。本サイトでは以下の関連ページで A2A を支える要素を扱う。
 
-### 将来予想
-
-現時点ではA2Aの実装例はまだ少ないですが、以下のシナリオが予想されます。
-
-1. **初期段階（2025年）**: 大規模プレイヤーがA2A対応を開始
-2. **拡大段階（2025〜2026年）**: 中堅企業も対応し始める
-3. **成熟段階（2026年以降）**: MCP + A2Aの併用が標準化
+- [エージェント ID](./agent-identity) — A2A 通信における識別と委任の基礎
+- [マルチエージェント / Agent Teams](./agent-teams) — 組織内 Agent Team から組織横断 Agent Mesh への発展
+- [03-architecture](../concepts/03-architecture) — 三層モデルにおける A2A の位置
 
 ### 推奨アーキテクチャ
 
-**Build with ADK, equip with MCP, communicate with A2A**
+**Build with ADK, equip with MCP, communicate with A2A, identify with Agent ID**
 
-このモデルが、今後のエージェント開発の標準になると考えられます。
+オリジナルの三層モデル (Build / Equip / Communicate) に **Identify** が加わったのが 2026 年の現在地。**A2A 単体では信頼境界を扱えない** ため、Agent ID と組み合わせるのが本番運用の前提となっている。
+
+### 残された課題
+
+A2A は GA を迎えたが、エコシステムレベルでは未解決領域が残る。
+
+- **クロスベンダー相互運用性** — 各社の Agent ID 実装間の相互運用が未確立 (OIDC-A、IPSIE、AuthZEN の標準化が進行中)
+- **再帰的委任のスコープ減衰** — A2A 越しのサブエージェント連鎖で権限が肥大化しないための設計が必要 (OAuth Token Exchange、Macaroons 等)
+- **失効伝播** — 一箇所で取り消した権限が末端まで届く仕組み (Shared Signals Framework 等)
+- **ブラウザ操作型エージェントの認証** — Web Bot Auth ドラフトが進行中
+
+これらの詳細は [エージェント ID / 残された課題](./agent-identity) を参照。
 
 ## 次に読むべきドキュメント
 
@@ -276,10 +291,19 @@ A2Aをより深く理解するために、以下のドキュメントをご参�
 
 | 目的                   | ドキュメント                                         |
 | ---------------------- | ---------------------------------------------------- |
+| A2A 通信時の識別と委任 | [エージェント ID](./agent-identity)                  |
+| 組織内 Agent Team との関係 | [マルチエージェント / Agent Teams](./agent-teams) |
 | サブエージェントの詳細 | [what-is-subagent.md](./what-is-subagent.md)         |
+| エージェント用語の整理 | [エージェント概念の分類](./agent-taxonomy)            |
 | MCPの詳細              | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
 | 全体アーキテクチャ     | [03-architecture.md](../concepts/03-architecture.md) |
 | Skillsについて         | [what-is-skills.md](../skills/what-is-skills.md)     |
 
-**最終更新**: 2025年4月
-**ステータス**: 初版（A2A仕様発表直後）
+## 出典
+
+- [A2A Protocol Surpasses 150 Organizations (Linux Foundation, 2026年4月)](https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year) — 150 組織参加・本番運用入り
+- [OpenID Foundation — Identity Management for Agentic AI v1.1](https://openid.net/) — Agent ID の体系化
+- [AGENTS.md 公式サイト](https://agents.md/) — Linux Foundation 標準
+
+**最終更新**: 2026年5月
+**ステータス**: A2A v1.0 GA・Agent ID 本番運用フェーズ反映
