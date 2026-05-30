@@ -1,6 +1,6 @@
 # Concepts — 設計思想の全体像
 
-> 7つの章が描く「AIエージェントアーキテクチャの設計思想」を俯瞰する。
+> 8つの章が描く「AIエージェントアーキテクチャの設計思想」を俯瞰する。
 
 ## ドキュメントチェーン
 
@@ -13,8 +13,9 @@ flowchart LR
     S["05: Solving Limitations<br/>REALITY"]
     P["06: Physical AI<br/>EXTENSION"]
     DOC["07: Doctrine & Intent<br/>DOCTRINE"]
+    M["08: Memory & Knowledge<br/>MEMORY"]
 
-    V --> R --> A --> D --> S --> P --> DOC
+    V --> R --> A --> D --> S --> P --> DOC --> M
 
     style V fill:#FFE4B5,color:#333,stroke:#333
     style R fill:#FFE4B5,color:#333,stroke:#333
@@ -23,6 +24,7 @@ flowchart LR
     style S fill:#FFB6C1,color:#333,stroke:#333
     style P fill:#DDA0DD,color:#333,stroke:#333
     style DOC fill:#F0E68C,color:#333,stroke:#333
+    style M fill:#E6E6FA,color:#333,stroke:#333
 ```
 
 ## 各章の概要
@@ -36,20 +38,21 @@ flowchart LR
 | **05** | **REALITY** | 現実の制約にどう向き合うか？ | [05-solving-ai-limitations](./05-solving-ai-limitations) |
 | **06** | **EXTENSION** | 三層モデルは物理世界でも成り立つか？ | [06-physical-ai](./06-physical-ai) |
 | **07** | **DOCTRINE** | AIは何を基準に判断し行動すべきか？ | [07-doctrine-and-intent](./07-doctrine-and-intent) |
+| **08** | **MEMORY** | エージェントは何を記憶し、どう接続するか？ | [08-memory-and-knowledge](./08-memory-and-knowledge) |
 
 ## レイヤー × 関心事の横断マトリクス
 
 各章がどのレイヤーのどの関心事をカバーしているかを示す。
 
-| 関心事 | Agent 層 | Skills 層 | MCP 層 | Doctrine 層 |
-| --- | --- | --- | --- | --- |
-| **構造定義** | 03 | 03 | 03 | 07 |
-| **設計パターン** | 04 | 04 | 04 | — |
-| **制約と対策** | 05 | 05 | 05 | 05 |
-| **エッジ拡張** | 06 | 06 | 06 | 06 |
-| **判断基準** | 07 | 07 | — | 07 |
-| **参照先の体系** | — | 02 | 02 | — |
-| **設計思想（WHY）** | 01 | 01 | 01 | 01 |
+| 関心事 | Agent 層 | Skills 層 | MCP 層 | Memory 層 | Doctrine 層 |
+| --- | --- | --- | --- | --- | --- |
+| **構造定義** | 03 | 03 | 03 | 08 | 07 |
+| **設計パターン** | 04 | 04 | 04 | — | — |
+| **制約と対策** | 05 | 05 | 05 | 08 | 05 |
+| **エッジ拡張** | 06 | 06 | 06 | — | 06 |
+| **判断基準** | 07 | 07 | — | 08 | 07 |
+| **参照先の体系** | — | 02 | 02 | 08 | — |
+| **設計思想（WHY）** | 01 | 01 | 01 | 01 | 01 |
 
 ## Mermaid 図の色調凡例
 
@@ -60,6 +63,7 @@ flowchart LR
 | **Agent 層** | 水色 | `#87CEEB` |
 | **Skills 層** | 薄緑 | `#90EE90` |
 | **MCP 層** | ピンク | `#FFB6C1` |
+| **Memory 層** | 薄紫 (Lavender) | `#E6E6FA` |
 | **Doctrine 層** | 薄橙 | `#FFE4B5` |
 
 ## 規範強度ラダー（shall / should / may）
@@ -88,6 +92,7 @@ Concepts セクションの理解が実装フェーズへ進むのに十分か�
 - [ ] **制約の境界認識** — 技術で解決できる制約（知識制約）と、技術だけでは解決できない制約（制度的制約）を区別できるか？（05 参照）
 - [ ] **ヒト介入点の合意** — エージェントの自律性レベルと、人間にエスカレーションする条件をチームで合意したか？（07 参照）
 - [ ] **証拠トレイルの最低要件** — AIの判断根拠を事後的に検証できる仕組み（検証ステータス、出典記録）を設計に含めているか？（05 参照）
+- [ ] **Memory 層導入判断** — 現在のシナリオで scatter-gather のコストが許容範囲か評価し、必要に応じて Memory 層 (Stage 1〜2) の導入を計画したか？（08 参照）
 
 ### これらが揃ったら
 

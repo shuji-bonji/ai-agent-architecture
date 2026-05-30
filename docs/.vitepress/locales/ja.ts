@@ -32,6 +32,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'AI制限の克服', link: '/ja/concepts/05-solving-ai-limitations' },
             { text: 'フィジカルAI', link: '/ja/concepts/06-physical-ai' },
             { text: 'ドクトリンと意図', link: '/ja/concepts/07-doctrine-and-intent' },
+            { text: '記憶と知識統合 (Memory & KG)', link: '/ja/concepts/08-memory-and-knowledge' },
           ],
         },
         {

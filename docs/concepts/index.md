@@ -1,6 +1,6 @@
 # Concepts — Overview of Design Philosophy
 
-> A bird's-eye view of the "AI Agent Architecture Design Philosophy" across seven chapters.
+> A bird's-eye view of the "AI Agent Architecture Design Philosophy" across eight chapters.
 
 ## Document Chain
 
@@ -13,8 +13,9 @@ flowchart LR
     S["05: Solving Limitations<br/>REALITY"]
     P["06: Physical AI<br/>EXTENSION"]
     DOC["07: Doctrine & Intent<br/>DOCTRINE"]
+    M["08: Memory & Knowledge<br/>MEMORY"]
 
-    V --> R --> A --> D --> S --> P --> DOC
+    V --> R --> A --> D --> S --> P --> DOC --> M
 
     style V fill:#FFE4B5,color:#333,stroke:#333
     style R fill:#FFE4B5,color:#333,stroke:#333
@@ -23,6 +24,7 @@ flowchart LR
     style S fill:#FFB6C1,color:#333,stroke:#333
     style P fill:#DDA0DD,color:#333,stroke:#333
     style DOC fill:#F0E68C,color:#333,stroke:#333
+    style M fill:#E6E6FA,color:#333,stroke:#333
 ```
 
 ## Chapter Overview
@@ -36,20 +38,21 @@ flowchart LR
 | **05** | **REALITY** | How do we address real-world constraints? | [05-solving-ai-limitations](./05-solving-ai-limitations) |
 | **06** | **EXTENSION** | Does the three-layer model hold in the physical world? | [06-physical-ai](./06-physical-ai) |
 | **07** | **DOCTRINE** | On what basis should AI judge and act? | [07-doctrine-and-intent](./07-doctrine-and-intent) |
+| **08** | **MEMORY** | What does the agent remember, and how does it connect? | [08-memory-and-knowledge](./08-memory-and-knowledge) |
 
 ## Layer × Concern Cross-Reference Matrix
 
 Shows which chapters cover which concerns for each layer.
 
-| Concern | Agent Layer | Skills Layer | MCP Layer | Doctrine Layer |
-| --- | --- | --- | --- | --- |
-| **Structural Definition** | 03 | 03 | 03 | 07 |
-| **Design Patterns** | 04 | 04 | 04 | — |
-| **Constraints & Countermeasures** | 05 | 05 | 05 | 05 |
-| **Edge Extension** | 06 | 06 | 06 | 06 |
-| **Judgment Criteria** | 07 | 07 | — | 07 |
-| **Reference Source Taxonomy** | — | 02 | 02 | — |
-| **Design Philosophy (WHY)** | 01 | 01 | 01 | 01 |
+| Concern | Agent Layer | Skills Layer | MCP Layer | Memory Layer | Doctrine Layer |
+| --- | --- | --- | --- | --- | --- |
+| **Structural Definition** | 03 | 03 | 03 | 08 | 07 |
+| **Design Patterns** | 04 | 04 | 04 | — | — |
+| **Constraints & Countermeasures** | 05 | 05 | 05 | 08 | 05 |
+| **Edge Extension** | 06 | 06 | 06 | — | 06 |
+| **Judgment Criteria** | 07 | 07 | — | 08 | 07 |
+| **Reference Source Taxonomy** | — | 02 | 02 | 08 | — |
+| **Design Philosophy (WHY)** | 01 | 01 | 01 | 01 | 01 |
 
 ## Mermaid Diagram Color Legend
 
@@ -60,6 +63,7 @@ The following color codes represent layers consistently across all chapters.
 | **Agent Layer** | Light Blue | `#87CEEB` |
 | **Skills Layer** | Light Green | `#90EE90` |
 | **MCP Layer** | Pink | `#FFB6C1` |
+| **Memory Layer** | Lavender | `#E6E6FA` |
 | **Doctrine Layer** | Light Orange | `#FFE4B5` |
 
 ## Normative Strength Ladder (shall / should / may)
@@ -88,6 +92,7 @@ A checklist to confirm that your understanding of the Concepts section is suffic
 - [ ] **Constraint Boundary Awareness** — Can you distinguish between constraints solvable by technology (knowledge constraints) and those not solvable by technology alone (institutional constraints)? (See 05)
 - [ ] **Human Intervention Point Agreement** — Has your team agreed on the agent's autonomy level and the conditions for escalation to humans? (See 07)
 - [ ] **Evidence Trail Minimum Requirements** — Does your design include mechanisms for post-hoc verification of AI decisions (verification status, source records)? (See 05)
+- [ ] **Memory Layer Introduction Decision** — Have you evaluated whether scatter-gather costs are acceptable in your current scenario, and planned introduction of the Memory layer (Stage 1–2) if needed? (See 08)
 
 ### Once These Are Met
 
