@@ -9,9 +9,17 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       { text: 'コンセプト', link: '/ja/concepts/' },
       { text: 'MCP', link: '/ja/mcp/what-is-mcp' },
       { text: 'Skills', link: '/ja/skills/what-is-skills' },
+      { text: 'FAQ', link: '/ja/faq/mcp-vs-skills' },
     ],
     sidebar: {
       '/ja/': [
+        {
+          text: 'FAQ (3行回答)',
+          collapsed: false,
+          items: [
+            { text: 'MCP vs Skills', link: '/ja/faq/mcp-vs-skills' },
+          ],
+        },
         {
           text: 'コンセプト',
           collapsed: false,

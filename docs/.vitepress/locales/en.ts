@@ -9,9 +9,17 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       { text: 'Concepts', link: '/concepts/' },
       { text: 'MCP', link: '/mcp/what-is-mcp' },
       { text: 'Skills', link: '/skills/what-is-skills' },
+      { text: 'FAQ', link: '/faq/mcp-vs-skills' },
     ],
     sidebar: {
       '/': [
+        {
+          text: 'FAQ (3-line answers)',
+          collapsed: false,
+          items: [
+            { text: 'MCP vs Skills', link: '/faq/mcp-vs-skills' },
+          ],
+        },
         {
           text: 'Concepts',
           collapsed: false,

@@ -1,5 +1,9 @@
 # MCP vs Skills: Fundamental Differences and Selection Criteria
 
+> [!TIP] Looking for a 3-line answer?
+> **MCP** = a **connection** to external systems; **Skills** = **knowledge / playbook** kept inside the agent. Use both if you need both.
+> For query-by-query Q&A and a 10-second decision flow, see [MCP vs Skills FAQ (3-line version)](../faq/mcp-vs-skills). This page provides the in-depth selection guide.
+
 ## Overview Comparison Table
 
 The following table provides a side-by-side comparison of the core attributes distinguishing MCPs from Skills across various operational and strategic dimensions.
