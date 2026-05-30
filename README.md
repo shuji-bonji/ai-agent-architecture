@@ -2,9 +2,19 @@
 
 [日本語版 (Japanese)](./README.ja.md)
 
-> MCP alone is not enough — this repo addresses how Agents discover and orchestrate Skills and Tools.
+> MCP alone is not enough — this repo addresses how Agents discover and orchestrate Skills, Tools, Memory, and Identity.
 
-A repository documenting design principles, architecture, and practical knowledge for AI agent configuration (MCP, Skills, and Agent integration).
+A repository documenting design principles, architecture, and practical knowledge for AI agent configuration (MCP, Skills, Agent, Memory, and Agent ID integration).
+
+## 📚 Sister Projects
+
+A 3-phase learning path: "Know LLMs → Know Agent Design → Apply to Systems."
+
+| Phase | Project | Focus |
+| :--- | :--- | :--- |
+| **1. Know LLMs** | [understanding-llm-through-claude-code](https://github.com/shuji-bonji/understanding-llm-through-claude-code) | LLM structural constraints and the *why* behind configuration design |
+| **2. Know Agent Design** | 👈 **This repository** | MCP, Skills, Agent, Memory & Agent ID — composition and implementation patterns (*what/how*) |
+| **3. Apply to Systems** | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | _Coming soon_ — System operations in the AI era |
 
 ## 📖 Documentation
 
@@ -14,24 +24,25 @@ A repository documenting design principles, architecture, and practical knowledg
 
 The documentation site provides:
 
-- **Concepts & Vision** — Why "stable reference sources" matter for AI-driven development
+- **Concepts & Vision** (8 chapters) — Why "stable reference sources" matter, the three-layer model, doctrine and intent, and the Memory layer / Knowledge Graph
 - **MCP (Model Context Protocol)** — External integration layer with standardized protocols
 - **Skills (Domain Knowledge)** — Static knowledge that complements MCP's real-time capabilities
-- **Agents & A2A** — Sub-agents, orchestration patterns, and Agent-to-Agent protocol
-- **Architecture** — Three-layer model (MCP / Skills / Agent) and system composition
+- **Agents** — Agent taxonomy, sub-agents, quality gates, multi-agent / Agent Teams, A2A protocol, and **Agent ID** (the Agent ID era)
+- **FAQ (3-line answers)** — Direct answers to common queries: *MCP vs Skills*, *Agent vs Sub-agent vs Skill vs MCP*
 - **Strategy & Composition Patterns** — MCP × Skill × Agent composition design
 
-## Why This Matters Now
+## Why This Matters Now (as of May 2026)
 
-The AI agent ecosystem is rapidly evolving:
+The AI agent ecosystem has moved from "specification consideration" into **production operation phase**.
 
-- [**Vercel Skills v1.1.1**](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) — Open-sourced with 27+ agent support
-- [**Agent Skills Specification**](https://agentskills.io/home) — Standardization efforts underway
-- **MCP Adoption** — Growing but lacking discovery/orchestration guidance
+- **April 2026**: **Microsoft Entra Agent ID GA**, **Okta for AI Agents GA**, **A2A v1.0 GA** — Linux Foundation A2A protocol surpasses 150 participating organizations
+- **December 2025**: **AGENTS.md** donated to Linux Foundation by OpenAI and Anthropic — industry standardization
+- **October 2025**: **OpenID Foundation "Identity Management for Agentic AI" v1.1** — Agent ID systematization
+- **November 2024**: Anthropic releases **MCP**
 
-This creates a gap: **How do agents find the right skills and tools?**
+This site tracks these shifts and documents practical patterns for building production-ready agent systems.
 
-## Core Architecture
+## Core Architecture (Four-Layer Model + Doctrine)
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -39,39 +50,54 @@ This creates a gap: **How do agents find the right skills and tools?**
 └─────────────────────────┬───────────────────────────────┘
                           ▼
 ┌─────────────────────────────────────────────────────────┐
-│  Agent Layer          (Orchestration & Decision)        │
+│  Doctrine Layer       (Constraints, objectives, judgment)│
 ├─────────────────────────────────────────────────────────┤
-│  Skills Layer         (Domain Knowledge & Guidelines)   │
+│  Agent Layer          (Orchestration & decision)         │
 ├─────────────────────────────────────────────────────────┤
-│  MCP Layer            (External Tools & APIs)           │
+│  Skills Layer         (Domain knowledge & guidelines)    │
+├─────────────────────────────────────────────────────────┤
+│  Memory Layer         (Persisted memory & relationships) │
+├─────────────────────────────────────────────────────────┤
+│  MCP Layer            (External tools & APIs)            │
 └─────────────────────────────────────────────────────────┘
 ```
 
-| Layer      | Role                              | Examples                         |
-| ---------- | --------------------------------- | -------------------------------- |
-| **Agent**  | Autonomous task execution         | Claude Code, Cursor              |
-| **Skills** | Domain knowledge & best practices | frontend-design, doc-coauthoring |
-| **MCP**    | External tool/API integration     | rfcxml-mcp, deepl-mcp            |
+| Layer        | Role                                      | Examples                              |
+| ------------ | ----------------------------------------- | ------------------------------------- |
+| **Doctrine** | Constraints, objectives, judgment criteria | RFC 2119 normative ladder (MUST/SHOULD) |
+| **Agent**    | Autonomous task execution                  | Claude Code, Cursor, sub-agents       |
+| **Skills**   | Domain knowledge & best practices          | frontend-design, doc-coauthoring      |
+| **Memory**   | Persisted facts & relationships            | Knowledge Graph, operational memory   |
+| **MCP**      | External tool / API integration            | rfcxml-mcp, deepl-mcp                 |
 
 ## Quick Decision Flow
 
-```mermaid
-flowchart LR
-    START[New capability needed] --> Q1{External API<br/>required?}
-    Q1 -->|Yes| MCP[Implement as MCP]
-    Q1 -->|No| Q2{Domain knowledge<br/>or guidelines?}
-    Q2 -->|Yes| SKILL[Define as Skill]
-    Q2 -->|No| Q3{Complex orchestration<br/>needed?}
-    Q3 -->|Yes| AGENT[Agent delegation]
-    Q3 -->|No| BUILTIN[Use built-in capabilities]
+Need a quick answer? See the [FAQ section](https://shuji-bonji.github.io/ai-agent-architecture/faq/mcp-vs-skills) for 3-line decisions.
 
-    MCP --> COMBINE{Need guidance<br/>for usage?}
-    COMBINE -->|Yes| SKILL_PLUS[Add complementary Skill]
-    COMBINE -->|No| DONE[Done]
-    SKILL_PLUS --> DONE
+```mermaid
+flowchart TD
+    START[New capability needed] --> Q1{What do you need?}
+    Q1 -->|Reach external systems| MCP[MCP]
+    Q1 -->|Teach procedures / conventions| SKILL[Skill]
+    Q1 -->|Specialist in isolated context| SUB[Sub-agent]
+    Q1 -->|Persisted memory / relationships| MEM[Memory layer]
+    Q1 -->|Coordination of multiple agents| TEAM[Agent Teams]
+
+    MCP --> COMBINE{Combine?}
+    SKILL --> COMBINE
+    SUB --> COMBINE
+    COMBINE -->|Yes| MIX[Skill + Sub-agent + MCP]
+    COMBINE -->|No| SOLO[Standalone is fine]
 ```
 
+For detailed decision guides, see:
+- [MCP vs Skills FAQ](https://shuji-bonji.github.io/ai-agent-architecture/faq/mcp-vs-skills)
+- [Agent / Sub-agent / Skill / MCP comparison FAQ](https://shuji-bonji.github.io/ai-agent-architecture/faq/agent-vs-subagent-vs-skill)
+- [Sub-agent vs Skills](https://shuji-bonji.github.io/ai-agent-architecture/agents/subagent-vs-skill)
+
 ## Related Projects
+
+### MCP Servers
 
 | Repository                                                            | Description                           | npm                           |
 | --------------------------------------------------------------------- | ------------------------------------- | ----------------------------- |
@@ -100,7 +126,8 @@ flowchart LR
 
 ## References
 
-- [Skills Links](./references/skills/links.md) - Vercel Skills & Agent Skills Specification
+- [Reference Links](./references/links.md) — MCP, A2A, Agent ID, and related standards
+- [Skills Links](./references/skills/links.md) — Vercel Skills & Agent Skills Specification
 
 ## Note
 

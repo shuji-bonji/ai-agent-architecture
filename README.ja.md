@@ -2,9 +2,19 @@
 
 [English](./README.md)
 
-> MCPだけでは不十分 — このリポジトリは、エージェントがSkillsとToolsをどのように発見・オーケストレーションするかを扱う。
+> MCPだけでは不十分 — このリポジトリは、エージェントが Skills・Tools・Memory・Identity をどのように発見・オーケストレーションするかを扱う。
 
-AIエージェント構成（MCP・Skills・Agent統合）に関する設計思想・アーキテクチャ・実践ノウハウをまとめたリポジトリ。
+AIエージェント構成（MCP・Skills・Agent・Memory・Agent ID統合）に関する設計思想・アーキテクチャ・実践ノウハウをまとめたリポジトリ。
+
+## 📚 姉妹プロジェクト
+
+「LLM を知る → AI Agent 設計を知る → システムに適用する」を順序立てて学べる 3 つの姉妹プロジェクトです。
+
+| フェーズ | プロジェクト | 内容 |
+| :--- | :--- | :--- |
+| **1. LLM を知る** | [understanding-llm-through-claude-code](https://github.com/shuji-bonji/understanding-llm-through-claude-code) | LLM の構造的制約と「なぜそう設計するのか」（Why の本棚） |
+| **2. AI Agent 設計を知る** | 👈 **このリポジトリ** | MCP・Skills・Agent・Memory・Agent ID の構成と実装パターン（What/How の地図） |
+| **3. システムに適用する** | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | _準備中_ — AI 時代のシステム運用 |
 
 ## 📖 ドキュメント
 
@@ -14,25 +24,25 @@ AIエージェント構成（MCP・Skills・Agent統合）に関する設計思�
 
 ドキュメントサイトの内容:
 
-- **コンセプト・ビジョン** — なぜ「ブレない参照先」が必要なのか
+- **コンセプト・ビジョン (全8章)** — なぜ「ブレない参照先」が必要なのか、三層モデル、ドクトリンと意図、Memory 層 / ナレッジグラフ
 - **MCP（Model Context Protocol）** — 外部連携レイヤーの標準化プロトコル
 - **Skills（ドメイン知識）** — MCPのリアルタイム能力を補完する静的知識
-- **エージェント・A2A** — サブエージェント、オーケストレーション、Agent-to-Agentプロトコル
-- **アーキテクチャ** — MCP・Skills・Agentの三層モデルと構成方法
+- **エージェント** — エージェントの分類、サブエージェント、品質ゲート、マルチエージェント / Agent Teams、A2A プロトコル、**エージェント ID**（Agent ID 時代）
+- **FAQ (3行回答)** — 検索クエリへの即答: *MCP vs Skills*、*Agent / Sub-agent / Skill / MCP 4者比較*
 - **戦略・構成パターン** — MCP × Skill × Agent の組み合わせ設計
 
-## なぜ今これが重要か
+## なぜ今これが重要か (2026年5月時点)
 
-AIエージェントのエコシステムは急速に進化しています。
+AIエージェントのエコシステムは「**仕様検討段階**」から「**本番運用フェーズ**」へと移行しました。
 
-- [**Vercel Skills v1.1.1**](https://vercel.com/changelog/skills-v1-1-1-interactive-discovery-open-source-release-and-agent-support) — 27以上のエージェントをサポートしてオープンソース化
-- [**Agent Skills Specification**](https://agentskills.io/home) — 標準化の取り組みが進行中
-- **MCPの普及** — 成長しているが、発見/オーケストレーションのガイダンスが不足
+- **2026年4月**: **Microsoft Entra Agent ID GA**、**Okta for AI Agents GA**、**A2A v1.0 GA** — Linux Foundation A2A プロトコル参加組織が 150 を超える
+- **2025年12月**: **AGENTS.md** が OpenAI と Anthropic から Linux Foundation へ寄贈、業界標準化
+- **2025年10月**: **OpenID Foundation「Agentic AI のためのアイデンティティ管理」v1.1** — Agent ID の体系化
+- **2024年11月**: Anthropic が **MCP** をリリース
 
-これがギャップを生み出しています。
-**エージェントは適切なスキルとツールをどう見つけるのか？**
+本サイトはこれらの変化を追跡し、本番運用に耐えるエージェントシステム構築の実践パターンを記録します。
 
-## コアアーキテクチャ
+## コアアーキテクチャ (四層モデル + ドクトリン)
 
 ```
 ┌───────────────────────────────────────────────────────┐
@@ -40,39 +50,54 @@ AIエージェントのエコシステムは急速に進化しています。
 └─────────────────────────┬─────────────────────────────┘
                           ▼
 ┌───────────────────────────────────────────────────────┐
-│  Agent レイヤー       (オーケストレーション & 判断)        │
+│  ドクトリン層        (制約・目的・判断基準)              │
 ├───────────────────────────────────────────────────────┤
-│  Skills レイヤー      (ドメイン知識 & ガイドライン)        │
+│  Agent レイヤー       (オーケストレーション & 判断)       │
 ├───────────────────────────────────────────────────────┤
-│  MCP レイヤー         (外部ツール & API)                 │
+│  Skills レイヤー      (ドメイン知識 & ガイドライン)       │
+├───────────────────────────────────────────────────────┤
+│  Memory レイヤー      (永続化された記憶 & 関係性)        │
+├───────────────────────────────────────────────────────┤
+│  MCP レイヤー         (外部ツール & API)                │
 └───────────────────────────────────────────────────────┘
 ```
 
-| レイヤー   | 役割                             | 例                               |
-| ---------- | -------------------------------- | -------------------------------- |
-| **Agent**  | 自律的タスク実行                 | Claude Code, Cursor              |
-| **Skills** | ドメイン知識・ベストプラクティス | frontend-design, doc-coauthoring |
-| **MCP**    | 外部ツール・API連携              | rfcxml-mcp, deepl-mcp            |
+| レイヤー       | 役割                                | 例                                       |
+| -------------- | ----------------------------------- | ---------------------------------------- |
+| **ドクトリン** | 制約・目的・判断基準                 | RFC 2119 規範ラダー (MUST/SHOULD)        |
+| **Agent**      | 自律的タスク実行                     | Claude Code, Cursor, サブエージェント     |
+| **Skills**     | ドメイン知識・ベストプラクティス     | frontend-design, doc-coauthoring         |
+| **Memory**     | 永続化された事実・関係性             | Knowledge Graph、業務メモリ              |
+| **MCP**        | 外部ツール・API連携                  | rfcxml-mcp, deepl-mcp                    |
 
 ## クイック判断フロー
 
-```mermaid
-flowchart LR
-    START[新しい機能が必要] --> Q1{外部API<br/>が必要?}
-    Q1 -->|Yes| MCP[MCPとして実装]
-    Q1 -->|No| Q2{ドメイン知識<br/>やガイドライン?}
-    Q2 -->|Yes| SKILL[Skillとして定義]
-    Q2 -->|No| Q3{複雑な<br/>オーケストレーション?}
-    Q3 -->|Yes| AGENT[Agent委譲]
-    Q3 -->|No| BUILTIN[組み込み機能を使用]
+3行で答えがほしい場合は [FAQ セクション](https://shuji-bonji.github.io/ai-agent-architecture/ja/faq/mcp-vs-skills) を参照。
 
-    MCP --> COMBINE{使い方の<br/>ガイドが必要?}
-    COMBINE -->|Yes| SKILL_PLUS[補完Skillを追加]
-    COMBINE -->|No| DONE[完了]
-    SKILL_PLUS --> DONE
+```mermaid
+flowchart TD
+    START[新しい機能が必要] --> Q1{何が必要?}
+    Q1 -->|外部システムにアクセス| MCP[MCP]
+    Q1 -->|手順・規約を教える| SKILL[Skill]
+    Q1 -->|独立コンテキストの専門家| SUB[サブエージェント]
+    Q1 -->|永続化された記憶・関係性| MEM[Memory 層]
+    Q1 -->|複数エージェントの協調| TEAM[Agent Teams]
+
+    MCP --> COMBINE{組み合わせる?}
+    SKILL --> COMBINE
+    SUB --> COMBINE
+    COMBINE -->|Yes| MIX[Skill + サブエージェント + MCP]
+    COMBINE -->|No| SOLO[単体で十分]
 ```
 
+詳細な判断ガイド:
+- [MCP vs Skills FAQ](https://shuji-bonji.github.io/ai-agent-architecture/ja/faq/mcp-vs-skills)
+- [Agent / Sub-agent / Skill / MCP 4者比較 FAQ](https://shuji-bonji.github.io/ai-agent-architecture/ja/faq/agent-vs-subagent-vs-skill)
+- [サブエージェント vs Skills](https://shuji-bonji.github.io/ai-agent-architecture/ja/agents/subagent-vs-skill)
+
 ## 関連プロジェクト
+
+### MCP サーバ
 
 | リポジトリ                                                            | 説明                       | npm                           |
 | --------------------------------------------------------------------- | -------------------------- | ----------------------------- |
@@ -101,7 +126,8 @@ flowchart LR
 
 ## リファレンス
 
-- [Skills リンク集](./references/skills/links.ja.md) - Vercel Skills・Agent Skills Specification
+- [参考リンク・資料](./references/links.md) — MCP、A2A、Agent ID、関連標準
+- [Skills リンク集](./references/skills/links.ja.md) — Vercel Skills・Agent Skills Specification
 
 ## ご注意
 
