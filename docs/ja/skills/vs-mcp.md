@@ -370,3 +370,10 @@ MCPとSkillsの選択判断に関連するドキュメントを以下に示す�
 - [実例ショーケース](./showcase) - プロダクション実例
 - [MCP Catalog](../mcp/catalog.md) - 構築済みMCPカタログ
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論
+
+### 🔗 さらに深く: なぜ MCP がコンテキストコストになるのか
+
+このページでは「いつ MCP、いつ Skills を選ぶか」を実用観点で扱っている。「**なぜ** MCP のツール定義そのものがコンテキスト消費の問題になるのか」を Tool Search や Deferred Loading の仕組みから理解したい場合は、姉妹サイトを参照。
+
+- [understanding-llm / Part 6: MCPのコンテキストコスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/mcp-context-cost) — MCP がトークンを消費する構造的理由
+- [understanding-llm / Tool Search / Deferred Loading](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/tool-search) — コスト回避の仕組み

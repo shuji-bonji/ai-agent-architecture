@@ -397,6 +397,13 @@ Skillsについてさらに深く学ぶために、以下のドキュメント�
 | MCPについて知りたい            | [MCPとは](../mcp/what-is-mcp)                        |
 | 全体アーキテクチャ             | [アーキテクチャ](../concepts/03-architecture)        |
 
+### 🔗 さらに深く: なぜ Skills という設計が必要なのか
+
+このページは Skills の **What/How**（何で、どう使うか）に焦点を当てている。「**なぜ** Skills という分離された設計が LLM に必要なのか」を LLM の構造的制約（Context Rot、Lost in the Middle、Priority Saturation）から理解したい場合は、姉妹サイトの解説が参考になる。
+
+- [understanding-llm / Part 5: Skills の設計原理](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/skills) — オンデマンドコンテキストとしての Skills
+- [understanding-llm / Part 1: LLM の構造的問題](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/) — Skills が解決する根本的な制約
+
 **最終更新**: 2026年2月
 
 **関連リソース**:

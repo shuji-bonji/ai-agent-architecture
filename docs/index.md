@@ -54,6 +54,18 @@ features:
     linkText: View Strategy
 ---
 
+## 📚 Sister Projects
+
+A 3-phase learning path: "Know LLMs → Know Agent Design → Apply to Systems."
+
+| Phase | Project | Focus |
+| --- | --- | --- |
+| **1. Know LLMs** | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) | LLM structural constraints and the *why* behind configuration design |
+| **2. Know Agent Design** | 👈 **This site** | MCP, Skills, and Agent composition with implementation patterns (*what/how*) |
+| **3. Apply to Systems** | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | _Coming soon_ — System operations in the AI era |
+
+> 💡 **For readers who learned "what are Skills?" or "Skills vs MCP" here** — if you want to understand **why** the Skills design is necessary from LLM structural constraints, read [understanding-llm / Part 5: On-Demand Context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/) alongside this site.
+
 <div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
 **Note:** This documentation reflects the author's practical insights gained through building and operating AI agent systems with Claude. It is not official documentation from Anthropic or any other organization. Contributions and discussions via [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) are welcome.

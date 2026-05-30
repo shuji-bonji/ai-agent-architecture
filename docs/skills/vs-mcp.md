@@ -402,3 +402,10 @@ This pattern emerged from community discussion on r/ClaudeAI and reflects real-w
 - [Showcase](./showcase) - Production examples
 - [MCP Catalog](../mcp/catalog.md) - Pre-built MCP catalog
 - [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture
+
+### 🔗 Deeper: Why does MCP become a context cost?
+
+This page covers the practical "when to choose MCP vs Skills." If you want to understand **why** MCP tool definitions themselves consume context (and how Tool Search / Deferred Loading mitigate this), the sister site explains the mechanism.
+
+- [understanding-llm / Part 6: MCP Context Cost](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/mcp-context-cost) — The structural reason MCP consumes tokens
+- [understanding-llm / Tool Search / Deferred Loading](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/tool-search) — How to mitigate the cost

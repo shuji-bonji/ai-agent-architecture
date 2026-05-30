@@ -657,3 +657,12 @@ block-beta
     style PROTOCOL fill:#FFB6C1,color:#333,stroke:#333
     style EXTERNAL fill:#E8E8E8,color:#333,stroke:#333
 ```
+
+## 🔗 さらに深く: コンテキスト管理の根本原理
+
+本ページでは三層分離の **構造（What/How）** を扱った。「**なぜ** この三層に分離する必要があるのか」を LLM の構造的制約（Context Window のサイズ制限、Context Rot、Priority Saturation）から理解したい場合は、姉妹サイトを参照すると設計根拠が腹落ちする。
+
+- [understanding-llm / Part 2: コンテキストウィンドウ](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/02-context-window/) — LLM の「思考空間」の構造
+- [understanding-llm / Part 3: 常駐コンテキスト — CLAUDE.md](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/03-always-loaded-context/) — Agent 層の指示が常駐する仕組み
+- [understanding-llm / Part 5: オンデマンドコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/) — Skills 層がオンデマンドで読まれる理由
+- [understanding-llm / Part 6: ツールコンテキスト — MCP](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/) — MCP 層のコンテキストコスト

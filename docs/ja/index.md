@@ -52,6 +52,18 @@ features:
     linkText: 戦略を見る
 ---
 
+## 📚 姉妹プロジェクト
+
+「LLM を知る → AI Agent 設計を知る → システムに適用する」を順序立てて学べる 3 つの姉妹プロジェクトです。
+
+| フェーズ | プロジェクト | 内容 |
+| --- | --- | --- |
+| **1. LLM を知る** | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) | LLM の構造的制約と「なぜそう設計するのか」（Why の本棚） |
+| **2. AI Agent 設計を知る** | 👈 **このサイト** | MCP・Skills・Agent の構成と実装パターン（What/How の地図） |
+| **3. システムに適用する** | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | _準備中_ — AI 時代のシステム運用 |
+
+> 💡 **このサイトで「Skills とは？」「MCP との違いは？」を知った方へ** — 「**なぜ Skills という設計が必要なのか**」を LLM の構造的制約から理解したい場合は、[understanding-llm / Part 5: オンデマンドコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/) を併読すると、設計の根拠が腹落ちします。
+
 <div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
 **ご注意:** 本ドキュメントは、著者がClaudeを活用してAIエージェントシステムを構築・運用する中で得た実践的知見をまとめたものです。Anthropic社やその他の組織の公式ドキュメントではありません。ご意見・ご議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) にてお気軽にどうぞ。

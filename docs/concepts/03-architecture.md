@@ -672,3 +672,12 @@ block-beta
     style PROTOCOL fill:#FFB6C1,color:#333,stroke:#333
     style EXTERNAL fill:#E8E8E8,color:#333,stroke:#333
 ```
+
+## 🔗 Deeper: Foundational principles of context management
+
+This page covers the **structure (what/how)** of three-layer separation. If you want to understand **why** this separation is necessary — grounded in LLM structural constraints (Context Window size limits, Context Rot, Priority Saturation) — the sister site provides the design rationale.
+
+- [understanding-llm / Part 2: Context Window](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/) — The structure of the LLM's "thinking space"
+- [understanding-llm / Part 3: Always-Loaded Context — CLAUDE.md](https://shuji-bonji.github.io/understanding-llm-through-claude-code/03-always-loaded-context/) — How Agent layer instructions stay resident
+- [understanding-llm / Part 5: On-Demand Context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/) — Why Skills are loaded on-demand
+- [understanding-llm / Part 6: Tool Context — MCP](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/) — The context cost of the MCP layer
