@@ -80,6 +80,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: '構成パターン', link: '/ja/strategy/composition-patterns' },
+            { text: 'ローカル LLM 環境への 5 層モデルの写像', link: '/ja/strategy/local-llm-workspace-mapping' },
           ],
         },
         {

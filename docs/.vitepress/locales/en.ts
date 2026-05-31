@@ -80,6 +80,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'Composition Patterns', link: '/strategy/composition-patterns' },
+            { text: 'Local LLM Workspace Mapping', link: '/strategy/local-llm-workspace-mapping' },
           ],
         },
         {
