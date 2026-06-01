@@ -56,27 +56,44 @@ flowchart LR
 
 ## Mermaid 図の色調凡例
 
-全章を通じて、以下のカラーコードでレイヤーを表現する。
+全章を通じて、以下のカラーコードでレイヤーを表現する。下の Mermaid 図は実際の塗り色のサンプル。
 
-| レイヤー | カラー | Mermaid `fill` |
-| --- | --- | --- |
-| **Agent 層** | 水色 | `#87CEEB` |
-| **Skills 層** | 薄緑 | `#90EE90` |
-| **MCP 層** | ピンク | `#FFB6C1` |
-| **Memory 層** | 薄紫 (Lavender) | `#E6E6FA` |
-| **Doctrine 層** | 薄橙 | `#FFE4B5` |
+```mermaid
+flowchart LR
+    DOCTRINE["Doctrine 層"]
+    AGENT["Agent 層"]
+    SKILLS["Skills 層"]
+    MEMORY["Memory 層"]
+    MCP["MCP 層"]
+
+    DOCTRINE --> AGENT --> SKILLS --> MEMORY --> MCP
+
+    style DOCTRINE fill:#FFE4B5,color:#333,stroke:#333
+    style AGENT fill:#87CEEB,color:#333,stroke:#333
+    style SKILLS fill:#90EE90,color:#333,stroke:#333
+    style MEMORY fill:#E6E6FA,color:#333,stroke:#333
+    style MCP fill:#FFB6C1,color:#333,stroke:#333
+```
+
+| レイヤー | 色見本 | カラー名 | Mermaid `fill` |
+| --- | --- | --- | --- |
+| **Agent 層** | <span style="display:inline-block;width:48px;height:18px;background:#87CEEB;border:1px solid #333;vertical-align:middle"></span> | 水色 | `#87CEEB` |
+| **Skills 層** | <span style="display:inline-block;width:48px;height:18px;background:#90EE90;border:1px solid #333;vertical-align:middle"></span> | 薄緑 | `#90EE90` |
+| **MCP 層** | <span style="display:inline-block;width:48px;height:18px;background:#FFB6C1;border:1px solid #333;vertical-align:middle"></span> | ピンク | `#FFB6C1` |
+| **Memory 層** | <span style="display:inline-block;width:48px;height:18px;background:#E6E6FA;border:1px solid #333;vertical-align:middle"></span> | 薄紫 (Lavender) | `#E6E6FA` |
+| **Doctrine 層** | <span style="display:inline-block;width:48px;height:18px;background:#FFE4B5;border:1px solid #333;vertical-align:middle"></span> | 薄橙 | `#FFE4B5` |
 
 ## 規範強度ラダー（shall / should / may）
 
-本サイトのドキュメントでは、RFC 2119 に準拠した規範キーワードを使用する。
+本サイトのドキュメントでは、RFC 2119 に準拠した規範キーワードを使用する。色は強度の階層を視覚的に表すもので、レイヤー色（淡色系）とは色域が重ならないよう、彩度を高めに設定している。
 
-| キーワード | 日本語 | 強度 | 意味 |
+| 強度 | キーワード | 日本語 | 意味 |
 | --- | --- | --- | --- |
-| **MUST** / **SHALL** | しなければならない | 必須 | 絶対的な要件。違反は設計上の欠陥 |
-| **MUST NOT** / **SHALL NOT** | してはならない | 禁止 | 絶対的な禁止事項 |
-| **SHOULD** | すべきである | 推奨 | 正当な理由がある場合のみ逸脱可能 |
-| **SHOULD NOT** | すべきでない | 非推奨 | 正当な理由がある場合のみ採用可能 |
-| **MAY** | してもよい | 任意 | 完全に選択的 |
+| <span style="display:inline-block;width:80px;padding:2px 6px;background:#B91C1C;color:#fff;text-align:center;border-radius:3px;font-weight:bold">必須</span> | **MUST** / **SHALL** | しなければならない | 絶対的な要件。違反は設計上の欠陥 |
+| <span style="display:inline-block;width:80px;padding:2px 6px;background:#7F1D1D;color:#fff;text-align:center;border-radius:3px;font-weight:bold">禁止</span> | **MUST NOT** / **SHALL NOT** | してはならない | 絶対的な禁止事項 |
+| <span style="display:inline-block;width:80px;padding:2px 6px;background:#C2410C;color:#fff;text-align:center;border-radius:3px;font-weight:bold">推奨</span> | **SHOULD** | すべきである | 正当な理由がある場合のみ逸脱可能 |
+| <span style="display:inline-block;width:80px;padding:2px 6px;background:#92400E;color:#fff;text-align:center;border-radius:3px;font-weight:bold">非推奨</span> | **SHOULD NOT** | すべきでない | 正当な理由がある場合のみ採用可能 |
+| <span style="display:inline-block;width:80px;padding:2px 6px;background:#6B7280;color:#fff;text-align:center;border-radius:3px;font-weight:bold">任意</span> | **MAY** | してもよい | 完全に選択的 |
 
 ドクトリン内の制約（[07-doctrine-and-intent](./07-doctrine-and-intent)）や、仕様MCPから抽出される規範要件は、この強度ラダーに沿って解釈される。
 

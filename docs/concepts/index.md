@@ -56,27 +56,44 @@ Shows which chapters cover which concerns for each layer.
 
 ## Mermaid Diagram Color Legend
 
-The following color codes represent layers consistently across all chapters.
+The following color codes represent layers consistently across all chapters. The Mermaid diagram below renders the actual fill colors as a visual sample.
 
-| Layer | Color | Mermaid `fill` |
-| --- | --- | --- |
-| **Agent Layer** | Light Blue | `#87CEEB` |
-| **Skills Layer** | Light Green | `#90EE90` |
-| **MCP Layer** | Pink | `#FFB6C1` |
-| **Memory Layer** | Lavender | `#E6E6FA` |
-| **Doctrine Layer** | Light Orange | `#FFE4B5` |
+```mermaid
+flowchart LR
+    DOCTRINE["Doctrine Layer"]
+    AGENT["Agent Layer"]
+    SKILLS["Skills Layer"]
+    MEMORY["Memory Layer"]
+    MCP["MCP Layer"]
+
+    DOCTRINE --> AGENT --> SKILLS --> MEMORY --> MCP
+
+    style DOCTRINE fill:#FFE4B5,color:#333,stroke:#333
+    style AGENT fill:#87CEEB,color:#333,stroke:#333
+    style SKILLS fill:#90EE90,color:#333,stroke:#333
+    style MEMORY fill:#E6E6FA,color:#333,stroke:#333
+    style MCP fill:#FFB6C1,color:#333,stroke:#333
+```
+
+| Layer | Swatch | Color Name | Mermaid `fill` |
+| --- | --- | --- | --- |
+| **Agent Layer** | <span style="display:inline-block;width:48px;height:18px;background:#87CEEB;border:1px solid #333;vertical-align:middle"></span> | Light Blue | `#87CEEB` |
+| **Skills Layer** | <span style="display:inline-block;width:48px;height:18px;background:#90EE90;border:1px solid #333;vertical-align:middle"></span> | Light Green | `#90EE90` |
+| **MCP Layer** | <span style="display:inline-block;width:48px;height:18px;background:#FFB6C1;border:1px solid #333;vertical-align:middle"></span> | Pink | `#FFB6C1` |
+| **Memory Layer** | <span style="display:inline-block;width:48px;height:18px;background:#E6E6FA;border:1px solid #333;vertical-align:middle"></span> | Lavender | `#E6E6FA` |
+| **Doctrine Layer** | <span style="display:inline-block;width:48px;height:18px;background:#FFE4B5;border:1px solid #333;vertical-align:middle"></span> | Light Orange | `#FFE4B5` |
 
 ## Normative Strength Ladder (shall / should / may)
 
-This site's documentation uses normative keywords conforming to RFC 2119.
+This site's documentation uses normative keywords conforming to RFC 2119. The colors below represent the strength hierarchy visually, using a higher-saturation palette that does not overlap with the layer colors (pastel) above.
 
-| Keyword | Strength | Meaning |
+| Strength | Keyword | Meaning |
 | --- | --- | --- |
-| **MUST** / **SHALL** | Required | An absolute requirement. Violation constitutes a design defect |
-| **MUST NOT** / **SHALL NOT** | Prohibited | An absolute prohibition |
-| **SHOULD** | Recommended | Deviation only with justified reason |
-| **SHOULD NOT** | Not Recommended | Adoption only with justified reason |
-| **MAY** | Optional | Entirely discretionary |
+| <span style="display:inline-block;width:110px;padding:2px 6px;background:#B91C1C;color:#fff;text-align:center;border-radius:3px;font-weight:bold">Required</span> | **MUST** / **SHALL** | An absolute requirement. Violation constitutes a design defect |
+| <span style="display:inline-block;width:110px;padding:2px 6px;background:#7F1D1D;color:#fff;text-align:center;border-radius:3px;font-weight:bold">Prohibited</span> | **MUST NOT** / **SHALL NOT** | An absolute prohibition |
+| <span style="display:inline-block;width:110px;padding:2px 6px;background:#C2410C;color:#fff;text-align:center;border-radius:3px;font-weight:bold">Recommended</span> | **SHOULD** | Deviation only with justified reason |
+| <span style="display:inline-block;width:110px;padding:2px 6px;background:#92400E;color:#fff;text-align:center;border-radius:3px;font-weight:bold">Not Recommended</span> | **SHOULD NOT** | Adoption only with justified reason |
+| <span style="display:inline-block;width:110px;padding:2px 6px;background:#6B7280;color:#fff;text-align:center;border-radius:3px;font-weight:bold">Optional</span> | **MAY** | Entirely discretionary |
 
 Constraints within doctrine ([07-doctrine-and-intent](./07-doctrine-and-intent)) and normative requirements extracted from spec MCPs are interpreted according to this strength ladder.
 

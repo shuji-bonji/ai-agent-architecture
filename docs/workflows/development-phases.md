@@ -315,3 +315,72 @@ Follow these principles when integrating MCPs into your development process:
 1. **Maximize utilization of built MCPs**
 2. **Supplement static knowledge with Skills**
 3. **Build gaps sequentially based on priority**
+
+## Phase Gate Checklists
+
+A checklist for determining whether each phase is "ready to move forward." It is recommended to **clear the previous phase's gate before proceeding to the next**. While the Concepts [exit checklist](../concepts/#concepts-implementation-exit-checklist) confirms "understanding of the design philosophy," these checklists confirm "implementation readiness for each phase."
+
+```mermaid
+flowchart LR
+    G0["Concepts<br/>Exit Gate"]
+    G1["G1: Strategy &<br/>Planning Gate"]
+    G2["G2: Requirements<br/>Gate"]
+    G3["G3: Design<br/>Gate"]
+    G4["G4: Implementation<br/>Gate"]
+    G5["G5: Testing<br/>Gate"]
+    G6["G6: Operations<br/>Gate"]
+
+    G0 --> G1 --> G2 --> G3 --> G4 --> G5 --> G6
+    G6 -.->|Feedback| G1
+
+    style G0 fill:#FFE4B5,color:#333,stroke:#333
+    style G5 fill:#dbeafe,stroke:#1d4ed8,color:#000
+```
+
+### G1: Strategy & Planning → Requirements
+
+- [ ] **Verifiable goals** — Have business goals been translated into numerical KPIs with verification deadlines?
+- [ ] **AI scope agreement** — Have stakeholders agreed on which processes will use AI?
+- [ ] **Initial responsibility boundaries** — Has the team made an initial decision on the final human decision-maker and the scope delegated to AI?
+- [ ] **Reference source candidates** — Have authoritative information sources (RFCs, laws, internal standards, etc.) relevant to the project been enumerated?
+
+### G2: Requirements → Design
+
+- [ ] **MUST/SHOULD/MAY classification** — Have requirements been classified according to the normative strength ladder ([Concepts → Normative Strength Ladder](../concepts/#normative-strength-ladder-shall-should-may))?
+- [ ] **Authoritative source identification** — For each requirement, has the original text been retrieved and cited via rfcxml-mcp / w3c-mcp / hourei-mcp, etc.?
+- [ ] **Quantified non-functional requirements** — Have thresholds for performance, security, and availability been written in a form that can be verified later?
+- [ ] **Legal / standards compliance** — Have the latest versions of applicable laws and standards been referenced, with applicable clauses identified?
+
+### G3: Design → Implementation
+
+- [ ] **Three-layer separation** — Are the responsibility boundaries of Agent / Skills / MCP reflected in the design?
+- [ ] **Responsibility boundaries in design** — Are the three responsibilities (design-time / execution-time / structural) made explicit in the design document?
+- [ ] **Verification strategy established** — Has the Spec-to-Test conversion strategy (which specs map to which tests) been determined?
+- [ ] **Guardrails & evaluation metrics** — Have both guardrails (ESLint, type checks) and probabilistic metrics (xCOMET, etc.) been defined?
+- [ ] **Memory layer decision** — Has the need for a Memory layer been evaluated, with Stage 1–2 selected if applicable?
+
+### G4: Implementation → Testing
+
+- [ ] **MCP/Skill integration verified** — Can the MCPs/Skills planned in the design actually be invoked by the agent?
+- [ ] **Code quality guardrails passing** — Are ESLint errors = 0, type checks passing, and dependency vulnerability scans clean?
+- [ ] **AI output provenance recording** — Is the source MCP, version, and retrieval timestamp recorded in AI outputs as implemented?
+- [ ] **Testability secured** — Have key behaviors been decomposed into units suitable for unit and integration tests?
+
+### G5: Testing → Operations
+
+- [ ] **Quality gates measured** — Do probabilistic metrics (xCOMET ≥ 0.85, test coverage ≥ 80%, etc.) meet the thresholds defined at design time?
+- [ ] **Standards compliance verified** — Has standards compliance been objectively verified via tools like rfcxml-mcp / w3c-mcp `validate_statement`?
+- [ ] **Escalation conditions tested** — Are conditions for human escalation implemented and triggered in tests?
+- [ ] **Evidence trail working** — Is the mechanism for retrospectively searching AI decision rationale (logs, source records) functioning within acceptable operational overhead?
+
+### G6: Operations → Improvement Loop
+
+- [ ] **Incident response process** — When an AI-output-caused incident occurs, is it documented who makes which decisions?
+- [ ] **Continuous evaluation pipeline** — Is there a working mechanism to continuously measure quality metrics post-release and detect degradation?
+- [ ] **Reference freshness monitoring** — Is there an operational practice that detects updates to laws/standards and reflects them in MCP caches or documentation?
+- [ ] **Learning cycle established** — Is there a mechanism to feed operational insights back into Skills / Doctrine?
+
+::: tip Using the Gates
+- The norm is to proceed to the next phase only when all items are ✅, but **"proceeding while accepting unmet items as agreed risk"** is also acceptable — provided unmet items are filed as Issues and resolved in subsequent phases.
+- Gate decisions should be made by **team consensus**. A single person deciding "✅ done" makes responsibility boundaries ambiguous.
+:::

@@ -32,16 +32,20 @@ This document outlines the philosophy underlying AI agent architecture (MCP, Ski
 
 While AI capabilities are rapidly advancing, it is crucial to correctly recognize their limitations. To avoid over-reliance on AI and use it appropriately, we need to understand the following constraints.
 
-AI generates outputs probabilistically from training data, but cannot guarantee the following:
+AI generates outputs probabilistically from training data, but cannot guarantee the following. Note that the means of addressing each constraint are not homogeneous.
 
-| AI Limitation      | Description                                                              |
-| ------------------ | ------------------------------------------------------------------------ |
-| **Accuracy**       | Hallucination problem - may generate information that differs from facts |
-| **Currency**       | Does not have information beyond the training data cutoff                |
-| **Authority**      | Cannot guarantee official interpretation of specifications               |
-| **Accountability** | Cannot provide grounds for legal or ethical judgments                    |
+| AI Limitation      | Description                                                              | Means of Resolution                                                  |
+| ------------------ | ------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| **Accuracy**       | Hallucination problem - may generate information that differs from facts | **MCP** (connection to authoritative sources)                        |
+| **Currency**       | Does not have information beyond the training data cutoff                | **MCP** (dynamic retrieval)                                          |
+| **Authority**      | Cannot guarantee official interpretation of specifications               | **MCP** (direct citation of primary sources)                         |
+| **Accountability** | Cannot provide grounds for legal or ethical judgments                    | **Skills + Doctrine + human review** (connection alone cannot solve) |
 
-**Therefore, we need to connect to reliable sources.**
+The first three can be structurally compensated by "connecting to trustworthy sources." **In contrast, accountability cannot be solved by connection alone.** Even though law can be referenced via the houki-series MCPs, ethical judgment and organization-specific value judgments are only ensured by combining domain knowledge systematized as Skills, judgment criteria made explicit by the [Doctrine layer](./07-doctrine-and-intent), and ultimately human review.
+
+::: tip Problems solvable by connection vs. problems not solvable by connection
+The core design principle of this document is to separate "problems solvable by connection" from "problems that require Skills + Doctrine + humans." The former is MCP's role; the latter corresponds to the **responsibility that remains with humans**, which this site emphasizes repeatedly.
+:::
 
 ## The Essence of AI-Driven Development
 
@@ -60,7 +64,7 @@ However, realizing this ideal requires a prerequisite. For AI to be truly useful
 
 The era where AI autonomously completes every process has not yet arrived. AI excels at "generating plausible output," but **it cannot judge on its own whether that output is correct**.
 
-At the same time, the code AI generates today depends on abstraction layers — frameworks and libraries — whose foundations are the **standards and specifications** that humanity has accumulated over time.
+At the same time, the code AI generates today depends on abstraction layers — frameworks and libraries — whose foundations are the **standards and specifications** that humanity has accumulated over time. **However, AI does not directly reference these standards (dashed line in the diagram below)**; it relies on inference through the abstraction layer.
 
 ```mermaid
 graph LR
@@ -77,9 +81,9 @@ graph LR
     style Standards fill:#ffd700,color:#000,stroke:#b8860b,stroke-width:2px
 ```
 
-Although the code AI generates is built on top of these standards, AI cannot directly reference them (dashed line). This is the core problem.
+Although the code AI generates is built on top of these standards, **AI's training data is dominated by the abstraction layer (library code examples), and the direct reference path to the primary sources of standards has been lost** (dashed line). This is the core problem.
 
-**For AI to function correctly, it must be able to reference the same standards and specifications that its generated code ultimately depends on.** This is why "unwavering reference sources" are necessary.
+**For AI to function correctly, it must be able to directly reference the same standards and specifications that its generated code ultimately depends on.** This is why "unwavering reference sources" are necessary.
 
 ## The Importance of "Unwavering Reference Sources"
 
@@ -134,13 +138,22 @@ Both share the property of "not being speculatively generated by an LLM." Dynami
 
 ```mermaid
 flowchart LR
-    G[General Developers]
-    Expert --> Books/Lectures --> G
+    Expert["Experts<br/>(English-centric)"]
+    Books["Books / Lectures"]
+    Translator["Translators"]
+    TranslatedBooks["Translated Editions /<br/>Explanatory Articles"]
+    Devs["General Developers"]
+
+    Expert --> Books --> Translator --> TranslatedBooks --> Devs
+
+    style Translator fill:#fef9c3,stroke:#a16207,color:#000
+    style TranslatedBooks fill:#fef9c3,stroke:#a16207,color:#000
 ```
 
-- High cost
-- One-way
-- Language barriers
+- High cost (consultants, specialists, publishing costs)
+- One-way (no feedback path from readers back to experts)
+- Language barriers (translator bottleneck, time lag, dependence on translation quality)
+- Knowledge degradation (accuracy drops in a "telephone game" fashion)
 
 ### The World MCP/Skills Enables
 
@@ -159,7 +172,7 @@ flowchart TB
   AI --> Documentation/Checklists --> K
 ```
 
-**Development based on accurate information becomes possible** without relying on expensive consultants or specialists.
+**Development based on primary sources becomes possible** without excessive reliance on expensive consultants or specialists, or on abstraction layers (libraries and frameworks).
 
 > For **how to distinguish between MCP and Skills**, see [skills/vs-mcp.md](../skills/vs-mcp.md).
 
@@ -170,18 +183,22 @@ Knowledge transformation in AI-driven development is not one-directional. This a
 ```mermaid
 flowchart LR
     Human["Human Knowledge"]
+    Spec["Standards &<br/>Specifications"]
     AI["AI"]
     Understanding["Human Understanding"]
-    Spec["Standards &<br>Specifications"]
+    Output["AI Output"]
     Test["Verifiable Tests"]
 
-    Human -->|"① Structuring<br>MCP / Skills"| AI
-    AI -->|"② Comprehension<br>Extraction / Translation / Visualization"| Understanding
-    Spec -->|"③ Verification<br>Spec-to-Test"| Test
-    Test -->|"Quality Gate"| AI
+    Human -->|"① Structuring<br/>MCP / Skills"| AI
+    AI -->|"② Comprehension<br/>Extraction / Translation / Visualization"| Understanding
+    Spec -->|"③ Verification<br/>Spec-to-Test"| Test
+    AI -->|"Generates"| Output
+    Test -->|"Quality Gate<br/>(pass/fail)"| Output
+    Output -.->|"Regenerate on failure<br/>(③ driving loop)"| AI
 
     style AI fill:#4a90d9,color:#fff
     style Test fill:#e91e63,color:#fff
+    style Output fill:#dbeafe,stroke:#1d4ed8,color:#000
 ```
 
 | Axis                | Direction   | Purpose                                                    | Example                                 |
@@ -190,7 +207,7 @@ flowchart LR
 | **② Comprehension** | AI → Human  | Transform complex information into understandable formats  | RFC 3161 → Checklist                    |
 | **③ Verification**  | Spec → Test | Convert specifications into verifiable criteria            | EPUB 3.3 requirements → JSON test suite |
 
-Axis ③ "Verification" differs from ① and ② in that it forms a quality **closed loop**. Simply passing specifications to AI does not make its output verifiable — converting specifications into tests is what makes "driving" possible.
+Axis ③ "Verification" differs from ① and ② in that it forms a quality **closed loop** (the dashed feedback in the diagram). Simply passing specifications to AI does not make its output verifiable. Only by converting specifications into tests, passing AI output through a pass/fail gate, and feeding failures back into regeneration does "driving" actually take effect.
 
 ## Human → AI (Structuring) Knowledge Transformation
 
@@ -243,11 +260,26 @@ If these responsibility boundaries remain ambiguous as abstraction increases, a 
 | **Guardrails**          | Inviolable (boundary-based)     | ESLint errors = 0, type checks pass  | Defines "lines that must not be crossed" |
 | **Evaluation Pipeline** | Probabilistic (threshold-based) | xCOMET >= 0.85, test coverage >= 80% | Defines "acceptable ranges"              |
 
-> Traditional TDD (Red-Green-Refactor) does not apply directly, but **test-first thinking** — converting specifications into verifiable forms before implementation — remains fundamentally valuable in AI-driven development.
+::: tip Test-first thinking remains valuable in AI-driven development
+Traditional TDD (Red-Green-Refactor) does not apply directly, but **test-first thinking** — converting specifications into verifiable forms before implementation — remains fundamentally valuable in AI-driven development. Because AI outputs are probabilistic, defining a **verifiable gate** before implementation is the starting point of quality design.
+:::
 
 ### Complementary Structure
 
-The diagram below illustrates how human capabilities and AI capabilities complement each other to achieve better development outcomes.
+The strengths of humans and AI are often **not symmetric, even when described with similar terms**. For example, "quality judgment" and "quality checking" are distinct: humans excel at the former, while AI wins on comprehensiveness in the latter. The table below makes this asymmetry concrete.
+
+| Task | Human | AI | Note |
+| --- | :---: | :---: | --- |
+| Quality **judgment** (setting the criteria) | ✅ | — | Value-laden decision about what "good" means |
+| Quality **checking** (detecting against criteria) | △ | ✅ | Humans miss things; AI wins on comprehensiveness |
+| Building **trust with stakeholders** | ✅ | — | Reading expressions, context, tacit agreements |
+| **Comprehensive information gathering** (specs, standards) | △ | ✅ | AI does not tire and leaves fewer gaps |
+| Ethical / **value-based judgment** | ✅ | — | Skills + Doctrine can assist but not replace |
+| **High-throughput repetitive work** (refactor, naming) | — | ✅ | AI wins on throughput |
+| **Creative hypothesis generation** | ✅ | △ | AI is good at combinations; the originating question is human |
+| **Multilingual translation / summarization** | △ | ✅ | Quality can also be ensured by metrics like xCOMET |
+
+With this asymmetry in mind, the placement of "human roles" and "AI roles" in the Mermaid diagram below becomes easier to interpret.
 
 ```mermaid
 graph TB
@@ -334,7 +366,9 @@ To clarify the scope of this document, we state the following explicitly.
 | MCP/Skills provide structural constraints                           | Elimination of human review                        | Two-layer structure: guardrails (inviolable constraints) + evaluation pipeline (probabilistic quality gate) |
 | The design aims to clarify responsibility allocation                | That the system assumes legal or ethical liability | Design-time responsibility boundaries + runtime audit trails                                                |
 
-> **Reader contract**: This document presents a design philosophy for "how to place AI in a trustworthy environment." It does not promise specific quality levels or safety guarantees. However, rather than leaving outputs unverifiable, it adopts an approach of **converting specifications into verifiable tests and ensuring quality through a two-layer system of guardrails and evaluation pipelines**. Final judgment and accountability always remain with humans.
+::: warning Reader contract
+This document presents a design philosophy for "how to place AI in a trustworthy environment." It does not promise specific quality levels or safety guarantees. However, rather than leaving outputs unverifiable, it adopts an approach of **converting specifications into verifiable tests and ensuring quality through a two-layer system of guardrails and evaluation pipelines**. **Final judgment and accountability always remain with humans.**
+:::
 
 ## Core Messages
 
