@@ -52,6 +52,23 @@ features:
     linkText: 戦略を見る
 ---
 
+## 🎯 なぜ AI Agent 設計を知るのか
+
+> エージェントを **動かす** だけならハーネスエンジニアリング（Agent Engineering / Context Engineering の実装パターン）で足りる。
+> しかし AI 駆動開発の文脈では、エージェントを **設計・保守・拡張・引き継ぐ** ことが必要になる。
+
+本サイトは「動かす技術」ではなく「**設計の地図**」を提供します。Skills、MCP、Sub-agent、Doctrine をどう構成し、何を MUST／SHOULD で書き、どう再利用するか — 単発の自動化ではなく **開発プロセス全体の構造化** を扱います。
+
+### 3 つの視点 — 自分の関心はどこか
+
+| 動詞 | 目的 | 主な参照先 |
+| --- | --- | --- |
+| **Operate（動かす）** | このタスクを今日完遂する | ハーネスエンジニアリング各種フレームワーク |
+| **Design（設計する）** | 再利用可能な構造と判断基準を作る | 👈 **本サイト（ai-agent-architecture）** |
+| **Understand（理解する）** | LLM の構造的制約を把握する | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) |
+
+> 💡 **ハーネスエンジニアリングを調べて来られた方へ** — ハーネスは「動かす」ための機構、本サイトは「設計する」ための地図です。両者の対応関係と、ハーネスがカバーしない領域（Skills 層・Doctrine 層）については [Harness Engineering との対応関係](/ja/strategy/harness-engineering-mapping) を参照してください。
+
 ## 📚 姉妹プロジェクト
 
 「LLM を知る → AI Agent 設計を知る → システムに適用する」を順序立てて学べる 3 つの姉妹プロジェクトです。

@@ -81,6 +81,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           items: [
             { text: 'Composition Patterns', link: '/strategy/composition-patterns' },
             { text: 'Local LLM Workspace Mapping', link: '/strategy/local-llm-workspace-mapping' },
+            { text: 'Harness Engineering Mapping', link: '/strategy/harness-engineering-mapping' },
           ],
         },
         {

@@ -54,6 +54,23 @@ features:
     linkText: View Strategy
 ---
 
+## 🎯 Why Learn AI Agent Design?
+
+> If you just need to **operate** an agent, harness engineering (the implementation patterns of Agent Engineering / Context Engineering) is enough.
+> But in AI-driven development, you also need to **design, maintain, extend, and hand off** agents.
+
+This site is not a "how to operate" manual — it's a **map for design**. How to compose Skills, MCP, Sub-agents, and Doctrine; what to write as MUST vs SHOULD; how to make components reusable. The goal is **structuring the entire development process**, not automating one-off tasks.
+
+### Three Perspectives — Which is Yours?
+
+| Verb | Goal | Primary Reference |
+| --- | --- | --- |
+| **Operate** | Complete today's task | Harness engineering frameworks |
+| **Design** | Build reusable structures and judgment criteria | 👈 **This site (ai-agent-architecture)** |
+| **Understand** | Grasp the structural constraints of LLMs | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) |
+
+> 💡 **For readers who came here searching for "harness engineering"** — Harness is the mechanism for *operating*; this site is the map for *designing*. For the mapping between the two and the layers harness doesn't cover (Skills layer / Doctrine layer), see [Harness Engineering Mapping](/strategy/harness-engineering-mapping).
+
 ## 📚 Sister Projects
 
 A 3-phase learning path: "Know LLMs → Know Agent Design → Apply to Systems."
