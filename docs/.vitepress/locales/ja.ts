@@ -96,6 +96,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: '開発支援', link: '/ja/workflows/patterns/development-support' },
             { text: 'ドキュメント生成', link: '/ja/workflows/patterns/documentation-generation' },
             { text: 'マルチエージェント', link: '/ja/workflows/patterns/multi-agent' },
+            { text: 'Issue→Deploy 自律化 (Meta + Sub-agent)', link: '/ja/workflows/autonomous-dev-meta-agent' },
           ],
         },
         {
