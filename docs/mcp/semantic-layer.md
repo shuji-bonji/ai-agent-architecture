@@ -213,9 +213,42 @@ Each platform has begun providing an **MCP Server**. This is the key touchpoint 
 
 ## Relationship to the Memory Layer — The Structured-Data Version of "Fixing Meaning"
 
-The Semantic Layer is a **sibling concept** of the Memory layer discussed in [`concepts/08-memory-and-knowledge`](../concepts/08-memory-and-knowledge).
+The Semantic Layer is a **sibling concept** of the Memory layer discussed in [`concepts/08-memory-and-knowledge`](../concepts/08-memory-and-knowledge). Both derive from the same parent concept — **Pre-codified Meaning** — and diverge by whether the target is "internal experience" or "external structured data."
 
-Both share the same structure: **stop making the LLM guess meaning every time, and codify and fix the meaning instead.** Where Memory gives persistent meaning to **experience and relationships**, the Semantic Layer gives meaning to **external structured data**. They also share the way they overcome the limits of a scatter-gather design ("fetch the data every time and let the LLM interpret it") by fixing definitions up front.
+```mermaid
+graph TB
+    ROOT["Pre-codified Meaning<br/>'never make the LLM guess every time'"]
+    MEM["Memory Layer<br/>gives meaning to internal experience"]
+    SEM["Semantic Layer<br/>gives meaning to external structured data"]
+    ROOT --> MEM
+    ROOT --> SEM
+    style ROOT fill:#fef9c3,color:#000,stroke:#a16207
+    style MEM fill:#E6E6FA,color:#000,stroke:#333
+    style SEM fill:#90EE90,color:#000,stroke:#333
+```
+
+### Commonalities — Why They Are "Siblings"
+
+| Shared structure | What it means |
+| --- | --- |
+| **Eliminating guessing** | Instead of making the LLM guess meaning every time, have it reference pre-codified definitions |
+| **Overcoming scatter-gather** | Overcome the limits of a "fetch the data every time and let the LLM interpret it" design by fixing definitions up front |
+| **Deterministic reference** | A fixed definition returns the same result no matter who queries it, or how many times |
+| **Separation of concerns** | Separate "definition of meaning" from "LLM inference," so the definition side can be maintained independently |
+
+### Differences — Where They Diverge
+
+| Aspect | Memory Layer | Semantic Layer |
+| --- | --- | --- |
+| What it gives meaning to | the agent's experience, dialogue, relationships (**internal**) | external structured data, tables, metrics (**external**) |
+| Definitions it fixes | what to remember and how to relate it | metrics, dimensions, join rules |
+| Typical embodiment | Knowledge Graph / memory files | semantic model (YAML / code) |
+| Problem it mainly solves | loss of context, re-fetch cost | drift in meaning, hallucination |
+| Placement | between the Agent and the persistent store | between MCP and the external DB |
+| Probabilistic judgment left to the LLM | deciding what to recall | interpreting natural language → logical query (only stage ① above) |
+
+> [!TIP]
+> In a phrase: **Memory fixes "the meaning to recall," while the Semantic Layer fixes "the meaning to aggregate."** Both belong to the same lineage in that they take the uncertain job of "interpreting meaning" away from the LLM and delegate it to deterministic definitions.
 
 ## Related Documents
 

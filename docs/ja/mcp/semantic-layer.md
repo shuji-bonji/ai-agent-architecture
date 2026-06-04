@@ -213,9 +213,42 @@ graph TB
 
 ## Memory 層との関係 — 構造化データ版の「意味の固定」
 
-Semantic Layer は、[`concepts/08-memory-and-knowledge`](../concepts/08-memory-and-knowledge) で扱う Memory 層の **兄弟概念** である。
+Semantic Layer は、[`concepts/08-memory-and-knowledge`](../concepts/08-memory-and-knowledge) で扱う Memory 層の **兄弟概念** である。両者は **「意味の事前固定（Pre-codified Meaning）」** という同一の上位概念から派生し、適用対象が「内的経験」か「外的構造化データ」かで分かれる。
 
-両者は「**毎回 LLM に意味を推測させる**のをやめ、意味を成文化して固定する」という同じ構図を共有する。Memory が**経験・関係性**に永続的な意味を与えるのに対し、Semantic Layer は**外部の構造化データ**に意味を与える。scatter-gather 的に「毎回データを取りに行って LLM に解釈させる」設計の限界を、定義の事前固定で乗り越える点も共通している。
+```mermaid
+graph TB
+    ROOT["意味の事前固定<br/>Pre-codified Meaning<br/>『毎回 LLM に推測させない』"]
+    MEM["Memory 層<br/>内的経験に意味を与える"]
+    SEM["Semantic Layer<br/>外的構造化データに意味を与える"]
+    ROOT --> MEM
+    ROOT --> SEM
+    style ROOT fill:#fef9c3,color:#000,stroke:#a16207
+    style MEM fill:#E6E6FA,color:#000,stroke:#333
+    style SEM fill:#90EE90,color:#000,stroke:#333
+```
+
+### 共通点 — なぜ「兄弟」なのか
+
+| 共通の構図 | 中身 |
+| --- | --- |
+| **推測の排除** | 毎回 LLM に意味を推測させず、事前に成文化した定義を参照させる |
+| **scatter-gather の克服** | 「毎回データを取りに行って LLM に解釈させる」設計の限界を、定義の事前固定で乗り越える |
+| **決定的な参照** | 固定された定義は、誰が・何度問い合わせても同じ結果を返す |
+| **関心の分離** | 「意味の定義」と「LLM の推論」を分離し、定義側だけを独立して保守できる |
+
+### 相違点 — どこで分かれるか
+
+| 観点 | Memory 層 | Semantic Layer |
+| --- | --- | --- |
+| 意味を与える対象 | エージェントの経験・対話・関係性（**内的**） | 外部の構造化データ・表・メトリクス（**外的**） |
+| 固定する定義 | 何を記憶し、どう関連づけるか | メトリクス・ディメンション・結合ルール |
+| 典型的な実体 | Knowledge Graph / 記憶ファイル | セマンティックモデル（YAML / コード） |
+| 主に解決する問題 | 文脈の喪失・再取得コスト | 意味のブレ・幻覚 |
+| 配置 | Agent と永続ストアの間 | MCP と外部 DB の間 |
+| LLM に残す確率的判断 | 何を想起すべきかの判断 | 自然言語 → 論理クエリの解釈（前述の ① のみ） |
+
+> [!TIP]
+> 一言で言うと、**Memory は「思い出すべき意味」を固定し、Semantic Layer は「集計すべき意味」を固定する。** どちらも LLM から「意味の解釈」という不確実な仕事を奪い、決定的な定義へ委ねる点で同じ系譜にある。
 
 ## 関連ドキュメント
 
