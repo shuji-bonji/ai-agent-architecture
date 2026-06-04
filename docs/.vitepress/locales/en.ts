@@ -44,6 +44,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'What is MCP', link: '/mcp/what-is-mcp' },
             { text: 'Catalog', link: '/mcp/catalog' },
             { text: 'Security', link: '/mcp/security' },
+            { text: 'Semantic Layer', link: '/mcp/semantic-layer' },
             { text: 'Development', link: '/mcp/development' },
           ],
         },

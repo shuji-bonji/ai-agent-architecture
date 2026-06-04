@@ -44,6 +44,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'MCPとは', link: '/ja/mcp/what-is-mcp' },
             { text: 'カタログ', link: '/ja/mcp/catalog' },
             { text: 'セキュリティ', link: '/ja/mcp/security' },
+            { text: 'Semantic Layer', link: '/ja/mcp/semantic-layer' },
             { text: '開発', link: '/ja/mcp/development' },
           ],
         },
