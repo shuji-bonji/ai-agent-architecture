@@ -139,19 +139,6 @@ flowchart TD
 - [ ] A を選ぶなら **文脈予算** と **プロンプトインジェクション** を見込んだか
 - [ ] ハイブリッドにする場合、土台モデルの **tool calling 適性（B）** を確認したか
 
-## 半減期での位置づけ（学習ラダー）
-
-この題材は、抽象度の異なる 3 つのレイヤーにまたがる。設計判断（本ページ）は原理に紐づくので寿命が長く、具体例（特定モデル名・MCP）は寿命が短い。
-
-| レイヤー         | この題材での担当                                                       | 半減期    |
-| ---------------- | ---------------------------------------------------------------------- | --------- |
-| 原理（L4）       | なぜ重みは凍結か / パラメトリック vs 文脈内知識 / Knowledge Boundary    | 10y+      |
-| **設計（本章）** | **重み特化 vs 文脈特化の選択・判断軸・ハイブリッド**                    | 3〜5y     |
-| 実装（L1/L2）    | 具体スタック（ローカル LLM + Skill/MCP/RAG、特定バリアントの消費）への落とし込み | 3〜18ヶ月 |
-
-> [!WARNING]
-> 本ページの **具体例（MCP・特定モデル名）** は実装寄りで半減期が短い。設計判断は原理に紐づくので、例は **差し替え可能な挿絵** として扱い、本文の骨格は例に依存させないこと。
-
 ## 関連ドキュメント
 
 - [03-architecture](../concepts/03-architecture) — 三層モデル（ルート A の装備が属する層）
@@ -167,10 +154,6 @@ flowchart TD
 
 - [understanding-llm / Knowledge Boundary](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/knowledge-boundary/) — 重みに焼かれた知識の境界とその凍結
 - [understanding-llm / Part 2: コンテキストウィンドウ](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/02-context-window/) — 非パラメトリック知識がトークン予算を食う理由
-
-## 参考文献
-
-- shuji-bonji (2026). "「AI駆動開発」情報の半減期." GitHub Discussions. [ai-agent-architecture/discussions/80](https://github.com/shuji-bonji/ai-agent-architecture/discussions/80) — 原理・設計・実装で異なる情報の半減期と 4 レイヤーモデル
 
 ---
 

@@ -139,19 +139,6 @@ In practice the strongest setup takes both — **a specialist variant honed by B
 - [ ] If choosing A, have you accounted for the **context budget** and **prompt injection**?
 - [ ] For a hybrid, have you verified the base model's **tool-calling aptitude (B)**?
 
-## Positioning by Half-life (Learning Ladder)
-
-This topic spans three layers of differing abstraction. The design judgment (this page) is tied to principles and so is long-lived; concrete examples (specific model names, MCPs) are short-lived.
-
-| Layer           | What it owns for this topic                                              | Half-life  |
-| --------------- | ----------------------------------------------------------------------- | ---------- |
-| Principle (L4)  | Why weights are frozen / parametric vs. in-context knowledge / Knowledge Boundary | 10y+ |
-| **Design (this page)** | **The choice of weight vs. context specialization, decision axis, hybrid** | 3–5y |
-| Implementation (L1/L2) | Mapping to a concrete stack (local LLM + Skill/MCP/RAG, consuming specific variants) | 3–18 months |
-
-> [!WARNING]
-> The **concrete examples (MCPs, specific model names)** on this page lean toward implementation and have a short half-life. The design judgment is tied to principles, so treat the examples as **replaceable illustrations** and keep the body's skeleton independent of them.
-
 ## Related Documents
 
 - [03-architecture](../concepts/03-architecture) — the three-layer model (the layers Route A's equipment lives in)
@@ -167,10 +154,6 @@ This page addressed the **design judgment (What/How)** of weight vs. context spe
 
 - [understanding-llm / Knowledge Boundary](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/knowledge-boundary/) — the boundary of weight-baked knowledge and its frozen nature
 - [understanding-llm / Part 2: Context Window](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/) — why non-parametric knowledge eats the token budget
-
-## References
-
-- shuji-bonji (2026). "The Half-life of 'AI-driven Development' Information." GitHub Discussions. [ai-agent-architecture/discussions/80](https://github.com/shuji-bonji/ai-agent-architecture/discussions/80) — How the half-life of information differs across principle, design, and implementation, and the 4-layer model
 
 ---
 
