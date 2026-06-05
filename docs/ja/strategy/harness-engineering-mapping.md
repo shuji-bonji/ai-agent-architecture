@@ -205,3 +205,4 @@ graph LR
 ---
 
 > **前へ**: [ローカル LLM 環境への 5 層モデルの写像](./local-llm-workspace-mapping.md)
+> **次へ**: [重み特化 vs 文脈特化](./specialization-weights-vs-context.md)

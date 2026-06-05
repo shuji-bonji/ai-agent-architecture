@@ -205,3 +205,4 @@ This page covers the **structural correspondence (What)** between harness and th
 ---
 
 > **Previous**: [Local LLM Workspace Mapping](./local-llm-workspace-mapping.md)
+> **Next**: [Weight vs. Context Specialization](./specialization-weights-vs-context.md)
