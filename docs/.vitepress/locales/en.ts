@@ -18,6 +18,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'FAQ (3-line answers)',
           collapsed: false,
           items: [
+            { text: 'Scope of this site (only LLMs?)', link: '/faq/scope-of-ai-agent' },
             { text: 'MCP vs Skills', link: '/faq/mcp-vs-skills' },
             { text: 'Agent/Sub-agent/Skill/MCP comparison', link: '/faq/agent-vs-subagent-vs-skill' },
           ],

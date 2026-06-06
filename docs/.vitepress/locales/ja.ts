@@ -18,6 +18,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'FAQ (3行回答)',
           collapsed: false,
           items: [
+            { text: '本サイトのスコープ (LLM だけ?)', link: '/ja/faq/scope-of-ai-agent' },
             { text: 'MCP vs Skills', link: '/ja/faq/mcp-vs-skills' },
             { text: 'Agent/Sub-agent/Skill/MCP 4者比較', link: '/ja/faq/agent-vs-subagent-vs-skill' },
           ],

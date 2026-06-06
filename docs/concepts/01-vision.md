@@ -2,6 +2,9 @@
 
 This document outlines the philosophy underlying AI agent architecture (MCP, Skills, and Agent integration) and the fundamental approach to AI-driven development.
 
+> [!NOTE] Scope of this site
+> On this site, "AI agent" means an **agent whose reasoning core is a foundation model (mainly an LLM)**. For where this sits within AI as a whole — including reinforcement learning agents and symbolic AI — see [FAQ: Does "AI Agent" Mean Only LLMs?](../faq/scope-of-ai-agent).
+
 > **Audience**: Engineers interested in AI-driven development. Whether you're a practitioner evaluating MCP/Skills adoption or a decision-maker considering team-wide integration, this document provides a foundational perspective.
 
 ::: warning Position of This Page
