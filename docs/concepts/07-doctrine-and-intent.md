@@ -495,4 +495,5 @@ The Doctrine Layer is where this principle becomes operational — encoded into 
 - [06-physical-ai](./06-physical-ai) — **EXTENSION**: Doctrine's role as a safeguard in the physical world
 - [Development Phases](../workflows/development-phases) — MCP integration per development phase
 - [Skill Design Guide](../skills/creating-skills) — MUST/SHOULD/MUST NOT constraint patterns
+- [Permission vs. Authority](../strategy/permission-vs-authority) — what doctrine-type agents ask for at the boundary; autonomy levels mapped to the delegation spectrum
 - [Discussion #29](https://github.com/shuji-bonji/ai-agent-architecture/discussions/29) — Original doctrine discussion

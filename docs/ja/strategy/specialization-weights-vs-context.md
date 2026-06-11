@@ -157,7 +157,7 @@ flowchart TD
 
 ---
 
-> **前へ**: [Harness Engineering との対応関係](./harness-engineering-mapping.md)
+> **前へ**: [Permission と Authority](./permission-vs-authority.md)
 > **次へ**: [開発フェーズ](../workflows/development-phases.md)
 
 **最終更新**: 2026 年 6 月

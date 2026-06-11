@@ -503,4 +503,5 @@ graph TB
 - [06-physical-ai](./06-physical-ai) — **EXTENSION**: 物理世界でのドクトリンの安全装置としての役割
 - [開発フェーズ](../workflows/development-phases) — 開発フェーズごとのMCP統合
 - [スキル設計ガイド](../skills/creating-skills) — MUST/SHOULD/MUST NOT 制約パターン
+- [Permission と Authority](../strategy/permission-vs-authority) — ドクトリン型が境界で求めるもの、自律性レベルと委譲スペクトラムの対応
 - [Discussion #29](https://github.com/shuji-bonji/ai-agent-architecture/discussions/29) — ドクトリン議論の原点

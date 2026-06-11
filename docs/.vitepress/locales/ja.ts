@@ -84,6 +84,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: '構成パターン', link: '/ja/strategy/composition-patterns' },
             { text: 'ローカル LLM 環境への 5 層モデルの写像', link: '/ja/strategy/local-llm-workspace-mapping' },
             { text: 'Harness Engineering との対応関係', link: '/ja/strategy/harness-engineering-mapping' },
+            { text: 'Permission と Authority', link: '/ja/strategy/permission-vs-authority' },
             { text: '重み特化 vs 文脈特化', link: '/ja/strategy/specialization-weights-vs-context' },
           ],
         },

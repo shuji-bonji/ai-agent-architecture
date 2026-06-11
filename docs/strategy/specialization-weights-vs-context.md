@@ -157,7 +157,7 @@ This page addressed the **design judgment (What/How)** of weight vs. context spe
 
 ---
 
-> **Previous**: [Harness Engineering Mapping](./harness-engineering-mapping.md)
+> **Previous**: [Permission vs. Authority](./permission-vs-authority.md)
 > **Next**: [Development Phases](../workflows/development-phases.md)
 
 **Last updated**: June 2026

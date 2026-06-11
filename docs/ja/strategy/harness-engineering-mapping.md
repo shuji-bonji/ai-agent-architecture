@@ -201,8 +201,9 @@ graph LR
 - [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine 層の詳細
 - [skills/what-is-skills](../skills/what-is-skills) — Skills 層がハーネスに含まれない理由
 - [strategy/composition-patterns](./composition-patterns) — 複数 MCP・複数 Skill の協調パターン
+- [strategy/permission-vs-authority](./permission-vs-authority) — ハーネス型とドクトリン型が境界で求めるもの（本ページの続編）
 
 ---
 
 > **前へ**: [ローカル LLM 環境への 5 層モデルの写像](./local-llm-workspace-mapping.md)
-> **次へ**: [重み特化 vs 文脈特化](./specialization-weights-vs-context.md)
+> **次へ**: [Permission と Authority](./permission-vs-authority.md)
