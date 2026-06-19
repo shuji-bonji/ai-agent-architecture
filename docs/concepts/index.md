@@ -14,8 +14,9 @@ flowchart LR
     P["06: Physical AI<br/>EXTENSION"]
     DOC["07: Doctrine & Intent<br/>DOCTRINE"]
     M["08: Memory & Knowledge<br/>MEMORY"]
+    PD["09: Prompt Decomposition<br/>DECOMPOSITION"]
 
-    V --> R --> A --> D --> S --> P --> DOC --> M
+    V --> R --> A --> D --> S --> P --> DOC --> M --> PD
 
     style V fill:#FFE4B5,color:#333,stroke:#333
     style R fill:#FFE4B5,color:#333,stroke:#333
@@ -25,6 +26,7 @@ flowchart LR
     style P fill:#DDA0DD,color:#333,stroke:#333
     style DOC fill:#F0E68C,color:#333,stroke:#333
     style M fill:#E6E6FA,color:#333,stroke:#333
+    style PD fill:#87CEEB,color:#333,stroke:#333
 ```
 
 ## Chapter Overview
@@ -39,6 +41,7 @@ flowchart LR
 | **06** | **EXTENSION** | Does the three-layer model hold in the physical world? | [06-physical-ai](./06-physical-ai) |
 | **07** | **DOCTRINE** | On what basis should AI judge and act? | [07-doctrine-and-intent](./07-doctrine-and-intent) |
 | **08** | **MEMORY** | What does the agent remember, and how does it connect? | [08-memory-and-knowledge](./08-memory-and-knowledge) |
+| **09** | **DECOMPOSITION** | How does a prompt decompose across the layers? | [09-prompt-decomposition](./09-prompt-decomposition) |
 
 ## Layer × Concern Cross-Reference Matrix
 
@@ -52,6 +55,7 @@ Shows which chapters cover which concerns for each layer.
 | **Edge Extension** | 06 | 06 | 06 | — | 06 |
 | **Judgment Criteria** | 07 | 07 | — | 08 | 07 |
 | **Reference Source Taxonomy** | — | 02 | 02 | 08 | — |
+| **Distributing Prompt Conditions** | 09 | 09 | 09 | 09 | 09 |
 | **Design Philosophy (WHY)** | 01 | 01 | 01 | 01 | 01 |
 
 ## Mermaid Diagram Color Legend

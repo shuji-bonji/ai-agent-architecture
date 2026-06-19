@@ -412,4 +412,4 @@ This page covers the **structure (what/how)** of the Memory layer. If you want t
 
 > **Previous**: [07-doctrine-and-intent](./07-doctrine-and-intent)
 
-> **Next**: [Concepts Overview](./)
+> **Next**: [09-prompt-decomposition](./09-prompt-decomposition)

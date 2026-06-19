@@ -14,8 +14,9 @@ flowchart LR
     P["06: Physical AI<br/>EXTENSION"]
     DOC["07: Doctrine & Intent<br/>DOCTRINE"]
     M["08: Memory & Knowledge<br/>MEMORY"]
+    PD["09: Prompt Decomposition<br/>DECOMPOSITION"]
 
-    V --> R --> A --> D --> S --> P --> DOC --> M
+    V --> R --> A --> D --> S --> P --> DOC --> M --> PD
 
     style V fill:#FFE4B5,color:#333,stroke:#333
     style R fill:#FFE4B5,color:#333,stroke:#333
@@ -25,6 +26,7 @@ flowchart LR
     style P fill:#DDA0DD,color:#333,stroke:#333
     style DOC fill:#F0E68C,color:#333,stroke:#333
     style M fill:#E6E6FA,color:#333,stroke:#333
+    style PD fill:#87CEEB,color:#333,stroke:#333
 ```
 
 ## 各章の概要
@@ -39,6 +41,7 @@ flowchart LR
 | **06** | **EXTENSION** | 三層モデルは物理世界でも成り立つか？ | [06-physical-ai](./06-physical-ai) |
 | **07** | **DOCTRINE** | AIは何を基準に判断し行動すべきか？ | [07-doctrine-and-intent](./07-doctrine-and-intent) |
 | **08** | **MEMORY** | エージェントは何を記憶し、どう接続するか？ | [08-memory-and-knowledge](./08-memory-and-knowledge) |
+| **09** | **DECOMPOSITION** | プロンプトは層へどう分解されるか？ | [09-prompt-decomposition](./09-prompt-decomposition) |
 
 ## レイヤー × 関心事の横断マトリクス
 
@@ -52,6 +55,7 @@ flowchart LR
 | **エッジ拡張** | 06 | 06 | 06 | — | 06 |
 | **判断基準** | 07 | 07 | — | 08 | 07 |
 | **参照先の体系** | — | 02 | 02 | 08 | — |
+| **プロンプト条件の分配** | 09 | 09 | 09 | 09 | 09 |
 | **設計思想（WHY）** | 01 | 01 | 01 | 01 | 01 |
 
 ## Mermaid 図の色調凡例

@@ -412,4 +412,4 @@ flowchart TB
 
 > **前へ**: [07-doctrine-and-intent](./07-doctrine-and-intent)
 
-> **次へ**: [Concepts 全体像](./)
+> **次へ**: [09-prompt-decomposition](./09-prompt-decomposition)

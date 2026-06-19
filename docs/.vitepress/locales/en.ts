@@ -36,6 +36,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Physical AI', link: '/concepts/06-physical-ai' },
             { text: 'Doctrine & Intent', link: '/concepts/07-doctrine-and-intent' },
             { text: 'Memory & Knowledge (KG)', link: '/concepts/08-memory-and-knowledge' },
+            { text: 'Prompt Decomposition', link: '/concepts/09-prompt-decomposition' },
           ],
         },
         {
