@@ -158,6 +158,6 @@ flowchart TD
 ---
 
 > **前へ**: [Permission と Authority](./permission-vs-authority.md)
-> **次へ**: [開発フェーズ](../workflows/development-phases.md)
+> **次へ**: [Routing vs Cascading](./routing-vs-cascading.md)
 
 **最終更新**: 2026 年 6 月

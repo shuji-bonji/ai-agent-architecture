@@ -87,6 +87,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Harness Engineering との対応関係', link: '/ja/strategy/harness-engineering-mapping' },
             { text: 'Permission と Authority', link: '/ja/strategy/permission-vs-authority' },
             { text: '重み特化 vs 文脈特化', link: '/ja/strategy/specialization-weights-vs-context' },
+            { text: 'Routing vs Cascading', link: '/ja/strategy/routing-vs-cascading' },
           ],
         },
         {
