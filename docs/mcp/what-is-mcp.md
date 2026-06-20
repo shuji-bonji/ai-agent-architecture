@@ -61,6 +61,15 @@ With MCP standardization, each service publishes one MCP server, and all AI tool
 N AI tools + M MCP servers = N+M implementations total
 ```
 
+### LSP: MCP's Structural Ancestor
+
+This N×M → N+M reduction is not new. The **Language Server Protocol (LSP)**, introduced by Microsoft in 2016, solved the identical problem one layer down: before LSP, supporting M languages across N editors required N×M plugins. LSP collapsed this to N+M by standardizing editor↔language-server communication over **JSON-RPC 2.0** — the same transport MCP uses today.
+
+> [!TIP]
+> MCP is, in effect, "LSP for LLMs." Microsoft's VS Code team states it directly: *"The idea behind LSP inspired a new protocol, MCP, that standardizes how applications provide context to LLMs."* Where LSP connects editors to code intelligence, MCP connects LLMs to arbitrary tools and data. Recognizing this lineage clarifies why MCP's host/client/server split mirrors LSP's editor/client/server split. The reverse direction is now happening too: tools like `lsp-mcp` and Serena re-expose LSP capabilities to LLMs as MCP servers, and Claude Code added native LSP plugins (`pyright-lsp`, `vtsls`, `rust-analyzer`, etc.) in late 2025.
+
+Reference: VS Code Team (2025). "Agent mode: available to all users and supports MCP." Visual Studio Code Blog. [code.visualstudio.com](https://code.visualstudio.com/blogs/2025/04/07/agentMode) — MCP as the LLM-era successor to LSP.
+
 ## MCP's Three-Layer Architecture
 
 MCP has three clearly defined layers with distinct roles.
@@ -329,5 +338,5 @@ To dive deeper into MCP, explore the following documents.
 | **Choose between Skills/A2A** | [03-architecture.md](../concepts/03-architecture.md) |
 | **Learn about Skills**        | [what-is-skills.md](../skills/what-is-skills.md)     |
 
-**Last Updated:** 2026-02-12
+**Last Updated:** 2026-06-20
 **Repository:** [ai-agent-architecture](https://github.com/shuji-bonji/ai-agent-architecture)
