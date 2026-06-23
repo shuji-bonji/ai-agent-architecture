@@ -68,9 +68,40 @@ flowchart LR
 | 08-memory-and-knowledge       | **What** does the agent remember, and how does it connect?  |
 | **09-prompt-decomposition**   | **How** does a prompt's structure decompose across the layers? |
 
+## Existing Prompt Frameworks — Decomposition Is Already Common Practice
+
+The idea of decomposing a prompt into parts is not new. The widely used frameworks all encourage treating a good prompt as a *bundle of distinct concerns*.
+
+| Framework               | Elements                                                            | Best-fit use case                                                                 |
+| ----------------------- | ------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **RTF**                 | Role / Task / Format                                                | Everyday tasks and quick prototyping                                              |
+| **CO-STAR**             | Context / Objective / Style / Tone / Audience / Response            | Business writing and output where tone and audience matter                       |
+| **CRISPE**              | Context / Role / Instructions / Steps / Parameters / Example        | Complex, multi-step work and agent-like behavior                                  |
+| **Anthropic (Claude)**  | Clear and Direct / Examples / Let Claude Think (CoT) / XML Tags      | One of the strongest combinations when working with Claude                        |
+
+> [!TIP]
+> Anthropic's Claude-specific guidance — especially **XML Tags + Examples + Think** — is one of the most powerful combinations when working with Claude. Seen through a Context Engineering lens, it functions as **information structuring** beyond mere prompt wording — and that "structuring" is exactly the starting point this page pushes further into a layered architecture.
+
+These frameworks slice differently, but all point at the same concerns — **role, context, objective, process, output format, examples**. This series unifies them into seven **independent axes along which output can vary**.
+
+| Condition | Corresponding framework elements                                          |
+| --------- | ------------------------------------------------------------------------- |
+| Role | RTF: Role / CRISPE: Role / Anthropic: persona |
+| Premise | CO-STAR: Context, Audience / CRISPE: Context, Insight |
+| Objective | CO-STAR: Objective / CRISPE: Statement / Anthropic: Clear and Direct |
+| Input | (Implicit in most frameworks; Anthropic: XML Tags delimit the input) |
+| Process / Constraints | RTF: Task / CRISPE: Instructions, Steps, Parameters / Anthropic: Think |
+| Output Format | RTF: Format / CO-STAR: Style, Tone, Response |
+| Examples / Validation | CRISPE: Example / Anthropic: Examples (multishot) |
+
+> [!IMPORTANT]
+> Every one of these frameworks is **a way of writing within a single prompt**. They arrange the concerns inside one input, but the arranged concerns vanish when the session ends and must be rewritten next time.
+>
+> The question this page raises goes one step further — how do we structure these concerns **as a premise, as a layered architecture, into a form that persists and is reusable?** First name the concerns (the seven conditions, next), then distribute each to the layer that can best persist it.
+
 ## The Seven Conditions of a Prompt
 
-A well-formed prompt is not a single instruction — it is a bundle of distinct logical conditions. Even when written as one paragraph, it carries seven separable concerns:
+A well-formed prompt is not a single instruction — it is a bundle of distinct logical conditions. Even when written as one paragraph, it carries seven separable concerns. What the frameworks above were pointing at, with different cuts, is ultimately this same bundle:
 
 > [!NOTE]
 > This decomposition into seven conditions and the five-layer mapping below are this series' own synthesis. Similar decompositions (role, goal, constraints, format, etc.) appear across the prompt-engineering literature, but this exact seven-way split and layer correspondence is not a "universal standard" — read it as the **recommended decomposition within this architecture**, not a universal truth.
