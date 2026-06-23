@@ -72,6 +72,9 @@ flowchart LR
 
 A well-formed prompt is not a single instruction — it is a bundle of distinct logical conditions. Even when written as one paragraph, it carries seven separable concerns:
 
+> [!NOTE]
+> This decomposition into seven conditions and the five-layer mapping below are this series' own synthesis. Similar decompositions (role, goal, constraints, format, etc.) appear across the prompt-engineering literature, but this exact seven-way split and layer correspondence is not a "universal standard" — read it as the **recommended decomposition within this architecture**, not a universal truth.
+
 | # | Condition | What it specifies |
 | --- | --- | --- |
 | 1 | **Role** | The AI's identity and perspective |
