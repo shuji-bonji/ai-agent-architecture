@@ -82,6 +82,23 @@ A well-formed prompt is not a single instruction — it is a bundle of distinct 
 | 6 | **Output Format** | The structure and data type of the result |
 | 7 | **Examples / Validation** | Examples of expected results and how to verify them |
 
+### Why These Seven
+
+The seven conditions are not an arbitrary taxonomy — they **exhaust the independent axes along which output can vary**. Each condition corresponds to one question that, if left unspecified, the model fills in implicitly — and any axis the model fills becomes nondeterminism (a place where the result drifts each time).
+
+| If unspecified… | …what the model silently decides |
+| --- | --- |
+| Role | From which perspective, vocabulary, and judgment criteria to answer |
+| Premise | What to treat as shared knowledge |
+| Objective | What counts as "success" |
+| Input | What to treat as the subject of processing |
+| Process / Constraints | Which rules to honor and what is forbidden |
+| Output Format | In what structure to return the result |
+| Examples / Validation | How to judge correct from incorrect |
+
+> [!NOTE]
+> *Why* the model cannot decide these axes on its own and instead fills them implicitly (the underlying principle) is out of scope for this site. The mechanics — how an LLM responds to statistical token patterns and fills weakly-specified axes from its prior distribution — are covered by the sister site (see "[Deeper](#deeper-why-a-flat-prompt-degrades)" at the end).
+
 ## The Core Thesis — A Prompt Is a Flattened Snapshot
 
 In a one-off prompt, all seven conditions are **co-located in a single context window**. That is convenient for a single turn, but it means every condition is volatile: it disappears when the session ends, and must be retyped next time.
@@ -233,6 +250,7 @@ This page covers the **structure (what/how)** of decomposition — which conditi
 - [understanding-llm / Part 3: Always-Loaded Context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/03-always-loaded-context/) — Role and stable Premise as the always-loaded tier (`CLAUDE.md`)
 - [understanding-llm / Part 4–5: Conditional & On-Demand Context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/04-conditional-context/) — Skills loaded only when relevant
 - [understanding-llm / Part 6: Tool Context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/) — Input acquired through tools / MCP rather than pasted
+- [understanding-llm / Prompt Sensitivity: Underspecification](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/prompt-sensitivity/#underspecification) — why the model cannot decide weakly-specified axes on its own and fills them from its prior
 
 ---
 

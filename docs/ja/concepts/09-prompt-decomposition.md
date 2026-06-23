@@ -79,6 +79,23 @@ flowchart LR
 | 6   | **出力形式条件**   | 生成される結果の構造とデータ型 |
 | 7   | **例示・検証条件** | 期待される結果の例と検証方法   |
 
+### なぜこの7つなのか
+
+7条件は恣意的な分類ではなく、**出力が変動しうる独立な軸を尽くしたもの**である。各条件は、指定されないとモデルが暗黙に埋めてしまう問い1つに対応する — 埋められた軸は、そのまま非決定性（毎回ぶれる箇所）になる。
+
+| 指定しないと…    | モデルが暗黙に決めてしまうもの     |
+| ---------------- | ---------------------------------- |
+| 役割             | どの視点・語彙・判断基準で答えるか |
+| 前提             | 何を共有知識とみなすか             |
+| 目的             | 何をもって「成功」とするか         |
+| 入力             | 何を処理対象とするか               |
+| 処理・制約       | どのルールを守り、何を禁止とするか |
+| 出力形式         | 結果をどの構造で返すか             |
+| 例示・検証       | 正否をどう判定するか               |
+
+> [!NOTE]
+> *なぜ* モデルがこの軸を自分で決められず暗黙に埋めてしまうのか（原理）は本サイトの範囲外である。LLM がトークンの統計パターンに反応し、指定の弱い軸を事前分布から埋める仕組みは姉妹サイトが扱う（末尾「[さらに深く](#deeper-why-a-flat-prompt-degrades)」参照）。
+
 ## 核心テーゼ — プロンプトは平坦なスナップショット
 
 単発のプロンプトでは、7つの条件すべてが **1つのコンテキストウィンドウに同居** している。1ターンには便利だが、すべての条件が揮発性を帯びる。セッションが終われば消え、次回また書き直すことになる。
@@ -230,6 +247,7 @@ flowchart TB
 - [understanding-llm / Part 3: 常時ロードされるコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/03-always-loaded-context/) — 役割と安定した前提を「常時ロード階層」（`CLAUDE.md`）として持つ
 - [understanding-llm / Part 4–5: 条件付き・オンデマンドのコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/04-conditional-context/) — 関連するときだけロードされる Skills
 - [understanding-llm / Part 6: ツールコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/) — 入力を貼るのではなくツール / MCP 経由で取得する
+- [understanding-llm / Prompt Sensitivity: 指定欠落](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/prompt-sensitivity/#underspecification) — なぜモデルは指定の弱い軸を自分で決められず、事前分布から暗黙に埋めてしまうのか
 
 ---
 
