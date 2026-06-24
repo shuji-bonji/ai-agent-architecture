@@ -112,6 +112,27 @@ The following table summarizes each layer's responsibilities and how developers 
 
 **When developing an MCP server, you only implement the Server layer.** The Client is built into the Host, so you don't need to worry about protocol details.
 
+## External Interface Catalog — Where MCP Sits Among All Interfaces
+
+MCP is just one of many ways to connect to the outside. An agent always touches the outside through the **harness (its hands)**; MCP, direct HTTP, A2A, and plugins are all just classifications of "the contents of the harness's tool-integration responsibility" (see the first principle in [strategy/harness-engineering-mapping](../strategy/harness-engineering-mapping)). Before designing an MCP, survey **where MCP sits on the shelf of all interfaces**.
+
+| Target | Example I/F | Executor |
+| --- | --- | --- |
+| **Model (brain)** | OpenAI-compatible API / LLM Gateway (LiteLLM, OpenRouter) | harness → gateway |
+| **Tools & data** | Direct HTTP/REST/SDK / **MCP** | harness (its hands) |
+| **Knowledge & retrieval** | Web search (SearXNG, Brave, Tavily) / vector DB & RAG / Memory & Knowledge Graph | harness |
+| **Other agents** | **A2A** (Agent Card + Task, client / server adapter) | harness ↔ adapter |
+| **GUI & physical** | Browser automation / computer control / IoT (MQTT, Home Assistant) | harness |
+| **Humans & events** | webhook / message queue / push notification / chat bot | harness |
+
+> [!TIP]
+> The named "winning protocols" effectively collapse to just **two: MCP (tools) and A2A (agents).** Everything else falls into **(a) ad-hoc direct HTTP, (b) retrieval (search, vectors, memory), or (c) GUI/physical control.** Beneath all of them sits the **interface to the model (the LLM Gateway).** The decision to choose MCP is, on the "tools & data" row of this shelf, **a binary choice against direct HTTP.**
+
+> [!NOTE]
+> **A plugin is not a *kind* — it is packaging.** A Claude / Cowork plugin is **a distributable that bundles an MCP server, Skills, and commands**; even when you "use a plugin," the harness simply **calls the MCP tools / Skills inside it as functions.** "Implement it as a plugin" = "the harness calls the contents (MCP / Skill)."
+
+Note that A2A alone **reverses its position depending on direction** (harness's hand when outbound, the entry point when inbound); see [agents/what-is-a2a](../agents/what-is-a2a). The sections below drill into the kinds and implementations of **MCP (tool connection)** specifically, within this shelf.
+
 ## MCP Categories
 
 MCP servers can be classified along **two axes**: "what they do" (purpose-based) and "how they're implemented" (implementation-based).

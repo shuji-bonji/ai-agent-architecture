@@ -114,6 +114,27 @@ block-beta
 
 **MCPサーバーを開発する立場では、Serverレイヤーのみを実装する。** ClientはHostに内蔵されているため、プロトコル詳細を意識する必要はない。
 
+## 外部接続 I/F カタログ — 全 I/F の中での MCP の位置
+
+MCP は「外部に繋ぐ手段」の 1 つに過ぎない。エージェントが外部に触れるのは常に**ハーネス（の手先）**であり、MCP・直接 HTTP・A2A・プラグインはどれも「ハーネスのツール連携責務の中身」の分類でしかない（→ [strategy/harness-engineering-mapping](../strategy/harness-engineering-mapping) の大原則）。MCP を設計する前に、**全 I/F の棚の中で MCP がどこに位置するか**を俯瞰しておく。
+
+| 接続先 | I/F の例 | 主体 |
+| --- | --- | --- |
+| **モデル（脳）** | OpenAI 互換 API ／ LLM Gateway（LiteLLM, OpenRouter） | ハーネス → ゲートウェイ |
+| **ツール・データ** | 直接 HTTP/REST/SDK ／ **MCP** | ハーネス（の手先） |
+| **知識・検索（retrieval）** | Web 検索（SearXNG, Brave, Tavily）／ ベクトル DB・RAG ／ Memory・Knowledge Graph | ハーネス |
+| **別エージェント** | **A2A**（Agent Card + Task, client / server アダプタ） | ハーネス ↔ アダプタ |
+| **GUI・物理** | ブラウザ自動操作 ／ コンピュータ操作 ／ IoT（MQTT, Home Assistant） | ハーネス |
+| **人間・イベント** | webhook ／ message queue ／ push 通知 ／ chat bot | ハーネス |
+
+> [!TIP]
+> 名前のある“勝ち組プロトコル”は実質 **MCP（ツール）と A2A（エージェント）の 2 枚** に集約される。それ以外は **(a) その場の HTTP 直叩き ／ (b) retrieval（検索・ベクトル・記憶）／ (c) GUI・物理を触る系** に落ちる。すべての土台に**モデルへの I/F（LLM Gateway）**がある。MCP を選ぶ判断は、この棚の「ツール・データ」行で **直接 HTTP との二択**になる。
+
+> [!NOTE]
+> **プラグインは「種類」ではなく梱包**。Claude / Cowork のプラグインは **MCP サーバ + Skill + コマンドを束ねた配布物**で、「プラグインを使う」時も実際はハーネスが**中の MCP ツール / Skill を関数として呼ぶ**だけ。「プラグインで実装」＝「中身（MCP / Skill）をハーネスが呼ぶ」。
+
+A2A だけは**呼ぶ／呼ばれるで前後が反転する**（outbound ではハーネスの手先、inbound では入口）点に注意する（→ [agents/what-is-a2a](../agents/what-is-a2a)）。次節以降は、この棚の中で **MCP（ツール接続）** に絞って種類と実装を掘り下げる。
+
 ## MCPの種類・カテゴリ分類
 
 MCPサーバーは**2つの軸**で分類できる。「何をするか」（目的別）と「どう実装するか」（実装パターン別）である。

@@ -16,10 +16,36 @@ For readers who found this site while searching for harness engineering: this pa
 > - The four harness elements map onto MCP, Memory, Agent, and Doctrine (defensive aspect only).
 > - **The Skills layer and the offensive side of the Doctrine layer (normative strength declarations) are not part of harness**, so this site fills that gap.
 
+## First Principle — the LLM Is the Brain, the Harness Is the Only Executor
+
+Before the four elements, define **what a harness is** one level down. The LLM itself is a **text in / text out** function: it merely emits `tool_call` (a structured token specifying which tool to call with which arguments). **Everything that touches the outside world (HTTP, files, other agents, GUI, the physical world) is done by the execution layer that surrounds the LLM — the harness.**
+
+```mermaid
+flowchart LR
+    MOD["LLM (brain)<br/>text in / out, only emits tool_call"]
+    HAR["Harness (agent loop)<br/>= the only executor"]
+    EXT["External<br/>tool / data / other agent / GUI / physical"]
+    MOD -->|"① tool_call"| HAR
+    HAR -->|"② perform real I/O"| EXT
+    EXT -->|"③ result"| HAR
+    HAR -->|"④ feed back into context"| MOD
+
+    style MOD fill:#dcfce7,stroke:#15803d,color:#000
+    style HAR fill:#dbeafe,stroke:#1d4ed8,color:#000
+    style EXT fill:#FFB6C1,color:#333,stroke:#333
+```
+
+The loop itself — "run ①–④ until the stop condition is met" — *is* the harness, and **this distinction is what separates "LLM" from "agent."**
+
+> [!IMPORTANT]
+> **MCP, direct HTTP, A2A, and plugins look like different *kinds* of external connection, but they are all just implementation variants of step ②.** Whichever you choose, the skeleton is unchanged: the model emits `tool_call` at ①, the harness performs real I/O at ②, and ③④ feed the result back into context. The reason this page can later map the four elements onto the 5-layer model is precisely that this single skeleton underlies all of them.
+
+The single-shelf list of "kinds" (target × I/F × executor), why the named winners collapse to just two protocols — MCP and A2A — and why MCP alone splits step ② into two communication hops are all covered in the "External Interface Catalog" section of [mcp/what-is-mcp](../mcp/what-is-mcp). This page's scope ends at the skeleton: "they are all the contents of step ②."
+
 ## What Is Harness Engineering
 
 > [!NOTE]
-> In this document, "harness engineering" refers to the implementation mechanism composed of the following four elements.
+> In this document, "harness engineering" refers to the implementation mechanism composed of the following four elements. They correspond to the **four responsibilities carried by the step-② executor** in the first principle above.
 
 | Element | Description |
 | --- | --- |
