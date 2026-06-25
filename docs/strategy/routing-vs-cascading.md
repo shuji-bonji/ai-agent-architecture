@@ -211,6 +211,6 @@ This page covered the **design judgment (What/How)** of allocating queries acros
 ---
 
 > **Previous**: [Weight vs. Context Specialization](./specialization-weights-vs-context.md)
-> **Next**: [Development Phases](./../workflows/development-phases.md)
+> **Next**: [Agent Loop Patterns](./agent-loop-patterns.md)
 
 **Last updated**: June 2026

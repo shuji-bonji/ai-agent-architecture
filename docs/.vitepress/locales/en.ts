@@ -88,6 +88,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Permission vs. Authority', link: '/strategy/permission-vs-authority' },
             { text: 'Weight vs. Context Specialization', link: '/strategy/specialization-weights-vs-context' },
             { text: 'Routing vs. Cascading', link: '/strategy/routing-vs-cascading' },
+            { text: 'Agent Loop Patterns', link: '/strategy/agent-loop-patterns' },
           ],
         },
         {

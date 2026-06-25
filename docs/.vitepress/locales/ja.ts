@@ -88,6 +88,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Permission と Authority', link: '/ja/strategy/permission-vs-authority' },
             { text: '重み特化 vs 文脈特化', link: '/ja/strategy/specialization-weights-vs-context' },
             { text: 'Routing vs Cascading', link: '/ja/strategy/routing-vs-cascading' },
+            { text: 'エージェントループのパターン', link: '/ja/strategy/agent-loop-patterns' },
           ],
         },
         {
