@@ -174,6 +174,6 @@ This page covers the **types (What/How)** of loops. For **why** self-critique, e
 ---
 
 > **Previous**: [Routing vs. Cascading](./routing-vs-cascading.md)
-> **Next**: [Development Phases](./../workflows/development-phases.md)
+> **Next**: [Loop Engineering](./loop-engineering.md)
 
 **Last updated**: June 2026
