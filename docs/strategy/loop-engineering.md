@@ -159,18 +159,18 @@ Sitting in the outer loop, you implicitly held **four roles**: the authority to 
 > [!CAUTION]
 > Take yourself out of the outer loop and you tend to **keep the ownership but lose the understanding.** Sitting in the loop was slow, but you understood the system. Stopping, memory, and review are transferable; understanding is not.
 
-This is exactly the **harness/doctrine distinction** argued in [Discussion #84](https://github.com/shuji-bonji/ai-agent-architecture/discussions/84): instructions (harness) are transferable, but understanding (doctrine) is not. So each time you automate, you must re-ask: **what can I hand off while keeping its understanding, and what must I not hand off?**
+This is exactly the **harness/doctrine distinction** argued in [Discovery vs. Production](./discovery-vs-production): instructions (harness) are transferable, but understanding (doctrine) is not. So each time you automate, you must re-ask: **what can I hand off while keeping its understanding, and what must I not hand off?**
 
 ## Connection to Discovery / Production —— Two Faces of the Same Axis
 
-The **discovery mode / production mode** of [Discussion #84](https://github.com/shuji-bonji/ai-agent-architecture/discussions/84) views **the same axis from the other side** as this page.
+The **discovery mode / production mode** of [Discovery vs. Production](./discovery-vs-production) views **the same axis from the other side** as this page.
 
 - **A human sits in the outer loop** = discovery mode (dialogue, thinking out loud, exploratory delegation). The deliverable is the change in your own understanding.
 - **The outer loop is fixed into the system** = production mode (instruction docs, phase splitting, acceptance criteria up front). The deliverable is the externalized output.
 - The decision of when it's safe to automate = **compression readiness** ("can the outer loop be folded into an instruction doc?").
 - The "loss of understanding" that comes with automation is the flip side of **doctrine being non-transferable**.
 
-In short, where #84 treated discovery/production **inside the human head**, this page treats the engineering of fixing the same split **into the infrastructure**. Assigning discovery to a large cloud model and production to a small local model is covered in [Routing vs. Cascading](./routing-vs-cascading) / [Local LLM Workspace Mapping](./local-llm-workspace-mapping).
+In short, where [Discovery vs. Production](./discovery-vs-production) treated discovery/production **inside the human head**, this page treats the engineering of fixing the same split **into the infrastructure**. Assigning discovery to a large cloud model and production to a small local model is covered in [Routing vs. Cascading](./routing-vs-cascading) / [Local LLM Workspace Mapping](./local-llm-workspace-mapping).
 
 > [!NOTE]
 > To be precise, **Loop Engineering is not all of production mode but a subset of it.** Production mode (instruction docs, phase splitting, acceptance criteria) holds even when a human sits in the outer loop and approves each phase. What Loop Engineering removes is one level deeper —— the **driver of the outer loop** —— the extreme where even "the act of looping" is externalized.
@@ -211,7 +211,7 @@ flowchart LR
 - Before automation: you discover **inside** the loop (finding the solution each turn).
 - After automation: you discover **outside** the loop (re-asking whether this compression still deserves trust).
 
-Your job shifts from "the one who runs the loop" to "**the one who periodically doubts whether the compression still holds.**" Embedding the "production → discovery (fallback)" path from #84 as a **deliberate cadence** rather than an ad-hoc retreat is the strongest insurance against [premature compression](./agent-loop-patterns).
+Your job shifts from "the one who runs the loop" to "**the one who periodically doubts whether the compression still holds.**" Embedding the "production → discovery (fallback)" path from [Discovery vs. Production](./discovery-vs-production) as a **deliberate cadence** rather than an ad-hoc retreat is the strongest insurance against [premature compression](./discovery-vs-production).
 
 > [!IMPORTANT]
 > Loop Engineering is the technique of stretching **permission (the right to execute procedures)** to its limit, but **authority (the right to judge "is this still correct?")** belongs to non-transferable doctrine. So the ceiling on "how much to hand to the system" is, in principle, set by the non-transferability of doctrine. → [Permission vs. Authority](./permission-vs-authority)
@@ -240,7 +240,7 @@ This page covered the **engineering (What/How)** of the outer loop. To understan
 
 ---
 
-> **Previous**: [Agent Loop Patterns](./agent-loop-patterns.md)
+> **Previous**: [Discovery vs. Production](./discovery-vs-production.md)
 > **Next**: [Development Phases](./../workflows/development-phases.md)
 
 **Last updated**: June 2026

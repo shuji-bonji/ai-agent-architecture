@@ -159,18 +159,18 @@ flowchart LR
 > [!CAUTION]
 > 自分を外側ループから抜くと、**オーナーシップ（責任）は残るのに、理解（understanding）を失いやすい。** ループに座っているのは遅かったが、あなたはシステムを理解していた。停止・記憶・レビューは移送できても、理解は移送できない。
 
-これは [Discussion #84](https://github.com/shuji-bonji/ai-agent-architecture/discussions/84) で論じた **harness と doctrine の区別**そのものだ。指示書（harness）は移送できるが、理解（doctrine）は移送できない。だから自動化のたびに「**何を理解したまま手放し、何を手放してはいけないか**」を問い直す必要がある。
+これは [Discovery vs Production](./discovery-vs-production) で論じた **harness と doctrine の区別**そのものだ。指示書（harness）は移送できるが、理解（doctrine）は移送できない。だから自動化のたびに「**何を理解したまま手放し、何を手放してはいけないか**」を問い直す必要がある。
 
 ## Discovery / Production との接続 —— 同じ軸の人間側とシステム側
 
-[Discussion #84](https://github.com/shuji-bonji/ai-agent-architecture/discussions/84) の **発見モード / 生産モード**は、本ページと**同じ軸の別の面**を見ている。
+[Discovery vs Production](./discovery-vs-production) の **発見モード / 生産モード**は、本ページと**同じ軸の別の面**を見ている。
 
 - **外側ループに人が座る** ＝ 発見モード（対話・壁打ち・探索的委任）。成果物は自分の理解の変化。
 - **外側ループをシステムに固定する** ＝ 生産モード（指示書・フェーズ分割・合格基準の先出し）。成果物は外在化された出力。
 - いつ自動化してよいかの判定 ＝ **圧縮レディネス**（「外側ループを指示書に畳めるか」）。
 - 自動化に伴う「理解の喪失」は、**doctrine が移送できない**ことの裏返しである。
 
-つまり #84 が**人間の頭の中**の発見/生産を扱ったのに対し、本ページは同じ分離を**インフラに固定**する工学を扱う。発見を大型クラウドモデル、生産を手元の軽量モデルへ割り当てる構図は [Routing vs Cascading](./routing-vs-cascading) / [ローカル LLM 環境への写像](./local-llm-workspace-mapping) で扱う。
+つまり [Discovery vs Production](./discovery-vs-production) が**人間の頭の中**の発見/生産を扱ったのに対し、本ページは同じ分離を**インフラに固定**する工学を扱う。発見を大型クラウドモデル、生産を手元の軽量モデルへ割り当てる構図は [Routing vs Cascading](./routing-vs-cascading) / [ローカル LLM 環境への写像](./local-llm-workspace-mapping) で扱う。
 
 > [!NOTE]
 > 正確には、**Loop Engineering は生産モードの全体ではなく、その部分集合**である。生産モード（指示書・フェーズ分割・合格基準）は、人間が外側ループに座って各フェーズを承認しながらでも成立する。Loop Engineering が外すのは、もう一段奥の **外側ループの駆動主体** —— 「回す行為そのもの」までを外在化した極にあたる。
@@ -211,7 +211,7 @@ flowchart LR
 - 自動化前：ループの**中**で発見する（毎ターン解を探す）
 - 自動化後：ループの**外**で発見する（この圧縮はまだ信頼に値するか、を問い直す）
 
-あなたの仕事は「回す人」から「**圧縮が今も妥当かを周期的に疑う人**」へ移る。#84 の「生産 → 発見（後退）」経路を、思いつきの後退ではなく **意図的な周期**としてシステムに埋め込むこと —— これが [早すぎる圧縮](./agent-loop-patterns) への最強の保険になる。
+あなたの仕事は「回す人」から「**圧縮が今も妥当かを周期的に疑う人**」へ移る。[Discovery vs Production](./discovery-vs-production) の「生産 → 発見（後退）」経路を、思いつきの後退ではなく **意図的な周期**としてシステムに埋め込むこと —— これが[早すぎる圧縮](./discovery-vs-production)への最強の保険になる。
 
 > [!IMPORTANT]
 > Loop Engineering は **permission（手順の実行権限）**を限界まで広げる技術だが、**authority（「これはまだ正しいか」を判断する権限）**は移送できない doctrine に属する。だから「どこまでシステムに任せるか」の上限は、原理的に doctrine の移送不可能性が決める。→ [Permission と Authority](./permission-vs-authority)
@@ -240,7 +240,7 @@ flowchart LR
 
 ---
 
-> **前へ**: [エージェントループのパターン](./agent-loop-patterns.md)
+> **前へ**: [Discovery vs Production](./discovery-vs-production.md)
 > **次へ**: [開発フェーズ](../workflows/development-phases.md)
 
 **最終更新**: 2026 年 6 月
