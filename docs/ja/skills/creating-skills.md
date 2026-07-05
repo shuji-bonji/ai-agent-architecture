@@ -196,6 +196,7 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 | 目的                              | ドキュメント                                                  |
 | --------------------------------- | ------------------------------------------------------------- |
 | 実際にSkillを作成する             | [スキル作成ガイド](./how-to-create-skills)                    |
+| 会話からSkillを生成する           | [会話からの Skill 蒸留](./conversation-to-skill)              |
 | プロジェクトにSkillsを導入する    | [スキル導入・利用ガイド](./how-to-use-skills)                 |
 | ユースケースを知りたい            | [活用パターンガイド](./skill-use-cases)                       |
 | MCP vs Skillsの判断               | [MCP vs Skills 選択判断ガイド](./vs-mcp)                      |

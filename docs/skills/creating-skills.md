@@ -199,6 +199,7 @@ The following Skills are identified as high-priority candidates for future devel
 | Purpose                                    | Document                                                      |
 | ------------------------------------------ | ------------------------------------------------------------- |
 | Create a Skill step-by-step                | [How to Create Skills](./how-to-create-skills)                |
+| Generate Skills from conversations         | [Distilling Skills from Conversations](./conversation-to-skill) |
 | Integrate Skills into your project         | [How to Use Skills](./how-to-use-skills)                      |
 | Explore real use cases                     | [Skill Use Cases](./skill-use-cases)                          |
 | Deciding between MCP vs Skills             | [MCP vs Skills Decision Guide](./vs-mcp)                     |

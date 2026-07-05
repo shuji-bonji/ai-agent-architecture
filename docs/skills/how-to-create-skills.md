@@ -343,6 +343,7 @@ No. Each Skill directory contains exactly one `SKILL.md`. For related Skills, cr
 | Purpose                        | Document                                                |
 | ------------------------------ | ------------------------------------------------------- |
 | Design decisions and planning  | [Skill Design Guide](./creating-skills)                 |
+| Generate Skills from conversations | [Distilling Skills from Conversations](./conversation-to-skill) |
 | Integrate into your project    | [How to Use Skills](./how-to-use-skills)                |
 | Explore use cases              | [Skill Use Cases](./skill-use-cases)                    |
 | Patterns to avoid              | [Anti-Patterns Guide](./anti-patterns)                  |

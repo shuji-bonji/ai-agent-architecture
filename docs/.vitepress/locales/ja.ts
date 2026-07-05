@@ -57,6 +57,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Skillsとは', link: '/ja/skills/what-is-skills' },
             { text: 'Skill設計ガイド', link: '/ja/skills/creating-skills' },
             { text: 'スキル作成ガイド', link: '/ja/skills/how-to-create-skills' },
+            { text: '会話からの Skill 蒸留', link: '/ja/skills/conversation-to-skill' },
             { text: 'スキル導入・利用', link: '/ja/skills/how-to-use-skills' },
             { text: '活用パターン', link: '/ja/skills/skill-use-cases' },
             { text: 'アンチパターン', link: '/ja/skills/anti-patterns' },

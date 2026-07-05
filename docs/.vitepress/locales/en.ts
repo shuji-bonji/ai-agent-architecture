@@ -57,6 +57,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'What is Skills', link: '/skills/what-is-skills' },
             { text: 'Skill Design Guide', link: '/skills/creating-skills' },
             { text: 'How to Create Skills', link: '/skills/how-to-create-skills' },
+            { text: 'Distilling Skills from Conversations', link: '/skills/conversation-to-skill' },
             { text: 'How to Use Skills', link: '/skills/how-to-use-skills' },
             { text: 'Skill Use Cases', link: '/skills/skill-use-cases' },
             { text: 'Anti-patterns', link: '/skills/anti-patterns' },
