@@ -192,6 +192,7 @@ flowchart LR
 - [specialization-weights-vs-context](./specialization-weights-vs-context) — ルーターが振り分ける先の専門モデルを作る
 - [local-llm-workspace-mapping](./local-llm-workspace-mapping) — ハイブリッド構成のローカルティアを配置する
 - [composition-patterns](./composition-patterns) — 各ティア内での MCP × Skill × Agent の組み合わせ
+- [deterministic-verdicts](./deterministic-verdicts) — Judge の判定を LLM から出す設計。合否基準が明文化できるカスケードでは、Judge をルール表に落とせる
 
 ## 🔗 さらに深く: なぜ Judge はそれほど信頼しにくいのか
 
@@ -200,6 +201,7 @@ flowchart LR
 - [understanding-llm / Hallucination](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/hallucination/) — 自信ある回答が正しい回答とは限らない理由
 - [understanding-llm / Sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/sycophancy/) — モデルの自己評価が迎合的に歪む理由
 - [understanding-llm / Context Rot](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/context-rot/) — エスカレーション境界での文脈圧縮がクラウドティアに効く理由
+- [understanding-llm / 判定ドリフト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/appendix/judgment-drift) — Judge の判定が実行ごと・モデル更新ごとに揺れる 3 層の機構。`temperature=0` では閉じない理由
 
 ## 参考文献
 

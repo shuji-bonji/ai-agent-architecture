@@ -124,6 +124,11 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: '構成パターン', link: '/ja/strategy/composition-patterns' },
+            { text: 'MCP Family', link: '/ja/strategy/mcp-family' },
+            {
+              text: '判定の決定論性',
+              link: '/ja/strategy/deterministic-verdicts',
+            },
             {
               text: 'ローカル LLM 環境への 5 層モデルの写像',
               link: '/ja/strategy/local-llm-workspace-mapping',

@@ -145,6 +145,7 @@ flowchart TD
 - [04-ai-design-patterns](../concepts/04-ai-design-patterns) — どのパターンをいつ選ぶか（WHICH）
 - [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) — パラメトリック / 非パラメトリック知識と Memory 層
 - [composition-patterns](./composition-patterns) — ルート A の装備（MCP × Skill × Agent）の組み合わせ設計
+- [mcp-family](./mcp-family) — ルート A の装備を族として組むと、ルート B の燃料（検証可能な報酬）が生まれる
 - [local-llm-workspace-mapping](./local-llm-workspace-mapping) — ローカル LLM 環境でのバリアント消費とエージェント武装
 - [Skills vs MCP](../skills/vs-mcp) — 非パラメトリックな装備の使い分け
 

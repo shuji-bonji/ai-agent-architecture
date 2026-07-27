@@ -131,12 +131,14 @@ graph TB
 - [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine 層の詳細、自律性レベル 1〜4 の定義
 - [agents/subagent-quality-gate](../agents/subagent-quality-gate) — ドクトリン型故障（拡大解釈）の検知装置としての品質ゲート
 - [mcp/security](../mcp/security) — MCP 境界での権限管理
+- [strategy/deterministic-verdicts](./deterministic-verdicts) — **「行為の裁量」ではなく「判定を出す権限」** を渡すか。行為は取り消せるが、判定は下流に取り込まれた時点で取り消せない
 
 ## 🔗 さらに深く: なぜ LLM に持続的 authority を渡しにくいか
 
 本ページは permission と authority の **構造 (What/How)** を扱った。「**なぜ** LLM への持続的な権限委譲が難しいのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 
 - [understanding-llm / 付録: Authority と LLM の構造的制約](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/appendix/authority-and-llm-constraints) — Instruction Decay・Sycophancy・Context Rot が「射程の自己判定」を侵食する構造
+- [understanding-llm / 判定ドリフト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/appendix/judgment-drift) — 委譲した先で下される **判定** が再現しない 3 層の機構
 
 ---
 

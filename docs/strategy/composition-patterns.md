@@ -148,6 +148,9 @@ flowchart LR
 - **Clarify whether order-dependent or parallelizable**: deepl → xcomet is order-dependent; rfcxml + w3c is parallelizable
 - **The Agent layer handles data integration logic**: MCPs only return raw data. Integration and judgment are the Agent's role
 
+> [!NOTE]
+> This pattern covers combining MCPs from **different domains horizontally**. For splitting **the same domain vertically by role** into a family (the PDF family, the DTIR family, and so on), see [MCP Family](./mcp-family), which covers split axes, mutual independence, and the closed loop.
+
 ## Pattern 3: Skills (Multi-Skill Combination)
 
 A composition that simultaneously triggers multiple Skills according to the context (development phase).

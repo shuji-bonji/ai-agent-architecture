@@ -145,6 +145,7 @@ In practice the strongest setup takes both — **a specialist variant honed by B
 - [04-ai-design-patterns](../concepts/04-ai-design-patterns) — which pattern to choose when (WHICH)
 - [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) — parametric / non-parametric knowledge and the Memory layer
 - [composition-patterns](./composition-patterns) — combining Route A's equipment (MCP × Skill × Agent)
+- [mcp-family](./mcp-family) — assembling Route A's equipment into a family produces Route B's fuel: verifiable reward
 - [local-llm-workspace-mapping](./local-llm-workspace-mapping) — consuming variants and arming agents in a local LLM environment
 - [Skills vs MCP](../skills/vs-mcp) — choosing between non-parametric equipment
 

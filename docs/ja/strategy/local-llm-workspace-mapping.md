@@ -399,7 +399,7 @@ Streamable HTTP MCP のネイティブサポートは、「shuji-bonji 製の各
 
 ---
 
-> **前へ**: [構成パターン](./composition-patterns)
+> **前へ**: [判定の決定論性](./deterministic-verdicts)
 > **次へ**: [開発フェーズ](../workflows/development-phases)
 
 **最終更新**: 2026 年 6 月

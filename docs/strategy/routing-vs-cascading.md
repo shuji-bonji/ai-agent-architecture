@@ -192,6 +192,7 @@ Two design notes specific to the hybrid tier:
 - [specialization-weights-vs-context](./specialization-weights-vs-context) — building the specialist models a router dispatches to
 - [local-llm-workspace-mapping](./local-llm-workspace-mapping) — placing the local tier of a hybrid setup
 - [composition-patterns](./composition-patterns) — composing MCP × Skill × Agent within each tier
+- [deterministic-verdicts](./deterministic-verdicts) — moving the judge's verdict out of the LLM; where the pass criteria are writable, the judge can become a rule table
 
 ## 🔗 Deeper: Why Is the Judge So Hard to Trust?
 
@@ -200,6 +201,7 @@ This page covered the **design judgment (What/How)** of allocating queries acros
 - [understanding-llm / Hallucination](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/hallucination/) — why a confident answer is not a correct one
 - [understanding-llm / Sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/sycophancy/) — why a model's self-assessment skews agreeable
 - [understanding-llm / Context Rot](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/context-rot/) — why compressing context at the escalation boundary helps the cloud tier
+- [understanding-llm / Judgment Drift](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/judgment-drift) — the three layers behind a judge whose verdict shifts per run and per model update, and why `temperature=0` does not close the gap
 
 ## References
 

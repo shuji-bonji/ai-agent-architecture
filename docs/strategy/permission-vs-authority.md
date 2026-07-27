@@ -131,12 +131,14 @@ graph TB
 - [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — the Doctrine layer in detail, autonomy levels 1–4
 - [agents/subagent-quality-gate](../agents/subagent-quality-gate) — quality gates as detection devices for doctrine-type failure (expansive interpretation)
 - [mcp/security](../mcp/security) — authority management at MCP boundaries
+- [strategy/deterministic-verdicts](./deterministic-verdicts) — delegating **the power to issue a verdict** rather than discretion over actions; actions can be undone, a verdict absorbed downstream cannot
 
 ## 🔗 Going Deeper: Why It Is Hard to Hand LLMs Durable Authority
 
 This page covered the **structure (What/How)** of permission and authority. To understand from the LLM's structural constraints **why** durable delegation of authority to an LLM is difficult, see the sister site.
 
 - [understanding-llm / Appendix: Authority and LLM Constraints](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/authority-and-llm-constraints) — how Instruction Decay, Sycophancy, and Context Rot erode the self-judgment of scope
+- [understanding-llm / Judgment Drift](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/judgment-drift) — the three layers behind verdicts that do not reproduce once judging is delegated
 
 ---
 

@@ -84,6 +84,8 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'Composition Patterns', link: '/strategy/composition-patterns' },
+            { text: 'MCP Family', link: '/strategy/mcp-family' },
+            { text: 'Deterministic Verdicts', link: '/strategy/deterministic-verdicts' },
             { text: 'Local LLM Workspace Mapping', link: '/strategy/local-llm-workspace-mapping' },
             { text: 'Harness Engineering Mapping', link: '/strategy/harness-engineering-mapping' },
             { text: 'Permission vs. Authority', link: '/strategy/permission-vs-authority' },
