@@ -40,6 +40,14 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           ],
         },
         {
+          text: 'Information',
+          collapsed: false,
+          items: [
+            { text: 'Overview', link: '/information/' },
+            { text: 'Architecture Map', link: '/information/architecture-map' },
+          ],
+        },
+        {
           text: 'MCP',
           collapsed: false,
           items: [

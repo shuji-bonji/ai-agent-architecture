@@ -65,6 +65,14 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           ],
         },
         {
+          text: '情報基盤 (Information)',
+          collapsed: false,
+          items: [
+            { text: '概要', link: '/ja/information/' },
+            { text: '全体地図', link: '/ja/information/architecture-map' },
+          ],
+        },
+        {
           text: 'MCP',
           collapsed: false,
           items: [
