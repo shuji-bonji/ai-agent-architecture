@@ -72,6 +72,10 @@ Skills / MCP / Memory / Doctrine — the subject of this site — are not a gene
 | **Memory** | Statelessness — nothing is remembered across sessions |
 | **Doctrine** | No built-in criteria — no native goals, constraints, or priorities |
 | **Agent (orchestration)** | Finite context — cannot see everything at once |
+| **Information** | Knowledge boundary & accuracy — the LLM cannot guarantee the quality and freshness of external knowledge by itself |
+
+> [!NOTE] Information is two-layered: "response" and "precondition"
+> Within the [Information](../information/) section, RAG and data curation are **responses** to structural constraints like the rows above; information governance (ownership, access rights, quality), however, holds even without an LLM — it is not a response but a **precondition** for connecting an LLM to an organization's information.
 
 > [!TIP] Developer analogy
 > AlphaGo does not need a `SKILL.md`. Its decision criteria are baked into the weights, and it never discovers tools from natural-language descriptions. Conversely, the architecture on this site only exists for foundation models that **take instructions in natural language and discover tools through natural language**.
@@ -132,6 +136,8 @@ flowchart LR
 ```
 
 LLMs can be inferior to other AI techniques in interpretability, deterministic guarantees, latency, and domain accuracy, so production systems integrate the right technique for each job. But **who decides and orchestrates that integration** — that is the role of the foundation model, and the territory this site covers.
+
+The design of the "connected side" in this diagram — which information to keep as documents, which as structured data, and through which path (RAG / DB / API) to retrieve it — is covered in [Information / Architecture Map](../information/architecture-map.md). The "non-LLM components / tool side" on this page and the "access layer" on the map refer to the same thing.
 
 ## Learn More
 

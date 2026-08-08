@@ -13,6 +13,9 @@ This section is the home for those topics — viewed not as implementation mecha
 > [!NOTE]
 > While the existing [MCP](../mcp/what-is-mcp.md) / [Skills](../skills/what-is-skills.md) sections are shelves of "implementation mechanisms", this section is a shelf of **vendor-neutral design decisions**. The two are connected as posts on the [Architecture Map](architecture-map.md).
 
+> [!NOTE] Relation to the scope of this site
+> For why this site scopes "AI agents" to LLM-driven agents, see [The Scope of This Site (FAQ)](../faq/scope-of-ai-agent.md). This section covers the **information side** connected to the reasoning core: RAG and data curation are **responses** to the LLM's structural constraints (Knowledge Boundary / Hallucination), while information governance (ownership, access rights, quality) is a **precondition for the connection** that holds even before any LLM is involved.
+
 ## Structure
 
 | Page | Central Question | Status |
