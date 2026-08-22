@@ -1,11 +1,12 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
 export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
-  title: 'AI Agent Architecture',
-  description: 'How agents discover and orchestrate Skills, Tools, and Protocols',
+  title: 'LLM Agent Design Architecture',
+  description: 'Design of agents whose inference core is a foundation model',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'Preface', link: '/preface' },
       { text: 'Concepts', link: '/concepts/' },
       { text: 'MCP', link: '/mcp/what-is-mcp' },
       { text: 'Skills', link: '/skills/what-is-skills' },
@@ -18,7 +19,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Preface',
           collapsed: false,
           items: [
-            { text: '未訳・対応予定' },
+            { text: 'Preface (untranslated / coming soon)', link: '/preface' },
           ],
         },
         {

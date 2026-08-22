@@ -1,90 +1,71 @@
 ---
 layout: home
-title: "AI Agent Architecture — MCP, Skills, and Agent Design Patterns"
-description: "A comprehensive guide to AI Agent Architecture: Model Context Protocol (MCP), AI Skills, and the three-layer model for building production-ready AI agent systems with Claude Code, Cursor, and Cline."
+title: LLM Agent Design Architecture
+description: Design of agents whose inference core is a foundation model. Place judgment, knowledge, memory, and connections into Doctrine / Agent / Skills / Memory / MCP.
 
 hero:
-  name: AI Agent Architecture
-  text: "MCP, AI Skills & Agent Design Patterns"
-  tagline: "The complete guide to how AI agents discover and orchestrate Skills, Tools, and Protocols — with practical patterns for Claude Code, Cursor, and Cline."
+  name: LLM Agent Design Architecture
+  text: A design document
+  tagline: How to design agents whose inference core is a foundation model, given the model's structural constraints.
   actions:
     - theme: brand
-      text: Get Started
-      link: /concepts/01-vision
+      text: Read the Preface
+      link: /preface
     - theme: alt
-      text: What is MCP?
+      text: What is MCP
       link: /mcp/what-is-mcp
     - theme: alt
-      text: What are AI Skills?
+      text: What is Skills
       link: /skills/what-is-skills
     - theme: alt
       text: View on GitHub
       link: https://github.com/shuji-bonji/ai-agent-architecture
 
 features:
-  - icon: 🧠
-    title: Concepts & Vision
-    details: Why "reliable reference sources" matter — the core philosophy behind AI-driven development and how to overcome AI's fundamental limitations.
+  - title: Preface
+    details: The questions this book answers, the five layers in scope, what it does not cover, its readers, and its structure. English text is not yet available.
+    link: /preface
+    linkText: Open the preface
+  - title: Constraint summary
+    details: A summary of the structural constraints that design must assume. Mechanisms belong to the sister site.
     link: /concepts/01-vision
-    linkText: Read the Vision
-  - icon: 🔌
-    title: MCP (Model Context Protocol)
-    details: The standard protocol by Anthropic for connecting AI agents to external tools, APIs, and data sources. Learn MCP servers, clients, and hosts.
-    link: /mcp/what-is-mcp
-    linkText: Learn about MCP
-  - icon: 📋
-    title: AI Skills (Domain Knowledge)
-    details: Reusable Markdown-based knowledge files (skill.md) that give AI agents specialized capabilities. Works with npx skills, Claude Code, Cursor, and Cline.
-    link: /skills/what-is-skills
-    linkText: Explore AI Skills
-  - icon: 🤖
-    title: Agents & A2A
-    details: Sub-agents, orchestration patterns, and the Agent-to-Agent protocol — how autonomous agents collaborate.
-    link: /agents/what-is-a2a
-    linkText: Discover Agents
-  - icon: 🏗️
-    title: Three-Layer Architecture
-    details: The Agent / Skills / MCP three-layer model and how they compose into production-ready AI agent systems.
+    linkText: Current prerequisites page
+  - title: Five layers
+    details: Separation of duties and placement across Doctrine / Agent / Skills / Memory / MCP.
     link: /concepts/03-architecture
-    linkText: See Architecture
-  - icon: 🗺️
-    title: Strategy & Roadmap
-    details: Build priorities, composition patterns, and practical roadmaps for MCP and Skill construction.
-    link: /strategy/composition-patterns
-    linkText: View Strategy
+    linkText: Current architecture page
+  - title: Skills
+    details: The layer for static knowledge and guidelines.
+    link: /skills/what-is-skills
+    linkText: Read Skills
+  - title: MCP
+    details: The layer for connections to external systems.
+    link: /mcp/what-is-mcp
+    linkText: Read MCP
+  - title: Agent
+    details: The layer for task understanding and orchestration.
+    link: /agents/
+    linkText: Read Agent
 ---
 
-## 🎯 Why Learn AI Agent Design?
+The English title of this book is **LLM Agent Design Architecture**. The Japanese title is **LLMエージェントの設計**.
 
-> If you just need to **operate** an agent, harness engineering (the implementation patterns of Agent Engineering / Context Engineering) is enough.
-> But in AI-driven development, you also need to **design, maintain, extend, and hand off** agents.
+This is a design document for agents whose inference core is a foundation model, primarily an LLM. It is not an operations manual. The starting point is the structural constraints of the LLM, not a connection protocol.
 
-This site is not a "how to operate" manual — it's a **map for design**. How to compose Skills, MCP, Sub-agents, and Doctrine; what to write as MUST vs SHOULD; how to make components reusable. The goal is **structuring the entire development process**, not automating one-off tasks.
+Scope, readers, related materials, and structure are defined in the [Preface](./preface). The English preface is not yet translated.
 
-### Three Perspectives — Which is Yours?
+A [harness](./glossary#harness) is the mechanism for operating an agent. This book is the document for designing one. See [Harness Engineering Mapping](/strategy/harness-engineering-mapping) for the correspondence.
 
-| Verb | Goal | Primary Reference |
+## Related materials
+
+| Concern | Material | Role |
 | --- | --- | --- |
-| **Operate** | Complete today's task | Harness engineering frameworks |
-| **Design** | Build reusable structures and judgment criteria | 👈 **This site (ai-agent-architecture)** |
-| **Understand** | Grasp the structural constraints of LLMs | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) |
-
-> 💡 **For readers who came here searching for "harness engineering"** — [Harness](./glossary#harness) is the mechanism for *operating*; this site is the map for *designing*. For the mapping between the two and the layers harness doesn't cover (Skills layer / Doctrine layer), see [Harness Engineering Mapping](/strategy/harness-engineering-mapping).
-
-## 📚 Sister Projects
-
-A 3-phase learning path: "Know LLMs → Know Agent Design → Apply to Systems."
-
-| Phase | Project | Focus |
-| --- | --- | --- |
-| **1. Know LLMs** | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) | LLM structural constraints and the *why* behind configuration design |
-| **2. Know Agent Design** | 👈 **This site** | MCP, Skills, and Agent composition with implementation patterns (*what/how*) |
-| **3. Apply to Systems** | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | _Coming soon_ — System operations in the AI era |
-
-> 💡 **For readers who learned "what are Skills?" or "Skills vs MCP" here** — if you want to understand **why** the Skills design is necessary from LLM structural constraints, read [understanding-llm / Part 5: On-Demand Context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/) alongside this site.
+| Understand (origin of constraints) | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) | Why |
+| Design | This book | What / How |
+| Apply in operations | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | In preparation |
 
 <div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
-**Note:** This documentation reflects the author's practical insights gained through building and operating AI agent systems with Claude. It is not official documentation from Anthropic or any other organization. Contributions and discussions via [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) are welcome.
+This documentation records practical knowledge from assembling agents. It is not official documentation from Anthropic or any other organization. Comments and discussion are welcome in [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues).
 
 </div>

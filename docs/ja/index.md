@@ -1,88 +1,71 @@
 ---
 layout: home
+title: LLMエージェントの設計
+description: 基盤モデルを推論の中核とするエージェントの設計。制約を前提に、Doctrine / Agent / Skills / Memory / MCP の 5 層へ置く。
 
 hero:
-  name: AI Agent Architecture
-  text: MCPの、その先へ
-  tagline: エージェントがSkills・Tools・Protocolをどのように発見・オーケストレーションするかを体系化
+  name: LLMエージェントの設計
+  text: LLM Agent Design Architecture
+  tagline: 基盤モデルの構造的制約を前提とした、エージェント設計の文書。
   actions:
     - theme: brand
-      text: はじめに読む
-      link: /ja/concepts/01-vision
+      text: 序章を読む
+      link: /ja/preface
     - theme: alt
-      text: MCPとは？
+      text: MCPとは
       link: /ja/mcp/what-is-mcp
     - theme: alt
-      text: Skillsとは？
+      text: Skillsとは
       link: /ja/skills/what-is-skills
     - theme: alt
       text: GitHub で見る
       link: https://github.com/shuji-bonji/ai-agent-architecture
 
 features:
-  - icon: 🧠
-    title: コンセプト・ビジョン
-    details: なぜ「ブレない参照先」が必要なのか — AI駆動開発の核心思想と、AIの根本的な制約の克服方法。
+  - title: 序章
+    details: 本書が答える問い、対象とする 5 層、扱わないもの、読者、構成を定義する。
+    link: /ja/preface
+    linkText: 序章を読む
+  - title: 制約の要約
+    details: 設計の前提となる構造的制約を要約する。機序の詳細は姉妹資料が担う。
     link: /ja/concepts/01-vision
-    linkText: ビジョンを読む
-  - icon: 🔌
-    title: MCP（Model Context Protocol）
-    details: 外部連携レイヤー — リアルタイムデータソース・API・サービスへの標準化されたプロトコルによる接続。
-    link: /ja/mcp/what-is-mcp
-    linkText: MCPを学ぶ
-  - icon: 📋
-    title: Skills（ドメイン知識）
-    details: MCPのリアルタイム能力を補完する静的な知識・判断基準 — テンプレート、ルール、ドメイン専門知識。
-    link: /ja/skills/what-is-skills
-    linkText: Skillsを探る
-  - icon: 🤖
-    title: エージェント・A2A
-    details: サブエージェント、オーケストレーションパターン、Agent-to-Agentプロトコル — 自律エージェントの協調方法。
-    link: /ja/agents/what-is-a2a
-    linkText: エージェントを知る
-  - icon: 🏗️
-    title: アーキテクチャ
-    details: MCP・Skills・Agentの三層モデルと、本番運用可能なシステムへの構成方法。
+    linkText: 現行の前提ページ
+  - title: 五層
+    details: Doctrine / Agent / Skills / Memory / MCP の責務分離と配置基準。
     link: /ja/concepts/03-architecture
-    linkText: アーキテクチャを見る
-  - icon: 🗺️
-    title: 戦略・ロードマップ
-    details: 構築の優先度、構成パターン、MCP・Skill構築の実践的ロードマップ。
-    link: /ja/strategy/composition-patterns
-    linkText: 戦略を見る
+    linkText: 現行の構成ページ
+  - title: Skills
+    details: 静的な知識とガイドラインを置く層。
+    link: /ja/skills/what-is-skills
+    linkText: Skills を読む
+  - title: MCP
+    details: 外部システムへの接続を置く層。
+    link: /ja/mcp/what-is-mcp
+    linkText: MCP を読む
+  - title: Agent
+    details: タスク理解とオーケストレーションを置く層。
+    link: /ja/agents/
+    linkText: Agent を読む
 ---
 
-## 🎯 なぜ AI Agent 設計を知るのか
+本書の日本語書名は **LLMエージェントの設計** である。英語書名は **LLM Agent Design Architecture** である。
 
-> エージェントを **動かす** だけならハーネスエンジニアリング（Agent Engineering / Context Engineering の実装パターン）で足りる。
-> しかし AI 駆動開発の文脈では、エージェントを **設計・保守・拡張・引き継ぐ** ことが必要になる。
+本書は、基盤モデルを推論の中核とするエージェントの設計を扱う。実行手順書ではない。論理の起点は、LLM（基盤モデル）の構造的制約である。
 
-本サイトは「動かす技術」ではなく「**設計の地図**」を提供します。Skills、MCP、Sub-agent、Doctrine をどう構成し、何を MUST／SHOULD で書き、どう再利用するか — 単発の自動化ではなく **開発プロセス全体の構造化** を扱います。
+範囲、読者、隣接資料、構成は [序章](./preface) で定義する。
 
-### 3 つの視点 — 自分の関心はどこか
+[ハーネス](./glossary#harness) は、エージェントを動かすための機構である。本書は設計の文書である。対応関係は [Harness Engineering との対応関係](/ja/strategy/harness-engineering-mapping) を参照する。
 
-| 動詞 | 目的 | 主な参照先 |
+## 隣接する資料
+
+| 関心 | 資料 | 役割 |
 | --- | --- | --- |
-| **Operate（動かす）** | このタスクを今日完遂する | ハーネスエンジニアリング各種フレームワーク |
-| **Design（設計する）** | 再利用可能な構造と判断基準を作る | 👈 **本サイト（ai-agent-architecture）** |
-| **Understand（理解する）** | LLM の構造的制約を把握する | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) |
-
-> 💡 **ハーネスエンジニアリングを調べて来られた方へ** — [ハーネス](./glossary#harness)は「動かす」ための機構、本サイトは「設計する」ための地図です。両者の対応関係と、ハーネスがカバーしない領域（Skills 層・Doctrine 層）については [Harness Engineering との対応関係](/ja/strategy/harness-engineering-mapping) を参照してください。
-
-## 📚 姉妹プロジェクト
-
-「LLM を知る → AI Agent 設計を知る → システムに適用する」を順序立てて学べる 3 つの姉妹プロジェクトです。
-
-| フェーズ | プロジェクト | 内容 |
-| --- | --- | --- |
-| **1. LLM を知る** | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) | LLM の構造的制約と「なぜそう設計するのか」（Why の本棚） |
-| **2. AI Agent 設計を知る** | 👈 **このサイト** | MCP・Skills・Agent の構成と実装パターン（What/How の地図） |
-| **3. システムに適用する** | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | _準備中_ — AI 時代のシステム運用 |
-
-> 💡 **このサイトで「Skills とは？」「MCP との違いは？」を知った方へ** — 「**なぜ Skills という設計が必要なのか**」を LLM の構造的制約から理解したい場合は、[understanding-llm / Part 5: オンデマンドコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/) を併読すると、設計の根拠が腹落ちします。
+| 理解する（制約の由来） | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) | Why |
+| 設計する | 本書 | What / How |
+| 運用へ適用する | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | 準備中 |
 
 <div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
-**ご注意:** 本ドキュメントは、著者がClaudeを活用してAIエージェントシステムを構築・運用する中で得た実践的知見をまとめたものです。Anthropic社やその他の組織の公式ドキュメントではありません。ご意見・ご議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) にてお気軽にどうぞ。
+本ドキュメントは、著者がエージェントを組み立てる過程で得た実践知をまとめたものである。Anthropic その他の組織の公式文書ではない。指摘と議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) で受け付ける。
 
 </div>
