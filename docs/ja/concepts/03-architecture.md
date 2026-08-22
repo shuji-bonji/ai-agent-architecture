@@ -50,7 +50,7 @@ block-beta
 ```
 
 ::: tip ドクトリン層 — 「憲法的判断基準」
-これら三層は**AIが何を知り、何ができるか**を定義する。**AIが何を基準に判断し、決定するか**は、[ドクトリン層](./07-doctrine-and-intent)が担う。ドクトリン層は単なるシステムプロンプトではなく、共有された目的・制約・判断基準を通じて三層すべてを統治する**憲法的判断基準**である。
+これら三層は**AIが何を知り、何ができるか**を定義する。**AIが何を基準に判断し、決定するか**は、[ドクトリン層](./07-doctrine-and-intent)が担う。ドクトリン層は単なる[システムプロンプト](../glossary#system-prompt)ではなく、共有された目的・制約・判断基準を通じて三層すべてを統治する**憲法的判断基準**である。
 
 Visionで定義した[責任シフトモデル](./01-vision#責任のシフトモデル)（設計時：人間 / 実行時：エージェント / 構造的制約：システム）と[二層検証構造](./01-vision#責任のシフトモデル)（ガードレール＋評価パイプライン）は、このドクトリン層を通じて各レイヤーに適用される。
 :::
@@ -468,7 +468,7 @@ flowchart TD
 
 | 観点             | CLI + Skill          | MCP                          |
 | ---------------- | -------------------- | ---------------------------- |
-| **トークン消費** | 低い（コマンドのみ） | 高い（全ツール定義読み込み） |
+| **[トークン](../glossary#token)消費** | 低い（コマンドのみ） | 高い（全ツール定義読み込み） |
 | **起動コスト**   | なし                 | サーバープロセス必要         |
 | **認証**         | ローカル完結         | MCP側で管理                  |
 | **用途特化**     | ◎（専用設計）        | △（汎用的）                  |
@@ -616,7 +616,7 @@ Memory は本質的に**動的**であり、対話の進行とともに変化す
 
 さらに、Memory の実装は LLM やプラットフォームごとに大きく異なる。
 
-- **コンテキストウィンドウ**（短期メモリ）: すべての LLM が持つが、サイズとライフサイクルはモデル依存
+- **[コンテキストウィンドウ](../glossary#context-window)**（短期メモリ）: すべての LLM が持つが、サイズとライフサイクルはモデル依存
 - **永続的な記憶**: プラットフォーム固有の機能（ChatGPT Memory 等）やアプリケーション層の実装（LangChain `ConversationBufferMemory` 等）
 - **`CLAUDE.md`**: Claude Code における「プロジェクトレベルの記憶」に近い概念だが、厳密には Memory ではなく指示ファイル
 
@@ -624,7 +624,7 @@ Memory は本質的に**動的**であり、対話の進行とともに変化す
 :::
 
 ::: warning Memory を無視してよいという意味ではない
-実際のエージェント設計では、Memory は不可欠な関心事である。三層モデルの中では、Skills 層がドメイン知識の「長期記憶」を、MCP 層が外部コンテキストの「参照記憶」を暗黙的にカバーしている。対話履歴や学習結果の保持については、[開発フェーズ](../workflows/development-phases)で実装方針を検討すること。
+実際のエージェント設計では、Memory は不可欠な関心事である。三層モデルの中では、Skills 層がドメイン知識の「長期記憶」を、MCP 層が外部[コンテキスト](../glossary#context)の「参照記憶」を暗黙的にカバーしている。対話履歴や学習結果の保持については、[開発フェーズ](../workflows/development-phases)で実装方針を検討すること。
 :::
 
 ## レイヤー構造まとめ
@@ -660,7 +660,7 @@ block-beta
 
 ## 🔗 さらに深く: コンテキスト管理の根本原理
 
-本ページでは三層分離の **構造（What/How）** を扱った。「**なぜ** この三層に分離する必要があるのか」を LLM の構造的制約（Context Window のサイズ制限、Context Rot、Priority Saturation）から理解したい場合は、姉妹サイトを参照すると設計根拠が腹落ちする。
+本ページでは三層分離の **構造（What/How）** を扱った。「**なぜ** この三層に分離する必要があるのか」を LLM の構造的制約（Context Window のサイズ制限、[Context Rot](../glossary#structural-problems)、[Priority Saturation](../glossary#structural-problems)）から理解したい場合は、姉妹サイトを参照すると設計根拠が腹落ちする。
 
 - [understanding-llm / Part 2: コンテキストウィンドウ](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/02-context-window/) — LLM の「思考空間」の構造
 - [understanding-llm / Part 3: 常駐コンテキスト — CLAUDE.md](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/03-always-loaded-context/) — Agent 層の指示が常駐する仕組み

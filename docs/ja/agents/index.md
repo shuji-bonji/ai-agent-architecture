@@ -138,7 +138,7 @@ flowchart LR
 
 ## 🔗 さらに深く: コンテキスト管理の観点から
 
-エージェントの本質的な制約 — なぜ独立コンテキストが必要なのか、なぜ Multi-Session 協調が要るのか — を LLM の構造から理解したい場合は姉妹サイトを参照。
+エージェントの本質的な制約 — なぜ独立[コンテキスト](../glossary#context)が必要なのか、なぜ Multi-Session 協調が要るのか — を LLM の構造から理解したい場合は姉妹サイトを参照。
 
 - [understanding-llm / Part 5: オンデマンドコンテキスト (Skills & Agents)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/) — Agents が要求された時だけ展開される設計
 - [understanding-llm / Part 10: マルチセッション協調 (Agent Teams)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/10-multi-session/) — 単一エージェントを超えるスケール対策

@@ -76,7 +76,7 @@ LLM inference operates solely on information **expanded into the context window*
 
 The consequences are clear:
 
-- Knowledge crossing session boundaries **must be persisted externally**
+- Knowledge crossing [session](../glossary#session) boundaries **must be persisted externally**
 - Relationships spanning multiple systems **degrade if reconstructed from scratch at inference time**
 - "What did we do last time?" and "How does this relate to other cases?" should **be held as memory**
 
@@ -109,8 +109,8 @@ Scatter-gather incurs three costs by construction:
 | Cost | Description |
 | --- | --- |
 | **Latency** | The slowest MCP call dictates the total response time |
-| **Token consumption** | Context is rebuilt from scratch each time, piling up input tokens |
-| **Accuracy degradation** | Cross-system "relationships" must be inferred ad-hoc by the LLM, creating fertile ground for hallucinations |
+| **[Token](../glossary#token) consumption** | Context is rebuilt from scratch each time, piling up input tokens |
+| **Accuracy degradation** | Cross-system "relationships" must be inferred ad-hoc by the LLM, creating fertile ground for [hallucinations](../glossary#structural-problems) |
 
 > [!WARNING]
 > The more domain MCPs you add, the worse scatter-gather costs scale — superlinearly. **"More tools = smarter agent" is wrong**; without a relationship-integration layer, accuracy on complex questions does not improve.
@@ -388,7 +388,7 @@ Conversely, signals **not** to introduce:
 
 ## 🔗 Deeper: Why LLMs Need Memory in the First Place
 
-This page covers the **structure (what/how)** of the Memory layer. If you want to understand **why** LLMs need a memory layer at all — from the perspective of context window mechanics and session management — the sister site provides the foundational reasoning.
+This page covers the **structure (what/how)** of the Memory layer. If you want to understand **why** LLMs need a memory layer at all — from the perspective of [context window](../glossary#context-window) mechanics and session management — the sister site provides the foundational reasoning.
 
 - [understanding-llm / Part 2: Context Window](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/) — Structure of the LLM's "thinking space"
 - [understanding-llm / Part 8: Session Management](https://shuji-bonji.github.io/understanding-llm-through-claude-code/08-session-management/) — Conversation lifespan and memory operations

@@ -41,9 +41,9 @@ AI 活用の言説は、いま二つの極の間で振れている。一方に�
 
 「なんとなくのベストプラクティス」では弱い。この使い分けは、LLM の構造的性質から論理的に導ける。特に効くのは次の 3 つだ。
 
-- **Context Rot** — コンテキストが長くなるほど出力品質が落ちる。
-- **Instruction Decay** — 長いセッションでは、最初に渡した指示の影響力が薄れる。
-- **Sycophancy** — 明確な合格基準がないと、LLM は「一応動いているので大丈夫です」と甘い判断に流れる。
+- **[Context Rot](../glossary#structural-problems)** — [コンテキスト](../glossary#context)が長くなるほど出力品質が落ちる。
+- **[Instruction Decay](../glossary#structural-problems)** — 長い[セッション](../glossary#session)では、最初に渡した指示の影響力が薄れる。
+- **[Sycophancy](../glossary#structural-problems)** — 明確な合格基準がないと、LLM は「一応動いているので大丈夫です」と甘い判断に流れる。
 
 発見モードは、この制約と**相性が良い**。探索は一回性で、コンテキストが汚れても捨てればいい。理解が育つことが目的だから、出力の厳密さは二の次でいい。
 

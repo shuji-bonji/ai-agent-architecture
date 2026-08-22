@@ -7,7 +7,7 @@
 > [!NOTE]
 > This page is the sequel to [Agent Loop Patterns](./agent-loop-patterns). Where that page cataloged the **inner loop** of a single agent (how it repeats `② tool_call → ③ real I/O → ④ feed back into context`), this page covers the **outer loop** —— the "write a prompt → read the turns → write the next prompt" cycle that a human used to run —— and the discipline of **moving it into the system (Loop Engineering)**.
 
-The framing that "the inner loop has been solved since ReAct and nobody competes on the `while` statement; what's new is the **outer loop** wrapping it" spread in 2026, anchored by remarks from Boris Cherny (the person who built Claude Code) and Andrej Karpathy. This page grounds that discussion in this site's five-layer model, the four harness responsibilities, and the structural constraints of LLMs.
+The framing that "the inner loop has been solved since ReAct and nobody competes on the `while` statement; what's new is the **outer loop** wrapping it" spread in 2026, anchored by remarks from Boris Cherny (the person who built Claude Code) and Andrej Karpathy. This page grounds that discussion in this site's five-layer model, the four [harness](../glossary#harness) responsibilities, and the structural constraints of LLMs.
 
 > [!TIP]
 > **In three lines**
@@ -118,9 +118,9 @@ Automating the outer loop isn't free. It has distinctive failure modes, each der
 
 ### Hard Part 1: Knowing When to Stop
 
-When an agent stops calling tools, it has only **ended its turn** —— it has not **finished the job**. Declaring "progress was made, so I'm done" while tests still fail is textbook Sycophancy (a flattering self-assessment).
+When an agent stops calling tools, it has only **ended its turn** —— it has not **finished the job**. Declaring "progress was made, so I'm done" while tests still fail is textbook [Sycophancy](../glossary#structural-problems) (a flattering self-assessment).
 
-- A hard cap (max iterations / token, time, and cost limits) is a **MUST**.
+- A hard cap (max iterations / [token](../glossary#token), time, and cost limits) is a **MUST**.
 - "Done" **MUST** be defined by a **mechanically verifiable condition** (e.g., tests pass), not the agent's say-so.
 - No-progress detection (the same call with the same arguments) **SHOULD** be in place.
 
@@ -128,7 +128,7 @@ When an agent stops calling tools, it has only **ended its turn** —— it has 
 
 ### Hard Part 2: Keeping the Context Clean
 
-The more turns it takes, the more junk —— stale tool outputs, dead ends, obsolete reasoning —— piles into the context, and output quality drops (**Context Rot**). A rotted context produces a worse decision, which adds more noise, which rots it further; this spiral is the "doom loop."
+The more turns it takes, the more junk —— stale tool outputs, dead ends, obsolete reasoning —— piles into the context, and output quality drops (**[Context Rot](../glossary#structural-problems)**). A rotted context produces a worse decision, which adds more noise, which rots it further; this spiral is the "doom loop."
 
 - Summarize and continue when it gets long (compaction).
 - Push large outputs to a file and keep only the slice you need (offloading).

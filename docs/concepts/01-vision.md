@@ -39,7 +39,7 @@ AI generates outputs probabilistically from training data, but cannot guarantee 
 
 | AI Limitation      | Description                                                              | Means of Resolution                                                  |
 | ------------------ | ------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| **Accuracy**       | Hallucination problem - may generate information that differs from facts | **MCP** (connection to authoritative sources)                        |
+| **Accuracy**       | [Hallucination](../glossary#structural-problems) problem - may generate information that differs from facts | **MCP** (connection to authoritative sources)                        |
 | **Currency**       | Does not have information beyond the training data cutoff                | **MCP** (dynamic retrieval)                                          |
 | **Authority**      | Cannot guarantee official interpretation of specifications               | **MCP** (direct citation of primary sources)                         |
 | **Accountability** | Cannot provide grounds for legal or ethical judgments                    | **Skills + Doctrine + human review** (connection alone cannot solve) |

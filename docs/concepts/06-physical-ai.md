@@ -84,7 +84,7 @@ The key to establishing the Agent layer for Physical AI is **BitNet b1.58**, pub
 
 ### Why "1.58-bit"?
 
-Conventional LLMs store weights as 16-bit (FP16) or 32-bit (FP32) floating-point values. BitNet b1.58 compresses these to an extreme — **only three values: {-1, 0, 1}**. The number "1.58" derives from the information required to encode three equiprobable values: log₂(3) ≈ 1.58.
+Conventional LLMs store [weights](../glossary#weights) as 16-bit (FP16) or 32-bit (FP32) floating-point values. BitNet b1.58 compresses these to an extreme — **only three values: {-1, 0, 1}**. The number "1.58" derives from the information required to encode three equiprobable values: log₂(3) ≈ 1.58.
 
 ```
 Conventional LLM: weights = arbitrary floating-point values (FP16: 65,536 possibilities)
@@ -114,7 +114,7 @@ The 70B-parameter BitNet b1.58 model shows the following results compared to LLa
 | **x86 CPU speedup**                    | 2.37–6.17x                   |
 | **x86 CPU energy reduction**           | 71.9–82.2%                   |
 
-Notably, a 100B-parameter model runs on a **single CPU**, achieving processing speeds equivalent to human reading speed (5–7 tokens per second).
+Notably, a 100B-parameter model runs on a **single CPU**, achieving processing speeds equivalent to human reading speed (5–7 [tokens](../glossary#token) per second).
 
 ### No Special Hardware Required
 

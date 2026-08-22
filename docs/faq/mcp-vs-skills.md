@@ -35,7 +35,7 @@ description: "The difference between Model Context Protocol (MCP) and Agent Skil
 
 ### Q: Isn't MCP more powerful? Isn't Skills just a watered-down MCP?
 
-**A**: No. **MCP and Skills serve different responsibilities.** MCP supplies "**what you can access**"; Skills supplies "**what you know and how you decide**." When a CLI already exists, `gh` CLI + Skills is often more token-efficient than building an MCP.
+**A**: No. **MCP and Skills serve different responsibilities.** MCP supplies "**what you can access**"; Skills supplies "**what you know and how you decide**." When a CLI already exists, `gh` CLI + Skills is often more [token](../glossary#token)-efficient than building an MCP.
 
 ### Q: Are Cline / Cursor / Vercel Skills the same?
 

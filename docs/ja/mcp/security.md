@@ -65,7 +65,7 @@ mindmap
 | **MCP07** | Insufficient Authentication & Authorization | マルチエージェント環境での弱いID検証                                                          |
 | **MCP08** | Lack of Audit and Telemetry                 | ログ・監視の不足によるインシデント対応の困難                                                  |
 | **MCP09** | Shadow MCP Servers                          | セキュリティガバナンス外の未承認MCPデプロイ（Shadow ITのMCP版）                               |
-| **MCP10** | Context Injection & Over-Sharing            | 共有コンテキストウィンドウでの機密情報漏洩                                                    |
+| **MCP10** | Context Injection & Over-Sharing            | 共有[コンテキストウィンドウ](../glossary#context-window)での機密情報漏洩                                                    |
 
 ### 各脆弱性の詳細と対策
 
@@ -100,7 +100,7 @@ const API_KEY = process.env.DEEPL_API_KEY;
 
 #### MCP03: Tool Poisoning
 
-**リスク**: 悪意あるMCPサーバーがコンテキストに有害な情報を注入
+**リスク**: 悪意あるMCPサーバーが[コンテキスト](../glossary#context)に有害な情報を注入
 
 ```
 攻撃パターン:

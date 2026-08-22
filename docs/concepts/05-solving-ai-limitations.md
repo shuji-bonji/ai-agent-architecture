@@ -35,7 +35,7 @@ This document does **not promise** the following. Stated explicitly to avoid mis
 | What this document shows                    | What this document does NOT guarantee                 | What it provides instead                            |
 | ------------------------------------------- | ----------------------------------------------------- | --------------------------------------------------- |
 | Boundary of solvability for each constraint | That all AI constraints can be resolved by technology | Realistic coping strategies per constraint          |
-| Mitigation approaches via MCP/RAG etc.      | Complete elimination of hallucinations                | Verification workflows + explicit uncertainty       |
+| Mitigation approaches via MCP/RAG etc.      | Complete elimination of [hallucinations](../glossary#structural-problems)                | Verification workflows + explicit uncertainty       |
 | Technical foundation for accountability     | Resolution of legal/ethical responsibility issues     | Design guidelines for audit trails and traceability |
 
 ```mermaid

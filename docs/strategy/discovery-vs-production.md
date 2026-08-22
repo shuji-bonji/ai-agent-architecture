@@ -41,9 +41,9 @@ These two are not superior/inferior. Use discovery mode for work whose answer-sh
 
 "Vague best practice" is weak. This separation can be derived logically from the structural nature of LLMs. Three constraints matter most.
 
-- **Context Rot** — the longer the context, the worse the output quality.
-- **Instruction Decay** — over a long session, the influence of the initial instructions fades.
-- **Sycophancy** — without clear acceptance criteria, an LLM drifts toward "it sort of runs, so it's fine."
+- **[Context Rot](../glossary#structural-problems)** — the longer the context, the worse the output quality.
+- **[Instruction Decay](../glossary#structural-problems)** — over a long [session](../glossary#session), the influence of the initial instructions fades.
+- **[Sycophancy](../glossary#structural-problems)** — without clear acceptance criteria, an LLM drifts toward "it sort of runs, so it's fine."
 
 Discovery mode **fits** these constraints. Exploration is one-off; if the context gets dirty, just throw it away. Since the goal is growing understanding, output rigor is secondary.
 
@@ -111,7 +111,7 @@ Suppose a senior engineer, through trial and error, produces the optimal prompt 
 > [!IMPORTANT]
 > **A compressed deliverable arrives uncompressed for whoever receives it. Compression must be redone per person.**
 
-Instructions (procedures) are transferable. But understanding is not. So the junior must **walk their own discovery mode again** over something someone else has already produced. In this site's vocabulary, this is the **distinction between harness (externalized, transferable constraints) and doctrine (internalized, non-transferable principles)**. The senior can hand over harness, but not doctrine (→ [Permission vs. Authority](./permission-vs-authority)).
+Instructions (procedures) are transferable. But understanding is not. So the junior must **walk their own discovery mode again** over something someone else has already produced. In this site's vocabulary, this is the **distinction between [harness](../glossary#harness) (externalized, transferable constraints) and doctrine (internalized, non-transferable principles)**. The senior can hand over harness, but not doctrine (→ [Permission vs. Authority](./permission-vs-authority)).
 
 **So the discovery/production balance necessarily changes between "using it alone" and "using it as a team."** On a team, one person's product becomes another person's starting point for discovery.
 

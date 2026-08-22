@@ -87,8 +87,8 @@ Forms in which agents actually exist as code or configuration files.
 | Implementation Unit | Definition | Representative Mechanism |
 | --- | --- | --- |
 | **Custom Agent** | An agent declaratively defined by the user (prompt, available tools, permissions, model). A superset that includes sub-agents | Claude Code's `.claude/agents/*.md`, GitHub Copilot's `.agent.md` |
-| **Sub-agent** | A child agent delegated by a parent, executing in an **independent context window**. Intermediate tool calls don't bleed into the parent — only the final output returns | Claude Code Subagents, Claude Agent SDK Subagents |
-| **Background Agent** | An asynchronous, long-running agent that persists state across sessions | GitHub Copilot Cloud Agents |
+| **Sub-agent** | A child agent delegated by a parent, executing in an **independent [context window](../glossary#context-window)**. Intermediate tool calls don't bleed into the parent — only the final output returns | Claude Code Subagents, Claude Agent SDK Subagents |
+| **Background Agent** | An asynchronous, long-running agent that persists state across [sessions](../glossary#session) | GitHub Copilot Cloud Agents |
 
 For Claude Code-specific definition details, see [what-is-subagent.md](./what-is-subagent.md).
 
@@ -126,7 +126,7 @@ flowchart TD
 
 Independent contexts deliver:
 
-- **Token efficiency**: Exploratory tool-call intermediate results don't crowd the parent's context
+- **[Token](../glossary#token) efficiency**: Exploratory tool-call intermediate results don't crowd the parent's context
 - **Error isolation**: Sub-agent failures are less likely to propagate to the parent
 - **Parallelism**: Multiple sub-agents can run concurrently. In Anthropic's Multi-Agent Research System, the lead spawns 3–5 sub-agents in parallel
 

@@ -334,7 +334,7 @@ Claude Codeでは以下のパスにSkillを配置する。
 ~/.claude/skills/xxx/SKILL.md               # ユーザー単位
 ```
 
-Claude Codeは起動時にこれらのパスを自動検出し、エージェントのコンテキストに読み込む。
+Claude Codeは起動時にこれらのパスを自動検出し、エージェントの[コンテキスト](../glossary#context)に読み込む。
 
 ### Cursor
 
@@ -399,7 +399,7 @@ Skillsについてさらに深く学ぶために、以下のドキュメント�
 
 ### 🔗 さらに深く: なぜ Skills という設計が必要なのか
 
-このページは Skills の **What/How**（何で、どう使うか）に焦点を当てている。「**なぜ** Skills という分離された設計が LLM に必要なのか」を LLM の構造的制約（Context Rot、Lost in the Middle、Priority Saturation）から理解したい場合は、姉妹サイトの解説が参考になる。
+このページは Skills の **What/How**（何で、どう使うか）に焦点を当てている。「**なぜ** Skills という分離された設計が LLM に必要なのか」を LLM の構造的制約（[Context Rot](../glossary#structural-problems)、[Lost in the Middle](../glossary#structural-problems)、[Priority Saturation](../glossary#structural-problems)）から理解したい場合は、姉妹サイトの解説が参考になる。
 
 - [understanding-llm / Part 5: Skills の設計原理](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/skills) — オンデマンドコンテキストとしての Skills
 - [understanding-llm / Part 1: LLM の構造的問題](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/) — Skills が解決する根本的な制約

@@ -9,7 +9,7 @@ description: 'Map Open WebUI Workspace (Models / Prompts / Knowledge / Skills / 
 
 ## About This Document
 
-Using a locally pulled base model (via Ollama or similar) on its own does not give you a "specialized agent for a specific task." You have to manually compose the system prompt, reference documents, tools, and guidelines for every conversation.
+Using a locally pulled base model (via Ollama or similar) on its own does not give you a "specialized agent for a specific task." You have to manually compose the [system prompt](../glossary#system-prompt), reference documents, tools, and guidelines for every conversation.
 
 [Open WebUI](https://docs.openwebui.com/features/workspace/models) answers this with the **Workspace** unit. It centralizes Models, Prompts, Knowledge, Skills, Tools, and MCP, letting you build and share a "specialized AI" — a bundle of all of them — directly from the web UI.
 

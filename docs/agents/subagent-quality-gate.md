@@ -32,9 +32,9 @@ This stems from LLM structural properties:
 
 | Structural problem | What happens |
 | --- | --- |
-| **Sycophancy** | Tendency to avoid criticism that contradicts its own output |
-| **Context Rot** | Generation-time context lingers; objective evaluation is impossible |
-| **Priority Saturation** | With multiple instructions ("write code", "review it"), the latter loses priority |
+| **[Sycophancy](../glossary#structural-problems)** | Tendency to avoid criticism that contradicts its own output |
+| **[Context Rot](../glossary#structural-problems)** | Generation-time context lingers; objective evaluation is impossible |
+| **[Priority Saturation](../glossary#structural-problems)** | With multiple instructions ("write code", "review it"), the latter loses priority |
 
 See [understanding-llm / Sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/sycophancy) for details.
 
@@ -63,7 +63,7 @@ flowchart TB
 | Property | Effect |
 | --- | --- |
 | **Isolated context** | Generation-time context, excuses, and intent are invisible → objective evaluation becomes possible |
-| **Role fixation (system prompt)** | "You are a reviewer" is guaranteed |
+| **Role fixation ([system prompt](../glossary#system-prompt))** | "You are a reviewer" is guaranteed |
 | **Only final output to parent** | Pass / Fail + findings reach the parent cleanly |
 | **Parallel execution** | Multiple perspectives (security / performance / style) can run in parallel |
 

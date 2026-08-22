@@ -67,7 +67,7 @@ features:
 | **Design（設計する）** | 再利用可能な構造と判断基準を作る | 👈 **本サイト（ai-agent-architecture）** |
 | **Understand（理解する）** | LLM の構造的制約を把握する | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) |
 
-> 💡 **ハーネスエンジニアリングを調べて来られた方へ** — ハーネスは「動かす」ための機構、本サイトは「設計する」ための地図です。両者の対応関係と、ハーネスがカバーしない領域（Skills 層・Doctrine 層）については [Harness Engineering との対応関係](/ja/strategy/harness-engineering-mapping) を参照してください。
+> 💡 **ハーネスエンジニアリングを調べて来られた方へ** — [ハーネス](./glossary#harness)は「動かす」ための機構、本サイトは「設計する」ための地図です。両者の対応関係と、ハーネスがカバーしない領域（Skills 層・Doctrine 層）については [Harness Engineering との対応関係](/ja/strategy/harness-engineering-mapping) を参照してください。
 
 ## 📚 姉妹プロジェクト
 

@@ -7,7 +7,7 @@
 > [!NOTE]
 > This page maps the structure of an autonomous development pipeline — one where AI drives the workflow from Issue to Deploy — onto the 5-layer model (Doctrine / Agent / Skills / Memory / MCP). Both cloud LLM and local LLM variants are presented.
 
-This pipeline is the automated counterpart of the manual prompt-driven development described in shuji-bonji's Zenn article [Fighting Without CLAUDE.md — Prompt-Driven Development Aware of LLM Structural Constraints](https://zenn.dev/shuji_bonji/articles/c9d325f1fd7646). The two are **different implementations of the same principle** — countermeasures against Context Rot, Instruction Decay, and Sycophancy. The design judgments are identical; only the implementation means change based on whether tool support is available.
+This pipeline is the automated counterpart of the manual prompt-driven development described in shuji-bonji's Zenn article [Fighting Without CLAUDE.md — Prompt-Driven Development Aware of LLM Structural Constraints](https://zenn.dev/shuji_bonji/articles/c9d325f1fd7646). The two are **different implementations of the same principle** — countermeasures against [Context Rot](../glossary#structural-problems), [Instruction Decay](../glossary#structural-problems), and [Sycophancy](../glossary#structural-problems). The design judgments are identical; only the implementation means change based on whether tool support is available.
 
 > [!TIP]
 > **In three lines:**
@@ -47,7 +47,7 @@ The "manual operation in tool-less environments" discussed in the Zenn article a
 | Commit + reset per phase | Context discarded automatically on Sub-agent termination | Instruction Decay |
 | Premium-consumption model switching | Meta-agent's model routing | Cost optimization (side effect) |
 | Instruction → plan → review | Planner → Critic Sub-agent | Sycophancy |
-| Instruction templates | Skill (`SKILL.md`) | Knowledge Boundary |
+| Instruction templates | Skill (`SKILL.md`) | [Knowledge Boundary](../glossary#structural-problems) |
 
 > [!IMPORTANT]
 > Sub-agent decomposition is not done "because it's convenient" — it is the **automation of countermeasures logically derived from LLM structural constraints**. Lose sight of this and you end up with "mere multi-invocation" that only inflates cost.
@@ -240,7 +240,7 @@ flowchart LR
 
 | Layer | Example |
 |---|---|
-| Harness | Claude Agent SDK / Claude Code / Cursor Agent / Devin / OpenHands |
+| [Harness](../glossary#harness) | Claude Agent SDK / Claude Code / Cursor Agent / Devin / OpenHands |
 | LLM | Claude Sonnet 4.6 (primary), Opus 4.6 (design / review), GPT-5 / Gemini 2.5 also viable |
 | Skills | `.claude/skills/*` (this site's approach) |
 | MCP | GitHub MCP, Playwright MCP, CI MCP, Codebase RAG |
@@ -299,7 +299,7 @@ flowchart LR
 | Code confidentiality | Fair (depends on policy) | Excellent |
 | Rate limits | Yes | None |
 | Self-review rigor | Excellent | Fair (Sycophancy stronger) |
-| Uncertainty awareness | Good | Poor (hard to notice hallucinations) |
+| Uncertainty awareness | Good | Poor (hard to notice [hallucinations](../glossary#structural-problems)) |
 | Need for Sub-agent decomposition | High | **Maximum** |
 
 ## 9. Recommended Hybrid (2026 Sweet Spot)
@@ -327,7 +327,7 @@ flowchart LR
 
 | Aspect | Monolithic Agent | Meta + Sub-agent |
 |---|---|---|
-| Total tokens | Low (single session) | High (role / context per Sub-agent) |
+| Total [tokens](../glossary#token) | Low (single [session](../glossary#session)) | High (role / context per Sub-agent) |
 | Quality (Context Rot resistance) | Low | **High** |
 | Sycophancy suppression | None (self-review) | **Excellent (separate Reviewer)** |
 | Model specialization | None | **Excellent (per role)** |

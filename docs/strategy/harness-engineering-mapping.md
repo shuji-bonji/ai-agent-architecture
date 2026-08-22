@@ -1,6 +1,6 @@
 # Harness Engineering Mapping
 
-> Map the four harness elements onto the 5-layer model and clarify what harness covers and what it doesn't.
+> Map the four [harness](../glossary#harness) elements onto the 5-layer model and clarify what harness covers and what it doesn't.
 
 ## About This Document
 
@@ -18,7 +18,7 @@ For readers who found this site while searching for harness engineering: this pa
 
 ## First Principle — the LLM Is the Brain, the Harness Is the Only Executor
 
-Before the four elements, define **what a harness is** one level down. The LLM itself is a **text in / text out** function: it merely emits `tool_call` (a structured token specifying which tool to call with which arguments). **Everything that touches the outside world (HTTP, files, other agents, GUI, the physical world) is done by the execution layer that surrounds the LLM — the harness.**
+Before the four elements, define **what a harness is** one level down. The LLM itself is a **text in / text out** function: it merely emits `tool_call` (a structured [token](../glossary#token) specifying which tool to call with which arguments). **Everything that touches the outside world (HTTP, files, other agents, GUI, the physical world) is done by the execution layer that surrounds the LLM — the harness.**
 
 ```mermaid
 flowchart LR
@@ -118,7 +118,7 @@ The four harness elements lack the concept of **"how to structure static knowled
 These are neither Context (memory) nor Action (tools); they are **judgment criteria conditionally injected into the LLM's immediate context** and require an independent layer.
 
 > [!IMPORTANT]
-> Squeezing Skills into Context causes token bloat and Priority Saturation. The design hinges on expanding Skills *only when invoked* — explored in detail in [concepts/03-architecture](../concepts/03-architecture).
+> Squeezing Skills into Context causes token bloat and [Priority Saturation](../glossary#structural-problems). The design hinges on expanding Skills *only when invoked* — explored in detail in [concepts/03-architecture](../concepts/03-architecture).
 
 ### 2. The Offensive Side of the Doctrine Layer
 
@@ -135,9 +135,9 @@ These are "offensive design guidance" and have no counterpart in the harness voc
 
 Harness prescribes "give it memory" and "wrap it in a loop," but does not explain **why** those prescriptions are necessary:
 
-- Why externalize Context? → Context Rot, Lost in the Middle
-- Why re-inject instructions in a loop? → Instruction Decay, Priority Saturation
-- Why sandbox at all? → Hallucination, Sycophancy
+- Why externalize Context? → [Context Rot](../glossary#structural-problems), [Lost in the Middle](../glossary#structural-problems)
+- Why re-inject instructions in a loop? → [Instruction Decay](../glossary#structural-problems), Priority Saturation
+- Why sandbox at all? → [Hallucination](../glossary#structural-problems), [Sycophancy](../glossary#structural-problems)
 
 These **structural constraints** are the subject of the sister site, [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/).
 

@@ -67,7 +67,7 @@ mindmap
 | **MCP07** | Insufficient Authentication & Authorization | Weak identity verification in multi-agent environments                                            |
 | **MCP08** | Lack of Audit and Telemetry                 | Difficulty in incident response due to insufficient logging and monitoring                        |
 | **MCP09** | Shadow MCP Servers                          | Unauthorized MCP deployment outside security governance (MCP version of Shadow IT)                |
-| **MCP10** | Context Injection & Over-Sharing            | Sensitive information disclosure in shared context windows                                        |
+| **MCP10** | Context Injection & Over-Sharing            | Sensitive information disclosure in shared [context windows](../glossary#context-window)                                        |
 
 ### Detailed Vulnerabilities and Countermeasures
 

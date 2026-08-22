@@ -447,7 +447,7 @@ In pdf-reader-mcp, we added the `response_format` parameter partway through. We 
 
 ### Lesson 3: Tool Granularity Should Enable Progressive Detail Discovery
 
-The 9 tools in epsg-mcp were designed to follow a progressive information retrieval flow: `search → detail → recommend → validate`. This allows users to drill down only to the depth they need, optimizing token consumption.
+The 9 tools in epsg-mcp were designed to follow a progressive information retrieval flow: `search → detail → recommend → validate`. This allows users to drill down only to the depth they need, optimizing [token](../glossary#token) consumption.
 
 ### Lesson 4: E2E Tests From the Beginning
 

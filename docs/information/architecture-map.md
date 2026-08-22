@@ -45,7 +45,7 @@ graph TB
 | LLM | A function that predicts | Agent (a subject that loops) |
 | Agent | Autonomous judgment loop | Workflow (fixed procedure) |
 | Tool Calling | The calling mechanism | MCP (its standard protocol) |
-| Memory | What to remember | Context Window (volatile) |
+| Memory | What to remember | [Context Window](../glossary#context-window) (volatile) |
 | Knowledge Graph | Structured relations | Vector DB (similarity) |
 | GraphRAG | Retrieval that walks relations | Plain RAG (fragment retrieval) |
 

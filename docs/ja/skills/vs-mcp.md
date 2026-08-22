@@ -377,7 +377,7 @@ MCPとSkillsの選択判断に関連するドキュメントを以下に示す�
 
 ### 🔗 さらに深く: なぜ MCP がコンテキストコストになるのか
 
-このページでは「いつ MCP、いつ Skills を選ぶか」を実用観点で扱っている。「**なぜ** MCP のツール定義そのものがコンテキスト消費の問題になるのか」を Tool Search や Deferred Loading の仕組みから理解したい場合は、姉妹サイトを参照。
+このページでは「いつ MCP、いつ Skills を選ぶか」を実用観点で扱っている。「**なぜ** MCP のツール定義そのものがコンテキスト消費の問題になるのか」を [Tool Search](../glossary#tool-search) や [Deferred Loading](../glossary#tool-search) の仕組みから理解したい場合は、姉妹サイトを参照。
 
 - [understanding-llm / Part 6: MCPのコンテキストコスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/mcp-context-cost) — MCP がトークンを消費する構造的理由
 - [understanding-llm / Tool Search / Deferred Loading](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/tool-search) — コスト回避の仕組み

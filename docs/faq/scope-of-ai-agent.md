@@ -67,9 +67,9 @@ Skills / MCP / Memory / Doctrine — the subject of this site — are not a gene
 
 | Building block on this site | LLM structural constraint it responds to |
 | --- | --- |
-| **Skills** | Knowledge boundary — domain procedures and conventions are not in the weights |
-| **MCP** | Accuracy & currency — hallucination and training-data cutoff |
-| **Memory** | Statelessness — nothing is remembered across sessions |
+| **Skills** | Knowledge boundary — domain procedures and conventions are not in the [weights](../glossary#weights) |
+| **MCP** | Accuracy & currency — [hallucination](../glossary#structural-problems) and training-data cutoff |
+| **Memory** | Statelessness — nothing is remembered across [sessions](../glossary#session) |
 | **Doctrine** | No built-in criteria — no native goals, constraints, or priorities |
 | **Agent (orchestration)** | Finite context — cannot see everything at once |
 | **Information** | Knowledge boundary & accuracy — the LLM cannot guarantee the quality and freshness of external knowledge by itself |
@@ -150,7 +150,7 @@ The design of the "connected side" in this diagram — which information to keep
 
 ## 🔗 Going Deeper: Why Do LLMs Have Structural Constraints?
 
-This page covered **where LLM agents sit (What)** within the broader AI landscape. To understand **why** LLMs are stateless, context-limited, and prone to hallucination, see the sister site.
+This page covered **where LLM agents sit (What)** within the broader AI landscape. To understand **why** LLMs are [stateless](../glossary#stateless), context-limited, and prone to hallucination, see the sister site.
 
 - [understanding-llm / Part 1: LLM Structural Problems](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/) — the eight structural problems that each layer of this site responds to
 

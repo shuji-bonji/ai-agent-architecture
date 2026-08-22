@@ -57,7 +57,7 @@ block-beta
 ```
 
 ::: tip Doctrine Layer — "Constitutional Judgment Criteria"
-These three layers define **what AI knows** and **what AI can do**. The question of **on what basis AI judges and decides** is addressed by the [Doctrine Layer](./07-doctrine-and-intent). The Doctrine Layer is not merely a system prompt — it is **constitutional judgment criteria** that governs all three layers through shared objectives, constraints, and judgment criteria.
+These three layers define **what AI knows** and **what AI can do**. The question of **on what basis AI judges and decides** is addressed by the [Doctrine Layer](./07-doctrine-and-intent). The Doctrine Layer is not merely a [system prompt](../glossary#system-prompt) — it is **constitutional judgment criteria** that governs all three layers through shared objectives, constraints, and judgment criteria.
 
 The [Responsibility Shift Model](./01-vision#the-responsibility-shift-model) defined in the Vision (design-time: human / execution-time: agent / structural constraints: system) and the [two-layer verification structure](./01-vision#the-responsibility-shift-model) (guardrails + evaluation pipelines) are applied to each layer through this Doctrine Layer.
 :::
@@ -153,7 +153,7 @@ block-beta
 
 | Layer      | Role                                   | Example                      | Developer Involvement |
 | ---------- | -------------------------------------- | ---------------------------- | --------------------- |
-| **Host**   | UI, session management                 | Claude Code, Cursor, VS Code | Consumer              |
+| **Host**   | UI, [session](../glossary#session) management                 | Claude Code, Cursor, VS Code | Consumer              |
 | **Client** | Protocol processing, server management | Built into Host              | Usually not concerned |
 | **Server** | Tool/resource provision                | rfcxml-mcp, deepl-mcp        | **Provider**          |
 
@@ -481,7 +481,7 @@ When both a CLI and an MCP are possible options, use this comparison table to ch
 
 | Aspect                | CLI + Skill          | MCP                               |
 | --------------------- | -------------------- | --------------------------------- |
-| **Token consumption** | Low (command only)   | High (loads all tool definitions) |
+| **[Token](../glossary#token) consumption** | Low (command only)   | High (loads all tool definitions) |
 | **Startup cost**      | None                 | Requires server process           |
 | **Authentication**    | Local                | Managed by MCP                    |
 | **Purpose-built**     | ◎ (Dedicated design) | △ (General purpose)               |
@@ -631,7 +631,7 @@ Memory is inherently **dynamic**, changing as conversations progress. In contras
 
 Furthermore, Memory implementation varies significantly across LLMs and platforms:
 
-- **Context window** (short-term memory): Present in all LLMs, but size and lifecycle are model-dependent
+- **[Context window](../glossary#context-window)** (short-term memory): Present in all LLMs, but size and lifecycle are model-dependent
 - **Persistent memory**: Platform-specific features (e.g., ChatGPT Memory) or application-layer implementations (e.g., LangChain `ConversationBufferMemory`)
 - **`CLAUDE.md`**: A concept close to "project-level memory" in Claude Code, but strictly an instruction file rather than Memory
 
@@ -675,7 +675,7 @@ block-beta
 
 ## 🔗 Deeper: Foundational principles of context management
 
-This page covers the **structure (what/how)** of three-layer separation. If you want to understand **why** this separation is necessary — grounded in LLM structural constraints (Context Window size limits, Context Rot, Priority Saturation) — the sister site provides the design rationale.
+This page covers the **structure (what/how)** of three-layer separation. If you want to understand **why** this separation is necessary — grounded in LLM structural constraints (Context Window size limits, [Context Rot](../glossary#structural-problems), [Priority Saturation](../glossary#structural-problems)) — the sister site provides the design rationale.
 
 - [understanding-llm / Part 2: Context Window](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/) — The structure of the LLM's "thinking space"
 - [understanding-llm / Part 3: Always-Loaded Context — CLAUDE.md](https://shuji-bonji.github.io/understanding-llm-through-claude-code/03-always-loaded-context/) — How Agent layer instructions stay resident

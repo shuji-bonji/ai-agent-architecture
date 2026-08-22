@@ -203,7 +203,7 @@ Each platform has begun providing an **MCP Server**. This is the key touchpoint 
 
 | Situation | Judgment |
 | --- | --- |
-| The agent aggregates / analyzes **structured tabular data** (DWH / DB) | **SHOULD** adopt. Structurally prevents drift in meaning and hallucination |
+| The agent aggregates / analyzes **structured tabular data** (DWH / DB) | **SHOULD** adopt. Structurally prevents drift in meaning and [hallucination](../glossary#structural-problems) |
 | Multiple teams / agents reference **the same metrics** | **SHOULD** adopt (the single source of truth guarantees consistency) |
 | The main purpose is referencing unstructured data (documents, PDFs, specs) | **Not needed.** Handled by Reference-type MCPs ([`mcp/what-is-mcp`](./what-is-mcp)) |
 | One-off, throwaway small queries where definition drift is harmless | **MAY** adopt (optional; beware over-engineering) |

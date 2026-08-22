@@ -358,7 +358,7 @@ What this Skill defines is the knowledge of "which MCP to call, in what order, w
 ### Design Guidelines
 
 - **Agent orchestration is key**: The Agent layer determines which MCPs to call first and when to reference which Skills
-- **Parallelize MCP calls**: Independent MCP calls should be executed in parallel to efficiently use the context window
+- **Parallelize MCP calls**: Independent MCP calls should be executed in parallel to efficiently use the [context window](../glossary#context-window)
 - **Skill trigger timing**: Clarify whether to judge collectively after data retrieval or to judge incrementally
 
 ## Pattern Selection Guide

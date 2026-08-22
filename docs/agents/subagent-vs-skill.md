@@ -51,7 +51,7 @@ The crux is whether **the context is separated or not**.
 | Intermediate calls' effect on parent | Present (consumes parent context) | None (isolated) |
 | Final output | Full history visible | Final output only |
 | Parallel execution | Not possible (sequential expansion) | Possible (multiple instances at once) |
-| Startup cost | Low (just Markdown loading) | Medium (launch separate session) |
+| Startup cost | Low (just Markdown loading) | Medium (launch separate [session](../glossary#session)) |
 | Host dependency | Medium (common spec across major tools) | High (mostly Claude Code-specific) |
 
 > [!IMPORTANT]
@@ -85,10 +85,10 @@ Why each question:
 
 | Question | Rationale |
 | --- | --- |
-| **Q1: Many intermediate calls?** | Exploratory tool calls (e.g., codebase-wide search) generate hundreds to thousands of tokens of intermediate output. Letting them flow into the parent raises Context Rot risk → sub-agent |
+| **Q1: Many intermediate calls?** | Exploratory tool calls (e.g., codebase-wide search) generate hundreds to thousands of [tokens](../glossary#token) of intermediate output. Letting them flow into the parent raises [Context Rot](../glossary#structural-problems) risk → sub-agent |
 | **Q2: Parallel execution?** | Skills can only expand sequentially. Anthropic Multi-Agent Research has a lead launching 3–5 sub-agents in parallel → sub-agent |
 | **Q3: Final result only?** | "I just want the PR review conclusion" / "I just want the translation output" — raw intermediate data is not needed → sub-agent |
-| **Q4: Role / persona?** | "As a security auditor" / "As a translator" — when role fixation directly affects quality → sub-agent (system prompt is isolated) |
+| **Q4: Role / persona?** | "As a security auditor" / "As a translator" — when role fixation directly affects quality → sub-agent ([system prompt](../glossary#system-prompt) is isolated) |
 | **Q5: Otherwise** | Simple template expansion, judgment criteria, conventions — **start with a Skill**. Promote later if needed |
 
 ## Same Goal, Different Mechanism

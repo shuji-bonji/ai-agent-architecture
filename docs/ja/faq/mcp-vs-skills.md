@@ -35,7 +35,7 @@ description: "Model Context Protocol (MCP) と Agent Skills の違いを3行で�
 
 ### Q: MCP の方が高機能じゃない？ Skills は MCP の劣化版？
 
-**A**: いいえ。**MCP と Skills は責務が違う**。MCP は「**何にアクセスできるか**」を提供し、Skills は「**何を知っているか・どう判断するか**」を提供する。CLI が既にあるなら MCP を作るより `gh` CLI + Skills の方がトークン効率が良いケースも多い。
+**A**: いいえ。**MCP と Skills は責務が違う**。MCP は「**何にアクセスできるか**」を提供し、Skills は「**何を知っているか・どう判断するか**」を提供する。CLI が既にあるなら MCP を作るより `gh` CLI + Skills の方が[トークン](../glossary#token)効率が良いケースも多い。
 
 ### Q: cline / Cursor / Vercel の Skills は同じもの？
 

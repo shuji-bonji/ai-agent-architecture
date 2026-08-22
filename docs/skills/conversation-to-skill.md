@@ -22,7 +22,7 @@ The "distillation" discussed here is **Trajectory Distillation at runtime (agent
 ::: details Meta Information
 
 - **What this page fixes**: The three elements extracted from a successful conversation (arguments, constraints, expected output) and the criteria for promoting them to a Skill
-- **Out of scope**: Distillation that changes model weights (Knowledge Distillation / Context Distillation), and how to write Skills per se (→ [Skill Creation Guide](./how-to-create-skills))
+- **Out of scope**: Distillation that changes model [weights](../glossary#weights) (Knowledge Distillation / Context Distillation), and how to write Skills per se (→ [Skill Creation Guide](./how-to-create-skills))
 - **Depends on**: [What are Skills](./what-is-skills), [Memory and Knowledge](../concepts/08-memory-and-knowledge)
 - **Common misuse**: Mistaking this for "saving conversation logs as-is." The essence of distillation is **throwing things away**
 
@@ -58,7 +58,7 @@ flowchart LR
     style GONE fill:#fee2e2,stroke:#b91c1c,color:#000
 ```
 
-What is lost here is not the answer itself. It is **the delta — what the initial prompt was missing**. Corrections #1 and #2 are constraints that will very likely be needed again for the same kind of task, yet they vanish with the session.
+What is lost here is not the answer itself. It is **the delta — what the initial prompt was missing**. Corrections #1 and #2 are constraints that will very likely be needed again for the same kind of task, yet they vanish with the [session](../glossary#session).
 
 > [!IMPORTANT]
 > A conversation trace exposes "implicit requirements specific to this user, this team, this task type." Distillation means **codifying those implicit requirements as explicit constraints**. This differs in purpose from saving conversation logs (Memory) — Memory records "what happened," distillation records "what to do next time."
@@ -131,7 +131,7 @@ flowchart LR
 
 Two reasons:
 
-1. **Context Rot mitigation** — the distilled artifact will be re-injected into future sessions. A long Skill that includes the whole history pollutes the context by itself. Shorter Skills are stronger
+1. **[Context Rot](../glossary#structural-problems) mitigation** — the distilled artifact will be re-injected into future sessions. A long Skill that includes the whole history pollutes the context by itself. Shorter Skills are stronger
 2. **Generalizability** — "that time we rephrased it this way" is a one-off anecdote and cannot be reused, but generalized constraints like "output as a table" or "keep technical terms in English" can
 
 > [!TIP]

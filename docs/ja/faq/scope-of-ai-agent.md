@@ -67,9 +67,9 @@ flowchart TB
 
 | 本サイトの構成要素 | 応答している LLM の構造的制約 |
 | --- | --- |
-| **Skills** | 知識の境界 — ドメイン固有の手順・規約を重みに持たない |
-| **MCP** | 正確性・最新性 — Hallucination と学習データのカットオフ |
-| **Memory** | ステートレス性 — セッションを跨いで何も覚えない |
+| **Skills** | 知識の境界 — ドメイン固有の手順・規約を[重み](../glossary#weights)に持たない |
+| **MCP** | 正確性・最新性 — [Hallucination](../glossary#structural-problems) と学習データのカットオフ |
+| **Memory** | [ステートレス](../glossary#stateless)性 — [セッション](../glossary#session)を跨いで何も覚えない |
 | **Doctrine** | 判断基準の不在 — 目的・制約・優先順位を自前で持たない |
 | **Agent (オーケストレーション)** | コンテキスト有限性 — 一度にすべてを見られない |
 | **Information (情報基盤)** | 知識の境界・正確性 — 外部知識の品質と鮮度は LLM 自身では担保できない |
@@ -150,7 +150,7 @@ LLM は解釈性・決定論的保証・低レイテンシ・ドメイン精度�
 
 ## 🔗 さらに深く: なぜ LLM には構造的制約があるのか
 
-本ページは AI 全体の中での **LLM エージェントの位置づけ (What)** を扱った。「**なぜ** LLM はステートレスで、コンテキストが有限で、Hallucination するのか」を構造から理解したい場合は、姉妹サイトを参照。
+本ページは AI 全体の中での **LLM エージェントの位置づけ (What)** を扱った。「**なぜ** LLM はステートレスで、[コンテキスト](../glossary#context)が有限で、Hallucination するのか」を構造から理解したい場合は、姉妹サイトを参照。
 
 - [understanding-llm / Part 1: LLM の構造的問題](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/) — 本サイトの各層が応答している 8 つの構造的問題の解説
 

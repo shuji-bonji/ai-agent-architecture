@@ -5,18 +5,18 @@ description: 'Lumping RAG, vector DBs, MCP, Skills, and prompts together as "str
 
 # Proposal vs. Binding — The Reach / Expression / Execution / Binding Layers
 
-> What makes something binding is not whether its processing is deterministic. It is whether its output lands in the token sequence.
+> What makes something binding is not whether its processing is deterministic. It is whether its output lands in the [token](../glossary#token) sequence.
 
 ## About This Document
 
-RAG, vector DBs, MCP, Skills, prompts. All of them end up as text in the LLM's context window. That makes the observation "this is all about structuring data so the model can read it" a fair one. The observation is sound, but using it alone as a design principle pushes the layer that **actually decides outcomes** out of view.
+RAG, vector DBs, MCP, Skills, prompts. All of them end up as text in the LLM's [context window](../glossary#context-window). That makes the observation "this is all about structuring data so the model can read it" a fair one. The observation is sound, but using it alone as a design principle pushes the layer that **actually decides outcomes** out of view.
 
 This page defines the coordinate system you put in place before evaluating any individual technology. It covers three things: (1) the question that separates what binds from what does not, (2) the two distinct jobs hiding inside the token sequence — reach and expression, and (3) the four-layer placement, and what happens when layers are confused.
 
 > **Audience**: people who place RAG, MCP, Skills, and permission side by side in one design, and anyone who wants to explain "I wrote it in the prompt and it still wasn't followed" in terms of layers
 
 ::: warning Where This Page Sits
-This page covers only the coordinate system. The designs that sit on top of it live elsewhere. For **how to design the judgment part of the binding layer**, see [Deterministic Verdicts](./deterministic-verdicts). For **what an agent asks for at the binding boundary**, see [Permission vs. Authority](./permission-vs-authority). For the **static correspondence between harness and the 5-layer model**, see [Harness Engineering Mapping](./harness-engineering-mapping).
+This page covers only the coordinate system. The designs that sit on top of it live elsewhere. For **how to design the judgment part of the binding layer**, see [Deterministic Verdicts](./deterministic-verdicts). For **what an agent asks for at the binding boundary**, see [Permission vs. Authority](./permission-vs-authority). For the **static correspondence between [harness](../glossary#harness) and the 5-layer model**, see [Harness Engineering Mapping](./harness-engineering-mapping).
 :::
 
 ::: details Metadata

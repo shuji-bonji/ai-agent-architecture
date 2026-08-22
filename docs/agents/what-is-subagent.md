@@ -102,7 +102,7 @@ The relationships between components shown in the diagram above can be summarize
 
 ### Basic Structure
 
-Sub-agents are defined in Markdown files. Place metadata at the top of the file, followed by the system prompt (defining specialization).
+Sub-agents are defined in Markdown files. Place metadata at the top of the file, followed by the [system prompt](../glossary#system-prompt) (defining specialization).
 
 ```markdown
 <!-- .claude/agents/rfc-specialist.md -->
@@ -197,7 +197,7 @@ Benefits gained from implementing custom sub-agents:
 
 Custom sub-agents have some limitations:
 
-- ❌ **Session-limited**: Cannot maintain state between sessions. Persistent memory and caching unavailable
+- ❌ **[Session](../glossary#session)-limited**: Cannot maintain state between sessions. Persistent memory and caching unavailable
 - ❌ **Host-dependent**: Claude Code only. Limited compatibility with Cursor and others
 - ❌ **Context sharing limitations**: Limited sharing with parent agent. Cannot share large context in some cases
 - ❌ **Parallel execution constraints**: Limited control for simultaneous multi-sub-agent execution

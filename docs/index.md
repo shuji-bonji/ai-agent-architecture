@@ -69,7 +69,7 @@ This site is not a "how to operate" manual — it's a **map for design**. How to
 | **Design** | Build reusable structures and judgment criteria | 👈 **This site (ai-agent-architecture)** |
 | **Understand** | Grasp the structural constraints of LLMs | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) |
 
-> 💡 **For readers who came here searching for "harness engineering"** — Harness is the mechanism for *operating*; this site is the map for *designing*. For the mapping between the two and the layers harness doesn't cover (Skills layer / Doctrine layer), see [Harness Engineering Mapping](/strategy/harness-engineering-mapping).
+> 💡 **For readers who came here searching for "harness engineering"** — [Harness](./glossary#harness) is the mechanism for *operating*; this site is the map for *designing*. For the mapping between the two and the layers harness doesn't cover (Skills layer / Doctrine layer), see [Harness Engineering Mapping](/strategy/harness-engineering-mapping).
 
 ## 📚 Sister Projects
 

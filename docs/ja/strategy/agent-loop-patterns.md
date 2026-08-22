@@ -5,7 +5,7 @@
 ## このドキュメントについて
 
 > [!NOTE]
-> 本ページは [Harness Engineering との対応関係](./harness-engineering-mapping) の **Orchestration（ループ制御）→ Agent 層** の写像の「中身」を扱う。ハーネスが `① tool_call → ② 実 I/O → ③ 結果 → ④ 文脈に戻す` のループを**どう反復するか**の型（ReAct / Plan-and-Execute / Reflexion / Evaluator-Optimizer）をカタログ化する。
+> 本ページは [Harness Engineering との対応関係](./harness-engineering-mapping) の **Orchestration（ループ制御）→ Agent 層** の写像の「中身」を扱う。[ハーネス](../glossary#harness)が `① tool_call → ② 実 I/O → ③ 結果 → ④ 文脈に戻す` のループを**どう反復するか**の型（ReAct / Plan-and-Execute / Reflexion / Evaluator-Optimizer）をカタログ化する。
 
 「ハーネスパターン」という名前は標準用語ではないが、その中身は確立して存在する。文献では **agent patterns / single-agent patterns / agentic reasoning patterns** と呼ばれる。
 
@@ -66,7 +66,7 @@ flowchart LR
 ```
 
 - **長所**: 各ステップで軌道修正できる。実装が単純。
-- **短所**: ステップごとに観測を文脈へ積むためトークン消費が増える。長いタスクで脱線・暴走しやすい（→ 上限ガードが必須）。
+- **短所**: ステップごとに観測を文脈へ積むため[トークン](../glossary#token)消費が増える。長いタスクで脱線・暴走しやすい（→ 上限ガードが必須）。
 
 ### 2. Plan-and-Execute / ReWOO — 計画と実行の分離
 

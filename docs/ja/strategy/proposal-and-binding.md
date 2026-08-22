@@ -5,7 +5,7 @@ description: 'RAG・Vector DB・MCP・Skills・プロンプトを「LLM が読�
 
 # 提案と拘束 — 到達 / 表現 / 実行 / 拘束の四層
 
-> 拘束力を決めるのは、処理が決定論的かどうかではない。成果物がトークン列に入るかどうかである。
+> 拘束力を決めるのは、処理が決定論的かどうかではない。成果物が[トークン](../glossary#token)列に入るかどうかである。
 
 ## このドキュメントについて
 
@@ -16,7 +16,7 @@ RAG、Vector DB、MCP、Skills、プロンプト。これらはいずれも最�
 > **対象読者**: RAG・MCP・Skills・permission を同じ設計の中に並べて置く人、「プロンプトに書いたのに守られない」の原因を層で説明したい人
 
 ::: warning このページの位置づけ
-本ページは分類の座標系だけを扱う。座標系の上に載る個別の設計は別ページにある。**拘束層のうち判定をどう設計するか** は [判定の決定論性](./deterministic-verdicts)、**拘束層の境界でエージェントが何を要求するか** は [Permission と Authority](./permission-vs-authority)、**ハーネスと 5 層モデルの静的対応** は [Harness Engineering との対応関係](./harness-engineering-mapping) を参照。
+本ページは分類の座標系だけを扱う。座標系の上に載る個別の設計は別ページにある。**拘束層のうち判定をどう設計するか** は [判定の決定論性](./deterministic-verdicts)、**拘束層の境界でエージェントが何を要求するか** は [Permission と Authority](./permission-vs-authority)、**[ハーネス](../glossary#harness)と 5 層モデルの静的対応** は [Harness Engineering との対応関係](./harness-engineering-mapping) を参照。
 :::
 
 ::: details メタ情報
