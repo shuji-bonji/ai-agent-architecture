@@ -9,13 +9,13 @@
 > [!TIP] 3 行で答える
 > - **単一サブエージェントで処理時間が爆発したり、観点が混じり合うとき** に Agent Team を検討する
 > - 3 つの基本パターン: **Orchestrator-Worker** (統括者あり) / **Hierarchical Team** (役割固定) / **Swarm** (ハンドオフ協調)
-> - **コストは並列度・トークン消費の両面で線形以上に増える**。導入は「単純化を試した後」が原則
+> - **コストは並列度・[トークン](../glossary#token)消費の両面で線形以上に増える**。導入は「単純化を試した後」が原則
 
 関連: [エージェント概念の分類](./agent-taxonomy) / [カスタムサブエージェント](./what-is-subagent) / [サブエージェント vs Skills](./subagent-vs-skill) / [A2Aとは](./what-is-a2a)
 
 ## なぜ「単一サブエージェント」では足りなくなるか
 
-サブエージェントは独立コンテキストで動くが、それでも以下の壁にぶつかる。
+サブエージェントは独立[コンテキスト](../glossary#context)で動くが、それでも以下の壁にぶつかる。
 
 ```mermaid
 flowchart TB
@@ -163,7 +163,7 @@ flowchart TD
 
 ### 導入シグナル ✅
 
-- 単一サブエージェントで **1 セッションが 10 分以上** かかる
+- 単一サブエージェントで **1 [セッション](../glossary#session)が 10 分以上** かかる
 - 5 ファイル以上を **同時並列でレビュー / 分析** したい
 - 「**実装者と批判者を分けたい**」品質要件がある
 - 役割ごとに **異なるツール権限** を与えたい (例: Implementer に Write、Reviewer に Read のみ)
@@ -308,7 +308,7 @@ flowchart TB
 
 ## 🔗 さらに深く: なぜ単一エージェントでは届かないか
 
-本ページは **Agent Team の実装視点 (What/How)** を扱った。「**なぜ** 単一エージェントが Context Rot で頭打ちになり、複数セッション協調が必要になるのか」を LLM の構造から理解したい場合は、姉妹サイトを参照。
+本ページは **Agent Team の実装視点 (What/How)** を扱った。「**なぜ** 単一エージェントが [Context Rot](../glossary#structural-problems) で頭打ちになり、複数セッション協調が必要になるのか」を LLM の構造から理解したい場合は、姉妹サイトを参照。
 
 - [understanding-llm / Part 10: マルチセッション協調](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/10-multi-session/) — 単一エージェントを超えるスケールの根本原理
 - [understanding-llm / Subagent vs Team](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/10-multi-session/subagent-vs-team) — サブエージェントと Team の境界

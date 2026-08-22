@@ -243,7 +243,7 @@ flowchart TD
 | "翻訳品質は 0.85以上必須"                            | Skill（知識） | タスク固有の閾値               |
 | "DeepLで翻訳 → xCOMETで評価 → 修正"                  | Skill（実行） | マルチステップMCPワークフロー  |
 | "DeepL APIを呼び出してテキストを翻訳"                | MCP           | 外部ツールの機能               |
-| "プロジェクトはAngular 17、standalone component使用" | CLAUDE.md     | プロジェクト全体のコンテキスト |
+| "プロジェクトはAngular 17、standalone component使用" | CLAUDE.md     | プロジェクト全体の[コンテキスト](../glossary#context) |
 | "レビュー順序: ロジック → 設計 → スタイル"           | Skill（知識） | タスク固有の手順               |
 
 ### 組み合わせパターン

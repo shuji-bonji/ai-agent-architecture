@@ -1,6 +1,6 @@
 # サブエージェントを品質ゲートとして使う
 
-> 「自分が書いたコードを自分でレビューしても甘くなる」 — この構造的問題を、**独立したコンテキストを持つサブエージェント** で解決する。
+> 「自分が書いたコードを自分でレビューしても甘くなる」 — この構造的問題を、**独立した[コンテキスト](../glossary#context)を持つサブエージェント** で解決する。
 
 ## このドキュメントについて
 
@@ -32,9 +32,9 @@ flowchart LR
 
 | 構造的問題 | 起きること |
 | --- | --- |
-| **Sycophancy (同意バイアス)** | 自分の出力に矛盾する指摘を避ける傾向がある |
-| **Context Rot** | コード生成時の文脈が残っているため、客観評価できない |
-| **Priority Saturation** | 「コードを書け」「レビューもしろ」という複数指示で、後者の優先度が下がる |
+| **[Sycophancy](../glossary#structural-problems) (同意バイアス)** | 自分の出力に矛盾する指摘を避ける傾向がある |
+| **[Context Rot](../glossary#structural-problems)** | コード生成時の文脈が残っているため、客観評価できない |
+| **[Priority Saturation](../glossary#structural-problems)** | 「コードを書け」「レビューもしろ」という複数指示で、後者の優先度が下がる |
 
 詳細は姉妹サイト [understanding-llm / Sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/sycophancy) を参照。
 
@@ -63,7 +63,7 @@ flowchart TB
 | 性質 | 効果 |
 | --- | --- |
 | **独立コンテキスト** | 生成時の文脈・言い訳・意図が見えない → 客観評価が成立する |
-| **ロール固定 (システムプロンプト)** | 「あなたはレビュアーである」を担保 |
+| **ロール固定 ([システムプロンプト](../glossary#system-prompt))** | 「あなたはレビュアーである」を担保 |
 | **最終出力のみ親に返す** | 合格 / 不合格 + 指摘がクリーンに親に渡る |
 | **並列実行可** | 複数観点 (security / performance / style) を同時並行で評価できる |
 

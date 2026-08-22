@@ -95,7 +95,7 @@ These frameworks slice differently, but all point at the same concerns — **rol
 | Examples / Validation | CRISPE: Example / Anthropic: Examples (multishot) |
 
 > [!IMPORTANT]
-> Every one of these frameworks is **a way of writing within a single prompt**. They arrange the concerns inside one input, but the arranged concerns vanish when the session ends and must be rewritten next time.
+> Every one of these frameworks is **a way of writing within a single prompt**. They arrange the concerns inside one input, but the arranged concerns vanish when the [session](../glossary#session) ends and must be rewritten next time.
 >
 > The question this page raises goes one step further — how do we structure these concerns **as a premise, as a layered architecture, into a form that persists and is reusable?** First name the concerns (the seven conditions, next), then distribute each to the layer that can best persist it.
 
@@ -131,11 +131,11 @@ The seven conditions are not an arbitrary taxonomy — they **exhaust the indepe
 | Examples / Validation | How to judge correct from incorrect |
 
 > [!NOTE]
-> *Why* the model cannot decide these axes on its own and instead fills them implicitly (the underlying principle) is out of scope for this site. The mechanics — how an LLM responds to statistical token patterns and fills weakly-specified axes from its prior distribution — are covered by the sister site (see "[Deeper](#deeper-why-a-flat-prompt-degrades)" at the end).
+> *Why* the model cannot decide these axes on its own and instead fills them implicitly (the underlying principle) is out of scope for this site. The mechanics — how an LLM responds to statistical [token](../glossary#token) patterns and fills weakly-specified axes from its prior distribution — are covered by the sister site (see "[Deeper](#deeper-why-a-flat-prompt-degrades)" at the end).
 
 ## The Core Thesis — A Prompt Is a Flattened Snapshot
 
-In a one-off prompt, all seven conditions are **co-located in a single context window**. That is convenient for a single turn, but it means every condition is volatile: it disappears when the session ends, and must be retyped next time.
+In a one-off prompt, all seven conditions are **co-located in a single [context window](../glossary#context-window)**. That is convenient for a single turn, but it means every condition is volatile: it disappears when the session ends, and must be retyped next time.
 
 A system design does the opposite. It takes each condition and **externalizes it to the layer best able to persist and reuse it**. The prompt does not vanish — it thins out, because its stable parts now live elsewhere.
 
@@ -227,7 +227,7 @@ flowchart TB
 
 ## Walking the Seven Conditions
 
-**Role → Agent / Identity.** A role stated once per prompt ("you are a careful reviewer") becomes, at the system level, the persona in the system prompt, the opening of `CLAUDE.md`, or a dedicated sub-agent definition under `.claude/agents/`. In the AgentID era it becomes a verifiable identity (DID). The role stops being a sentence and becomes *who the agent is by default*.
+**Role → Agent / Identity.** A role stated once per prompt ("you are a careful reviewer") becomes, at the system level, the persona in the [system prompt](../glossary#system-prompt), the opening of `CLAUDE.md`, or a dedicated sub-agent definition under `.claude/agents/`. In the AgentID era it becomes a verifiable identity (DID). The role stops being a sentence and becomes *who the agent is by default*.
 
 **Premise / Background → Memory + Skills.** Shared facts that are stable for the project belong in `CLAUDE.md` or a Skill; facts that are really *relationships to prior work* belong in Memory (see [08](./08-memory-and-knowledge)). The test: if the premise is "what is true," it tends toward Skills; if it is "what happened," it tends toward Memory.
 

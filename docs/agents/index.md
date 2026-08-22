@@ -136,7 +136,7 @@ flowchart LR
 
 ## 🔗 Deeper: From the context-management perspective
 
-For agents' essential constraints — why isolated contexts matter, why Multi-Session coordination is needed — grounded in LLM structure, see the sister site.
+For agents' essential constraints — why isolated contexts matter, why Multi-[Session](../glossary#session) coordination is needed — grounded in LLM structure, see the sister site.
 
 - [understanding-llm / Part 5: On-Demand Context (Skills & Agents)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/) — Agents that expand only when requested
 - [understanding-llm / Part 10: Multi-Session Coordination (Agent Teams)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/10-multi-session/) — Scaling beyond a single agent

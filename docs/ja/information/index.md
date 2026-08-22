@@ -14,7 +14,7 @@
 > 既存の [MCP](../mcp/what-is-mcp.md) / [Skills](../skills/what-is-skills.md) セクションが「実装メカニズムの棚」であるのに対し、本セクションは**ベンダー中立の設計判断の棚**である。両者は [全体地図](architecture-map.md) 上の持ち場として接続される。
 
 > [!NOTE] 本サイトのスコープとの関係
-> 本サイトが「AIエージェント」を LLM 駆動に絞る理由は [本サイトのスコープ (FAQ)](../faq/scope-of-ai-agent.md) を参照。本セクションは推論コアに接続される**情報側**を扱う。RAG・データ整備は Knowledge Boundary / Hallucination という LLM の構造的制約への**応答**であり、情報ガバナンス (オーナー・アクセス権・品質) はそれ以前に成立する**接続の前提条件**である。
+> 本サイトが「AIエージェント」を LLM 駆動に絞る理由は [本サイトのスコープ (FAQ)](../faq/scope-of-ai-agent.md) を参照。本セクションは推論コアに接続される**情報側**を扱う。RAG・データ整備は [Knowledge Boundary](../glossary#structural-problems) / [Hallucination](../glossary#structural-problems) という LLM の構造的制約への**応答**であり、情報ガバナンス (オーナー・アクセス権・品質) はそれ以前に成立する**接続の前提条件**である。
 
 ## 構成
 

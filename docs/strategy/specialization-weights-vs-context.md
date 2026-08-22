@@ -59,7 +59,7 @@ flowchart TB
 ## Terminology: Parametric vs. Non-parametric Knowledge
 
 - **Parametric knowledge**: knowledge and behavior **baked into the weights** through training. It cannot be changed at inference-time (frozen).
-- **Non-parametric knowledge**: knowledge **injected into the context window from outside** at inference-time. Supplied each time by retrieval, tools, and documents.
+- **Non-parametric knowledge**: knowledge **injected into the [context window](../glossary#context-window) from outside** at inference-time. Supplied each time by retrieval, tools, and documents.
 
 > [!NOTE]
 > The structural reasons — *why* weights are frozen at inference-time and *why* context consumes tokens — connect to **Knowledge Boundary / Context Window budget** on the sister site `understanding-llm-through-claude-code` (see the links at the end). This page takes those constraints as given and addresses how to design around them.
@@ -68,7 +68,7 @@ flowchart TB
 
 ### Route A: Specialize via Context & Tools (inference-time)
 
-Leave the weights untouched and turn the model into a specialist at inference-time with **System Prompt, Skill, MCP, retrieval, and RAG**. The brain (weights) stays general; you specialize through **equipment**. "Custom sub-agents" and "context engineering" belong here. This site's [Skills](../skills/what-is-skills), [MCP](../mcp/what-is-mcp), and [sub-agents](../agents/what-is-subagent) are all Route A means.
+Leave the weights untouched and turn the model into a specialist at inference-time with **[System Prompt](../glossary#system-prompt), Skill, MCP, retrieval, and RAG**. The brain (weights) stays general; you specialize through **equipment**. "Custom sub-agents" and "context engineering" belong here. This site's [Skills](../skills/what-is-skills), [MCP](../mcp/what-is-mcp), and [sub-agents](../agents/what-is-subagent) are all Route A means.
 
 ### Route B: Specialize by Training the Weights (train-time)
 
@@ -83,7 +83,7 @@ Keep the same architecture but **train the weights themselves** to bake in the s
 | When knowledge enters | At inference-time (every time)            | At train-time (once)                  |
 | Freshness       | Always current (tools fetch it)                 | Frozen at training time               |
 | Update cost     | Just swap the prompt/document — instant          | Needs GPU, data, retraining           |
-| Runtime cost    | Tokens spent every time + tool round-trip latency | No extra cost at inference — low latency |
+| Runtime cost    | [Tokens](../glossary#token) spent every time + tool round-trip latency | No extra cost at inference — low latency |
 | Transparency    | Traceable what was retrieved (auditable)        | Dissolved into the weights (opaque)   |
 | Main risk       | Prompt injection / tool errors                  | Overfitting / catastrophic forgetting |
 | Strong suit     | **Facts, fresh info, actions (API execution)**  | **Behavior, manners, tone, tacit knowledge** |

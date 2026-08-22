@@ -334,7 +334,7 @@ Skillのワークフローに外部ツールの使用が含まれる場合。Ski
 ### 作成したSkillのテスト方法は？
 
 1. `.claude/skills/your-skill/SKILL.md` に配置する
-2. 新しいClaude Codeセッションを開始する
+2. 新しいClaude Code[セッション](../glossary#session)を開始する
 3. Skillが発動すべきタスクをエージェントに指示する
 4. エージェントがSkillのガイドラインを参照・遵守しているか確認する
 5. エージェントの挙動に基づいて内容を改善する

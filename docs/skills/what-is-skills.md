@@ -405,7 +405,7 @@ To learn more about Skills, explore the following documents.
 
 ### 🔗 Deeper: Why is the Skills design necessary?
 
-This page focuses on the **what/how** of Skills. If you want to understand **why** Skills must be a separate layer — derived from LLM structural constraints (Context Rot, Lost in the Middle, Priority Saturation) — the sister site provides the rationale.
+This page focuses on the **what/how** of Skills. If you want to understand **why** Skills must be a separate layer — derived from LLM structural constraints ([Context Rot](../glossary#structural-problems), [Lost in the Middle](../glossary#structural-problems), [Priority Saturation](../glossary#structural-problems)) — the sister site provides the rationale.
 
 - [understanding-llm / Part 5: Skills Design Principles](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/skills) — Skills as on-demand context
 - [understanding-llm / Part 1: LLM Structural Problems](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/) — The fundamental constraints Skills address

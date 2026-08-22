@@ -104,7 +104,7 @@ The following table summarizes each layer's responsibilities and how developers 
 
 | Layer      | Role                                              | Example                      | Developer Role      |
 | ---------- | ------------------------------------------------- | ---------------------------- | ------------------- |
-| **Host**   | UI, session management, user interface            | Claude Code, Cursor, VS Code | User                |
+| **Host**   | UI, [session](../glossary#session) management, user interface            | Claude Code, Cursor, VS Code | User                |
 | **Client** | JSON-RPC communication, request/response handling | Built into Host              | Usually transparent |
 | **Server** | Tool/resource provision, actual implementation    | rfcxml-mcp, deepl-mcp        | **You build this**  |
 
@@ -114,7 +114,7 @@ The following table summarizes each layer's responsibilities and how developers 
 
 ## External Interface Catalog — Where MCP Sits Among All Interfaces
 
-MCP is just one of many ways to connect to the outside. An agent always touches the outside through the **harness (its hands)**; MCP, direct HTTP, A2A, and plugins are all just classifications of "the contents of the harness's tool-integration responsibility" (see the first principle in [strategy/harness-engineering-mapping](../strategy/harness-engineering-mapping)). Before designing an MCP, survey **where MCP sits on the shelf of all interfaces**.
+MCP is just one of many ways to connect to the outside. An agent always touches the outside through the **[harness](../glossary#harness) (its hands)**; MCP, direct HTTP, A2A, and plugins are all just classifications of "the contents of the harness's tool-integration responsibility" (see the first principle in [strategy/harness-engineering-mapping](../strategy/harness-engineering-mapping)). Before designing an MCP, survey **where MCP sits on the shelf of all interfaces**.
 
 | Target | Example I/F | Executor |
 | --- | --- | --- |
@@ -289,7 +289,7 @@ Adopting MCP provides the following advantages.
   Enable real-time data fetching and processing. Complement AI's knowledge cutoff.
 
 - ✅ **Authority**
-  Direct access to authoritative sources (RFC originals, legal databases). Reduces AI hallucinations. This is one of MCP's purposes (Reference), alongside other diverse roles such as Transform, Evaluate, Verify, Execute, and Retrieve.
+  Direct access to authoritative sources (RFC originals, legal databases). Reduces AI [hallucinations](../glossary#structural-problems). This is one of MCP's purposes (Reference), alongside other diverse roles such as Transform, Evaluate, Verify, Execute, and Retrieve.
 
 - ✅ **Separation of Concerns**  
   Tool logic and AI logic are cleanly separated. Changes have limited scope.
@@ -299,7 +299,7 @@ Adopting MCP provides the following advantages.
 MCP also comes with trade-offs and risks to be aware of.
 
 - ❌ **Context Consumption**  
-  Tool definitions consume tokens just to load. With many tools, context window pressure becomes real.
+  Tool definitions consume [tokens](../glossary#token) just to load. With many tools, [context window](../glossary#context-window) pressure becomes real.
 
 - ❌ **Startup Overhead**  
   Requires server process management. Overkill for simple cases.

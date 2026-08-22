@@ -14,7 +14,7 @@ MCP の議論はたいてい「一つのサーバをどう設計するか」で�
 本ページは、単一ドメインを複数 MCP に分割して **族（family）** として設計するときの判断軸を扱う。要点は二つ ── **どこで割るか（分割軸）** と、**何で束ねるか（結合子）**。
 
 ::: warning このページの位置づけ
-本ページは [composition-patterns](./composition-patterns) の延長にある。あちらが **異なるドメインの MCP・Skill を横に組む**（翻訳 MCP × 品質評価 MCP など）話であるのに対し、本ページは **同じドメインを縦に割る** 話を扱う。単一 MCP の内部設計は [mcp/development](../mcp/development)、専門性を重みに宿らせるか文脈に宿らせるかは [specialization-weights-vs-context](./specialization-weights-vs-context) を参照。
+本ページは [composition-patterns](./composition-patterns) の延長にある。あちらが **異なるドメインの MCP・Skill を横に組む**（翻訳 MCP × 品質評価 MCP など）話であるのに対し、本ページは **同じドメインを縦に割る** 話を扱う。単一 MCP の内部設計は [mcp/development](../mcp/development)、専門性を[重み](../glossary#weights)に宿らせるか文脈に宿らせるかは [specialization-weights-vs-context](./specialization-weights-vs-context) を参照。
 :::
 
 ::: details メタ情報
@@ -73,7 +73,7 @@ flowchart TB
 | 軸 | 割り方 | 共有するもの | 結合子 | 実例 |
 | --- | --- | --- | --- | --- |
 | **役割分割型** | 返すものの種類で割る（正典 / 観測 / 判定 / 生成） | ドメインの正典 | **Skill**（編成手順） | PDF family |
-| **パイプライン型** | 処理の段で割る（read → transform → write） | **中間表現の契約** | 統合ハーネス（別リポジトリ） | DTIR family |
+| **パイプライン型** | 処理の段で割る（read → transform → write） | **中間表現の契約** | 統合[ハーネス](../glossary#harness)（別リポジトリ） | DTIR family |
 | **ソース分割型** | 発行元・所管で割る | 語彙・識別子 | **共有ライブラリ**（npm） | houki-hub family |
 
 > [!IMPORTANT]

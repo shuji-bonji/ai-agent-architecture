@@ -153,7 +153,7 @@ sequenceDiagram
     Claude-->>User: Response following Skill criteria
 ```
 
-Claude Code automatically scans `.claude/skills/` at the start of each session. Any `SKILL.md` file found is loaded into the agent's context.
+Claude Code automatically scans `.claude/skills/` at the start of each [session](../glossary#session). Any `SKILL.md` file found is loaded into the agent's context.
 
 ### Skills vs CLAUDE.md: Role Separation
 

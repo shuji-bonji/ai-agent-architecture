@@ -333,7 +333,7 @@ No. Each Skill directory contains exactly one `SKILL.md`. For related Skills, cr
 ### How do I test my Skill?
 
 1. Place it in `.claude/skills/your-skill/SKILL.md`
-2. Start a new Claude Code session
+2. Start a new Claude Code [session](../glossary#session)
 3. Give the agent a task that should trigger the Skill
 4. Verify the agent references and follows the Skill's guidelines
 5. Iterate on the content based on the agent's behavior

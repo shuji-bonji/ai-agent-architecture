@@ -114,7 +114,7 @@ mindmap
 
 **Pure Skill (no MCP required)**: No external API calls needed. Works by combining with the agent's built-in code analysis capabilities. The simplest form of a Skill.
 
-**Split Placement Design**: Recommends different detail levels for Claude.ai (Project Knowledge) vs Claude Code (`.claude/`). A `PLACEMENT-GUIDE.md` addresses context window constraints.
+**Split Placement Design**: Recommends different detail levels for Claude.ai (Project Knowledge) vs Claude Code (`.claude/`). A `PLACEMENT-GUIDE.md` addresses [context window](../glossary#context-window) constraints.
 
 ### Classification
 

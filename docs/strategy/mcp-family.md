@@ -14,7 +14,7 @@ Discussion of MCP usually stops at "how do I design one server?" But take a doma
 This page covers the judgment involved in splitting a single domain into a **family** of MCP servers. It reduces to two questions: **where to split** (the split axis) and **what binds** (the connector).
 
 ::: warning Positioning of This Document
-This page extends [composition-patterns](./composition-patterns). That page combines MCPs and Skills from **different domains horizontally** (a translation MCP × a quality-evaluation MCP, for instance); this one splits **the same domain vertically**. For the internal design of a single server see [mcp/development](../mcp/development); for whether specialization belongs in the weights or in the context see [specialization-weights-vs-context](./specialization-weights-vs-context).
+This page extends [composition-patterns](./composition-patterns). That page combines MCPs and Skills from **different domains horizontally** (a translation MCP × a quality-evaluation MCP, for instance); this one splits **the same domain vertically**. For the internal design of a single server see [mcp/development](../mcp/development); for whether specialization belongs in the [weights](../glossary#weights) or in the context see [specialization-weights-vs-context](./specialization-weights-vs-context).
 :::
 
 ::: details Meta Information
@@ -73,7 +73,7 @@ flowchart TB
 | Axis | How it cuts | What is shared | Connector | Example |
 | --- | --- | --- | --- | --- |
 | **Role split** | By what is returned (norm / observation / judgment / production) | The domain canon | **A Skill** (orchestration) | PDF family |
-| **Pipeline split** | By processing stage (read → transform → write) | **An IR contract** | An integration harness (separate repo) | DTIR family |
+| **Pipeline split** | By processing stage (read → transform → write) | **An IR contract** | An integration [harness](../glossary#harness) (separate repo) | DTIR family |
 | **Source split** | By publisher or jurisdiction | Vocabulary and identifiers | **A shared library** (npm) | houki-hub family |
 
 > [!IMPORTANT]

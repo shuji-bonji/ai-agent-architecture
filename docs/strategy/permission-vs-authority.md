@@ -1,6 +1,6 @@
 # Permission vs. Authority — What Agents Ask For at the Boundary
 
-> Harness-type agents ask for permission; doctrine-type agents ask for authority. The granularity of the request, the locus of boundary detection, and the failure modes all invert symmetrically.
+> [Harness](../glossary#harness)-type agents ask for permission; doctrine-type agents ask for authority. The granularity of the request, the locus of boundary detection, and the failure modes all invert symmetrically.
 
 ## About This Document
 

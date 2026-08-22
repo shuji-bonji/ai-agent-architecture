@@ -9,7 +9,7 @@ Sub-agent basics are covered in [Custom Sub-agent](./what-is-subagent). This pag
 > [!TIP] Answered in 3 lines
 > - Consider an Agent Team **when processing time explodes or perspectives bleed together** in a single sub-agent
 > - Three basic patterns: **Orchestrator-Worker** (centralized lead) / **Hierarchical Team** (fixed roles) / **Swarm** (handoff-based)
-> - **Cost scales super-linearly** in both parallelism and tokens. Introduce only **after exhausting simpler approaches**
+> - **Cost scales super-linearly** in both parallelism and [tokens](../glossary#token). Introduce only **after exhausting simpler approaches**
 
 Related: [Agent Taxonomy](./agent-taxonomy) / [Custom Sub-agent](./what-is-subagent) / [Sub-agent vs Skills](./subagent-vs-skill) / [What is A2A](./what-is-a2a)
 
@@ -163,7 +163,7 @@ flowchart TD
 
 ### Adoption signals ✅
 
-- A single sub-agent takes **10+ minutes per session**
+- A single sub-agent takes **10+ minutes per [session](../glossary#session)**
 - You need to **review/analyze 5+ files in parallel**
 - Quality requirement: "**separate implementer and critic**"
 - Different roles need **different tool permissions** (e.g., Write for Implementer, Read-only for Reviewer)
@@ -308,7 +308,7 @@ Within an org → Orchestrator-Worker (this page); across orgs → A2A protocol 
 
 ## 🔗 Deeper: Why a single agent doesn't reach
 
-This page covers the **implementation view (what/how)** of Agent Teams. For **why** a single agent hits a wall with Context Rot and why multi-session coordination is needed — grounded in LLM structure — see the sister site.
+This page covers the **implementation view (what/how)** of Agent Teams. For **why** a single agent hits a wall with [Context Rot](../glossary#structural-problems) and why multi-session coordination is needed — grounded in LLM structure — see the sister site.
 
 - [understanding-llm / Part 10: Multi-Session Coordination](https://shuji-bonji.github.io/understanding-llm-through-claude-code/10-multi-session/) — Foundations of scaling beyond a single agent
 - [understanding-llm / Subagent vs Team](https://shuji-bonji.github.io/understanding-llm-through-claude-code/10-multi-session/subagent-vs-team) — The boundary between sub-agents and Teams

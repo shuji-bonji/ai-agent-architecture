@@ -116,7 +116,7 @@ mindmap
 
 **MCP不要の純粋Skill**: 外部APIを呼び出す必要がなく、エージェントの持つコード解析能力と組み合わせるだけで機能する。Skillの最もシンプルな形態。
 
-**分割配置設計**: Claude.ai（Project Knowledge）と Claude Code（`.claude/`）で異なる詳細度の配置を推奨。コンテキストウィンドウの制約に応じた設計指針を `PLACEMENT-GUIDE.md` で提供している。
+**分割配置設計**: Claude.ai（Project Knowledge）と Claude Code（`.claude/`）で異なる詳細度の配置を推奨。[コンテキストウィンドウ](../glossary#context-window)の制約に応じた設計指針を `PLACEMENT-GUIDE.md` で提供している。
 
 ### 分類
 

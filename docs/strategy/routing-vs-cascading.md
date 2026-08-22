@@ -176,7 +176,7 @@ Two design notes specific to the hybrid tier:
 > **Keep the routing decision and the compression decision as separate, composable policies.** "Which tier handles this query" (routing/cascading) and "what context crosses the tier boundary" (a context-optimization layer such as [Headroom](https://github.com/chopratejas/headroom)) are both Doctrine-layer concerns, but entangling them makes it impossible to tell, in an experiment, whether a win came from better routing or better compression. Decide the tier first; compress what crosses the boundary second.
 
 > [!TIP]
-> The escalation boundary is also where context compression pays off most. When a cascade escalates from local to cloud, the local model has often already gathered large context (tool outputs, retrieved chunks); compressing it **at the boundary** trims the expensive cloud tokens while the cheap local compute absorbs the compression cost. The cost lands on the cheap side; the benefit lands on the expensive side.
+> The escalation boundary is also where context compression pays off most. When a cascade escalates from local to cloud, the local model has often already gathered large context (tool outputs, retrieved chunks); compressing it **at the boundary** trims the expensive cloud [tokens](../glossary#token) while the cheap local compute absorbs the compression cost. The cost lands on the cheap side; the benefit lands on the expensive side.
 
 ## Implementation Notes
 

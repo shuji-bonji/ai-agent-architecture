@@ -42,7 +42,7 @@ flowchart LR
 
 | Characteristic                   | Description                                                                | Impact on AI                              |
 | -------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------- |
-| **Statistical Pattern Learning** | Predicts "likely next tokens" from co-occurrence patterns in training data | Outputs "plausible" rather than "correct" |
+| **Statistical Pattern Learning** | Predicts "likely next [tokens](../glossary#token)" from co-occurrence patterns in training data | Outputs "plausible" rather than "correct" |
 | **Non-deterministic Sampling**   | Same input can produce different outputs                                   | Consistency guarantees are difficult      |
 | **Context Dependency**           | Subtle differences in prompts change output                                | Reproducibility issues                    |
 
@@ -84,7 +84,7 @@ AI Possibility B: "1006 indicates a protocol error" (wrong - that's 1002)
 AI Possibility C: "Section 5.5.1 contains the definition of 1006" (wrong - 7.4.1 is correct)
 ```
 
-**Hallucination Generation Mechanisms**
+**[Hallucination](../glossary#structural-problems) Generation Mechanisms**
 
 The following table explains the primary causes that lead to hallucinated outputs:
 

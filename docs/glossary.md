@@ -1,12 +1,99 @@
 # Glossary
 
-> Definitions of MCP-related terms and concepts.
+> Definitions of MCP/Agent-related terms, and pointers to the LLM fundamentals they assume.
 
 ## About This Document
 
 The MCP ecosystem involves many specialized terms and abbreviations. This document serves as a centralized reference for the definitions of terms used throughout this documentation set.
 
 If you are new to this documentation, you can deepen your understanding by referring here when encountering unfamiliar terms. It also serves to unify terminology interpretation as a common language within teams.
+
+## LLM Fundamentals (Defined in the Sister Site)
+
+The terms in this section are defined in the sister site [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/). This section holds only the minimum definition needed to read this site; the mechanism and the evidence are left to the linked source. The first occurrence of each term on every page of this site links to the corresponding entry here.
+
+### Token {#token}
+
+The smallest unit an LLM processes. It is neither a character nor a word, but a fragment produced by the tokenizer. Japanese text costs 1–3 tokens per character, so the same content consumes more tokens than English.
+
+**Defined in**: [Token, Context, Context Window — Three Fundamental Concepts](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/token-context-basics)
+
+### Context {#context}
+
+Everything passed to the LLM in a single inference: the system prompt, CLAUDE.md, conversation history, tool definitions, and tool results. The LLM generates output based only on what is in the context.
+
+**Defined in**: [Token, Context, Context Window — Three Fundamental Concepts](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/token-context-basics)
+
+**Related**: [What the LLM Sees](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/what-llm-sees) (what goes into the context and what stays outside it)
+
+### Context Window {#context-window}
+
+The upper limit, in tokens, of context an LLM can process at once. When the limit is reached, older information no longer fits. Even below the limit, output quality declines as input grows (→ Context Rot). On this site, "context pressure" and "context consumption" refer to how much of this limit is used.
+
+**Defined in**: [Token, Context, Context Window — Three Fundamental Concepts](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/token-context-basics)
+
+**Related**: [Context Budget](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/context-budget) (how much of the limit MCP tool definitions occupy)
+
+### Stateless {#stateless}
+
+An LLM retains nothing from the previous inference. A conversation appears continuous only because the application re-inserts the conversation history into the context on every turn. To "remember" across sessions, information must be written to a location outside the context, such as a file.
+
+**Defined in**: [Token, Context, Context Window — "Stateless"](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/token-context-basics)
+
+**Related**: [Why Memory Is a Problem](https://shuji-bonji.github.io/understanding-llm-through-claude-code/08-session-management/memory-problem)
+
+### System Prompt {#system-prompt}
+
+Instructions placed permanently at the head of the context that define the LLM's role, constraints, and behavior. In Claude Code, CLAUDE.md is injected into this position in addition to the internal system prompt. The body of a subagent definition file becomes the system prompt dedicated to that subagent.
+
+**Defined in**: [What the LLM Sees](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/what-llm-sees)
+
+### Session {#session}
+
+A single conversation unit in which context accumulates. Context grows with every turn and never shrinks on its own. In Claude Code, `/compact` summarizes and compresses the history, and `/clear` starts a new session.
+
+**Defined in**: [Chat / Session — The Container in Which Context Accumulates](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/chat-session)
+
+**Related**: [/compact vs /clear](https://shuji-bonji.github.io/understanding-llm-through-claude-code/08-session-management/compact-and-clear)
+
+### Structural Problems of LLMs (8 Items) {#structural-problems}
+
+Problems that originate in how LLMs work and that prompt wording alone does not resolve. Every design decision on this site (subagent isolation, on-demand Skills, deferred loading of MCP tool definitions, and so on) is a response to one of these eight.
+
+| Term | Minimum definition | Defined in |
+| --- | --- | --- |
+| **Context Rot** | Output quality declines as input token count grows | [context-rot](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/context-rot) |
+| **Lost in the Middle** | Information in the middle of the context is referenced less | [lost-in-the-middle](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/lost-in-the-middle) |
+| **Priority Saturation** | The more instructions given at once, the lower the compliance with each | [priority-saturation](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/priority-saturation) |
+| **Instruction Decay** | Compliance with initial instructions declines as the conversation grows | [instruction-decay](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/instruction-decay) |
+| **Hallucination** | Generates content that contradicts facts as if it were grounded | [hallucination](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/hallucination) |
+| **Sycophancy** | Prioritizes agreeing with the user over accuracy | [sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/sycophancy) |
+| **Knowledge Boundary** | Knowledge is frozen at the training-data cutoff, and the model cannot say "I don't know" | [knowledge-boundary](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/knowledge-boundary) |
+| **Prompt Sensitivity** | Semantically identical prompts produce different outputs depending on wording | [prompt-sensitivity](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/prompt-sensitivity) |
+
+**Overview and relationships**: [Part 1: Structural Problems of LLMs](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/)
+
+> On this site, "frozen at the training-data cutoff" and "the recency constraint" refer to Knowledge Boundary. Of the four constraints in [01-vision](./concepts/01-vision) (accuracy, recency, authority, accountability), accuracy corresponds to Hallucination and recency to Knowledge Boundary. Authority and accountability are institutional rather than structural and are outside the sister site's scope.
+
+### Tool Search / Deferred Loading {#tool-search}
+
+A mechanism that loads MCP tool definitions when they are needed instead of placing all of them in the context at startup. Tool definitions are a fixed cost against the context window, so the more MCP servers are added, the more the presence or absence of this mechanism matters (→ Over-MCPization).
+
+**Defined in**: [Tool Search / Deferred Loading](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/tool-search)
+
+**Related**: [MCP Context Cost](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/mcp-context-cost)
+
+### Harness {#harness}
+
+The collective name for the four elements placed around an LLM: tool integration, memory, guardrails, and loop control. It limits the impact of structural problems from the outside without changing the LLM itself. See [harness-engineering-mapping](./strategy/harness-engineering-mapping) for how it maps to this site's five-layer model.
+
+**Defined in**: [Harness and the Structural Constraints of LLMs](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/harness-and-llm-constraints)
+
+### Weights {#weights}
+
+The internal parameters of an LLM, fixed by training and unchanged at inference time. There are two ways to give a model specialization: change the weights (Fine-tuning) or put the knowledge into the context (Skills / MCP / RAG).
+
+**Defined in**: this site, [specialization-weights-vs-context](./strategy/specialization-weights-vs-context) (the sister site has no dedicated page, so this site is the source)
 
 ## Protocols and Standards
 
@@ -21,6 +108,7 @@ Features:
 - Often described as "USB for AI"
 ```
 
+
 **Related**: MCP Server, MCP Client, MCP Host
 
 ### A2A (Agent-to-Agent Protocol)
@@ -34,6 +122,7 @@ Features:
 - Over 150 companies have announced support
 ```
 
+
 **Related**: Agent Card, Task Management
 
 ### RFC (Request for Comments)
@@ -46,6 +135,7 @@ Examples:
 - RFC 3161: Timestamp Protocol
 - RFC 9110: HTTP Semantics
 ```
+
 
 **Related**: IETF, MUST/SHOULD/MAY
 
@@ -141,6 +231,8 @@ Features:
 
 **Note**: Not a "replacement" for MCP Client, but rather a "higher layer"
 
+**Defined in (sister site)**: [Part 5: Agents](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/agents)
+
 ### Skill
 
 Static knowledge and guidelines that can be referenced in Claude Code.
@@ -158,6 +250,8 @@ Features:
 
 **Use cases**: Best practices, workflow definitions, coding conventions
 
+**Defined in (sister site)**: [Part 5: Skills](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/skills)
+
 ### CLAUDE.md
 
 An instruction file for Claude placed at the project root.
@@ -169,6 +263,8 @@ Contents:
 - Coding conventions
 - Workflow instructions
 ```
+
+**Defined in (sister site)**: [Part 3: Always-Loaded Context — CLAUDE.md](https://shuji-bonji.github.io/understanding-llm-through-claude-code/03-always-loaded-context/claude-md)
 
 ## Requirement Levels
 
@@ -237,6 +333,7 @@ Strengths: Can find relevant information from large volumes of unstructured text
 Weaknesses: Context lost through chunking, doesn't understand structure
 ```
 
+
 **Related**: Embedding, Vector DB, Chunk
 
 > **Difference from MCP**: See [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md)
@@ -272,6 +369,7 @@ A technique that further trains an LLM's parameters on domain-specific data. If 
 ### Agentic AI
 
 A pattern where an LLM autonomously plans, invokes tools, and solves problems through multiple steps. MCP is one of the foundational technologies that enables this pattern.
+
 
 **Related**: MCP, Subagent, A2A
 
@@ -339,6 +437,8 @@ Countermeasures:
 - Migrate to Skills where possible
 - Limit MCPs per project
 ```
+
+**Related (sister site)**: [MCP Context Cost](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/mcp-context-cost), [Tool Search / Deferred Loading](#tool-search)
 
 ### Agent Card
 

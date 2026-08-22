@@ -73,4 +73,4 @@ Multi-agent collaboration provides several advantages:
 
 - **Agent splitting criteria:** Splitting by MCP is the most natural approach. Assigning more than 3 MCPs to a single agent diminishes the benefits of context isolation.
 - **Failure case:** Insufficient information sharing between agents can break overall consistency. For example, if the Translation Agent translates without knowing terms extracted by the RFC Agent, terminology inconsistencies arise. Proper relay of intermediate results by the orchestrator is critical.
-- **Cost considerations:** Each sub-agent launch consumes its own context window. For small-scale tasks, the overhead may outweigh the benefits, so it's important to gauge the scale at which parallel processing becomes effective.
+- **Cost considerations:** Each sub-agent launch consumes its own [context window](../../glossary#context-window). For small-scale tasks, the overhead may outweigh the benefits, so it's important to gauge the scale at which parallel processing becomes effective.

@@ -465,7 +465,7 @@ pdf-reader-mcpでは途中から `response_format` パラメータを追加し�
 
 ### 教訓3: ツールの粒度は「段階的詳細化」
 
-epsg-mcpの9ツールは、`search → detail → recommend → validate` という段階的な情報取得フローを設計した。ユーザーが必要な深さまでだけ掘り下げられるため、トークン消費が最適化される。
+epsg-mcpの9ツールは、`search → detail → recommend → validate` という段階的な情報取得フローを設計した。ユーザーが必要な深さまでだけ掘り下げられるため、[トークン](../glossary#token)消費が最適化される。
 
 ### 教訓4: E2Eテストは初期から
 

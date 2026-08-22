@@ -191,7 +191,7 @@ Can answer with domain-specific knowledge
 | **Modified Component** | Model parameters themselves                                            |
 | **Cost**               | High (data preparation + computational resources)                      |
 | **Strengths**          | Deep knowledge embedding in the model                                  |
-| **Weaknesses**         | Difficult to update, complete elimination of hallucinations impossible |
+| **Weaknesses**         | Difficult to update, complete elimination of [hallucinations](../glossary#structural-problems) impossible |
 
 #### Prompt Engineering
 
@@ -317,7 +317,7 @@ Misapplying design patterns can produce results opposite to expectations.
 | **RAG-for-Everything**     | Trying to solve all knowledge needs with RAG                | Applying chunk search to structured data, degrading precision                                |
 | **Over-Agentification**    | Applying Agentic AI to simple tasks                         | Adding overhead and unpredictability where autonomous judgment is unnecessary                |
 | **Fine-tuning Dependency** | Embedding frequently changing knowledge in model parameters | Requiring retraining after every regulation or spec update, causing operational cost blowout |
-| **Prompt Bloat**           | Trying to control everything through Prompt Engineering     | Consuming the context window, leaving no room for actual knowledge injection                 |
+| **Prompt Bloat**           | Trying to control everything through Prompt Engineering     | Consuming the [context window](../glossary#context-window), leaving no room for actual knowledge injection                 |
 
 > Avoiding anti-patterns requires understanding each pattern's **preconditions** and **failure risks** (see the comparison table in Section 2.4) before making design choices.
 

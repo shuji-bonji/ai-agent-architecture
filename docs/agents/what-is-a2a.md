@@ -245,7 +245,7 @@ The following table contrasts custom sub-agents with A2A agents.
 | **Owner**              | Self                         | Self or others                        |
 | **Trust Relationship** | Full trust                   | Authentication/authorization required |
 | **Context**            | Partially shared with parent | Fully isolated                        |
-| **Lifecycle**          | Session-scoped               | Persistent service                    |
+| **Lifecycle**          | [Session](../glossary#session)-scoped               | Persistent service                    |
 
 ### Understanding via Metaphor
 

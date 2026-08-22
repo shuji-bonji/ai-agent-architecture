@@ -7,12 +7,12 @@
 > [!NOTE]
 > 本ページは「AI が AI を駆動して Issue → Deploy までを完遂する」自律開発パイプラインの構造を、5 層モデル (Doctrine / Agent / Skills / Memory / MCP) に写像して整理する。クラウド LLM 版とローカル LLM 版の両方を提示する。
 
-このパイプラインは、shuji-bonji の Zenn 記事 [CLAUDE.md がなくても戦える — LLM の構造的制約を踏まえたプロンプト駆動開発](https://zenn.dev/shuji_bonji/articles/c9d325f1fd7646) で述べた **「手動のステップ分割によるプロンプト駆動開発」を、Sub-agent + Meta-agent 構造として自動化** したものに相当する。両者は **同じ原理 (Context Rot / Instruction Decay / Sycophancy への構造的対策) の異なる実装** であり、ツール支援の有無で実装手段が変わるだけで、設計判断は同一である。
+このパイプラインは、shuji-bonji の Zenn 記事 [CLAUDE.md がなくても戦える — LLM の構造的制約を踏まえたプロンプト駆動開発](https://zenn.dev/shuji_bonji/articles/c9d325f1fd7646) で述べた **「手動のステップ分割によるプロンプト駆動開発」を、Sub-agent + Meta-agent 構造として自動化** したものに相当する。両者は **同じ原理 ([Context Rot](../glossary#structural-problems) / [Instruction Decay](../glossary#structural-problems) / [Sycophancy](../glossary#structural-problems) への構造的対策) の異なる実装** であり、ツール支援の有無で実装手段が変わるだけで、設計判断は同一である。
 
 > [!TIP]
 > **3 行で言うと**
 >
-> - Zenn 記事の「別チャットに成果物ファイルを渡す」= Sub-agent の独立コンテキスト + artifact handoff
+> - Zenn 記事の「別チャットに成果物ファイルを渡す」= Sub-agent の独立[コンテキスト](../glossary#context) + artifact handoff
 > - Meta-agent は **artifact パスだけ** を扱うルーターに徹し、Sub-agent 出力を要約・統合しない (Context Rot 回避)
 > - 1 フェーズ = 1 Sub-agent が粒度の目安。Sub-agent を細かく刻みすぎると起動オーバーヘッドが本体タスクを上回る
 
@@ -47,7 +47,7 @@ Zenn 記事で論じた「ツール支援が無い環境での手動運用」と
 | フェーズごとにコミット + リセット | Sub-agent 終了で context 自動破棄 | Instruction Decay |
 | Premium 消費のモデル使い分け | Meta-agent による model routing | コスト最適化 (副次的) |
 | 指示書 → 計画書 → レビュー | Planner → Critic Sub-agent | Sycophancy |
-| 指示書テンプレ | Skill (`SKILL.md`) | Knowledge Boundary |
+| 指示書テンプレ | Skill (`SKILL.md`) | [Knowledge Boundary](../glossary#structural-problems) |
 
 > [!IMPORTANT]
 > Sub-agent 化は「便利だからやる」のではなく、**LLM の構造的制約から論理的に導かれる対策の自動化** である。手動でやっていることを機械に任せるだけ。これを見失うと「単なる多重起動」になりコストだけ膨らむ。
@@ -327,7 +327,7 @@ flowchart LR
 
 | 観点 | モノリス Agent | Meta + Sub-agent |
 |---|---|---|
-| トークン総量 | 少 (1 セッション完結) | 多 (各 Sub-agent に role / context) |
+| [トークン](../glossary#token)総量 | 少 (1 セッション完結) | 多 (各 Sub-agent に role / context) |
 | 品質 (Context Rot 耐性) | 低 | **高** |
 | Sycophancy 抑止 | × (自己レビュー) | **◎ (Reviewer 別文脈)** |
 | モデル使い分け | × | **◎ (役割ごとに最適化)** |
@@ -342,7 +342,7 @@ flowchart LR
 > [!WARNING]
 > **① 不確実性の自覚なき修正ループ**: 「テスト失敗 → 適当に直す → また失敗」を無限ループ。リトライ上限 + 「失敗パターンが繰り返したら止める」検知器が MUST。
 >
-> **② Reviewer Sub-agent の同コンテキスト化**: Coder と同じセッションで「レビューして」と頼んでも見つからない。MUST 別プロセス・別文脈・できれば別モデル。
+> **② Reviewer Sub-agent の同コンテキスト化**: Coder と同じ[セッション](../glossary#session)で「レビューして」と頼んでも見つからない。MUST 別プロセス・別文脈・できれば別モデル。
 >
 > **③ Memory なき開発**: 毎回プロジェクト規約をゼロから読ませる scatter-gather 問題。ADR と過去 PR を Memory に索引化すべき。([記憶と知識統合](../concepts/08-memory-and-knowledge) 参照)
 

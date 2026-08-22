@@ -1,6 +1,6 @@
 # Harness Engineering との対応関係
 
-> ハーネス 4 要素を 5 層モデルに写像し、ハーネスが扱う領域と扱わない領域を明確化する。
+> [ハーネス](../glossary#harness) 4 要素を 5 層モデルに写像し、ハーネスが扱う領域と扱わない領域を明確化する。
 
 ## このドキュメントについて
 
@@ -18,7 +18,7 @@
 
 ## 大原則 — LLM は脳、ハーネスが唯一の実行主体
 
-4 要素に入る前に、**ハーネスとは何か** を一段下げて定義する。LLM 本体は **text in / text out** の関数で、`tool_call`（どのツールをどの引数で呼ぶか、という構造化トークン）を出力するに過ぎない。**外部に触れる（HTTP・ファイル・別エージェント・GUI・物理）のは、すべて LLM を取り囲む実行層＝ハーネス** が行う。
+4 要素に入る前に、**ハーネスとは何か** を一段下げて定義する。LLM 本体は **text in / text out** の関数で、`tool_call`（どのツールをどの引数で呼ぶか、という構造化[トークン](../glossary#token)）を出力するに過ぎない。**外部に触れる（HTTP・ファイル・別エージェント・GUI・物理）のは、すべて LLM を取り囲む実行層＝ハーネス** が行う。
 
 ```mermaid
 flowchart LR
@@ -115,10 +115,10 @@ graph TB
 - Skills と MCP の使い分け（[サブエージェント vs Skills](../agents/subagent-vs-skill) 参照）
 - Skill 同士の重ね合わせ
 
-これらは Context（メモリ）でも Action（ツール）でもなく、**LLM の直近コンテキストに条件付きで注入される判断基準** であり、独立した層として扱う必要がある。
+これらは Context（メモリ）でも Action（ツール）でもなく、**LLM の直近[コンテキスト](../glossary#context)に条件付きで注入される判断基準** であり、独立した層として扱う必要がある。
 
 > [!IMPORTANT]
-> Skills を Context に押し込めて扱うと、トークン肥大と Priority Saturation を招く。Skills は「呼ばれた時だけ展開する」設計が肝で、これは [concepts/03-architecture](../concepts/03-architecture) で詳述される。
+> Skills を Context に押し込めて扱うと、トークン肥大と [Priority Saturation](../glossary#structural-problems) を招く。Skills は「呼ばれた時だけ展開する」設計が肝で、これは [concepts/03-architecture](../concepts/03-architecture) で詳述される。
 
 ### 2. Doctrine 層の攻め（規範強度の明文化）
 
@@ -135,9 +135,9 @@ graph TB
 
 ハーネスは「メモリを持たせよ」「ループを組め」と処方するが、**なぜ** その対策が必要かは説明しない。たとえば:
 
-- なぜ Context を外部化するのか？ → Context Rot, Lost in the Middle
-- なぜループ制御で指示を再注入するのか？ → Instruction Decay, Priority Saturation
-- なぜサンドボックスが要るのか？ → Hallucination, Sycophancy
+- なぜ Context を外部化するのか？ → [Context Rot](../glossary#structural-problems), [Lost in the Middle](../glossary#structural-problems)
+- なぜループ制御で指示を再注入するのか？ → [Instruction Decay](../glossary#structural-problems), Priority Saturation
+- なぜサンドボックスが要るのか？ → [Hallucination](../glossary#structural-problems), [Sycophancy](../glossary#structural-problems)
 
 これらの **構造的制約** は姉妹サイト [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) で扱う。
 

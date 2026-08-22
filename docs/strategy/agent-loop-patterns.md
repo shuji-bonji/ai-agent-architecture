@@ -5,7 +5,7 @@
 ## About This Document
 
 > [!NOTE]
-> This page covers the "contents" of the **Orchestration (loop control) → Agent layer** mapping from [Harness Engineering Mapping](./harness-engineering-mapping). It catalogs the patterns (ReAct / Plan-and-Execute / Reflexion / Evaluator-Optimizer) by which the harness **iterates** the loop `① tool_call → ② real I/O → ③ result → ④ feed back into context`.
+> This page covers the "contents" of the **Orchestration (loop control) → Agent layer** mapping from [Harness Engineering Mapping](./harness-engineering-mapping). It catalogs the patterns (ReAct / Plan-and-Execute / Reflexion / Evaluator-Optimizer) by which the [harness](../glossary#harness) **iterates** the loop `① tool_call → ② real I/O → ③ result → ④ feed back into context`.
 
 The name "harness pattern" is not standard terminology, but the content it would hold is well established. The literature calls these **agent patterns / single-agent patterns / agentic reasoning patterns**.
 
@@ -66,7 +66,7 @@ flowchart LR
 ```
 
 - **Strengths**: Can correct course at every step. Simple to implement.
-- **Weaknesses**: Each step pushes an observation into context, increasing token consumption. Prone to drift and runaway on long tasks (→ an upper-bound guard is mandatory).
+- **Weaknesses**: Each step pushes an observation into context, increasing [token](../glossary#token) consumption. Prone to drift and runaway on long tasks (→ an upper-bound guard is mandatory).
 
 ### 2. Plan-and-Execute / ReWOO — Separating Planning from Execution
 
