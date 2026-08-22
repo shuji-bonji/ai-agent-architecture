@@ -50,6 +50,16 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           ],
         },
         {
+          text: '第IV部 構成と展開',
+          collapsed: false,
+          items: [
+            { text: 'パターン', link: '/ja/part-4/patterns' },
+            { text: '限界', link: '/ja/part-4/limits' },
+            { text: '物理世界', link: '/ja/part-4/physical' },
+            { text: 'プロンプトの分解', link: '/ja/part-4/prompt-decomposition' },
+          ],
+        },
+        {
           text: 'FAQ (3行回答)',
           collapsed: false,
           items: [
@@ -76,14 +86,14 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             },
             { text: 'アーキテクチャ（→ 五層）', link: '/ja/concepts/03-architecture' },
             {
-              text: 'AI設計パターン',
+              text: 'AI設計パターン（→ パターン）',
               link: '/ja/concepts/04-ai-design-patterns',
             },
             {
-              text: 'AI制限の克服',
+              text: 'AI制限の克服（→ 限界）',
               link: '/ja/concepts/05-solving-ai-limitations',
             },
-            { text: 'フィジカルAI', link: '/ja/concepts/06-physical-ai' },
+            { text: 'フィジカルAI（→ 物理世界）', link: '/ja/concepts/06-physical-ai' },
             {
               text: 'ドクトリンと意図（→ Doctrine）',
               link: '/ja/concepts/07-doctrine-and-intent',
@@ -93,7 +103,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               link: '/ja/concepts/08-memory-and-knowledge',
             },
             {
-              text: 'プロンプト分解',
+              text: 'プロンプト分解（→ プロンプトの分解）',
               link: '/ja/concepts/09-prompt-decomposition',
             },
           ],

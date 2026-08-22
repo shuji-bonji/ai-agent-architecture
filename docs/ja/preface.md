@@ -105,14 +105,14 @@ Why は姉妹サイト、What / How は本書、と分ける。姉妹サイト�
 
 ## 0.6 本書の構成
 
-全体は四部である。第I部から第III部のうち、Doctrine と Memory は新しい場所へ移してある。Skills / MCP / Agent の入口は、いまの場所のまま中身を直した。古い URL を開いても、移したページへ送る。第IV部のファイル場所は、あとの作業で動かす。
+全体は四部である。骨格の章は新しい場所へ移してある。Skills / MCP / Agent の入口は、いまの場所のまま中身を直した。古い URL を開いても、移したページへ送る。
 
 | 部 | 内容 | いま読める場所 |
 | --- | --- | --- |
 | **第I部 前提** | 限界の要約。仕組みの細部には入らない | [part-1/constraints](./part-1/constraints) |
 | **第II部 モデル** | 層と、何をどこへ置くか | [part-2/layers](./part-2/layers)、[part-2/placement](./part-2/placement) |
 | **第III部 各層** | Skills / MCP / Doctrine / Memory / Agent | [skills/](./skills/what-is-skills)、[mcp/](./mcp/what-is-mcp)、[part-3/doctrine](./part-3/doctrine)、[part-3/memory](./part-3/memory)、[agents/](./agents/) |
-| **第IV部 構成と展開** | パターン、限界、物理世界、プロンプトの分解 | [concepts/04-ai-design-patterns](./concepts/04-ai-design-patterns)、[concepts/05-solving-ai-limitations](./concepts/05-solving-ai-limitations)、[concepts/06-physical-ai](./concepts/06-physical-ai)、[concepts/09-prompt-decomposition](./concepts/09-prompt-decomposition) |
+| **第IV部 構成と展開** | パターン、限界、物理世界、プロンプトの分解 | [part-4/patterns](./part-4/patterns)、[part-4/limits](./part-4/limits)、[part-4/physical](./part-4/physical)、[part-4/prompt-decomposition](./part-4/prompt-decomposition) |
 
 Skills、MCP、Doctrine、Memory、Agent、A2A の実践例は消さない。読む順を、限界から層へ組み替える。
 

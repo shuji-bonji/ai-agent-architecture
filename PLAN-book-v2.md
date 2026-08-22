@@ -79,10 +79,10 @@
 | `concepts/02-reference-sources.md` | `part-2/placement.md` | II.2 | 移行済み |
 | `concepts/07-doctrine-and-intent.md` | `part-3/doctrine.md` | III.3 | 移行済み |
 | `concepts/08-memory-and-knowledge.md` | `part-3/memory.md` | III.4 | 移行済み |
-| `concepts/04-ai-design-patterns.md` | `part-4/patterns.md` | IV.1 | 改稿 |
-| `concepts/05-solving-ai-limitations.md` | `part-4/limits.md` | IV.2 | 改稿。第I部へ統合しない |
-| `concepts/06-physical-ai.md` | `part-4/physical.md` | IV.3 | 改稿 |
-| `concepts/09-prompt-decomposition.md` | `part-4/prompt-decomposition.md` | IV.4 | 改稿 |
+| `concepts/04-ai-design-patterns.md` | `part-4/patterns.md` | IV.1 | 移行済み |
+| `concepts/05-solving-ai-limitations.md` | `part-4/limits.md` | IV.2 | 移行済み。第I部へ統合していない |
+| `concepts/06-physical-ai.md` | `part-4/physical.md` | IV.3 | 移行済み |
+| `concepts/09-prompt-decomposition.md` | `part-4/prompt-decomposition.md` | IV.4 | 移行済み |
 | `concepts/index.md` | スタブ → `/ja/preface`（英は `/preface`） | — | 再配置 |
 
 ### 第III部（パス維持。入口だけ改稿）

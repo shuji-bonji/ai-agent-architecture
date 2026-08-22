@@ -79,4 +79,4 @@ Agent は、作業を理解し、他の層を組み合わせる。サブエー�
 
 > **前へ**: [III.4 Memory](../part-3/memory)
 >
-> **次へ**: [生成AIの設計パターン](../concepts/04-ai-design-patterns)
+> **次へ**: [IV.1 パターン](../part-4/patterns)

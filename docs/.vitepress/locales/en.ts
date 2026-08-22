@@ -49,6 +49,16 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           ],
         },
         {
+          text: 'Part IV',
+          collapsed: false,
+          items: [
+            { text: 'Patterns (untranslated / coming soon)', link: '/part-4/patterns' },
+            { text: 'Limits (untranslated / coming soon)', link: '/part-4/limits' },
+            { text: 'Physical world (untranslated / coming soon)', link: '/part-4/physical' },
+            { text: 'Prompt decomposition (untranslated / coming soon)', link: '/part-4/prompt-decomposition' },
+          ],
+        },
+        {
           text: 'FAQ (3-line answers)',
           collapsed: false,
           items: [
@@ -65,12 +75,12 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Vision (→ Constraint Summary)', link: '/concepts/01-vision' },
             { text: 'Reference Sources (→ Placement)', link: '/concepts/02-reference-sources' },
             { text: 'Architecture (→ Five Layers)', link: '/concepts/03-architecture' },
-            { text: 'AI Design Patterns', link: '/concepts/04-ai-design-patterns' },
-            { text: 'Solving AI Limitations', link: '/concepts/05-solving-ai-limitations' },
-            { text: 'Physical AI', link: '/concepts/06-physical-ai' },
+            { text: 'AI Design Patterns (→ Patterns)', link: '/concepts/04-ai-design-patterns' },
+            { text: 'Solving AI Limitations (→ Limits)', link: '/concepts/05-solving-ai-limitations' },
+            { text: 'Physical AI (→ Physical world)', link: '/concepts/06-physical-ai' },
             { text: 'Doctrine & Intent (→ Doctrine)', link: '/concepts/07-doctrine-and-intent' },
             { text: 'Memory & Knowledge (→ Memory)', link: '/concepts/08-memory-and-knowledge' },
-            { text: 'Prompt Decomposition', link: '/concepts/09-prompt-decomposition' },
+            { text: 'Prompt Decomposition (→ Prompt decomposition)', link: '/concepts/09-prompt-decomposition' },
           ],
         },
         {
