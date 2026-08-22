@@ -33,7 +33,7 @@ This page covers only the coordinate system. The designs that sit on top of it l
 > [!TIP]
 > **In three lines**
 >
-> - Whether something binds is decided by **whether its output enters the token sequence** — not by whether the processing itself is deterministic.
+> - Whether something binds is decided by **whether the outcome changes when the LLM emits output that ignores it**. Only what leaves the outcome unchanged binds — regardless of whether the processing itself is deterministic.
 > - The inside of the token sequence splits into two jobs: **reach** (what becomes a candidate) and **expression** (whether it is misread once it arrives). Neither substitutes for the other.
 > - The most common mistake is writing something you intend as binding and landing in the expression layer instead. Prompt prohibitions are exactly this.
 
@@ -57,7 +57,7 @@ One question is enough.
 | --------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------- |
 | **Enters the token sequence**           | RAG results, prompts, Skill bodies, tool descriptions, MCP responses          | No                           |
 | **The boundary: the LLM's own output**  | Which tool gets called, with which arguments                                  | Decided probabilistically    |
-| **Stays outside the token sequence**    | permission, hooks, server-side argument validation, type checks, CI, tests    | Yes                          |
+| **Stays outside the token sequence**    | permission, hooks, server-side argument validation, type checks, CI, tests, human approval | Yes             |
 
 The intuition "control mechanisms are a separate thing from structuring" is correct for **the third row only**. CLAUDE.md prohibitions, prompt warnings, cautionary notes in a tool description — all look like control, and all sit in the first row.
 
@@ -65,6 +65,9 @@ The intuition "control mechanisms are a separate thing from structuring" is corr
 > **Whether the processing itself is deterministic has no bearing on whether it binds.**
 >
 > Vector DB retrieval is deterministic code: the same query returns the same result. The result still enters the context, so the model can emit output that ignores it. Conversely, permission takes the LLM's output as its input, yet the decision completes outside the token sequence — so it binds. Being a deterministic implementation and fixing an outcome are two different properties.
+
+> [!NOTE]
+> **Terminology**: other pages on this site speak of a "deterministic judgment layer" ([Deterministic Verdicts](./deterministic-verdicts)). That layer corresponds to the **binding** layer here. This page avoids using "deterministic" as a synonym for binding because, as above, deterministic processing does not by itself bind.
 
 ## Inside the Token Sequence — Reach and Expression
 
@@ -84,7 +87,7 @@ Good reach with poor expression produces misreadings. Good expression with poor 
 | **Reach**      | No          | What becomes a candidate?       | Vector DB / RAG, selection by description             |
 | **Expression** | No          | Is it in a form that won't be misread? | Prompts, Skill bodies, schemas, formatted responses |
 | **Execution**  | Boundary    | What gets called, and how?      | MCP write tools, Bash                                  |
-| **Binding**    | Yes         | Allow it, or refuse it?         | permission / hooks, server-side validation, types / CI / tests |
+| **Binding**    | Yes         | Allow it, or refuse it?         | permission / hooks, server-side validation, types / CI / tests, human approval |
 
 ```mermaid
 flowchart LR
@@ -109,6 +112,10 @@ flowchart LR
   style Y fill:#dcfce7,stroke:#15803d,color:#000
 ```
 
+Execution has two stages. **Attempting** it is decided probabilistically; **whether it goes through** is decided in the binding layer. Reaching the execution layer guarantees nothing on its own.
+
+Human approval also belongs to the binding layer, as long as the decision completes outside the token sequence. If the only material the approver reads is the agent's own self-report, however, it falls under the third item of the design check below.
+
 Execution results feed back into reach and expression on the next turn. This loop is the same one described in [Harness Engineering Mapping](./harness-engineering-mapping) as steps ①–④, cut along a different axis: whether each step binds.
 
 ### Where Each Technology Sits
@@ -127,6 +134,8 @@ Execution results feed back into reach and expression on the next turn. This loo
 > **Schema validation binds only on "how it is called."**
 >
 > A schema can refuse malformed arguments. It cannot refuse calling that tool in a situation where it should not be called. That decision belongs to permission and needs a separate mechanism. → [Permission vs. Authority](./permission-vs-authority)
+>
+> Note also that one schema shows up in two layers. **Enforcing the validation** (refusing on the server) is binding; **writing the definition** (describing what each argument means, for the model to read) is expression. That is why MCP carries a mark in both columns above.
 
 ## Common Misreadings
 
