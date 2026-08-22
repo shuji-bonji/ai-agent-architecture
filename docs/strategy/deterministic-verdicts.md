@@ -201,6 +201,7 @@ The cause is a provider-side model swap. Three properties make it awkward.
 
 - [mcp-family](./mcp-family) — splitting one domain across MCPs; where "the judge is code, the narrative is the LLM" first appears
 - [permission-vs-authority](./permission-vs-authority) — delegating discretion over actions (this page: delegating the power to judge)
+- [proposal-and-binding](./proposal-and-binding) — the coordinate system placing the judgment layer inside "binding" and relating it to the three non-binding layers
 - [routing-vs-cascading](./routing-vs-cascading) — how a weak judge breaks a cascade; the quality side of judging
 - [loop-engineering](./loop-engineering) — the outer loop as engineering; the judgment layer is the loop's scorer
 - [concepts/05-solving-ai-limitations](../concepts/05-solving-ai-limitations) — separating probabilistic inference from deterministic verification

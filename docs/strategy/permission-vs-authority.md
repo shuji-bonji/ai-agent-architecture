@@ -127,7 +127,8 @@ graph TB
 
 ## Related Documents
 
-- [strategy/harness-engineering-mapping](./harness-engineering-mapping) — the static correspondence between the four harness elements and the 5-layer model (the premise of this page)
+- [strategy/proposal-and-binding](./proposal-and-binding) — why permission is a binding-layer request while authority is an expression-layer one (the coordinate system this page assumes)
+- [strategy/harness-engineering-mapping](./harness-engineering-mapping) — the static correspondence between the four harness elements and the 5-layer model
 - [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — the Doctrine layer in detail, autonomy levels 1–4
 - [agents/subagent-quality-gate](../agents/subagent-quality-gate) — quality gates as detection devices for doctrine-type failure (expansive interpretation)
 - [mcp/security](../mcp/security) — authority management at MCP boundaries
@@ -142,7 +143,7 @@ This page covered the **structure (What/How)** of permission and authority. To u
 
 ---
 
-> **Previous**: [Harness Engineering Mapping](./harness-engineering-mapping.md)
+> **Previous**: [Proposal vs. Binding](./proposal-and-binding.md)
 > **Next**: [Weight vs. Context Specialization](./specialization-weights-vs-context.md)
 
 **Last updated**: June 2026

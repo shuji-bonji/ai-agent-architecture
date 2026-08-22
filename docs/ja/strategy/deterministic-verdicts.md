@@ -201,6 +201,7 @@ const rules: Rule[] = [
 
 - [mcp-family](./mcp-family) — 一つのドメインを複数 MCP に割る。「ジャッジはコード、ナラティブは LLM」の初出
 - [permission-vs-authority](./permission-vs-authority) — 行為の裁量を渡す話（本ページは判定の権限を渡す話）
+- [proposal-and-binding](./proposal-and-binding) — 判定層が属する「拘束」層と、非拘束の 3 層との関係を示す座標系
 - [routing-vs-cascading](./routing-vs-cascading) — 弱い Judge がカスケードを壊す問題。判定器の品質側
 - [loop-engineering](./loop-engineering) — 外側ループの工学。判定層は閉ループの採点器にあたる
 - [concepts/05-solving-ai-limitations](../concepts/05-solving-ai-limitations) — 確率的推論と決定論的検証の分離

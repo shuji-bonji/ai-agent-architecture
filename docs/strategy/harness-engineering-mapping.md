@@ -227,9 +227,10 @@ This page covers the **structural correspondence (What)** between harness and th
 - [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine layer in detail
 - [skills/what-is-skills](../skills/what-is-skills) — why Skills isn't part of harness
 - [strategy/composition-patterns](./composition-patterns) — composition patterns across multiple MCPs and Skills
-- [strategy/permission-vs-authority](./permission-vs-authority) — what harness-type and doctrine-type agents ask for at the boundary (sequel to this page)
+- [strategy/proposal-and-binding](./proposal-and-binding) — the ①–④ loop re-cut along the axis of whether each step binds (sequel to this page)
+- [strategy/permission-vs-authority](./permission-vs-authority) — what harness-type and doctrine-type agents ask for at the boundary
 
 ---
 
 > **Previous**: [Local LLM Workspace Mapping](./local-llm-workspace-mapping.md)
-> **Next**: [Permission vs. Authority](./permission-vs-authority.md)
+> **Next**: [Proposal vs. Binding](./proposal-and-binding.md)

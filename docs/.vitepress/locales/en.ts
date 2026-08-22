@@ -96,6 +96,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             { text: 'Deterministic Verdicts', link: '/strategy/deterministic-verdicts' },
             { text: 'Local LLM Workspace Mapping', link: '/strategy/local-llm-workspace-mapping' },
             { text: 'Harness Engineering Mapping', link: '/strategy/harness-engineering-mapping' },
+            { text: 'Proposal vs. Binding', link: '/strategy/proposal-and-binding' },
             { text: 'Permission vs. Authority', link: '/strategy/permission-vs-authority' },
             { text: 'Weight vs. Context Specialization', link: '/strategy/specialization-weights-vs-context' },
             { text: 'Routing vs. Cascading', link: '/strategy/routing-vs-cascading' },

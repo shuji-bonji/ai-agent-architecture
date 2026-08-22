@@ -146,6 +146,10 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               link: '/ja/strategy/harness-engineering-mapping',
             },
             {
+              text: '提案と拘束',
+              link: '/ja/strategy/proposal-and-binding',
+            },
+            {
               text: 'Permission と Authority',
               link: '/ja/strategy/permission-vs-authority',
             },

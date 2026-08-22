@@ -127,7 +127,8 @@ graph TB
 
 ## 関連ドキュメント
 
-- [strategy/harness-engineering-mapping](./harness-engineering-mapping) — ハーネス 4 要素と 5 層モデルの静的対応（本ページの前提）
+- [strategy/proposal-and-binding](./proposal-and-binding) — permission が拘束層、authority が表現層に置かれる要求である理由（本ページの前提となる座標系）
+- [strategy/harness-engineering-mapping](./harness-engineering-mapping) — ハーネス 4 要素と 5 層モデルの静的対応
 - [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine 層の詳細、自律性レベル 1〜4 の定義
 - [agents/subagent-quality-gate](../agents/subagent-quality-gate) — ドクトリン型故障（拡大解釈）の検知装置としての品質ゲート
 - [mcp/security](../mcp/security) — MCP 境界での権限管理
@@ -142,7 +143,7 @@ graph TB
 
 ---
 
-> **前へ**: [Harness Engineering との対応関係](./harness-engineering-mapping.md)
+> **前へ**: [提案と拘束](./proposal-and-binding.md)
 > **次へ**: [重み特化 vs 文脈特化](./specialization-weights-vs-context.md)
 
 **最終更新**: 2026 年 6 月

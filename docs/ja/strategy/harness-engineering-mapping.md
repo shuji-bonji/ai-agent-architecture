@@ -227,9 +227,10 @@ graph LR
 - [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine 層の詳細
 - [skills/what-is-skills](../skills/what-is-skills) — Skills 層がハーネスに含まれない理由
 - [strategy/composition-patterns](./composition-patterns) — 複数 MCP・複数 Skill の協調パターン
-- [strategy/permission-vs-authority](./permission-vs-authority) — ハーネス型とドクトリン型が境界で求めるもの（本ページの続編）
+- [strategy/proposal-and-binding](./proposal-and-binding) — ①〜④ループを「拘束するか」の軸で切り直した四層の座標系（本ページの続編）
+- [strategy/permission-vs-authority](./permission-vs-authority) — ハーネス型とドクトリン型が境界で求めるもの
 
 ---
 
 > **前へ**: [ローカル LLM 環境への 5 層モデルの写像](./local-llm-workspace-mapping.md)
-> **次へ**: [Permission と Authority](./permission-vs-authority.md)
+> **次へ**: [提案と拘束](./proposal-and-binding.md)
