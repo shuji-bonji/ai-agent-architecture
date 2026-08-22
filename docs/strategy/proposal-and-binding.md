@@ -84,6 +84,17 @@ What gets called "data structuring" contains two jobs with different purposes.
 
 Good reach with poor expression produces misreadings. Good expression with poor reach never enters the context at all. Strengthening one does not substitute for the other.
 
+::: info The Scope of "Structuring" Is the Input Side
+Reach and expression on this page both refer to the structure of **data the LLM reads**. Specifying an **output format** — "return JSON" — is a different axis.
+
+There are reports that strongly constraining the output format lowers accuracy on reasoning tasks ([Tam et al., 2024](https://arxiv.org/abs/2408.02442)). A re-examination under equal conditions found the gap disappears ([Kurt, 2024](https://blog.dottxt.ai/say-what-you-mean.html)), so this is not a settled result. The topic is often merged with Distractor Interference from Context Rot (an input-side phenomenon) into the claim that "structuring lowers accuracy," but the two are different phenomena.
+
+- Distractor Interference is an input-side phenomenon; whether distractors enter the context is decided by reach-layer design. It reinforces this page's view.
+- The countermeasures for output format constraints fit into the existing layers. "Reason in free text, then summarize as JSON at the end" is expression-layer design; "enforce the schema on the API side (constrained decoding, tool use `input_schema`)" is the binding layer. No layer is added.
+
+See the sister site's [Output Format Constraints and Accuracy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/output-format-constraints) for details.
+:::
+
 ## The Four Layers
 
 | Layer          | Binds       | Question                        | Typical instances                                     |
@@ -149,6 +160,8 @@ Execution results feed back into reach and expression on the next turn. This loo
 | "The prompt says not to allow it"                 | A request to the proposing side, not the binding layer                           |
 | "Schema validation is in place, so it's safe"     | Refuses argument shape only; whether to call at all is a different layer         |
 | "Enough RAG and binding becomes unnecessary"      | Strengthens reach and expression; the locus of approval does not move            |
+| "Structuring lowers accuracy, so use less of it"  | Conflates the input side (Distractor Interference) with the output side (format constraints). The former is about reach-layer design deciding how many distractors enter; it is no reason to structure less |
+| "The prompt says 'return JSON', so the format is guaranteed" | Expression layer. If ignored, the format breaks. What fixes the format is schema enforcement on the API side (binding layer), and even then accuracy can drop unless reasoning space is reserved outside the schema |
 | "Put a second LLM in the approver role and it binds" | Separating actors does catch uncorrelated errors, but the approval decision stays probabilistic |
 
 Do not read that last row as pure negation. **Separating the actors has real value**: errors decorrelate between the proposing side and the approving side, so cases where only one of them is wrong become detectable. The layer does not change, though, and it is no substitute for the binding layer.
@@ -189,6 +202,7 @@ This page covered the **classification (What/How)** of the layers. To understand
 
 - [understanding-llm / Authority and LLM Structural Constraints](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/authority-and-llm-constraints) — how Instruction Decay, Context Rot, and Sycophancy erode "holding on to a principle"
 - [understanding-llm / Judgment Drift](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/judgment-drift) — the three layers behind verdicts that do not reproduce once judging sits in the LLM
+- [understanding-llm / Output Format Constraints and Accuracy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/output-format-constraints) — input-side structuring (reach, expression) and output format constraints are different axes; the countermeasures for the latter split between the expression and binding layers
 
 ---
 

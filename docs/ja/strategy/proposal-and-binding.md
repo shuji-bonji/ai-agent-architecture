@@ -84,6 +84,17 @@ LLM の入力はトークン列 1 本である。RAG の検索結果も、MCP �
 
 到達が良くても表現が悪ければ誤読する。表現が良くても到達しなければ、そもそも context に入らない。片方を厚くしても、もう片方の代わりにはならない。
 
+::: info 「構造化」の射程は入力側である
+本ページの到達・表現は、いずれも **LLM に読ませるデータ** の構造を指す。「JSON で返せ」のような **出力フォーマット** の指定は、これとは別の軸である。
+
+出力フォーマットを強く制約すると推論タスクの正答率が下がる、という報告がある ([Tam et al., 2024](https://arxiv.org/abs/2408.02442))。一方で、同条件で比較し直すと差が消えるという再検証もあり ([Kurt, 2024](https://blog.dottxt.ai/say-what-you-mean.html))、確定した結論ではない。この論点は、Context Rot の Distractor Interference（入力側の現象）と混ぜて「構造化は精度を下げる」と説明されることが多いが、別の現象である。
+
+- Distractor Interference は入力側の現象であり、妨害情報が context に入るかどうかは到達層の設計で決まる。本ページの見方を補強する。
+- 出力フォーマット制約の対策は、既存の層に収まる。「自由記述で考えてから最後に JSON にまとめる」は表現層の設計、「スキーマを API 側で強制する（constrained decoding、tool use の `input_schema`）」は拘束層である。層は増えない。
+
+詳細は姉妹サイトの [出力フォーマット制約と精度](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/appendix/output-format-constraints) を参照。
+:::
+
 ## 四層
 
 | 層       | 拘束     | 問い                       | 典型                                              |
@@ -149,6 +160,8 @@ flowchart LR
 | プロンプトで「許可するな」と書いた   | 提案側への要請であり、拘束層ではない                                      |
 | スキーマ検証があるから安全           | 引数の形しか拒否しない。呼び出しの是非は別の層                            |
 | RAG を厚くすれば拘束は不要になる     | 到達と表現の強化であり、許可の所在は動かない                              |
+| 構造化すると精度が下がると聞いたので、構造化を減らす | 入力側（Distractor Interference）と出力側（フォーマット制約）の混同。前者は到達層の設計で妨害情報の混入量が決まる話であり、構造化を減らす理由にはならない |
+| プロンプトに「JSON で返せ」と書いたから形式は保証される | 表現層。無視されれば形式が崩れる。形式を確定させるのは API 側のスキーマ強制（拘束層）であり、それでも推論の場所をスキーマの外に確保しないと精度は下がり得る |
 | 別の LLM を許可役にすれば拘束になる  | 主体を分けると相関しない誤りは検出できる。ただし許可判定自体は確率的なまま |
 
 最後の行を否定だけで読まないこと。**主体の分離には効果がある**。提案側と許可側で誤りの相関が切れるので、片方だけが誤っている場合は検出できる。ただし層は上がらず、拘束層の代わりにはならない。
@@ -189,6 +202,7 @@ flowchart LR
 
 - [understanding-llm / Authority と LLM の構造的制約](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/appendix/authority-and-llm-constraints) — Instruction Decay・Context Rot・Sycophancy が「原則の保持」を侵食する構造
 - [understanding-llm / 判定ドリフト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/appendix/judgment-drift) — 判定を LLM に置いたとき、再現しない 3 層の機構
+- [understanding-llm / 出力フォーマット制約と精度](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/appendix/output-format-constraints) — 入力側の構造化（到達・表現）と出力フォーマット制約は別の軸であること、後者の対策が表現層と拘束層に分かれること
 
 ---
 
