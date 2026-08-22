@@ -8,7 +8,6 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     nav: [
       { text: 'ホーム', link: '/ja/' },
       { text: '序章', link: '/ja/preface' },
-      { text: 'コンセプト', link: '/ja/concepts/' },
       { text: 'MCP', link: '/ja/mcp/what-is-mcp' },
       { text: 'Skills', link: '/ja/skills/what-is-skills' },
       { text: 'エージェント', link: '/ja/agents/' },
@@ -64,7 +63,7 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             {
-              text: '本サイトのスコープ (LLM だけ?)',
+              text: '範囲（序章へ）',
               link: '/ja/faq/scope-of-ai-agent',
             },
             { text: 'MCP vs Skills', link: '/ja/faq/mcp-vs-skills' },
@@ -75,8 +74,8 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           ],
         },
         {
-          text: 'コンセプト',
-          collapsed: false,
+          text: '旧パス（Concepts）',
+          collapsed: true,
           items: [
             { text: '全体像', link: '/ja/concepts/' },
             { text: 'ビジョン（→ 制約の要約）', link: '/ja/concepts/01-vision' },

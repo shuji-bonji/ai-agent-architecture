@@ -1,15 +1,32 @@
 # プロジェクト概要
 
-このリポジトリは「AIエージェントが Skills・Tools・Memory・Identity をどう発見・オーケストレーションするか」を体系化する多言語ドキュメントサイト。Concepts (8章) + MCP + Skills + Agents + FAQ + Strategy + Workflows で構成される。英語がメイン、日本語版は `docs/ja/` に配置。
+このリポジトリは『LLMエージェントの設計』（英語書名 LLM Agent Design Architecture）の多言語ドキュメントサイトである。公開 URL は維持する。リポジトリ名は変えない。
 
-姉妹プロジェクト: [understanding-llm-through-claude-code](https://github.com/shuji-bonji/understanding-llm-through-claude-code) (LLM の構造的制約 = Why の本棚)。本サイトは What/How の地図として補完関係にある。
+方針は `AGENTS.md` が優先する。v2 の論理原稿は日本語を先に確定し、英語はそれに対応させる。サイトの locale は `docs/` = 英語、`docs/ja/` = 日本語のままである。
+
+姉妹プロジェクト: [understanding-llm-through-claude-code](https://github.com/shuji-bonji/understanding-llm-through-claude-code)（LLM の構造的制約 = Why）。本書は What / How の設計である。
+
+骨格の読み順:
+
+| 部 | 内容 | 主なパス |
+| --- | --- | --- |
+| 序章 | 問いと範囲 | `preface.md` |
+| 第I部 | 制約の要約 | `part-1/constraints.md` |
+| 第II部 | 五層と配置基準 | `part-2/layers.md`, `part-2/placement.md` |
+| 第III部 | Skills / MCP / Doctrine / Memory / Agent | `skills/what-is-skills.md`, `mcp/what-is-mcp.md`, `part-3/doctrine.md`, `part-3/memory.md`, `agents/index.md` |
+| 第IV部 | パターン、限界、物理世界、プロンプトの分解 | `part-4/*.md` |
+
+`docs/(ja/)concepts/01`–`09` と `concepts/index` は旧 URL のリダイレクトである。How-to、カタログ、ショーケース、strategy、workflows はパスを維持する。
 
 # 言語・文体ルール
 
-- 英語版（`docs/`）がメイン、日本語版（`docs/ja/`）がサブ
 - 専門用語（MCP, Skills, Sub-agent, A2A, Agent ID, Knowledge Graph 等）は両言語とも英語のまま使用する
 - コード例やツール名（`SKILL.md`, `.claude/agents/`, `mcp__xcomet__*` 等）もそのまま表記する
+- 日本語本文は常体（である調）。語尾は「である」の連続を避け、「する／置く／残る／足りる」で散らす
+- 入口は場面から入る。漢語が先に来ないようにする。口語（腹落ち、逆に言えば、調べて来られた方へ）、絵文字、記号だけの断言は使わない
+- 英語は同等の内容を、英語の技術書として書く。口語のキャッチコピーを本文の論理にしない
 - カタカナ表記の専門用語（サブエージェント、エージェント、ドメイン等）は日本語版で文脈に応じて使用可
+- MUST / SHOULD は RFC 2119 の意味で使う。本文では「しなければならない」「するのがよい」（英語では must / should）を併記する
 
 # i18n ルール
 
@@ -20,33 +37,19 @@
 - 日本語版のナビゲーション: `> **次へ**:` / `> **前へ**:`
 - 英語版のリンクは `docs/` 配下、日本語版のリンクは `docs/ja/` 配下を指す
 - 同一ページの英日両方を必ず対称に更新する (片方だけ更新は禁止)
-
-# 章構成 (Concepts)
-
-Concepts は 8 章で構成される。新規概念ページを追加する場合は、適切な番号と「中心的な問い」(WHY/WHAT/HOW/WHICH/REALITY/EXTENSION/DOCTRINE/MEMORY) を割り当てる。
-
-| 章 | ラベル | 中心的な問い |
-| --- | --- | --- |
-| 01 | WHY | AIになぜ指針が必要か |
-| 02 | WHAT | 何を参照先とするか |
-| 03 | HOW | どう構成するか (三層モデル) |
-| 04 | WHICH | どのパターンをいつ選ぶか |
-| 05 | REALITY | 現実の制約にどう向き合うか |
-| 06 | EXTENSION | 物理世界での拡張 |
-| 07 | DOCTRINE | 何を基準に判断するか |
-| 08 | MEMORY | 何を記憶し、どう接続するか |
+- パス移動は英日同時。英語本文が未完でも、旧パスにスタブを置く
 
 # レイヤーモデル
 
-本サイトは 5 層モデルを採用 (三層モデル + Memory 層 + Doctrine 層)。
+5 層（Doctrine / Agent / Skills / Memory / MCP）。三層に戻さない。
 
 | レイヤー | 役割 | 色 (Mermaid `fill`) |
 | --- | --- | --- |
-| **Doctrine** | 制約・目的・判断基準 | `#FFE4B5` (薄橙) |
-| **Agent** | タスク理解・オーケストレーション | `#87CEEB` (水色) |
-| **Skills** | 静的知識・ガイドライン | `#90EE90` (薄緑) |
-| **Memory** | 永続化された記憶・関係性 | `#E6E6FA` (Lavender) |
-| **MCP** | 外部システムへの接続 | `#FFB6C1` (ピンク) |
+| **Doctrine** | 目的・禁止・優先順位 | `#FFE4B5` (薄橙) |
+| **Agent** | 作業の理解と割り振り | `#87CEEB` (水色) |
+| **Skills** | 変わらない知識と手順 | `#90EE90` (薄緑) |
+| **Memory** | 残す記憶と関係 | `#E6E6FA` (Lavender) |
+| **MCP** | 外のシステムへの接続 | `#FFB6C1` (ピンク) |
 
 > [!IMPORTANT]
 > Mermaid 図で 5 層に言及する場合は、上記の色を必ず使用する。ダークモード対策として `color:#333` または `color:#000` を明示する。
@@ -99,21 +102,17 @@ style DOCTRINE fill:#FFE4B5,color:#333,stroke:#333
   - `[!WARNING]` — 注意すべき制約や落とし穴
   - `[!CAUTION]` — 重大なリスクや禁止事項
 
-# Concepts セクション専用フォーマット
+# 書籍の章の形式
 
-`docs/(ja/)concepts/0X-*.md` の各章は以下の構造を必ず持つ:
+`preface.md` と `part-*`、および第III部の入口（`skills/what-is-skills.md`, `mcp/what-is-mcp.md`, `agents/index.md`）は書籍の章である。Concepts シリーズのテンプレ（キャッチフレーズ、`::: warning` 位置づけ、`::: details` メタ情報）は適用しない。
 
-1. `# タイトル — サブタイトル` (h1)
-2. `> キャッチフレーズ` (blockquote)
-3. `## このドキュメントについて` (背景・対象読者)
-4. `> **対象読者**:` (blockquote)
-5. `::: warning このページの位置づけ` (シリーズチェーンを示す)
-6. `::: details メタ情報` (固定するもの / 扱わないこと / 依存 / 誤用ポイント)
-7. `## ドキュメントシリーズにおける位置づけ` (Mermaid 図)
-8. 本論
-9. `## 関連ドキュメント`
-10. `## 🔗 さらに深く: ...` (姉妹サイトへの導線)
-11. 末尾ナビゲーション (`> **前へ**:` / `> **次へ**:`)
+1. `# 部番号と題` (h1)
+2. `> [!NOTE]` で位置づけ
+3. 本論（場面から入り、担当で切る）
+4. `## 関連ドキュメント`（任意）
+5. 末尾ナビゲーション (`> **前へ**:` / `> **次へ**:`)
+
+How-to、カタログ、strategy、workflows は既存のページ形式を維持してよい。
 
 # 規範強度ラダー (RFC 2119)
 
@@ -127,23 +126,13 @@ style DOCTRINE fill:#FFE4B5,color:#333,stroke:#333
 | **SHOULD NOT** | 非推奨 | 正当な理由がある場合のみ採用可能 |
 | **MAY** | 任意 | 完全に選択的 |
 
-Skills の合格基準、Sub-agent 品質ゲートの判定基準等で使用する。
+Skills の合格基準、Sub-agent 品質ゲートの判定基準等で使用する。本文では記号だけに意味を預けない。
 
 # 姉妹サイトとの相互リンク
 
-本サイトのページに「**なぜそうなるか (Why)**」を扱うセクションがある場合は、姉妹サイト [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) への導線を末尾に追加する。
+本サイトのページに「**なぜそうなるか (Why)**」を扱う箇所がある場合は、姉妹サイト [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) への導線を置く。書籍の章では絵文字見出しは使わない。
 
-形式:
-
-```markdown
-## 🔗 さらに深く: なぜ XXX が必要なのか
-
-本ページは XXX の **構造 (What/How)** を扱った。「**なぜ** XXX が必要なのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
-
-- [understanding-llm / Part N: TITLE](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/PATH) — 簡潔な説明
-```
-
-逆に、本サイト独自の実装パターンや 2026 年現在の運用知見については、姉妹サイトからの導線を受ける側になる。
+逆に、本サイト独自の実装パターンや運用知見については、姉妹サイトからの導線を受ける側になる。
 
 # 参考文献の体裁
 

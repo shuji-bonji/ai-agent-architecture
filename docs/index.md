@@ -1,12 +1,12 @@
 ---
 layout: home
 title: LLM Agent Design Architecture
-description: Design of agents whose inference core is a foundation model. Place judgment, knowledge, memory, and connections into Doctrine / Agent / Skills / Memory / MCP.
+description: Design agents around an LLM such as Claude so they remain usable. Doctrine / Agent / Skills / Memory / MCP.
 
 hero:
   name: LLM Agent Design Architecture
-  text: A design document
-  tagline: How to design agents whose inference core is a foundation model, given the model's structural constraints.
+  text: LLMエージェントの設計
+  tagline: Design agents around an LLM such as Claude so they remain usable.
   actions:
     - theme: brand
       text: Read the Preface
@@ -23,49 +23,49 @@ hero:
 
 features:
   - title: Preface
-    details: The questions this book answers, the five layers in scope, what it does not cover, its readers, and its structure. English text is not yet available.
+    details: What the book covers and what it does not. Readers and how to read it.
     link: /preface
-    linkText: Open the preface
+    linkText: Read the Preface
   - title: Constraint summary
-    details: A summary of the structural constraints that design must assume. Mechanisms belong to the sister site.
+    details: Limits the model already has. Mechanisms belong to the sister site.
     link: /part-1/constraints
-    linkText: Open the constraint summary
+    linkText: Read the constraint summary
   - title: Five layers
-    details: Separation of duties and placement across Doctrine / Agent / Skills / Memory / MCP.
+    details: Doctrine / Agent / Skills / Memory / MCP. Who owns what.
     link: /part-2/layers
-    linkText: Open the five layers
+    linkText: Read the five layers
   - title: Skills
-    details: The layer for static knowledge and guidelines.
+    details: Where stable knowledge lives — team rules and procedures.
     link: /skills/what-is-skills
     linkText: Read Skills
   - title: MCP
-    details: The layer for connections to external systems.
+    details: Where connections to outside systems live — statutes, APIs, and the like.
     link: /mcp/what-is-mcp
     linkText: Read MCP
   - title: Agent
-    details: The layer for task understanding and orchestration.
+    details: Where the work is understood and the other layers are combined.
     link: /agents/
     linkText: Read Agent
 ---
 
-The English title of this book is **LLM Agent Design Architecture**. The Japanese title is **LLMエージェントの設計**.
+The English title is **LLM Agent Design Architecture**. The Japanese title is **LLMエージェントの設計**.
 
-The AI this book treats is primarily an LLM (large language model). That is the core of conversational systems such as Claude. This book is about designing agents whose inference core is that model. It is not an operations manual.
+The AI this book treats is primarily an LLM (large language model). That is the core of Claude. A plausible answer can be produced. There is no guarantee it matches the source text. Yesterday's conversation is gone unless you pass it in. This book is about assembling agents on that premise. It does not cover product how-tos.
 
-Scope, terms, readers, and structure are defined in the [Preface](./preface). The English preface is not yet translated.
+Scope and terms are in the [Preface](./preface).
 
-A [harness](./glossary#harness) is the mechanism for operating an agent. This book is the document for designing one. See [Harness Engineering Mapping](/strategy/harness-engineering-mapping) for the correspondence.
+A [harness](./glossary#harness) is the machinery for finishing today's task. This book is the design document for after the run. See [Harness Engineering Mapping](/strategy/harness-engineering-mapping) for the correspondence.
 
 ## Related materials
 
 | Concern | Material | Role |
 | --- | --- | --- |
-| Understand (origin of constraints) | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) | Why |
+| Understand (origin of limits) | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) | Why |
 | Design | This book | What / How |
 | Apply in operations | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | In preparation |
 
 <div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
-This documentation records practical knowledge from assembling agents. It is not official documentation from Anthropic or any other organization. Comments and discussion are welcome in [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues).
+This is a record of knowledge from assembling agents. It is not official documentation from Anthropic or any other organisation. Comments and discussion are welcome in [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues).
 
 </div>

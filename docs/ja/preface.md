@@ -136,7 +136,7 @@ LLM と基盤モデルは、本章の冒頭で説明した。
 
 本文は常体で書く。口語、絵文字、記号だけの断言は使わない。
 
-英語版の書名は LLM Agent Design Architecture である。英語の本文は、まだ書いていない。以前の書名は AI Agent Architecture だった。かつての副題は、入口には使わない。
+英語版の書名は LLM Agent Design Architecture である。英語本文は、日本語に対応させて置く。以前の書名は AI Agent Architecture だった。かつての副題は、入口には使わない。
 
 ## 0.8 序章の要約
 

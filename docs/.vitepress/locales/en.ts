@@ -7,7 +7,6 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Preface', link: '/preface' },
-      { text: 'Concepts', link: '/concepts/' },
       { text: 'MCP', link: '/mcp/what-is-mcp' },
       { text: 'Skills', link: '/skills/what-is-skills' },
       { text: 'Agents', link: '/agents/' },
@@ -19,22 +18,22 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Preface',
           collapsed: false,
           items: [
-            { text: 'Preface (untranslated / coming soon)', link: '/preface' },
+            { text: 'Questions and scope', link: '/preface' },
           ],
         },
         {
           text: 'Part I',
           collapsed: false,
           items: [
-            { text: 'Constraint Summary (untranslated / coming soon)', link: '/part-1/constraints' },
+            { text: 'Constraint summary', link: '/part-1/constraints' },
           ],
         },
         {
           text: 'Part II',
           collapsed: false,
           items: [
-            { text: 'Five Layers (untranslated / coming soon)', link: '/part-2/layers' },
-            { text: 'Placement (untranslated / coming soon)', link: '/part-2/placement' },
+            { text: 'Five layers', link: '/part-2/layers' },
+            { text: 'Placement', link: '/part-2/placement' },
           ],
         },
         {
@@ -43,8 +42,8 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           items: [
             { text: 'Skills', link: '/skills/what-is-skills' },
             { text: 'MCP', link: '/mcp/what-is-mcp' },
-            { text: 'Doctrine (untranslated / coming soon)', link: '/part-3/doctrine' },
-            { text: 'Memory (untranslated / coming soon)', link: '/part-3/memory' },
+            { text: 'Doctrine', link: '/part-3/doctrine' },
+            { text: 'Memory', link: '/part-3/memory' },
             { text: 'Agent', link: '/agents/' },
           ],
         },
@@ -52,24 +51,24 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Part IV',
           collapsed: false,
           items: [
-            { text: 'Patterns (untranslated / coming soon)', link: '/part-4/patterns' },
-            { text: 'Limits (untranslated / coming soon)', link: '/part-4/limits' },
-            { text: 'Physical world (untranslated / coming soon)', link: '/part-4/physical' },
-            { text: 'Prompt decomposition (untranslated / coming soon)', link: '/part-4/prompt-decomposition' },
+            { text: 'Patterns', link: '/part-4/patterns' },
+            { text: 'Limits', link: '/part-4/limits' },
+            { text: 'Physical world', link: '/part-4/physical' },
+            { text: 'Prompt decomposition', link: '/part-4/prompt-decomposition' },
           ],
         },
         {
           text: 'FAQ (3-line answers)',
           collapsed: false,
           items: [
-            { text: 'Scope of this site (only LLMs?)', link: '/faq/scope-of-ai-agent' },
+            { text: 'Scope (see Preface)', link: '/faq/scope-of-ai-agent' },
             { text: 'MCP vs Skills', link: '/faq/mcp-vs-skills' },
             { text: 'Agent/Sub-agent/Skill/MCP comparison', link: '/faq/agent-vs-subagent-vs-skill' },
           ],
         },
         {
-          text: 'Concepts',
-          collapsed: false,
+          text: 'Old paths (Concepts)',
+          collapsed: true,
           items: [
             { text: 'Overview', link: '/concepts/' },
             { text: 'Vision (→ Constraint Summary)', link: '/concepts/01-vision' },

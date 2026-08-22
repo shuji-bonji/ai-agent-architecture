@@ -1,363 +1,69 @@
 ---
-title: "What is MCP? Model Context Protocol Explained for AI Agents"
-description: "MCP (Model Context Protocol) is an open standard by Anthropic that connects AI agents to external tools and data. Learn about MCP servers, clients, hosts, and how to use MCP with Claude Code, Cursor, and Cline."
-head:
-  - - meta
-    - property: "og:title"
-      content: "What is MCP? Model Context Protocol Explained for AI Agents"
-  - - meta
-    - property: "og:description"
-      content: "MCP (Model Context Protocol) is an open standard by Anthropic that connects AI agents to external tools and data. Learn about MCP servers, clients, hosts, and how to use MCP with Claude Code, Cursor, and Cline."
-  - - meta
-    - name: "twitter:card"
-      content: "summary_large_image"
+title: III.2 MCP
+description: The layer that connects to outside tools and data. It separates guesswork from source text.
 ---
 
-# What is MCP?
+# III.2 MCP
 
-> A standard protocol for AI agents to safely access external tools and data
+> [!NOTE] Where this chapter sits
+> Skills are read only. Today's statute, today's translation, today's score are taken from outside. MCP is the layer that owns that connection. How to build servers and the catalogue remain in the pages below.
 
-## About This Document
+## 2.1 What it connects
 
-This guide covers the core concepts, categories, and trade-offs of MCP. If you're new to MCP, start here. For hands-on implementation details, see [development.md](./development.md).
+Ask Claude what a given section of RFC 6455 is, and it may answer from training memory. Section numbers may drift. Connect to the source text, and the answer can carry a citation.
 
-## What is MCP?
+MCP stands for Model Context Protocol. It is a shared rule for connecting a model to outside tools and data. Anthropic published it. It is sometimes likened to USB. This book looks at ownership more than the simile. It is the layer that takes outside facts and actions.
 
-**MCP (Model Context Protocol)** is an open standard protocol led by Anthropic.
+It mainly offers three things.
 
-In short: **a common protocol that enables AI agents to safely access external tools and data.**
-
-### The USB-C Analogy
-
-Just as USB-C connects various devices (mice, keyboards, external drives) to a PC with one standard, MCP connects not only various tools and services (RFC specifications, translation APIs, legal databases) but also **physical devices and sensors (IoT devices, scanners, OCR, etc.)** to AI with one protocol.
-
-### The Essence: Giving AI a "Hand"
-
-AI excels at text input and output, but by default it cannot interact with the outside world—no network access, no file operations. MCP standardizes this gap and gives AI the tools it needs to act.
-
-## Why MCP?
-
-### The Problem: AI's Knowledge Cutoff and Dynamic Data
-
-AI can only answer within its training data. For example:
-
-- It doesn't know the latest RFC specifications (RFC 6455 and beyond)
-- It cannot use translation services like DeepL or Google Translate
-- It cannot search legal databases or proprietary knowledge bases
-
-### Before MCP: The N×M Problem
-
-Before MCP, each AI tool (Claude Code, Cursor, VS Code) had to individually integrate with each service (RFC, translation, legal databases).
-
-```
-N AI tools × M services = N×M integrations needed
-```
-
-### After MCP: Reduced to N+M
-
-With MCP standardization, each service publishes one MCP server, and all AI tools automatically gain access to it.
-
-```
-N AI tools + M MCP servers = N+M implementations total
-```
-
-### LSP: MCP's Structural Ancestor
-
-This N×M → N+M reduction is not new. The **Language Server Protocol (LSP)**, introduced by Microsoft in 2016, solved the identical problem one layer down: before LSP, supporting M languages across N editors required N×M plugins. LSP collapsed this to N+M by standardizing editor↔language-server communication over **JSON-RPC 2.0** — the same transport MCP uses today.
-
-> [!TIP]
-> MCP is, in effect, "LSP for LLMs." Microsoft's VS Code team states it directly: *"The idea behind LSP inspired a new protocol, MCP, that standardizes how applications provide context to LLMs."* Where LSP connects editors to code intelligence, MCP connects LLMs to arbitrary tools and data. Recognizing this lineage clarifies why MCP's host/client/server split mirrors LSP's editor/client/server split. The reverse direction is now happening too: tools like `lsp-mcp` and Serena re-expose LSP capabilities to LLMs as MCP servers, and Claude Code added native LSP plugins (`pyright-lsp`, `vtsls`, `rust-analyzer`, etc.) in late 2025.
-
-Reference: VS Code Team (2025). "Agent mode: available to all users and supports MCP." Visual Studio Code Blog. [code.visualstudio.com](https://code.visualstudio.com/blogs/2025/04/07/agentMode) — MCP as the LLM-era successor to LSP.
-
-## MCP's Three-Layer Architecture
-
-MCP has three clearly defined layers with distinct roles.
-
-```mermaid
-block-beta
-    columns 1
-
-    block:HOST_BLOCK:1
-        HOST["Host (Application)<br/>Claude Code, Cursor, VS Code"]
-    end
-
-    block:CLIENT_BLOCK:1
-        CLIENT["Client (MCP Client)<br/>Built into Host / Protocol Handler"]
-    end
-
-    block:SERVER_BLOCK:1
-        SERVER["Server (MCP Server)<br/>Tools & Resource Provider / Actual Processing"]
-    end
-
-    HOST --> CLIENT
-    CLIENT --"JSON-RPC 2.0"--> SERVER
-
-    style HOST fill:#87CEEB,color:#333,stroke:#333
-    style CLIENT fill:#FFE4B5,color:#333,stroke:#333
-    style SERVER fill:#FFB6C1,color:#333,stroke:#333
-```
-
-### Roles and Developer Involvement
-
-The following table summarizes each layer's responsibilities and how developers interact with them.
-
-| Layer      | Role                                              | Example                      | Developer Role      |
-| ---------- | ------------------------------------------------- | ---------------------------- | ------------------- |
-| **Host**   | UI, [session](../glossary#session) management, user interface            | Claude Code, Cursor, VS Code | User                |
-| **Client** | JSON-RPC communication, request/response handling | Built into Host              | Usually transparent |
-| **Server** | Tool/resource provision, actual implementation    | rfcxml-mcp, deepl-mcp        | **You build this**  |
-
-### Key Insight
-
-**When developing an MCP server, you only implement the Server layer.** The Client is built into the Host, so you don't need to worry about protocol details.
-
-## External Interface Catalog — Where MCP Sits Among All Interfaces
-
-MCP is just one of many ways to connect to the outside. An agent always touches the outside through the **[harness](../glossary#harness) (its hands)**; MCP, direct HTTP, A2A, and plugins are all just classifications of "the contents of the harness's tool-integration responsibility" (see the first principle in [strategy/harness-engineering-mapping](../strategy/harness-engineering-mapping)). Before designing an MCP, survey **where MCP sits on the shelf of all interfaces**.
-
-| Target | Example I/F | Executor |
+| Offer | Meaning | Example |
 | --- | --- | --- |
-| **Model (brain)** | OpenAI-compatible API / LLM Gateway (LiteLLM, OpenRouter) | harness → gateway |
-| **Tools & data** | Direct HTTP/REST/SDK / **MCP** | harness (its hands) |
-| **Knowledge & retrieval** | Web search (SearXNG, Brave, Tavily) / vector DB & RAG / Memory & Knowledge Graph | harness |
-| **Other agents** | **A2A** (Agent Card + Task, client / server adapter) | harness ↔ adapter |
-| **GUI & physical** | Browser automation / computer control / IoT (MQTT, Home Assistant) | harness |
-| **Humans & events** | webhook / message queue / push notification / chat bot | harness |
+| **Tool** | An operation that can run | Fetch RFC structure, translate text, score quality |
+| **Resource** | Data that can be read | A file, a record, a section of a spec |
+| **Prompt** | A shape for how to ask | A fixed template for asking |
 
-> [!TIP]
-> The named "winning protocols" effectively collapse to just **two: MCP (tools) and A2A (agents).** Everything else falls into **(a) ad-hoc direct HTTP, (b) retrieval (search, vectors, memory), or (c) GUI/physical control.** Beneath all of them sits the **interface to the model (the LLM Gateway).** The decision to choose MCP is, on the "tools & data" row of this shelf, **a binary choice against direct HTTP.**
+## 2.2 Why standardise the connection
 
-> [!NOTE]
-> **A plugin is not a *kind* — it is packaging.** A Claude / Cowork plugin is **a distributable that bundles an MCP server, Skills, and commands**; even when you "use a plugin," the harness simply **calls the MCP tools / Skills inside it as functions.** "Implement it as a plugin" = "the harness calls the contents (MCP / Skill)."
+It used to take a join for every model times every tool. MCP moves that product toward a sum. The model side is a client. The tool side is a server.
 
-Note that A2A alone **reverses its position depending on direction** (harness's hand when outbound, the entry point when inbound); see [agents/what-is-a2a](../agents/what-is-a2a). The sections below drill into the kinds and implementations of **MCP (tool connection)** specifically, within this shelf.
+Inside, three roles run. They are not the five layers. They are inside the MCP protocol.
 
-## MCP Categories
-
-MCP servers can be classified along **two axes**: "what they do" (purpose-based) and "how they're implemented" (implementation-based).
-
-### Purpose-based Classification
-
-MCP's utility goes far beyond "unwavering reference sources." In practice, MCP servers serve six distinct purpose categories.
-
-| Category | Role | Examples |
+| Role | Owns | Does a developer touch it? |
 | --- | --- | --- |
-| **Reference** | Structured access to authoritative specs, standards, and regulations | rfcxml-mcp, w3c-mcp, hourei-mcp, pdf-spec-mcp |
-| **Transform** | Data format or language conversion | deepl-mcp, mermaid-mcp |
-| **Evaluate** | Quality or score measurement | xcomet-mcp |
-| **Verify** | Specification compliance confirmation | rfcxml-mcp (validate_statement, etc.) |
-| **Execute** | Domain-specific processing | rxjs-mcp, pdf-reader-mcp |
-| **Retrieve** | General external data retrieval | epsg-mcp |
+| **Host** | Screen and session. Claude Code and the like | The user side |
+| **Client** | Finding servers and talking to them | Usually built into the host |
+| **Server** | Offering tools and data | The builder side |
 
-> **Important:** A single MCP can span multiple categories. For example, `rfcxml-mcp` serves both **Reference** (specification lookup) and **Verify** (compliance validation).
+What a developer writes is, in most cases, the server. The client often need not be implemented by hand.
 
-```mermaid
-mindmap
-  root((MCP<br/>Purpose Categories))
-    Reference
-      rfcxml-mcp
-      w3c-mcp
-      hourei-mcp
-      pdf-spec-mcp
-    Transform
-      deepl-mcp
-      mermaid-mcp
-    Evaluate
-      xcomet-mcp
-    Verify
-      rfcxml-mcp
-    Execute
-      rxjs-mcp
-      pdf-reader-mcp
-    Retrieve
-      epsg-mcp
-```
+Agents talking to agents is A2A's job. MCP's endpoints are tools and data. Hand versus other party is a useful split. Both are sometimes needed.
 
-### Implementation-based Classification
+## 2.3 Place among the five layers
 
-From a technical implementation perspective, MCP servers fall into four patterns.
+Accuracy, freshness, and following source text are filled by connecting. Statutes, RFCs, and W3C specifications are examples. Servers built in this repository often sit in domains that have source text — RFC, W3C, translation quality, statute. See the [catalogue](./catalog).
 
-| Pattern           | Characteristics                                    | Examples                           |
-| ----------------- | -------------------------------------------------- | ---------------------------------- |
-| **Local Data**    | No external communication; data bundled in package | epsg-mcp, pdf-spec-mcp             |
-| **External API**  | Communicates with external APIs via HTTP/HTTPS     | rfcxml-mcp, w3c-mcp, hourei-mcp    |
-| **Model Loading** | Loads ML models for local inference                | xcomet-mcp-server                  |
-| **Hybrid**        | Combination of multiple patterns                   | pdf-reader-mcp (local + URL fetch) |
+Connecting does not guarantee that the answer is always correct, that the model may give an official reading, or that the system bears legal responsibility. Part I fixed that.
 
-### Relationship Between the Two Axes
+Not everything **MUST NOT** (must not) become MCP. Work that needs no judgment may be an ordinary program. Operations a human looks at may stay on the official CLI. Written rules are Skills.
 
-Purpose-based and implementation-based classifications are **independent axes**. For instance, "Reference" MCPs can be either Local Data (pdf-spec-mcp) or External API (rfcxml-mcp). When designing an MCP, first clarify "what you want to achieve" (purpose), then select "how to implement it" (pattern).
+Tool descriptions **SHOULD** not all be loaded at start. Descriptions are a fixed cost on context. Read them when needed. The mechanism is in the sister site [Part 6: Tool context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/).
 
-### Implementation Pattern Selection Flowchart
+## 2.4 Pages that follow
 
-When building a new MCP server, use the following flowchart to determine which implementation pattern applies.
+| Wanted | Page |
+| --- | --- |
+| What has been built | [Catalogue](./catalog) |
+| How to build a server | [Development](./development) |
+| Safety of the connection | [Security](./security) |
+| A layer of meaning | [Semantic Layer](./semantic-layer) |
+| Split from Skills | [MCP vs Skills](../skills/vs-mcp) |
 
-```mermaid
-flowchart TD
-    Q1{External API needed?}
-    Q1 -->|Yes| Q2{Real-time needed?}
-    Q1 -->|No| Q3{ML model needed?}
-    Q2 -->|Yes| API["External API"]
-    Q2 -->|No| HYBRID["Hybrid"]
-    Q3 -->|Yes| MODEL["Model Loading"]
-    Q3 -->|No| LOCAL["Local Data"]
+## 2.5 Summary
 
-    style API fill:#FFB6C1,color:#333,stroke:#333
-    style MODEL fill:#87CEEB,color:#333,stroke:#333
-    style LOCAL fill:#90EE90,color:#333,stroke:#333
-    style HYBRID fill:#FFE4B5,color:#333,stroke:#333
-```
+MCP connects to outside tools and data. It is placed to separate guesswork from source text. Host / Client / Server in the protocol are not another name for the five layers. Source text is MCP, rules are Skills, the measure is Doctrine.
 
-## Core Features of MCP Servers
+---
 
-MCP servers provide three core capabilities.
-
-### Tools - The Most Common
-
-Functions that AI can invoke, similar to Remote Procedure Calls (RPC).
-
-**Examples:**
-
-- `rfcxml:get_rfc_structure` - Fetch RFC specification structure
-- `deepl:translate-text` - Translate text
-- `xcomet:xcomet_evaluate` - Evaluate translation quality
-
-### Resources
-
-Data sources that AI can read, accessed via URI.
-
-**Examples:**
-
-- `file:///path/to/data` - File system data
-- `rfc://6455` - RFC specification document
-
-### Prompts
-
-Reusable prompt templates, formalized as repeatable workflows.
-
-**Examples:**
-
-- Translation quality evaluation template
-- Code review template
-
-### Feature Comparison
-
-The following table contrasts these three capabilities.
-
-| Feature       | Data Direction | Description                     | Usage Frequency |
-| ------------- | -------------- | ------------------------------- | --------------- |
-| **Tools**     | AI → Server    | AI calls server functions       | ★★★ Most common |
-| **Resources** | Server → AI    | Server provides data without UI | ★★ Moderate     |
-| **Prompts**   | Server → AI    | Template provision              | ★ Limited       |
-
-## Additional Utility Features
-
-Beyond the core capabilities (Tools/Resources/Prompts), MCP defines several utility features. None are mandatory, but they become valuable for advanced use cases.
-
-### Sampling
-
-Server requests AI inference in reverse. Useful when delegating complex decisions to the AI.
-
-### Roots
-
-Limits the file system scope that the server can access. Critical for security.
-
-### Logging
-
-Structured log output for debugging and monitoring.
-
-### Progress
-
-Progress reporting for long-running operations to improve user experience.
-
-### Implementation Note
-
-Most MCP servers function perfectly with **Tools alone.** Add features incrementally as needed.
-
-## Benefits
-
-Adopting MCP provides the following advantages.
-
-- ✅ **Standardization**  
-  Once built, your server works with multiple AI hosts (Claude Code, Cursor, VS Code). Protocol unification drastically reduces integration costs.
-
-- ✅ **Reusability**  
-  Publish on npm and users can start using it instantly with `npx`. Deployment and maintenance are simple.
-
-- ✅ **Dynamic Processing**  
-  Enable real-time data fetching and processing. Complement AI's knowledge cutoff.
-
-- ✅ **Authority**
-  Direct access to authoritative sources (RFC originals, legal databases). Reduces AI [hallucinations](../glossary#structural-problems). This is one of MCP's purposes (Reference), alongside other diverse roles such as Transform, Evaluate, Verify, Execute, and Retrieve.
-
-- ✅ **Separation of Concerns**  
-  Tool logic and AI logic are cleanly separated. Changes have limited scope.
-
-## Drawbacks and Risks
-
-MCP also comes with trade-offs and risks to be aware of.
-
-- ❌ **Context Consumption**  
-  Tool definitions consume [tokens](../glossary#token) just to load. With many tools, [context window](../glossary#context-window) pressure becomes real.
-
-- ❌ **Startup Overhead**  
-  Requires server process management. Overkill for simple cases.
-
-- ❌ **Security Risks**  
-  Input validation gaps or permission misconfigurations can cause serious damage. See [security.md](./security.md) for details.
-
-- ❌ **Maintenance Cost**  
-  You must track external API changes. Long-term sustainability requires careful design.
-
-- ❌ **Over-MCP-ification**  
-  Resist the temptation to MCP everything. CLI + Skills often suffice.
-
-### Key Insight
-
-> Services with official CLIs (gh, aws, gcloud) are better served by **CLI + Skills**, not MCP. See [03-architecture.md](../concepts/03-architecture.md) ("CLI vs MCP") for the decision framework.
-
-## MCP Implementations in This Repository
-
-The ai-agent-architecture repository accumulates practical knowledge from developing and operating MCPs.
-
-### Custom MCPs (Published on npm)
-
-Seven MCP servers designed, implemented, and released:
-
-- **rfcxml-mcp** - Search and fetch IETF RFC specifications
-- **w3c-mcp** - Search and reference W3C/WHATWG web specifications
-- **xcomet-mcp** - Evaluate translation quality (uses machine learning models)
-- **rxjs-mcp** - RxJS operator guide and code execution
-- **epsg-mcp** - Search and transform coordinate reference systems (CRS)
-- **pdf-spec-mcp** - Search PDF specifications (ISO 32000)
-- **pdf-reader-mcp** - Read and extract text from PDFs
-
-### Integrated MCPs (External Development)
-
-Five MCP servers we integrate and extend:
-
-- **deepl-mcp** - DeepL translation API
-- **hourei-mcp** - Japanese legal database
-- **mermaid-mcp** - Mermaid diagram generation
-- **svelte-mcp** - Svelte 5 documentation
-- **shadcn-svelte-mcp** - shadcn/ui v4 components
-
-### Learn More
-
-See [catalog.md](./catalog.md) for the complete list and detailed specifications.
-
-## What to Read Next
-
-To dive deeper into MCP, explore the following documents.
-
-| Goal                          | Document                                             |
-| ----------------------------- | ---------------------------------------------------- |
-| **Build an MCP**              | [development.md](./development.md)                   |
-| **Explore built MCPs**        | [catalog.md](./catalog.md)                           |
-| **Understand security**       | [security.md](./security.md)                         |
-| **Choose between Skills/A2A** | [03-architecture.md](../concepts/03-architecture.md) |
-| **Learn about Skills**        | [what-is-skills.md](../skills/what-is-skills.md)     |
-
-**Last Updated:** 2026-06-20
-**Repository:** [ai-agent-architecture](https://github.com/shuji-bonji/ai-agent-architecture)
+> **Previous**: [Skills](../skills/what-is-skills)
+>
+> **Next**: [III.3 Doctrine](../part-3/doctrine)
