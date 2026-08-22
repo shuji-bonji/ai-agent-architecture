@@ -1,0 +1,165 @@
+# book-v2 移行計画
+
+作業ブランチ: `rewrite/book-v2`。方針は `AGENTS.md`。論理の骨格は `docs/ja/preface.md`。本ファイルはリポジトリ上の地図である。公開サイトには出さない。
+
+承認単位は、第III部に入る前に迷わない粒度である。第III部以降で章を分割するときは、本文草案ではなく本表を更新する。
+
+## 非目標
+
+この改定では次を行わない。
+
+- リポジトリの分割、リポジトリ名の変更、公開 URL の破壊
+- 実践例（自作 MCP / Skills / ショーケース）の削除
+- ハーネス製品の操作マニュアル化
+- 層モデルの再発明、空テンプレートへの置き換え
+- App Builder によるサイト再実装
+- 情報ガバナンスの制度設計
+- 英語本文の先行執筆（パス移動時のスタブを除く）
+
+## 目標目次
+
+タイトルはここで固定する。ファイル名の番号（01, 02, …）は継承しない。
+
+| 部 | 章 | タイトル |
+| --- | --- | --- |
+| 序章 | — | 本書の問いと範囲 |
+| 第I部 前提 | I.1 | 制約の要約 |
+| 第II部 モデル | II.1 | 五層 |
+|  | II.2 | 配置基準 |
+| 第III部 各層 | III.1 | Skills |
+|  | III.2 | MCP |
+|  | III.3 | Doctrine |
+|  | III.4 | Memory |
+|  | III.5 | Agent |
+| 第IV部 構成と展開 | IV.1 | パターン |
+|  | IV.2 | 限界 |
+|  | IV.3 | 物理世界 |
+|  | IV.4 | プロンプトの分解 |
+
+英語書名は LLM Agent Design Architecture である。英語の部題はフェーズ 7 で付ける。
+
+## パス方針
+
+1. 骨格ページ（現行 `concepts/01`–`09`）は、書く前に新パスへ移す。旧パスはリダイレクトスタブにする。
+2. 実践ディレクトリ（`skills/` `mcp/` `agents/`）はパスを維持する。`part-3/` 配下へ集めない。
+3. `strategy/` `workflows/` `glossary.md` `information/` はパスを維持し、サイドバーの所属だけ変える。
+4. パス移動は英日同時である。英語本文が未訳でも、旧パスにスタブを置き、新パスに「未訳・対応予定」を置く。
+5. 最初のパス削除の前に、公開中の `main` へタグ `v1` を打つ。`archive/v1/` は作らない。旧 URL はスタブで残す。
+
+新パスの接頭辞は次で固定する。
+
+| 部 | 日本語 | 英語 |
+| --- | --- | --- |
+| 第I部 | `docs/ja/part-1/` | `docs/part-1/` |
+| 第II部 | `docs/ja/part-2/` | `docs/part-2/` |
+| 第III部（Doctrine / Memory のみ） | `docs/ja/part-3/` | `docs/part-3/` |
+| 第IV部（本編 4 章） | `docs/ja/part-4/` | `docs/part-4/` |
+
+リダイレクトの実装は、現行 `docs/ja/skills/overview.md` と同じ方式とする。旧パスにスタブを残す。
+
+## ファイル対応表
+
+扱いの区分:
+
+| 記号 | 意味 |
+| --- | --- |
+| 改稿 | 新パスに文書体で書く。旧パスはスタブ |
+| 再配置 | パスまたはサイドバーだけ動かす。本文は最小 |
+| 維持 | パスも本文も維持。常体化は余力 |
+| 縮小 | URL は残し、本文を短くする |
+| 外す | 目次から外す。URL は残す |
+
+### 骨格（必ず移す）
+
+| 現行（日 / 英） | 新パス（日 / 英） | 目次 | 扱い |
+| --- | --- | --- | --- |
+| （新規）`ja/preface.md` | そのまま `/ja/preface` | 序章 | 改稿済み。英語はスタブのみ |
+| `concepts/01-vision.md` | `part-1/constraints.md` | I.1 | 改稿。FAQ へのスコープ委譲は外す |
+| `concepts/03-architecture.md` | `part-2/layers.md` | II.1 | 改稿。三層表記を五層に揃える |
+| `concepts/02-reference-sources.md` | `part-2/placement.md` | II.2 | 改稿 |
+| `concepts/07-doctrine-and-intent.md` | `part-3/doctrine.md` | III.3 | 改稿 |
+| `concepts/08-memory-and-knowledge.md` | `part-3/memory.md` | III.4 | 改稿 |
+| `concepts/04-ai-design-patterns.md` | `part-4/patterns.md` | IV.1 | 改稿 |
+| `concepts/05-solving-ai-limitations.md` | `part-4/limits.md` | IV.2 | 改稿。第I部へ統合しない |
+| `concepts/06-physical-ai.md` | `part-4/physical.md` | IV.3 | 改稿 |
+| `concepts/09-prompt-decomposition.md` | `part-4/prompt-decomposition.md` | IV.4 | 改稿 |
+| `concepts/index.md` | スタブ → `/ja/preface`（英は `/preface`） | — | 再配置 |
+
+### 第III部（パス維持。入口だけ改稿）
+
+| 現行 | 目次 | 扱い |
+| --- | --- | --- |
+| `skills/what-is-skills.md` | III.1 入口 | 改稿 |
+| `skills/creating-skills.md` ほか How-to、`vs-mcp`、`anti-patterns`、`conversation-to-skill` | III.1 周辺 | 維持 |
+| `skills/showcase.md` `skill-use-cases.md` | III.1 実践 | 維持。削除しない |
+| `skills/overview.md` | — | 既存スタブのまま |
+| `mcp/what-is-mcp.md` | III.2 入口 | 改稿 |
+| `mcp/catalog.md` `development.md` `security.md` `semantic-layer.md` | III.2 周辺 | 維持 |
+| `ja/mcp/verifiable-mcp.md` | III.2 周辺 | 維持。英語ページはまだ無い |
+| `agents/index.md` | III.5 入口 | 改稿 |
+| `agents/agent-taxonomy.md` `what-is-subagent.md` `subagent-vs-skill.md` `subagent-quality-gate.md` `agent-teams.md` `what-is-a2a.md` `agent-identity.md` | III.5 周辺 | 維持 |
+
+### 第IV部周辺・付録（パス維持）
+
+| 現行 | 所属 | 扱い |
+| --- | --- | --- |
+| `strategy/*.md`（12 本） | 第IV部 周辺 | 再配置（サイドバー） |
+| `workflows/**` | 付録 | 維持 |
+| `glossary.md` | 用語 | 維持。初出定義に追随 |
+| `information/index.md` `architecture-map.md` | 隣接 | 維持。制度設計は増やさない |
+| `faq/mcp-vs-skills.md` `faq/agent-vs-subagent-vs-skill.md` | 付録 | 維持 |
+| `faq/scope-of-ai-agent.md` | 序章の参照 | 縮小 |
+| `index.md`（ホーム） | 入口 | 改稿（書名と旧称の除去。構成の説明は序章へ） |
+| `README.md` `README.ja.md` | リポジトリ入口 | 再配置（フェーズ 8） |
+| `reference-selection-checklist.md` | II.2 周辺 | 維持 |
+| `outputs.md` | 外す | 外す。実践カタログとして URL は残す |
+| `configuring_everything-claude-code.md` | 外す | 外す。製品ツリーのメモであり本書の章ではない |
+| `ja/README.md` `docs/README.md` | — | 維持 |
+
+## リダイレクト一覧
+
+次の旧 URL は残す。スタブ先は上表の新パスである。
+
+| 旧（日本語） | 旧（英語） |
+| --- | --- |
+| `/ja/concepts/` | `/concepts/` |
+| `/ja/concepts/01-vision` | `/concepts/01-vision` |
+| `/ja/concepts/02-reference-sources` | `/concepts/02-reference-sources` |
+| `/ja/concepts/03-architecture` | `/concepts/03-architecture` |
+| `/ja/concepts/04-ai-design-patterns` | `/concepts/04-ai-design-patterns` |
+| `/ja/concepts/05-solving-ai-limitations` | `/concepts/05-solving-ai-limitations` |
+| `/ja/concepts/06-physical-ai` | `/concepts/06-physical-ai` |
+| `/ja/concepts/07-doctrine-and-intent` | `/concepts/07-doctrine-and-intent` |
+| `/ja/concepts/08-memory-and-knowledge` | `/concepts/08-memory-and-knowledge` |
+| `/ja/concepts/09-prompt-decomposition` | `/concepts/09-prompt-decomposition` |
+
+`/ja/faq/scope-of-ai-agent` と `/faq/scope-of-ai-agent` は削除しない。本文を序章への参照に縮小する。
+
+`/ja/skills/overview` は既存どおり `/ja/skills/what-is-skills` へ残す。
+
+## フェーズ順
+
+各フェーズの終わりに、変更したページの目的と残課題を短く報告する。一括の全面置換はしない。
+
+| # | 内容 | パスを動かすか | 備考 |
+| --- | --- | --- | --- |
+| 0 | 本計画書 | 動かさない | このファイル |
+| 1 | ホーム書名 | 動かさない | 日英の `index.md`、VitePress の `title`。旧称と副題を入口から外す。CTA は序章へ |
+| 2 | 第I部 | `01-vision` → `part-1/constraints` | 英日同時にスタブ。日本語を改稿。英語本文は未訳 |
+| 3 | 第II部 | `03` `02` → `part-2/*` | 五層と配置基準。現行 5 層名に揃える |
+| 4 | 第III部 | `07` `08` → `part-3/*`。`skills/` `mcp/` `agents/` は維持 | 入口 3 本を改稿。How-to とショーケースは維持 |
+| 5 | 第IV部 | `04` `05` `06` `09` → `part-4/*` | `strategy/` はサイドバー編入のみ |
+| 6 | FAQ 縮小 | 動かさない | `scope-of-ai-agent` を序章への短い参照にする |
+| 7 | 英語本文 | 動かさない（スタブを本文に置換） | 序章 → 第I〜IV部の順。対応表の新パスに書く |
+| 8 | `CLAUDE.md`・最終サイドバー・README | 動かさない | ナビを部構成へ追随させる |
+
+サイドバーはフェーズ 1〜5 の都度、動かしたページだけ追随する。最終形の整理はフェーズ 8 である。
+
+フェーズ 2 の直前に、公開中の `main` へ `v1` を打つ。
+
+## 更新規則
+
+- 正本は本ファイルである。パスを変える作業の前に対応表を更新する。
+- 序章 0.6 の四部は変えない。変えるのは対応表の行だけである。
+- 日本語を先に確定する。英語はフェーズ 7。ただしパス移動は英日同時である。
+- 残すべき実践知と、入口の古い語りを混ぜない。後者は改稿対象の入口ページだけで捨てる。
