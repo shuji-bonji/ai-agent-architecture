@@ -12,6 +12,16 @@ If you are new to this documentation, you can deepen your understanding by refer
 
 The terms in this section are defined in the sister site [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/). This section holds only the minimum definition needed to read this site; the mechanism and the evidence are left to the linked source. The first occurrence of each term on every page of this site links to the corresponding entry here.
 
+### LLM (Large Language Model) {#llm}
+
+A model trained on large amounts of text to predict the next token and generate prose. The core of systems such as Claude and ChatGPT. This is the AI this book primarily treats.
+
+**Defined in**: The Japanese [Preface](/ja/preface). Mechanisms belong to the sister site [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/).
+
+### Foundation Model {#foundation-model}
+
+A model trained on large data and adaptable to many downstream tasks. An LLM is the central example. Adjacent models such as Vision-Language-Action (VLA) are included.
+
 ### Token {#token}
 
 The smallest unit an LLM processes. It is neither a character nor a word, but a fragment produced by the tokenizer. Japanese text costs 1–3 tokens per character, so the same content consumes more tokens than English.

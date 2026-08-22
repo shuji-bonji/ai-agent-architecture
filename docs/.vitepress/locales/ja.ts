@@ -24,6 +24,32 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           ],
         },
         {
+          text: '第I部 前提',
+          collapsed: false,
+          items: [
+            { text: '制約の要約', link: '/ja/part-1/constraints' },
+          ],
+        },
+        {
+          text: '第II部 モデル',
+          collapsed: false,
+          items: [
+            { text: '五層', link: '/ja/part-2/layers' },
+            { text: '配置基準', link: '/ja/part-2/placement' },
+          ],
+        },
+        {
+          text: '第III部 各層',
+          collapsed: false,
+          items: [
+            { text: 'Skills', link: '/ja/skills/what-is-skills' },
+            { text: 'MCP', link: '/ja/mcp/what-is-mcp' },
+            { text: 'Doctrine', link: '/ja/part-3/doctrine' },
+            { text: 'Memory', link: '/ja/part-3/memory' },
+            { text: 'Agent', link: '/ja/agents/' },
+          ],
+        },
+        {
           text: 'FAQ (3行回答)',
           collapsed: false,
           items: [
@@ -43,12 +69,12 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: '全体像', link: '/ja/concepts/' },
-            { text: 'ビジョン', link: '/ja/concepts/01-vision' },
+            { text: 'ビジョン（→ 制約の要約）', link: '/ja/concepts/01-vision' },
             {
-              text: 'リファレンスソース',
+              text: 'リファレンスソース（→ 配置基準）',
               link: '/ja/concepts/02-reference-sources',
             },
-            { text: 'アーキテクチャ', link: '/ja/concepts/03-architecture' },
+            { text: 'アーキテクチャ（→ 五層）', link: '/ja/concepts/03-architecture' },
             {
               text: 'AI設計パターン',
               link: '/ja/concepts/04-ai-design-patterns',
@@ -59,11 +85,11 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             },
             { text: 'フィジカルAI', link: '/ja/concepts/06-physical-ai' },
             {
-              text: 'ドクトリンと意図',
+              text: 'ドクトリンと意図（→ Doctrine）',
               link: '/ja/concepts/07-doctrine-and-intent',
             },
             {
-              text: '記憶と知識統合 (Memory & KG)',
+              text: '記憶と知識統合（→ Memory）',
               link: '/ja/concepts/08-memory-and-knowledge',
             },
             {

@@ -28,12 +28,12 @@ features:
     linkText: Open the preface
   - title: Constraint summary
     details: A summary of the structural constraints that design must assume. Mechanisms belong to the sister site.
-    link: /concepts/01-vision
-    linkText: Current prerequisites page
+    link: /part-1/constraints
+    linkText: Open the constraint summary
   - title: Five layers
     details: Separation of duties and placement across Doctrine / Agent / Skills / Memory / MCP.
-    link: /concepts/03-architecture
-    linkText: Current architecture page
+    link: /part-2/layers
+    linkText: Open the five layers
   - title: Skills
     details: The layer for static knowledge and guidelines.
     link: /skills/what-is-skills
@@ -50,9 +50,9 @@ features:
 
 The English title of this book is **LLM Agent Design Architecture**. The Japanese title is **LLMエージェントの設計**.
 
-This is a design document for agents whose inference core is a foundation model, primarily an LLM. It is not an operations manual. The starting point is the structural constraints of the LLM, not a connection protocol.
+The AI this book treats is primarily an LLM (large language model). That is the core of conversational systems such as Claude. This book is about designing agents whose inference core is that model. It is not an operations manual.
 
-Scope, readers, related materials, and structure are defined in the [Preface](./preface). The English preface is not yet translated.
+Scope, terms, readers, and structure are defined in the [Preface](./preface). The English preface is not yet translated.
 
 A [harness](./glossary#harness) is the mechanism for operating an agent. This book is the document for designing one. See [Harness Engineering Mapping](/strategy/harness-engineering-mapping) for the correspondence.
 

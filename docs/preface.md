@@ -13,4 +13,4 @@ The Japanese original is [序章 — 本書の問いと範囲](/ja/preface).
 
 ---
 
-> **Next**: [Vision](./concepts/01-vision)
+> **Next**: [I.1 Constraint Summary](./part-1/constraints)

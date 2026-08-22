@@ -12,6 +12,16 @@ MCPエコシステムには多くの専門用語や略語が登場する。こ�
 
 本節の用語は、姉妹サイト [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) が定義元である。ここには本サイトを読むのに必要な最小限の定義だけを置き、仕組みの説明と根拠は定義元へのリンクに委ねる。本サイト内の各ページで初めて出てくる箇所は、この節の項目にリンクしている。
 
+### LLM（大規模言語モデル） {#llm}
+
+Large Language Model の略。大量のテキストで学習し、次の語を予測して文章を生成するモデル。Claude や ChatGPT の中核がこれに当たる。本書が扱う AI とはの中心である。
+
+**定義元**: 本書 [序章](./preface)。機序は姉妹サイト [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) が担う。
+
+### 基盤モデル（Foundation Model） {#foundation-model}
+
+大量のデータで学習し、多様な下流タスクへ適用できるモデルの総称。LLM はその中心例である。Vision-Language-Action（VLA）など、言語以外の入出力を持つ隣接モデルを含む。
+
 ### トークン（Token） {#token}
 
 LLM がテキストを処理する最小単位。文字でも単語でもなく、トークナイザーが分割した断片を指す。日本語は 1 文字あたり 1〜3 トークンになり、同じ内容でも英語より消費量が多い。
@@ -60,16 +70,16 @@ LLM は前回の推論の内容を保持しない。会話が続いているよ�
 
 LLM の仕組みに由来し、プロンプトの工夫だけでは解消しない問題群。本サイトの設計判断（サブエージェント分離、Skills のオンデマンド化、MCP ツール定義の遅延ロードなど）は、いずれもこの 8 項目のどれかへの対処として位置づけられる。
 
-| 用語 | 最小定義 | 定義元 |
-| --- | --- | --- |
-| **Context Rot** | 入力トークン数が増えるほど出力品質が下がる | [context-rot](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/context-rot) |
-| **Lost in the Middle** | コンテキスト中間部の情報が参照されにくくなる | [lost-in-the-middle](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/lost-in-the-middle) |
-| **Priority Saturation** | 同時に与える指示が増えるほど、個々の指示の遵守率が下がる | [priority-saturation](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/priority-saturation) |
-| **Instruction Decay** | 会話が長くなるほど、初期の指示の遵守率が下がる | [instruction-decay](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/instruction-decay) |
-| **Hallucination（ハルシネーション）** | 事実に反する内容を、根拠があるかのように生成する | [hallucination](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/hallucination) |
-| **Sycophancy（迎合）** | 正確さよりユーザーへの同意を優先する | [sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/sycophancy) |
-| **Knowledge Boundary（知識境界）** | 学習データの時点で知識が固定され、かつ自分が知らないことを「知らない」と言えない | [knowledge-boundary](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/knowledge-boundary) |
-| **Prompt Sensitivity** | 意味が同じプロンプトでも、書き方の違いで出力が変わる | [prompt-sensitivity](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/prompt-sensitivity) |
+| 用語                                  | 最小定義                                                                         | 定義元                                                                                                                                       |
+| ------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Context Rot**                       | 入力トークン数が増えるほど出力品質が下がる                                       | [context-rot](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/context-rot)                 |
+| **Lost in the Middle**                | コンテキスト中間部の情報が参照されにくくなる                                     | [lost-in-the-middle](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/lost-in-the-middle)   |
+| **Priority Saturation**               | 同時に与える指示が増えるほど、個々の指示の遵守率が下がる                         | [priority-saturation](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/priority-saturation) |
+| **Instruction Decay**                 | 会話が長くなるほど、初期の指示の遵守率が下がる                                   | [instruction-decay](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/instruction-decay)     |
+| **Hallucination（ハルシネーション）** | 事実に反する内容を、根拠があるかのように生成する                                 | [hallucination](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/hallucination)             |
+| **Sycophancy（迎合）**                | 正確さよりユーザーへの同意を優先する                                             | [sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/sycophancy)                   |
+| **Knowledge Boundary（知識境界）**    | 学習データの時点で知識が固定され、かつ自分が知らないことを「知らない」と言えない | [knowledge-boundary](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/knowledge-boundary)   |
+| **Prompt Sensitivity**                | 意味が同じプロンプトでも、書き方の違いで出力が変わる                             | [prompt-sensitivity](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/prompt-sensitivity)   |
 
 **一覧と相互関係**: [Part 1: LLMの構造的制約を知る](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/)
 
@@ -108,7 +118,6 @@ Anthropicが策定したAIモデルと外部ツール/リソースを接続す�
 - 「AIのUSB」と例えられる
 ```
 
-
 **関連**: MCPサーバー、MCPクライアント、MCPホスト
 
 ### A2A（Agent-to-Agent Protocol）
@@ -122,7 +131,6 @@ Googleが提唱し、Linux Foundationに寄贈されたエージェント間通�
 - 150社以上がサポート表明
 ```
 
-
 **関連**: Agent Card、タスク管理
 
 ### RFC（Request for Comments）
@@ -135,7 +143,6 @@ IETFが発行するインターネット技術標準文書。
 - RFC 3161: タイムスタンププロトコル
 - RFC 9110: HTTP Semantics
 ```
-
 
 **関連**: IETF、MUST/SHOULD/MAY
 
@@ -274,11 +281,11 @@ Claude Codeで参照できる静的な知識・ガイドライン。
 
 エージェントの組み合わせ方を示すアーキテクチャ・パターン。
 
-| パターン | 説明 |
-| --- | --- |
+| パターン                | 説明                                           |
+| ----------------------- | ---------------------------------------------- |
 | **Orchestrator-Worker** | 統括役が複数の Worker にタスクを委任する階層型 |
-| **Hierarchical Team** | 階層を明示した複数エージェントのチーム |
-| **Swarm** | 階層を最小化し、ハンドオフで協調する自律分散型 |
+| **Hierarchical Team**   | 階層を明示した複数エージェントのチーム         |
+| **Swarm**               | 階層を最小化し、ハンドオフで協調する自律分散型 |
 
 ### メタエージェント（Meta Agent）
 
@@ -291,19 +298,18 @@ Claude Codeで参照できる静的な知識・ガイドライン。
 - 「Meta-Agent Builder」のような確立した製品名は存在しない
 ```
 
-
 **関連**: Orchestrator、Spawned Agent
 
 ### 実行ロール（Execution Role）
 
 設計パターンの内側で、各エージェントが担う責務。
 
-| ロール | 責務 |
-| --- | --- |
+| ロール                                     | 責務                           |
+| ------------------------------------------ | ------------------------------ |
 | **Orchestrator / Supervisor / Lead Agent** | タスク分解、委任判断、結果集約 |
-| **Planner** | 計画立案、ステップ分解 |
-| **Worker / Specialist** | 個別の専門タスクを実行 |
-| **Critic / Reviewer / Evaluator** | 出力の検証、採点、再実行判断 |
+| **Planner**                                | 計画立案、ステップ分解         |
+| **Worker / Specialist**                    | 個別の専門タスクを実行         |
+| **Critic / Reviewer / Evaluator**          | 出力の検証、採点、再実行判断   |
 
 Anthropic の Multi-Agent Research System では Orchestrator にあたるエージェントを **"lead agent"** と呼ぶ。
 
@@ -325,10 +331,10 @@ Anthropic の Multi-Agent Research System では Orchestrator にあたるエー
 
 エージェントのライフサイクル属性。
 
-| 属性 | 意味 |
-| --- | --- |
-| **Persistent** | セッションを跨いで状態を保持 |
-| **Ephemeral** | タスク完了時に破棄。コンテキスト汚染防止に寄与 |
+| 属性                 | 意味                                                      |
+| -------------------- | --------------------------------------------------------- |
+| **Persistent**       | セッションを跨いで状態を保持                              |
+| **Ephemeral**        | タスク完了時に破棄。コンテキスト汚染防止に寄与            |
 | **Spawned / Forked** | 親から動的に生成される（多くは Ephemeral と組み合わさる） |
 
 ### AGENTS.md
@@ -426,7 +432,6 @@ xCOMETが検出するエラーの深刻度。
 弱み: チャンク分割で文脈が失われる、構造を理解しない
 ```
 
-
 **関連**: Embedding、ベクトルDB、チャンク
 
 > **MCPとの違い**: [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns) を参照
@@ -462,7 +467,6 @@ LLMのパラメータ自体を、特定ドメインのデータで追加学習�
 ### Agentic AI（エージェント型AI）
 
 LLMが自律的に計画を立て、ツールを呼び出し、複数ステップで問題を解決するパターン。MCPはこのパターンを支える基盤技術の一つ。
-
 
 **関連**: MCP、サブエージェント、A2A
 

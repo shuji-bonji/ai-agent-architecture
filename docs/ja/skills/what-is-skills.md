@@ -1,413 +1,77 @@
 ---
-title: "Skillsとは？AIエージェント向けドメイン知識フレームワーク完全ガイド"
-description: "AI SkillsはLLMエージェントに専門知識を与えるMarkdownベースの仕組みです。skill.mdの書き方、npx skillsの使い方、Claude Code・Cursor・Clineでの活用方法を解説します。"
-head:
-  - - meta
-    - property: "og:title"
-      content: "Skillsとは？AIエージェント向けドメイン知識フレームワーク完全ガイド"
-  - - meta
-    - property: "og:description"
-      content: "AI SkillsはLLMエージェントに専門知識を与えるMarkdownベースの仕組みです。skill.mdの書き方、npx skillsの使い方、Claude Code・Cursor・Clineでの活用方法を解説します。"
-  - - meta
-    - name: "twitter:card"
-      content: "summary_large_image"
+title: III.1 Skills
+description: チームの決まりや手順など、変わらない知識を置く層。実行はしない。
 ---
 
-# Skillsとは何か
+# III.1 Skills
 
-> AIエージェントにドメイン知識・ガイドライン・判断基準を提供する静的な知識レイヤー
+> [!NOTE] 本章の位置づけ
+> 第III部は、五層を一つずつ見る。Skills は、モデルの中に入っていない決まりを、必要なときに読める形で置く層である。作り方とホストごとの置き場は、下の How-to に残してある。
 
-## このドキュメントについて
+## 1.1 何を置くか
 
-Skillsの基本概念、種類、メリット・デメリットを解説する。Skillの作成方法は [creating-skills.md](./creating-skills.md) を参照。
+Claude は、一般的な書き方は知っている。こちらのプロジェクトの用語、レビューの合格線、訳の手順は知らない。それを毎回の会話に全部書くと、長くなるほど薄れる。
 
-## Skillsとは何か
+Skills は、その決まりを Markdown に書いておく層である。形式の中心は `SKILL.md` である。[Agent Skills](https://agentskills.io) に沿った置き方をする製品が多い。読むだけで、外の API は叩かない。
 
-**Vercel Skills** は、AIエージェント向けの標準化されたドメイン知識表現フレームワークです。
+たとえば翻訳なら、用語の統一と「xCOMET 0.85 を下回ったら差し戻す」は Skills に書く。辞書サービスを呼ぶのは MCP である。品質の下限そのものを、全仕事の物差しにするなら Doctrine である。
 
-MCPと異なり、**特定のドメインやタスクに対する実行可能なノウハウ**をエージェントが習得・活用するための仕組みです。
+## 1.2 MCP との違い
 
-### 基本情報
-
-Skillsの基本的な情報を以下にまとめる。
-
-- **仕様**: Agent Skills Specification (https://agentskills.io)
-- **形式**: Markdownファイル（`SKILL.md`）
-- **配置場所**:
-  - プロジェクト単位: `.claude/skills/xxx/SKILL.md`
-  - ユーザー単位: `~/.claude/skills/xxx/SKILL.md`
-- **一言で表現**: 「AIに**何を知っているべきか**を教える仕組み」
-
-### Skillsの4つの特徴
-
-Skillsの中核的な特徴は以下の4点である。
-
-- **知識ベース**: AIが参照すべきドメイン知識やベストプラクティスを構造化
-- **実行可能なガイドライン**: 抽象的なルールではなく、判断基準や手順を明確化
-- **スコープ限定**: プロジェクト単位やチーム単位で知識を管理
-- **進化的学習**: フィードバックに基づいて継続的に更新可能
-
-## なぜ「知識」を分離するのか
-
-### 問題設定
-
-AIエージェントは汎用的な知識は豊富ですが、以下の情報を持っていません。
-
-- あなたのプロジェクト特有のルール
-- チームの品質基準や判断基準
-- ドメイン固有の専門知識
-- 組織のベストプラクティス
-
-### 解決策
-
-Skillとして知識を構造化し、AIに参照させることで、エージェントが**プロジェクト固有の判断**を下せるようになります。
-
-### MCPとの違い
-
-MCPとSkillの違いを以下の表で比較する。
-
-| 観点     | MCP                             | Skill                                    |
-| -------- | ------------------------------- | ---------------------------------------- |
-| 提供物   | 「何ができるか」（ツール・API） | 「何を知るべきか」（知識・ガイドライン） |
-| 実装形式 | サーバー（動的）                | MarkdownまたはJSON（静的）               |
-| 用途     | 外部サービス連携                | 内部知識の統一                           |
-
-### アーキテクチャ図
-
-Agent・Skills・MCPの3層がどのように連携するかを以下の図で示す。Skillsは中間の知識レイヤーとして位置づけられる。
-
-```mermaid
-block-beta
-    columns 1
-
-    block:AGENT_BLOCK:1
-        A["Agent<br/>判断・オーケストレーション"]
-    end
-
-    space
-
-    block:SKILLS_BLOCK:1
-        S["Skills ← ここ<br/>知識・ガイドライン・判断基準"]
-    end
-
-    space
-
-    block:MCP_BLOCK:1
-        M["MCP<br/>外部ツール・API"]
-    end
-
-    A --"参照"--> S
-    A --"実行"--> M
-
-    style A fill:#87CEEB,color:#333,stroke:#333
-    style S fill:#90EE90,color:#333,stroke:#333
-    style M fill:#FFB6C1,color:#333,stroke:#333
-```
-
-## Skillsの種類
-
-Skillは用途に応じて、以下のような種類に分類できます。
-
-| 種類               | 説明                     | 例                                           |
-| ------------------ | ------------------------ | -------------------------------------------- |
-| ワークフロー定義型 | 手順・プロセスの定義     | 翻訳ワークフロー、コードレビュー手順         |
-| 品質基準型         | 閾値・基準の定義         | 翻訳品質スコア ≥ 0.85、テストカバレッジ基準  |
-| ガイドライン型     | ベストプラクティス・原則 | コーディング規約、命名規則                   |
-| テンプレート型     | 定型的な出力形式の定義   | ドキュメントテンプレート、PR説明テンプレート |
-
-これらの種類を組み合わせることで、より複雑なSkillを構成することも可能です。
-
-## Skillの構成要素
-
-### メタデータ（YAML Front Matter）
-
-Skillファイルの先頭には、メタデータをYAMLフォーマットで記述する。以下は翻訳品質Skillの例である。
-
-```yaml
-name: translation-quality
-version: 1.0.0
-description: 翻訳品質評価ガイドライン
-author: @shuji-bonji
-tags:
-  - translation
-  - quality-assurance
-  - deepl
-agent-support:
-  - claude-code
-  - cursor
-```
-
-### 必須セクション
-
-メタデータに続いて、以下のセクションを本文に含めることが推奨される。
-
-| セクション            | 内容                                | 例                                                             |
-| --------------------- | ----------------------------------- | -------------------------------------------------------------- |
-| **Purpose**           | 目的・背景・なぜこのSkillが必要か   | 「翻訳品質を統一し、品質スコアが0.85以上であることを保証する」 |
-| **Inputs / Outputs**  | 入出力の定義                        | 入力: 原文テキスト / 出力: 翻訳文 + 品質スコア                 |
-| **Constraints**       | MUST / SHOULD / MUST NOT による制約 | MUST: スコア ≥ 0.85 / MUST NOT: 自動翻訳のみを使用             |
-| **Workflow**          | 具体的な手順・プロセス              | 「1. 機械翻訳を実施、2. ネイティブレビュー、3. スコア計算」    |
-| **Decision Criteria** | 判断基準・閾値                      | スコア計算式、品質指標の定義                                   |
-| **Examples**          | 具体例・ユースケース                | 良い例、悪い例                                                 |
-| **Anti-Patterns**     | やってはいけない例                  | 「文脈を無視した直訳」など                                     |
-
-## メリット
-
-Skillsを採用することで、以下のメリットが得られます。
-
-- ✅ **低コンテキスト消費**: 参照時のみ読み込まれ、MCPのように常駐しない
-- ✅ **誰でも編集可能**: Markdownなので、コードが書けなくても更新できる
-- ✅ **即座に反映**: ファイルを保存すれば次の対話から有効
-- ✅ **チーム知識の集約**: 属人化した暗黙知をSkillとして可視化
-- ✅ **標準仕様準拠**: Agent Skills Specificationに基づく相互運用性
-- ✅ **バージョン管理**: Gitで履歴管理が容易
-
-## デメリット・限界
-
-Skillsには以下の制限があります。
-
-- ❌ **動的処理不可**: 外部APIの呼び出しや計算はできない（MCPが必要）
-- ❌ **静的コンテンツ**: リアルタイムデータの参照ができない
-- ❌ **更新の手動管理**: 外部仕様の変更を自動追従できない
-- ❌ **スコープ限定**: プロジェクト単位またはユーザー単位（グローバル共有はnpmではなくGitで管理）
-
-> **注**: Skillsの限界を超える処理が必要な場合は、[what-is-mcp.md](../mcp/what-is-mcp.md) を参照してください。
-
-## 対応エージェント一覧
-
-Skillsは以下のAIエージェントで利用可能です。
-
-| Agent               | CLI引数          | プロジェクトパス      |
-| ------------------- | ---------------- | --------------------- |
-| Claude Code         | `claude-code`    | `.claude/skills/`     |
-| Cursor              | `cursor`         | `.cursor/skills/`     |
-| Codex               | `codex`          | `.codex/skills/`      |
-| OpenCode            | `opencode`       | `.opencode/skills/`   |
-| GitHub Copilot      | `github-copilot` | `.github/skills/`     |
-| Windsurf            | `windsurf`       | `.windsurf/skills/`   |
-| Cline               | `cline`          | `.cline/skills/`      |
-| Roo Code            | `roo-code`       | `.roo/skills/`        |
-| Gemini CLI          | `gemini-cli`     | `.gemini/skills/`     |
-| Continue            | `continue`       | `.continue/skills/`   |
-| Aide                | `aide`           | `.aide/skills/`       |
-| Cosine              | `cosine`         | `.cosine/skills/`     |
-| Bolt.new            | `bolt`           | `.bolt/skills/`       |
-| Claude.dev          | `claude-dev`     | `.claude-dev/skills/` |
-| BasedHardware Agent | `based-hw`       | `.based/skills/`      |
-| val-town Agent      | `val-town`       | `.val-town/skills/`   |
-
-詳細: https://github.com/vercel-labs/skills#supported-agents
-
-## Vercel Skills CLIとの統合
-
-Vercel Skills CLIを用いることで、Skillの検索・追加・管理が簡単になります。
-
-### Skillの検索
-
-`npx skills` コマンドでSkillレジストリを検索できる。
-
-```bash
-npx skills find "code review"
-npx skills search "translation"
-```
-
-### Skillの追加
-
-見つけたSkillは以下のコマンドでプロジェクトに追加できる。
-
-```bash
-# 特定のSkillを追加
-npx skills add vercel-labs/agent-skills --skill frontend-design
-
-# 複数エージェント向けに追加
-npx skills add vercel-labs/agent-skills -a claude-code -a cursor
-
-# ローカルSkillを登録
-npx skills add ./local-skill
-```
-
-### Skillsの発見フロー
-
-エージェントがSkillを発見し適用するまでの流れを以下のシーケンス図で示す。
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Agent as AI Agent
-    participant SkillRepo as Skill Repository
-    participant Config as .claude/config.json
-
-    User->>Agent: タスクリクエスト
-    Agent->>Config: Skillリスト読み込み
-    Config-->>Agent: 適用可能なSkill一覧
-    Agent->>SkillRepo: Skillの詳細取得
-    SkillRepo-->>Agent: Skillメタデータ + Workflow
-    Agent->>Agent: Skillの判断基準を適用
-    Agent-->>User: 結果を返す
-```
-
-### Skillの動的拡張フロー
-
-新しいタスク要件に対してSkillが不足している場合の拡張フローを以下に示す。
-
-```mermaid
-flowchart TD
-    A["新しいタスク要件"] -->|Skillが不足| B["Skillテンプレートを使用"]
-    B --> C["ドメイン知識を記述"]
-    C --> D[".claude/skills/xxx/SKILL.md を作成"]
-    D --> E["Agentが自動検出"]
-    E --> F["次のリクエストから利用可能"]
-
-    style A fill:#FFE4B5,color:#333,stroke:#333
-    style B fill:#87CEEB,color:#333,stroke:#333
-    style C fill:#87CEEB,color:#333,stroke:#333
-    style D fill:#90EE90,color:#333,stroke:#333
-    style E fill:#DDA0DD,color:#333,stroke:#333
-    style F fill:#FFB6C1,color:#333,stroke:#333
-```
-
-## このリポジトリでの実績
-
-このリポジトリでは、以下のSkillを実装・管理しています。
-
-### 実装済みSkill
-
-| Skill                 | 行数  | 説明                                         |
-| --------------------- | ----- | -------------------------------------------- |
-| `translation-quality` | 279行 | 翻訳品質評価ガイドライン（xCOMETスコア連携） |
-
-### テンプレート
-
-新しいSkillを作成する際に利用できるテンプレートを用意している。
-
-- `templates/skill/SKILL.ja.md.template` - 新規Skill作成用テンプレート
-- `templates/skill/SKILL.en.md.template` - English版テンプレート
-
-### 目標
-
-- **Phase 1**: Skill/Agent定義 3個以上（現在1個 → 拡充予定）
-- **次のSkill候補**:
-  - `translation-workflow` - 翻訳プロセスの定義
-  - `rfc-compliance` - RFC仕様準拠チェック
-  - `code-review` - コードレビューガイドライン
-
-## npx skills コマンドリファレンス
-
-[`npx skills`](https://github.com/vercel-labs/skills) はSkillのインストールと管理を行うCLIツールである。
-
-### 基本コマンド
-
-```bash
-# Skillをプロジェクトに追加
-npx skills add <skill-url>
-
-# 例: 翻訳品質評価Skillを追加
-npx skills add https://github.com/example/translation-quality-skill
-
-# インストール済みSkillの一覧表示
-npx skills list
-
-# 利用可能なSkillを検索
-npx skills find <keyword>
-```
-
-### 代表的なSkillパッケージ
-
-| パッケージ | 説明 | 用途 |
+| | Skills | MCP |
 | --- | --- | --- |
-| `@anthropic/skill-docs` | ドキュメント生成Skill | 技術文書の品質向上 |
-| `@vercel/skill-nextjs` | Next.js開発ガイドライン | Next.jsプロジェクト |
-| `@vercel/skill-react` | Reactベストプラクティス | Reactコンポーネント設計 |
+| 置くもの | 知っているべきこと | できること |
+| 形 | Markdown など、静的な文書 | サーバ。ツールとデータの提供 |
+| 動くか | 動かない。参照する | 動く。外へ問い合わせる |
+| 向くもの | 規約、手順、例、合格の目安 | 原文の取得、翻訳 API、品質の採点 |
 
-::: tip Vercel Skills と Agent Skills Specification
-Vercel Labsが公開している [`skills`](https://github.com/vercel-labs/skills) CLIは、Agent Skills Specification（https://agentskills.io）に準拠したSkillを管理するためのツールである。`npx skills` コマンドは、このリポジトリが提供するCLIを実行している。
-:::
+両方要ることが多い。Skills で「何を守るか」を書き、MCP で「いまの値を取る」を足す。使い分けの各論は [MCP vs Skills](./vs-mcp) を見る。
 
-## 各AIツールでのSkill利用方法
+## 1.3 種類の目安
 
-### Claude Code
+| 種類 | 中身 | 例 |
+| --- | --- | --- |
+| 手順 | 仕事の順番 | 訳す、レビューする、出す |
+| 合格の線 | 数値や条件 | xCOMET 0.85 以上 |
+| ガイドライン | 守る原則 | 命名、文の長さ |
+| テンプレート | 出力の形 | PR の説明、文書の見出し |
 
-Claude Codeでは以下のパスにSkillを配置する。
+一つの Skill に、いくつかを混ぜてよい。混ぜすぎると、同時に出す指示が増えて守りが弱くなる。分けた方がよいときは、Agent 側で役割を分ける。
 
-```
-プロジェクト/.claude/skills/xxx/SKILL.md    # プロジェクト単位
-~/.claude/skills/xxx/SKILL.md               # ユーザー単位
-```
+`SKILL.md` に書くとよい節は、目的、入出力、MUST / SHOULD、手順、判断の目安、よい例と悪い例、である。書き方の型は [Skill設計ガイド](./creating-skills) にある。
 
-Claude Codeは起動時にこれらのパスを自動検出し、エージェントの[コンテキスト](../glossary#context)に読み込む。
+## 1.4 置いてはならないもの
 
-### Cursor
+| 置いてはならないもの | 代わり |
+| --- | --- |
+| 法令や RFC の原文コピーで済ませること | MCP で原文へつなぐ |
+| 目的と禁止の全体 | Doctrine |
+| 前回の案件の中身 | Memory |
+| 外の API の実行 | MCP |
 
-Cursorではプロジェクトルートの `.cursor/rules/` にMarkdownファイルを配置する。
+Skills は、参照時だけ読まれる。いつも全部を載せるものではない。それが、Context Rot への答えである。仕組みは姉妹資料 [Part 5: オンデマンドコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/skills) を見る。
 
-```
-プロジェクト/.cursor/rules/skill-name.md
-```
+## 1.5 この先のページ
 
-### Cline
+操作と実例は、次に残してある。消していない。
 
-Clineでは `.pi/skills/` ディレクトリにSkillを配置する。
+| 知りたいこと | ページ |
+| --- | --- |
+| 設計の判断 | [Skill設計ガイド](./creating-skills) |
+| 実際に書く | [スキル作成ガイド](./how-to-create-skills) |
+| 会話から蒸留する | [会話からの Skill 蒸留](./conversation-to-skill) |
+| 導入する | [スキル導入・利用](./how-to-use-skills) |
+| 使い方の例 | [活用パターン](./skill-use-cases) |
+| やってはいけないこと | [アンチパターン](./anti-patterns) |
+| 実物 | [ショーケース](./showcase) |
+| MCP との切り分け | [MCP vs Skills](./vs-mcp) |
 
-```
-プロジェクト/.pi/skills/xxx/SKILL.md
-```
+## 1.6 要約
 
-Clineのカスタムインストラクションからもスキルを参照できる。
+Skills は、変わらない知識と手順を置く。実行しない。チームの決まりはモデルの中には無いので、外に書いて、必要なときに読ませる。原文と操作は MCP、物差しは Doctrine、前回の続きは Memory である。
 
-### ツール比較
+---
 
-| 項目 | Claude Code | Cursor | Cline |
-| --- | --- | --- | --- |
-| Skill配置場所 | `.claude/skills/` | `.cursor/rules/` | `.pi/skills/` |
-| 自動読み込み | あり | あり | あり |
-| ユーザー単位 | `~/.claude/skills/` | グローバル設定 | グローバル設定 |
-| `npx skills` | 対応 | 対応 | 対応 |
-
-## よくある質問（FAQ） {#faq}
-
-### Q: SkillsとMCPの違いは？
-
-**A**: Skillsは「AIが何を知っているべきか」を定義する**静的な知識レイヤー**であり、MCPは「AIが何にアクセスできるか」を定義する**動的な接続レイヤー**である。Skillsはプロジェクトのルールや判断基準を伝え、MCPは外部APIやデータベースへの接続を提供する。詳しくは [MCP vs Skills](./vs-mcp) を参照。
-
-### Q: skill.md はどこに置けばいい？
-
-**A**: 利用するAIツールによって異なる。Claude Codeなら `.claude/skills/`、Cursorなら `.cursor/rules/`、Clineなら `.pi/skills/` に配置する。プロジェクト固有のSkillはプロジェクトルートからの相対パス、全プロジェクト共通のSkillはユーザーホームディレクトリ以下に配置する。
-
-### Q: VercelのSkillsとAnthropicのSkillsは同じもの？
-
-**A**: VercelのSkillsは [Agent Skills Specification](https://agentskills.io) に基づいたCLIツールとエコシステムであり、Anthropicが提供するClaude CodeのSkillsとは仕様の基盤を共有している。どちらも`SKILL.md`というMarkdownファイルでドメイン知識を構造化するアプローチを採用しているが、配置場所や読み込み方法はツールごとに異なる。
-
-### Q: Skillsは複数同時に使える？
-
-**A**: 使える。プロジェクト内に複数のSkillディレクトリを配置すれば、AIエージェントは必要に応じてそれらを参照する。ただし、矛盾する指示を含むSkillが存在する場合はエージェントの判断が不安定になる可能性があるため、Skill間の一貫性を保つことが重要である。
-
-## 次に読むべきドキュメント
-
-Skillsについてさらに深く学ぶために、以下のドキュメントを参照してほしい。
-
-| 目的                           | ドキュメント                                         |
-| ------------------------------ | ---------------------------------------------------- |
-| 設計判断・計画                 | [Skill設計ガイド](./creating-skills)                 |
-| 実際にSkillを作成する          | [スキル作成ガイド](./how-to-create-skills)           |
-| プロジェクトにSkillsを導入する | [スキル導入・利用ガイド](./how-to-use-skills)        |
-| ユースケースを知りたい         | [活用パターンガイド](./skill-use-cases)              |
-| MCP vs Skillsの判断            | [MCP vs Skills](./vs-mcp)                            |
-| 避けるべきパターン             | [アンチパターン集](./anti-patterns)                  |
-| 実例を見たい                   | [実例ショーケース](./showcase)                       |
-| MCPについて知りたい            | [MCPとは](../mcp/what-is-mcp)                        |
-| 全体アーキテクチャ             | [アーキテクチャ](../concepts/03-architecture)        |
-
-### 🔗 さらに深く: なぜ Skills という設計が必要なのか
-
-このページは Skills の **What/How**（何で、どう使うか）に焦点を当てている。「**なぜ** Skills という分離された設計が LLM に必要なのか」を LLM の構造的制約（[Context Rot](../glossary#structural-problems)、[Lost in the Middle](../glossary#structural-problems)、[Priority Saturation](../glossary#structural-problems)）から理解したい場合は、姉妹サイトの解説が参考になる。
-
-- [understanding-llm / Part 5: Skills の設計原理](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/skills) — オンデマンドコンテキストとしての Skills
-- [understanding-llm / Part 1: LLM の構造的問題](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/) — Skills が解決する根本的な制約
-
-**最終更新**: 2026年2月
-
-**関連リソース**:
-
-- [Agent Skills Specification](https://agentskills.io)
-- [Vercel Labs Skills GitHub](https://github.com/vercel-labs/skills)
-- [Skill設計ガイド](./creating-skills)
+> **前へ**: [II.2 配置基準](../part-2/placement)
+>
+> **次へ**: [MCPとは](../mcp/what-is-mcp)

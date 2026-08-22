@@ -23,6 +23,32 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           ],
         },
         {
+          text: 'Part I',
+          collapsed: false,
+          items: [
+            { text: 'Constraint Summary (untranslated / coming soon)', link: '/part-1/constraints' },
+          ],
+        },
+        {
+          text: 'Part II',
+          collapsed: false,
+          items: [
+            { text: 'Five Layers (untranslated / coming soon)', link: '/part-2/layers' },
+            { text: 'Placement (untranslated / coming soon)', link: '/part-2/placement' },
+          ],
+        },
+        {
+          text: 'Part III',
+          collapsed: false,
+          items: [
+            { text: 'Skills', link: '/skills/what-is-skills' },
+            { text: 'MCP', link: '/mcp/what-is-mcp' },
+            { text: 'Doctrine (untranslated / coming soon)', link: '/part-3/doctrine' },
+            { text: 'Memory (untranslated / coming soon)', link: '/part-3/memory' },
+            { text: 'Agent', link: '/agents/' },
+          ],
+        },
+        {
           text: 'FAQ (3-line answers)',
           collapsed: false,
           items: [
@@ -36,14 +62,14 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           collapsed: false,
           items: [
             { text: 'Overview', link: '/concepts/' },
-            { text: 'Vision', link: '/concepts/01-vision' },
-            { text: 'Reference Sources', link: '/concepts/02-reference-sources' },
-            { text: 'Architecture', link: '/concepts/03-architecture' },
+            { text: 'Vision (→ Constraint Summary)', link: '/concepts/01-vision' },
+            { text: 'Reference Sources (→ Placement)', link: '/concepts/02-reference-sources' },
+            { text: 'Architecture (→ Five Layers)', link: '/concepts/03-architecture' },
             { text: 'AI Design Patterns', link: '/concepts/04-ai-design-patterns' },
             { text: 'Solving AI Limitations', link: '/concepts/05-solving-ai-limitations' },
             { text: 'Physical AI', link: '/concepts/06-physical-ai' },
-            { text: 'Doctrine & Intent', link: '/concepts/07-doctrine-and-intent' },
-            { text: 'Memory & Knowledge (KG)', link: '/concepts/08-memory-and-knowledge' },
+            { text: 'Doctrine & Intent (→ Doctrine)', link: '/concepts/07-doctrine-and-intent' },
+            { text: 'Memory & Knowledge (→ Memory)', link: '/concepts/08-memory-and-knowledge' },
             { text: 'Prompt Decomposition', link: '/concepts/09-prompt-decomposition' },
           ],
         },

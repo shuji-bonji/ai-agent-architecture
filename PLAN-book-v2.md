@@ -74,11 +74,11 @@
 | 現行（日 / 英） | 新パス（日 / 英） | 目次 | 扱い |
 | --- | --- | --- | --- |
 | （新規）`ja/preface.md` | そのまま `/ja/preface` | 序章 | 改稿済み。英語はスタブのみ |
-| `concepts/01-vision.md` | `part-1/constraints.md` | I.1 | 改稿。FAQ へのスコープ委譲は外す |
-| `concepts/03-architecture.md` | `part-2/layers.md` | II.1 | 改稿。三層表記を五層に揃える |
-| `concepts/02-reference-sources.md` | `part-2/placement.md` | II.2 | 改稿 |
-| `concepts/07-doctrine-and-intent.md` | `part-3/doctrine.md` | III.3 | 改稿 |
-| `concepts/08-memory-and-knowledge.md` | `part-3/memory.md` | III.4 | 改稿 |
+| `concepts/01-vision.md` | `part-1/constraints.md` | I.1 | 移行済み。FAQ へのスコープ委譲は外した |
+| `concepts/03-architecture.md` | `part-2/layers.md` | II.1 | 移行済み。三層表記を五層に揃えた |
+| `concepts/02-reference-sources.md` | `part-2/placement.md` | II.2 | 移行済み |
+| `concepts/07-doctrine-and-intent.md` | `part-3/doctrine.md` | III.3 | 移行済み |
+| `concepts/08-memory-and-knowledge.md` | `part-3/memory.md` | III.4 | 移行済み |
 | `concepts/04-ai-design-patterns.md` | `part-4/patterns.md` | IV.1 | 改稿 |
 | `concepts/05-solving-ai-limitations.md` | `part-4/limits.md` | IV.2 | 改稿。第I部へ統合しない |
 | `concepts/06-physical-ai.md` | `part-4/physical.md` | IV.3 | 改稿 |
@@ -89,14 +89,14 @@
 
 | 現行 | 目次 | 扱い |
 | --- | --- | --- |
-| `skills/what-is-skills.md` | III.1 入口 | 改稿 |
+| `skills/what-is-skills.md` | III.1 入口 | 改稿済み。How-to は維持 |
 | `skills/creating-skills.md` ほか How-to、`vs-mcp`、`anti-patterns`、`conversation-to-skill` | III.1 周辺 | 維持 |
 | `skills/showcase.md` `skill-use-cases.md` | III.1 実践 | 維持。削除しない |
 | `skills/overview.md` | — | 既存スタブのまま |
-| `mcp/what-is-mcp.md` | III.2 入口 | 改稿 |
+| `mcp/what-is-mcp.md` | III.2 入口 | 改稿済み。カタログと開発は維持 |
 | `mcp/catalog.md` `development.md` `security.md` `semantic-layer.md` | III.2 周辺 | 維持 |
 | `ja/mcp/verifiable-mcp.md` | III.2 周辺 | 維持。英語ページはまだ無い |
-| `agents/index.md` | III.5 入口 | 改稿 |
+| `agents/index.md` | III.5 入口 | 改稿済み。各論は維持 |
 | `agents/agent-taxonomy.md` `what-is-subagent.md` `subagent-vs-skill.md` `subagent-quality-gate.md` `agent-teams.md` `what-is-a2a.md` `agent-identity.md` | III.5 周辺 | 維持 |
 
 ### 第IV部周辺・付録（パス維持）

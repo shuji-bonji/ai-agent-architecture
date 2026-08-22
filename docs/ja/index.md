@@ -1,12 +1,12 @@
 ---
 layout: home
 title: LLMエージェントの設計
-description: 基盤モデルを推論の中核とするエージェントの設計。制約を前提に、Doctrine / Agent / Skills / Memory / MCP の 5 層へ置く。
+description: Claude のような LLM を中心に、エージェントを長く使える形へ設計する。Doctrine / Agent / Skills / Memory / MCP の 5 層。
 
 hero:
   name: LLMエージェントの設計
   text: LLM Agent Design Architecture
-  tagline: 基盤モデルの構造的制約を前提とした、エージェント設計の文書。
+  tagline: Claude のような LLM を、長く使える形に設計する。
   actions:
     - theme: brand
       text: 序章を読む
@@ -23,49 +23,49 @@ hero:
 
 features:
   - title: 序章
-    details: 本書が答える問い、対象とする 5 層、扱わないもの、読者、構成を定義する。
+    details: 何を扱い、何を扱わないか。読者と、全体の読み方。
     link: /ja/preface
     linkText: 序章を読む
   - title: 制約の要約
-    details: 設計の前提となる構造的制約を要約する。機序の詳細は姉妹資料が担う。
-    link: /ja/concepts/01-vision
-    linkText: 現行の前提ページ
+    details: モデルが最初から持っている限界。なぜそうなるかの細部は姉妹資料へ。
+    link: /ja/part-1/constraints
+    linkText: 制約の要約を読む
   - title: 五層
-    details: Doctrine / Agent / Skills / Memory / MCP の責務分離と配置基準。
-    link: /ja/concepts/03-architecture
-    linkText: 現行の構成ページ
+    details: Doctrine / Agent / Skills / Memory / MCP。誰が何を担当するか。
+    link: /ja/part-2/layers
+    linkText: 五層を読む
   - title: Skills
-    details: 静的な知識とガイドラインを置く層。
+    details: チームの決まりや手順など、変わらない知識を置く場所。
     link: /ja/skills/what-is-skills
     linkText: Skills を読む
   - title: MCP
-    details: 外部システムへの接続を置く層。
+    details: 法令や API など、外のシステムへつなぐ場所。
     link: /ja/mcp/what-is-mcp
     linkText: MCP を読む
   - title: Agent
-    details: タスク理解とオーケストレーションを置く層。
+    details: 作業を理解し、他の層を組み合わせて使う場所。
     link: /ja/agents/
     linkText: Agent を読む
 ---
 
-本書の日本語書名は **LLMエージェントの設計** である。英語書名は **LLM Agent Design Architecture** である。
+日本語の書名は **LLMエージェントの設計**、英語の書名は **LLM Agent Design Architecture** である。
 
-本書は、基盤モデルを推論の中核とするエージェントの設計を扱う。実行手順書ではない。論理の起点は、LLM（基盤モデル）の構造的制約である。
+本書が扱う AI は、主に LLM（大規模言語モデル）である。Claude の中身がこれに当たる。それらしい答えは出せるが、原文と一致する保証はない。昨日の続きも、渡さなければ覚えていない。本書は、その前提でエージェントを組む話である。製品の操作手順は扱わない。
 
-範囲、読者、隣接資料、構成は [序章](./preface) で定義する。
+範囲と用語は [序章](./preface) に書いた。
 
-[ハーネス](./glossary#harness) は、エージェントを動かすための機構である。本書は設計の文書である。対応関係は [Harness Engineering との対応関係](/ja/strategy/harness-engineering-mapping) を参照する。
+[ハーネス](./glossary#harness) は、今日の作業を終わらせるための仕組みである。本書は、動かしたあとの設計の本である。対応は [Harness Engineering との対応関係](/ja/strategy/harness-engineering-mapping) を見る。
 
 ## 隣接する資料
 
 | 関心 | 資料 | 役割 |
 | --- | --- | --- |
-| 理解する（制約の由来） | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) | Why |
+| 理解する（限界の由来） | [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) | Why |
 | 設計する | 本書 | What / How |
 | 運用へ適用する | [Management-of-software-systems-and-services](https://github.com/shuji-bonji/Management-of-software-systems-and-services) | 準備中 |
 
 <div style="text-align: center; padding: 1.5rem 2rem; margin-top: 1rem; color: var(--vp-c-text-2); font-size: 0.9em; max-width: 720px; margin-left: auto; margin-right: auto;">
 
-本ドキュメントは、著者がエージェントを組み立てる過程で得た実践知をまとめたものである。Anthropic その他の組織の公式文書ではない。指摘と議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) で受け付ける。
+これは、著者がエージェントを組むなかで得た知見のまとめである。Anthropic などの公式文書ではない。指摘と議論は [GitHub Issues](https://github.com/shuji-bonji/ai-agent-architecture/issues) で受け付ける。
 
 </div>
