@@ -16,6 +16,13 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     sidebar: {
       '/ja/': [
         {
+          text: '序章',
+          collapsed: false,
+          items: [
+            { text: '本書の問いと範囲', link: '/ja/preface' },
+          ],
+        },
+        {
           text: 'FAQ (3行回答)',
           collapsed: false,
           items: [

@@ -15,6 +15,13 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     sidebar: {
       '/': [
         {
+          text: 'Preface',
+          collapsed: false,
+          items: [
+            { text: '未訳・対応予定' },
+          ],
+        },
+        {
           text: 'FAQ (3-line answers)',
           collapsed: false,
           items: [
