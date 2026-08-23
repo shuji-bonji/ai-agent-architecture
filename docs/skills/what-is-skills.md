@@ -1,419 +1,87 @@
 ---
-title: "AI Skills for LLM Agents — What They Are and How to Use Them"
-description: "AI Skills are reusable Markdown files that give LLM agents specialized capabilities. Learn what skill.md is, how npx skills works, and how to build your own skills for Claude Code, Cursor, and Cline."
-head:
-  - - meta
-    - property: "og:title"
-      content: "AI Skills for LLM Agents — What They Are and How to Use Them"
-  - - meta
-    - property: "og:description"
-      content: "AI Skills are reusable Markdown files that give LLM agents specialized capabilities. Learn what skill.md is, how npx skills works, and how to build your own skills for Claude Code, Cursor, and Cline."
-  - - meta
-    - name: "twitter:card"
-      content: "summary_large_image"
-  - - meta
-    - name: "twitter:title"
-      content: "AI Skills for LLM Agents — What They Are and How to Use Them"
-  - - meta
-    - name: "twitter:description"
-      content: "AI Skills are reusable Markdown files that give LLM agents specialized capabilities. Learn what skill.md is, how npx skills works, and how to build skills for Claude Code, Cursor, and Cline."
+title: III.1 Skills
+description: The layer for stable knowledge — team rules and procedures. It does not execute.
 ---
 
-# What are Skills?
+# III.1 Skills
 
-> A static knowledge layer that provides AI agents with domain expertise, guidelines, and decision criteria.
+> [!NOTE] Where this chapter sits
+> Part III looks at the five layers one by one. Skills is the layer for rules that are not inside the model, written so they can be read when needed. How to write them and where each host puts them remain in the how-tos below.
 
-## About This Document
+## 1.1 What belongs here
 
-This document explains the fundamental concepts, types, benefits, and limitations of Skills. For instructions on creating Skills, refer to [creating-skills.md](./creating-skills.md).
+Claude knows ordinary prose. It does not know this project's terms, the pass line for review, or the translation procedure. Writing all of that into every conversation thins as the conversation lengthens.
 
-## What are Skills?
+Skills is the layer that writes those rules in Markdown. The centre of the form is `SKILL.md`. Many products follow [Agent Skills](https://agentskills.io). They are read. They do not call outside APIs.
 
-**Vercel Skills** is a standardized framework for expressing domain knowledge designed for AI agents.
+In translation, for example, consistent terms and "send back under xCOMET 0.85" are Skills. Calling a dictionary service is MCP. If the quality floor is the measure for every job, that is Doctrine.
 
-Unlike MCPs, Skills enable agents to acquire and leverage **executable know-how specific to a domain or task**.
+## 1.2 Difference from MCP
 
-### Key Information
-
-Here is a summary of Skills' essential details.
-
-- **Specification**: Agent Skills Specification (https://agentskills.io)
-- **Format**: Markdown file (`SKILL.md`)
-- **Location**:
-  - Project-level: `.claude/skills/xxx/SKILL.md`
-  - User-level: `~/.claude/skills/xxx/SKILL.md`
-- **One-line description**: "A mechanism to teach AI **what it should know**"
-
-### Four Key Characteristics of Skills
-
-The core characteristics of Skills are the following four points.
-
-- **Knowledge Base**: Structures domain expertise and best practices that AI should reference
-- **Executable Guidelines**: Clarifies decision criteria and procedures—not abstract rules
-- **Scoped Management**: Organize knowledge at the project or team level
-- **Evolutionary Learning**: Continuously updatable based on feedback
-
-## Why Separate "Knowledge"?
-
-### The Problem
-
-AI agents have broad general knowledge, but lack:
-
-- Rules specific to your project
-- Your team's quality standards and decision criteria
-- Domain-specific expertise
-- Your organization's best practices
-
-### The Solution
-
-By structuring knowledge as Skills and exposing it to your AI agent, the agent can make **project-specific decisions**.
-
-### How Skills Differ from MCPs
-
-The following table compares Skills and MCPs side by side.
-
-| Perspective    | MCP                               | Skills                                          |
-| -------------- | --------------------------------- | ----------------------------------------------- |
-| Provides       | "What can be done" (tools & APIs) | "What should be known" (knowledge & guidelines) |
-| Implementation | Server (dynamic)                  | Markdown or JSON (static)                       |
-| Use Case       | External service integration      | Internal knowledge alignment                    |
-
-### Architecture Diagram
-
-The diagram below illustrates how Agent, Skills, and MCP interact as three layers. Skills serve as the intermediate knowledge layer.
-
-```mermaid
-block-beta
-    columns 1
-
-    block:AGENT_BLOCK:1
-        A["Agent<br/>Decision & Orchestration"]
-    end
-
-    space
-
-    block:SKILLS_BLOCK:1
-        S["Skills ← Here<br/>Knowledge, Guidelines, Decision Criteria"]
-    end
-
-    space
-
-    block:MCP_BLOCK:1
-        M["MCP<br/>External Tools & APIs"]
-    end
-
-    A --"Reference"--> S
-    A --"Execute"--> M
-
-    style A fill:#87CEEB,color:#333,stroke:#333
-    style S fill:#90EE90,color:#333,stroke:#333
-    style M fill:#FFB6C1,color:#333,stroke:#333
-```
-
-## Types of Skills
-
-Skills can be classified by their purpose:
-
-| Type                | Description                      | Examples                                                   |
-| ------------------- | -------------------------------- | ---------------------------------------------------------- |
-| Workflow Definition | Defines procedures and processes | Translation workflow, code review process                  |
-| Quality Criteria    | Defines thresholds and standards | Translation quality score ≥ 0.85, test coverage thresholds |
-| Guideline           | Best practices and principles    | Coding conventions, naming rules                           |
-| Template            | Defines standard output formats  | Documentation templates, PR description templates          |
-
-You can combine these types to create more sophisticated Skills.
-
-## Skill Components
-
-### Metadata (YAML Front Matter)
-
-Skill files begin with metadata in YAML format. Below is an example from the translation quality Skill.
-
-```yaml
-name: translation-quality
-version: 1.0.0
-description: Translation Quality Assessment Guidelines
-author: @shuji-bonji
-tags:
-  - translation
-  - quality-assurance
-  - deepl
-agent-support:
-  - claude-code
-  - cursor
-```
-
-### Required Sections
-
-Following the metadata, the following sections are recommended in the body of the Skill document.
-
-| Section               | Content                                    | Example                                                                |
-| --------------------- | ------------------------------------------ | ---------------------------------------------------------------------- |
-| **Purpose**           | Purpose, background, and rationale         | "Ensure consistent translation quality with a minimum score of 0.85"   |
-| **Inputs / Outputs**  | Input and output definitions               | Input: source text / Output: translated text + quality score           |
-| **Constraints**       | Constraints using MUST / SHOULD / MUST NOT | MUST: score ≥ 0.85 / MUST NOT: rely on automated translation alone     |
-| **Workflow**          | Concrete steps and procedures              | "1. Perform machine translation, 2. Native review, 3. Calculate score" |
-| **Decision Criteria** | Decision thresholds and criteria           | Score formula, quality metric definitions                              |
-| **Examples**          | Concrete use cases and examples            | Good examples, anti-examples                                           |
-| **Anti-Patterns**     | Examples of what not to do                 | "Literal translation ignoring context"                                 |
-
-## Benefits
-
-Skills adoption provides the following advantages:
-
-- ✅ **Low Context Overhead**: Loaded only when referenced; doesn't run constantly like MCPs
-- ✅ **Editable by Anyone**: Markdown format allows updates without coding knowledge
-- ✅ **Immediate Effect**: Changes apply on the next interaction after saving
-- ✅ **Knowledge Consolidation**: Makes implicit, often-siloed knowledge explicit and visible
-- ✅ **Standards Compliance**: Interoperability based on Agent Skills Specification
-- ✅ **Version Control**: Easy history tracking with Git
-
-## Drawbacks and Limitations
-
-Skills have the following constraints:
-
-- ❌ **No Dynamic Processing**: Cannot call external APIs or perform computations (MCPs required)
-- ❌ **Static Content**: Cannot reference real-time data
-- ❌ **Manual Updates**: Cannot automatically follow external specification changes
-- ❌ **Scope Limited**: Project or user level only (global sharing is managed via Git, not npm)
-
-> **Note**: If you need capabilities beyond Skills' scope, refer to [what-is-mcp.md](../mcp/what-is-mcp.md).
-
-## Supported Agents
-
-Skills are available in the following AI agents:
-
-| Agent               | CLI Argument     | Project Path          |
-| ------------------- | ---------------- | --------------------- |
-| Claude Code         | `claude-code`    | `.claude/skills/`     |
-| Cursor              | `cursor`         | `.cursor/skills/`     |
-| Codex               | `codex`          | `.codex/skills/`      |
-| OpenCode            | `opencode`       | `.opencode/skills/`   |
-| GitHub Copilot      | `github-copilot` | `.github/skills/`     |
-| Windsurf            | `windsurf`       | `.windsurf/skills/`   |
-| Cline               | `cline`          | `.cline/skills/`      |
-| Roo Code            | `roo-code`       | `.roo/skills/`        |
-| Gemini CLI          | `gemini-cli`     | `.gemini/skills/`     |
-| Continue            | `continue`       | `.continue/skills/`   |
-| Aide                | `aide`           | `.aide/skills/`       |
-| Cosine              | `cosine`         | `.cosine/skills/`     |
-| Bolt.new            | `bolt`           | `.bolt/skills/`       |
-| Claude.dev          | `claude-dev`     | `.claude-dev/skills/` |
-| BasedHardware Agent | `based-hw`       | `.based/skills/`      |
-| val-town Agent      | `val-town`       | `.val-town/skills/`   |
-
-Details: https://github.com/vercel-labs/skills#supported-agents
-
-## Integration with Vercel Skills CLI
-
-The Vercel Skills CLI makes it easy to find, add, and manage Skills.
-
-### Finding Skills
-
-Use the `npx skills` command to search the Skill registry.
-
-```bash
-npx skills find "code review"
-npx skills search "translation"
-```
-
-### Adding Skills
-
-Once you find a Skill, add it to your project with the following commands.
-
-```bash
-# Add a specific Skill
-npx skills add vercel-labs/agent-skills --skill frontend-design
-
-# Add for multiple agents
-npx skills add vercel-labs/agent-skills -a claude-code -a cursor
-
-# Register a local Skill
-npx skills add ./local-skill
-```
-
-### Skill Discovery Flow
-
-The following sequence diagram shows how an agent discovers and applies a Skill.
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Agent as AI Agent
-    participant SkillRepo as Skill Repository
-    participant Config as .claude/config.json
-
-    User->>Agent: Task Request
-    Agent->>Config: Load Skill List
-    Config-->>Agent: Applicable Skills List
-    Agent->>SkillRepo: Get Skill Details
-    SkillRepo-->>Agent: Skill Metadata + Workflow
-    Agent->>Agent: Apply Skill Decision Criteria
-    Agent-->>User: Return Result
-```
-
-### Skill Dynamic Extension Flow
-
-When existing Skills don't cover a new task requirement, the extension flow below shows how to add one.
-
-```mermaid
-flowchart TD
-    A["New Task Requirement"] -->|Skill missing| B["Use Skill Template"]
-    B --> C["Write Domain Knowledge"]
-    C --> D["Create .claude/skills/xxx/SKILL.md"]
-    D --> E["Agent Auto-discovers"]
-    E --> F["Available from Next Request"]
-
-    style A fill:#FFE4B5,color:#333,stroke:#333
-    style B fill:#87CEEB,color:#333,stroke:#333
-    style C fill:#87CEEB,color:#333,stroke:#333
-    style D fill:#90EE90,color:#333,stroke:#333
-    style E fill:#DDA0DD,color:#333,stroke:#333
-    style F fill:#FFB6C1,color:#333,stroke:#333
-```
-
-## Implementations in This Repository
-
-This repository implements and maintains the following Skills:
-
-### Implemented Skills
-
-| Skill                 | Lines | Description                                                               |
-| --------------------- | ----- | ------------------------------------------------------------------------- |
-| `translation-quality` | 279   | Translation Quality Assessment Guidelines (with xCOMET score integration) |
-
-### Templates
-
-We provide templates to help you create new Skills quickly.
-
-- `templates/skill/SKILL.ja.md.template` - Template for creating new Skills
-- `templates/skill/SKILL.en.md.template` - English version template
-
-### Goals
-
-- **Phase 1**: Define 3+ Skills/Agent implementations (currently 1, planned expansion)
-- **Next Skill Candidates**:
-  - `translation-workflow` - Translation process definition
-  - `rfc-compliance` - RFC specification compliance checks
-  - `code-review` - Code review guidelines
-
-## npx skills Command Reference
-
-[`npx skills`](https://github.com/vercel-labs/skills) is a CLI tool for installing and managing Skills.
-
-### Basic Commands
-
-```bash
-# Add a Skill to your project
-npx skills add <skill-url>
-
-# Example: Add a translation quality skill
-npx skills add https://github.com/example/translation-quality-skill
-
-# List installed Skills
-npx skills list
-
-# Search for available Skills
-npx skills find <keyword>
-```
-
-### Notable Skill Packages
-
-| Package | Description | Use Case |
+| | Skills | MCP |
 | --- | --- | --- |
-| `@anthropic/skill-docs` | Documentation generation Skill | Improving technical writing quality |
-| `@vercel/skill-nextjs` | Next.js development guidelines | Next.js projects |
-| `@vercel/skill-react` | React best practices | React component design |
+| What it holds | What should be known | What can be done |
+| Shape | Static documents such as Markdown | A server. Tools and data |
+| Does it run? | No. It is referenced | Yes. It queries outside |
+| Fits | Conventions, procedures, examples, pass lines | Fetching source text, translation APIs, scoring quality |
 
-::: tip Vercel Skills and Agent Skills Specification
-The [`skills`](https://github.com/vercel-labs/skills) CLI published by Vercel Labs manages Skills compliant with the Agent Skills Specification (https://agentskills.io). The `npx skills` command runs the CLI provided by this repository.
-:::
+Both are often needed. Write "what to keep" as Skills, and add "fetch the value of this instant" as MCP. Detail of the split is [MCP vs Skills](./vs-mcp).
 
-## Using Skills with Different AI Tools
+## 1.3 Kinds, in outline
 
-### Claude Code
+| Kind | Content | Example |
+| --- | --- | --- |
+| Procedure | Order of the work | Translate, review, ship |
+| Pass line | A number or a condition | xCOMET 0.85 or above |
+| Guideline | A principle to keep | Naming, sentence length |
+| Template | Shape of the output | A PR description, document headings |
 
-In Claude Code, place Skills at the following paths:
+One Skill may mix several. Mix too many, and instructions at once weaken each other. When a split is better, split roles on the Agent side.
 
-```
-project/.claude/skills/xxx/SKILL.md    # Per-project
-~/.claude/skills/xxx/SKILL.md          # Per-user
-```
+Sections that belong in `SKILL.md` are purpose, inputs and outputs, MUST / SHOULD, steps, a measure of judgment, good and bad examples. The template is in the [Skill design guide](./creating-skills).
 
-Claude Code auto-detects these paths on startup and loads them into the agent's context.
+## 1.4 What must not live here
 
-### Cursor
+| Must not live here | Instead |
+| --- | --- |
+| Copying statute or RFC source and stopping | Connect to the source through MCP |
+| Purpose and prohibitions as a whole | Doctrine |
+| The body of last time's case | Memory |
+| Running an outside API | MCP |
 
-In Cursor, place Markdown files in `.cursor/rules/` at the project root:
+Skills are read only when referenced. They are not always all loaded. That is the answer to Context Rot. The mechanism is in the sister site [Part 5: On-demand context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/skills).
 
-```
-project/.cursor/rules/skill-name.md
-```
+## 1.5 Pages that follow
 
-### Cline
+How-tos and worked examples remain. They have not been deleted.
 
-In Cline, place Skills in the `.pi/skills/` directory:
+| Wanted | Page |
+| --- | --- |
+| Design judgment | [Skill design guide](./creating-skills) |
+| Writing one | [How to create Skills](./how-to-create-skills) |
+| Distilling from conversation | [Distilling Skills from conversations](./conversation-to-skill) |
+| Adopting | [How to use Skills](./how-to-use-skills) |
+| Use cases | [Skill use cases](./skill-use-cases) |
+| What not to do | [Anti-patterns](./anti-patterns) |
+| Worked examples | [Showcase](./showcase) |
+| Split from MCP | [MCP vs Skills](./vs-mcp) |
 
-```
-project/.pi/skills/xxx/SKILL.md
-```
+## 1.6 Summary
 
-Skills can also be referenced from Cline's custom instructions.
+Skills hold stable knowledge and procedures. They do not execute. Team rules are not inside the model, so they are written outside and read when needed. Source text and actions are MCP, the measure is Doctrine, last time's continuation is Memory.
 
-### Tool Comparison
+## Related pages
 
-| Feature | Claude Code | Cursor | Cline |
-| --- | --- | --- | --- |
-| Skill location | `.claude/skills/` | `.cursor/rules/` | `.pi/skills/` |
-| Auto-loading | Yes | Yes | Yes |
-| User-level | `~/.claude/skills/` | Global settings | Global settings |
-| `npx skills` | Supported | Supported | Supported |
+This chapter defines the layer and its boundary. Procedures and worked examples follow.
 
-## Frequently Asked Questions (FAQ) {#faq}
+- [Skill design guide](./creating-skills)
+- [How to create Skills](./how-to-create-skills)
+- [Distilling Skills from conversations](./conversation-to-skill)
+- [How to use Skills](./how-to-use-skills)
+- [Showcase](./showcase)
 
-### Q: What is the difference between Skills and MCP?
+---
 
-**A**: Skills define **what an AI agent should know** — they are a static knowledge layer. MCP defines **what an AI agent can access** — it is a dynamic connectivity layer. Skills convey project rules and decision criteria, while MCP provides connections to external APIs and databases. For more details, see [MCP vs Skills](./vs-mcp).
-
-### Q: Where should I place skill.md files?
-
-**A**: It depends on the AI tool you use. For Claude Code, place them in `.claude/skills/`; for Cursor, in `.cursor/rules/`; for Cline, in `.pi/skills/`. Project-specific Skills go in relative paths from the project root, while shared Skills go under the user's home directory.
-
-### Q: Are Vercel's Skills and Anthropic's Skills the same thing?
-
-**A**: Vercel's Skills is a CLI tool and ecosystem based on the [Agent Skills Specification](https://agentskills.io), and Claude Code's Skills shares the same specification foundation. Both use `SKILL.md` Markdown files to structure domain knowledge, but the placement paths and loading mechanisms differ by tool.
-
-### Q: Can I use multiple Skills at the same time?
-
-**A**: Yes. Place multiple Skill directories within your project, and the AI agent will reference them as needed. However, if Skills contain contradictory instructions, the agent's decisions may become unstable, so maintaining consistency across Skills is important.
-
-## What to Read Next
-
-To learn more about Skills, explore the following documents.
-
-| Purpose                          | Document                                             |
-| -------------------------------- | ---------------------------------------------------- |
-| Design decisions and planning    | [Skill Design Guide](./creating-skills)              |
-| Create a Skill step-by-step     | [How to Create Skills](./how-to-create-skills)       |
-| Integrate Skills into a project  | [How to Use Skills](./how-to-use-skills)             |
-| Explore real use cases           | [Skill Use Cases](./skill-use-cases)                 |
-| Deciding between MCP vs Skills   | [MCP vs Skills](./vs-mcp)                            |
-| Anti-patterns to avoid           | [Anti-Patterns Guide](./anti-patterns)               |
-| See production examples          | [Showcase](./showcase)                               |
-| Learn about MCPs                 | [What is MCP](../mcp/what-is-mcp)                    |
-| Overall architecture             | [Architecture](../concepts/03-architecture)          |
-
-### 🔗 Deeper: Why is the Skills design necessary?
-
-This page focuses on the **what/how** of Skills. If you want to understand **why** Skills must be a separate layer — derived from LLM structural constraints ([Context Rot](../glossary#structural-problems), [Lost in the Middle](../glossary#structural-problems), [Priority Saturation](../glossary#structural-problems)) — the sister site provides the rationale.
-
-- [understanding-llm / Part 5: Skills Design Principles](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/skills) — Skills as on-demand context
-- [understanding-llm / Part 1: LLM Structural Problems](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/) — The fundamental constraints Skills address
-
-**Last Updated**: February 2026
-
-**Related Resources**:
-
-- [Agent Skills Specification](https://agentskills.io)
-- [Vercel Labs Skills GitHub](https://github.com/vercel-labs/skills)
-- [Skill Design Guide](./creating-skills)
+> **Previous**: [II.2 Placement](../part-2/placement)
+>
+> **Next**: [MCP](../mcp/what-is-mcp)

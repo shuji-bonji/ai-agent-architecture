@@ -51,7 +51,7 @@ graph TB
 
 ## 2. Resource Types × Access Paths
 
-Most of these keywords can be organized as pairs of "**which resource, accessed by which means**". The Agent is not a peer of the others — it sits above them as the orchestrating layer.
+Most of these keywords can be organized as pairs of "**which resource, accessed by which means**". In this diagram, Agent / Workflow sit on the orchestration side. In the [II.1 five layers](../part-2/layers), however, Agent is one ownership post — not the top of a resource stack.
 
 | Resource Type | Nature | Access Path | Notes |
 | --- | --- | --- | --- |
@@ -138,20 +138,40 @@ The two return flows are the point. The Business Process **generates new Data**,
 > [!WARNING]
 > **If your data is fundamentally scattered, AI is not the solution.** Put RAG or an Agent on top of scattered, dirty data and it will only reproduce the scatter faster. Data curation comes first — unifying relations in a Knowledge Graph, unifying metric definitions in a Semantic Layer.
 
-## 4. Keyword → Section of This Site
+## 4. Relation to the Five Layers
+
+The diagrams on this page are a map of **resources, access paths, and circulation**. The main map of this book is the [II.1 five layers](../part-2/layers). The axes differ. Do not read this page as another name for the five layers.
+
+| Five layers | How it appears on this page |
+| --- | --- |
+| Doctrine | Not a node in the diagrams. The measure of purpose, prohibitions, and priority. See the table below and [III.3 Doctrine](../part-3/doctrine) |
+| Agent | On the orchestration side. In the five layers it owns understanding and assignment — it is not an upper stack that owns the other layers |
+| Skills | Not an access path. Stable knowledge and procedures the Agent reads. Kept off the diagram |
+| Memory | Relational knowledge, and one end of the feedback from runs |
+| MCP | The connection standard that cuts across RAG / DB / API |
+
+The execution boundary (Harness / [Hooks](../strategy/hooks)) is none of the five layers. It is a machine interrupt at a point in the run — stop, record, after-steps. It does not add a layer.
+
+> [!NOTE]
+> When unsure, decide **who owns it** with the five layers first. Then use this page for **which resource, read or write**. Reverse the order and ownership mixes with connection.
+
+## 5. Keyword → Section of This Site
 
 | Keyword | Covered In | Role |
 | --- | --- | --- |
-| LLM (structural constraints) | [Sister site: understanding-llm](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) | The "Why" bookshelf |
-| Agent / Sub-agent / A2A | [Agents](../agents/index.md) | Taxonomy and design of executors |
-| Tool Calling / MCP | [MCP](../mcp/what-is-mcp.md) | Connection as an implementation mechanism |
-| Skills | [Skills](../skills/what-is-skills.md) | Static knowledge and procedures as an implementation mechanism |
-| Workflow | [Workflows](../workflows/development-phases.md) | Patterns for fixed procedures |
-| Memory / Knowledge Graph | [Concepts 08](../concepts/08-memory-and-knowledge.md) | Concepts of memory and knowledge integration |
-| RAG / GraphRAG | This section (page in preparation) | Access design for document knowledge |
+| LLM (structural constraints) | [I.1 Constraint summary](../part-1/constraints) / [Sister site: understanding-llm](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) | Why and premises |
+| Ownership split (five layers) | [II.1 Five layers](../part-2/layers) / [II.2 Placement](../part-2/placement) | Main map of this book |
+| Doctrine (decision criteria) | [III.3 Doctrine](../part-3/doctrine) | Purpose, prohibitions, priority |
+| Skills | [III.1 Skills](../skills/what-is-skills.md) | Static knowledge and procedures |
+| MCP / Tool Calling | [III.2 MCP](../mcp/what-is-mcp.md) | Connection as an implementation mechanism |
+| Memory / Knowledge Graph | [III.4 Memory](../part-3/memory) | How memory and relations persist |
+| Agent / Sub-agent / A2A | [III.5 Agent](../agents/index.md) | Taxonomy and design of executors |
+| RAG / GraphRAG | This page §2 (no dedicated page) | Read access to document knowledge. For types, see [IV.1 Patterns](../part-4/patterns) |
 | Semantic Layer | [MCP / Semantic Layer](../mcp/semantic-layer.md) | Design discipline for structured data access |
-| Doctrine (decision criteria) | [Concepts 07](../concepts/07-doctrine-and-intent.md) | Constraints, purpose, decision criteria |
-| Permission / Authority | [Strategy](../strategy/permission-vs-authority.md) | Separating permission from authority |
+| Workflow | [Workflows](../workflows/development-phases.md) | Patterns for fixed procedures |
+| Patterns / limits | [IV.1 Patterns](../part-4/patterns) / [IV.2 Limits](../part-4/limits) | Choosing a type and how far it reaches |
+| Permission / Authority | [Permission vs. Authority](../strategy/permission-vs-authority.md) | Separating permission from authority |
+| Hooks | [Hooks](../strategy/hooks) | Harness-side execution boundary. Not a layer |
 
 > [!TIP]
 > When unsure which means to pick, three axes decide it: **freshness** (static → RAG, dynamic → DB/API), **amount of judgment** (none → Workflow, much → Agent), and **state of the data** (dirty → curate first; AI comes last).
@@ -159,10 +179,12 @@ The two return flows are the point. The Business Process **generates new Data**,
 ## Related Documents
 
 - [Overview (Information)](index.md) — Positioning and structure of this section
-- [Concepts 03: Architecture](../concepts/03-architecture.md) — The three-layer model in detail
-- [Concepts 04: AI Design Patterns](../concepts/04-ai-design-patterns.md) — Which pattern to pick when
+- [II.1 Five layers](../part-2/layers) — Main map of this book (ownership)
+- [II.2 Placement](../part-2/placement) — Where to put what
+- [Hooks](../strategy/hooks) — Execution boundary, not a layer
+- [IV.1 Patterns](../part-4/patterns) — Which type to pick when
 
-## 🔗 Going Deeper: Why LLMs Need an External Information Foundation
+## Going Deeper: Why LLMs Need an External Information Foundation
 
 This page covered the **structure (What/How)** of information architecture. To understand **why** an LLM alone is not enough — from the LLM's structural constraints — see the sister site.
 

@@ -90,7 +90,7 @@ graph LR
   style P4 fill:#fee2e2,stroke:#b91c1c,color:#000
 ```
 
-| Claude Code の機構        | スペクトラム上の位置                       | [07 章の自律性レベル](../concepts/07-doctrine-and-intent) |
+| Claude Code の機構        | スペクトラム上の位置                       | [III.3 Doctrine の自律性レベル](../part-3/doctrine) |
 | ------------------------- | ------------------------------------------ | --------------------------------------------------------- |
 | Plan mode                 | 純ハーネス（提案のみ、実行権ゼロ）         | Level 1（完全監視）                                       |
 | Default（都度確認）       | permission の反復                          | Level 2                                                   |
@@ -129,12 +129,13 @@ graph TB
 
 - [strategy/proposal-and-binding](./proposal-and-binding) — permission が拘束層、authority が表現層に置かれる要求である理由（本ページの前提となる座標系）
 - [strategy/harness-engineering-mapping](./harness-engineering-mapping) — ハーネス 4 要素と 5 層モデルの静的対応
-- [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine 層の詳細、自律性レベル 1〜4 の定義
+- [III.3 Doctrine](../part-3/doctrine) — Doctrine 層の詳細、自律性レベル 1〜4 の定義
 - [agents/subagent-quality-gate](../agents/subagent-quality-gate) — ドクトリン型故障（拡大解釈）の検知装置としての品質ゲート
 - [mcp/security](../mcp/security) — MCP 境界での権限管理
 - [strategy/deterministic-verdicts](./deterministic-verdicts) — **「行為の裁量」ではなく「判定を出す権限」** を渡すか。行為は取り消せるが、判定は下流に取り込まれた時点で取り消せない
+- [全体地図](../information/architecture-map) — 読む／書くの分離がリスク境界になる見取り図
 
-## 🔗 さらに深く: なぜ LLM に持続的 authority を渡しにくいか
+## さらに深く: なぜ LLM に持続的 authority を渡しにくいか
 
 本ページは permission と authority の **構造 (What/How)** を扱った。「**なぜ** LLM への持続的な権限委譲が難しいのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 

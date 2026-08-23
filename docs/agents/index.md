@@ -1,33 +1,51 @@
 ---
-title: "Agents — Taxonomy, Communication, and Identity"
-description: "A systematic guide to AI agents: taxonomy, sub-agents, A2A protocol, and Agent ID. Landing page for the Agent ID era."
+title: III.5 Agent
+description: The layer that understands the work and combines the others. Who does what, on whose behalf.
 ---
 
-# Agents — Taxonomy, Communication, and Identity
+# III.5 Agent
 
-> The section that addresses "**who, what, on whose behalf, and how they coordinate**." Deepens the Agent layer of the three-layer model ([03-architecture](../concepts/03-architecture)).
+> [!NOTE] Where this chapter sits
+> Agent receives a request and, inside Doctrine's line, combines Skills, Memory, and MCP. Taxonomy, sub-agents, A2A, and identity remain in this section. Product how-tos belong to each host's docs.
 
-## Position of This Section
+## 5.1 What it owns
 
-The Agents section is being grown incrementally toward the Agent ID era. It is organized: **terminology → implementation units → communication protocols → identity**.
+The user's one sentence is not the whole job. What to keep, which procedure, how it went last time, and what the source text is now, must be combined before work proceeds. That combining is Agent's job.
+
+A sub-agent is a unit that splits roles inside Agent. Splitting the person who translates from the person who checks quality is typical. It is not a substitute for MCP. It is a way of splitting work. The cut is in [Sub-agent vs Skills](./subagent-vs-skill).
+
+Whether it is done is not left to "done" said by the same role. Another role or a machine test looks. The quality-gate shape is in [Using a sub-agent as a quality gate](./subagent-quality-gate).
+
+## 5.2 Roles inside, and parties outside
+
+Splitting roles in the same process is a custom sub-agent. Talking to a party across the network is A2A (Agent-to-Agent Protocol). An in-house specialist desk versus an outside vendor is a useful picture. Both are sometimes needed. One does not suffice for the other.
+
+Start taxonomy at [Agent taxonomy](./agent-taxonomy). Combining several is [Multi-agent / Agent Teams](./agent-teams). A2A itself is [What is A2A](./what-is-a2a).
+
+## 5.3 On whose behalf
+
+In production, "who" and "on whose behalf" are asked. That is identity of a non-human actor. The standard is still moving. What is settled now and what is not yet settled are written apart. Detail is [Agent identity](./agent-identity).
+
+Fine-grained permission and a registry like a marketplace will be added later. Enter from the identity page.
+
+## 5.4 How to read
+
+| Aim | Order |
+| --- | --- |
+| First time | [Taxonomy](./agent-taxonomy) → [Sub-agents](./what-is-subagent) → [vs Skills](./subagent-vs-skill) |
+| Raise quality | [Sub-agents](./what-is-subagent) → [Quality gate](./subagent-quality-gate) |
+| Raise headcount | [Agent Teams](./agent-teams) → [A2A](./what-is-a2a) → [Agent identity](./agent-identity) |
+| Identity in production | [Taxonomy](./agent-taxonomy) → [Agent identity](./agent-identity) → [A2A](./what-is-a2a) |
 
 ```mermaid
 flowchart TB
-    subgraph CONCEPT["Concept layer"]
-        TAX["Agent Taxonomy<br/>(terminology)"]
-    end
-    subgraph IMPL["Implementation layer"]
-        SUB["Custom Sub-agent<br/>(basic concept)"]
-        VS["Sub-agent vs Skills<br/>(selection)"]
-        QG["Quality Gate Pattern<br/>(Validator type)"]
-        TEAM["Multi-Agent / Agent Teams<br/>(coordination)"]
-    end
-    subgraph COMM["Communication layer"]
-        A2A["A2A Protocol<br/>(inter-agent)"]
-    end
-    subgraph IDENT["Identity layer"]
-        ID["Agent Identity<br/>(who, on whose behalf)"]
-    end
+    TAX["Taxonomy"]
+    SUB["Sub-agent"]
+    VS["vs Skills"]
+    QG["Quality gate"]
+    TEAM["Agent Teams"]
+    A2A["A2A"]
+    ID["Agent identity"]
 
     TAX --> SUB
     TAX --> TEAM
@@ -37,106 +55,36 @@ flowchart TB
     TEAM --> A2A
     A2A --> ID
 
-    style CONCEPT fill:#e3f2fd,stroke:#1976d2,color:#333
-    style IMPL fill:#f3e5f5,stroke:#7b1fa2,color:#333
-    style COMM fill:#fff3e0,stroke:#e65100,color:#333
-    style IDENT fill:#FFE4B5,color:#333,stroke:#333
+    style TAX fill:#87CEEB,color:#333,stroke:#333
+    style SUB fill:#87CEEB,color:#333,stroke:#333
+    style TEAM fill:#87CEEB,color:#333,stroke:#333
+    style A2A fill:#87CEEB,color:#333,stroke:#333
+    style ID fill:#FFE4B5,color:#333,stroke:#333
+    style VS fill:#90EE90,color:#333,stroke:#333
+    style QG fill:#90EE90,color:#333,stroke:#333
 ```
 
-## Page Overview
+## 5.5 Summary
 
-### Concept layer — Get terminology straight first
+Agent understands the work and combines the other layers. A sub-agent is a split of roles, not another name for MCP. Outside agents are spoken to with A2A. In production, on whose behalf is designed separately.
 
-| Page | Theme | Best for |
-| --- | --- | --- |
-| [Agent Taxonomy](./agent-taxonomy) | Organize custom/sub/meta-agents, Orchestrator-Worker, Swarm, etc., into 4 abstraction levels | Anyone wanting cross-framework terminology |
+## Related pages
 
-### Implementation layer — What to build and how
+This chapter defines the layer and its boundary. Taxonomy and the remaining topics follow.
 
-| Page | Theme | Best for |
-| --- | --- | --- |
-| [Custom Sub-agent](./what-is-subagent) | Sub-agent definition, placement, and use in Claude Code | Foundational understanding before implementation |
-| [Sub-agent vs Skills](./subagent-vs-skill) | Whether to implement as a Skill or a Sub-agent; composition patterns | When you're stuck on a design decision |
-| [Quality Gate Pattern](./subagent-quality-gate) | Validator sub-agent implementation, CI/CD integration, pass criteria | When self-review keeps coming out too lenient |
-| [Multi-Agent / Agent Teams](./agent-teams) | Beyond single sub-agents — Orchestrator-Worker, Hierarchical, Swarm patterns | When single agents hit a ceiling |
+- [Agent taxonomy](./agent-taxonomy)
+- [Sub-agents](./what-is-subagent)
+- [Quality gate pattern](./subagent-quality-gate)
+- [Multi-agent / Agent Teams](./agent-teams)
+- [What is A2A](./what-is-a2a)
 
-### Communication layer — How agents talk to each other
+- [II.1 Five layers](../part-2/layers)
+- [III.3 Doctrine](../part-3/doctrine) / [III.4 Memory](../part-3/memory)
+- [FAQ: four-way comparison](../faq/agent-vs-subagent-vs-skill)
+- [understanding-llm / Part 5: On-demand context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/)
 
-| Page | Theme | Best for |
-| --- | --- | --- |
-| [What is A2A (Agent-to-Agent Protocol)](./what-is-a2a) | A2A v1.0 overview, standardization under Linux Foundation, complementarity with MCP | Anyone exploring cross-org agent coordination |
+---
 
-### Identity layer — On whose behalf do they act?
-
-| Page | Theme | Best for |
-| --- | --- | --- |
-| [Agent Identity](./agent-identity) | Non-Human Identity as a new category, OpenID Foundation's 4 architectural philosophies, commercial implementation status | Operators bringing agents to production |
-
-## Roadmap Toward the Agent ID Era
-
-This site grows alongside the **2025–2026 Agent ID standardization wave**. Here is the honest current status and what's coming.
-
-| Topic | Status |
-| --- | --- |
-| Agent Taxonomy | ✅ Published |
-| Custom Sub-agent (Claude Code) | ✅ Published |
-| Sub-agent vs Skills | ✅ Published |
-| Quality Gate Pattern | ✅ Published |
-| Multi-Agent / Agent Teams | ✅ Published |
-| A2A Protocol | ✅ Published |
-| Agent Identity (identification & delegation) | ✅ Published |
-| **Permission management (RBAC / ABAC / JIT)** | 🚧 Planned — referenced from agent-identity |
-| **Agent governance** | 🚧 Planned |
-| **A2A implementation patterns** (Web Bot Auth, Macaroons, etc.) | 🚧 Planned |
-| **Agent Marketplace / Registry** | 🚧 Under consideration |
-
-> [!IMPORTANT]
-> The Agent ID area has rapidly moved into production-operation phase: **OpenID Foundation white paper v1.1 (October 2025), Microsoft Entra Agent ID GA (April 2026), Okta for AI Agents GA, A2A v1.0 under Linux Foundation**. Because specs remain fluid, this site distinguishes "**what is settled now**" from "**what remains open**."
-
-## Recommended Reading Routes
-
-### Route 1: Newcomer (foundation)
-
-```mermaid
-flowchart LR
-    A[Agent Taxonomy] --> B[Custom Sub-agent] --> C[Sub-agent vs Skills]
-```
-
-### Route 2: Production readiness (identity-first)
-
-```mermaid
-flowchart LR
-    A[Agent Taxonomy] --> B[Agent Identity] --> C[A2A Protocol]
-```
-
-### Route 3: At scale (multi-agent coordination)
-
-```mermaid
-flowchart LR
-    A[Custom Sub-agent] --> B[Multi-Agent / Agent Teams] --> C[A2A Protocol] --> D[Agent Identity]
-```
-
-### Route 4: Raising quality (implementation techniques)
-
-```mermaid
-flowchart LR
-    A[Custom Sub-agent] --> B[Quality Gate Pattern]
-```
-
-## Related Sections
-
-| Section | Relation |
-| --- | --- |
-| [Concepts / 03-architecture](../concepts/03-architecture) | The whole three-layer model including the Agent layer |
-| [Concepts / 07-doctrine-and-intent](../concepts/07-doctrine-and-intent) | Designing "constraints and objectives" given to agents |
-| [Concepts / 08-memory-and-knowledge](../concepts/08-memory-and-knowledge) | The memory layer agents reference |
-| [Skills](../skills/what-is-skills) | Static knowledge agents reference |
-| [MCP](../mcp/what-is-mcp) | How agents connect to the outside world |
-| [FAQ / Agent vs Sub-agent vs Skill vs MCP](../faq/agent-vs-subagent-vs-skill) | The 3-line answer for all four |
-
-## 🔗 Deeper: From the context-management perspective
-
-For agents' essential constraints — why isolated contexts matter, why Multi-[Session](../glossary#session) coordination is needed — grounded in LLM structure, see the sister site.
-
-- [understanding-llm / Part 5: On-Demand Context (Skills & Agents)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/) — Agents that expand only when requested
-- [understanding-llm / Part 10: Multi-Session Coordination (Agent Teams)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/10-multi-session/) — Scaling beyond a single agent
+> **Previous**: [III.4 Memory](../part-3/memory)
+>
+> **Next**: [IV.1 Patterns](../part-4/patterns)

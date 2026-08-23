@@ -14,7 +14,7 @@ description: '同じベース重みから専門家エージェントを仕立て
 本ページは、この選択を **判断軸** で決められるようにする。要点は一つ ── **「専門性をどこに宿らせるか」**。重み（パラメトリック）か、文脈（非パラメトリック）か。
 
 ::: warning このページの位置づけ
-本ページは [03-architecture](../concepts/03-architecture) の三層モデル、[04-ai-design-patterns](../concepts/04-ai-design-patterns) のパターン選択を前提とする戦略レイヤーのドキュメントである。[composition-patterns](./composition-patterns) が「どう組み合わせるか」、[local-llm-workspace-mapping](./local-llm-workspace-mapping) が「どこに置くか」を扱うのに対し、本ページは **「専門性を重みに焼くか、文脈に差すか」** を扱う。
+本ページは [II.1 五層](../part-2/layers) と [IV.1 パターン](../part-4/patterns) のパターン選択を前提とする戦略レイヤーのドキュメントである。[composition-patterns](./composition-patterns) が「どう組み合わせるか」、[local-llm-workspace-mapping](./local-llm-workspace-mapping) が「どこに置くか」を扱うのに対し、本ページは **「専門性を重みに焼くか、文脈に差すか」** を扱う。
 :::
 
 ::: details メタ情報
@@ -23,7 +23,7 @@ description: '同じベース重みから専門家エージェントを仕立て
 | ---------------------------- | ----------------------------------------------------------------------------------------------------- |
 | **このページで固定するもの** | 重み特化（訓練時）と文脈特化（推論時）の選択軸・判断ヒューリスティック・ハイブリッド設計               |
 | **扱わないこと**             | 個別のファインチューニング手順、特定モデルの学習ハイパーパラメータ（→ 各フレームワークの一次情報を参照） |
-| **依存**                     | [03-architecture](../concepts/03-architecture)、[04-ai-design-patterns](../concepts/04-ai-design-patterns)、[08-memory-and-knowledge](../concepts/08-memory-and-knowledge) |
+| **依存**                     | [II.1 五層](../part-2/layers)、[IV.1 パターン](../part-4/patterns)、[III.4 Memory](../part-3/memory) |
 | **誤用ポイント**             | 最新事実を重みに焼こうとすること、暗黙のスタイルをプロンプトに延々書こうとすること（後述のアンチパターン） |
 
 :::
@@ -141,15 +141,15 @@ flowchart TD
 
 ## 関連ドキュメント
 
-- [03-architecture](../concepts/03-architecture) — 三層モデル（ルート A の装備が属する層）
-- [04-ai-design-patterns](../concepts/04-ai-design-patterns) — どのパターンをいつ選ぶか（WHICH）
-- [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) — パラメトリック / 非パラメトリック知識と Memory 層
+- [II.1 五層](../part-2/layers) — 五層（ルート A の装備が属する層）
+- [IV.1 パターン](../part-4/patterns) — どのパターンをいつ選ぶか（WHICH）
+- [III.4 Memory](../part-3/memory) — パラメトリック / 非パラメトリック知識と Memory 層
 - [composition-patterns](./composition-patterns) — ルート A の装備（MCP × Skill × Agent）の組み合わせ設計
 - [mcp-family](./mcp-family) — ルート A の装備を族として組むと、ルート B の燃料（検証可能な報酬）が生まれる
 - [local-llm-workspace-mapping](./local-llm-workspace-mapping) — ローカル LLM 環境でのバリアント消費とエージェント武装
 - [Skills vs MCP](../skills/vs-mcp) — 非パラメトリックな装備の使い分け
 
-## 🔗 さらに深く: なぜ重みは凍結し、文脈は予算を食うのか
+## さらに深く: なぜ重みは凍結し、文脈は予算を食うのか
 
 本ページは重み特化と文脈特化の **設計判断（What/How）** を扱った。「**なぜ** 重みは推論時に凍結されるのか」「**なぜ** 文脈はトークン予算を消費するのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 

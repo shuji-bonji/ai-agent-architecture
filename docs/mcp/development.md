@@ -12,7 +12,7 @@ The goal is to make the decision of "should this really be an MCP?" before build
 
 Before reading this document, it is desirable to have an understanding of the following:
 
-- [MCP/Skills/Agent Architecture](../concepts/03-architecture.md) — Overview of the three-tier architecture
+- [II.1 Five layers](../part-2/layers) — Doctrine / Agent / Skills / Memory / MCP
 - [MCP vs Skills Selection Guide](../skills/vs-mcp.md) — What should be MCP
 - [MCP Security](./security.md) — OWASP MCP Top 10
 
@@ -88,7 +88,7 @@ Information sourced from "authoritative reference sources" → Accurate, verifia
 
 **Important**: Layers 1 and 2 are suited for MCP, while layers 3 and 4 are suited for Skills.
 
-> See [Taxonomy of "Authoritative Reference Sources"](../concepts/02-reference-sources.md) for details
+> See [Taxonomy of "Authoritative Reference Sources"](../part-2/placement) for details
 
 ## Design Phase
 
@@ -494,7 +494,7 @@ graph LR
 
 - [Built MCP Catalog](./catalog.md) — List and details of built MCPs
 - [MCP Security](./security.md) — OWASP MCP Top 10
-- [MCP/Skills/Agent Architecture](../concepts/03-architecture.md) — Three-tier architecture
+- [II.1 Five layers](../part-2/layers) — Doctrine / Agent / Skills / Memory / MCP
 - [MCP vs Skills Selection Guide](../skills/vs-mcp.md) — What should be MCP
 - [Integration Patterns and Workflows](../workflows/patterns.md) — Workflows utilizing MCP
 - [Anti-patterns Collection](../skills/anti-patterns.md) — Patterns to avoid

@@ -204,11 +204,11 @@ const rules: Rule[] = [
 - [proposal-and-binding](./proposal-and-binding) — 判定層が属する「拘束」層と、非拘束の 3 層との関係を示す座標系
 - [routing-vs-cascading](./routing-vs-cascading) — 弱い Judge がカスケードを壊す問題。判定器の品質側
 - [loop-engineering](./loop-engineering) — 外側ループの工学。判定層は閉ループの採点器にあたる
-- [concepts/05-solving-ai-limitations](../concepts/05-solving-ai-limitations) — 確率的推論と決定論的検証の分離
+- [IV.2 限界](../part-4/limits) — 確率的推論と決定論的検証の分離
 - [mcp/semantic-layer](../mcp/semantic-layer) — 確率的解釈と決定的コンパイルの分業。同型の別ドメイン適用
 - [skills/conversation-to-skill](../skills/conversation-to-skill) — 再現性のスペクトラム（LLM 判断を挟む箇所は少ないほどよい）
 
-## 🔗 さらに深く: なぜ LLM の判定は再現しないのか
+## さらに深く: なぜ LLM の判定は再現しないのか
 
 本ページは判定層の **設計 (What/How)** を扱った。「**なぜ** LLM の判定が揺れるのか」「なぜ `temperature=0` では足りないのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 

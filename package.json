@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
-	"description": "AI Agent Architecture - How agents discover and orchestrate Skills, Tools, and Protocols",
+	"description": "LLM Agent Design Architecture — design of agents whose inference core is an LLM",
 	"scripts": {
 		"docs:dev": "vitepress dev docs",
 		"docs:build": "vitepress build docs",

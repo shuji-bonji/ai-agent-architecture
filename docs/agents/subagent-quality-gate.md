@@ -194,7 +194,7 @@ If a gate returns "Fail", address the findings and re-submit to the gate.
 ```
 
 > [!IMPORTANT]
-> Use the normative strength ladder (MUST / SHOULD / MAY) to explicitly forbid bypassing. See [Concepts / Normative Strength Ladder](../concepts/).
+> Use the normative strength ladder (MUST / SHOULD / MAY) to explicitly forbid bypassing. See [III.3 Doctrine](../part-3/doctrine).
 
 ### Delegation Flow
 
@@ -344,7 +344,7 @@ Report only critical findings; skip minor ones.
 - [Sub-agent vs Skills](./subagent-vs-skill) — Which to choose
 - [Agent Taxonomy](./agent-taxonomy) — Critic / Reviewer / Evaluator roles
 - [Workflow Patterns](../workflows/patterns) — Patterns including quality gates
-- [Doctrine & Intent](../concepts/07-doctrine-and-intent) — MUST / SHOULD / MAY normative ladder
+- [III.3 Doctrine](../part-3/doctrine) — MUST / SHOULD / MAY normative ladder
 
 ## 🔗 Deeper: Why Sycophancy Happens
 

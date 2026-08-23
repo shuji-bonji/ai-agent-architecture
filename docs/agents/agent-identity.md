@@ -3,7 +3,7 @@
 > Why AI agents require their own identity model rather than an extension of service accounts, organized around the four architectural models presented by the OpenID Foundation.
 
 ::: warning About This Page
-*Agent Classification (planned)* (**WHAT KIND** — what type of agent it is)
+[Agent taxonomy](./agent-taxonomy) (**WHAT KIND** — what type of agent it is)
 → **This Page (IDENTITY — how to identify, and on whose behalf)**
 → *Permissions: RBAC/ABAC/JIT (planned)* (**ACCESS** — what it is allowed to do)
 
@@ -15,8 +15,8 @@ This page defines the **"Who"** for agents. Given the agent types catalogued in 
 | | |
 | --- | --- |
 | **What this chapter fixes** | The four architectural models for agent identity, the distinction between impersonation and delegation, the current state of commercial implementations |
-| **Out of scope** | Detailed authorization (→ permissions page), authentication during A2A communication (→ [What is A2A](./what-is-a2a)), separation of concerns with Skills/MCP (→ [concepts/03-architecture](../concepts/03-architecture)) |
-| **Depends on** | *Agent Classification (planned)*, [concepts/03-architecture](../concepts/03-architecture) (three-layer model) |
+| **Out of scope** | Detailed authorization (→ permissions page), authentication during A2A communication (→ [What is A2A](./what-is-a2a)), separation of concerns with Skills/MCP (→ [II.1 Five layers](../part-2/layers)) |
+| **Depends on** | [Agent taxonomy](./agent-taxonomy), [II.1 Five layers](../part-2/layers) |
 | **Common misuse** | Managing AI agents under the same framework as traditional NHIs (service accounts, API keys), applying static and long-lived assumptions to them |
 :::
 

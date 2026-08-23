@@ -212,5 +212,5 @@ Several protocols exist around agents and are easy to confuse. Here's a quick di
 | Agent/Sub-agent/Skill/MCP 4-way comparison | [FAQ: 4 roles compared](../faq/agent-vs-subagent-vs-skill) |
 | Inter-agent communication protocol | [what-is-a2a.md](./what-is-a2a.md) |
 | MCP details | [what-is-mcp.md](../mcp/what-is-mcp.md) |
-| Three-layer architecture (Agent / Skills / MCP) | [03-architecture.md](../concepts/03-architecture.md) |
+| Five layers (Doctrine / Agent / Skills / Memory / MCP) | [II.1 Five layers](../part-2/layers) |
 | Implementation patterns | [patterns.md](../workflows/patterns.md) |

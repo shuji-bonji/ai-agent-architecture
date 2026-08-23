@@ -72,7 +72,7 @@ flowchart TB
 
 ### Q: What is the typical composition pattern?
 
-**A**: The **3-layer pattern**: "**Skill for procedure, Sub-agent for execution, MCP for connection.**" Example: translation workflow → Skill `translation-workflow` defines the procedure, Sub-agent `translator` executes as the specialist, MCP `deepl-mcp` calls the translation API.
+**A**: The **three-part composition pattern**: "**Skill for procedure, Sub-agent for execution, MCP for connection.**" ("Three-layer" here means a combination of implementation units, not another name for this book's five-layer architecture.) Example: translation workflow → Skill `translation-workflow` defines the procedure, Sub-agent `translator` executes as the specialist, MCP `deepl-mcp` calls the translation API.
 
 ### Q: Where do meta-agents, Orchestrator, Swarm fit?
 
@@ -119,8 +119,8 @@ flowchart TD
 | Sub-agent basics | [What is a Custom Sub-agent](../agents/what-is-subagent) |
 | MCP basics | [What is MCP](../mcp/what-is-mcp) |
 | Skill basics | [What is Skills](../skills/what-is-skills) |
-| Architecture overview | [03-architecture](../concepts/03-architecture) |
-| Relation to the Memory layer | [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) |
+| Architecture overview | [II.1 Five layers](../part-2/layers) |
+| Relation to the Memory layer | [III.4 Memory](../part-3/memory) |
 
 ---
 

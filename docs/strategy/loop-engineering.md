@@ -216,7 +216,7 @@ Your job shifts from "the one who runs the loop" to "**the one who periodically 
 > [!IMPORTANT]
 > Loop Engineering is the technique of stretching **permission (the right to execute procedures)** to its limit, but **authority (the right to judge "is this still correct?")** belongs to non-transferable doctrine. So the ceiling on "how much to hand to the system" is, in principle, set by the non-transferability of doctrine. → [Permission vs. Authority](./permission-vs-authority)
 
-## 🔗 Going Deeper: Why Outer-Loop Automation Needs Stop Checks, Context Compaction, and External Critique
+## Going Deeper: Why Outer-Loop Automation Needs Stop Checks, Context Compaction, and External Critique
 
 This page covered the **engineering (What/How)** of the outer loop. To understand **why** those countermeasures are structurally unavoidable, see the sister site.
 
@@ -227,6 +227,7 @@ This page covered the **engineering (What/How)** of the outer loop. To understan
 
 - [Agent Loop Patterns](./agent-loop-patterns) — the inside of this page (catalog of inner-loop types)
 - [Harness Engineering Mapping](./harness-engineering-mapping) — the parent of the layer escalation
+- [Hooks](./hooks) — a machine-enforced interrupt at a point in the outer loop
 - [autonomous-dev-meta-agent](../workflows/autonomous-dev-meta-agent) — a concrete implementation of outer-loop automation (Issue → Deploy)
 - [Sub-agent Quality Gate](../agents/subagent-quality-gate) — implementing the critic that can say "no"
 - [Routing vs. Cascading](./routing-vs-cascading) / [Local LLM Workspace Mapping](./local-llm-workspace-mapping) — fixing discovery/production into the infrastructure

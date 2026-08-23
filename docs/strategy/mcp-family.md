@@ -289,7 +289,7 @@ This is not unique to families, but the closed loop exposes it. A writer can exi
 - [skills/vs-mcp](../skills/vs-mcp) — choosing between a Skill and an MCP
 - [skills/showcase](../skills/showcase) — Skill examples
 
-## 🔗 Going Deeper: Why Tool Definitions Crowd the Context
+## Going Deeper: Why Tool Definitions Crowd the Context
 
 This page addressed the **splitting and binding (What/How)** of a family. To understand from LLMs' structural constraints *why* the volume of tool definitions degrades performance and *why* the middle of a long context stops being read, see the sister site.
 

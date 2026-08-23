@@ -8,29 +8,28 @@ This document covers the **design and decision-making** aspects of Skills: when 
 
 ## Positioning of Skills
 
-### Role in Three-Layer Architecture
+### Role among the five layers
 
-Skills occupy the middle layer of the AI agent architecture, sitting between the orchestration layer above and the MCP tool layer below. The following diagram illustrates this positioning:
+Skills is the layer, among the five, that holds stable knowledge and procedures. Doctrine and Memory sit in the same sequence.
 
 ```mermaid
-graph TB
-    subgraph Agent["Agent Layer"]
-        A[Orchestration<br/>Decision & Execution]
-    end
+flowchart TB
+    DOCTRINE["Doctrine<br/>Purpose, prohibitions, priority"]
+    AGENT["Agent<br/>Understanding and assignment"]
+    SKILLS["Skills ← here<br/>Stable knowledge and procedures"]
+    MEMORY["Memory<br/>What to keep, and relations"]
+    MCP["MCP<br/>Connection to outside systems"]
 
-    subgraph Skills["Skills Layer ← Here"]
-        S[Domain Knowledge<br/>Guidelines & Decision Criteria]
-    end
+    DOCTRINE --> AGENT
+    AGENT --> SKILLS
+    AGENT --> MEMORY
+    AGENT --> MCP
 
-    subgraph MCP["MCP Layer"]
-        M[External Tools<br/>APIs & Data Retrieval]
-    end
-
-    Agent -->|"Reference"| Skills
-    Agent -->|"Execute"| MCP
-    Skills -.->|"Define how to use MCPs"| MCP
-
-    style Skills fill:#90EE90,stroke:#333
+    style DOCTRINE fill:#FFE4B5,color:#333,stroke:#333
+    style AGENT fill:#87CEEB,color:#333,stroke:#333
+    style SKILLS fill:#90EE90,color:#333,stroke:#333
+    style MEMORY fill:#E6E6FA,color:#333,stroke:#333
+    style MCP fill:#FFB6C1,color:#333,stroke:#333
 ```
 
 ### Cases Where Skills Are Appropriate
@@ -88,7 +87,7 @@ graph TB
     ANTI --> RELATED[Related MCPs<br/>Related MCPs]
 ```
 
-> **Ready to start building?** See [How to Create Skills](./how-to-create-skills) for the step-by-step walkthrough of writing each section.
+> How to write each section is in [How to Create Skills](./how-to-create-skills).
 
 ## Skill Quality Checklist
 
@@ -190,9 +189,9 @@ The following Skills are identified as high-priority candidates for future devel
 
 | Skill Name           | Overview                             | Priority | Related MCP   |
 | -------------------- | ------------------------------------ | -------- | ------------- |
-| translation-workflow | Workflow: Translate → Evaluate → Fix | ⭐⭐⭐⭐ | deepl, xcomet |
-| rfc-compliance       | RFC compliance check guidelines      | ⭐⭐⭐⭐ | rfcxml        |
-| code-review          | TypeScript/Angular review guidelines | ⭐⭐⭐   | —             |
+| translation-workflow | Workflow: Translate → Evaluate → Fix | High | deepl, xcomet |
+| rfc-compliance       | RFC compliance check guidelines      | High | rfcxml        |
+| code-review          | TypeScript/Angular review guidelines | Medium | —           |
 
 ## What to Read Next
 
@@ -205,7 +204,7 @@ The following Skills are identified as high-priority candidates for future devel
 | Deciding between MCP vs Skills             | [MCP vs Skills Decision Guide](./vs-mcp)                     |
 | Anti-patterns to avoid                     | [Anti-Patterns Guide](./anti-patterns)                        |
 | See production examples                    | [Showcase](./showcase)                                        |
-| Three-layer architecture overview          | [Architecture](../concepts/03-architecture)                   |
+| Five-layer overview                        | [II.1 Five layers](../part-2/layers)               |
 | Skill + MCP combination examples           | [Integration Patterns](../workflows/patterns)                 |
 
 ## Reference Links

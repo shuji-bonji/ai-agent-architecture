@@ -5,8 +5,8 @@ import { enConfig } from './locales/en';
 
 export default withMermaid(
 	defineConfig({
-		title: 'AI Agent Architecture',
-		description: 'How agents discover and orchestrate Skills, Tools, and Protocols',
+		title: 'LLM Agent Design Architecture',
+		description: 'Design of agents whose inference core is a foundation model',
 
 		base: '/ai-agent-architecture/',
 
@@ -18,7 +18,7 @@ export default withMermaid(
 			['link', { rel: 'alternate', hreflang: 'x-default', href: 'https://shuji-bonji.github.io/ai-agent-architecture/' }],
 			// OGP defaults
 			['meta', { property: 'og:type', content: 'website' }],
-			['meta', { property: 'og:site_name', content: 'AI Agent Architecture' }],
+			['meta', { property: 'og:site_name', content: 'LLM Agent Design Architecture' }],
 			['meta', { property: 'og:locale', content: 'en' }],
 			['meta', { property: 'og:locale:alternate', content: 'ja_JP' }],
 			['meta', { name: 'twitter:card', content: 'summary_large_image' }],

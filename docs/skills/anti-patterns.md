@@ -289,4 +289,4 @@ The following table provides a quick lookup for identifying and addressing each 
 - [How to Use Skills](./how-to-use-skills) - Installation and project integration
 - [Skill Use Cases](./skill-use-cases) - Use case patterns and role separation
 - [Showcase](./showcase) - Production examples
-- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture theory
+- [II.1 Five layers](../part-2/layers) - Doctrine / Agent / Skills / Memory / MCP

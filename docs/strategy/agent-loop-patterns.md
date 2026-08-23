@@ -149,7 +149,7 @@ This site's [Workflow Patterns](../workflows/patterns) is a domain-by-domain cat
 
 → For the full picture of responsibilities, see [Harness Engineering Mapping](./harness-engineering-mapping); for autonomous correction via evaluation, see [Sub-agent Quality Gate](../agents/subagent-quality-gate).
 
-## 🔗 Go Deeper: Why Autonomous Loops Need "Evaluation" and an "Upper-Bound Guard"
+## Go Deeper: Why Autonomous Loops Need "Evaluation" and an "Upper-Bound Guard"
 
 This page covers the **types (What/How)** of loops. For **why** self-critique, evaluation gates, and upper-bound guards are necessary in terms of LLM structural constraints, see the sister site.
 

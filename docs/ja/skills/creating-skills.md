@@ -8,28 +8,28 @@
 
 ## Skillの位置づけ
 
-### 三層アーキテクチャにおける役割
+### 五層における役割
+
+Skills は五層のうち、変わらない知識と手順を置く層である。Doctrine と Memory も同じ並びに置く。
 
 ```mermaid
-graph TB
-    subgraph Agent["Agent Layer"]
-        A[オーケストレーション<br/>判断・実行]
-    end
+flowchart TB
+    DOCTRINE["Doctrine<br/>目的・禁止・優先順位"]
+    AGENT["Agent<br/>作業の理解と割り振り"]
+    SKILLS["Skills ← ここ<br/>変わらない知識と手順"]
+    MEMORY["Memory<br/>残す記憶と関係"]
+    MCP["MCP<br/>外のシステムへの接続"]
 
-    subgraph Skills["Skills Layer ← ここ"]
-        S[ドメイン知識<br/>ガイドライン・判断基準]
-    end
+    DOCTRINE --> AGENT
+    AGENT --> SKILLS
+    AGENT --> MEMORY
+    AGENT --> MCP
 
-    subgraph MCP["MCP Layer"]
-        M[外部ツール<br/>API・データ取得]
-    end
-
-    Agent -->|"参照"| Skills
-    Agent -->|"実行"| MCP
-    Skills -.->|"MCPの使い方を定義"| MCP
-
-    style Skills fill:#90EE90,color:#333
-
+    style DOCTRINE fill:#FFE4B5,color:#333,stroke:#333
+    style AGENT fill:#87CEEB,color:#333,stroke:#333
+    style SKILLS fill:#90EE90,color:#333,stroke:#333
+    style MEMORY fill:#E6E6FA,color:#333,stroke:#333
+    style MCP fill:#FFB6C1,color:#333,stroke:#333
 ```
 
 ### Skillが適しているケース
@@ -87,7 +87,7 @@ graph TB
     ANTI --> RELATED[Related MCPs<br/>関連MCP]
 ```
 
-> **実際に作り始める準備ができたら？** 各セクションの書き方を [スキル作成ガイド](./how-to-create-skills) で解説しています。
+> 各セクションの書き方は [スキル作成ガイド](./how-to-create-skills) を見る。
 
 ## Skill品質チェックリスト
 
@@ -169,7 +169,7 @@ npx skills add ./my-skills -a claude-code
 npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 ```
 
-> 詳細は [スキル導入・利用ガイド](./how-to-use-skills) でCLIの完全ガイドとプロジェクト導入手順を解説しています。
+> CLI とプロジェクト導入の手順は [スキル導入・利用ガイド](./how-to-use-skills) を見る。
 
 ## ロードマップ上の目標
 
@@ -187,9 +187,9 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 
 | Skill名              | 概要                             | 優先度   | 関連MCP       |
 | -------------------- | -------------------------------- | -------- | ------------- |
-| translation-workflow | 翻訳 → 評価 → 修正のワークフロー | ⭐⭐⭐⭐ | deepl, xcomet |
-| rfc-compliance       | RFC準拠チェックのガイドライン    | ⭐⭐⭐⭐ | rfcxml        |
-| code-review          | TypeScript/Angularレビュー規約   | ⭐⭐⭐   | —             |
+| translation-workflow | 翻訳 → 評価 → 修正のワークフロー | 高 | deepl, xcomet |
+| rfc-compliance       | RFC準拠チェックのガイドライン    | 高 | rfcxml        |
+| code-review          | TypeScript/Angularレビュー規約   | 中 | —             |
 
 ## 次に読むべきドキュメント
 
@@ -202,7 +202,7 @@ npx skills add ./my-skills -a claude-code -a cursor -a windsurf
 | MCP vs Skillsの判断               | [MCP vs Skills 選択判断ガイド](./vs-mcp)                      |
 | 避けるべきパターン                | [アンチパターン集](./anti-patterns)                           |
 | 実例を見たい                      | [実例ショーケース](./showcase)                                |
-| 全体アーキテクチャ                | [アーキテクチャ](../concepts/03-architecture)                 |
+| 全体アーキテクチャ                | [II.1 五層](../part-2/layers)                      |
 | Skill+MCPの組み合わせ例           | [連携パターン](../workflows/patterns)                         |
 
 ## 参考リンク

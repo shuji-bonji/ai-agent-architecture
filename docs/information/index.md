@@ -21,16 +21,16 @@ This section is the home for those topics — viewed not as implementation mecha
 | Page | Central Question | Status |
 | --- | --- | --- |
 | [Architecture Map](architecture-map.md) | Where does each keyword sit in the overall architecture? | ✅ Published |
-| RAG / GraphRAG | How to make document knowledge searchable, and how to answer cross-document questions? | 🚧 Planned |
+| RAG / GraphRAG | How to make document knowledge searchable ([Architecture Map](architecture-map.md) §2; no dedicated page) | ✅ Covered on the map |
 | Information Governance | How do the five questions — owner, form, path, permission, quality — depend on each other? | 🚧 Planned |
 | Adoption Failure Modes | How to make Evals, Prompt Injection defenses, and Human-in-the-Loop preconditions? | 🚧 Planned |
 
 > [!TIP]
-> Start with the [Architecture Map](architecture-map.md) — it shows in a single view how this section relates to every other section of the site (Concepts / MCP / Skills / Agents / Strategy / Workflows).
+> Start with the [Architecture Map](architecture-map.md) — it shows in a single view how this section relates to the five layers, each layer's pages, and strategy / workflows. The definition of the five layers themselves is [II.1 Five layers](../part-2/layers).
 
 ## Related Documents
 
-- [Concepts 08: Memory & Knowledge](../concepts/08-memory-and-knowledge.md) — Conceptual foundation of Memory and Knowledge Graph
+- [III.4 Memory](../part-3/memory) — Conceptual foundation of Memory and Knowledge Graph
 - [MCP / Semantic Layer](../mcp/semantic-layer.md) — Design discipline for structured data access
 - [MCP / Security](../mcp/security.md) — Security of connection paths
 

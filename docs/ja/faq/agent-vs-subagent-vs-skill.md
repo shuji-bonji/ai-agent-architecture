@@ -72,7 +72,7 @@ flowchart TB
 
 ### Q: 一緒に使うときの典型パターンは?
 
-**A**: 「**Skill で手順、Sub-agent で実行、MCP で接続**」の 3 層構成。例: 翻訳ワークフロー → Skill `translation-workflow` が手順、Sub-agent `translator` が専門家として実行、MCP `deepl-mcp` で翻訳 API を叩く。
+**A**: 「**Skill で手順、Sub-agent で実行、MCP で接続**」の合成パターン（ここでの「3 層」は実装の組み合わせであり、本書の五層アーキテクチャの別名ではない）。例: 翻訳ワークフロー → Skill `translation-workflow` が手順、Sub-agent `translator` が専門家として実行、MCP `deepl-mcp` で翻訳 API を叩く。
 
 ### Q: メタエージェント、Orchestrator、Swarm はどこに位置する?
 
@@ -119,8 +119,8 @@ flowchart TD
 | Sub-agent の基本概念 | [カスタムサブエージェントとは](../agents/what-is-subagent) |
 | MCP の基本概念 | [MCPとは](../mcp/what-is-mcp) |
 | Skill の基本概念 | [Skillsとは](../skills/what-is-skills) |
-| アーキテクチャ全体像 | [03-architecture](../concepts/03-architecture) |
-| Memory 層との関係 | [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) |
+| アーキテクチャ全体像 | [II.1 五層](../part-2/layers) |
+| Memory 層との関係 | [III.4 Memory](../part-3/memory) |
 
 ---
 

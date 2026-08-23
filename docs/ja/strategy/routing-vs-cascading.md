@@ -14,7 +14,7 @@ description: '複数モデルのフリート上でクエリあたりのコスト
 基本的な答えは 2 つあり、**判断を下すタイミング** で分かれる。**Routing** はクエリを事前に分類して 1 つのモデルを選ぶ。**Cascading** はまず安いモデルを動かし、出力を評価し、足りなければエスカレーションする。本ページはこの選択を判断軸で決められるようにし、なぜこれが **local + cloud ティア** 構成の自然な制御層になるのかを示す。
 
 ::: warning このページの位置づけ
-本ページは [03-architecture](../concepts/03-architecture) の三層モデル、[04-ai-design-patterns](../concepts/04-ai-design-patterns) のパターン選択を前提とする戦略レイヤーのドキュメントである。[specialization-weights-vs-context](./specialization-weights-vs-context) が「専門家をどう作るか」を扱うのに対し、本ページは「**すでに手元にある複数モデルへ、クエリをどう振り分けるか**」を扱う。[What is A2A](../agents/what-is-a2a) の上に載るポリシー層である。
+本ページは [II.1 五層](../part-2/layers) と [IV.1 パターン](../part-4/patterns) のパターン選択を前提とする戦略レイヤーのドキュメントである。[specialization-weights-vs-context](./specialization-weights-vs-context) が「専門家をどう作るか」を扱うのに対し、本ページは「**すでに手元にある複数モデルへ、クエリをどう振り分けるか**」を扱う。[What is A2A](../agents/what-is-a2a) の上に載るポリシー層である。
 :::
 
 ::: details メタ情報
@@ -23,7 +23,7 @@ description: '複数モデルのフリート上でクエリあたりのコスト
 | --- | --- |
 | **このページで固定するもの** | 選択軸（事前判断 vs 事後判断）・判断ヒューリスティック・local + cloud ティアへの写像 |
 | **扱わないこと** | ルーターの学習レシピ、特定 Judge モデルのハイパーパラメータ（→ 各論文の一次情報を参照） |
-| **依存** | [03-architecture](../concepts/03-architecture)、[04-ai-design-patterns](../concepts/04-ai-design-patterns)、[What is A2A](../agents/what-is-a2a) |
+| **依存** | [II.1 五層](../part-2/layers)、[IV.1 パターン](../part-4/patterns)、[What is A2A](../agents/what-is-a2a) |
 | **誤用ポイント** | 「Routing か Cascading か」の二者択一で捉えること、ルーティング判断と圧縮判断を絡めて実験で効果を切り分け不能にすること |
 
 :::
@@ -187,14 +187,14 @@ flowchart LR
 
 ## 関連ドキュメント
 
-- [04-ai-design-patterns](../concepts/04-ai-design-patterns) — どのパターンをいつ選ぶか（WHICH）
+- [IV.1 パターン](../part-4/patterns) — どのパターンをいつ選ぶか（WHICH）
 - [What is A2A](../agents/what-is-a2a) — routing/cascading ポリシーが載るエージェント間基盤
 - [specialization-weights-vs-context](./specialization-weights-vs-context) — ルーターが振り分ける先の専門モデルを作る
 - [local-llm-workspace-mapping](./local-llm-workspace-mapping) — ハイブリッド構成のローカルティアを配置する
 - [composition-patterns](./composition-patterns) — 各ティア内での MCP × Skill × Agent の組み合わせ
 - [deterministic-verdicts](./deterministic-verdicts) — Judge の判定を LLM から出す設計。合否基準が明文化できるカスケードでは、Judge をルール表に落とせる
 
-## 🔗 さらに深く: なぜ Judge はそれほど信頼しにくいのか
+## さらに深く: なぜ Judge はそれほど信頼しにくいのか
 
 本ページはモデルへのクエリ振り分けの **設計判断（What/How）** を扱った。その最難関 ── モデルが「回答が十分か」を信頼できる形で自己評価すること ── は、LLM の構造的限界に直撃する。「**なぜ** 自己評価が当てにならないのか」を理解したい場合は、姉妹サイトを参照。
 

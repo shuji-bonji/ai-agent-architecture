@@ -21,16 +21,16 @@
 | ページ | 中心的な問い | 状態 |
 | --- | --- | --- |
 | [全体地図](architecture-map.md) | 各キーワードはアーキテクチャ全体のどこに位置するか | ✅ 公開 |
-| RAG / GraphRAG | 文書知識をどう検索可能にするか、文書横断の質問にどう答えるか | 🚧 予定 |
+| RAG / GraphRAG | 文書知識をどう検索可能にするか（[全体地図](architecture-map.md) §2 で整理。専用ページは持たない） | ✅ 全体地図に包含 |
 | 情報ガバナンス | オーナー・形式・経路・権限・品質の 5 つの問いはどう依存し合うか | 🚧 予定 |
 | 導入の異常系 | Evals・Prompt Injection・Human-in-the-Loop をどう前提条件に組み込むか | 🚧 予定 |
 
 > [!TIP]
-> まず [全体地図](architecture-map.md) を読むと、本サイトの全セクション (Concepts / MCP / Skills / Agents / Strategy / Workflows) と本セクションの関係が 1 枚で掴める。
+> まず [全体地図](architecture-map.md) を読むと、本論の五層・各層・strategy / workflows と本セクションの関係が 1 枚で掴める。五層そのものの定義は [II.1 五層](../part-2/layers) である。
 
 ## 関連ドキュメント
 
-- [Concepts 08: 記憶と知識統合](../concepts/08-memory-and-knowledge.md) — Memory と Knowledge Graph の概念的基礎
+- [III.4 Memory](../part-3/memory) — Memory と Knowledge Graph の概念的基礎
 - [MCP / Semantic Layer](../mcp/semantic-layer.md) — 構造化データアクセスの設計規律
 - [MCP / セキュリティ](../mcp/security.md) — 接続経路のセキュリティ
 

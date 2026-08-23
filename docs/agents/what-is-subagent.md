@@ -62,7 +62,7 @@ By pre-defining specialization in sub-agents, instructions from the main Claude 
 
 ## Positioning of Sub-agents
 
-To understand the structure within Claude Code, let's examine the relationship between MCP Client, MCP Servers, and main Claude.
+To understand the structure within Claude Code, look at the relationship between MCP Client, MCP Servers, and main Claude.
 
 ```mermaid
 flowchart TB
@@ -217,7 +217,7 @@ flowchart LR
     style AGENT fill:#87CEEB,color:#333,stroke:#333
 ```
 
-### Three-Layer Role Separation
+### Role split among three elements
 
 Each of these three elements has a clearly distinct responsibility.
 
@@ -238,7 +238,7 @@ Each of these three elements has a clearly distinct responsibility.
 3. **MCP `deepl-mcp` / `xcomet-mcp`** provides tools and APIs
    - Concrete implementation of translation execution and quality evaluation
 
-This three-layer separation minimizes the impact of changes in one layer on others, improving maintainability and extensibility.
+Splitting these three elements keeps a change in one from spreading easily to the others, which helps maintenance and extension.
 
 ## What to Read Next
 
@@ -253,5 +253,5 @@ To learn more about sub-agents and related concepts, explore the following docum
 | Understand differences from A2A  | [what-is-a2a.md](./what-is-a2a.md)                   |
 | Learn more about MCP             | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
 | Learn more about Skills          | [what-is-skills.md](../skills/what-is-skills.md)     |
-| Claude Code overall architecture | [03-architecture.md](../concepts/03-architecture.md) |
+| Five-layer overview              | [II.1 Five layers](../part-2/layers)   |
 | Implementation patterns          | [patterns.md](../workflows/patterns.md)              |

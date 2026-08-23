@@ -213,7 +213,7 @@ graph TB
 
 ## Memory 層との関係 — 構造化データ版の「意味の固定」
 
-Semantic Layer は、[`concepts/08-memory-and-knowledge`](../concepts/08-memory-and-knowledge) で扱う Memory 層の **兄弟概念** である。両者は **「意味の事前固定（Pre-codified Meaning）」** という同一の上位概念から派生し、適用対象が「内的経験」か「外的構造化データ」かで分かれる。
+Semantic Layer は、[`part-3/memory`](../part-3/memory) で扱う Memory 層の **兄弟概念** である。両者は **「意味の事前固定（Pre-codified Meaning）」** という同一の上位概念から派生し、適用対象が「内的経験」か「外的構造化データ」かで分かれる。
 
 ```mermaid
 graph TB
@@ -255,10 +255,10 @@ graph TB
 - [MCP とは何か](./what-is-mcp) — 本ページの前提となる MCP の基礎
 - [MCP セキュリティ](./security) — 接続境界の安全性
 - [Verifiable MCP](./verifiable-mcp) — MCP 出力の出典忠実性の検証（意味の保証の「上流ソース照合」版）
-- [Memory と知識](../concepts/08-memory-and-knowledge) — 意味の永続化という兄弟概念
-- [三層アーキテクチャ](../concepts/03-architecture) — CLI / MCP / Skills の使い分け
+- [Memory と知識](../part-3/memory) — 意味の永続化という兄弟概念
+- [II.1 五層](../part-2/layers) — CLI / MCP / Skills の使い分け
 
-## 🔗 さらに深く: なぜ LLM は意味を推測してしまうのか
+## さらに深く: なぜ LLM は意味を推測してしまうのか
 
 本ページは Semantic Layer の **構造（What / How）** を扱った。「**なぜ** LLM は与えられていない意味を推測（捏造）してしまうのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 

@@ -2,18 +2,27 @@
 
 このディレクトリには、AIエージェント構成に関する体系化されたドキュメントを配置する。
 
-## 📁 新構成（v2 リストラクチャリング）
+## 新構成（v2）
 
-リポジトリのスコープ拡大に伴い、ドキュメント構成を以下のように再編成しました。各ディレクトリは異なる視点から知識を体系化しています。
+リポジトリのスコープ拡大に伴い、ドキュメント構成を以下のように再編成した。各ディレクトリは異なる視点から知識を体系化している。
 
 ```
 docs/
-├── concepts/          # ビジョン・思想・理論
-│   ├── 01-vision.md
-│   ├── 02-reference-sources.md
-│   ├── 03-architecture.md
-│   ├── 04-ai-design-patterns.md
-│   └── 05-solving-ai-limitations.md
+├── preface.md         # 序章
+├── part-1/            # 第I部 前提
+│   └── constraints.md
+├── part-2/            # 第II部 モデル
+│   ├── layers.md
+│   └── placement.md
+├── part-3/            # 第III部 Doctrine / Memory
+│   ├── doctrine.md
+│   └── memory.md
+├── part-4/            # 第IV部 構成と展開
+│   ├── patterns.md
+│   ├── limits.md
+│   ├── physical.md
+│   └── prompt-decomposition.md
+├── concepts/          # 旧 URL のリダイレクト
 ├── mcp/              # MCP（外部連携）
 │   ├── what-is-mcp.md    # MCPとは何か（入門）
 │   ├── catalog.md
@@ -50,20 +59,16 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 ## ドキュメント一覧
 
-### ビジョン・思想
+### 骨格
 
-| ファイル                                                               | 内容                           |
-| ---------------------------------------------------------------------- | ------------------------------ |
-| [concepts/01-vision.md](./concepts/01-vision.md)                       | AI駆動開発のビジョン・核心思想 |
-| [concepts/02-reference-sources.md](./concepts/02-reference-sources.md) | 「ブレない参照先」の体系       |
-
-### アーキテクチャ・設計
-
-| ファイル                                                     | 内容                     |
-| ------------------------------------------------------------ | ------------------------ |
-| [concepts/03-architecture.md](./concepts/03-architecture.md) | MCP/Skills/Agentの構成論 |
-| [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md) | 生成AIの設計パターンとMCPの位置づけ |
-| [concepts/05-solving-ai-limitations.md](./concepts/05-solving-ai-limitations.md) | AI制約の解決アプローチ |
+| ファイル | 内容 |
+| -------- | ---- |
+| [序章](./preface) | 本書の問いと範囲 |
+| [I.1 制約の要約](./part-1/constraints) | 基盤モデルの構造的制約 |
+| [II.1 五層](./part-2/layers) | Doctrine / Agent / Skills / Memory / MCP |
+| [II.2 配置基準](./part-2/placement) | 何をどの層へ置くか |
+| [IV.1 パターン](./part-4/patterns) | 型の選び方 |
+| [IV.2 限界](./part-4/limits) | 届かない線 |
 
 ### MCP（外部連携）
 
@@ -122,23 +127,23 @@ Claudeとの対話を通じて得られた洞察を、再利用可能な形式�
 
 ### 初めて読む場合
 
-1. **concepts/01-vision.md** - 全体の思想を理解
-2. **concepts/03-architecture.md** - 構成要素を理解
-3. **concepts/04-ai-design-patterns.md** - RAG等の設計パターンとMCPの違い
-4. **concepts/05-solving-ai-limitations.md** - AI制約の具体的な解決手法
+1. **preface.md** - 本書の問いと範囲
+2. **part-1/constraints.md** - 制約の要約
+3. **part-2/layers.md** - 五層
+4. **part-4/patterns.md** - 型の選び方
 5. **mcp/catalog.md** - 具体的なMCPを確認
 
 ### 初めてMCPを学びたい場合
 
-1. **mcp/what-is-mcp.md** - MCPの基本概念・メリット・デメリット
-2. **concepts/03-architecture.md** - 全体アーキテクチャでの位置づけ
+1. **mcp/what-is-mcp.md** - MCPの基本概念
+2. **part-2/layers.md** - 五層での位置づけ
 3. **mcp/catalog.md** - 構築済みMCPの実例
 
 ### エージェント間連携を学びたい場合
 
 1. **agents/what-is-subagent.md** - カスタムサブエージェントの基本
 2. **agents/what-is-a2a.md** - A2Aプロトコルの基本
-3. **concepts/03-architecture.md** - 全体アーキテクチャでの位置づけ
+3. **part-2/layers.md** - 五層での位置づけ
 
 ### 実践したい場合
 

@@ -398,5 +398,5 @@ Practical results from each pattern are recorded in [outputs.md](../outputs.md).
 ## Related Documents
 
 - [workflows/patterns.md](../workflows/patterns.md) — Existing Workflow Patterns (Pattern 2 track record)
-- [concepts/03-architecture.md](../concepts/03-architecture.md) — MCP / Skill / Agent Layer Structure
+- [II.1 Five layers](../part-2/layers) — Doctrine / Agent / Skills / Memory / MCP
 - [mcp/catalog.md](../mcp/catalog.md) — Built MCP Catalog

@@ -204,11 +204,11 @@ The cause is a provider-side model swap. Three properties make it awkward.
 - [proposal-and-binding](./proposal-and-binding) — the coordinate system placing the judgment layer inside "binding" and relating it to the three non-binding layers
 - [routing-vs-cascading](./routing-vs-cascading) — how a weak judge breaks a cascade; the quality side of judging
 - [loop-engineering](./loop-engineering) — the outer loop as engineering; the judgment layer is the loop's scorer
-- [concepts/05-solving-ai-limitations](../concepts/05-solving-ai-limitations) — separating probabilistic inference from deterministic verification
+- [IV.2 Limits](../part-4/limits) — separating probabilistic inference from deterministic verification
 - [mcp/semantic-layer](../mcp/semantic-layer) — probabilistic interpretation vs. deterministic compilation; the same shape in another domain
 - [skills/conversation-to-skill](../skills/conversation-to-skill) — the reproducibility spectrum; fewer LLM judgment points is better
 
-## 🔗 Going Deeper: Why LLM Verdicts Do Not Reproduce
+## Going Deeper: Why LLM Verdicts Do Not Reproduce
 
 This page covered the **design (What/How)** of the judgment layer. For **why** LLM verdicts vary and why `temperature=0` is not enough, in terms of the structural constraints of LLMs, see the sister site.
 

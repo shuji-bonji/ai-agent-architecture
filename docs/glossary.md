@@ -12,6 +12,16 @@ If you are new to this documentation, you can deepen your understanding by refer
 
 The terms in this section are defined in the sister site [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/). This section holds only the minimum definition needed to read this site; the mechanism and the evidence are left to the linked source. The first occurrence of each term on every page of this site links to the corresponding entry here.
 
+### LLM (Large Language Model) {#llm}
+
+A model trained on large amounts of text to predict the next token and generate prose. The core of systems such as Claude and ChatGPT. This is the AI this book primarily treats.
+
+**Defined in**: The Japanese [Preface](/ja/preface). Mechanisms belong to the sister site [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/).
+
+### Foundation Model {#foundation-model}
+
+A model trained on large data and adaptable to many downstream tasks. An LLM is the central example. Adjacent models such as Vision-Language-Action (VLA) are included.
+
 ### Token {#token}
 
 The smallest unit an LLM processes. It is neither a character nor a word, but a fragment produced by the tokenizer. Japanese text costs 1–3 tokens per character, so the same content consumes more tokens than English.
@@ -73,7 +83,7 @@ Problems that originate in how LLMs work and that prompt wording alone does not 
 
 **Overview and relationships**: [Part 1: Structural Problems of LLMs](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/)
 
-> On this site, "frozen at the training-data cutoff" and "the recency constraint" refer to Knowledge Boundary. Of the four constraints in [01-vision](./concepts/01-vision) (accuracy, recency, authority, accountability), accuracy corresponds to Hallucination and recency to Knowledge Boundary. Authority and accountability are institutional rather than structural and are outside the sister site's scope.
+> On this site, "frozen at the training-data cutoff" and "the recency constraint" refer to Knowledge Boundary. Of the four constraints in [I.1 Constraint summary](./part-1/constraints) (accuracy, recency, authority, accountability), accuracy corresponds to Hallucination and recency to Knowledge Boundary. Authority and accountability are institutional rather than structural and are outside the sister site's scope.
 
 ### Tool Search / Deferred Loading {#tool-search}
 
@@ -336,7 +346,7 @@ Weaknesses: Context lost through chunking, doesn't understand structure
 
 **Related**: Embedding, Vector DB, Chunk
 
-> **Difference from MCP**: See [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md)
+> **Difference from MCP**: See [IV.1 Patterns](./part-4/patterns)
 
 ### Embedding
 
@@ -386,7 +396,7 @@ Contexts:
 - Reinforcement learning: Environment dynamics models (model-based RL)
 ```
 
-In this site, World Models are primarily discussed in the context of [Physical AI](./concepts/06-physical-ai#the-importance-of-world-models). While implicitly present in information-space agents, they are an essential element for agents that operate in the physical world.
+In this site, World Models are primarily discussed in the context of [IV.3 Physical world](./part-4/physical). While implicitly present in information-space agents, they are an essential element for agents that operate in the physical world.
 
 **Reference**: [Yann LeCun — A Path Towards Autonomous Machine Intelligence (2022)](https://openreview.net/pdf?id=BZ5a1r-kVsf)
 

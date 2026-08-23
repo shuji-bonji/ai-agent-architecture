@@ -405,9 +405,9 @@ This pattern emerged from community discussion on r/ClaudeAI and reflects real-w
 - [Anti-Patterns Guide](./anti-patterns) - Common failure patterns to avoid
 - [Showcase](./showcase) - Production examples
 - [MCP Catalog](../mcp/catalog.md) - Pre-built MCP catalog
-- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent architecture
+- [II.1 Five layers](../part-2/layers) - Doctrine / Agent / Skills / Memory / MCP
 
-### 🔗 Deeper: Why does MCP become a context cost?
+### Deeper: why does MCP become a context cost?
 
 This page covers the practical "when to choose MCP vs Skills." If you want to understand **why** MCP tool definitions themselves consume context (and how [Tool Search](../glossary#tool-search) / [Deferred Loading](../glossary#tool-search) mitigate this), the sister site explains the mechanism.
 

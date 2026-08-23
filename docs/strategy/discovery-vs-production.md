@@ -18,7 +18,7 @@ This axis is the **human-side decision framework** that [Loop Engineering](./loo
 
 > [!WARNING]
 > **Where this page sits**
-> It sits in the middle of the chain: [Doctrine and Intent](../concepts/07-doctrine-and-intent) (what to judge against) → **this page (discovery/production mode selection)** → [Loop Engineering](./loop-engineering) (fixing the production-mode outer loop into the system).
+> It sits in the middle of the chain: [III.3 Doctrine](../part-3/doctrine) (what to judge against) → **this page (discovery/production mode selection)** → [Loop Engineering](./loop-engineering) (fixing the production-mode outer loop into the system).
 
 ## Why the Prompt Debate Keeps Missing Each Other
 
@@ -178,7 +178,7 @@ What's added here is at most two things:
 
 These prior concepts were likely reached independently by each field from "the same root." So this page is not a claim of invention, but **a proposal: "this axis you already switch unconsciously —— shall we put it into words once?"**
 
-## 🔗 Going Deeper: Why Production Mode Needs Phase Splitting, Externalized Docs, and Acceptance Criteria
+## Going Deeper: Why Production Mode Needs Phase Splitting, Externalized Docs, and Acceptance Criteria
 
 This page covered the **criteria (What/How)** of mode selection. To understand **why** these countermeasures are structurally unavoidable, see the sister site.
 
@@ -190,7 +190,7 @@ This page covered the **criteria (What/How)** of mode selection. To understand *
 - [Loop Engineering](./loop-engineering) — the engineering of fixing the production-mode outer loop into the system
 - [Permission vs. Authority](./permission-vs-authority) — the harness (transferable) / doctrine (non-transferable) distinction
 - [Routing vs. Cascading](./routing-vs-cascading) / [Local LLM Workspace Mapping](./local-llm-workspace-mapping) — assigning discovery/production to infrastructure
-- [Doctrine and Intent](../concepts/07-doctrine-and-intent) — what to judge against
+- [III.3 Doctrine](../part-3/doctrine) — what to judge against
 
 ## References
 

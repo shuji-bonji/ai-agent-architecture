@@ -17,20 +17,21 @@ For the overall taxonomy of agent terminology (architecture patterns, execution 
 Here is a brief history of A2A's origins and standardization.
 
 - **Google led** the effort, announcing A2A in April 2025
-- In June 2025, A2A moved under the **Linux Foundation's Agentic AI Foundation** for vendor-neutral standardization
+- In June 2025, A2A was donated to the **Linux Foundation's Agent2Agent project** for vendor-neutral stewardship
 - As of April 2026, **over 150 organizations participate** in the A2A protocol project (AWS, Cisco, Google, IBM, Microsoft, Salesforce, SAP, ServiceNow, and others)
-- **A2A v1.0 has reached GA** and entered production operation across multiple cloud platforms
-- Like MCP, it is positioned as foundational infrastructure for the agent economy
+- **A2A v1.0** is a stable release, with adoption advancing across multiple cloud platforms
+- Around August 2026, moves to place A2A alongside MCP under the **Agentic AI Foundation (AAIF)** were reported (confirm governance details at the time of reading)
+- Like MCP, it is positioned as one foundational protocol for agent collaboration
 
 > [!IMPORTANT]
-> A2A is no longer in "specification consideration" but in "**production operation phase**." For agent authentication and delegation, design alongside [Agent Identity](./agent-identity).
+> A2A is past pure specification work: v1.0 and cloud implementations are in use. That does not mean adoption alone is enough. Design authentication and delegation with [Agent Identity](./agent-identity).
 
 ### The Essence of A2A
 
 A2A's defining characteristic is enabling **agent ↔ agent** peer communication:
 
-- **MCP**: AI agent ↔ **tools/APIs** (master-slave relationship)
-- **A2A**: AI agent ↔ **AI agent** (peer relationship)
+- **MCP**: AI agent ↔ **tools/APIs** (the agent calls tools)
+- **A2A**: AI agent ↔ **AI agent** (either side can request work)
 
 ### In One Sentence
 
@@ -103,7 +104,7 @@ The following table contrasts MCP and A2A.
 | **Led by**              | Anthropic                    | Google → Linux Foundation                     |
 | **Purpose**             | Agent ↔ **Tools**            | Agent ↔ **Agent**                             |
 | **Connection Target**   | MCP servers (you manage)     | Other agents (**including external parties**) |
-| **Communication Model** | Master-Slave (agent directs) | **Peer-to-peer** (both can request)           |
+| **Communication Model** | Client-driven (agent calls tools) | **Peer-to-peer** (both can request)           |
 | **Context Sharing**     | Shareable with parent agent  | **Fully isolated** (expects opaque parties)   |
 | **Owner**               | Self                         | Self or **others**                            |
 | **Trust Model**         | Implicit trust               | **Authentication/authorization required**     |
@@ -268,31 +269,32 @@ Sub-agents and A2A agents don't compete—they complement each other. Most syste
 
 ## Current Maturity and Future Outlook
 
-### Timeline (as of May 2026)
+### Timeline (approx. as of August 2026)
 
-Key milestones from the emergence of MCP and A2A to the present.
+Key milestones from MCP and A2A to the present. Dates follow public announcements and press; confirm governance names at the time of reading.
 
 - **November 2024**: Anthropic releases **MCP**
 - **April 2025**: Google announces **A2A**
-- **June 2025**: A2A project migrates **under Linux Foundation's Agentic AI Foundation**
+- **June 2025**: A2A is donated to the **Linux Foundation's Agent2Agent project**
 - **October 2025**: OpenID Foundation publishes **"Identity Management for Agentic AI" v1.1** (Agent ID systematization)
-- **December 2025**: **AGENTS.md** donated to Linux Foundation by OpenAI and Anthropic — industry standardization
-- **April 2026**: **Microsoft Entra Agent ID GA**, **Okta for AI Agents GA**, **A2A v1.0 GA** — A2A participation surpasses 150 organizations, production deployment across multiple cloud platforms
-- **2026+**: MCP + A2A + Agent ID three-layer composition becomes the production-operation standard
+- **December 2025**: Moves such as **AGENTS.md** contributions into Linux Foundation–related frameworks
+- **March–April 2026**: **A2A v1.0**, reports of 150+ supporting organizations, and cloud implementations advance; product announcements such as **Microsoft Entra Agent ID** and **Okta for AI Agents** continue
+- **Around August 2026**: Reports of moving A2A toward the **Agentic AI Foundation (AAIF)**
+- **Design combination**: MCP (tool connection) + A2A (agent-to-agent) + Agent ID (identity and delegation) is one stack often seen in production. It is not another name for the five-layer model
 
 ### Current Status
 
-A2A is no longer in "specification consideration" but in **production operation phase**. This site covers the supporting elements on these pages:
+A2A is past pure specification work: a stable release and implementations are advancing. This book covers supporting elements on these pages:
 
 - [Agent Identity](./agent-identity) — Identification and delegation underpinning A2A communication
 - [Multi-Agent / Agent Teams](./agent-teams) — Evolution from intra-org Agent Teams to cross-org Agent Mesh
-- [03-architecture](../concepts/03-architecture) — A2A's position in the three-layer model
+- [II.1 Five layers](../part-2/layers) — A2A's position among the five layers
 
 ### Recommended Architecture
 
 **Build with ADK, equip with MCP, communicate with A2A, identify with Agent ID**
 
-The original three-layer model (Build / Equip / Communicate) has gained **Identify** — this is the 2026 state of the art. **A2A alone cannot handle trust boundaries**, so combination with Agent ID is now the production prerequisite.
+The original three-layer model (Build / Equip / Communicate) plus **Identify** is a common 2026 framing. **A2A alone cannot handle trust boundaries**. For cross-organization traffic, design it together with Agent ID.
 
 ### Remaining Open Issues
 
@@ -316,7 +318,7 @@ Explore these documents to deepen your A2A understanding:
 | Sub-agent details    | [what-is-subagent.md](./what-is-subagent.md)         |
 | Agent terminology organization | [Agent Taxonomy](./agent-taxonomy)         |
 | MCP details          | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
-| Overall architecture | [03-architecture.md](../concepts/03-architecture.md) |
+| Overall architecture | [II.1 Five layers](../part-2/layers)   |
 | About Skills         | [what-is-skills.md](../skills/what-is-skills.md)     |
 
 ## Sources
@@ -325,5 +327,5 @@ Explore these documents to deepen your A2A understanding:
 - [OpenID Foundation — Identity Management for Agentic AI v1.1](https://openid.net/) — Agent ID systematization
 - [AGENTS.md official site](https://agents.md/) — Linux Foundation standard
 
-**Last Updated**: May 2026
-**Status**: Reflects A2A v1.0 GA and Agent ID production-operation phase
+**Last Updated**: August 2026
+**Status**: Governance wording corrected; claims softened; distinguished from the five-layer model

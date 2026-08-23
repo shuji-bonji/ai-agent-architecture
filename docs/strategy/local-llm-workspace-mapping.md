@@ -16,7 +16,7 @@ Using a locally pulled base model (via Ollama or similar) on its own does not gi
 This document maps that Workspace onto this site's 5-layer model (Doctrine / Agent / Skills / Memory / MCP) and compares it feature by feature to the Claude Code composition of `.claude/agents/` + `CLAUDE.md` + Skills + MCP. Read it as a map for understanding **what is becoming the de facto unit for packaging agents as of 2026**.
 
 ::: warning Positioning of This Document
-This page is a strategy-layer document that maps the three-layer model from [03-architecture](./../concepts/03-architecture) — extended with the Memory layer ([08-memory-and-knowledge](./../concepts/08-memory-and-knowledge)) and the Doctrine layer ([07-doctrine-and-intent](./../concepts/07-doctrine-and-intent)) — **onto implementation platforms**. Where [composition-patterns](./composition-patterns) addresses *how to combine*, this page addresses *where to place*.
+This page is a strategy-layer document that maps the five layers from [II.1 Five layers](../part-2/layers) **onto implementation platforms**. Where [composition-patterns](./composition-patterns) addresses *how to combine*, this page addresses *where to place*.
 :::
 
 ::: details Meta Information
@@ -25,7 +25,7 @@ This page is a strategy-layer document that maps the three-layer model from [03-
 | --- | --- |
 | **What this page establishes** | The mapping between the 5-layer model and Open WebUI Workspace / Claude Code constructs |
 | **What this page does NOT cover** | Open WebUI install steps, per-feature tutorials (see primary docs at [docs.openwebui.com](https://docs.openwebui.com/)) |
-| **Dependencies** | [03-architecture](./../concepts/03-architecture), [07-doctrine-and-intent](./../concepts/07-doctrine-and-intent), [08-memory-and-knowledge](./../concepts/08-memory-and-knowledge) |
+| **Dependencies** | [II.1 Five layers](../part-2/layers), [III.3 Doctrine](../part-3/doctrine), [III.4 Memory](../part-3/memory) |
 | **Common misuse** | Equating Open WebUI Tools with MCP. They differ in location, execution model, and distribution (see below) |
 
 :::
@@ -175,7 +175,7 @@ Refer to the translation-workflow skill.
 | Access control | RBAC (users / groups) | Substituted by Git branch / PR permissions |
 
 > [!IMPORTANT]
-> **The pattern "Agent layer declaratively bundles the others" matches across both platforms**. This is not a coincidence — it reflects the separation principle from [03-architecture](./../concepts/03-architecture#layer-structure-overview), where "the Agent layer owns orchestration," pushed back into the UI design itself.
+> **The pattern "Agent layer declaratively bundles the others" matches across both platforms**. This is not a coincidence — it reflects the separation principle from [II.1 Five layers](../part-2/layers), where "the Agent layer owns orchestration," pushed back into the UI design itself.
 
 ### Skills Layer — A Convergence in Name and Model
 
@@ -286,7 +286,7 @@ Open WebUI's v0.6.31 native MCP (Streamable HTTP) support is decisive for this s
 - **RBAC for per-MCP-tool authorization**
 
 > [!IMPORTANT]
-> The fact that "MCP is becoming the de facto external-connection standard even in web-UI-based local LLM environments" reinforces the claim from [02-reference-sources](./../concepts/02-reference-sources) that **accumulated MCP-ified sources are the real asset**. MCP servers built for Claude Code can now be reused from Open WebUI by configuration alone.
+> The fact that "MCP is becoming the de facto external-connection standard even in web-UI-based local LLM environments" reinforces the claim from [II.2 Placement](../part-2/placement) that **accumulated MCP-ified sources are the real asset**. MCP servers built for Claude Code can now be reused from Open WebUI by configuration alone.
 
 ## Overall Correspondence Matrix
 
@@ -359,7 +359,7 @@ Three implications follow.
 
 ### 1. The 5-Layer Model Is Platform-Independent
 
-Open WebUI and Claude Code evolved independently and **reached nearly identical layer separations**. This is structural evidence that the 5-layer model is platform-independent — backing up the claim in [03-architecture](./../concepts/03-architecture#what-the-three-layer-model-does-not-cover---memory) that "layers represent separation of responsibilities, not deployment configuration."
+Open WebUI and Claude Code evolved independently and **reached nearly identical layer separations**. This is structural evidence that the 5-layer model is platform-independent — backing up the claim in [II.1 Five layers](../part-2/layers) that "layers represent separation of responsibilities, not deployment configuration."
 
 ### 2. Skills' Lazy Loading Has Become a De Facto Standard
 
@@ -371,14 +371,14 @@ Native Streamable HTTP MCP support means the shuji-bonji MCP servers ([rfcxml-mc
 
 ## Related Documents
 
-- [03-architecture](./../concepts/03-architecture) — Foundations of the three-layer model
-- [07-doctrine-and-intent](./../concepts/07-doctrine-and-intent) — The Doctrine layer in detail
-- [08-memory-and-knowledge](./../concepts/08-memory-and-knowledge) — Memory layer and Knowledge Graphs
+- [II.1 Five layers](../part-2/layers) — Foundations of the five-layer model
+- [III.3 Doctrine](../part-3/doctrine) — The Doctrine layer in detail
+- [III.4 Memory](../part-3/memory) — Memory layer and Knowledge Graphs
 - [composition-patterns](./composition-patterns) — Composition design for MCP × Skill × Agent
 - [What is Skills](./../skills/what-is-skills) — Claude Code Skills specification
 - [What is MCP](./../mcp/what-is-mcp) — Model Context Protocol fundamentals
 
-## 🔗 Deeper: Why Convergence to This Structure?
+## Deeper: Why Convergence to This Structure?
 
 This page covered the **structural mapping (What/How)** between Open WebUI and Claude Code. To understand **why** independent platforms converge on the same layer separation — grounded in the LLM's structural constraints — see the sibling site.
 

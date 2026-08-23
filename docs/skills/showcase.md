@@ -20,7 +20,7 @@ After learning concepts in [What is Skills](./what-is-skills) and design methods
 
 ### Overview
 
-A Skill that integrates pdf-spec-mcp and DeepL MCP Server to translate the PDF specification (ISO 32000-2) into Japanese with **consistent terminology**. MCP provides "what can be done" while the Skill defines "how to do it" — a quintessential example of the three-layer architecture.
+A Skill that integrates pdf-spec-mcp and DeepL MCP Server to translate the PDF specification (ISO 32000-2) into Japanese with **consistent terminology**. MCP provides "what can be done" while the Skill defines "how to do it" — an example of combining Skills and MCP among the five layers.
 
 ### Architecture
 
@@ -118,7 +118,7 @@ mindmap
 
 ### Classification
 
-A **Skills-only** pattern in the three-layer architecture. Demonstrates that Skills can be fully effective without MCP.
+A **Skills-only** pattern among the five layers. It shows that a Skill can work without MCP.
 
 ---
 
@@ -183,7 +183,7 @@ flowchart TD
 
 ### Classification
 
-A **Skills-only (data-embedded)** pattern in the three-layer architecture. Instead of real-time data from MCP, it embeds pre-parsed data within the Skill.
+A **Skills-only (data-embedded)** pattern among the five layers. Instead of real-time data from MCP, it embeds pre-parsed data within the Skill.
 
 ---
 

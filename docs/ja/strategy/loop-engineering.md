@@ -216,7 +216,7 @@ flowchart LR
 > [!IMPORTANT]
 > Loop Engineering は **permission（手順の実行権限）**を限界まで広げる技術だが、**authority（「これはまだ正しいか」を判断する権限）**は移送できない doctrine に属する。だから「どこまでシステムに任せるか」の上限は、原理的に doctrine の移送不可能性が決める。→ [Permission と Authority](./permission-vs-authority)
 
-## 🔗 さらに深く: なぜ外側ループの自動化に「停止チェック」「コンテキスト圧縮」「外部批評」が要るのか
+## さらに深く: なぜ外側ループの自動化に「停止チェック」「コンテキスト圧縮」「外部批評」が要るのか
 
 本ページは外側ループの**工学 (What/How)** を扱った。「**なぜ** それらの対策が構造的に不可避なのか」を LLM の制約から理解したい場合は、姉妹サイトを参照。
 
@@ -227,6 +227,7 @@ flowchart LR
 
 - [エージェントループのパターン](./agent-loop-patterns) — 本ページの内側（内側ループの型カタログ）
 - [Harness Engineering との対応関係](./harness-engineering-mapping) — 層エスカレーションの親
+- [Hooks（実行時フック）](./hooks) — 外側ループの節目で機械が強制する手段
 - [autonomous-dev-meta-agent](../workflows/autonomous-dev-meta-agent) — 外側ループ自動化の具体実装（Issue → Deploy）
 - [サブエージェント品質ゲート](../agents/subagent-quality-gate) — 「ノー」と言える主体（批評者）の実装
 - [Routing vs Cascading](./routing-vs-cascading) / [ローカル LLM 環境への写像](./local-llm-workspace-mapping) — 発見/生産をインフラに固定する

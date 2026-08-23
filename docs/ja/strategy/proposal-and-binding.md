@@ -194,9 +194,9 @@ flowchart LR
 - [strategy/deterministic-verdicts](./deterministic-verdicts) — 拘束層のうち判定をどう設計するか。観測 / 判定 / 解説の三段分離
 - [strategy/mcp-family](./mcp-family) — 「ジャッジはコード、ナラティブは LLM」を族の内部規律として述べた版
 - [mcp/semantic-layer](../mcp/semantic-layer) — 確率的解釈と決定的コンパイルの分業。同型の別ドメイン適用
-- [concepts/05-solving-ai-limitations](../concepts/05-solving-ai-limitations) — 確率的推論と決定論的検証の分離
+- [IV.2 限界](../part-4/limits) — 確率的推論と決定論的検証の分離
 
-## 🔗 さらに深く: なぜ表現層は拘束できないのか
+## さらに深く: なぜ表現層は拘束できないのか
 
 本ページは層の **分類 (What/How)** を扱った。「**なぜ** context に書いた指示が守られないことがあるのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 
@@ -206,7 +206,7 @@ flowchart LR
 
 ---
 
-> **前へ**: [Harness Engineering との対応関係](./harness-engineering-mapping.md)
+> **前へ**: [Hooks（実行時フック）](./hooks)
 > **次へ**: [Permission と Authority](./permission-vs-authority.md)
 
 **最終更新**: 2026 年 8 月

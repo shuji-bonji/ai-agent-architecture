@@ -253,4 +253,4 @@ last_reviewed: 2025-01-15
 - [スキル導入・利用ガイド](./how-to-use-skills) - インストールとプロジェクト導入
 - [活用パターンガイド](./skill-use-cases) - ユースケースと役割分担
 - [実例ショーケース](./showcase) - プロダクション実例
-- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論
+- [II.1 五層](../part-2/layers) - Doctrine / Agent / Skills / Memory / MCP

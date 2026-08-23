@@ -212,5 +212,5 @@ flowchart TD
 | Agent/Sub-agent/Skill/MCP の 4者比較       | [FAQ: 4者の違い](../faq/agent-vs-subagent-vs-skill) |
 | エージェント間通信プロトコル               | [what-is-a2a.md](./what-is-a2a.md)                   |
 | MCP の詳細                                 | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
-| 三層アーキテクチャ（Agent / Skills / MCP） | [03-architecture.md](../concepts/03-architecture.md) |
+| 五層（Doctrine / Agent / Skills / Memory / MCP） | [II.1 五層](../part-2/layers) |
 | 実装パターン集                             | [patterns.md](../workflows/patterns.md)              |

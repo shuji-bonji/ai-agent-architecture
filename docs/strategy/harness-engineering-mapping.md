@@ -118,7 +118,7 @@ The four harness elements lack the concept of **"how to structure static knowled
 These are neither Context (memory) nor Action (tools); they are **judgment criteria conditionally injected into the LLM's immediate context** and require an independent layer.
 
 > [!IMPORTANT]
-> Squeezing Skills into Context causes token bloat and [Priority Saturation](../glossary#structural-problems). The design hinges on expanding Skills *only when invoked* — explored in detail in [concepts/03-architecture](../concepts/03-architecture).
+> Squeezing Skills into Context causes token bloat and [Priority Saturation](../glossary#structural-problems). The design hinges on expanding Skills *only when invoked* — explored in detail in [II.1 Five layers](../part-2/layers).
 
 ### 2. The Offensive Side of the Doctrine Layer
 
@@ -129,7 +129,7 @@ The Guardrails element of harness is confined to **defensive** functions: leak p
 - **Normative strength ladder** (MUST / SHOULD / MAY, per RFC 2119)
 - **Role boundaries** (what the agent addresses and what it does not)
 
-These are "offensive design guidance" and have no counterpart in the harness vocabulary. See [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) for detail.
+These are "offensive design guidance" and have no counterpart in the harness vocabulary. See [III.3 Doctrine](../part-3/doctrine) for detail.
 
 ### 3. The Why Behind Each Prescription
 
@@ -149,9 +149,9 @@ Determine whether harness alone covers your question:
 | --- | --- | --- |
 | "I want to give the LLM tools" | ✅ Yes | — |
 | "I need to design memory" | ⚠️ Partial | Why (Context Rot, Lost in the Middle) → understanding-llm |
-| "Should this go in Skills or MCP?" | ❌ No | [concepts/03-architecture](../concepts/03-architecture), [skills/what-is-skills](../skills/what-is-skills) |
+| "Should this go in Skills or MCP?" | ❌ No | [II.1 Five layers](../part-2/layers), [skills/what-is-skills](../skills/what-is-skills) |
 | "Criteria for splitting sub-agents" | ❌ No | [agents/subagent-vs-skill](../agents/subagent-vs-skill), [agents/subagent-quality-gate](../agents/subagent-quality-gate) |
-| "What to write as MUST vs SHOULD" | ❌ No | [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) |
+| "What to write as MUST vs SHOULD" | ❌ No | [III.3 Doctrine](../part-3/doctrine) |
 | "Instructions decay over long tasks" | ⚠️ Symptomatic only | Why (Instruction Decay) → understanding-llm |
 | "Granularity of guardrails" | ⚠️ Defensive only | Doctrine (offensive normativity) |
 | "Coordination across multiple MCPs and Skills" | ❌ No | [strategy/composition-patterns](./composition-patterns) |
@@ -214,7 +214,7 @@ graph LR
 > [!IMPORTANT]
 > The three are **complementary at different layers, not interchangeable**. Harness handles *operate*, this site handles *design*, and the sister site handles *understand*.
 
-## 🔗 Go Deeper: Why Each Harness Element Is Necessary
+## Go Deeper: Why Each Harness Element Is Necessary
 
 This page covers the **structural correspondence (What)** between harness and the 5-layer model. For **why** each harness element is necessary in terms of LLM structural constraints, see the sister site.
 
@@ -223,14 +223,15 @@ This page covers the **structural correspondence (What)** between harness and th
 
 ## Related Documents
 
-- [concepts/03-architecture](../concepts/03-architecture) — the 5-layer model
-- [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine layer in detail
+- [II.1 Five layers](../part-2/layers) — the 5-layer model
+- [III.3 Doctrine](../part-3/doctrine) — Doctrine layer in detail
 - [skills/what-is-skills](../skills/what-is-skills) — why Skills isn't part of harness
 - [strategy/composition-patterns](./composition-patterns) — composition patterns across multiple MCPs and Skills
 - [strategy/proposal-and-binding](./proposal-and-binding) — the ①–④ loop re-cut along the axis of whether each step binds (sequel to this page)
 - [strategy/permission-vs-authority](./permission-vs-authority) — what harness-type and doctrine-type agents ask for at the boundary
+- [Hooks](./hooks) — a harness-side interrupt at a point in the run
 
 ---
 
 > **Previous**: [Local LLM Workspace Mapping](./local-llm-workspace-mapping.md)
-> **Next**: [Proposal vs. Binding](./proposal-and-binding.md)
+> **Next**: [Hooks](./hooks)

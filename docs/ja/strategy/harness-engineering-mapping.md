@@ -118,7 +118,7 @@ graph TB
 これらは Context（メモリ）でも Action（ツール）でもなく、**LLM の直近[コンテキスト](../glossary#context)に条件付きで注入される判断基準** であり、独立した層として扱う必要がある。
 
 > [!IMPORTANT]
-> Skills を Context に押し込めて扱うと、トークン肥大と [Priority Saturation](../glossary#structural-problems) を招く。Skills は「呼ばれた時だけ展開する」設計が肝で、これは [concepts/03-architecture](../concepts/03-architecture) で詳述される。
+> Skills を Context に押し込めて扱うと、トークン肥大と [Priority Saturation](../glossary#structural-problems) を招く。Skills は「呼ばれた時だけ展開する」設計が肝で、これは [II.1 五層](../part-2/layers) で詳述される。
 
 ### 2. Doctrine 層の攻め（規範強度の明文化）
 
@@ -129,7 +129,7 @@ graph TB
 - **規範強度ラダー**（MUST / SHOULD / MAY、RFC 2119）
 - **役割境界**（このエージェントが扱う領域・扱わない領域）
 
-これらは「攻めの設計指針」であり、ハーネスの語彙には対応物がない。詳しくは [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) 参照。
+これらは「攻めの設計指針」であり、ハーネスの語彙には対応物がない。詳しくは [III.3 Doctrine](../part-3/doctrine) 参照。
 
 ### 3. なぜそうなのか（Why の説明）
 
@@ -149,9 +149,9 @@ graph TB
 | --- | --- | --- |
 | 「ツールを LLM に持たせたい」 | ✅ 足りる | — |
 | 「メモリを設計したい」 | ⚠️ 部分的 | Why（Context Rot, Lost in the Middle）→ understanding-llm |
-| 「Skills と MCP どちらに置くか」 | ❌ 足りない | [concepts/03-architecture](../concepts/03-architecture)、[skills/what-is-skills](../skills/what-is-skills) |
+| 「Skills と MCP どちらに置くか」 | ❌ 足りない | [II.1 五層](../part-2/layers)、[skills/what-is-skills](../skills/what-is-skills) |
 | 「サブエージェントの分割基準」 | ❌ 足りない | [agents/subagent-vs-skill](../agents/subagent-vs-skill)、[agents/subagent-quality-gate](../agents/subagent-quality-gate) |
-| 「何を MUST／SHOULD で書くか」 | ❌ 足りない | [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) |
+| 「何を MUST／SHOULD で書くか」 | ❌ 足りない | [III.3 Doctrine](../part-3/doctrine) |
 | 「長期タスクで指示が劣化する」 | ⚠️ 対症療法のみ | Why（Instruction Decay）→ understanding-llm |
 | 「ガードレールの粒度設計」 | ⚠️ 防御のみ | Doctrine（攻めの規範） |
 | 「複数 MCP・複数 Skill の協調」 | ❌ 足りない | [strategy/composition-patterns](./composition-patterns) |
@@ -214,7 +214,7 @@ graph LR
 > [!IMPORTANT]
 > 3 者は **置換関係ではなく層が違う補完関係**。ハーネスで「動かす」、本サイトで「設計する」、姉妹サイトで「理解する」を扱う。
 
-## 🔗 さらに深く: なぜハーネスの各要素が必要なのか
+## さらに深く: なぜハーネスの各要素が必要なのか
 
 本ページはハーネスと 5 層モデルの **構造的な対応関係 (What)** を扱った。「**なぜ** ハーネスの各要素が必要なのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 
@@ -223,14 +223,15 @@ graph LR
 
 ## 関連ドキュメント
 
-- [concepts/03-architecture](../concepts/03-architecture) — 5 層モデルの構造
-- [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine 層の詳細
+- [II.1 五層](../part-2/layers) — 5 層モデルの構造
+- [III.3 Doctrine](../part-3/doctrine) — Doctrine 層の詳細
 - [skills/what-is-skills](../skills/what-is-skills) — Skills 層がハーネスに含まれない理由
 - [strategy/composition-patterns](./composition-patterns) — 複数 MCP・複数 Skill の協調パターン
 - [strategy/proposal-and-binding](./proposal-and-binding) — ①〜④ループを「拘束するか」の軸で切り直した四層の座標系（本ページの続編）
 - [strategy/permission-vs-authority](./permission-vs-authority) — ハーネス型とドクトリン型が境界で求めるもの
+- [Hooks（実行時フック）](./hooks) — ハーネス側の、動作の節目への割り込み
 
 ---
 
 > **前へ**: [ローカル LLM 環境への 5 層モデルの写像](./local-llm-workspace-mapping.md)
-> **次へ**: [提案と拘束](./proposal-and-binding.md)
+> **次へ**: [Hooks（実行時フック）](./hooks)

@@ -213,7 +213,7 @@ Each platform has begun providing an **MCP Server**. This is the key touchpoint 
 
 ## Relationship to the Memory Layer — The Structured-Data Version of "Fixing Meaning"
 
-The Semantic Layer is a **sibling concept** of the Memory layer discussed in [`concepts/08-memory-and-knowledge`](../concepts/08-memory-and-knowledge). Both derive from the same parent concept — **Pre-codified Meaning** — and diverge by whether the target is "internal experience" or "external structured data."
+The Semantic Layer is a **sibling concept** of the Memory layer discussed in [`part-3/memory`](../part-3/memory). Both derive from the same parent concept — **Pre-codified Meaning** — and diverge by whether the target is "internal experience" or "external structured data."
 
 ```mermaid
 graph TB
@@ -254,10 +254,10 @@ graph TB
 
 - [What is MCP](./what-is-mcp) — the MCP fundamentals this page builds on
 - [MCP Security](./security) — safety at the connection boundary
-- [Memory and Knowledge](../concepts/08-memory-and-knowledge) — the sibling concept of persisting meaning
-- [Three-Layer Architecture](../concepts/03-architecture) — choosing between CLI / MCP / Skills
+- [Memory and Knowledge](../part-3/memory) — the sibling concept of persisting meaning
+- [II.1 Five layers](../part-2/layers) — choosing between CLI / MCP / Skills
 
-## 🔗 Going Deeper: Why Does the LLM Guess Meaning?
+## Going deeper: why does the LLM guess meaning?
 
 This page covered the **structure (What / How)** of the Semantic Layer. To understand **why** an LLM guesses (fabricates) meaning it was never given, from the structural constraints of LLMs, see the sister site.
 
