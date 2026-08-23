@@ -12,11 +12,8 @@ hero:
       text: 序章を読む
       link: /ja/preface
     - theme: alt
-      text: MCPとは
-      link: /ja/mcp/what-is-mcp
-    - theme: alt
-      text: Skillsとは
-      link: /ja/skills/what-is-skills
+      text: 五層を見る
+      link: /ja/part-2/layers
     - theme: alt
       text: GitHub で見る
       link: https://github.com/shuji-bonji/ai-agent-architecture
@@ -34,18 +31,18 @@ features:
     details: Doctrine / Agent / Skills / Memory / MCP。誰が何を担当するか。
     link: /ja/part-2/layers
     linkText: 五層を読む
-  - title: Skills
-    details: チームの決まりや手順など、変わらない知識を置く場所。
+  - title: 配置基準
+    details: 何をどの層へ置くか。原文へたどれる参照の条件。
+    link: /ja/part-2/placement
+    linkText: 配置基準を読む
+  - title: 各層（第III部）
+    details: Skills / MCP / Doctrine / Memory / Agent。入口と実践ページ。
     link: /ja/skills/what-is-skills
-    linkText: Skills を読む
-  - title: MCP
-    details: 法令や API など、外のシステムへつなぐ場所。
-    link: /ja/mcp/what-is-mcp
-    linkText: MCP を読む
-  - title: Agent
-    details: 作業を理解し、他の層を組み合わせて使う場所。
-    link: /ja/agents/
-    linkText: Agent を読む
+    linkText: 第III部の入口へ
+  - title: パターン（第IV部）
+    details: RAG・MCP・エージェントなど、型の選び方と届く範囲。
+    link: /ja/part-4/patterns
+    linkText: パターンを読む
 ---
 
 日本語の書名は **LLMエージェントの設計**、英語の書名は **LLM Agent Design Architecture** である。

@@ -12,11 +12,8 @@ hero:
       text: Read the Preface
       link: /preface
     - theme: alt
-      text: What is MCP
-      link: /mcp/what-is-mcp
-    - theme: alt
-      text: What is Skills
-      link: /skills/what-is-skills
+      text: See the five layers
+      link: /part-2/layers
     - theme: alt
       text: View on GitHub
       link: https://github.com/shuji-bonji/ai-agent-architecture
@@ -34,18 +31,18 @@ features:
     details: Doctrine / Agent / Skills / Memory / MCP. Who owns what.
     link: /part-2/layers
     linkText: Read the five layers
-  - title: Skills
-    details: Where stable knowledge lives — team rules and procedures.
+  - title: Placement
+    details: Which layer receives what. Conditions for a source you can check.
+    link: /part-2/placement
+    linkText: Read placement
+  - title: Each layer (Part III)
+    details: Skills / MCP / Doctrine / Memory / Agent. Entries and practice pages.
     link: /skills/what-is-skills
-    linkText: Read Skills
-  - title: MCP
-    details: Where connections to outside systems live — statutes, APIs, and the like.
-    link: /mcp/what-is-mcp
-    linkText: Read MCP
-  - title: Agent
-    details: Where the work is understood and the other layers are combined.
-    link: /agents/
-    linkText: Read Agent
+    linkText: Part III entry
+  - title: Patterns (Part IV)
+    details: RAG, MCP, agents — choosing a type and how far it reaches.
+    link: /part-4/patterns
+    linkText: Read patterns
 ---
 
 The English title is **LLM Agent Design Architecture**. The Japanese title is **LLMエージェントの設計**.
