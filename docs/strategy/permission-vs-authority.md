@@ -133,6 +133,7 @@ graph TB
 - [agents/subagent-quality-gate](../agents/subagent-quality-gate) — quality gates as detection devices for doctrine-type failure (expansive interpretation)
 - [mcp/security](../mcp/security) — authority management at MCP boundaries
 - [strategy/deterministic-verdicts](./deterministic-verdicts) — delegating **the power to issue a verdict** rather than discretion over actions; actions can be undone, a verdict absorbed downstream cannot
+- [Architecture Map](../information/architecture-map) — how the read / write split becomes a risk boundary
 
 ## Going Deeper: Why It Is Hard to Hand LLMs Durable Authority
 
