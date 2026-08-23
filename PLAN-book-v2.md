@@ -165,6 +165,8 @@
 
 フェーズ 11 は、第IV部周辺と付録のリンクと層用語である。パスは動かさない。範囲の正本は `PLAN-book-v2-phase4.md` である。
 
+フェーズ 11 の終了条件は 2026-08-23 に検証した。`strategy` / `workflows` / `information` / `faq` に、本書の層を指す旧 `concepts/0x` リンクと「三層アーキテクチャ」は残っていない。用語集（日英）に残っていた旧パス 6 件は同日に新パスへ置換した。意図的に残した「三層」は A2A の Build / Equip / Communicate、MCP + A2A + Agent ID、判定ドリフトの三層、本論での旧稿対比である。
+
 フェーズ 12 は、hooks を strategy に1本追加する。層にはしない。範囲の正本は `PLAN-book-v2-phase5.md` である。
 
 フェーズ 2 の直前に、公開中の `main` へ `v1` を打つ。
