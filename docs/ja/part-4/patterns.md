@@ -56,6 +56,8 @@ Fine-tuning で、よく変わる知識をモデルの中に焼き込んでは�
 
 型は重ねてよい。原文へたどるなら MCP、説明文の検索なら RAG、関係の残りなら Memory、言い回しの染み込みなら Fine-tuning、段のある仕事なら Agent、である。銀の弾丸は無い。壊れ方を見て選ぶ。
 
+手段選択の補助（鮮度・判断の量・データの状態）は [全体地図](../information/architecture-map) にも短い判定がある。
+
 ## 関連ドキュメント
 
 本章は型である。展開と判断は strategy に残してある。
@@ -69,6 +71,7 @@ Fine-tuning で、よく変わる知識をモデルの中に焼き込んでは�
 - [II.2 配置基準](../part-2/placement)
 - [III.2 MCP](../mcp/what-is-mcp)
 - [III.4 Memory](../part-3/memory)
+- [全体地図](../information/architecture-map) — 資源×アクセスと手段選択の三軸
 
 ---
 

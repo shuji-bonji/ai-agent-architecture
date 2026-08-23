@@ -85,10 +85,13 @@ Memory を、ただ速いキャッシュだと思ってはならない。本義�
 
 Memory は、会話が終わっても残る記憶と関係を置く。毎回 MCP を並べて集める設計は、遅さとずれを生む。考える前に関係を持っておく。キャッシュではなく、関係の残り方である。小さな仕事では、ファイルからで足りることが多い。
 
+Data と Knowledge の還流、および「散在したデータの上に AI を載せない」前提は、[全体地図](../information/architecture-map) に短い図がある。
+
 ## 関連ドキュメント
 
 - [II.1 五層](../part-2/layers) / [II.2 配置基準](../part-2/placement)
 - [III.3 Doctrine](./doctrine) — 物差し
+- [全体地図](../information/architecture-map) — データの循環と整備が先である理由
 - [エージェント ID](../agents/agent-identity) — 誰の代理か
 - [understanding-llm / なぜメモリが問題になるのか](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/08-session-management/memory-problem)
 

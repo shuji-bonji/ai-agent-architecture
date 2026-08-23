@@ -63,6 +63,8 @@ MCP は Model Context Protocol の略である。モデルを、外のツール�
 
 MCP は、外のツールとデータへつなぐ。推測と原文を分けるために置く。規格の Host / Client / Server は、五層の別名ではない。原文は MCP、決まりは Skills、物差しは Doctrine である。
 
+どの資源を読むか書くかの整理は、[全体地図](../information/architecture-map) の資源×アクセスを参照する。
+
 ## 関連ドキュメント
 
 本章は層の定義と境界である。カタログと開発は次を見る。
@@ -72,6 +74,7 @@ MCP は、外のツールとデータへつなぐ。推測と原文を分ける�
 - [Semantic Layer](./semantic-layer)
 - [開発](./development)
 - [Verifiable MCP](./verifiable-mcp)
+- [全体地図](../information/architecture-map) — 資源の種類と読む／書くの分離
 
 ---
 
