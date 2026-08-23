@@ -51,10 +51,10 @@ graph TB
 
 ## 2. 資源の種類 × アクセス手段
 
-キーワードの多くは「**どの資源に、どの手段でアクセスするか**」の対応として整理できる。Agent は他と同列ではなく、それらを束ねる上位層に位置する。
+キーワードの多くは「**どの資源に、どの手段でアクセスするか**」の対応として整理できる。この図では Agent / Workflow をオーケストレーション側に置く。ただし [II.1 五層](../part-2/layers) では Agent は担当の一つであり、資源スタックの頂点ではない。
 
 | 資源の種類 | 性質 | アクセス手段 | 補足 |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 文書知識 | 非構造化・静的 | **RAG** | 「意味で探す」読み取り専用。文書横断は GraphRAG へ拡張 |
 | 業務データ | 構造化・動的 | **DB**（SQL / Semantic Layer） | 「正確な値を取る」読み取り。LLM はクエリを生成するだけ |
 | 業務操作 | 副作用あり | **API** | **書き込み・実行**。「取り消せない操作」を含むため権限設計が必須 |
@@ -138,20 +138,40 @@ graph TB
 > [!WARNING]
 > **根本的にデータが散在している場合、AI は解決策にならない。** RAG も Agent も「散在した汚いデータ」の上に載せると散在を高速に再生産するだけである。まずデータ整備（Knowledge Graph による関係の一元化、Semantic Layer による指標定義の一元化）が先行する。
 
-## 4. キーワード → 本サイトの担当セクション
+## 4. 五層との対応
+
+本ページの図は「資源・アクセス・循環」の見取り図である。本書の本論の地図は [II.1 五層](../part-2/layers) である。軸が違う。本地図を五層の別名だと思ってはならない。
+
+| 五層 | 本ページでの現れ方 |
+| --- | --- |
+| Doctrine | 図のノードには出さない。目的・禁止・優先順位の物差し。案内は下表と [III.3 Doctrine](../part-3/doctrine) |
+| Agent | オーケストレーション側。五層では作業の理解と割り振りの担当であり、他層を束ねる上位スタックではない |
+| Skills | アクセス手段ではない。Agent が参照する静的な知識・手順。図では横に出さない |
+| Memory | 関係知識と、実行経験の還流の一端 |
+| MCP | RAG / DB / API を貫く接続の規格（横串） |
+
+実行境界（Harness / [Hooks](../strategy/hooks)）は五層のどれでもない。動作の節目に機械が割り込み、止める・記録する・後処理する機構である。層を増やさない。
+
+> [!NOTE]
+> 迷ったら、まず五層で「誰の担当か」を決める。そのあと本ページで「どの資源に、読むか書くか」を決める。順序を逆にすると、接続の話と担当の話が混ざる。
+
+## 5. キーワード → 本サイトの担当セクション
 
 | キーワード | 担当 | 位置づけ |
 | --- | --- | --- |
-| LLM（構造的制約） | [姉妹サイト understanding-llm](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) | Why の本棚 |
-| Agent / Sub-agent / A2A | [Agents](../agents/index.md) | 実行主体の分類と設計 |
-| Tool Calling / MCP | [MCP](../mcp/what-is-mcp.md) | 接続の実装メカニズム |
-| Skills | [Skills](../skills/what-is-skills.md) | 静的知識・手順書の実装メカニズム |
-| Workflow | [Workflows](../workflows/development-phases.md) | 固定手順のパターン集 |
-| Memory / Knowledge Graph | [III.4 Memory](../part-3/memory) | 記憶と知識統合の概念 |
-| RAG / GraphRAG | 本セクション（ページ準備中） | 文書知識のアクセス設計 |
+| LLM（構造的制約） | [I.1 制約の要約](../part-1/constraints) / [姉妹サイト understanding-llm](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) | Why と前提 |
+| 五層の担当分け | [II.1 五層](../part-2/layers) / [II.2 配置基準](../part-2/placement) | 本論の本地図 |
+| Doctrine（判断基準） | [III.3 Doctrine](../part-3/doctrine) | 目的・禁止・優先順位 |
+| Skills | [III.1 Skills](../skills/what-is-skills.md) | 静的知識・手順書 |
+| MCP / Tool Calling | [III.2 MCP](../mcp/what-is-mcp.md) | 接続の実装メカニズム |
+| Memory / Knowledge Graph | [III.4 Memory](../part-3/memory) | 記憶と関係の残り方 |
+| Agent / Sub-agent / A2A | [III.5 Agent](../agents/index.md) | 実行主体の分類と設計 |
+| RAG / GraphRAG | 本ページ §2（専用ページは持たない） | 文書知識への読み取り。型の話は [IV.1 パターン](../part-4/patterns) |
 | Semantic Layer | [MCP / Semantic Layer](../mcp/semantic-layer.md) | 構造化データアクセスの設計規律 |
-| Doctrine（判断基準） | [III.3 Doctrine](../part-3/doctrine) | 制約・目的・判断基準 |
-| Permission / Authority | [Strategy](../strategy/permission-vs-authority.md) | 権限と権威の分離 |
+| Workflow | [Workflows](../workflows/development-phases.md) | 固定手順のパターン集 |
+| パターン・限界 | [IV.1 パターン](../part-4/patterns) / [IV.2 限界](../part-4/limits) | 型の選択と届く範囲 |
+| Permission / Authority | [Permission と Authority](../strategy/permission-vs-authority.md) | 権限と権威の分離 |
+| Hooks（実行時フック） | [Hooks](../strategy/hooks) | ハーネス側の実行境界。層ではない |
 
 > [!TIP]
 > 手段選択に迷ったら 3 つの軸で判定できる: **鮮度**（静的なら RAG、動的なら DB/API）、**判断の量**（ゼロなら Workflow、多いなら Agent）、**データの状態**（汚いならまず整備 — AI は最後）。
@@ -159,8 +179,10 @@ graph TB
 ## 関連ドキュメント
 
 - [概要 (情報基盤)](index.md) — 本セクションの位置づけと構成
-- [II.1 五層](../part-2/layers) — 五層の詳細
-- [IV.1 パターン](../part-4/patterns) — どのパターンをいつ選ぶか
+- [II.1 五層](../part-2/layers) — 本論の本地図（担当の分け方）
+- [II.2 配置基準](../part-2/placement) — 何をどこへ置くか
+- [Hooks（実行時フック）](../strategy/hooks) — 層ではない実行境界
+- [IV.1 パターン](../part-4/patterns) — どの型をいつ選ぶか
 
 ## さらに深く: なぜ LLM には外部の情報基盤が必要なのか
 
