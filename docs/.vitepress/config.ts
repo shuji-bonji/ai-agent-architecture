@@ -69,8 +69,17 @@ export default withMermaid(
 		srcExclude: ['**/*.ja.md', '**/translation-quality-report*', 'en/**'],
 
 		// Sitemap（自動生成 + lastUpdated の日付を <lastmod> に反映）
+		// README・旧パス redirect・作業用メモは除外する
 		sitemap: {
 			hostname: 'https://shuji-bonji.github.io/ai-agent-architecture/',
+			transformItems: (items) => {
+				const exclude =
+					/(^|\/)(README|configuring_everything-claude-code|reference-selection-checklist)(\/|$)|(^|\/)concepts(\/|$)|(^|\/)skills\/overview(\/|$)/;
+				return items.filter((item) => {
+					const url = (item.url || '').replace(/\/+$/, '');
+					return !exclude.test(url);
+				});
+			},
 		},
 
 		// テーマ共通設定
