@@ -83,39 +83,46 @@
 | `concepts/05-solving-ai-limitations.md` | `part-4/limits.md` | IV.2 | 移行済み。第I部へ統合していない |
 | `concepts/06-physical-ai.md` | `part-4/physical.md` | IV.3 | 移行済み |
 | `concepts/09-prompt-decomposition.md` | `part-4/prompt-decomposition.md` | IV.4 | 移行済み |
+| `concepts/index.md` | スタブ → `/ja/preface`（英は `/preface`） | — | 再配置 |
 
-### 第III部の入口（パス維持・改稿）
+### 第III部（パス維持。入口だけ改稿）
 
 | 現行 | 目次 | 扱い |
 | --- | --- | --- |
-| `skills/what-is-skills.md` | III.1 | 入口として改稿。How-to 群は維持 |
-| `mcp/what-is-mcp.md` | III.2 | 入口として改稿。How-to 群は維持 |
-| `agents/what-is-agents.md` | III.5 | 入口として改稿。How-to 群は維持 |
+| `skills/what-is-skills.md` | III.1 入口 | 改稿済み。How-to は維持 |
+| `skills/creating-skills.md` ほか How-to、`vs-mcp`、`anti-patterns`、`conversation-to-skill` | III.1 周辺 | 維持 |
+| `skills/showcase.md` `skill-use-cases.md` | III.1 実践 | 維持。削除しない |
+| `skills/overview.md` | — | 既存スタブのまま |
+| `mcp/what-is-mcp.md` | III.2 入口 | 改稿済み。カタログと開発は維持 |
+| `mcp/catalog.md` `development.md` `security.md` `semantic-layer.md` | III.2 周辺 | 維持 |
+| `ja/mcp/verifiable-mcp.md` | III.2 周辺 | 維持。英語ページはまだ無い |
+| `agents/index.md` | III.5 入口 | 改稿済み。各論は維持 |
+| `agents/agent-taxonomy.md` `what-is-subagent.md` `subagent-vs-skill.md` `subagent-quality-gate.md` `agent-teams.md` `what-is-a2a.md` `agent-identity.md` | III.5 周辺 | 維持 |
 
-### 実務ページ（パス維持）
+### 第IV部周辺・付録（パス維持）
 
-| 群 | 扱い | 備考 |
+| 現行 | 所属 | 扱い |
 | --- | --- | --- |
-| `skills/*.md`（入口以外） | 維持 | How-to・ショーケース |
-| `mcp/*.md`（入口以外） | 維持 | How-to・ショーケース |
-| `agents/*.md`（入口以外） | 維持 | How-to・ショーケース |
 | `strategy/*.md`（13 本。hooks はフェーズ 12） | 第IV部 周辺 | 再配置（サイドバー）。hooks は層ではない |
-| `workflows/*.md` | 付録寄り | 再配置（サイドバー） |
-| `glossary.md` | 付録 | 再配置（サイドバー） |
-| `information/*.md` | 付録寄り | 再配置（サイドバー） |
-| `faq/*.md` | 縮小 | `scope-of-ai-agent` は序章への短い参照 |
+| `workflows/**` | 付録 | 維持 |
+| `glossary.md` | 用語 | 維持。初出定義に追随 |
+| `information/index.md` `architecture-map.md` | 隣接 | 維持。制度設計は増やさない |
+| `faq/mcp-vs-skills.md` `faq/agent-vs-subagent-vs-skill.md` | 付録 | 維持 |
+| `faq/scope-of-ai-agent.md` | 序章の参照 | 縮小 |
+| `index.md`（ホーム） | 入口 | 改稿（書名と旧称の除去。構成の説明は序章へ） |
+| `README.md` `README.ja.md` | リポジトリ入口 | 再配置（フェーズ 8） |
+| `reference-selection-checklist.md` | II.2 周辺 | 維持 |
+| `outputs.md` | 外す | 外す。実践カタログとして URL は残す |
+| `configuring_everything-claude-code.md` | 外す | 外す。製品ツリーのメモであり本書の章ではない |
+| `ja/README.md` `docs/README.md` | — | 維持 |
 
-### 外す・縮小
+## リダイレクト一覧
 
-| 現行 | 扱い |
+次の旧 URL は残す。スタブ先は上表の新パスである。
+
+| 旧（日本語） | 旧（英語） |
 | --- | --- |
-| ホームの旧称・副題 | 入口から外す |
-| FAQ の長文 | 縮小。URL は残す |
-
-## 旧 URL の扱い
-
-| 旧 | 新 |
-| --- | --- |
+| `/ja/concepts/` | `/concepts/` |
 | `/ja/concepts/01-vision` | `/concepts/01-vision` |
 | `/ja/concepts/02-reference-sources` | `/concepts/02-reference-sources` |
 | `/ja/concepts/03-architecture` | `/concepts/03-architecture` |
