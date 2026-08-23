@@ -56,6 +56,8 @@ Field talk of combinations remains in [composition patterns](../strategy/composi
 
 Types may be stacked. Follow source text with MCP, search write-ups with RAG, keep relations with Memory, soak in phrasing with fine-tuning, and use Agent for work with steps. There is no silver bullet. Pick by how it breaks.
 
+A short aid for choosing means (freshness, amount of judgment, state of the data) is also on the [Architecture Map](../information/architecture-map).
+
 ## Related pages
 
 This chapter is the type. Rollout and judgment remain in `strategy/`.
@@ -69,6 +71,7 @@ This chapter is the type. Rollout and judgment remain in `strategy/`.
 - [II.2 Placement](../part-2/placement)
 - [III.2 MCP](../mcp/what-is-mcp)
 - [III.4 Memory](../part-3/memory)
+- [Architecture Map](../information/architecture-map) — resource × access and the three axes for choosing means
 
 ---
 

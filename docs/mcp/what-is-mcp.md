@@ -62,6 +62,8 @@ Tool descriptions **SHOULD** not all be loaded at start. Descriptions are a fixe
 
 MCP connects to outside tools and data. It is placed to separate guesswork from source text. Host / Client / Server in the protocol are not another name for the five layers. Source text is MCP, rules are Skills, the measure is Doctrine.
 
+For which resource to read or write, see resource × access on the [Architecture Map](../information/architecture-map).
+
 ## Related pages
 
 This chapter defines the layer and its boundary. Catalogue, security, and development follow.
@@ -70,6 +72,7 @@ This chapter defines the layer and its boundary. Catalogue, security, and develo
 - [Security](./security)
 - [Semantic Layer](./semantic-layer)
 - [Development](./development)
+- [Architecture Map](../information/architecture-map) — resource types and the read / write split
 
 ---
 
