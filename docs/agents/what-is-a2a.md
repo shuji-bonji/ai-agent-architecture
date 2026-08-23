@@ -286,7 +286,7 @@ A2A is no longer in "specification consideration" but in **production operation 
 
 - [Agent Identity](./agent-identity) — Identification and delegation underpinning A2A communication
 - [Multi-Agent / Agent Teams](./agent-teams) — Evolution from intra-org Agent Teams to cross-org Agent Mesh
-- [03-architecture](../concepts/03-architecture) — A2A's position in the three-layer model
+- [II.1 Five layers](../part-2/layers) — A2A's position among the five layers
 
 ### Recommended Architecture
 
@@ -316,7 +316,7 @@ Explore these documents to deepen your A2A understanding:
 | Sub-agent details    | [what-is-subagent.md](./what-is-subagent.md)         |
 | Agent terminology organization | [Agent Taxonomy](./agent-taxonomy)         |
 | MCP details          | [what-is-mcp.md](../mcp/what-is-mcp.md)              |
-| Overall architecture | [03-architecture.md](../concepts/03-architecture.md) |
+| Overall architecture | [II.1 Five layers](../part-2/layers)   |
 | About Skills         | [what-is-skills.md](../skills/what-is-skills.md)     |
 
 ## Sources

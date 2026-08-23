@@ -290,7 +290,7 @@ MCPとSkillsを適切に活用するためのベストプラクティスを以�
 
 ## CLI vs MCP: CLIで十分なケース
 
-MCPを構築する前に、専用CLIが存在するかを確認しましょう。
+MCPを構築する前に、専用CLIが存在するかを確認する。
 
 ### なぜ重要か
 
@@ -359,7 +359,7 @@ CLIをMCPの代わりに使う場合、
 > **CLI がある → CLI + Skill（トークン効率的）**
 > **CLI がない → MCP（必須）**
 
-このパターンは r/ClaudeAI でのコミュニティ議論から生まれ、すでに優れた CLI を持つサービスに対して MCP が「トークンを大量消費する」という実際の使用パターンを反映しています。
+このパターンは r/ClaudeAI でのコミュニティ議論から生まれ、すでに優れた CLI を持つサービスに対して MCP が「トークンを大量消費する」という実際の使用パターンを反映している。
 
 ## 関連ドキュメント
 
@@ -373,9 +373,9 @@ MCPとSkillsの選択判断に関連するドキュメントを以下に示す�
 - [アンチパターン集](./anti-patterns) - 共通の失敗パターン
 - [実例ショーケース](./showcase) - プロダクション実例
 - [MCP Catalog](../mcp/catalog.md) - 構築済みMCPカタログ
-- [Architecture](../concepts/03-architecture.md) - MCP/Skills/Agent構成論
+- [II.1 五層](../part-2/layers) - Doctrine / Agent / Skills / Memory / MCP
 
-### 🔗 さらに深く: なぜ MCP がコンテキストコストになるのか
+### さらに深く: なぜ MCP がコンテキストコストになるのか
 
 このページでは「いつ MCP、いつ Skills を選ぶか」を実用観点で扱っている。「**なぜ** MCP のツール定義そのものがコンテキスト消費の問題になるのか」を [Tool Search](../glossary#tool-search) や [Deferred Loading](../glossary#tool-search) の仕組みから理解したい場合は、姉妹サイトを参照。
 

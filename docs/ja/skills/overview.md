@@ -10,4 +10,4 @@ if (typeof window !== 'undefined') {
 
 # Skills 概要
 
-このページは [Skillsとは何か](./what-is-skills) に統合されました。自動的にリダイレクトされます。
+このページは [Skillsとは何か](./what-is-skills) に統合した。自動でリダイレクトする。

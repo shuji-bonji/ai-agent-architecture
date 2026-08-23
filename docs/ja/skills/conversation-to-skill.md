@@ -23,7 +23,7 @@ description: 良い回答が得られた会話は、そのままではセッシ�
 
 - **固定するもの**: 成功した会話から抽出する 3 要素（引数・制約・期待出力）と、Skill 昇格の判断基準
 - **扱わないこと**: モデルの[重み](../glossary#weights)を変える蒸留（Knowledge Distillation / Context Distillation）、Skill の書き方そのもの（→ [スキル作成ガイド](./how-to-create-skills)）
-- **依存**: [Skillsとは何か](./what-is-skills)、[Memory と知識](../concepts/08-memory-and-knowledge)
+- **依存**: [Skillsとは何か](./what-is-skills)、[Memory と知識](../part-3/memory)
 - **誤用ポイント**: 「会話ログをそのまま保存すること」だと誤解すること。蒸留の本質は**捨てること**にある
 
 :::
@@ -201,7 +201,7 @@ flowchart LR
 
 ## Memory との住み分け
 
-蒸留は [Memory](../concepts/08-memory-and-knowledge) と混同されやすい。判断基準は「**次回も同じ手順を踏むか**」である。
+蒸留は [Memory](../part-3/memory) と混同されやすい。判断基準は「**次回も同じ手順を踏むか**」である。
 
 | | Memory | Skill 蒸留 |
 | --- | --- | --- |
@@ -218,7 +218,7 @@ flowchart LR
 - [Skill設計ガイド](./creating-skills) — 蒸留物が満たすべき品質基準（人が書く場合と同一）
 - [スキル作成ガイド](./how-to-create-skills) — SKILL.md の書き方
 - [アンチパターン集](./anti-patterns) — Skill 運用の落とし穴
-- [Memory と知識](../concepts/08-memory-and-knowledge) — 「何を記憶するか」という隣接概念
+- [Memory と知識](../part-3/memory) — 「何を記憶するか」という隣接概念
 - [Semantic Layer](../mcp/semantic-layer) — 確率的推測を決定的定義へ委ねる同系譜の設計規律
 
 ## 🔗 さらに深く: なぜ「差分だけ」を残すべきなのか

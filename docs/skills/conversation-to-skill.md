@@ -23,7 +23,7 @@ The "distillation" discussed here is **Trajectory Distillation at runtime (agent
 
 - **What this page fixes**: The three elements extracted from a successful conversation (arguments, constraints, expected output) and the criteria for promoting them to a Skill
 - **Out of scope**: Distillation that changes model [weights](../glossary#weights) (Knowledge Distillation / Context Distillation), and how to write Skills per se (→ [Skill Creation Guide](./how-to-create-skills))
-- **Depends on**: [What are Skills](./what-is-skills), [Memory and Knowledge](../concepts/08-memory-and-knowledge)
+- **Depends on**: [What are Skills](./what-is-skills), [Memory and Knowledge](../part-3/memory)
 - **Common misuse**: Mistaking this for "saving conversation logs as-is." The essence of distillation is **throwing things away**
 
 :::
@@ -201,7 +201,7 @@ This design was rapidly systematized across research and products in 2025–2026
 
 ## Division of Labor with Memory
 
-Distillation is easily confused with [Memory](../concepts/08-memory-and-knowledge). The criterion is: "**will the same procedure be followed next time?**"
+Distillation is easily confused with [Memory](../part-3/memory). The criterion is: "**will the same procedure be followed next time?**"
 
 | | Memory | Skill distillation |
 | --- | --- | --- |
@@ -218,7 +218,7 @@ Facts go to Memory; successes that could be turned into procedures go to Skills.
 - [Skill Design Guide](./creating-skills) — quality bar the distilled artifact must meet (same as human-written Skills)
 - [Skill Creation Guide](./how-to-create-skills) — how to write SKILL.md
 - [Anti-Patterns](./anti-patterns) — pitfalls in Skill operations
-- [Memory and Knowledge](../concepts/08-memory-and-knowledge) — the adjacent concept of "what to remember"
+- [Memory and Knowledge](../part-3/memory) — the adjacent concept of "what to remember"
 - [Semantic Layer](../mcp/semantic-layer) — a design discipline in the same lineage: delegating probabilistic guessing to deterministic definitions
 
 ## 🔗 Going Deeper: Why Keep Only the Delta

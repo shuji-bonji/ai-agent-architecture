@@ -194,7 +194,7 @@ tools: Read, Grep
 ```
 
 > [!IMPORTANT]
-> 規範強度ラダー (MUST / SHOULD / MAY) を使って「**バイパス禁止**」を明示する。詳細は [Concepts 全体像 / 規範強度ラダー](../concepts/) を参照。
+> 規範強度ラダー (MUST / SHOULD / MAY) を使って「**バイパス禁止**」を明示する。詳細は [III.3 Doctrine](../part-3/doctrine) を参照。
 
 ### 委任フロー
 
@@ -344,7 +344,7 @@ model: haiku
 - [サブエージェント vs Skills](./subagent-vs-skill) — どちらを選ぶかの判断
 - [エージェント概念の分類](./agent-taxonomy) — Critic / Reviewer / Evaluator ロールの整理
 - [ワークフローパターン](../workflows/patterns) — 品質ゲートを含むパターン集
-- [ドクトリンと意図](../concepts/07-doctrine-and-intent) — MUST / SHOULD / MAY の規範ラダー
+- [III.3 Doctrine](../part-3/doctrine) — MUST / SHOULD / MAY の規範ラダー
 
 ## 🔗 さらに深く: なぜ Sycophancy が起きるのか
 

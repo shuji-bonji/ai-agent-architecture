@@ -12,7 +12,7 @@ MCPサーバーを「使う」だけでなく「創る」ための実践ガイ�
 
 このドキュメントを読む前に、以下を理解していることが望ましい。
 
-- [MCP/Skills/Agentの構成論](../concepts/03-architecture) — 三層アーキテクチャの全体像
+- [II.1 五層](../part-2/layers) — Doctrine / Agent / Skills / Memory / MCP
 - [MCP vs Skills 選択判断ガイド](../skills/vs-mcp) — 何をMCPにすべきか
 - [MCPセキュリティ](./security) — OWASP MCP Top 10
 
@@ -92,7 +92,7 @@ AIが「ブレない参照先」を参照 → 正確・検証可能な情報
 
 **重要**: 層1・2はMCPに適しており、層3・4はSkillに適している。
 
-> 詳細は [「ブレない参照先」の体系](../concepts/02-reference-sources) を参照
+> 詳細は [「ブレない参照先」の体系](../part-2/placement) を参照
 
 ## 設計フェーズ
 
@@ -514,7 +514,7 @@ MCP開発に関連するドキュメントを以下に示す。
 
 - [構築済みMCPカタログ](./catalog) — 構築済みMCPの一覧と詳細
 - [MCPセキュリティ](./security) — OWASP MCP Top 10
-- [MCP/Skills/Agentの構成論](../concepts/03-architecture) — 三層アーキテクチャ
+- [II.1 五層](../part-2/layers) — Doctrine / Agent / Skills / Memory / MCP
 - [MCP vs Skills 選択判断ガイド](../skills/vs-mcp) — 何をMCPにすべきか
 - [連携パターン・ワークフロー](../workflows/patterns) — MCPを活用したワークフロー
 - [アンチパターン集](../skills/anti-patterns) — 避けるべきパターン

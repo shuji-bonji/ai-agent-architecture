@@ -6,13 +6,13 @@ description: 「MCP 経由で取得すれば検証可能性が確保される」
 # Verifiable MCP — MCP 出力の出典忠実性をどう検証可能にするか
 
 > [!NOTE]
-> 本ページは [`mcp/security`](./security) と [`concepts/02-reference-sources`](../concepts/02-reference-sources) の延長として、**「MCP が返した値が、本当にその上流ソースから取られた正確な値か」を第三者が検証可能にする**ための設計原則と実装プリミティブを整理する。
+> 本ページは [`mcp/security`](./security) と [`part-2/placement`](../part-2/placement) の延長として、**「MCP が返した値が、本当にその上流ソースから取られた正確な値か」を第三者が検証可能にする**ための設計原則と実装プリミティブを整理する。
 >
-> 配置は暫定。運用実績が出た段階で Concepts 章への昇格を検討する。
+> 配置は暫定。運用実績が出た段階で第II部への統合を検討する。
 
 ## 問題の所在
 
-[リファレンスソース](../concepts/02-reference-sources) の 2.2.4 では、検証可能性（Verifiability）を次のように定義した。
+[リファレンスソース](../part-2/placement) の 2.2.4 では、検証可能性（Verifiability）を次のように定義した。
 
 > AIの出力が原典と照合して正しいか確認できること。
 
@@ -200,7 +200,7 @@ export function withProvenance<TInput, TOutput>(
 
 ## 関連ドキュメント
 
-- [リファレンスソース](../concepts/02-reference-sources) — 検証可能性（2.2.4）の元定義と MCP の参照経路
+- [リファレンスソース](../part-2/placement) — 検証可能性（2.2.4）の元定義と MCP の参照経路
 - [MCP セキュリティ](./security) — OWASP MCP Top 10 ベースの従来型対策（MCP01〜MCP10）
 - [MCP 開発ガイド](./development) — MCP サーバ構築の実践ガイド
 - [エージェント ID](../agents/agent-identity) — A2A における識別子設計（本ページの ① に対応）
