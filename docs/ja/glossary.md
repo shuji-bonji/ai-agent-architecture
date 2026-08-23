@@ -83,7 +83,7 @@ LLM の仕組みに由来し、プロンプトの工夫だけでは解消しな�
 
 **一覧と相互関係**: [Part 1: LLMの構造的制約を知る](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/)
 
-> 本サイトで「学習データの時点で固定される」「最新性の制約」と書いているものは Knowledge Boundary を指す。[01-vision](./concepts/01-vision) の 4 制約（正確性・最新性・権威性・責任性）のうち、正確性は Hallucination、最新性は Knowledge Boundary に対応する。権威性・責任性は LLM の構造ではなく制度の問題であり、姉妹サイトの範囲外である。
+> 本サイトで「学習データの時点で固定される」「最新性の制約」と書いているものは Knowledge Boundary を指す。[I.1 制約の要約](./part-1/constraints) の 4 制約（正確性・最新性・権威性・責任性）のうち、正確性は Hallucination、最新性は Knowledge Boundary に対応する。権威性・責任性は LLM の構造ではなく制度の問題であり、姉妹サイトの範囲外である。
 
 ### Tool Search / Deferred Loading {#tool-search}
 
@@ -298,78 +298,32 @@ Claude Codeで参照できる静的な知識・ガイドライン。
 - 「Meta-Agent Builder」のような確立した製品名は存在しない
 ```
 
-**関連**: Orchestrator、Spawned Agent
+### カスタムエージェント（Custom Agent）
 
-### 実行ロール（Execution Role）
-
-設計パターンの内側で、各エージェントが担う責務。
-
-| ロール                                     | 責務                           |
-| ------------------------------------------ | ------------------------------ |
-| **Orchestrator / Supervisor / Lead Agent** | タスク分解、委任判断、結果集約 |
-| **Planner**                                | 計画立案、ステップ分解         |
-| **Worker / Specialist**                    | 個別の専門タスクを実行         |
-| **Critic / Reviewer / Evaluator**          | 出力の検証、採点、再実行判断   |
-
-Anthropic の Multi-Agent Research System では Orchestrator にあたるエージェントを **"lead agent"** と呼ぶ。
-
-### バックグラウンドエージェント（Background Agent）
-
-非同期・長時間実行されるエージェント。セッションを跨いで状態を保持できる。
+特定の製品・プラットフォーム上で、ユーザーが定義・カスタマイズできるエージェント実装。
 
 ```
-特徴:
-- 長時間実行に耐える
-- Persistent な状態を持つ
-- ユーザー操作を妨げない
-
 例:
-- GitHub Copilot Cloud Agents
+- Claude Code のカスタムサブエージェント（.claude/agents/*.md）
+- GitHub Copilot の custom agents
+- OpenAI Assistants API の custom assistants
 ```
 
-### Ephemeral / Persistent
+### クラウドエージェント（Cloud Agent）
 
-エージェントのライフサイクル属性。
-
-| 属性                 | 意味                                                      |
-| -------------------- | --------------------------------------------------------- |
-| **Persistent**       | セッションを跨いで状態を保持                              |
-| **Ephemeral**        | タスク完了時に破棄。コンテキスト汚染防止に寄与            |
-| **Spawned / Forked** | 親から動的に生成される（多くは Ephemeral と組み合わさる） |
-
-### AGENTS.md
-
-リポジトリルートに置く、コーディングエージェント向けの README。
+クラウド上で動作し、リポジトリや Issue に直接アクセスできるエージェント実装。
 
 ```
-特徴:
-- Markdown 形式の標準
-- 2025年12月に OpenAI と Anthropic が Linux Foundation
-  （Agentic AI Foundation）へ寄贈し、業界標準化
-- 60,000+ プロジェクトで採用（2025年末時点）
+例:
+- GitHub Copilot coding agent（Issue を受け取り PR を作成）
+- Claude Code のクラウド実行形態
 ```
 
-**注意**: 個別エージェント定義の `.agent.md` とは別物。
-
-### .agent.md
-
-GitHub Copilot / VS Code Custom Agents の**個別カスタムエージェント定義**ファイル。
-
-```
-配置場所:
-- .github/agents/*.agent.md（ワークスペース）
-- ~/.copilot/agents/*.agent.md（ユーザー）
-
-旧称: Custom Chat Modes
-```
-
-**注意**: リポジトリ全体への指示ファイル `AGENTS.md` とは別物。
-
-## 要件レベル
+## 要求レベル
 
 ### MUST / MUST NOT
 
-RFCにおける必須要件。遵守しないと仕様違反。
+RFCにおける必須要件。従わない場合は仕様違反。
 
 ```
 例: "A TCP implementation MUST support simultaneous open attempts"
@@ -377,7 +331,7 @@ RFCにおける必須要件。遵守しないと仕様違反。
 
 ### SHOULD / SHOULD NOT
 
-RFCにおける推奨要件。正当な理由があれば違反可能。
+RFCにおける推奨要件。正当な理由があれば従わなくてもよい。
 
 ```
 例: "Implementations SHOULD use exponential backoff"
@@ -385,7 +339,7 @@ RFCにおける推奨要件。正当な理由があれば違反可能。
 
 ### MAY
 
-RFCにおける任意要件。実装するかは自由。
+RFCにおける任意要件。実装者の裁量で選択可能。
 
 ```
 例: "A client MAY provide additional metadata"
@@ -404,7 +358,7 @@ RFCにおける任意要件。実装するかは自由。
 - 参照訳なしでも評価可能
 ```
 
-### エラー重大度（Severity）
+### Error Severity（エラー重要度）
 
 xCOMETが検出するエラーの深刻度。
 
@@ -417,73 +371,73 @@ xCOMETが検出するエラーの深刻度。
 
 ## AI設計パターン
 
-### RAG（Retrieval-Augmented Generation：検索拡張生成）
+### RAG（Retrieval-Augmented Generation）
 
-外部のドキュメントをベクトル検索し、関連情報をLLMのプロンプトに注入する手法。
+外部文書をベクトル検索で取得し、関連情報をLLMのプロンプトに注入する手法。
 
 ```
 仕組み:
-1. ドキュメントをチャンク分割 → ベクトル化 → DB格納
+1. 文書をチャンクに分割 → ベクトル化 → DBに格納
 2. ユーザーの質問をベクトル化
 3. 類似度検索で関連チャンクを取得
 4. チャンクをプロンプトに注入してLLMが回答生成
 
 強み: 大量の非構造化テキストから関連情報を見つけられる
-弱み: チャンク分割で文脈が失われる、構造を理解しない
+弱み: チャンク化で文脈が失われる、構造を理解しない
 ```
 
 **関連**: Embedding、ベクトルDB、チャンク
 
-> **MCPとの違い**: [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns) を参照
+> **MCPとの違い**: [IV.1 パターン](./part-4/patterns) を参照
 
 ### Embedding（エンベディング）
 
-テキストを数値ベクトル（数百〜数千次元の配列）に変換すること。意味的に近いテキストは、ベクトル空間上でも近くに配置される。RAGのベクトル検索の基盤技術。
+テキストを数値ベクトル（数百〜数千次元の配列）に変換すること。意味的に近いテキストはベクトル空間上で近くに配置される。RAGのベクトル検索の基盤技術。
 
-### ベクトルDB（Vector Database）
+### ベクトルデータベース（Vector Database）
 
-Embeddingされたベクトルデータを格納・検索するための専用データベース。コサイン類似度等を用いた高速な類似度検索を提供する。
+埋め込みベクトルを格納・検索するための専用データベース。コサイン類似度などによる高速な近傍検索を提供する。
 
 ```
-例: Pinecone、Weaviate、Chroma、pgvector
+例: Pinecone, Weaviate, Chroma, pgvector
 ```
 
 ### チャンク（Chunk）
 
-ドキュメントを小さな断片に分割したもの。RAGでは、ドキュメントをチャンクに分割してからベクトル化する。チャンクのサイズや分割方法が検索精度に影響する。
+文書を分割した小さな断片。RAGでは文書をチャンクに分けてからベクトル化する。チャンクのサイズや分割方法が検索精度に影響する。
 
-### Prompt Engineering（プロンプトエンジニアリング）
+### プロンプトエンジニアリング（Prompt Engineering）
 
-モデルのパラメータを変えず、入力プロンプトの工夫だけで出力品質を制御する手法。Zero-shot、Few-shot、Chain-of-Thoughtなどの技法がある。
+モデルのパラメータを変更せず、入力プロンプトの設計だけで出力品質を制御する手法。Zero-shot、Few-shot、Chain-of-Thought などの技法を含む。
 
 ### GraphRAG
 
-通常のRAGにナレッジグラフ（知識グラフ）を組み合わせ、エンティティ間の関係性を活用して検索・生成を行う手法。「AはBにどう関係するか」といった関係性の質問に強い。
+通常のRAGに知識グラフを組み合わせ、エンティティ間の関係性を活用して検索・生成する手法。「AとBはどう関係するか」のような関係性の問いに特に有効。
 
 ### Fine-tuning（ファインチューニング）
 
-LLMのパラメータ自体を、特定ドメインのデータで追加学習させる手法。RAGが「外部記憶」なら、Fine-tuningは「内部知識の書き換え」に近い。
+LLMのパラメータをドメイン固有のデータで追加学習する手法。RAGが「外部メモリ」だとすれば、Fine-tuningは「内部知識の書き換え」に近い。
 
-### Agentic AI（エージェント型AI）
+### Agentic AI（エージェンティックAI）
 
 LLMが自律的に計画を立て、ツールを呼び出し、複数ステップで問題を解決するパターン。MCPはこのパターンを支える基盤技術の一つ。
 
 **関連**: MCP、サブエージェント、A2A
 
-## その他
+## その他の用語
 
 ### ワールドモデル（World Model）
 
-環境の構造や物理法則に関するエージェントの内部表現。エージェントが「次に何が起こるか」を予測し、行動の結果をシミュレーションするための基盤となる概念。
+エージェントが持つ、環境の構造と物理法則の内部表現。エージェントが「次に何が起きるか」を予測し、行動の結果をシミュレーションするための基盤概念。
 
 ```
 文脈:
-- ロボティクス・自動運転: 物理法則（重力、慣性、衝突）の内部モデル
-- LLM: テキストの因果関係や世界の常識的な振る舞いの暗黙的理解
-- 強化学習: 環境のダイナミクスモデル（model-based RL）
+- ロボティクス / 自動運転: 物理法則（重力、慣性、衝突）の内部モデル
+- LLM: 因果関係や常識的な世界の振る舞いの暗黙的理解
+- 強化学習: 環境のダイナミクスモデル（モデルベースRL）
 ```
 
-本サイトでは主に[フィジカルAI](./concepts/06-physical-ai#ワールドモデルの重要性)の文脈で扱う。情報空間のエージェントにおいても暗黙的に存在するが、物理世界で行動するエージェントにとっては不可欠な要素である。
+本サイトでは主に[IV.3 物理世界](./part-4/physical)の文脈で扱う。情報空間のエージェントにおいても暗黙的に存在するが、物理世界で行動するエージェントにとっては不可欠な要素である。
 
 **参考**: [Yann LeCun — A Path Towards Autonomous Machine Intelligence (2022)](https://openreview.net/pdf?id=BZ5a1r-kVsf)
 
