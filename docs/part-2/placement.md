@@ -110,9 +110,12 @@ How to cut MCP tools is Part III. How to write a Skill is Part III. Which produc
 
 Placement follows whether execution is required, whether source text can be followed, how long memory must last, whether the item is purpose or procedure, and whether a role should be split. Connect sources you can check through MCP, write procedures as Skills, put priority in Doctrine, keep relations in Memory, and let Agent combine them. Guesswork **MUST NOT** stand in for source text.
 
+When the choice of means is unclear, three axes also help: freshness, amount of judgment, and state of the data. The resource-and-access map is on the [Architecture Map](../information/architecture-map).
+
 ## Related pages
 
 - [II.1 Five layers](./layers) — what each layer owns
+- [Architecture Map](../information/architecture-map) — resources, access, and circulation (a different axis from the five layers)
 - [Reference-selection checklist](../reference-selection-checklist) — whether a source may be used
 - [MCP vs Skills](../skills/vs-mcp) — current split in detail
 - [understanding-llm / Part 6: Tool context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/) — why not to load every MCP tool always
