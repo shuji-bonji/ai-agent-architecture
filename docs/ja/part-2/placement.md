@@ -110,9 +110,12 @@ MCP のツールをどう切るかは第III部である。Skill の書き方も�
 
 置く場所は、実行が要るか、原文へたどるか、記憶の寿命か、目的か手順か、役割を分けるか、で決める。確認できる参照は MCP でつなぎ、手順は Skills に書き、優先順位は Doctrine に置き、関係は Memory に残し、組み合わせは Agent が持つ。推測で原文の代わりをしてはならない。
 
+手段の選択で迷うときは、鮮度・判断の量・データの状態の三軸も使える。資源とアクセスの見取り図は [全体地図](../information/architecture-map) にある。
+
 ## 関連ドキュメント
 
 - [II.1 五層](./layers) — 各層の担当
+- [全体地図](../information/architecture-map) — 資源・アクセス・循環の見取り図（五層とは軸が違う）
 - [参照先選定チェックリスト](../reference-selection-checklist) — 使ってよいかの確認
 - [MCP vs Skills](../skills/vs-mcp) — いまの使い分けの各論
 - [understanding-llm / Part 6: ツールコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/) — MCP をいつも全部載せない理由
