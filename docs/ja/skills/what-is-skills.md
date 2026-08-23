@@ -70,6 +70,16 @@ Skills は、参照時だけ読まれる。いつも全部を載せるもので�
 
 Skills は、変わらない知識と手順を置く。実行しない。チームの決まりはモデルの中には無いので、外に書いて、必要なときに読ませる。原文と操作は MCP、物差しは Doctrine、前回の続きは Memory である。
 
+## 関連ドキュメント
+
+本章は層の定義と境界である。手順と実例は次を見る。
+
+- [Skill設計ガイド](./creating-skills)
+- [スキル作成ガイド](./how-to-create-skills)
+- [会話からの Skill 蒸留](./conversation-to-skill)
+- [スキル導入・利用](./how-to-use-skills)
+- [実例ショーケース](./showcase)
+
 ---
 
 > **前へ**: [II.2 配置基準](../part-2/placement)

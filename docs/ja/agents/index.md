@@ -70,6 +70,14 @@ Agent は、作業を理解し、他の層を組み合わせる。サブエー�
 
 ## 関連ドキュメント
 
+本章は層の定義と境界である。分類と各論は次を見る。
+
+- [エージェントの分類](./agent-taxonomy)
+- [サブエージェント](./what-is-subagent)
+- [品質ゲートとしての活用](./subagent-quality-gate)
+- [マルチエージェント / Agent Teams](./agent-teams)
+- [A2Aとは](./what-is-a2a)
+
 - [II.1 五層](../part-2/layers)
 - [III.3 Doctrine](../part-3/doctrine) / [III.4 Memory](../part-3/memory)
 - [FAQ: 4 者比較](../faq/agent-vs-subagent-vs-skill)

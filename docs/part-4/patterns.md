@@ -58,8 +58,15 @@ Types may be stacked. Follow source text with MCP, search write-ups with RAG, ke
 
 ## Related pages
 
-- [II.2 Placement](../part-2/placement)
+This chapter is the type. Rollout and judgment remain in `strategy/`.
+
 - [Composition patterns](../strategy/composition-patterns)
+- [MCP Family](../strategy/mcp-family)
+- [Deterministic verdicts](../strategy/deterministic-verdicts)
+- [Routing vs. Cascading](../strategy/routing-vs-cascading)
+- [Loop Engineering](../strategy/loop-engineering)
+
+- [II.2 Placement](../part-2/placement)
 - [III.2 MCP](../mcp/what-is-mcp)
 - [III.4 Memory](../part-3/memory)
 

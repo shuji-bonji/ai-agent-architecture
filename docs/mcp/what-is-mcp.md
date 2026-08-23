@@ -62,6 +62,15 @@ Tool descriptions **SHOULD** not all be loaded at start. Descriptions are a fixe
 
 MCP connects to outside tools and data. It is placed to separate guesswork from source text. Host / Client / Server in the protocol are not another name for the five layers. Source text is MCP, rules are Skills, the measure is Doctrine.
 
+## Related pages
+
+This chapter defines the layer and its boundary. Catalogue, security, and development follow.
+
+- [Catalogue](./catalog)
+- [Security](./security)
+- [Semantic Layer](./semantic-layer)
+- [Development](./development)
+
 ---
 
 > **Previous**: [Skills](../skills/what-is-skills)

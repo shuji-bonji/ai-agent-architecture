@@ -58,8 +58,15 @@ Fine-tuning で、よく変わる知識をモデルの中に焼き込んでは�
 
 ## 関連ドキュメント
 
-- [II.2 配置基準](../part-2/placement)
+本章は型である。展開と判断は strategy に残してある。
+
 - [構成パターン](../strategy/composition-patterns)
+- [MCP Family](../strategy/mcp-family)
+- [判定の決定論性](../strategy/deterministic-verdicts)
+- [Routing vs Cascading](../strategy/routing-vs-cascading)
+- [Loop Engineering](../strategy/loop-engineering)
+
+- [II.2 配置基準](../part-2/placement)
 - [III.2 MCP](../mcp/what-is-mcp)
 - [III.4 Memory](../part-3/memory)
 

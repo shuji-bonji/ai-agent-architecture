@@ -70,6 +70,14 @@ Agent understands the work and combines the other layers. A sub-agent is a split
 
 ## Related pages
 
+This chapter defines the layer and its boundary. Taxonomy and the remaining topics follow.
+
+- [Agent taxonomy](./agent-taxonomy)
+- [Sub-agents](./what-is-subagent)
+- [Quality gate pattern](./subagent-quality-gate)
+- [Multi-agent / Agent Teams](./agent-teams)
+- [What is A2A](./what-is-a2a)
+
 - [II.1 Five layers](../part-2/layers)
 - [III.3 Doctrine](../part-3/doctrine) / [III.4 Memory](../part-3/memory)
 - [FAQ: four-way comparison](../faq/agent-vs-subagent-vs-skill)

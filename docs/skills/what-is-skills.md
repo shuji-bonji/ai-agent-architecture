@@ -70,6 +70,16 @@ How-tos and worked examples remain. They have not been deleted.
 
 Skills hold stable knowledge and procedures. They do not execute. Team rules are not inside the model, so they are written outside and read when needed. Source text and actions are MCP, the measure is Doctrine, last time's continuation is Memory.
 
+## Related pages
+
+This chapter defines the layer and its boundary. Procedures and worked examples follow.
+
+- [Skill design guide](./creating-skills)
+- [How to create Skills](./how-to-create-skills)
+- [Distilling Skills from conversations](./conversation-to-skill)
+- [How to use Skills](./how-to-use-skills)
+- [Showcase](./showcase)
+
 ---
 
 > **Previous**: [II.2 Placement](../part-2/placement)
