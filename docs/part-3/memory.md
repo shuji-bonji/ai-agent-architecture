@@ -85,10 +85,13 @@ Who acts, and on whose behalf, is identity in Agent. See [Agent identity](../age
 
 Memory holds memory and relations that remain after the conversation. Fetching through a row of MCP calls every time produces delay and drift. Hold relations before you think. It is not a cache. It is how relations remain. For small work, files often suffice.
 
+Circulation between Data and Knowledge, and the premise that AI must not sit on scattered data, are drawn briefly on the [Architecture Map](../information/architecture-map).
+
 ## Related pages
 
 - [II.1 Five layers](../part-2/layers) / [II.2 Placement](../part-2/placement)
 - [III.3 Doctrine](./doctrine) — the measure
+- [Architecture Map](../information/architecture-map) — why data circulation and curation come first
 - [Agent identity](../agents/agent-identity) — on whose behalf
 - [understanding-llm / Why memory becomes a problem](https://shuji-bonji.github.io/understanding-llm-through-claude-code/08-session-management/memory-problem)
 
