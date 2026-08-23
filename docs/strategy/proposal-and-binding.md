@@ -206,7 +206,7 @@ This page covered the **classification (What/How)** of the layers. To understand
 
 ---
 
-> **Previous**: [Harness Engineering Mapping](./harness-engineering-mapping.md)
+> **Previous**: [Hooks](./hooks)
 > **Next**: [Permission vs. Authority](./permission-vs-authority.md)
 
 **Last updated**: August 2026

@@ -227,6 +227,7 @@ flowchart LR
 
 - [エージェントループのパターン](./agent-loop-patterns) — 本ページの内側（内側ループの型カタログ）
 - [Harness Engineering との対応関係](./harness-engineering-mapping) — 層エスカレーションの親
+- [Hooks（実行時フック）](./hooks) — 外側ループの節目で機械が強制する手段
 - [autonomous-dev-meta-agent](../workflows/autonomous-dev-meta-agent) — 外側ループ自動化の具体実装（Issue → Deploy）
 - [サブエージェント品質ゲート](../agents/subagent-quality-gate) — 「ノー」と言える主体（批評者）の実装
 - [Routing vs Cascading](./routing-vs-cascading) / [ローカル LLM 環境への写像](./local-llm-workspace-mapping) — 発見/生産をインフラに固定する

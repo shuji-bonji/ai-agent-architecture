@@ -227,6 +227,7 @@ This page covered the **engineering (What/How)** of the outer loop. To understan
 
 - [Agent Loop Patterns](./agent-loop-patterns) — the inside of this page (catalog of inner-loop types)
 - [Harness Engineering Mapping](./harness-engineering-mapping) — the parent of the layer escalation
+- [Hooks](./hooks) — a machine-enforced interrupt at a point in the outer loop
 - [autonomous-dev-meta-agent](../workflows/autonomous-dev-meta-agent) — a concrete implementation of outer-loop automation (Issue → Deploy)
 - [Sub-agent Quality Gate](../agents/subagent-quality-gate) — implementing the critic that can say "no"
 - [Routing vs. Cascading](./routing-vs-cascading) / [Local LLM Workspace Mapping](./local-llm-workspace-mapping) — fixing discovery/production into the infrastructure

@@ -206,7 +206,7 @@ flowchart LR
 
 ---
 
-> **前へ**: [Harness Engineering との対応関係](./harness-engineering-mapping.md)
+> **前へ**: [Hooks（実行時フック）](./hooks)
 > **次へ**: [Permission と Authority](./permission-vs-authority.md)
 
 **最終更新**: 2026 年 8 月

@@ -128,6 +128,10 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                   link: '/ja/strategy/harness-engineering-mapping',
                 },
                 {
+                  text: 'Hooks（実行時フック）',
+                  link: '/ja/strategy/hooks',
+                },
+                {
                   text: '提案と拘束',
                   link: '/ja/strategy/proposal-and-binding',
                 },
