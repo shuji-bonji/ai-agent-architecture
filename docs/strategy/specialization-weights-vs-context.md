@@ -14,7 +14,7 @@ When you set out to build "an agent specialized for a specific task," the first 
 This page lets you decide on **principle**. The whole point reduces to one question: **where does the specialization live** — in the weights (parametric), or in the context (non-parametric)?
 
 ::: warning Positioning of This Document
-This is a strategy-layer document that builds on the three-layer model in [03-architecture](./../concepts/03-architecture) and the pattern selection in [04-ai-design-patterns](./../concepts/04-ai-design-patterns). Where [composition-patterns](./composition-patterns) addresses *how to combine* and [local-llm-workspace-mapping](./local-llm-workspace-mapping) addresses *where to place*, this page addresses **whether to bake specialization into the weights or inject it into the context**.
+This is a strategy-layer document that builds on the five layers in [II.1 Five layers](../part-2/layers) and the pattern selection in [IV.1 Patterns](../part-4/patterns). Where [composition-patterns](./composition-patterns) addresses *how to combine* and [local-llm-workspace-mapping](./local-llm-workspace-mapping) addresses *where to place*, this page addresses **whether to bake specialization into the weights or inject it into the context**.
 :::
 
 ::: details Meta Information
@@ -23,7 +23,7 @@ This is a strategy-layer document that builds on the three-layer model in [03-ar
 | --- | --- |
 | **What this page establishes** | The selection axis, decision heuristic, and hybrid design for weight specialization (train-time) vs. context specialization (inference-time) |
 | **What this page does NOT cover** | Specific fine-tuning procedures or per-model training hyperparameters (see each framework's primary docs) |
-| **Dependencies** | [03-architecture](./../concepts/03-architecture), [04-ai-design-patterns](./../concepts/04-ai-design-patterns), [08-memory-and-knowledge](./../concepts/08-memory-and-knowledge) |
+| **Dependencies** | [II.1 Five layers](../part-2/layers), [IV.1 Patterns](../part-4/patterns), [III.4 Memory](../part-3/memory) |
 | **Common misuse** | Trying to bake fresh facts into the weights; trying to write tacit style endlessly into the prompt (see Anti-patterns) |
 
 :::
@@ -141,15 +141,15 @@ In practice the strongest setup takes both — **a specialist variant honed by B
 
 ## Related Documents
 
-- [03-architecture](../concepts/03-architecture) — the three-layer model (the layers Route A's equipment lives in)
-- [04-ai-design-patterns](../concepts/04-ai-design-patterns) — which pattern to choose when (WHICH)
-- [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) — parametric / non-parametric knowledge and the Memory layer
+- [II.1 Five layers](../part-2/layers) — the five layers (the layers Route A's equipment lives in)
+- [IV.1 Patterns](../part-4/patterns) — which pattern to choose when (WHICH)
+- [III.4 Memory](../part-3/memory) — parametric / non-parametric knowledge and the Memory layer
 - [composition-patterns](./composition-patterns) — combining Route A's equipment (MCP × Skill × Agent)
 - [mcp-family](./mcp-family) — assembling Route A's equipment into a family produces Route B's fuel: verifiable reward
 - [local-llm-workspace-mapping](./local-llm-workspace-mapping) — consuming variants and arming agents in a local LLM environment
 - [Skills vs MCP](../skills/vs-mcp) — choosing between non-parametric equipment
 
-## 🔗 Going Deeper: Why Are Weights Frozen, and Why Does Context Cost Budget?
+## Going Deeper: Why Are Weights Frozen, and Why Does Context Cost Budget?
 
 This page addressed the **design judgment (What/How)** of weight vs. context specialization. To understand from LLMs' structural constraints *why* weights are frozen at inference-time and *why* context consumes token budget, see the sister site.
 

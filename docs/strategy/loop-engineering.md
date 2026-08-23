@@ -216,7 +216,7 @@ Your job shifts from "the one who runs the loop" to "**the one who periodically 
 > [!IMPORTANT]
 > Loop Engineering is the technique of stretching **permission (the right to execute procedures)** to its limit, but **authority (the right to judge "is this still correct?")** belongs to non-transferable doctrine. So the ceiling on "how much to hand to the system" is, in principle, set by the non-transferability of doctrine. → [Permission vs. Authority](./permission-vs-authority)
 
-## 🔗 Going Deeper: Why Outer-Loop Automation Needs Stop Checks, Context Compaction, and External Critique
+## Going Deeper: Why Outer-Loop Automation Needs Stop Checks, Context Compaction, and External Critique
 
 This page covered the **engineering (What/How)** of the outer loop. To understand **why** those countermeasures are structurally unavoidable, see the sister site.
 

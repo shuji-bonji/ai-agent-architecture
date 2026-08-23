@@ -318,11 +318,11 @@ Follow these principles when integrating MCPs into your development process:
 
 ## Phase Gate Checklists
 
-A checklist for determining whether each phase is "ready to move forward." It is recommended to **clear the previous phase's gate before proceeding to the next**. While the Concepts [exit checklist](../concepts/#concepts-implementation-exit-checklist) confirms "understanding of the design philosophy," these checklists confirm "implementation readiness for each phase."
+A checklist for determining whether each phase is "ready to move forward." It is recommended to **clear the previous phase's gate before proceeding to the next**. [Questions and scope](../preface) confirms understanding of the book's subject; these checklists confirm implementation readiness for each phase.
 
 ```mermaid
 flowchart LR
-    G0["Concepts<br/>Exit Gate"]
+    G0["Preface<br/>Exit Gate"]
     G1["G1: Strategy &<br/>Planning Gate"]
     G2["G2: Requirements<br/>Gate"]
     G3["G3: Design<br/>Gate"]
@@ -346,14 +346,14 @@ flowchart LR
 
 ### G2: Requirements → Design
 
-- [ ] **MUST/SHOULD/MAY classification** — Have requirements been classified according to the normative strength ladder ([Concepts → Normative Strength Ladder](../concepts/#normative-strength-ladder-shall-should-may))?
+- [ ] **MUST/SHOULD/MAY classification** — Have requirements been classified according to the normative strength ladder ([III.3 Doctrine](../part-3/doctrine))?
 - [ ] **Authoritative source identification** — For each requirement, has the original text been retrieved and cited via rfcxml-mcp / w3c-mcp / hourei-mcp, etc.?
 - [ ] **Quantified non-functional requirements** — Have thresholds for performance, security, and availability been written in a form that can be verified later?
 - [ ] **Legal / standards compliance** — Have the latest versions of applicable laws and standards been referenced, with applicable clauses identified?
 
 ### G3: Design → Implementation
 
-- [ ] **Three-layer separation** — Are the responsibility boundaries of Agent / Skills / MCP reflected in the design?
+- [ ] **Five-layer ownership** — Are Doctrine / Agent / Skills / Memory / MCP ownership reflected in the design?
 - [ ] **Responsibility boundaries in design** — Are the three responsibilities (design-time / execution-time / structural) made explicit in the design document?
 - [ ] **Verification strategy established** — Has the Spec-to-Test conversion strategy (which specs map to which tests) been determined?
 - [ ] **Guardrails & evaluation metrics** — Have both guardrails (ESLint, type checks) and probabilistic metrics (xCOMET, etc.) been defined?

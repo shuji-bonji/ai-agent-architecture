@@ -119,8 +119,8 @@ flowchart TD
 | Sub-agent の基本概念 | [カスタムサブエージェントとは](../agents/what-is-subagent) |
 | MCP の基本概念 | [MCPとは](../mcp/what-is-mcp) |
 | Skill の基本概念 | [Skillsとは](../skills/what-is-skills) |
-| アーキテクチャ全体像 | [03-architecture](../concepts/03-architecture) |
-| Memory 層との関係 | [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) |
+| アーキテクチャ全体像 | [II.1 五層](../part-2/layers) |
+| Memory 層との関係 | [III.4 Memory](../part-3/memory) |
 
 ---
 

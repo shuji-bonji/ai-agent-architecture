@@ -30,7 +30,7 @@
 
 ## 関連ドキュメント
 
-- [Concepts 08: 記憶と知識統合](../concepts/08-memory-and-knowledge.md) — Memory と Knowledge Graph の概念的基礎
+- [III.4 Memory](../part-3/memory) — Memory と Knowledge Graph の概念的基礎
 - [MCP / Semantic Layer](../mcp/semantic-layer.md) — 構造化データアクセスの設計規律
 - [MCP / セキュリティ](../mcp/security.md) — 接続経路のセキュリティ
 

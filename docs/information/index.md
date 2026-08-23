@@ -30,7 +30,7 @@ This section is the home for those topics — viewed not as implementation mecha
 
 ## Related Documents
 
-- [Concepts 08: Memory & Knowledge](../concepts/08-memory-and-knowledge.md) — Conceptual foundation of Memory and Knowledge Graph
+- [III.4 Memory](../part-3/memory) — Conceptual foundation of Memory and Knowledge Graph
 - [MCP / Semantic Layer](../mcp/semantic-layer.md) — Design discipline for structured data access
 - [MCP / Security](../mcp/security.md) — Security of connection paths
 

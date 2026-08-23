@@ -16,7 +16,7 @@ description: 'Open WebUI の Workspace（Models / Prompts / Knowledge / Skills /
 本ドキュメントは、この Workspace を本サイトの 5 層モデル（Doctrine / Agent / Skills / Memory / MCP）に写像し、Claude Code の `.claude/agents/` + `CLAUDE.md` + Skills + MCP の構成と機能単位で対比する。**「2026 年現在、エージェントを束ねる単位として何が事実上のデファクトになりつつあるか」** を理解するための地図として読んでほしい。
 
 ::: warning このページの位置づけ
-本ページは [03-architecture](../concepts/03-architecture) で定義した三層モデルと、[08-memory-and-knowledge](../concepts/08-memory-and-knowledge)・[07-doctrine-and-intent](../concepts/07-doctrine-and-intent) で拡張した Memory 層・Doctrine 層を**実装プラットフォームに写像する**戦略レイヤーのドキュメントである。[composition-patterns](./composition-patterns) が「どう組み合わせるか」を扱うのに対し、本ページは「どこに置くか」を扱う。
+本ページは [II.1 五層](../part-2/layers) を**実装プラットフォームに写像する**戦略レイヤーのドキュメントである。[composition-patterns](./composition-patterns) が「どう組み合わせるか」を扱うのに対し、本ページは「どこに置くか」を扱う。
 :::
 
 ::: details メタ情報
@@ -25,7 +25,7 @@ description: 'Open WebUI の Workspace（Models / Prompts / Knowledge / Skills /
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **このページで固定するもの** | 5 層モデルと Open WebUI Workspace / Claude Code 構成要素の対応関係                                                                                                           |
 | **扱わないこと**             | Open WebUI のインストール手順、各機能のチュートリアル（→ 一次情報の [docs.openwebui.com](https://docs.openwebui.com/) を参照）                                               |
-| **依存**                     | [03-architecture](../concepts/03-architecture)、[07-doctrine-and-intent](../concepts/07-doctrine-and-intent)、[08-memory-and-knowledge](../concepts/08-memory-and-knowledge) |
+| **依存**                     | [II.1 五層](../part-2/layers)、[III.3 Doctrine](../part-3/doctrine)、[III.4 Memory](../part-3/memory) |
 | **誤用ポイント**             | Open WebUI Tools と MCP を同一視すること。両者は配置場所・実行モデル・配信形態が異なる（後述）                                                                               |
 
 :::
@@ -176,7 +176,7 @@ translation-workflow スキルを参照してください。
 | アクセス制御     | RBAC（users / groups）         | Git のブランチ・PR 権限で代替         |
 
 > [!IMPORTANT]
-> **「Agent 層が他の層を宣言的に束ねる」というパターンは両者で完全に一致している**。これは偶然ではなく、[03-architecture](../concepts/03-architecture#レイヤー構造の概観) で示した「Agent 層がオーケストレーションを担う」という分離原則が、UI 設計の出発点に押し戻された結果である。
+> **「Agent 層が他の層を宣言的に束ねる」というパターンは両者で完全に一致している**。これは偶然ではなく、[II.1 五層](../part-2/layers) で示した「Agent 層がオーケストレーションを担う」という分離原則が、UI 設計の出発点に押し戻された結果である。
 
 ### Skills 層 — 同名・同モデルの収束
 
@@ -287,7 +287,7 @@ Open WebUI が v0.6.31 で MCP（Streamable HTTP）をネイティブサポー�
 - **RBAC で MCP ツール単位の認可**
 
 > [!IMPORTANT]
-> 「Web UI なローカル LLM 環境でも MCP がデファクトの外部接続規約になりつつある」という事実は、[02-reference-sources](../concepts/02-reference-sources) で述べた「MCP 化されたソースの蓄積こそが資産」という主張を補強する。Claude Code 専用に開発した MCP サーバが、設定変更だけで Open WebUI からも使えるようになる時代に入った。
+> 「Web UI なローカル LLM 環境でも MCP がデファクトの外部接続規約になりつつある」という事実は、[II.2 配置基準](../part-2/placement) で述べた「MCP 化されたソースの蓄積こそが資産」という主張を補強する。Claude Code 専用に開発した MCP サーバが、設定変更だけで Open WebUI からも使えるようになる時代に入った。
 
 ## 全体対応マトリクス
 
@@ -360,7 +360,7 @@ Open WebUI における **Projects**（フォルダベースのワークスペ�
 
 ### 1. 5 層モデルはプラットフォーム独立
 
-別個に進化した Open WebUI と Claude Code が**ほぼ同じ層分離に到達した**事実は、5 層モデルが特定プラットフォームに依存しない **構造的な必然** であることを示す。これは [03-architecture](../concepts/03-architecture#三層モデルが明示的に扱わないもの---memory) で「層は責務の分離であり、デプロイ構成ではない」と述べたことの裏付けでもある。
+別個に進化した Open WebUI と Claude Code が**ほぼ同じ層分離に到達した**事実は、5 層モデルが特定プラットフォームに依存しない **構造的な必然** であることを示す。これは [II.1 五層](../part-2/layers) で「層は責務の分離であり、デプロイ構成ではない」と述べたことの裏付けでもある。
 
 ### 2. Skills の Lazy Loading が事実上の標準に
 
@@ -372,14 +372,14 @@ Streamable HTTP MCP のネイティブサポートは、「shuji-bonji 製の各
 
 ## 関連ドキュメント
 
-- [03-architecture](../concepts/03-architecture) — 三層モデルの基本構造
-- [07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — Doctrine 層の詳細
-- [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) — Memory 層と Knowledge Graph
+- [II.1 五層](../part-2/layers) — 五層の基本構造
+- [III.3 Doctrine](../part-3/doctrine) — Doctrine 層の詳細
+- [III.4 Memory](../part-3/memory) — Memory 層と Knowledge Graph
 - [composition-patterns](./composition-patterns) — MCP × Skill × Agent の組み合わせ設計
 - [Skills の構造](../skills/what-is-skills) — Claude Code Skills の仕様
 - [MCP とは](../mcp/what-is-mcp) — Model Context Protocol の基本
 
-## 🔗 さらに深く: なぜこの構造に収束するのか
+## さらに深く: なぜこの構造に収束するのか
 
 本ページは Open WebUI と Claude Code の **構造的写像（What/How）** を扱った。「**なぜ** プラットフォームが独立に同じ層分離に収束するのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 

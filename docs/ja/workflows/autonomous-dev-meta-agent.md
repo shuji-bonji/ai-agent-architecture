@@ -344,7 +344,7 @@ flowchart LR
 >
 > **② Reviewer Sub-agent の同コンテキスト化**: Coder と同じ[セッション](../glossary#session)で「レビューして」と頼んでも見つからない。MUST 別プロセス・別文脈・できれば別モデル。
 >
-> **③ Memory なき開発**: 毎回プロジェクト規約をゼロから読ませる scatter-gather 問題。ADR と過去 PR を Memory に索引化すべき。([記憶と知識統合](../concepts/08-memory-and-knowledge) 参照)
+> **③ Memory なき開発**: 毎回プロジェクト規約をゼロから読ませる scatter-gather 問題。ADR と過去 PR を Memory に索引化すべき。([III.4 Memory](../part-3/memory) 参照)
 
 > [!WARNING]
 > 加えて **④ Meta-agent の肥大化**: Meta-agent が Sub-agent 出力を要約・統合し始めた瞬間にこのパターンは崩壊する。Meta-agent は state machine + artifact ルーターに徹し、内容に踏み込まないこと。
@@ -383,9 +383,9 @@ Management 側に書くべきは **「ワークフロー (How we manage)」で�
 - [品質ゲートとしてのサブエージェント活用](../agents/subagent-quality-gate.md) — Reviewer Sub-agent の設計指針
 - [構成パターン](../strategy/composition-patterns.md) — 複数 MCP・複数 Skill の協調パターン
 - [ローカル LLM 環境への 5 層モデルの写像](../strategy/local-llm-workspace-mapping.md) — ローカル LLM 版の詳細
-- [記憶と知識統合 (Memory & KG)](../concepts/08-memory-and-knowledge.md) — Memory 層の設計
+- [III.4 Memory](../part-3/memory) — Memory 層の設計
 
-## 🔗 さらに深く: なぜ Sub-agent 分離が効くのか
+## さらに深く: なぜ Sub-agent 分離が効くのか
 
 本ページは Meta + Sub-agent パターンの **構造 (What / How)** を扱った。「**なぜ** Sub-agent 分離が品質に効くのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 

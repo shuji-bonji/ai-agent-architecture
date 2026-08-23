@@ -18,7 +18,7 @@
 
 > [!WARNING]
 > **このページの位置づけ**
-> [Doctrine と Intent](../concepts/07-doctrine-and-intent)（何を基準に判断するか）→ **本ページ（発見/生産のモード選択）**→ [Loop Engineering](./loop-engineering)（生産モードの外側ループをシステムに固定する）という鎖の中央に位置する。
+> [III.3 Doctrine](../part-3/doctrine)（何を基準に判断するか）→ **本ページ（発見/生産のモード選択）**→ [Loop Engineering](./loop-engineering)（生産モードの外側ループをシステムに固定する）という鎖の中央に位置する。
 
 ## プロンプト論争が噛み合わない理由
 
@@ -178,7 +178,7 @@ flowchart TD
 
 おそらくこれらの先行概念は「同じ根」から各分野が独立に到達したものだ。だから本ページは発明の主張ではなく、**「あなたも無意識に切り替えているこの軸を、一度言葉にしてみないか」という提案**である。
 
-## 🔗 さらに深く: なぜ生産モードに「フェーズ分割」「指示書の外在化」「合格基準」が要るのか
+## さらに深く: なぜ生産モードに「フェーズ分割」「指示書の外在化」「合格基準」が要るのか
 
 本ページはモード選択の **基準 (What/How)** を扱った。「**なぜ** これらの対策が構造的に不可避なのか」を LLM の制約から理解したい場合は、姉妹サイトを参照。
 
@@ -190,7 +190,7 @@ flowchart TD
 - [Loop Engineering](./loop-engineering) — 生産モードの外側ループをシステムに固定する工学
 - [Permission と Authority](./permission-vs-authority) — harness（移送可能）と doctrine（移送不可）の区別
 - [Routing vs Cascading](./routing-vs-cascading) / [ローカル LLM 環境への写像](./local-llm-workspace-mapping) — 発見/生産をインフラに割り当てる
-- [Doctrine と Intent](../concepts/07-doctrine-and-intent) — 何を基準に判断するか
+- [III.3 Doctrine](../part-3/doctrine) — 何を基準に判断するか
 
 ## 参考文献
 

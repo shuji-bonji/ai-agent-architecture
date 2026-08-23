@@ -90,7 +90,7 @@ graph LR
   style P4 fill:#fee2e2,stroke:#b91c1c,color:#000
 ```
 
-| Claude Code mechanism | Position on the spectrum | [Autonomy level from Chapter 07](../concepts/07-doctrine-and-intent) |
+| Claude Code mechanism | Position on the spectrum | [Autonomy levels in III.3 Doctrine](../part-3/doctrine) |
 | --- | --- | --- |
 | Plan mode | Pure harness (proposals only, zero execution rights) | Level 1 (fully supervised) |
 | Default (confirm each action) | Repeated permission | Level 2 |
@@ -129,12 +129,12 @@ graph TB
 
 - [strategy/proposal-and-binding](./proposal-and-binding) — why permission is a binding-layer request while authority is an expression-layer one (the coordinate system this page assumes)
 - [strategy/harness-engineering-mapping](./harness-engineering-mapping) — the static correspondence between the four harness elements and the 5-layer model
-- [concepts/07-doctrine-and-intent](../concepts/07-doctrine-and-intent) — the Doctrine layer in detail, autonomy levels 1–4
+- [III.3 Doctrine](../part-3/doctrine) — the Doctrine layer in detail, autonomy levels 1–4
 - [agents/subagent-quality-gate](../agents/subagent-quality-gate) — quality gates as detection devices for doctrine-type failure (expansive interpretation)
 - [mcp/security](../mcp/security) — authority management at MCP boundaries
 - [strategy/deterministic-verdicts](./deterministic-verdicts) — delegating **the power to issue a verdict** rather than discretion over actions; actions can be undone, a verdict absorbed downstream cannot
 
-## 🔗 Going Deeper: Why It Is Hard to Hand LLMs Durable Authority
+## Going Deeper: Why It Is Hard to Hand LLMs Durable Authority
 
 This page covered the **structure (What/How)** of permission and authority. To understand from the LLM's structural constraints **why** durable delegation of authority to an LLM is difficult, see the sister site.
 

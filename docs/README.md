@@ -8,12 +8,21 @@ With the expansion of the repository scope, the documentation structure has been
 
 ```
 docs/
-├── concepts/          # Vision, Philosophy, Theory
-│   ├── 01-vision.md
-│   ├── 02-reference-sources.md
-│   ├── 03-architecture.md
-│   ├── 04-ai-design-patterns.md
-│   └── 05-solving-ai-limitations.md
+├── preface.md         # Preface
+├── part-1/            # Part I
+│   └── constraints.md
+├── part-2/            # Part II
+│   ├── layers.md
+│   └── placement.md
+├── part-3/            # Part III Doctrine / Memory
+│   ├── doctrine.md
+│   └── memory.md
+├── part-4/            # Part IV
+│   ├── patterns.md
+│   ├── limits.md
+│   ├── physical.md
+│   └── prompt-decomposition.md
+├── concepts/          # Redirects from old URLs
 ├── mcp/              # MCP (External Integration)
 │   ├── catalog.md
 │   ├── security.md
@@ -46,20 +55,16 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 
 ## Document List
 
-### Vision and Philosophy
+### Spine
 
-| File                                                                   | Content                                        |
-| ---------------------------------------------------------------------- | ---------------------------------------------- |
-| [concepts/01-vision.md](./concepts/01-vision.md)                       | Vision and Core Philosophy of AI-Driven Development |
-| [concepts/02-reference-sources.md](./concepts/02-reference-sources.md) | System of "Reliable Reference Sources"         |
-
-### Architecture and Design
-
-| File                                                         | Content                            |
-| ------------------------------------------------------------ | ---------------------------------- |
-| [concepts/03-architecture.md](./concepts/03-architecture.md) | MCP/Skills/Agent Configuration Theory |
-| [concepts/04-ai-design-patterns.md](./concepts/04-ai-design-patterns.md) | AI Design Patterns and the Role of MCP |
-| [concepts/05-solving-ai-limitations.md](./concepts/05-solving-ai-limitations.md) | Approaches to Solving AI Limitations |
+| File | Content |
+| ---- | ------- |
+| [Preface](./preface) | Questions and scope |
+| [I.1 Constraint summary](./part-1/constraints) | Structural limits of the foundation model |
+| [II.1 Five layers](./part-2/layers) | Doctrine / Agent / Skills / Memory / MCP |
+| [II.2 Placement](./part-2/placement) | What belongs in which layer |
+| [IV.1 Patterns](./part-4/patterns) | How to pick a type |
+| [IV.2 Limits](./part-4/limits) | Lines that cannot be reached |
 
 ### MCP (External Integration)
 
@@ -109,9 +114,10 @@ Insights gained through dialogue with Claude are compiled in a reusable format.
 
 ### For First-Time Readers
 
-1. **concepts/01-vision.md** - Understand the overall philosophy
-2. **concepts/03-architecture.md** - Understand the components
-3. **mcp/catalog.md** - Review specific MCPs
+1. **preface.md** - Questions and scope
+2. **part-1/constraints.md** - Constraint summary
+3. **part-2/layers.md** - Five layers
+4. **mcp/catalog.md** - Review specific MCPs
 
 ### For Practitioners
 

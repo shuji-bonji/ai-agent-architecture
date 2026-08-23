@@ -147,10 +147,10 @@ The two return flows are the point. The Business Process **generates new Data**,
 | Tool Calling / MCP | [MCP](../mcp/what-is-mcp.md) | Connection as an implementation mechanism |
 | Skills | [Skills](../skills/what-is-skills.md) | Static knowledge and procedures as an implementation mechanism |
 | Workflow | [Workflows](../workflows/development-phases.md) | Patterns for fixed procedures |
-| Memory / Knowledge Graph | [Concepts 08](../concepts/08-memory-and-knowledge.md) | Concepts of memory and knowledge integration |
+| Memory / Knowledge Graph | [III.4 Memory](../part-3/memory) | Concepts of memory and knowledge integration |
 | RAG / GraphRAG | This section (page in preparation) | Access design for document knowledge |
 | Semantic Layer | [MCP / Semantic Layer](../mcp/semantic-layer.md) | Design discipline for structured data access |
-| Doctrine (decision criteria) | [Concepts 07](../concepts/07-doctrine-and-intent.md) | Constraints, purpose, decision criteria |
+| Doctrine (decision criteria) | [III.3 Doctrine](../part-3/doctrine) | Constraints, purpose, decision criteria |
 | Permission / Authority | [Strategy](../strategy/permission-vs-authority.md) | Separating permission from authority |
 
 > [!TIP]
@@ -159,10 +159,10 @@ The two return flows are the point. The Business Process **generates new Data**,
 ## Related Documents
 
 - [Overview (Information)](index.md) — Positioning and structure of this section
-- [Concepts 03: Architecture](../concepts/03-architecture.md) — The three-layer model in detail
-- [Concepts 04: AI Design Patterns](../concepts/04-ai-design-patterns.md) — Which pattern to pick when
+- [II.1 Five layers](../part-2/layers) — The five layers in detail
+- [IV.1 Patterns](../part-4/patterns) — Which pattern to pick when
 
-## 🔗 Going Deeper: Why LLMs Need an External Information Foundation
+## Going Deeper: Why LLMs Need an External Information Foundation
 
 This page covered the **structure (What/How)** of information architecture. To understand **why** an LLM alone is not enough — from the LLM's structural constraints — see the sister site.
 

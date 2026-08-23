@@ -119,8 +119,8 @@ flowchart TD
 | Sub-agent basics | [What is a Custom Sub-agent](../agents/what-is-subagent) |
 | MCP basics | [What is MCP](../mcp/what-is-mcp) |
 | Skill basics | [What is Skills](../skills/what-is-skills) |
-| Architecture overview | [03-architecture](../concepts/03-architecture) |
-| Relation to the Memory layer | [08-memory-and-knowledge](../concepts/08-memory-and-knowledge) |
+| Architecture overview | [II.1 Five layers](../part-2/layers) |
+| Relation to the Memory layer | [III.4 Memory](../part-3/memory) |
 
 ---
 

@@ -344,7 +344,7 @@ Tokens and latency grow, but the cost is **recouped through quality and avoided 
 >
 > **② Reviewer Sub-agent in the same context**: Asking the same session that wrote the code to "now review it" finds almost nothing. MUST be a separate process, separate context, and preferably a separate model.
 >
-> **③ Development without Memory**: Forcing the agent to re-read project conventions every time is the scatter-gather problem. Index ADRs and past PRs in the Memory layer. (See [Memory & Knowledge](../concepts/08-memory-and-knowledge).)
+> **③ Development without Memory**: Forcing the agent to re-read project conventions every time is the scatter-gather problem. Index ADRs and past PRs in the Memory layer. (See [III.4 Memory](../part-3/memory).)
 
 > [!WARNING]
 > Also **④ Meta-agent bloat**: the moment the Meta-agent starts summarizing or merging Sub-agent outputs, this pattern collapses. Keep the Meta-agent as a state machine + artifact router — never let it touch content.
@@ -383,9 +383,9 @@ What belongs in Management is **the "workflow" (how we manage), not the "impleme
 - [Sub-agent as Quality Gate](../agents/subagent-quality-gate.md) — Reviewer Sub-agent design
 - [Composition Patterns](../strategy/composition-patterns.md) — Coordination patterns for multiple MCPs / Skills
 - [Local LLM Workspace Mapping](../strategy/local-llm-workspace-mapping.md) — Details of the local-LLM variant
-- [Memory & Knowledge (KG)](../concepts/08-memory-and-knowledge.md) — Memory layer design
+- [III.4 Memory](../part-3/memory) — Memory layer design
 
-## 🔗 Going Deeper: Why Sub-agent Isolation Works
+## Going Deeper: Why Sub-agent Isolation Works
 
 This page covers the **structure (What / How)** of the Meta + Sub-agent pattern. To understand **why** Sub-agent isolation improves quality, in terms of LLM structural constraints, see the sister site.
 

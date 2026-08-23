@@ -147,10 +147,10 @@ graph TB
 | Tool Calling / MCP | [MCP](../mcp/what-is-mcp.md) | 接続の実装メカニズム |
 | Skills | [Skills](../skills/what-is-skills.md) | 静的知識・手順書の実装メカニズム |
 | Workflow | [Workflows](../workflows/development-phases.md) | 固定手順のパターン集 |
-| Memory / Knowledge Graph | [Concepts 08](../concepts/08-memory-and-knowledge.md) | 記憶と知識統合の概念 |
+| Memory / Knowledge Graph | [III.4 Memory](../part-3/memory) | 記憶と知識統合の概念 |
 | RAG / GraphRAG | 本セクション（ページ準備中） | 文書知識のアクセス設計 |
 | Semantic Layer | [MCP / Semantic Layer](../mcp/semantic-layer.md) | 構造化データアクセスの設計規律 |
-| Doctrine（判断基準） | [Concepts 07](../concepts/07-doctrine-and-intent.md) | 制約・目的・判断基準 |
+| Doctrine（判断基準） | [III.3 Doctrine](../part-3/doctrine) | 制約・目的・判断基準 |
 | Permission / Authority | [Strategy](../strategy/permission-vs-authority.md) | 権限と権威の分離 |
 
 > [!TIP]
@@ -159,10 +159,10 @@ graph TB
 ## 関連ドキュメント
 
 - [概要 (情報基盤)](index.md) — 本セクションの位置づけと構成
-- [Concepts 03: アーキテクチャ](../concepts/03-architecture.md) — 三層モデルの詳細
-- [Concepts 04: AI設計パターン](../concepts/04-ai-design-patterns.md) — どのパターンをいつ選ぶか
+- [II.1 五層](../part-2/layers) — 五層の詳細
+- [IV.1 パターン](../part-4/patterns) — どのパターンをいつ選ぶか
 
-## 🔗 さらに深く: なぜ LLM には外部の情報基盤が必要なのか
+## さらに深く: なぜ LLM には外部の情報基盤が必要なのか
 
 本ページは情報アーキテクチャの **構造 (What/How)** を扱った。「**なぜ** LLM 単体では足りないのか」を LLM の構造的制約から理解したい場合は、姉妹サイトを参照。
 

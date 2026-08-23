@@ -194,9 +194,9 @@ Structuring (reach and expression) raises the quality of proposals. Binding deci
 - [strategy/deterministic-verdicts](./deterministic-verdicts) — how to design the judgment part of the binding layer; the observation / judgment / narration split
 - [strategy/mcp-family](./mcp-family) — "judgment in code, narrative in the LLM" stated as an intra-family discipline
 - [mcp/semantic-layer](../mcp/semantic-layer) — probabilistic interpretation vs. deterministic compilation; the same shape in another domain
-- [concepts/05-solving-ai-limitations](../concepts/05-solving-ai-limitations) — separating probabilistic inference from deterministic verification
+- [IV.2 Limits](../part-4/limits) — separating probabilistic inference from deterministic verification
 
-## 🔗 Going Deeper: Why the Expression Layer Cannot Bind
+## Going Deeper: Why the Expression Layer Cannot Bind
 
 This page covered the **classification (What/How)** of the layers. To understand **why** instructions written into the context sometimes go unfollowed, in terms of the LLM's structural constraints, see the sister site.
 

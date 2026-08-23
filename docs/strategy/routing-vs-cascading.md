@@ -14,7 +14,7 @@ Once you have more than one model available — a cheap local model and an expen
 There are two foundational answers, and they differ on **when** the decision is made. **Routing** classifies the query up front and picks one model. **Cascading** runs the cheap model first, judges the output, and escalates only if it falls short. This page lets you choose between them on principle, and shows why they are the natural control layer for a **local + cloud tier** setup.
 
 ::: warning Positioning of This Document
-This is a strategy-layer document that builds on the three-layer model in [03-architecture](./../concepts/03-architecture) and the pattern selection in [04-ai-design-patterns](./../concepts/04-ai-design-patterns). Where [specialization-weights-vs-context](./specialization-weights-vs-context) addresses *how to build a specialist*, this page addresses *how to allocate queries across a fleet of models you already have*. It is the policy layer that sits on top of [What is A2A](./../agents/what-is-a2a).
+This is a strategy-layer document that builds on the five layers in [II.1 Five layers](../part-2/layers) and the pattern selection in [IV.1 Patterns](../part-4/patterns). Where [specialization-weights-vs-context](./specialization-weights-vs-context) addresses *how to build a specialist*, this page addresses *how to allocate queries across a fleet of models you already have*. It is the policy layer that sits on top of [What is A2A](./../agents/what-is-a2a).
 :::
 
 ::: details Meta Information
@@ -23,7 +23,7 @@ This is a strategy-layer document that builds on the three-layer model in [03-ar
 | --- | --- |
 | **What this page establishes** | The selection axis (decide-before vs. decide-after), a decision heuristic, and the local + cloud tier mapping |
 | **What this page does NOT cover** | Router training recipes, specific Judge model hyperparameters (see each paper's primary source) |
-| **Dependencies** | [03-architecture](./../concepts/03-architecture), [04-ai-design-patterns](./../concepts/04-ai-design-patterns), [What is A2A](./../agents/what-is-a2a) |
+| **Dependencies** | [II.1 Five layers](../part-2/layers), [IV.1 Patterns](../part-4/patterns), [What is A2A](./../agents/what-is-a2a) |
 | **Common misuse** | Treating "routing vs. cascading" as either/or; entangling the routing decision with the compression decision so you can't tell which one moved the metric |
 
 :::
@@ -187,14 +187,14 @@ Two design notes specific to the hybrid tier:
 
 ## Related Documents
 
-- [04-ai-design-patterns](./../concepts/04-ai-design-patterns) — which pattern to choose when (WHICH)
+- [IV.1 Patterns](../part-4/patterns) — which pattern to choose when (WHICH)
 - [What is A2A](./../agents/what-is-a2a) — the agent-to-agent substrate routing/cascading policies sit on top of
 - [specialization-weights-vs-context](./specialization-weights-vs-context) — building the specialist models a router dispatches to
 - [local-llm-workspace-mapping](./local-llm-workspace-mapping) — placing the local tier of a hybrid setup
 - [composition-patterns](./composition-patterns) — composing MCP × Skill × Agent within each tier
 - [deterministic-verdicts](./deterministic-verdicts) — moving the judge's verdict out of the LLM; where the pass criteria are writable, the judge can become a rule table
 
-## 🔗 Deeper: Why Is the Judge So Hard to Trust?
+## Deeper: Why Is the Judge So Hard to Trust?
 
 This page covered the **design judgment (What/How)** of allocating queries across models. The hardest part — a model reliably judging whether an answer is "good enough" — runs straight into the LLM's structural limits. To understand **why** self-evaluation is unreliable, see the sibling site.
 

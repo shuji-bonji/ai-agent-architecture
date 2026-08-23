@@ -396,5 +396,5 @@ flowchart TD
 ## 関連ドキュメント
 
 - [workflows/patterns.md](../workflows/patterns) — 既存のワークフローパターン（パターン2の実績）
-- [concepts/03-architecture.md](../concepts/03-architecture) — MCP / Skill / Agent のレイヤー構造
+- [II.1 五層](../part-2/layers) — Doctrine / Agent / Skills / Memory / MCP
 - [mcp/catalog.md](../mcp/catalog) — 構築済みMCPカタログ
