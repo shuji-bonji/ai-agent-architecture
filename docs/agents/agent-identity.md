@@ -45,7 +45,7 @@ When the need to assign IDs to agents first arises, the natural impulse is to re
 
 The OpenID Foundation whitepaper identifies the root cause as follows:
 
-> "AI agents differ fundamentally from traditional software; they take autonomous actions on external services, exhibiting non-deterministic, flexible behavior that adapts in real-time, rather than simply executing predetermined instructions."
+> "AI agents differ fundamentally from traditional software; they take autonomous actions on external services, exhibiting non-deterministic, flexible behavior that adapts in real-time, rather than simply executing predetermined instructions."  
 > — OpenID Foundation, "Identity Management for Agentic AI" v1.1, Executive Summary (Section 1.1)
 
 That is, an agent identity must encode not only **what** the agent is, but also **the context it is currently acting in and on whose behalf**. This is the central departure from prior identity models.
@@ -76,7 +76,7 @@ flowchart LR
 
 The whitepaper itself explicitly states that no single model exists today that satisfies all four:
 
-> "While it is possible to securely connect one agent to many tools within a single organization's control, the broader vision of autonomous agents seamlessly operating across the open web remains largely unsolved."
+> "While it is possible to securely connect one agent to many tools within a single organization's control, the broader vision of autonomous agents seamlessly operating across the open web remains largely unsolved."  
 > — Ibid., Section 2.14
 
 Even in production deployments today, agent identity design therefore requires understanding **the boundary between what can be solved now and what remains open**.
@@ -85,33 +85,33 @@ Even in production deployments today, agent identity design therefore requires u
 
 The core models identified by the OpenID Foundation define **where to begin** designing agent identity.
 
-> "Fragmentation is already a risk, with vendors developing proprietary systems. To avoid a future where agents require dozens of identities to operate, a few key models exist that are worth considering."
+> "Fragmentation is already a risk, with vendors developing proprietary systems. To avoid a future where agents require dozens of identities to operate, a few key models exist that are worth considering."  
 > — Ibid., Section 3.1
 
 ### Model A: The Enhanced Service Account
 
-> "The most likely near-term enterprise pattern is that this model extends the familiar concept of workload identity. An agent is treated like a service, but its identity token is enriched with agent-specific metadata (e.g., agent_model, agent_provider, agent_version), asserted via standards like SPIFFE/SPIRE or proprietary extensions."
+> "The most likely near-term enterprise pattern is that this model extends the familiar concept of workload identity. An agent is treated like a service, but its identity token is enriched with agent-specific metadata (e.g., agent_model, agent_provider, agent_version), asserted via standards like SPIFFE/SPIRE or proprietary extensions."  
 > — Ibid., Section 3.1
 
 This model extends existing workload identity with AI-specific metadata. It fits best with **autonomously running background agents** — nightly batches, scheduled jobs, internal bots.
 
 ### Model B: The Delegated User Sub-Identity (On-Behalf-Of)
 
-> "Foundational for agents acting directly on behalf of a user, this model creates an identity that is intrinsically linked to and derived from that user's session. It is the formal implementation of the 'on-behalf-of' (OBO) flow, where the agent's identity is distinct but inseparable from the user's authority."
+> "Foundational for agents acting directly on behalf of a user, this model creates an identity that is intrinsically linked to and derived from that user's session. It is the formal implementation of the 'on-behalf-of' (OBO) flow, where the agent's identity is distinct but inseparable from the user's authority."  
 > — Ibid., Section 3.1
 
 This model fits best with interactive agents triggered by a user (coding assistants, browser-using agents). It is built on OAuth 2.0 Token Exchange.
 
 ### Model C: Federated Trust and Interoperability
 
-> "Agents require an interoperable trust fabric to operate across diverse domains without a central IdP."
+> "Agents require an interoperable trust fabric to operate across diverse domains without a central IdP."  
 > — Ibid., Section 3.1
 
 This model is required for cross-organizational collaboration and conversation with third-party agents via A2A. It leverages OpenID Federation and X.509 certificates.
 
 ### Model D: Sovereign and Portable Agent Identity
 
-> "Each agent instance can be assigned a globally unique and verifiable identifier for accountability, using schemes like DIDs or others currently being standardized."
+> "Each agent instance can be assigned a globally unique and verifiable identifier for accountability, using schemes like DIDs or others currently being standardized."  
 > — Ibid., Section 3.1
 
 This model fits open-web agents and peer-to-peer agent interactions. Web Bot Auth (IETF) belongs to this family.
@@ -146,12 +146,12 @@ In real systems, a single agent typically uses multiple models depending on cont
 
 The most commonly misunderstood aspect of agent identity design is the implementation of user delegation. Many current implementations are still effectively **impersonation**.
 
-> "Currently, agents often impersonate users in a manner that is opaque to external services (e.g., via screen scraping and browser use), creating significant accountability gaps and security risks."
+> "Currently, agents often impersonate users in a manner that is opaque to external services (e.g., via screen scraping and browser use), creating significant accountability gaps and security risks."  
 > — Ibid., Section 3.2
 
 A correct delegation structure includes **two distinct identities** in the access token.
 
-> "This is critically different from impersonation because it results in an access token containing two distinct identities: the user who delegated authority (e.g., in the sub claim) and the agent authorized to act (e.g., in the act or azp claim). This creates a clear, auditable link from the very first step."
+> "This is critically different from impersonation because it results in an access token containing two distinct identities: the user who delegated authority (e.g., in the sub claim) and the agent authorized to act (e.g., in the act or azp claim). This creates a clear, auditable link from the very first step."  
 > — Ibid., Section 3.2
 
 ```mermaid
@@ -194,7 +194,7 @@ sequenceDiagram
 
 The difference between impersonation and delegation flows directly into the audit log.
 
-> "Today, an API call made by an agent on a user's behalf is often logged indistinguishably from an action taken directly by the user, creating a black hole for accountability and forensics. By implementing true delegated authority, the credential presented to the PEP contains distinct identifiers for both the human principal and the agent actor."
+> "Today, an API call made by an agent on a user's behalf is often logged indistinguishably from an action taken directly by the user, creating a black hole for accountability and forensics. By implementing true delegated authority, the credential presented to the PEP contains distinct identifiers for both the human principal and the agent actor."  
 > — Ibid., Section 2.11
 
 The design check is simple: **if an audit log record contains only one principal, the system cannot fulfil its accountability obligation**. At minimum, the structure must look like:
@@ -229,7 +229,7 @@ Major IAM vendors are moving toward treating agents as first-class entities, on 
 
 The whitepaper is candid about the current limits, however:
 
-> "The interoperability between these agent identity systems remains limited, with vendors developing proprietary approaches unless they converge to common standards."
+> "The interoperability between these agent identity systems remains limited, with vendors developing proprietary approaches unless they converge to common standards."  
 > — Ibid., Section 2.8
 
 In practical terms, **wholesale dependence on a single vendor's agent identity platform is a viable near-term solution but carries lock-in risk**.
@@ -298,7 +298,7 @@ Common failure modes in agent identity design:
 
 What we have covered above is the "currently solvable" area. The unresolved problems are also clear.
 
-> "[T]he challenges multiply exponentially with recursive delegation (agents spawning sub-agents), scope attenuation across delegation chains, true on-behalf-of user flows that maintain accountability, and the interoperability nightmare of different agent identity systems attempting to communicate."
+> "[T]he challenges multiply exponentially with recursive delegation (agents spawning sub-agents), scope attenuation across delegation chains, true on-behalf-of user flows that maintain accountability, and the interoperability nightmare of different agent identity systems attempting to communicate."  
 > — Ibid., Section 2.14
 
 The following are areas where even production systems must adopt a **"no complete solution exists yet; mitigate through operational practice"** posture.
@@ -325,5 +325,5 @@ Building on the **"Who"** defined here (agent identifiers and delegation chains)
 
 ---
 
-> **Next**: *Permissions: RBAC/ABAC/JIT (planned)*
+> **Next**: *Permissions: RBAC/ABAC/JIT (planned)*  
 > **Previous**: *Hybrid Local/Cloud LLMs (planned)*

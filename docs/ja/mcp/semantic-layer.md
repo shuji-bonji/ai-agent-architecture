@@ -276,7 +276,7 @@ graph TB
 
 ---
 
-> **次へ**: [MCP 開発ガイド](./development)
+> **次へ**: [MCP 開発ガイド](./development)  
 > **前へ**: [MCP セキュリティ](./security)
 
 **最終更新**: 2026年6月

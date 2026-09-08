@@ -1,7 +1,7 @@
 # MCP vs Skills: Fundamental Differences and Selection Criteria
 
 > [!TIP] Looking for a 3-line answer?
-> **MCP** = a **connection** to external systems; **Skills** = **knowledge / playbook** kept inside the agent. Use both if you need both.
+> **MCP** = a **connection** to external systems; **Skills** = **knowledge / playbook** kept inside the agent. Use both if you need both.  
 > For query-by-query Q&A and a 10-second decision flow, see [MCP vs Skills FAQ (3-line version)](../faq/mcp-vs-skills). This page provides the in-depth selection guide.
 
 ## Overview Comparison Table
@@ -390,7 +390,7 @@ Use `gh` CLI for GitHub operations:
 
 ### Key Insight
 
-> **CLI exists → CLI + Skill (token efficient)**
+> **CLI exists → CLI + Skill (token efficient)**  
 > **No CLI → MCP (required)**
 
 This pattern emerged from community discussion on r/ClaudeAI and reflects real-world usage patterns where MCPs can be "token hungry" for services that already have well-designed CLIs.

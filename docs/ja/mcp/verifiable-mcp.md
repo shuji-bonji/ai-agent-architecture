@@ -225,5 +225,5 @@ export function withProvenance<TInput, TOutput>(
 
 ---
 
-> **次へ**: [MCP 開発ガイド](./development)
+> **次へ**: [MCP 開発ガイド](./development)  
 > **前へ**: [MCP セキュリティ](./security)

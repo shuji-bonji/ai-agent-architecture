@@ -17,7 +17,7 @@ This axis is the **human-side decision framework** that [Loop Engineering](./loo
 > - The first key to switching is **compression readiness** ("can you write the instruction doc?"); the second is **standpoint** (compressed for whom?).
 
 > [!WARNING]
-> **Where this page sits**
+> **Where this page sits**  
 > It sits in the middle of the chain: [III.3 Doctrine](../part-3/doctrine) (what to judge against) → **this page (discovery/production mode selection)** → [Loop Engineering](./loop-engineering) (fixing the production-mode outer loop into the system).
 
 ## Why the Prompt Debate Keeps Missing Each Other
@@ -199,7 +199,7 @@ This page covered the **criteria (What/How)** of mode selection. To understand *
 
 ---
 
-> **Previous**: [Agent Loop Patterns](./agent-loop-patterns.md)
+> **Previous**: [Agent Loop Patterns](./agent-loop-patterns.md)  
 > **Next**: [Loop Engineering](./loop-engineering.md)
 
 **Last updated**: June 2026

@@ -218,7 +218,7 @@ const rules: Rule[] = [
 
 ---
 
-> **前へ**: [MCP Family](./mcp-family.md)
+> **前へ**: [MCP Family](./mcp-family.md)  
 > **次へ**: [ローカル LLM 環境への 5 層モデルの写像](./local-llm-workspace-mapping.md)
 
 **最終更新**: 2026 年 7 月

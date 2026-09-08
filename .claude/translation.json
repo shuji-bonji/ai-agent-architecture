@@ -1,0 +1,19 @@
+{
+  "defaultSource": "ja",
+  "threshold": 0.85,
+  "maxFixRounds": 3,
+  "localeRoots": {
+    "ja": "docs/ja",
+    "en": "docs"
+  },
+  "filePairs": [
+    { "ja": "README.ja.md", "en": "README.md" }
+  ],
+  "sourceOverrides": [],
+  "exclude": [
+    "docs/concepts/**",
+    "docs/ja/concepts/**",
+    "docs/.vitepress/**",
+    "docs/public/**"
+  ]
+}

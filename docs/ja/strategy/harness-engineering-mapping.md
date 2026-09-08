@@ -233,5 +233,5 @@ graph LR
 
 ---
 
-> **前へ**: [ローカル LLM 環境への 5 層モデルの写像](./local-llm-workspace-mapping.md)
+> **前へ**: [ローカル LLM 環境への 5 層モデルの写像](./local-llm-workspace-mapping.md)  
 > **次へ**: [Hooks（実行時フック）](./hooks)

@@ -242,7 +242,7 @@ flowchart LR
 
 ---
 
-> **次へ**: [スキル導入・利用ガイド](./how-to-use-skills)
+> **次へ**: [スキル導入・利用ガイド](./how-to-use-skills)  
 > **前へ**: [スキル作成ガイド](./how-to-create-skills)
 
 **最終更新**: 2026年7月

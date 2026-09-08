@@ -17,7 +17,7 @@ The framing that "the inner loop has been solved since ReAct and nobody competes
 > - It isn't free. **Stopping criteria, context hygiene, idempotent tools, and a critic that can say "no"** all have to be rebuilt on the system side. And it carries a trade-off: loss of understanding.
 
 > [!WARNING]
-> **Where this page sits**
+> **Where this page sits**  
 > Third in the chain: [Harness Engineering Mapping](./harness-engineering-mapping) (four harness responsibilities → five-layer model) → [Agent Loop Patterns](./agent-loop-patterns) (inner-loop types) → **this page (automating the outer loop)** → [autonomous-dev-meta-agent](../workflows/autonomous-dev-meta-agent) (a concrete implementation).
 
 ## Separating the Two Loops
@@ -241,7 +241,7 @@ This page covered the **engineering (What/How)** of the outer loop. To understan
 
 ---
 
-> **Previous**: [Discovery vs. Production](./discovery-vs-production.md)
+> **Previous**: [Discovery vs. Production](./discovery-vs-production.md)  
 > **Next**: [Development Phases](./../workflows/development-phases.md)
 
 **Last updated**: June 2026

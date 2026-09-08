@@ -212,7 +212,7 @@ This page covered the **design judgment (What/How)** of allocating queries acros
 
 ---
 
-> **Previous**: [Weight vs. Context Specialization](./specialization-weights-vs-context.md)
+> **Previous**: [Weight vs. Context Specialization](./specialization-weights-vs-context.md)  
 > **Next**: [Agent Loop Patterns](./agent-loop-patterns.md)
 
 **Last updated**: June 2026

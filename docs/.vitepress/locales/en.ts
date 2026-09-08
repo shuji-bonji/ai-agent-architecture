@@ -156,6 +156,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                 { text: 'Doc Generation', link: '/workflows/patterns/documentation-generation' },
                 { text: 'Multi-Agent', link: '/workflows/patterns/multi-agent' },
                 { text: 'Issue→Deploy Autonomy (Meta + Sub-agent)', link: '/workflows/autonomous-dev-meta-agent' },
+                { text: 'Translation Quality Gate Loop', link: '/workflows/translation-quality-loop' },
               ],
             },
             { text: 'Glossary', link: '/glossary' },

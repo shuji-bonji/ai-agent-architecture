@@ -227,6 +227,10 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                   text: 'Issue→Deploy 自律化 (Meta + Sub-agent)',
                   link: '/ja/workflows/autonomous-dev-meta-agent',
                 },
+                {
+                  text: '翻訳品質ゲートの自走ループ',
+                  link: '/ja/workflows/translation-quality-loop',
+                },
               ],
             },
             { text: '用語集', link: '/ja/glossary' },

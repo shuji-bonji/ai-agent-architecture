@@ -17,7 +17,7 @@
 > - ただし無料ではない。**停止判定・コンテキスト衛生・冪等なツール・「ノー」と言える批評者**を、すべてシステム側に作り直す必要がある。さらに「理解の喪失」というトレードオフが伴う。
 
 > [!WARNING]
-> **このページの位置づけ**
+> **このページの位置づけ**  
 > [Harness Engineering との対応関係](./harness-engineering-mapping)（ハーネス 4 責務 → 5 層モデル）→ [エージェントループのパターン](./agent-loop-patterns)（内側ループの型）→ **本ページ（外側ループの自動化）**→ [autonomous-dev-meta-agent](../workflows/autonomous-dev-meta-agent)（その具体実装）という鎖の 3 番目。
 
 ## 二つのループを分ける
@@ -241,7 +241,7 @@ flowchart LR
 
 ---
 
-> **前へ**: [Discovery vs Production](./discovery-vs-production.md)
+> **前へ**: [Discovery vs Production](./discovery-vs-production.md)  
 > **次へ**: [開発フェーズ](../workflows/development-phases.md)
 
 **最終更新**: 2026 年 6 月

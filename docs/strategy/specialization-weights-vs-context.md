@@ -158,7 +158,7 @@ This page addressed the **design judgment (What/How)** of weight vs. context spe
 
 ---
 
-> **Previous**: [Permission vs. Authority](./permission-vs-authority.md)
+> **Previous**: [Permission vs. Authority](./permission-vs-authority.md)  
 > **Next**: [Routing vs. Cascading](./routing-vs-cascading.md)
 
 **Last updated**: June 2026

@@ -1,9 +1,9 @@
 ---
 name: translation-quality
-description: Japanese to English translation quality evaluation using xCOMET
-version: 1.0.0
+description: Bilingual (ja/en) documentation translation quality evaluation using xCOMET. The source language is resolved per page pair from .claude/translation.json, not fixed.
+version: 1.1.0
 owner: @shuji-bonji
-last_reviewed: 2025-01-28
+last_reviewed: 2026-09-08
 ---
 
 # Translation Quality Evaluation Skill
@@ -23,9 +23,15 @@ Evaluate and ensure high-quality Japanese → English translations using automat
 
 | Input | Type | Description |
 |-------|------|-------------|
-| source_file | `.ja.md` file | Japanese source document |
-| translation_file | `.md` file | English translation document |
-| threshold | number (0-1) | Minimum acceptable score (default: 0.85) |
+| page pair | two `.md` files | One page in both locales. Resolved from `.claude/translation.json` — see **Pairing and Direction** below |
+| source language | `ja` or `en` | Which side of the pair is the original. Resolved per pair, never assumed |
+| threshold | number (0-1) | Minimum acceptable score (default: from config, 0.85) |
+
+### Pairing and Direction
+
+This repository keeps locales in **directories**, not filename suffixes: `docs/` is English and `docs/ja/` is Japanese. `docs/ja/part-2/layers.md` pairs with `docs/part-2/layers.md`. Only files listed under `filePairs` (currently `README.ja.md` ↔ `README.md`) use the suffix form.
+
+The original is not always Japanese. `.claude/translation.json` holds `defaultSource` for the repository and a `sourceOverrides` list of globs for pages written the other way round. Resolve the direction per pair before scoring; scoring a translation as if it were the source inverts the metric.
 
 ## Outputs
 
@@ -40,7 +46,7 @@ Evaluate and ensure high-quality Japanese → English translations using automat
 ### MUST
 
 - Use `xcomet:xcomet_batch_evaluate` for multi-segment evaluation
-- Set `source_lang: "ja"` and `target_lang: "en"`
+- Read `.claude/translation.json` before scoring, and set `source_lang` / `target_lang` from the direction resolved for that pair
 - Generate report in embeddable Markdown format
 - Include both summary and detailed segment scores
 
@@ -53,6 +59,8 @@ Evaluate and ensure high-quality Japanese → English translations using automat
 ### MUST NOT
 
 - Mark documents as "Excellent" if any segment scores < 0.85
+- Edit the source side of a pair to raise a score. Only the translation side is revised
+- Lower `threshold` or add a `sourceOverrides` entry to make a failing pair pass
 - Skip segments containing only code blocks
 - Include raw JSON in final report (format as Markdown tables)
 
@@ -61,9 +69,13 @@ Evaluate and ensure high-quality Japanese → English translations using automat
 ### Step 1: File Detection
 
 ```
-Detect .ja.md ↔ .md pairs in the specified path
-- If single file specified, find its pair automatically
-- If directory specified, find all pairs recursively
+Resolve pairs from .claude/translation.json
+- localeRoots: docs/ja/X  <->  docs/X   (English side is docs/ excluding docs/ja/)
+- filePairs:   explicit pairs such as README.ja.md <-> README.md
+- exclude:     glob list to skip (redirect stubs, .vitepress, public)
+- If a single file is given, find its counterpart on the other side
+- If a directory is given, walk it and collect every pair
+Then resolve the direction: defaultSource, overridden by sourceOverrides globs
 ```
 
 ### Step 2: Segment Extraction
@@ -92,8 +104,8 @@ mcp: xcomet
 tool: xcomet_batch_evaluate
 params:
   pairs: [{ source: "日本語", translation: "English" }, ...]
-  source_lang: "ja"
-  target_lang: "en"
+  source_lang: "<resolved source>"   # ja or en, per pair
+  target_lang: "<the other side>"
   response_format: "markdown"
 ```
 
@@ -140,7 +152,7 @@ Output embeddable Markdown with:
 
 **Process:**
 
-1. Detect pair: `overview.ja.md` ↔ `overview.md`
+1. Resolve pair: `docs/ja/skills/overview.md` ↔ `docs/skills/overview.md`, source `ja`
 2. Extract 15 segments
 3. Call `xcomet:xcomet_batch_evaluate`
 4. Average score: 0.978

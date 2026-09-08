@@ -275,7 +275,7 @@ This page covered the **structure (What / How)** of the Semantic Layer. To under
 
 ---
 
-> **Next**: [MCP Development Guide](./development)
+> **Next**: [MCP Development Guide](./development)  
 > **Previous**: [MCP Security](./security)
 
 **Last updated**: June 2026
