@@ -70,6 +70,40 @@ Doctrine is the measure the other layers follow. Agent combines Skills, Memory, 
 
 This book treats how to place those five layers, and how to leave judgments that can be revised later.
 
+### The object of design has moved outward
+
+The phrase "designing with AI" has stayed the same, but what counts as the object of design has moved outward over the past few years. The four rungs below trace that move.
+
+| Rung | What is designed |
+| --- | --- |
+| **Prompt Engineering** | The words sent to the model |
+| **Context Engineering** | Everything the model sees, not the instruction alone |
+| **Harness Engineering** | The runtime code around the model: tool calls, state, error handling |
+| **Loop Engineering** | The autonomous cycle that drives the whole toward a goal |
+
+The rungs do not replace one another. Each wraps the one inside it. Starting on Loop Engineering does not remove the prompt, and context design stays.
+
+```mermaid
+flowchart TB
+    subgraph LOOP["Loop Engineering — autonomous cycle toward a goal"]
+        direction TB
+        subgraph HARNESS["Harness Engineering — runtime code around the model"]
+            direction TB
+            subgraph CTX["Context Engineering — everything the model sees"]
+                direction TB
+                PROMPT["Prompt Engineering<br/>the words sent to the model"]
+            end
+        end
+    end
+
+    style PROMPT fill:#dcfce7,stroke:#15803d,color:#000
+    style CTX fill:#dbeafe,stroke:#1d4ed8,color:#000
+    style HARNESS fill:#fef9c3,stroke:#a16207,color:#000
+    style LOOP fill:#f3f4f6,stroke:#374151,color:#000
+```
+
+The five layers of this book are judgments placed at the Harness and Loop rungs. The rungs say how far the object of design has moved outward; the five layers say what to place where once it has. The two are different axes, so do not merge them when reading them side by side. Automating the outer loop itself is covered in [Loop Engineering](./strategy/loop-engineering).
+
 ## 0.3 What this book does not cover
 
 The following are out of scope.

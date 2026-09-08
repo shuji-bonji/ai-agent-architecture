@@ -70,6 +70,40 @@ Doctrine は、他の層が従う物差しになる。Agent は、Skills・Memor
 
 本書は、この 5 層の置き方と、あとから直せる判断の残し方を扱う。
 
+### 設計の対象は外へ移ってきた
+
+同じ「AI の設計」という言葉でも、何を設計の対象と見なすかは、この数年で外へ移ってきた。次の四段が、その移り方である。
+
+| 段 | 何を設計するか |
+| --- | --- |
+| **Prompt Engineering** | モデルに送る言葉 |
+| **Context Engineering** | モデルが見るすべて（指示だけでなく文脈全体） |
+| **Harness Engineering** | モデルを取り囲む実行コード（ツール実行、状態の管理、エラー処理） |
+| **Loop Engineering** | ゴールへ向けて全体を駆動する自律サイクル |
+
+四段は置き換えではない。外側が内側を包む。Loop Engineering を始めてもプロンプトは消えないし、文脈の設計も残る。
+
+```mermaid
+flowchart TB
+    subgraph LOOP["Loop Engineering — ゴールへ向けた自律サイクル"]
+        direction TB
+        subgraph HARNESS["Harness Engineering — 取り囲む実行コード"]
+            direction TB
+            subgraph CTX["Context Engineering — モデルが見るすべて"]
+                direction TB
+                PROMPT["Prompt Engineering<br/>モデルに送る言葉"]
+            end
+        end
+    end
+
+    style PROMPT fill:#dcfce7,stroke:#15803d,color:#000
+    style CTX fill:#dbeafe,stroke:#1d4ed8,color:#000
+    style HARNESS fill:#fef9c3,stroke:#a16207,color:#000
+    style LOOP fill:#f3f4f6,stroke:#374151,color:#000
+```
+
+本書の 5 層は、この四段でいう Harness と Loop の位置に置く判断を扱う。四段の梯子は「設計の対象がどこまで外へ広がったか」を示し、5 層は「その先で何をどこへ置くか」を示す。軸が違うので、並べて読むときは混ぜない。外側ループそのものの自動化は [Loop Engineering](./strategy/loop-engineering) に書く。
+
 ## 0.3 本書が扱わないもの
 
 次は扱わない。

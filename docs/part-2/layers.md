@@ -65,8 +65,11 @@ When agents talk to each other, A2A (Agent-to-Agent Protocol) is used. MCP conne
 | Treating a sub-agent as a substitute for MCP | A sub-agent is how Agent splits work |
 | Treating Memory as a mere cache | Memory's point is keeping relations |
 | Treating a product name (Claude Code, and so on) as a layer name | The product is a host. The layer is ownership |
+| Treating the four rungs (Prompt / Context / Harness / Loop Engineering) as the five layers | Different axes. The rungs say how far design has moved outward; the layers say what goes where |
 
 Work that needs no judgment need not go on MCP. Operations a human judges may stay on the official CLI. When the model judges, connection is MCP, knowledge is Skills, a split of roles is Agent. Detail of the test is [II.2](./placement).
+
+The four rungs and the five layers are different axes. The rungs say how far the object of design has moved outward from the words sent to the model. The five layers say what to place where once it has. Climbing a rung removes no layer, and settling the five layers does not by itself make the outer loop run. The full ladder is in [Preface 0.2](../preface); automating the outer loop is in [Loop Engineering](../strategy/loop-engineering).
 
 ## 2.5 What this chapter does not decide
 
