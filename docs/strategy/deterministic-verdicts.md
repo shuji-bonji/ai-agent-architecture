@@ -21,7 +21,7 @@ Four things are covered: (1) where to split observation, judgment, and narration
 
 |                       |                                                                                                                             |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **What this page fixes** | The three-way split, where a judgment layer belongs, four-valued verdicts, the rule-table format, reproducibility practices, regression monitoring |
+| **What this page fixes** | The three-way split, where a judgment layer belongs (including outside the system), four-valued verdicts, the rule-table format, checks on the narration layer, reproducibility practices, regression monitoring |
 | **Out of scope**      | Domain-specific criteria, single-MCP implementation (→ [mcp/development](../mcp/development)), the mechanics of non-determinism (→ sister site) |
 | **Depends on**        | [mcp-family](./mcp-family), [permission-vs-authority](./permission-vs-authority), [mcp/what-is-mcp](../mcp/what-is-mcp)      |
 | **Common misuse**     | Letting the LLM issue the verdict; assuming `temperature=0` yields determinism; defaulting missing facts to "no problem"     |
@@ -98,6 +98,35 @@ Build an MCP that returns observations and the next question is always "so, is i
 > [!IMPORTANT]
 > What separates the rows is **not how hard the domain is**. "Can I trust this PDF?" is writable. "Is this expense deductible?" is writable up to requirement satisfaction — what is not writable is the finding of fact ("was this expenditure business-related?"). **The unwritable part is not handed to the LLM; the fact that it could not be written is itself returned as the verdict.**
 
+### Writable Criteria Are Not Enough — Outside the System
+
+The table above branches on one question: can the criteria be written in advance? There is a prior question: **is the system allowed to judge at all?**
+
+In the Law row, requirement checks live in code. But the conclusion itself — "this expenditure is deductible" — is not emitted by the system even where the requirements are writable. The reason is not accuracy. Articles 72 of the Attorney Act, 52 of the Certified Public Tax Accountant Act, and 27 of the Labor and Social Security Attorney Act reserve the application of law to another party's individual case, as a business, to licensed professionals. [houki-hub](https://github.com/shuji-bonji/houki-hub) draws the family's scope along that line.
+
+The same shape appears outside law: medical indication, credit approval, disciplinary measure. Criteria may be documented, yet who may judge is fixed by statute, contract, or internal rule.
+
+```mermaid
+flowchart TD
+    Q["Where does this item's judgment belong?"]
+    Q --> A{"May the system judge?<br/>(statute, contract, accountability)"}
+    A -->|No| OUT["Outside the system<br/>hand to a licensed or<br/>authorized person"]
+    A -->|Yes| B{"Criteria writable<br/>in advance?"}
+    B -->|Yes| CODE["Judgment layer = code<br/>rule table + firedRules"]
+    B -->|No| ESC["human_review_required"]
+    CODE --> NAR["Narration layer = LLM"]
+    ESC --> NAR
+    OUT --> NAR
+
+    style OUT fill:#FFE4B5,color:#333,stroke:#333
+    style CODE fill:#FFB6C1,color:#333,stroke:#333
+    style ESC fill:#FFB6C1,color:#333,stroke:#333
+    style NAR fill:#90EE90,color:#333,stroke:#333
+```
+
+> [!NOTE]
+> "Outside the system" and `human_review_required` look alike downstream and differ in substance. The former **never returns to the system, however well the criteria are written**. The latter becomes code-judgeable next time once the missing facts arrive. Collapsing both into one value leaves the former filed forever as "almost automatable."
+
 ### Four Values, Not Two
 
 A rule table with only pass/fail must push the unwritable part into one side or the other. Which side it lands on is decided by the implementer's mood — or the LLM's.
@@ -114,13 +143,14 @@ A rule table with only pass/fail must push the unwritable part into one side or 
 
 ## Writing the Rule Table
 
-Five rules govern the format.
+Six rules govern the format.
 
 1. **Take only observation-layer facts as input.** No natural language (document body, user explanation). Admit it and the criteria become conditioned on the content being judged.
 2. **Order the rules and fix one winner rule.** Either "first match wins" or "heaviest verdict wins" — pick one. Mixing them makes the same input produce different results.
 3. **Always emit the fired rule IDs.** They are the input to the narration layer. A verdict without `firedRules` cannot survive an audit.
 4. **Carry missing facts as missing. Never fill them with a default.**
 5. **Make the profile swappable.** The same facts warrant different acceptance criteria for different uses; switching criteria must not require touching the judgment logic.
+6. **Enumerate the rule inputs that an LLM can produce or alter.** Rule 1 blocks natural language; it does not block structured data the LLM produced from entering the observation layer. If a rule reads "auto-approve when the classification label is `public`" and the proposing LLM assigns that label, the LLM is doing the judging. Treat every enumerated input as a hole in the claim that judgment lives in code ([the HEXIS I0 loophole](https://github.com/shuji-bonji/HEXIS/blob/main/docs/04-invariants.md)).
 
 ```ts
 // Pseudocode: facts → verdict
@@ -148,6 +178,19 @@ const rules: Rule[] = [
 
 > [!TIP]
 > A restatement of the role helps. The LLM is **not the judge but the clerk who writes the opinion.** The holding is already fixed; the LLM writes only the reasoning. Putting that framing at the top of the Skill keeps the implementation from wandering.
+
+### Check What Comes Back
+
+Moving judgment into code leaves the narration layer with failures of its own. The clerk transcribes the holding — and **mistranscribes it**.
+
+| Failure | Check (performed in code) |
+| --- | --- |
+| Wrong item, dropped item | Reconcile the item count against the `firedRules` count |
+| Misattributed or invented rule ID | Verify every ID in the output exists in `firedRules` |
+| Deviation softened in wording | Match the verdict vocabulary against the fixed four-value list |
+| Malformed output | Run schema validation |
+
+None of these is handled by telling the LLM to be careful. The consumer of the narration output checks it in code. Prompt instructions do not count as a control.
 
 ## Securing Reproducibility When an LLM Must Judge
 
@@ -186,13 +229,16 @@ The cause is a provider-side model swap. Three properties make it awkward.
 
 ## Design Checklist
 
+- [ ] Has **whether the system may judge at all** been settled separately from whether the criteria are writable?
 - [ ] Are observation, judgment, and narration **separate layers** (not cohabiting one prompt)?
 - [ ] Does the judgment layer take **only facts** as input (no document body or other natural language)?
 - [ ] Is the verdict **four-valued**, able to express "could not judge"?
 - [ ] Are fired rule IDs (`firedRules`) emitted?
 - [ ] Are missing facts **left unfilled** (is "could not confirm" being turned into "no problem")?
 - [ ] Are acceptance criteria swappable as a **profile**?
+- [ ] Have the rule inputs that **an LLM can produce or alter** been enumerated?
 - [ ] Does the narration prompt leave any room to read "you may re-evaluate"?
+- [ ] Is the narration output **reconciled against `firedRules`**?
 - [ ] For any remaining LLM judgment: explicit `temperature=0`, multiple runs, disagreement rate surfaced?
 - [ ] Is there a **golden set of borderline cases** under CI regression monitoring?
 - [ ] Are verdicts logged reproducibly (input facts + profile + effective configuration)?
@@ -213,6 +259,7 @@ The cause is a provider-side model swap. Three properties make it awkward.
 This page covered the **design (What/How)** of the judgment layer. For **why** LLM verdicts vary and why `temperature=0` is not enough, in terms of the structural constraints of LLMs, see the sister site.
 
 - [understanding-llm / Judgment Drift](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/judgment-drift) — the three layers of irreproducibility (infrastructure, evaluator bias, model updates) and the limits of mitigation
+- [understanding-llm / Failures That Remain in the Narration Layer](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/narrative-layer-failures) — the four failures left in the narration layer once judgment moves to code, mapped to the eight structural problems
 - [understanding-llm / Sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/sycophancy/) — why self-review fails; the source of evaluator bias
 - [understanding-llm / Authority and LLM Constraints](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/authority-and-llm-constraints) — the structural reasons persistent delegation is hard
 
