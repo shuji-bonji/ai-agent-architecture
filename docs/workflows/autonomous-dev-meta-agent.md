@@ -6,6 +6,8 @@
 
 > [!NOTE]
 > This page maps the structure of an autonomous development pipeline — one where AI drives the workflow from Issue to Deploy — onto the 5-layer model (Doctrine / Agent / Skills / Memory / MCP). Both cloud LLM and local LLM variants are presented.
+>
+> What it describes is the **pipeline type**: deliverables and pass criteria differ from step to step, so the steps are split and handed to roles. It is a different type from the **queue type**, where one queue file is the completion condition and a single instruction repeats until every row clears. Reading the two as one thing makes the role mapping impossible to follow.
 
 This pipeline is the automated counterpart of the manual prompt-driven development described in shuji-bonji's Zenn article [Fighting Without CLAUDE.md — Prompt-Driven Development Aware of LLM Structural Constraints](https://zenn.dev/shuji_bonji/articles/c9d325f1fd7646). The two are **different implementations of the same principle** — countermeasures against [Context Rot](../glossary#structural-problems), [Instruction Decay](../glossary#structural-problems), and [Sycophancy](../glossary#structural-problems). The design judgments are identical; only the implementation means change based on whether tool support is available.
 
@@ -46,7 +48,7 @@ The "manual operation in tool-less environments" discussed in the Zenn article a
 | Have a different model review | Reviewer Sub-agent (different LLM) | Sycophancy |
 | Commit + reset per phase | Context discarded automatically on Sub-agent termination | Instruction Decay |
 | Premium-consumption model switching | Meta-agent's model routing | Cost optimization (side effect) |
-| Instruction → plan → review | Planner → Critic Sub-agent | Sycophancy |
+| Instruction → plan → review | Planner → Reviewer Sub-agent | Sycophancy |
 | Instruction templates | Skill (`SKILL.md`) | [Knowledge Boundary](../glossary#structural-problems) |
 
 > [!IMPORTANT]
@@ -67,11 +69,14 @@ flowchart TB
 
     subgraph AGENT["Agent: Orchestration"]
         ORCH(["Orchestrator Meta-agent<br/>(router + state machine)"])
+        INSTR(["Instructor Sub-agent"])
         PLAN(["Planner Sub-agent"])
+        TDESIGN(["Test Designer Sub-agent"])
         CODER(["Coder Sub-agent"])
-        TESTER(["Tester Sub-agent"])
+        TRUN(["Test Runner Sub-agent"])
         REVIEWER(["Reviewer Sub-agent<br/>isolated context"])
         COMMITTER(["Committer Sub-agent"])
+        DEPLOYER(["Deployer Sub-agent"])
     end
 
     subgraph SKILLS["Skills: Static Procedures"]
@@ -81,6 +86,7 @@ flowchart TB
         S4["conventional-commits"]
         S5["pr-description"]
         S6["code-review-checklist"]
+        S7["release-skill"]
     end
 
     subgraph MEMORY["Memory: Persistence"]
@@ -91,18 +97,21 @@ flowchart TB
     end
 
     subgraph MCP["MCP: External Connections"]
-        T1["GitHub MCP<br/>Issue / PR / Branch"]
-        T2["Filesystem / Edit"]
-        T3["Shell / Sandbox<br/>(test runner)"]
-        T4["CI MCP<br/>(GH Actions)"]
-        T5["Codebase RAG MCP"]
+        T1["GitHub MCP<br/>Issue / PR / Checks"]
+        T2["Codebase RAG MCP"]
+        T3["Deploy MCP"]
+        T4["Filesystem MCP<br/>(harness built-ins may replace)"]
+        T5["Shell / Sandbox<br/>(harness built-ins may replace)"]
     end
 
+    ORCH --> INSTR
     ORCH --> PLAN
+    ORCH --> TDESIGN
     ORCH --> CODER
-    ORCH --> TESTER
+    ORCH --> TRUN
     ORCH --> REVIEWER
     ORCH --> COMMITTER
+    ORCH --> DEPLOYER
     DOCTRINE -.criteria.-> AGENT
     AGENT -.reads.-> SKILLS
     AGENT -.reads.-> MEMORY
@@ -134,6 +143,7 @@ flowchart TB
         S5(["Test Runner<br/>(execute)"])
         S6(["Reviewer<br/>(separate context, separate model)"])
         S7(["Committer<br/>(Conv Commits)"])
+        S8(["Deployer<br/>(release)"])
     end
 
     subgraph ART["Artifact layer (the only channel between Sub-agents)"]
@@ -141,8 +151,10 @@ flowchart TB
         A2["implementation-plan.md"]
         A3["e2e-test-spec.md"]
         A4["checklist.md"]
-        A5["diff / test result"]
-        A6["review-report.md"]
+        A5["diff"]
+        A6["test-result.md"]
+        A7["review-report.md"]
+        A8["release-note.md"]
     end
 
     ROUTER -->|spawn + input artifact path| S1
@@ -152,19 +164,28 @@ flowchart TB
     ROUTER --> S5
     ROUTER --> S6
     ROUTER --> S7
+    ROUTER --> S8
 
     S1 -.write.-> A1
     S2 -.read.-> A1
     S2 -.write.-> A2
+    S4 -.read.-> A2
     S4 -.write.-> A3
     S4 -.write.-> A4
     S3 -.read.-> A2
     S3 -.read.-> A3
     S3 -.write.-> A5
+    S5 -.read.-> A3
+    S5 -.write.-> A6
     S6 -.read.-> A2
+    S6 -.read.-> A4
     S6 -.read.-> A5
-    S6 -.write.-> A6
+    S6 -.read.-> A6
+    S6 -.write.-> A7
     S7 -.read.-> A5
+    S7 -.read.-> A7
+    S8 -.read.-> A6
+    S8 -.write.-> A8
 
     style META fill:#FFE4B5,color:#333,stroke:#333
     style SUBS fill:#87CEEB,color:#333,stroke:#333
@@ -173,49 +194,63 @@ flowchart TB
 
 > [!IMPORTANT]
 > The Meta-agent passes only **artifact paths** to Sub-agents. Sub-agent outputs MUST NOT be pulled back into the Meta-agent for summarization or merging. Doing so accumulates every Sub-agent's trial-and-error in the Meta-agent's context, causing the Meta-agent itself to suffer Context Rot. The Meta-agent stays as a **state machine + router** and never touches content.
+>
+> Note that Sub-agents in Claude Code and the Claude Agent SDK do run in isolated contexts, but result text is returned to the parent. "Artifact paths only" is not the harness default; it is **an operational constraint you impose, limiting what the parent accepts to paths and exit codes**.
 
 ## 4. Per-Step Responsibility Mapping
 
-| # | Step | Sub-agent | Skills | MCP | Exit criteria (Doctrine) |
-|---|---|---|---|---|---|
-| 1 | Issue triage | Instructor | issue-triage | GitHub MCP, RAG | Labels / scope decided |
-| 2 | Implementation design | Planner | impl-design, ADR | Codebase RAG, FS read | Plan + uncertainty list emitted |
-| 3 | Code generation | Coder | coding-conventions | FS Edit, type-check | lint / typecheck PASS |
-| 4 | Test code generation | Test Designer | test-strategy | FS Edit | Coverage target reached |
-| 5 | Test execution ① | Test Runner | — | Shell (sandbox) | All tests GREEN |
-| 6 | Git operations | Committer | conventional-commits | Git CLI MCP | branch / commit shaped |
-| 7 | PR creation | Committer | pr-description | GitHub MCP | template + Issue link |
-| 8 | Test ② (integration) | CI | — | CI MCP | CI GREEN |
-| 9 | Code review | Reviewer (separate context) | code-review-checklist | GitHub MCP, RAG | Zero findings or fixes applied |
-| 10 | Test ③ (rerun) | CI | — | CI MCP | CI GREEN |
-| 11 | CI/CD deploy | Orchestrator | release-skill | CI MCP, Deploy MCP | health-check PASS |
+| # | Step | Owner | Skills | MCP server | Harness built-in | Exit criteria (Doctrine) |
+|---|---|---|---|---|---|---|
+| 1 | Issue triage | Instructor | issue-triage | GitHub MCP, Codebase RAG MCP | — | Labels / scope decided |
+| 2 | Implementation design | Planner | impl-design, ADR | Codebase RAG MCP | file read | Plan + uncertainty list emitted |
+| 3 | Test design | Test Designer | test-strategy | — | file edit | `e2e-test-spec.md` and `checklist.md` exist |
+| 4 | Code generation | Coder | coding-conventions | — | file edit, shell (lint / typecheck) | lint / typecheck PASS |
+| 5 | Test execution ① | Test Runner | — | — | shell (sandbox) | All tests GREEN + coverage target reached |
+| 6 | Git operations | Committer | conventional-commits | — | shell (git) | branch / commit shaped |
+| 7 | PR creation | Committer | pr-description | GitHub MCP | — | template + Issue link |
+| 8 | Test ② (integration) | CI gate | — | GitHub MCP (Checks) | — | CI GREEN |
+| 9 | Code review | Reviewer (separate context) | code-review-checklist | GitHub MCP, Codebase RAG MCP | — | Zero findings or fixes applied |
+| 10 | Test ③ (rerun) | CI gate | — | GitHub MCP (Checks) | — | CI GREEN |
+| 11 | Merge | Committer | — | GitHub MCP | — | PR merged |
+| 12 | Deploy | Deployer | release-skill | Deploy MCP | shell | health-check PASS |
+
+> [!IMPORTANT]
+> **A CI gate is not a Sub-agent.** Steps 8 and 10 are checks an external workflow runs; what reaches the Meta-agent is the two-valued GREEN / RED. The continue-or-roll-back decision in step 12 belongs to the Deployer Sub-agent as well — the Meta-agent never reads the health-check body. That is what "never steps into content" in §3 means.
+
+> [!WARNING]
+> The "MCP server" and "Harness built-in" columns are not the same thing. File editing, shell execution, and type checking ship as built-in tools in Claude Code and many other harnesses. Writing them as MCP inflates the count of MCP servers a setup appears to need.
 
 > [!CAUTION]
 > **The Reviewer MUST be a Sub-agent with an isolated context.** In the same context as the Coder, self-affirmation bias (Sycophancy) yields almost no findings. Where possible, use **different LLMs** (e.g., Coder=Sonnet, Reviewer=Opus / GPT-5). This is the linchpin of the architecture.
 
-## 5. Loop Structure (Self-Healing on Failure)
+## 5. Retry Structure (Self-Healing on Failure)
 
 ```mermaid
 stateDiagram-v2
     [*] --> IssueRead
     IssueRead --> Plan
-    Plan --> Code
+    Plan --> TestDesign
+    TestDesign --> Code
     Code --> UnitTest
     UnitTest --> Code: fail (≤N)
     UnitTest --> GitOps: GREEN
     GitOps --> PR
-    PR --> CI
-    CI --> Code: fail (≤N)
-    CI --> Review: GREEN
-    Review --> Code: findings
-    Review --> Merge: approved
+    PR --> CI1
+    CI1 --> Code: fail (≤N)
+    CI1 --> Review: GREEN
+    Review --> Code: findings on code
+    Review --> TestDesign: findings on tests
+    Review --> CI2: approved
+    CI2 --> Code: fail (≤N)
+    CI2 --> Merge: GREEN
     Merge --> Deploy
     Deploy --> HealthCheck
     HealthCheck --> Rollback: NG
     HealthCheck --> [*]: OK
     Rollback --> [*]
     UnitTest --> Escalate: N failures
-    CI --> Escalate: N failures
+    CI1 --> Escalate: N failures
+    CI2 --> Escalate: N failures
     Review --> Escalate: no consensus
     Escalate --> [*]: human judgment
 ```
@@ -229,7 +264,7 @@ flowchart LR
     subgraph CLOUD["Cloud LLM stack"]
         direction TB
         H["Agent Harness<br/>Claude Agent SDK<br/>/ Claude Code"]
-        L["Claude Sonnet 4.6 (Coder)<br/>Opus 4.6 (Planner / Reviewer)"]
+        L["LLM (2026-06 時点の例)<br/>Sonnet 4.6 (Coder)<br/>Opus 4.6 (Planner / Reviewer)"]
         H --> L
         H --> MCP_C["MCP Servers<br/>github / filesystem<br/>/ bash / context7"]
         H --> MEM_C["Memory<br/>MEMORY.md + Vector DB<br/>(Pinecone / Qdrant Cloud)"]
@@ -241,15 +276,15 @@ flowchart LR
 | Layer | Example |
 |---|---|
 | [Harness](../glossary#harness) | Claude Agent SDK / Claude Code / Cursor Agent / Devin / OpenHands |
-| LLM | Claude Sonnet 4.6 (primary), Opus 4.6 (design / review), GPT-5 / Gemini 2.5 also viable |
+| LLM (examples as of 2026-06) | Claude Sonnet 4.6 (primary), Opus 4.6 (design / review), GPT-5 / Gemini 2.5 also viable. **Model names date quickly — check the current lineup before adopting** |
 | Skills | `.claude/skills/*` (this site's approach) |
-| MCP | GitHub MCP, Playwright MCP, CI MCP, Codebase RAG |
+| MCP | GitHub MCP (Issue / PR / Checks), Playwright MCP, Deploy MCP, Codebase RAG MCP |
 | Memory | `MEMORY.md` + managed Vector DB |
 | Sandbox | GitHub Actions / Cloud Run sandbox |
 
-**Strengths**: 32K–200K context, complex dependency comprehension, stable tool calling, native Sub-agent support.
+**Strengths**: long context (the ceiling moves with each release, so treat any specific number as dated), complex dependency comprehension, stable tool calling, native Sub-agent support.
 
-**Weaknesses**: $5–$50 per Issue, code leaves the premises, rate limits.
+**Weaknesses**: cost on the order of $5–$50 per Issue (an illustrative range, not a sourced figure; it swings widely with the setup and the size of the Issue), code leaves the premises, rate limits.
 
 ## 7. Local LLM Stack
 
@@ -258,7 +293,7 @@ flowchart LR
     subgraph LOCAL["Local LLM stack"]
         direction TB
         H["Agent Harness<br/>aider / Goose<br/>/ Continue / OpenHands / Cline"]
-        L["Ollama / vLLM / llama.cpp<br/>Qwen2.5-Coder 32B<br/>DeepSeek-Coder-V2 16B<br/>GLM-4 32B"]
+        L["Ollama / vLLM / llama.cpp<br/>(2026-06 時点の例)<br/>Qwen2.5-Coder 32B<br/>DeepSeek-Coder-V2 16B<br/>GLM-4 32B"]
         H --> L
         H --> MCP_L["MCP Servers<br/>(same MCPs apply)<br/>github / fs / bash"]
         H --> MEM_L["Memory<br/>MEMORY.md + Qdrant / Chroma<br/>(local)"]
@@ -270,7 +305,7 @@ flowchart LR
 | Layer | Example |
 |---|---|
 | Harness | aider / Goose (by Block) / Continue.dev / OpenHands / Cline |
-| LLM | Qwen2.5-Coder-32B-Instruct, DeepSeek-Coder-V2-Lite, Codestral-22B, GLM-4-32B |
+| LLM (examples as of 2026-06) | Qwen2.5-Coder-32B-Instruct, DeepSeek-Coder-V2-Lite, Codestral-22B, GLM-4-32B. **Local model generations turn over fast — check the current lineup** |
 | Runtime | Ollama (easy) / vLLM (serious) / llama.cpp (low-RAM) |
 | Skills | Prompt templates + few-shot examples (most harnesses lack Skills machinery) |
 | MCP | Identical to cloud version (this is MCP's main benefit) |
@@ -280,7 +315,7 @@ flowchart LR
 
 **Strengths**: Code never leaves, fixed monthly cost, no rate limits, **Sub-agent decomposition pays off more here than in cloud** (rationale below).
 
-**Weaknesses**: Breaks down above 100K context, unstable tool calling (even 32B-class models produce broken JSON), weak at complex dependency graphs.
+**Weaknesses**: unstable tool calling (even 32B-class models produce broken JSON), weak at complex dependency graphs. Long context degrades, though where it degrades depends on the model — for a 32B-class model quantized onto 24GB, 8–16K is the conservative working range, while some newer local models advertise far more.
 
 > [!IMPORTANT]
 > Local LLMs are **especially weak with long contexts**, so the benefit of Sub-agent decomposition is **greater than for cloud LLMs**. If each Sub-agent's context can be kept to 8–16K, stable local operation becomes feasible. **Meta-agent + Sub-agent is the key that makes local-LLM autonomy realistic.**
@@ -294,7 +329,7 @@ flowchart LR
 | Single-file code gen | Excellent | Good–Excellent |
 | Test code gen | Excellent | Good |
 | Tool / MCP call stability | Excellent | Fair (frequent JSON breakage) |
-| Long context (>32K) | Excellent | Poor (usable range 8–16K) |
+| Long context (>32K) | Excellent | Poor (8–16K for 32B-class) |
 | Cost / Issue | $5–$50 | Electricity only |
 | Code confidentiality | Fair (depends on policy) | Excellent |
 | Rate limits | Yes | None |
@@ -302,7 +337,7 @@ flowchart LR
 | Uncertainty awareness | Good | Poor (hard to notice [hallucinations](../glossary#structural-problems)) |
 | Need for Sub-agent decomposition | High | **Maximum** |
 
-## 9. Recommended Hybrid (2026 Sweet Spot)
+## 9. Recommended Hybrid (Sweet Spot as of 2026-06)
 
 ```mermaid
 flowchart LR
@@ -319,7 +354,7 @@ flowchart LR
     style REVIEW_C fill:#fef9c3,stroke:#a16207,color:#000
 ```
 
-- **Code generation on Local, design and review on Cloud** is the 2026 sweet spot
+- **Code generation on Local, design and review on Cloud** was the sweet spot as of 2026-06. The split still holds as a judgment; the models named below it do not
 - Why review goes Cloud: critical reading, dependency awareness, and security perspective are weak in 32B-class models
 - If confidential code must stay fully local, cross-check review with **multiple different local models** (Qwen + DeepSeek) in separate contexts
 
@@ -404,4 +439,4 @@ This page covers the **structure (What / How)** of the Meta + Sub-agent pattern.
 >
 > **Next**: [The Translation Quality Gate as a Self-Driving Loop](./translation-quality-loop.md)
 
-**Last updated**: June 2026
+**Last updated**: September 2026

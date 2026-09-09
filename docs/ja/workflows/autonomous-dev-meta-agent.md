@@ -6,6 +6,8 @@
 
 > [!NOTE]
 > 本ページは「AI が AI を駆動して Issue → Deploy までを完遂する」自律開発パイプラインの構造を、5 層モデル (Doctrine / Agent / Skills / Memory / MCP) に写像して整理する。クラウド LLM 版とローカル LLM 版の両方を提示する。
+>
+> 扱うのは **パイプライン型** である。工程ごとに成果物と合格基準が違うので、工程を分けて役ごとに渡す。同じ手順が大量に並ぶ仕事に向く **キュー型**（1 本のキューファイルを完了条件にし、同じ指示を繰り返す）とは別の型であり、混ぜて読むと役割の対応が取れなくなる。
 
 このパイプラインは、shuji-bonji の Zenn 記事 [CLAUDE.md がなくても戦える — LLM の構造的制約を踏まえたプロンプト駆動開発](https://zenn.dev/shuji_bonji/articles/c9d325f1fd7646) で述べた **「手動のステップ分割によるプロンプト駆動開発」を、Sub-agent + Meta-agent 構造として自動化** したものに相当する。両者は **同じ原理 ([Context Rot](../glossary#structural-problems) / [Instruction Decay](../glossary#structural-problems) / [Sycophancy](../glossary#structural-problems) への構造的対策) の異なる実装** であり、ツール支援の有無で実装手段が変わるだけで、設計判断は同一である。
 
@@ -46,7 +48,7 @@ Zenn 記事で論じた「ツール支援が無い環境での手動運用」と
 | 別のモデルにレビューさせる | Reviewer Sub-agent (異なる LLM) | Sycophancy |
 | フェーズごとにコミット + リセット | Sub-agent 終了で context 自動破棄 | Instruction Decay |
 | Premium 消費のモデル使い分け | Meta-agent による model routing | コスト最適化 (副次的) |
-| 指示書 → 計画書 → レビュー | Planner → Critic Sub-agent | Sycophancy |
+| 指示書 → 計画書 → レビュー | Planner → Reviewer Sub-agent | Sycophancy |
 | 指示書テンプレ | Skill (`SKILL.md`) | [Knowledge Boundary](../glossary#structural-problems) |
 
 > [!IMPORTANT]
@@ -67,11 +69,14 @@ flowchart TB
 
     subgraph AGENT["Agent 層: オーケストレーション"]
         ORCH(["Orchestrator Meta-agent<br/>(ルーター + state machine)"])
+        INSTR(["Instructor Sub-agent"])
         PLAN(["Planner Sub-agent"])
+        TDESIGN(["Test Designer Sub-agent"])
         CODER(["Coder Sub-agent"])
-        TESTER(["Tester Sub-agent"])
+        TRUN(["Test Runner Sub-agent"])
         REVIEWER(["Reviewer Sub-agent<br/>独立コンテキスト"])
         COMMITTER(["Committer Sub-agent"])
+        DEPLOYER(["Deployer Sub-agent"])
     end
 
     subgraph SKILLS["Skills 層: 静的手順書"]
@@ -81,6 +86,7 @@ flowchart TB
         S4["conventional-commits"]
         S5["pr-description"]
         S6["code-review-checklist"]
+        S7["release-skill"]
     end
 
     subgraph MEMORY["Memory 層: 永続化"]
@@ -91,18 +97,21 @@ flowchart TB
     end
 
     subgraph MCP["MCP 層: 外部接続"]
-        T1["GitHub MCP<br/>Issue / PR / Branch"]
-        T2["Filesystem / Edit"]
-        T3["Shell / Sandbox<br/>(test runner)"]
-        T4["CI MCP<br/>(GH Actions)"]
-        T5["Codebase RAG MCP"]
+        T1["GitHub MCP<br/>Issue / PR / Checks"]
+        T2["Codebase RAG MCP"]
+        T3["Deploy MCP"]
+        T4["Filesystem MCP<br/>(ハーネス組み込みで代替可)"]
+        T5["Shell / Sandbox<br/>(ハーネス組み込みで代替可)"]
     end
 
+    ORCH --> INSTR
     ORCH --> PLAN
+    ORCH --> TDESIGN
     ORCH --> CODER
-    ORCH --> TESTER
+    ORCH --> TRUN
     ORCH --> REVIEWER
     ORCH --> COMMITTER
+    ORCH --> DEPLOYER
     DOCTRINE -.判断基準.-> AGENT
     AGENT -.参照.-> SKILLS
     AGENT -.参照.-> MEMORY
@@ -134,6 +143,7 @@ flowchart TB
         S5(["Test Runner<br/>(実行)"])
         S6(["Reviewer<br/>(別文脈・別モデル)"])
         S7(["Committer<br/>(Conv Commits)"])
+        S8(["Deployer<br/>(リリース)"])
     end
 
     subgraph ART["Artifact 層 (Sub-agent 間の唯一のチャネル)"]
@@ -141,8 +151,10 @@ flowchart TB
         A2["implementation-plan.md"]
         A3["e2e-test-spec.md"]
         A4["checklist.md"]
-        A5["diff / test result"]
-        A6["review-report.md"]
+        A5["diff"]
+        A6["test-result.md"]
+        A7["review-report.md"]
+        A8["release-note.md"]
     end
 
     ROUTER -->|起動 + 入力 artifact パス| S1
@@ -152,19 +164,28 @@ flowchart TB
     ROUTER --> S5
     ROUTER --> S6
     ROUTER --> S7
+    ROUTER --> S8
 
     S1 -.書込.-> A1
     S2 -.読込.-> A1
     S2 -.書込.-> A2
+    S4 -.読込.-> A2
     S4 -.書込.-> A3
     S4 -.書込.-> A4
     S3 -.読込.-> A2
     S3 -.読込.-> A3
     S3 -.書込.-> A5
+    S5 -.読込.-> A3
+    S5 -.書込.-> A6
     S6 -.読込.-> A2
+    S6 -.読込.-> A4
     S6 -.読込.-> A5
-    S6 -.書込.-> A6
+    S6 -.読込.-> A6
+    S6 -.書込.-> A7
     S7 -.読込.-> A5
+    S7 -.読込.-> A7
+    S8 -.読込.-> A6
+    S8 -.書込.-> A8
 
     style META fill:#FFE4B5,color:#333,stroke:#333
     style SUBS fill:#87CEEB,color:#333,stroke:#333
@@ -173,49 +194,63 @@ flowchart TB
 
 > [!IMPORTANT]
 > Meta-agent は **artifact のパスだけ** を Sub-agent に渡す。Sub-agent の出力を Meta-agent に呼び戻して要約・統合してはならない。これをやると Meta-agent のコンテキストに全 Sub-agent の試行錯誤が蓄積し、Meta-agent 自身が Context Rot を起こす。Meta-agent は **state machine + ルーター** に徹し、内容には踏み込まない。
+>
+> なお、Claude Code や Claude Agent SDK の Sub-agent は独立コンテキストで動くが、親には結果テキストが返る。「artifact パスだけ」はハーネスの既定動作ではなく、**親が受け取る内容をパスと終了コードに限定するという運用上の制約**である。
 
 ## 4. ステップごとの責務マッピング
 
-| # | ステップ | 担当 Sub-agent | 主な Skills | 主な MCP | 終了条件 (Doctrine) |
-|---|---|---|---|---|---|
-| 1 | Issue 読解 | Instructor | issue-triage | GitHub MCP, RAG | ラベル / 影響範囲確定 |
-| 2 | 実装設計 | Planner | impl-design, ADR | Codebase RAG, FS read | 設計案 + 不確実性リスト出力 |
-| 3 | コード作成 | Coder | coding-conventions | FS Edit, type-check | lint / typecheck PASS |
-| 4 | テストコード作成 | Test Designer | test-strategy | FS Edit | カバレッジ目標到達 |
-| 5 | テスト実行 ① | Test Runner | — | Shell (sandbox) | 全テスト GREEN |
-| 6 | Git 操作 | Committer | conventional-commits | Git CLI MCP | branch / commit 整形済 |
-| 7 | PR 作成 | Committer | pr-description | GitHub MCP | テンプレ + Issue リンク |
-| 8 | テスト ② (統合) | CI | — | CI MCP | CI GREEN |
-| 9 | コードレビュー | Reviewer (別文脈) | code-review-checklist | GitHub MCP, RAG | 指摘ゼロ or 修正反映 |
-| 10 | テスト ③ (再実行) | CI | — | CI MCP | CI GREEN |
-| 11 | CI/CD デプロイ | Orchestrator | release-skill | CI MCP, Deploy MCP | health-check PASS |
+| # | ステップ | 担当 | 主な Skills | MCP サーバー | ハーネス組み込み | 終了条件 (Doctrine) |
+|---|---|---|---|---|---|---|
+| 1 | Issue 読解 | Instructor | issue-triage | GitHub MCP, Codebase RAG MCP | — | ラベル / 影響範囲確定 |
+| 2 | 実装設計 | Planner | impl-design, ADR | Codebase RAG MCP | ファイル読取 | 設計案 + 不確実性リスト出力 |
+| 3 | テスト設計 | Test Designer | test-strategy | — | ファイル編集 | `e2e-test-spec.md` と `checklist.md` が存在する |
+| 4 | コード作成 | Coder | coding-conventions | — | ファイル編集, シェル (lint / typecheck) | lint / typecheck PASS |
+| 5 | テスト実行 ① | Test Runner | — | — | シェル (sandbox) | 全テスト GREEN + カバレッジ目標到達 |
+| 6 | Git 操作 | Committer | conventional-commits | — | シェル (git) | branch / commit 整形済 |
+| 7 | PR 作成 | Committer | pr-description | GitHub MCP | — | テンプレ + Issue リンク |
+| 8 | テスト ② (統合) | CI ゲート | — | GitHub MCP (Checks) | — | CI GREEN |
+| 9 | コードレビュー | Reviewer (別文脈) | code-review-checklist | GitHub MCP, Codebase RAG MCP | — | 指摘ゼロ or 修正反映 |
+| 10 | テスト ③ (再実行) | CI ゲート | — | GitHub MCP (Checks) | — | CI GREEN |
+| 11 | マージ | Committer | — | GitHub MCP | — | PR がマージ済 |
+| 12 | デプロイ | Deployer | release-skill | Deploy MCP | シェル | health-check PASS |
+
+> [!IMPORTANT]
+> **CI ゲートは Sub-agent ではない。** 8 と 10 は外部のワークフローが走らせる検査で、Meta-agent が受け取るのは GREEN / RED の 2 値だけである。12 のデプロイ継続とロールバックの判断も Deployer Sub-agent が持ち、Meta-agent は health-check の中身を読まない。§3 の「内容には踏み込まない」はこの意味である。
+
+> [!WARNING]
+> 「MCP サーバー」列と「ハーネス組み込み」列は別物である。ファイル編集・シェル実行・型検査は、Claude Code をはじめ多くのハーネスが組み込みツールとして持つ。これらを MCP と書くと、必要な MCP サーバーの数を実際より多く見積もることになる。
 
 > [!CAUTION]
 > **Reviewer は MUST 独立コンテキストの Sub-agent** にすること。Coder と同じ文脈だと自己肯定バイアス (Sycophancy) でほぼ指摘が出ない。可能なら **異なる LLM** (例: Coder=Sonnet, Reviewer=Opus / GPT-5) を使う。これが本アーキテクチャの肝。
 
-## 5. ループ構造 (失敗時の自己修復)
+## 5. リトライ構造 (失敗時の自己修復)
 
 ```mermaid
 stateDiagram-v2
     [*] --> IssueRead
     IssueRead --> Plan
-    Plan --> Code
+    Plan --> TestDesign
+    TestDesign --> Code
     Code --> UnitTest
     UnitTest --> Code: 失敗 (≤N回)
     UnitTest --> GitOps: GREEN
     GitOps --> PR
-    PR --> CI
-    CI --> Code: 失敗 (≤N回)
-    CI --> Review: GREEN
-    Review --> Code: 指摘あり
-    Review --> Merge: 承認
+    PR --> CI1
+    CI1 --> Code: 失敗 (≤N回)
+    CI1 --> Review: GREEN
+    Review --> Code: 実装への指摘
+    Review --> TestDesign: テストへの指摘
+    Review --> CI2: 承認
+    CI2 --> Code: 失敗 (≤N回)
+    CI2 --> Merge: GREEN
     Merge --> Deploy
     Deploy --> HealthCheck
     HealthCheck --> Rollback: NG
     HealthCheck --> [*]: OK
     Rollback --> [*]
     UnitTest --> Escalate: N回失敗
-    CI --> Escalate: N回失敗
+    CI1 --> Escalate: N回失敗
+    CI2 --> Escalate: N回失敗
     Review --> Escalate: 合意不成立
     Escalate --> [*]: 人間判断
 ```
@@ -229,7 +264,7 @@ flowchart LR
     subgraph CLOUD["Cloud LLM 構成"]
         direction TB
         H["Agent Harness<br/>Claude Agent SDK<br/>/ Claude Code"]
-        L["Claude Sonnet 4.6 (Coder)<br/>Opus 4.6 (Planner / Reviewer)"]
+        L["LLM (2026-06 時点の例)<br/>Sonnet 4.6 (Coder)<br/>Opus 4.6 (Planner / Reviewer)"]
         H --> L
         H --> MCP_C["MCP Servers<br/>github / filesystem<br/>/ bash / context7"]
         H --> MEM_C["Memory<br/>MEMORY.md + Vector DB<br/>(Pinecone / Qdrant Cloud)"]
@@ -241,15 +276,15 @@ flowchart LR
 | レイヤー | 採用例 |
 |---|---|
 | Harness | Claude Agent SDK / Claude Code / Cursor Agent / Devin / OpenHands |
-| LLM | Claude Sonnet 4.6 (主), Opus 4.6 (設計・レビュー), GPT-5 / Gemini 2.5 でも可 |
+| LLM (2026-06 時点の例) | Claude Sonnet 4.6 (主), Opus 4.6 (設計・レビュー), GPT-5 / Gemini 2.5 でも可。**モデル名は古くなるのが速い。採用前に現行のラインナップを確認する** |
 | Skills | `.claude/skills/*` (本サイトの方式) |
-| MCP | GitHub MCP, Playwright MCP, CI MCP, Codebase RAG |
+| MCP | GitHub MCP (Issue / PR / Checks), Playwright MCP, Deploy MCP, Codebase RAG MCP |
 | Memory | `MEMORY.md` + マネージド Vector DB |
 | Sandbox | GitHub Actions / Cloud Run sandbox |
 
-**強み**: 32K〜200K の長文脈、複雑な依存関係の把握、ツール呼び出しの安定性、Sub-agent ネイティブサポート。
+**強み**: 長文脈 (上限はリリースごとに動くので、具体的な数値はいずれ古くなるものとして読む)、複雑な依存関係の把握、ツール呼び出しの安定性、Sub-agent ネイティブサポート。
 
-**弱み**: 1 Issue あたり $5〜$50 のコスト、コードが外部に出る、レート制限。
+**弱み**: 1 Issue あたり $5〜$50 規模のコスト (出典のある数値ではなく規模感の例。構成と Issue の大きさで大きく振れる)、コードが外部に出る、レート制限。
 
 ## 7. ローカル LLM 版スタック
 
@@ -258,7 +293,7 @@ flowchart LR
     subgraph LOCAL["Local LLM 構成"]
         direction TB
         H["Agent Harness<br/>aider / Goose<br/>/ Continue / OpenHands / Cline"]
-        L["Ollama / vLLM / llama.cpp<br/>Qwen2.5-Coder 32B<br/>DeepSeek-Coder-V2 16B<br/>GLM-4 32B"]
+        L["Ollama / vLLM / llama.cpp<br/>(2026-06 時点の例)<br/>Qwen2.5-Coder 32B<br/>DeepSeek-Coder-V2 16B<br/>GLM-4 32B"]
         H --> L
         H --> MCP_L["MCP Servers<br/>(同じ MCP が使える)<br/>github / fs / bash"]
         H --> MEM_L["Memory<br/>MEMORY.md + Qdrant / Chroma<br/>(local)"]
@@ -270,7 +305,7 @@ flowchart LR
 | レイヤー | 採用例 |
 |---|---|
 | Harness | aider / Goose (Block 製) / Continue.dev / OpenHands / Cline |
-| LLM | Qwen2.5-Coder-32B-Instruct, DeepSeek-Coder-V2-Lite, Codestral-22B, GLM-4-32B |
+| LLM (2026-06 時点の例) | Qwen2.5-Coder-32B-Instruct, DeepSeek-Coder-V2-Lite, Codestral-22B, GLM-4-32B。**ローカルモデルは世代交代が速い。現行のラインナップを確認する** |
 | Runtime | Ollama (お手軽) / vLLM (本気) / llama.cpp (省メモリ) |
 | Skills | プロンプトテンプレ + few-shot examples (Skills 機構を持つ harness は少ない) |
 | MCP | クラウド版と同一 (これが MCP の最大の利点) |
@@ -280,7 +315,7 @@ flowchart LR
 
 **強み**: コードが外に出ない、月額固定、レート制限なし、Sub-agent 化の恩恵がクラウド版より大きい (理由は後述)。
 
-**弱み**: 100K 超の文脈で破綻、ツール呼び出しが不安定 (32B クラスでも JSON 崩れる)、複雑な依存把握が弱い。
+**弱み**: ツール呼び出しが不安定 (32B クラスでも JSON 崩れる)、複雑な依存把握が弱い。長文脈で劣化するが、どこで劣化するかはモデルによる。32B 級を 24GB で量子化して回す場合の実用域が 8〜16K という保守的な目安であり、新しいローカルモデルにはもっと長い上限を公称するものもある。
 
 > [!IMPORTANT]
 > ローカル LLM は **長コンテキストに特に弱い** ため、Sub-agent 分割の恩恵が **クラウド版より大きい**。各 Sub-agent の context を 8〜16K に保てれば、ローカルでも安定稼働の可能性が出てくる。**Meta-agent + Sub-agent パターンは「ローカル LLM 自律化を現実にする鍵」** と言ってもいい。
@@ -294,7 +329,7 @@ flowchart LR
 | 単一ファイルのコード生成 | ◎ | ○〜◎ |
 | テストコード生成 | ◎ | ○ |
 | Tool / MCP 呼び出し安定性 | ◎ | △ (JSON 崩壊頻発) |
-| 長コンテキスト (>32K) | ◎ | × (実用域は 8〜16K) |
+| 長コンテキスト (>32K) | ◎ | × (32B 級の実用域は 8〜16K) |
 | コスト / Issue | $5〜$50 | 電気代のみ |
 | コード機密性 | △ (規約次第) | ◎ |
 | レート制限 | あり | なし |
@@ -302,7 +337,7 @@ flowchart LR
 | 不確実性の自覚 | ○ | × (幻覚に気づきにくい) |
 | Sub-agent 化の必要度 | 高 | **最高** |
 
-## 9. ハイブリッド推奨 (2026 年現在のスイートスポット)
+## 9. ハイブリッド推奨 (2026 年 6 月時点のスイートスポット)
 
 ```mermaid
 flowchart LR
@@ -319,7 +354,7 @@ flowchart LR
     style REVIEW_C fill:#fef9c3,stroke:#a16207,color:#000
 ```
 
-- **コード生成は Local**、**設計とレビューは Cloud** の役割分担が 2026 年現在のスイートスポット
+- **コード生成は Local**、**設計とレビューは Cloud** の役割分担が 2026 年 6 月時点のスイートスポットだった。分担の判断は今も残るが、その下に挙げたモデル名は残らない
 - レビューを Cloud にする理由: 「批判的読解」「依存関係の把握」「セキュリティ観点」は 32B クラスでは弱い
 - 機密コードを完全にローカルで完結させたい場合は、レビューを **複数の異なるローカルモデル** (Qwen + DeepSeek) で別文脈クロスチェックする
 
@@ -404,4 +439,4 @@ Management 側に書くべきは **「ワークフロー (How we manage)」で�
 >
 > **次へ**: [翻訳品質ゲートの自走ループ](./translation-quality-loop.md)
 
-**最終更新**: 2026年6月
+**最終更新**: 2026年9月
