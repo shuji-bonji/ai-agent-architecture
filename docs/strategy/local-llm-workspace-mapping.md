@@ -398,7 +398,4 @@ This page covered the **structural mapping (What/How)** between Open WebUI and C
 
 ---
 
-> **Previous**: [Deterministic Verdicts](./deterministic-verdicts)  
-> **Next**: [Development Phases](./../workflows/development-phases)
-
 **Last updated**: June 2026

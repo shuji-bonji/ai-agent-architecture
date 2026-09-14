@@ -182,7 +182,3 @@ LLM と基盤モデルは、本章の冒頭で説明した。
 - [II.1 五層](./part-2/layers) — 第II部
 - [用語集](./glossary) — 言葉の定義
 - [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/) — 限界の由来（Why）
-
----
-
-> **次へ**: [I.1 制約の要約](./part-1/constraints)

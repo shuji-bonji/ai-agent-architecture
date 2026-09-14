@@ -90,9 +90,3 @@ flowchart TD
 | 鮮度・判断の量・データの状態で選ぶ | [全体地図](../information/architecture-map) |
 | 何を MCP にして、何をプログラムに残すか | [II.2 配置基準](../part-2/placement) |
 | 注釈の扱いと OWASP MCP Top 10 | [MCP セキュリティ](../mcp/security) |
-
----
-
-> **前へ**: [MCP vs Skills](./mcp-vs-skills)
->
-> **次へ**: [知る経路と、する経路](../strategy/read-and-write-paths)

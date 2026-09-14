@@ -144,7 +144,4 @@ This page covered the **structure (What/How)** of permission and authority. To u
 
 ---
 
-> **Previous**: [Proposal vs. Binding](./proposal-and-binding.md)  
-> **Next**: [Knowing and Doing Paths](./read-and-write-paths.md)
-
 **Last updated**: June 2026

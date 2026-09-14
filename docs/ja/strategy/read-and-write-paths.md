@@ -273,9 +273,3 @@ RAG と MCP は競争しない。層が違う。
 - [MCP vs Skills](../faq/mcp-vs-skills) — 接続と手順書
 - [II.2 配置基準](../part-2/placement) — 判断が要らない処理はプログラムのまま
 - [全体地図](../information/architecture-map) — 資源とアクセスの三軸
-
----
-
-> **前へ**: [Permission と Authority](./permission-vs-authority.md)
->
-> **次へ**: [重み特化 vs 文脈特化](./specialization-weights-vs-context.md)

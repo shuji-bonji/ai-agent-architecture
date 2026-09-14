@@ -119,9 +119,3 @@ MCP のツールをどう切るかは第III部である。Skill の書き方も�
 - [参照先選定チェックリスト](../reference-selection-checklist) — 使ってよいかの確認
 - [MCP vs Skills](../skills/vs-mcp) — いまの使い分けの各論
 - [understanding-llm / Part 6: ツールコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/) — MCP をいつも全部載せない理由
-
----
-
-> **前へ**: [II.1 五層](./layers)
->
-> **次へ**: [Skillsとは](../skills/what-is-skills)

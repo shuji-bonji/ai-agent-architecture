@@ -87,9 +87,3 @@ The five layers are answers to LLM limits. Doctrine is the measure, Agent combin
 - [II.2 Placement](./placement) — which layer receives which item
 - [Skills](../skills/what-is-skills) / [MCP](../mcp/what-is-mcp) / [Agents](../agents/) — current Part III landings
 - [understanding-llm / Part 2: Context window](https://shuji-bonji.github.io/understanding-llm-through-claude-code/02-context-window/) — why the split exists
-
----
-
-> **Previous**: [I.1 Constraint summary](../part-1/constraints)
->
-> **Next**: [II.2 Placement](./placement)

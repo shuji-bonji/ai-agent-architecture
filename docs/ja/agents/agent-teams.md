@@ -320,9 +320,3 @@ flowchart TB
 - [Claude Agent SDK — Subagents in the SDK](https://platform.claude.com/docs/en/agent-sdk/subagents)
 - [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) — Swarm の後継
 - [CrewAI Documentation](https://docs.crewai.com/) — Hierarchical Team の代表実装
-
----
-
-> **前へ**: [サブエージェントを品質ゲートとして使う](./subagent-quality-gate)
-
-> **次へ**: [A2Aとは (Agent-to-Agent Protocol)](./what-is-a2a)

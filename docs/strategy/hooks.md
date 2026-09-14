@@ -121,9 +121,3 @@ Hooks is a harness-side interrupt. It is not a layer. Use it for enforcement a d
 - [Loop Engineering](./loop-engineering) — stopping and hygiene of the outer loop
 - [Deterministic verdicts](./deterministic-verdicts) — a measurable line goes in code
 - [IV.2 Limits](../part-4/limits) — limits that connecting fills, and checking by machine
-
----
-
-> **Previous**: [Harness Engineering Mapping](./harness-engineering-mapping)
->
-> **Next**: [Proposal vs. Binding](./proposal-and-binding)

@@ -90,9 +90,3 @@ Only the write is coloured differently. That is the one box entered after judgme
 | Choosing by freshness, amount of judgment, and state of the data | [Architecture Map](../information/architecture-map) |
 | What becomes MCP and what stays an ordinary program | [II.2 Placement](../part-2/placement) |
 | How annotations are treated, and the OWASP MCP Top 10 | [MCP Security](../mcp/security) |
-
----
-
-> **Previous**: [MCP vs Skills](./mcp-vs-skills)
->
-> **Next**: [Knowing and Doing Paths](../strategy/read-and-write-paths)

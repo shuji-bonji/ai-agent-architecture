@@ -192,6 +192,4 @@ This page covered the **structure (What/How)** of information architecture. To u
 
 ---
 
-> **Previous**: [Overview (Information)](index.md)
-
 **Last updated**: August 2026

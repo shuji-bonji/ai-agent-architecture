@@ -241,7 +241,4 @@ flowchart LR
 
 ---
 
-> **前へ**: [Discovery vs Production](./discovery-vs-production.md)  
-> **次へ**: [開発フェーズ](../workflows/development-phases.md)
-
 **最終更新**: 2026 年 6 月

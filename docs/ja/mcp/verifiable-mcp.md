@@ -222,8 +222,3 @@ export function withProvenance<TInput, TOutput>(
 - OWASP (2025). "OWASP MCP Top 10." OWASP. [owasp.org/www-project-mcp-top-10](https://owasp.org/www-project-mcp-top-10/) — MCP サーバ開発のセキュリティ Top 10（Phase 3 Beta）
 - TLSNotary Project. "TLSNotary." [tlsnotary.org](https://tlsnotary.org/) — TLS セッション内容を第三者に ZKP で証明
 - Reclaim Protocol. "Reclaim Protocol." [reclaimprotocol.org](https://reclaimprotocol.org/) — Web レスポンスを ZKP で証明可能にするプロトコル
-
----
-
-> **次へ**: [MCP 開発ガイド](./development)  
-> **前へ**: [MCP セキュリティ](./security)

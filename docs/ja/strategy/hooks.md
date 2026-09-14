@@ -121,9 +121,3 @@ hooks はハーネス側の割り込みである。層ではない。宣言で�
 - [Loop Engineering](./loop-engineering) — 外側ループの停止と衛生
 - [判定の決定論性](./deterministic-verdicts) — 測れる線はコードへ
 - [IV.2 限界](../part-4/limits) — つなげる限界と、機械で確かめること
-
----
-
-> **前へ**: [Harness Engineering との対応関係](./harness-engineering-mapping)
->
-> **次へ**: [提案と拘束](./proposal-and-binding)

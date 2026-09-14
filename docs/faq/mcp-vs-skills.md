@@ -88,7 +88,3 @@ flowchart TD
 | How to build an MCP | [MCP Development](../mcp/development) |
 | **Why** Skills must be a separate layer | [understanding-llm / Part 5](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/skills) |
 | **Why** MCP becomes a context cost | [understanding-llm / Part 6](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/mcp-context-cost) |
-
----
-
-> **Next**: [MCP vs Skills (full version)](../skills/vs-mcp)

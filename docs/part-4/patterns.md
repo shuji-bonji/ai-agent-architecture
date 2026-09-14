@@ -77,9 +77,3 @@ This chapter is the type. Rollout and judgment remain in `strategy/`.
 - [III.2 MCP](../mcp/what-is-mcp)
 - [III.4 Memory](../part-3/memory)
 - [Architecture Map](../information/architecture-map) — resource × access and the three axes for choosing means
-
----
-
-> **Previous**: [Agents](../agents/)
->
-> **Next**: [IV.2 Limits](./limits)

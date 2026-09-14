@@ -62,9 +62,3 @@ Claude に今日の法令を聞いても、学習の打ち切りよりあとは�
 - [III.3 Doctrine](../part-3/doctrine)
 - [判定の決定論性](../strategy/deterministic-verdicts)
 - [understanding-llm / Part 1](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/)
-
----
-
-> **前へ**: [IV.1 パターン](./patterns)
->
-> **次へ**: [IV.3 物理世界](./physical)

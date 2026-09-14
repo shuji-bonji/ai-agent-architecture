@@ -299,7 +299,4 @@ flowchart LR
 
 ---
 
-> **前へ**: [構成パターン](./composition-patterns.md)  
-> **次へ**: [判定の決定論性](./deterministic-verdicts.md)
-
 **最終更新**: 2026 年 7 月

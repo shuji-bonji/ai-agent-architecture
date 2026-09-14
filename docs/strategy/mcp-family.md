@@ -299,7 +299,4 @@ This page addressed the **splitting and binding (What/How)** of a family. To und
 
 ---
 
-> **Previous**: [Composition Patterns](./composition-patterns.md)  
-> **Next**: [Deterministic Verdicts](./deterministic-verdicts.md)
-
 **Last updated**: July 2026

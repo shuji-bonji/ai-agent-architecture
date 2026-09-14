@@ -150,9 +150,3 @@ LLM は、限られた文章量のなかで、次の言葉を予測して書く�
 - [II.1 五層](../part-2/layers) — 第II部
 - [用語集](../glossary#structural-problems) — 8 項目の短い定義
 - [understanding-llm / Part 1: LLM の構造的問題](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/) — 限界の由来
-
----
-
-> **前へ**: [序章](../preface)
->
-> **次へ**: [II.1 五層](../part-2/layers)

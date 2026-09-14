@@ -199,7 +199,4 @@ This page covered the **criteria (What/How)** of mode selection. To understand *
 
 ---
 
-> **Previous**: [Agent Loop Patterns](./agent-loop-patterns.md)  
-> **Next**: [Loop Engineering](./loop-engineering.md)
-
 **Last updated**: June 2026

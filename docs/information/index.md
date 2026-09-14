@@ -36,6 +36,4 @@ This section is the home for those topics — viewed not as implementation mecha
 
 ---
 
-> **Next**: [Architecture Map](architecture-map.md)
-
 **Last updated**: August 2026

@@ -148,6 +148,4 @@ xCOMET が測るのは、セグメント単位での原文と訳文の意味の�
 
 ---
 
-> **前へ**: [Issue→Deploy 自律化: Meta-agent + Sub-agent パターン](./autonomous-dev-meta-agent.md)
-
 **最終更新**: 2026年9月

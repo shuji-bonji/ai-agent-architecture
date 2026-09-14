@@ -148,6 +148,4 @@ So this loop moves only the **measurable part** of the outer loop into the syste
 
 ---
 
-> **Previous**: [Issue→Deploy Autonomy: Meta-agent + Sub-agent Pattern](./autonomous-dev-meta-agent.md)
-
 **Last updated**: September 2026

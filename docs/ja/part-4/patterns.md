@@ -77,9 +77,3 @@ Fine-tuning で、よく変わる知識をモデルの中に焼き込んでは�
 - [III.2 MCP](../mcp/what-is-mcp)
 - [III.4 Memory](../part-3/memory)
 - [全体地図](../information/architecture-map) — 資源×アクセスと手段選択の三軸
-
----
-
-> **前へ**: [エージェント](../agents/)
->
-> **次へ**: [IV.2 限界](./limits)

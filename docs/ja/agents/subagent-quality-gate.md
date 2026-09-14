@@ -352,9 +352,3 @@ model: haiku
 
 - [understanding-llm / Sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/sycophancy) — 同意バイアスの構造
 - [understanding-llm / Context Rot](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/context-rot) — 生成時の文脈が評価を歪める仕組み
-
----
-
-> **前へ**: [サブエージェント vs Skills](./subagent-vs-skill)
-
-> **次へ**: [エージェント概念の分類](./agent-taxonomy)

@@ -435,8 +435,4 @@ This page covers the **structure (What / How)** of the Meta + Sub-agent pattern.
 
 ---
 
-> **Previous**: [Multi-Agent Coordination](./patterns/multi-agent.md)
->
-> **Next**: [The Translation Quality Gate as a Self-Driving Loop](./translation-quality-loop.md)
-
 **Last updated**: September 2026

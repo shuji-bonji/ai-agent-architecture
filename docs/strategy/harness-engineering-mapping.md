@@ -230,8 +230,3 @@ This page covers the **structural correspondence (What)** between harness and th
 - [strategy/proposal-and-binding](./proposal-and-binding) — the ①–④ loop re-cut along the axis of whether each step binds (sequel to this page)
 - [strategy/permission-vs-authority](./permission-vs-authority) — what harness-type and doctrine-type agents ask for at the boundary
 - [Hooks](./hooks) — a harness-side interrupt at a point in the run
-
----
-
-> **Previous**: [Local LLM Workspace Mapping](./local-llm-workspace-mapping.md)  
-> **Next**: [Hooks](./hooks)

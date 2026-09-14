@@ -242,7 +242,4 @@ This page covered the **structure (What/How)** of distilling Skills from convers
 
 ---
 
-> **Next**: [Skill Usage Guide](./how-to-use-skills)  
-> **Previous**: [Skill Creation Guide](./how-to-create-skills)
-
 **Last updated**: July 2026

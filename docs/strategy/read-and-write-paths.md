@@ -273,9 +273,3 @@ There is no single right answer in choosing a type. Look at the failures that ac
 - [MCP vs Skills](../faq/mcp-vs-skills) — connection and procedure
 - [II.2 Placement](../part-2/placement) — work that needs no judgment stays an ordinary program
 - [Architecture Map](../information/architecture-map) — the three axes of resource and access
-
----
-
-> **Previous**: [Permission vs. Authority](./permission-vs-authority.md)
->
-> **Next**: [Weight vs. Context Specialization](./specialization-weights-vs-context.md)

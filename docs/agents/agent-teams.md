@@ -320,9 +320,3 @@ This page covers the **implementation view (what/how)** of Agent Teams. For **wh
 - [Claude Agent SDK — Subagents in the SDK](https://platform.claude.com/docs/en/agent-sdk/subagents)
 - [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) — Successor to Swarm
 - [CrewAI Documentation](https://docs.crewai.com/) — Representative Hierarchical Team implementation
-
----
-
-> **Previous**: [Using sub-agents as quality gates](./subagent-quality-gate)
-
-> **Next**: [What is A2A (Agent-to-Agent Protocol)](./what-is-a2a)

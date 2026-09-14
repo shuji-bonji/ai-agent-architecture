@@ -58,9 +58,3 @@ The inside of a good prompt is a bundle of seven conditions. Split the bundle in
 - [III.1 Skills](../skills/what-is-skills)
 - [III.3 Doctrine](../part-3/doctrine)
 - [understanding-llm / Part 1](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/) — why long input degrades
-
----
-
-> **Previous**: [IV.3 Physical world](./physical)
->
-> **Next**: [Composition patterns](../strategy/composition-patterns)

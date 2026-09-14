@@ -87,9 +87,3 @@ Agent の中に、役割を分けたサブエージェントを置いてよい�
 - [II.2 配置基準](./placement) — 何をどの層へ置くか
 - [Skillsとは](../skills/what-is-skills) / [MCPとは](../mcp/what-is-mcp) / [エージェント](../agents/) — 第III部のいまの入口
 - [understanding-llm / Part 2: コンテキストウィンドウ](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/02-context-window/) — 層へ分ける理由の仕組み
-
----
-
-> **前へ**: [I.1 制約の要約](../part-1/constraints)
->
-> **次へ**: [II.2 配置基準](./placement)

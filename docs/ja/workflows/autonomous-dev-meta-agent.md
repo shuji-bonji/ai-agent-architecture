@@ -435,8 +435,4 @@ Management 側に書くべきは **「ワークフロー (How we manage)」で�
 
 ---
 
-> **前へ**: [マルチエージェント連携](./patterns/multi-agent.md)
->
-> **次へ**: [翻訳品質ゲートの自走ループ](./translation-quality-loop.md)
-
 **最終更新**: 2026年9月

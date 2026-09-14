@@ -158,7 +158,4 @@ This page addressed the **design judgment (What/How)** of weight vs. context spe
 
 ---
 
-> **Previous**: [Knowing and Doing Paths](./read-and-write-paths.md)  
-> **Next**: [Routing vs. Cascading](./routing-vs-cascading.md)
-
 **Last updated**: June 2026
