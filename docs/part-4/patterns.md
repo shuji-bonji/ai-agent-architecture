@@ -37,6 +37,8 @@ Knowledge that changes often **MUST NOT** (must not) be baked into the model by 
 
 This far is about how knowledge is fetched. The boundary between what a read finishes and what changes state is written apart in [Knowing and Doing Paths](../strategy/read-and-write-paths).
 
+For the difference and the choice in short form, [RAG vs MCP](../faq/rag-vs-mcp) has the three-line version and a mapping table.
+
 ## 1.3 Ways of crowding that fail
 
 | Crowd | What happens |

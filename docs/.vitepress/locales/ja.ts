@@ -25,6 +25,19 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     sidebar: {
       '/ja/': [
         {
+          text: 'FAQ (3行回答)',
+          collapsed: false,
+          items: [
+            { text: '範囲（序章へ）', link: '/ja/faq/scope-of-ai-agent' },
+            { text: 'MCP vs Skills', link: '/ja/faq/mcp-vs-skills' },
+            { text: 'RAG vs MCP', link: '/ja/faq/rag-vs-mcp' },
+            {
+              text: 'Agent/Sub-agent/Skill/MCP 4者比較',
+              link: '/ja/faq/agent-vs-subagent-vs-skill',
+            },
+          ],
+        },
+        {
           text: '序章',
           collapsed: false,
           items: [
@@ -177,21 +190,6 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: '付録',
           collapsed: false,
           items: [
-            {
-              text: 'FAQ (3行回答)',
-              collapsed: true,
-              items: [
-                {
-                  text: '範囲（序章へ）',
-                  link: '/ja/faq/scope-of-ai-agent',
-                },
-                { text: 'MCP vs Skills', link: '/ja/faq/mcp-vs-skills' },
-                {
-                  text: 'Agent/Sub-agent/Skill/MCP 4者比較',
-                  link: '/ja/faq/agent-vs-subagent-vs-skill',
-                },
-              ],
-            },
             {
               text: '情報基盤',
               collapsed: true,

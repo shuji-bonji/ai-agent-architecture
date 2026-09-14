@@ -276,6 +276,6 @@ RAG と MCP は競争しない。層が違う。
 
 ---
 
-> **前へ**: [Permission と Authority](./permission-vs-authority)
+> **前へ**: [Permission と Authority](./permission-vs-authority.md)
 >
-> **次へ**: [重み特化 vs 文脈特化](./specialization-weights-vs-context)
+> **次へ**: [重み特化 vs 文脈特化](./specialization-weights-vs-context.md)

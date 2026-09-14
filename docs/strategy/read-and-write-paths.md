@@ -276,6 +276,6 @@ There is no single right answer in choosing a type. Look at the failures that ac
 
 ---
 
-> **Previous**: [Permission vs. Authority](./permission-vs-authority)
+> **Previous**: [Permission vs. Authority](./permission-vs-authority.md)
 >
-> **Next**: [Weight vs. Context Specialization](./specialization-weights-vs-context)
+> **Next**: [Weight vs. Context Specialization](./specialization-weights-vs-context.md)
