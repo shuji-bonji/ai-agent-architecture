@@ -35,6 +35,8 @@ RAG **MUST NOT** be treated as "the standard". It is one type that joins search 
 
 Knowledge that changes often **MUST NOT** (must not) be baked into the model by fine-tuning. A design that retrains on every legal amendment breaks in operations first.
 
+This far is about how knowledge is fetched. The boundary between what a read finishes and what changes state is written apart in [Knowing and Doing Paths](../strategy/read-and-write-paths).
+
 ## 1.3 Ways of crowding that fail
 
 | Crowd | What happens |
@@ -67,6 +69,7 @@ This chapter is the type. Rollout and judgment remain in `strategy/`.
 - [Deterministic verdicts](../strategy/deterministic-verdicts)
 - [Routing vs. Cascading](../strategy/routing-vs-cascading)
 - [Loop Engineering](../strategy/loop-engineering)
+- [Knowing and Doing Paths](../strategy/read-and-write-paths)
 
 - [II.2 Placement](../part-2/placement)
 - [III.2 MCP](../mcp/what-is-mcp)

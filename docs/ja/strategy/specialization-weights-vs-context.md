@@ -158,7 +158,7 @@ flowchart TD
 
 ---
 
-> **前へ**: [Permission と Authority](./permission-vs-authority.md)  
+> **前へ**: [知る経路と、する経路](./read-and-write-paths.md)  
 > **次へ**: [Routing vs Cascading](./routing-vs-cascading.md)
 
 **最終更新**: 2026 年 6 月

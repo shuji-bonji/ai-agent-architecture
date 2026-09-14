@@ -145,6 +145,6 @@ graph TB
 ---
 
 > **前へ**: [提案と拘束](./proposal-and-binding.md)  
-> **次へ**: [重み特化 vs 文脈特化](./specialization-weights-vs-context.md)
+> **次へ**: [知る経路と、する経路](./read-and-write-paths.md)
 
 **最終更新**: 2026 年 6 月

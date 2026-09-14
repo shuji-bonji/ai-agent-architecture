@@ -195,6 +195,7 @@ Structuring (reach and expression) raises the quality of proposals. Binding deci
 - [strategy/mcp-family](./mcp-family) — "judgment in code, narrative in the LLM" stated as an intra-family discipline
 - [mcp/semantic-layer](../mcp/semantic-layer) — probabilistic interpretation vs. deterministic compilation; the same shape in another domain
 - [IV.2 Limits](../part-4/limits) — separating probabilistic inference from deterministic verification
+- [Knowing and Doing Paths](./read-and-write-paths) — an example of applying the coordinate system to the design of paths
 
 ## Going Deeper: Why the Expression Layer Cannot Bind
 

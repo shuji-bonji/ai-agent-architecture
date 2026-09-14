@@ -195,6 +195,7 @@ flowchart LR
 - [strategy/mcp-family](./mcp-family) — 「ジャッジはコード、ナラティブは LLM」を族の内部規律として述べた版
 - [mcp/semantic-layer](../mcp/semantic-layer) — 確率的解釈と決定的コンパイルの分業。同型の別ドメイン適用
 - [IV.2 限界](../part-4/limits) — 確率的推論と決定論的検証の分離
+- [知る経路と、する経路](./read-and-write-paths) — 座標系を経路の設計に当てた例
 
 ## さらに深く: なぜ表現層は拘束できないのか
 

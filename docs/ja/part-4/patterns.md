@@ -35,6 +35,8 @@ RAG を「標準」だと思ってはならない。検索と生成を組んだ�
 
 Fine-tuning で、よく変わる知識をモデルの中に焼き込んではならない（**MUST NOT** / してはならない）。法改正のたびに学習し直す設計は、運用が先に壊れる。
 
+ここまでは知識の取り方である。読むだけで済むか、状態を変えるかの境界は、[知る経路と、する経路](../strategy/read-and-write-paths) に分けて書いた。
+
 ## 1.3 やってはいけない寄せ方
 
 | 寄せ方 | 起きること |
@@ -67,6 +69,7 @@ Fine-tuning で、よく変わる知識をモデルの中に焼き込んでは�
 - [判定の決定論性](../strategy/deterministic-verdicts)
 - [Routing vs Cascading](../strategy/routing-vs-cascading)
 - [Loop Engineering](../strategy/loop-engineering)
+- [知る経路と、する経路](../strategy/read-and-write-paths)
 
 - [II.2 配置基準](../part-2/placement)
 - [III.2 MCP](../mcp/what-is-mcp)

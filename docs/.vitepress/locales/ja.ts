@@ -149,6 +149,10 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                   link: '/ja/strategy/permission-vs-authority',
                 },
                 {
+                  text: '知る経路と、する経路',
+                  link: '/ja/strategy/read-and-write-paths',
+                },
+                {
                   text: '重み特化 vs 文脈特化',
                   link: '/ja/strategy/specialization-weights-vs-context',
                 },

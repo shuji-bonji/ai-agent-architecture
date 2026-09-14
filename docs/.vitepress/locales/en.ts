@@ -113,6 +113,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                 { text: 'Hooks', link: '/strategy/hooks' },
                 { text: 'Proposal vs. Binding', link: '/strategy/proposal-and-binding' },
                 { text: 'Permission vs. Authority', link: '/strategy/permission-vs-authority' },
+                { text: 'Knowing and Doing Paths', link: '/strategy/read-and-write-paths' },
                 { text: 'Weight vs. Context Specialization', link: '/strategy/specialization-weights-vs-context' },
                 { text: 'Routing vs. Cascading', link: '/strategy/routing-vs-cascading' },
                 { text: 'Agent Loop Patterns', link: '/strategy/agent-loop-patterns' },
