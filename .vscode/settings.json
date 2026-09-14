@@ -1,0 +1,8 @@
+{
+  // markdown は Prettier の保存時整形をかけない。
+  // 表のパイプ揃えなど、本文と無関係な差分がコミットに混ざるのを避けるため。
+  // 手動の Format Document は従来どおり使える。
+  "[markdown]": {
+    "editor.formatOnSave": false
+  }
+}
