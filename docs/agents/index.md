@@ -82,9 +82,3 @@ This chapter defines the layer and its boundary. Taxonomy and the remaining topi
 - [III.3 Doctrine](../part-3/doctrine) / [III.4 Memory](../part-3/memory)
 - [FAQ: four-way comparison](../faq/agent-vs-subagent-vs-skill)
 - [understanding-llm / Part 5: On-demand context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/)
-
----
-
-> **Previous**: [III.4 Memory](../part-3/memory)
->
-> **Next**: [IV.1 Patterns](../part-4/patterns)

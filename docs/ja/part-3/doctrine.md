@@ -90,9 +90,3 @@ Doctrine は、手順ではなく、目的と禁止と優先順位を置く。�
 - [III.4 Memory](./memory) — 残す記憶
 - [III.5 Agent](../agents/) — 割り振り
 - [understanding-llm / Part 3: 常駐コンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/03-always-loaded-context/) — 物差しを常に載せる理由
-
----
-
-> **前へ**: [MCPとは](../mcp/what-is-mcp)
->
-> **次へ**: [III.4 Memory](./memory)

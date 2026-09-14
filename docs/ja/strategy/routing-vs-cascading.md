@@ -212,7 +212,4 @@ flowchart LR
 
 ---
 
-> **前へ**: [重み特化 vs 文脈特化](./specialization-weights-vs-context.md)  
-> **次へ**: [エージェントループのパターン](./agent-loop-patterns.md)
-
 **最終更新**: 2026 年 6 月

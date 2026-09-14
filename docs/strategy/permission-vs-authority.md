@@ -144,7 +144,4 @@ This page covered the **structure (What/How)** of permission and authority. To u
 
 ---
 
-> **Previous**: [Proposal vs. Binding](./proposal-and-binding.md)  
-> **Next**: [Weight vs. Context Specialization](./specialization-weights-vs-context.md)
-
 **Last updated**: June 2026

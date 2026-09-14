@@ -195,6 +195,7 @@ flowchart LR
 - [strategy/mcp-family](./mcp-family) — 「ジャッジはコード、ナラティブは LLM」を族の内部規律として述べた版
 - [mcp/semantic-layer](../mcp/semantic-layer) — 確率的解釈と決定的コンパイルの分業。同型の別ドメイン適用
 - [IV.2 限界](../part-4/limits) — 確率的推論と決定論的検証の分離
+- [知る経路と、する経路](./read-and-write-paths) — 座標系を経路の設計に当てた例
 
 ## さらに深く: なぜ表現層は拘束できないのか
 
@@ -205,8 +206,5 @@ flowchart LR
 - [understanding-llm / 出力フォーマット制約と精度](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/appendix/output-format-constraints) — 入力側の構造化（到達・表現）と出力フォーマット制約は別の軸であること、後者の対策が表現層と拘束層に分かれること
 
 ---
-
-> **前へ**: [Hooks（実行時フック）](./hooks)  
-> **次へ**: [Permission と Authority](./permission-vs-authority.md)
 
 **最終更新**: 2026 年 8 月

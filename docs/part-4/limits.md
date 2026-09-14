@@ -62,9 +62,3 @@ Freshness can be filled quite far by connecting. Accuracy can be reduced but doe
 - [III.3 Doctrine](../part-3/doctrine)
 - [Deterministic verdicts](../strategy/deterministic-verdicts)
 - [understanding-llm / Part 1](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/)
-
----
-
-> **Previous**: [IV.1 Patterns](./patterns)
->
-> **Next**: [IV.3 Physical world](./physical)

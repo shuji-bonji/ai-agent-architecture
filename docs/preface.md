@@ -182,7 +182,3 @@ This book is a design document for agents centred on an LLM. It starts from limi
 - [II.1 Five layers](./part-2/layers) — Part II
 - [Glossary](./glossary) — definitions
 - [understanding-llm-through-claude-code](https://shuji-bonji.github.io/understanding-llm-through-claude-code/) — origin of the limits (Why)
-
----
-
-> **Next**: [I.1 Constraint summary](./part-1/constraints)

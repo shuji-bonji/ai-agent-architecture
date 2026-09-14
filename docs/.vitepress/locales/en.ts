@@ -24,6 +24,16 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     sidebar: {
       '/': [
         {
+          text: 'FAQ (3-line answers)',
+          collapsed: false,
+          items: [
+            { text: 'Scope (see Preface)', link: '/faq/scope-of-ai-agent' },
+            { text: 'MCP vs Skills', link: '/faq/mcp-vs-skills' },
+            { text: 'RAG vs MCP', link: '/faq/rag-vs-mcp' },
+            { text: 'Agent/Sub-agent/Skill/MCP comparison', link: '/faq/agent-vs-subagent-vs-skill' },
+          ],
+        },
+        {
           text: 'Preface',
           collapsed: false,
           items: [
@@ -113,6 +123,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
                 { text: 'Hooks', link: '/strategy/hooks' },
                 { text: 'Proposal vs. Binding', link: '/strategy/proposal-and-binding' },
                 { text: 'Permission vs. Authority', link: '/strategy/permission-vs-authority' },
+                { text: 'Knowing and Doing Paths', link: '/strategy/read-and-write-paths' },
                 { text: 'Weight vs. Context Specialization', link: '/strategy/specialization-weights-vs-context' },
                 { text: 'Routing vs. Cascading', link: '/strategy/routing-vs-cascading' },
                 { text: 'Agent Loop Patterns', link: '/strategy/agent-loop-patterns' },
@@ -126,15 +137,6 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           text: 'Appendix',
           collapsed: false,
           items: [
-            {
-              text: 'FAQ (3-line answers)',
-              collapsed: true,
-              items: [
-                { text: 'Scope (see Preface)', link: '/faq/scope-of-ai-agent' },
-                { text: 'MCP vs Skills', link: '/faq/mcp-vs-skills' },
-                { text: 'Agent/Sub-agent/Skill/MCP comparison', link: '/faq/agent-vs-subagent-vs-skill' },
-              ],
-            },
             {
               text: 'Information',
               collapsed: true,

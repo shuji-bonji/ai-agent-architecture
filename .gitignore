@@ -9,3 +9,5 @@ docs/.vitepress/config.ts.timestamp-*
 # 内部用の計画書・下書き（公開しない）
 output/
 archive/
+
+Claude outputs

@@ -199,7 +199,4 @@ flowchart TD
 
 ---
 
-> **前へ**: [エージェントループのパターン](./agent-loop-patterns.md)  
-> **次へ**: [Loop Engineering](./loop-engineering.md)
-
 **最終更新**: 2026 年 6 月

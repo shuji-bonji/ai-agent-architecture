@@ -265,7 +265,4 @@ This page covered the **design (What/How)** of the judgment layer. For **why** L
 
 ---
 
-> **Previous**: [MCP Family](./mcp-family.md)  
-> **Next**: [Local LLM Workspace Mapping](./local-llm-workspace-mapping.md)
-
 **Last updated**: July 2026

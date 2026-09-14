@@ -54,9 +54,3 @@ On machines in the field the five layers own the same things. What changes is th
 - [III.3 Doctrine](../part-3/doctrine)
 - [III.5 Agent](../agents/)
 - [Mapping onto a local LLM workspace](../strategy/local-llm-workspace-mapping)
-
----
-
-> **Previous**: [IV.2 Limits](./limits)
->
-> **Next**: [IV.4 Prompt decomposition](./prompt-decomposition)

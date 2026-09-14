@@ -58,9 +58,3 @@ RTF や CO-STAR など、既存の枠も、同じ関心を指している。違�
 - [III.1 Skills](../skills/what-is-skills)
 - [III.3 Doctrine](../part-3/doctrine)
 - [understanding-llm / Part 1](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/01-llm-structural-problems/) — 長い入力が劣化する理由
-
----
-
-> **前へ**: [IV.3 物理世界](./physical)
->
-> **次へ**: [構成パターン](../strategy/composition-patterns)

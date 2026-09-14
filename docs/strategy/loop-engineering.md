@@ -241,7 +241,4 @@ This page covered the **engineering (What/How)** of the outer loop. To understan
 
 ---
 
-> **Previous**: [Discovery vs. Production](./discovery-vs-production.md)  
-> **Next**: [Development Phases](./../workflows/development-phases.md)
-
 **Last updated**: June 2026

@@ -75,9 +75,3 @@ MCP は、外のツールとデータへつなぐ。推測と原文を分ける�
 - [開発](./development)
 - [Verifiable MCP](./verifiable-mcp)
 - [全体地図](../information/architecture-map) — 資源の種類と読む／書くの分離
-
----
-
-> **前へ**: [Skillsとは](../skills/what-is-skills)
->
-> **次へ**: [III.3 Doctrine](../part-3/doctrine)

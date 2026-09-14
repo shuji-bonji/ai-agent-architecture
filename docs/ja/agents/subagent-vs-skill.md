@@ -232,9 +232,3 @@ Skill に「合格基準」を書き、サブエージェントが客観的に�
 
 - [understanding-llm / Part 5: オンデマンドコンテキスト (Skills & Agents)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/) — Skills と Agents の役割分担と Context Rot 対策
 - [understanding-llm / Part 10: マルチセッション協調 (Subagent vs Team)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/10-multi-session/subagent-vs-team) — サブエージェントを超えるスケール対策
-
----
-
-> **前へ**: [カスタムサブエージェントとは](./what-is-subagent)
-
-> **次へ**: [サブエージェントを品質ゲートとして使う](./subagent-quality-gate)

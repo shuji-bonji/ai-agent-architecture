@@ -54,9 +54,3 @@ Skills には、重力や摩擦の目安など、動きの知識を置く。ワ�
 - [III.3 Doctrine](../part-3/doctrine)
 - [III.5 Agent](../agents/)
 - [ローカル LLM 環境への写像](../strategy/local-llm-workspace-mapping)
-
----
-
-> **前へ**: [IV.2 限界](./limits)
->
-> **次へ**: [IV.4 プロンプトの分解](./prompt-decomposition)

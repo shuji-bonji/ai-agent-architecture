@@ -119,9 +119,3 @@ When the choice of means is unclear, three axes also help: freshness, amount of 
 - [Reference-selection checklist](../reference-selection-checklist) — whether a source may be used
 - [MCP vs Skills](../skills/vs-mcp) — current split in detail
 - [understanding-llm / Part 6: Tool context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/06-tool-context/) — why not to load every MCP tool always
-
----
-
-> **Previous**: [II.1 Five layers](./layers)
->
-> **Next**: [Skills](../skills/what-is-skills)

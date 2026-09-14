@@ -230,8 +230,3 @@ graph LR
 - [strategy/proposal-and-binding](./proposal-and-binding) — ①〜④ループを「拘束するか」の軸で切り直した四層の座標系（本ページの続編）
 - [strategy/permission-vs-authority](./permission-vs-authority) — ハーネス型とドクトリン型が境界で求めるもの
 - [Hooks（実行時フック）](./hooks) — ハーネス側の、動作の節目への割り込み
-
----
-
-> **前へ**: [ローカル LLM 環境への 5 層モデルの写像](./local-llm-workspace-mapping.md)  
-> **次へ**: [Hooks（実行時フック）](./hooks)

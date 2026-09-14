@@ -121,7 +121,3 @@ flowchart TD
 | Skill basics | [What is Skills](../skills/what-is-skills) |
 | Architecture overview | [II.1 Five layers](../part-2/layers) |
 | Relation to the Memory layer | [III.4 Memory](../part-3/memory) |
-
----
-
-> **Next**: [MCP vs Skills FAQ](./mcp-vs-skills)

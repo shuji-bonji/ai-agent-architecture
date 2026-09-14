@@ -79,9 +79,3 @@ Skills は、変わらない知識と手順を置く。実行しない。チー�
 - [会話からの Skill 蒸留](./conversation-to-skill)
 - [スキル導入・利用](./how-to-use-skills)
 - [実例ショーケース](./showcase)
-
----
-
-> **前へ**: [II.2 配置基準](../part-2/placement)
->
-> **次へ**: [MCPとは](../mcp/what-is-mcp)

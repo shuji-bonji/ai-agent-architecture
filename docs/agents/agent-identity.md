@@ -322,8 +322,3 @@ The argument of this page can be summarized as follows.
 5. **Recursive delegation, revocation propagation, and governance scalability are unresolved**. Design with the assumption that complete solutions do not yet exist; mitigate operationally.
 
 Building on the **"Who"** defined here (agent identifiers and delegation chains), the next chapter designs **what they are allowed to access** through permission models (RBAC / ABAC / JIT). Keeping identity and authorization as separate layers is the prerequisite for designs that survive long-term operation.
-
----
-
-> **Next**: *Permissions: RBAC/ABAC/JIT (planned)*  
-> **Previous**: *Hybrid Local/Cloud LLMs (planned)*

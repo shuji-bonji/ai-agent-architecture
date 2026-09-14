@@ -150,9 +150,3 @@ An LLM predicts the next word inside a bounded amount of text. It holds no state
 - [II.1 Five layers](../part-2/layers) — Part II
 - [Glossary](../glossary#structural-problems) — short definitions of the eight items
 - [understanding-llm / Part 1](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/) — origin of the limits
-
----
-
-> **Previous**: [Preface](../preface)
->
-> **Next**: [II.1 Five layers](../part-2/layers)

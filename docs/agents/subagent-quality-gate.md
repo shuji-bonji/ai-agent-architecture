@@ -352,9 +352,3 @@ This page covers the **design and operation (what/how)** of quality gates. For *
 
 - [understanding-llm / Sycophancy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/sycophancy) — The structure of agreement bias
 - [understanding-llm / Context Rot](https://shuji-bonji.github.io/understanding-llm-through-claude-code/01-llm-structural-problems/context-rot) — How generation-time context distorts evaluation
-
----
-
-> **Previous**: [Sub-agent vs Skills](./subagent-vs-skill)
-
-> **Next**: [Agent Taxonomy](./agent-taxonomy)

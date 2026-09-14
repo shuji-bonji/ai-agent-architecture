@@ -82,9 +82,3 @@ Agent は、作業を理解し、他の層を組み合わせる。サブエー�
 - [III.3 Doctrine](../part-3/doctrine) / [III.4 Memory](../part-3/memory)
 - [FAQ: 4 者比較](../faq/agent-vs-subagent-vs-skill)
 - [understanding-llm / Part 5: オンデマンドコンテキスト](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/)
-
----
-
-> **前へ**: [III.4 Memory](../part-3/memory)
->
-> **次へ**: [IV.1 パターン](../part-4/patterns)

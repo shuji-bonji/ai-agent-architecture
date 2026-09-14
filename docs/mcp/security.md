@@ -117,6 +117,25 @@ Attack patterns:
 - Conduct source code reviews
 - Manage through allowlists
 
+#### Note: How Tool Annotations Are Treated
+
+The MCP specification defines the annotations `readOnlyHint` / `destructiveHint` / `idempotentHint` / `openWorldHint` on a tool. They are the fields with which a server declares the nature of its own tools.
+
+| Annotation | Meaning | Default |
+| --- | --- | --- |
+| `readOnlyHint` | If true, the tool does not modify its environment | `false` |
+| `destructiveHint` | If true, the tool may perform destructive updates. If false, only additive ones | `true` |
+| `idempotentHint` | If true, repeated calls with the same arguments have no additional effect | `false` |
+| `openWorldHint` | If true, the tool may interact with an external "open world" | `true` |
+
+The specification states that all properties of `ToolAnnotations` are **hints** and are not guaranteed to provide a faithful description of tool behavior. It also states that tool use decisions must not be made on annotations received from untrusted servers. The tools page puts it as: clients **MUST** consider tool annotations to be untrusted unless they come from trusted servers.
+
+What follows from the defaults is that a tool carrying no annotations is treated as destructive (`destructiveHint` defaults to `true`) and not idempotent (`idempotentHint` defaults to `false`).
+
+Annotations are material for listing reads and writes apart. They are not grounds for permission. Permission is given by constraints on the host side. The design that splits them into paths is in [Knowing and Doing Paths](../strategy/read-and-write-paths).
+
+**Specification version checked**: 2026-07-28 (field names and defaults of `ToolAnnotations` verified)
+
 #### MCP04: Supply Chain Attacks & Dependency Tampering
 
 **Risk**: Dependencies are tampered with, modifying agent behavior
@@ -161,6 +180,8 @@ execFile('ls', [sanitizedInput]);
 - Input sanitization
 - Context isolation
 - Output validation
+
+When text returned by RAG or `resources/read` contains an instruction, the output of the knowing path becomes the trigger for the doing path. The result of a reference **MUST NOT** (must not) be read as an instruction.
 
 #### MCP07: Insufficient Authentication & Authorization
 

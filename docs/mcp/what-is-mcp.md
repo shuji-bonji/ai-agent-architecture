@@ -73,9 +73,3 @@ This chapter defines the layer and its boundary. Catalogue, security, and develo
 - [Semantic Layer](./semantic-layer)
 - [Development](./development)
 - [Architecture Map](../information/architecture-map) — resource types and the read / write split
-
----
-
-> **Previous**: [Skills](../skills/what-is-skills)
->
-> **Next**: [III.3 Doctrine](../part-3/doctrine)

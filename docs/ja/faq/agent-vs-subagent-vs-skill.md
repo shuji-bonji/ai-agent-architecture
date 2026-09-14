@@ -121,7 +121,3 @@ flowchart TD
 | Skill の基本概念 | [Skillsとは](../skills/what-is-skills) |
 | アーキテクチャ全体像 | [II.1 五層](../part-2/layers) |
 | Memory 層との関係 | [III.4 Memory](../part-3/memory) |
-
----
-
-> **次へ**: [MCP vs Skills FAQ](./mcp-vs-skills)

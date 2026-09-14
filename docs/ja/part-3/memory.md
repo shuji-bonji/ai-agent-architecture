@@ -94,9 +94,3 @@ Data と Knowledge の還流、および「散在したデータの上に AI を
 - [全体地図](../information/architecture-map) — データの循環と整備が先である理由
 - [エージェント ID](../agents/agent-identity) — 誰の代理か
 - [understanding-llm / なぜメモリが問題になるのか](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/08-session-management/memory-problem)
-
----
-
-> **前へ**: [III.3 Doctrine](./doctrine)
->
-> **次へ**: [エージェント](../agents/)

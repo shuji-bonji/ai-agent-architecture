@@ -94,9 +94,3 @@ Circulation between Data and Knowledge, and the premise that AI must not sit on 
 - [Architecture Map](../information/architecture-map) — why data circulation and curation come first
 - [Agent identity](../agents/agent-identity) — on whose behalf
 - [understanding-llm / Why memory becomes a problem](https://shuji-bonji.github.io/understanding-llm-through-claude-code/08-session-management/memory-problem)
-
----
-
-> **Previous**: [III.3 Doctrine](./doctrine)
->
-> **Next**: [Agents](../agents/)

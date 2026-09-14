@@ -115,6 +115,25 @@ const API_KEY = process.env.DEEPL_API_KEY;
 - ソースコードレビューの実施
 - 利用許可リストでの管理
 
+#### 補足: ツール注釈（annotations）の扱い
+
+MCP 仕様は、ツールに `readOnlyHint` / `destructiveHint` / `idempotentHint` / `openWorldHint` の注釈を定義している。サーバーが自分のツールの性質を申告するための項目である。
+
+| 注釈 | 意味 | 既定 |
+| --- | --- | --- |
+| `readOnlyHint` | true なら、そのツールは環境を変更しない | `false` |
+| `destructiveHint` | true なら、破壊的な更新を行うことがある。false なら追加のみ | `true` |
+| `idempotentHint` | true なら、同じ引数で繰り返し呼んでも追加の影響が無い | `false` |
+| `openWorldHint` | true なら、外部の「開いた世界」とやり取りすることがある | `true` |
+
+仕様は、`ToolAnnotations` の全プロパティが**ヒント**であり、ツールの動作を忠実に説明する保証は無いと明記している。あわせて、信頼できないサーバーから受け取った注釈をもとにツール使用を判断してはならないとしている。ツールのページでは「信頼できるサーバー由来でない限り、クライアントはツール注釈を信頼できないものとして扱わなければならない（**MUST**）」と書かれている。
+
+既定値から言えるのは、注釈が付いていないツールは、破壊的で（`destructiveHint` の既定が `true`）冪等でない（`idempotentHint` の既定が `false`）ものとして扱われる、ということである。
+
+注釈は、読み取りと書き込みを分けて並べるための材料になる。許可の根拠にはならない。許可はホスト側の制約が与える。経路として分ける設計は [知る経路と、する経路](../strategy/read-and-write-paths) にある。
+
+**確認した仕様の版**: 2026-07-28（`ToolAnnotations` のフィールド名と既定値を照合）
+
 #### MCP04: Supply Chain Attacks & Dependency Tampering
 
 **リスク**: 依存パッケージが改ざんされ、エージェントの動作が変更される
@@ -159,6 +178,8 @@ execFile('ls', [sanitizedInput]);
 - 入力のサニタイズ
 - コンテキストの分離
 - 出力の検証
+
+RAG や `resources/read` が返した本文に命令文が含まれている場合、知る経路の出力が、する経路の引き金になる。参照の結果を、指示として読んではならない。
 
 #### MCP07: Insufficient Authentication & Authorization
 

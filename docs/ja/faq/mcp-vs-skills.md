@@ -88,7 +88,3 @@ flowchart TD
 | MCP の作り方 | [MCP Development](../mcp/development) |
 | **なぜ** Skills という分離が必要なのか | [understanding-llm / Part 5](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/05-on-demand-context/skills) |
 | **なぜ** MCP がコンテキストコストになるのか | [understanding-llm / Part 6](https://shuji-bonji.github.io/understanding-llm-through-claude-code/ja/06-tool-context/mcp-context-cost) |
-
----
-
-> **次へ**: [MCP vs Skills (詳細版)](../skills/vs-mcp)

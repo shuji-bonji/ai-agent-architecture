@@ -195,6 +195,7 @@ Structuring (reach and expression) raises the quality of proposals. Binding deci
 - [strategy/mcp-family](./mcp-family) — "judgment in code, narrative in the LLM" stated as an intra-family discipline
 - [mcp/semantic-layer](../mcp/semantic-layer) — probabilistic interpretation vs. deterministic compilation; the same shape in another domain
 - [IV.2 Limits](../part-4/limits) — separating probabilistic inference from deterministic verification
+- [Knowing and Doing Paths](./read-and-write-paths) — an example of applying the coordinate system to the design of paths
 
 ## Going Deeper: Why the Expression Layer Cannot Bind
 
@@ -205,8 +206,5 @@ This page covered the **classification (What/How)** of the layers. To understand
 - [understanding-llm / Output Format Constraints and Accuracy](https://shuji-bonji.github.io/understanding-llm-through-claude-code/appendix/output-format-constraints) — input-side structuring (reach, expression) and output format constraints are different axes; the countermeasures for the latter split between the expression and binding layers
 
 ---
-
-> **Previous**: [Hooks](./hooks)  
-> **Next**: [Permission vs. Authority](./permission-vs-authority.md)
 
 **Last updated**: August 2026

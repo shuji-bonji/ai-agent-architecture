@@ -90,9 +90,3 @@ Doctrine holds purpose, prohibitions, and priority, not procedures. The other la
 - [III.4 Memory](./memory) — memory that is kept
 - [III.5 Agent](../agents/) — assignment
 - [understanding-llm / Part 3: Always-loaded context](https://shuji-bonji.github.io/understanding-llm-through-claude-code/03-always-loaded-context/) — why the measure is always loaded
-
----
-
-> **Previous**: [MCP](../mcp/what-is-mcp)
->
-> **Next**: [III.4 Memory](./memory)

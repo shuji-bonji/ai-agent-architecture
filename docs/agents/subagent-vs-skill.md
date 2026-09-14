@@ -232,9 +232,3 @@ This page covers the **selection (what/how)** between sub-agents and Skills. For
 
 - [understanding-llm / Part 5: On-Demand Context (Skills & Agents)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/05-on-demand-context/) — Role separation between Skills and Agents, and Context Rot mitigation
 - [understanding-llm / Part 10: Multi-Session Coordination (Subagent vs Team)](https://shuji-bonji.github.io/understanding-llm-through-claude-code/10-multi-session/subagent-vs-team) — Scaling beyond sub-agents
-
----
-
-> **Previous**: [What is a Custom Sub-agent](./what-is-subagent)
-
-> **Next**: [Using sub-agents as quality gates](./subagent-quality-gate)

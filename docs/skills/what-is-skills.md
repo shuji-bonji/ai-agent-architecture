@@ -79,9 +79,3 @@ This chapter defines the layer and its boundary. Procedures and worked examples 
 - [Distilling Skills from conversations](./conversation-to-skill)
 - [How to use Skills](./how-to-use-skills)
 - [Showcase](./showcase)
-
----
-
-> **Previous**: [II.2 Placement](../part-2/placement)
->
-> **Next**: [MCP](../mcp/what-is-mcp)
