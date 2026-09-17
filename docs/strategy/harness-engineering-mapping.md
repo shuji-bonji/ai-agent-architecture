@@ -100,9 +100,113 @@ graph TB
 | --- | --- | --- |
 | **Action (tool integration)** | **MCP** | Connection points for external systems. Protocol layer. |
 | **Context (memory)** | **Memory** | Persistent memory and relationships. Knowledge Graph, etc. |
-| **Guardrails (safety controls)** | **Doctrine** (defensive aspect only) | Constraints, prohibitions, sandboxing. **Does not include normative strength declarations (MUST/SHOULD/MAY) or offensive design guidance.** |
+| **Guardrails (safety controls)** | **Doctrine** (defensive aspect only) | Constraints, prohibitions, sandboxing. **Does not include normative strength declarations (MUST/SHOULD/MAY) or offensive design guidance.** The implementing components are covered in [Breaking Down Guardrails](#guardrails-breakdown). |
 | **Orchestration (loop control)** | **Agent** | The locus of task decomposition, execution, and evaluation loops. |
 | ❌ no counterpart | **Skills** | Static knowledge, guidelines, progressive disclosure. Absent in the harness vocabulary. |
+
+## Breaking Down Guardrails {#guardrails-breakdown}
+
+The four-element table above reduces Guardrails to "sandboxes, etc." This section breaks Guardrails down along four questions:
+
+- Does a component act on the model by being read, or by blocking execution?
+- Where do CLAUDE.md and AGENTS.md belong?
+- Which permissions are restricted?
+- Which component decides pass or fail, where in the loop, and against what criteria?
+
+### Components That Are Read, and Components That Block
+
+Components counted as Guardrails fall into two groups by how they act on the model.
+
+| How it acts | Example components | When the model does not comply |
+| --- | --- | --- |
+| **Read** (placed in context) | CLAUDE.md / AGENTS.md, Skill bodies, system prompts | Nothing stops. The violating `tool_call` proceeds to ② as is |
+| **Block** (the harness refuses execution) | Permission settings (allow / deny), sandboxes, approvals, hooks, server-side validation in MCP servers | Execution is refused before ②, or during ② |
+
+Writing "do not send customer data to external APIs" in a prompt belongs to the first group. If the model overlooks that line ([Instruction Decay](../glossary#structural-problems)), the request is sent. If the destination is blocked by network settings, no request is sent regardless of what the model outputs. On this page, only the blocking components count as implementations of Guardrails.
+
+> [!IMPORTANT]
+> A prohibition placed only in the read group raises the probability of compliance; it does not stop execution. Any MUST rule whose violation you cannot accept must also be placed in a blocking component.
+
+### Where CLAUDE.md and AGENTS.md Belong {#claude-md-agents-md}
+
+Articles on harness engineering sometimes count CLAUDE.md and AGENTS.md as a "policy layer" of the harness. This site treats the mechanism that handles these files separately from the content written in them.
+
+| Subject | Where it belongs | Does it block execution? |
+| --- | --- | --- |
+| The **mechanism** that finds the files and loads them into context at startup | Harness | No |
+| The **content**: purpose, prohibitions, priorities written in the files | Doctrine layer ([III.3 Doctrine](../part-3/doctrine)) | No (read group) |
+
+A prohibition written in CLAUDE.md is not an implementation of Guardrails. Prohibitions that must be enforced technically belong in permission settings, hooks, or sandboxes. CLAUDE.md should keep the reason for each prohibition and the judgments a machine cannot enforce, such as priorities and trade-offs.
+
+### Types of Permissions to Restrict
+
+| Permission | What it restricts | Examples |
+| --- | --- | --- |
+| **File system** | Paths that can be read or written | Deny writes outside the working directory. Deny reading `.env` |
+| **Network** | Destinations the agent may reach | Block outbound traffic. Allow only listed domains |
+| **Execution** | Commands that may run, and where they run | Restrict commands with an allowlist / denylist. Run them inside a disposable container |
+| **Data access (authorization)** | Data that may be read or updated | Do not return data beyond what the requesting user's role allows |
+
+File system, network, and execution can be restricted by harness settings and sandboxes. Data access authorization is usually decided outside the harness: in business systems, MCP servers, or identity infrastructure. Whose permissions an agent carries is covered in [Agent Identity](../agents/agent-identity).
+
+### Implementing Components
+
+The components are ordered by where they act in the ①–④ loop shown at the top of this page.
+
+```mermaid
+flowchart LR
+    MOD["LLM (brain)"]
+    HAR["Harness"]
+    EXT["External"]
+    MOD -->|"① tool_call"| HAR
+    HAR -->|"② real I/O"| EXT
+    EXT -->|"③ result"| HAR
+    HAR -->|"④ back into context"| MOD
+
+    PERM["Permission settings, approvals<br/>refuse just before ②"] --> HAR
+    HOOK["hooks<br/>judge around ② and at turn end"] --> HAR
+    SBX["Sandbox<br/>isolates where ② runs"] --> EXT
+    MCPV["MCP server-side validation, authorization<br/>the receiver of ② refuses"] --> EXT
+    DOC["CLAUDE.md / AGENTS.md / Skill bodies<br/>only enter context at ④"] -.-> MOD
+
+    style MOD fill:#dcfce7,stroke:#15803d,color:#000
+    style HAR fill:#dbeafe,stroke:#1d4ed8,color:#000
+    style EXT fill:#FFB6C1,color:#333,stroke:#333
+    style PERM fill:#fef9c3,stroke:#a16207,color:#000
+    style HOOK fill:#fef9c3,stroke:#a16207,color:#000
+    style SBX fill:#fef9c3,stroke:#a16207,color:#000
+    style MCPV fill:#fef9c3,stroke:#a16207,color:#000
+    style DOC fill:#f3f4f6,stroke:#374151,color:#000
+```
+
+| Component | Where it acts in the loop | Permissions restricted | How it acts |
+| --- | --- | --- | --- |
+| **Runtime permission settings** (permission modes and allow / deny in Claude Code, Codex CLI, etc.) | Just before ② | File system, network, execution | Block |
+| **Approval** (human-in-the-loop) | Just before ② | Dangerous operations in general. Nothing runs until a human approves | Block |
+| **hooks** | Around ②, and at turn end | Specific operations. Sends work back if lint or tests fail | Block |
+| **Sandbox** (containers such as Docker, isolated execution services such as E2B) | Where ② runs | Execution, file system, network. Even destructive operations end inside a disposable environment | Block |
+| **MCP server-side validation** | The receiver of ② (inside the server) | Operations and data the server exposes. Rejects out-of-schema input and writes | Block |
+| **Authorization infrastructure** (RBAC, etc.) | The receiver of ② (business systems) | Data access | Block |
+| **CLAUDE.md / AGENTS.md, Skill bodies** | Enter context at ④ | None | Read |
+
+How to arrange permission modes as a spectrum and decide how much to delegate is covered in [Permission vs. Authority](./permission-vs-authority).
+
+> [!NOTE]
+> In the mapping table above, MCP corresponds to Action (the connection point). When the same MCP server implements input validation or refuses writes, it also becomes a Guardrails component. Being a connection point and being a place where restrictions are enforced are compatible. For server-side measures, see [Security Considerations for MCP Development](../mcp/security).
+
+### Which Component Decides Pass or Fail
+
+Blocking components decide whether the run may proceed. Each component differs in its criteria and in who writes them.
+
+| Component | Pass/fail criteria | Written by | Is the verdict reproducible? |
+| --- | --- | --- | --- |
+| **hooks** | Exit codes of external commands such as lint, type checks, and tests | Developers | Yes |
+| **MCP server** | Input schema, permitted operations, rule tables | Server authors | Yes |
+| **Permission settings, sandboxes** | Patterns for paths, destinations, and commands | Operators | Yes |
+| **Approval** | Human judgment | Approvers | Depends on the approver |
+| **Skill checklists** | Checklist items, matched by the model itself | Skill authors | No |
+
+Because the model itself matches a Skill checklist, the verdict can change for the same input. Asking a model to verify its own output is also subject to [Sycophancy](../glossary#structural-problems). Criteria whose verdicts must be reproducible belong in hooks or on the MCP server side. For separating observation, judgment, and narration, see [Deterministic Verdicts](./deterministic-verdicts); for deciding where hooks go, see [Hooks](./hooks).
 
 ## Three Areas Harness Does Not Cover
 
@@ -116,6 +220,9 @@ The four harness elements lack the concept of **"how to structure static knowled
 - Composition across multiple Skills
 
 These are neither Context (memory) nor Action (tools); they are **judgment criteria conditionally injected into the LLM's immediate context** and require an independent layer.
+
+> [!NOTE]
+> Some articles on harness engineering count Skills as a harness component. What they refer to is the **mechanism** that finds SKILL.md files and loads them into context when their trigger conditions match. That mechanism belongs to the harness. What this site marks as "no counterpart" is the **content** of a Skill: its judgment criteria and procedures. The four harness elements have no concept for how to structure that content or when to trigger it. CLAUDE.md and AGENTS.md are split the same way (see [Where CLAUDE.md and AGENTS.md Belong](#claude-md-agents-md)).
 
 > [!IMPORTANT]
 > Squeezing Skills into Context causes token bloat and [Priority Saturation](../glossary#structural-problems). The design hinges on expanding Skills *only when invoked* — explored in detail in [II.1 Five layers](../part-2/layers).
@@ -153,7 +260,7 @@ Determine whether harness alone covers your question:
 | "Criteria for splitting sub-agents" | ❌ No | [agents/subagent-vs-skill](../agents/subagent-vs-skill), [agents/subagent-quality-gate](../agents/subagent-quality-gate) |
 | "What to write as MUST vs SHOULD" | ❌ No | [III.3 Doctrine](../part-3/doctrine) |
 | "Instructions decay over long tasks" | ⚠️ Symptomatic only | Why (Instruction Decay) → understanding-llm |
-| "Granularity of guardrails" | ⚠️ Defensive only | Doctrine (offensive normativity) |
+| "Granularity of guardrails" | ⚠️ Defensive only | Component choice: [Breaking Down Guardrails](#guardrails-breakdown); offensive normativity: Doctrine |
 | "Coordination across multiple MCPs and Skills" | ❌ No | [strategy/composition-patterns](./composition-patterns) |
 
 ## Vocabulary Hierarchy — Harness Is a Mechanism, Engineering Is a Methodology
@@ -230,3 +337,6 @@ This page covers the **structural correspondence (What)** between harness and th
 - [strategy/proposal-and-binding](./proposal-and-binding) — the ①–④ loop re-cut along the axis of whether each step binds (sequel to this page)
 - [strategy/permission-vs-authority](./permission-vs-authority) — what harness-type and doctrine-type agents ask for at the boundary
 - [Hooks](./hooks) — a harness-side interrupt at a point in the run
+- [strategy/deterministic-verdicts](./deterministic-verdicts) — separating observation, judgment, and narration so verdicts reproduce
+- [agents/agent-identity](../agents/agent-identity) — whose permissions an agent carries
+- [mcp/security](../mcp/security) — validation and authorization implemented on the MCP server side
