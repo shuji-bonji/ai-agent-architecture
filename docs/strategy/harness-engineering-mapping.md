@@ -184,7 +184,7 @@ flowchart LR
 | **Runtime permission settings** (permission modes and allow / deny in Claude Code, Codex CLI, etc.) | Just before ② | File system, network, execution | Block |
 | **Approval** (human-in-the-loop) | Just before ② | Dangerous operations in general. Nothing runs until a human approves | Block |
 | **hooks** | Around ②, and at turn end | Specific operations. Sends work back if lint or tests fail | Block |
-| **Sandbox** (containers such as Docker, isolated execution services such as E2B) | Where ② runs | Execution, file system, network. Even destructive operations end inside a disposable environment | Block |
+| **Sandbox** (the Bash sandbox in Claude Code, containers such as Docker, isolated execution services such as E2B) | Where ② runs | Execution, file system, network. Even destructive operations end inside a disposable environment | Block |
 | **MCP server-side validation** | The receiver of ② (inside the server) | Operations and data the server exposes. Rejects out-of-schema input and writes | Block |
 | **Authorization infrastructure** (RBAC, etc.) | The receiver of ② (business systems) | Data access | Block |
 | **CLAUDE.md / AGENTS.md, Skill bodies** | Enter context at ④ | None | Read |
